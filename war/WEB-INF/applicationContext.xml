@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:aop="http://www.springframework.org/schema/aop"
+         xmlns:tx="http://www.springframework.org/schema/tx"
+         xmlns:context="http://www.springframework.org/schema/context"
+         xsi:schemaLocation="http://www.springframework.org/schema/beans          
+           http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop 
+           http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+           
+                   
+
+    <!-- the parent application context definition for the ireveal application -->
+    <bean id="mastersManager" class="ireveal.service.MastersImpl">
+        <property name="mastersDao" ref="mastersDao"/>       
+    </bean>
+    <bean id="mastersDao" class="ireveal.repository.JdbcMastersDao">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+
+    <bean id="setupManager" class="ireveal.service.SetupManagerImpl">
+        <property name="setupDao" ref="setupDao"/>
+     
+    </bean>
+
+
+
+    <bean id="setupDao" class="ireveal.repository.JdbcSetupDao">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>   
+   
+    
+    <!-- declare beans --> 
+    
+<bean id="assetTreeManager" class="ireveal.service.AssetTreeManagerImpl">  
+<property name="assetTreeDao" ref="assetTreeDao"/>    
+    </bean>
+<bean id="assetTreeDao" class="ireveal.repository.JdbcAssetTreeDao">
+        <property name="dataSource" ref="dataSource"/>
+ </bean> 
+<bean id="companyManager" class="ireveal.service.CompanyImpl">  
+<property name="companyDao" ref="companyDao"/>    
+</bean>
+<bean id="companyDao" class="ireveal.repository.JdbcCompanyDao">
+        <property name="dataSource" ref="dataSource"/>
+    </bean> 
+   
+
+ <!-- Enable Annotation based Declarative Transaction Management -->
+    <tx:annotation-driven proxy-target-class="true"
+        transaction-manager="transactionManager" />
+ 
+    <!-- Creating TransactionManager Bean, since JDBC we are creating of type 
+        DataSourceTransactionManager -->
+    <bean id="transactionManager"
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+	
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+    
+    <bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"></bean>
+ 		<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+  			<list>
+    			<ref bean="jacksonMessageConverter"/>
+  			</list>
+		</property>
+	</bean>
+
+    <bean id="propertyConfigurer" 
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>

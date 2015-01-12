@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        	http://www.springframework.org/schema/context 
+        	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        	http://www.springframework.org/schema/mvc
+        	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        	http://www.springframework.org/schema/security
+			http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+        
+	<context:component-scan base-package="ireveal.web" />
+    <context:component-scan base-package="ireveal.repository" />
+	<mvc:annotation-driven />
+	
+    <security:global-method-security secured-annotations="enabled" />
+    
+ 
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+ 
+	<bean name="/fileupload.htm" class="ireveal.web.FileUploadController">
+		<property name="formView" value="fileupload" />
+		<property name="successView" value="fileuploadresult" />
+        <property name="mastersManager" ref="mastersManager"/>
+		
+	</bean>
+	
+
+    <!-- the application context definition for the ireveal-base DispatcherServlet -->
+	
+	<!-- Application text Messages repository -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="messages"/>
+    </bean>
+	
+	<!-- Instance specific properties repository -->
+	<bean id="applicationProperties" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:application.properties</value>
+            </list>
+        </property>
+	</bean>
+	
+	
+	<bean name="/403.htm" class="ireveal.web.MainController">
+    </bean>
+    
+	<bean name="/edittree.htm" class="ireveal.web.EditTreeController">
+   
+    </bean>
+   
+
+    <bean name="/start.htm" class="ireveal.web.MainController">
+		    <property name="mastersManager" ref="mastersManager"/>
+    </bean>
+
+    <bean name="/login.htm" class="ireveal.web.MainController">
+	        <property name="mastersManager" ref="mastersManager"/>
+    </bean>
+    
+    <bean name="/event.htm" class="ireveal.web.EventController">
+    </bean>
+
+	<bean name="/tools.htm" class="ireveal.web.ToolsController">
+        
+         <property name="mastersManager" ref="mastersManager"/>
+    </bean>
+
+    <bean name="/setup.htm" class="ireveal.web.SetupController" >
+        <property name="setupManager" ref="setupManager"/>        
+        <property name="mastersManager" ref="mastersManager"/>
+    </bean>
+
+	<bean name="/company.htm" class="ireveal.web.CompanyController">
+		<property name="sessionForm" value="true"/>
+        <property name="commandName" value="editCompany"/>			        
+        <property name="commandClass" value="ireveal.domain.Company"/>
+        <property name="formView" value="company"/>        
+        <property name="companyManager" ref="companyManager"/>
+        <property name="successView" value="main.htm"/>
+    </bean>
+   
+
+   <bean name="/assettree.htm" class="ireveal.web.AssetTreeController">
+    <property name="viewName" value="assettree"/>
+    <property name="commandClass" value="ireveal.domain.AssetTree"/>
+    <property name="formView" value="assettree"/>
+    <property name="assetTreeManager" ref="assetTreeManager"/>
+	
+    </bean>
+   
+    
+   <bean name="/user.htm" class="ireveal.web.UserController">
+        <property name="sessionForm" value="true"/>
+        <property name="commandName" value="newUser"/>
+        <property name="commandClass" value="ireveal.domain.User"/>
+        <property name="formView" value="user"/>
+        <property name="successView" value="setup.htm?oper=user"/>
+        <property name="setupManager" ref="setupManager"/>
+    </bean>
+
+	<bean name="/userpref.htm" class="ireveal.web.UserPrefController">
+        <property name="sessionForm" value="true"/>
+        <property name="commandName" value="newUserPref"/>
+        <property name="commandClass" value="ireveal.domain.UserPref"/>
+        <property name="formView" value="userPref"/>
+        <property name="successView" value="userpref.htm?oper=save"/>
+        <property name="setupManager" ref="setupManager"/>
+	
+    </bean>
+    
+   <bean name="/role.htm" class="ireveal.web.RoleController">
+        <property name="sessionForm" value="true"/>
+        <property name="commandName" value="newRole"/>
+        <property name="commandClass" value="ireveal.domain.RoleDsp"/>
+        <property name="formView" value="role"/>
+        <property name="successView" value="setup.htm?oper=role"/>
+        <property name="setupManager" ref="setupManager"/>        
+        <property name="mstrService" ref="mastersManager"/>
+    </bean>
+    
+    
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
+        <property name="prefix" value="/WEB-INF/jsp/"></property>
+        <property name="suffix" value=".jsp"></property>        
+    </bean>
+    
+    
+</beans>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Properties>
+		<Property name="log-path">logs</Property>
+	</Properties>
+  <Appenders>
+	<RollingFile name="file-log" fileName="${log-path}/irev-base.log" filePattern="${log-path}/irev-log-%d{yyyy-MM-dd}.log">
+		<PatternLayout>
+			<pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss} %c{1} - %msg%n</pattern>
+		</PatternLayout>
+		<Policies>
+			<TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+		</Policies>
+	</RollingFile>
+    <Console name="STDOUT" target="SYSTEM_OUT">
+      <PatternLayout pattern="[%-5level] %d %C{2} - %msg%n"/>
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Logger name="ireveal" level="info" additivity="false">
+      <AppenderRef ref="file-log"/>
+    </Logger>
+    <Root level="error">
+      <AppenderRef ref="STDOUT"/>
+    </Root>
+  </Loggers>
+</Configuration>
