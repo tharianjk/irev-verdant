@@ -40,7 +40,7 @@ function fnsetstat(typ,msg)
 	if(msg!=null && msg=='msg'){
 		reportflashMessenger.setText('<b>Please make a Selection from the Asset Tree on the left side</b>  ');}
 	if(typ=="Polar") {
-	window.location="hpolar.htm?oper=hpolar&testid="+AssetTree.selectedsection;
+		window.frames['AppBody'].location="hpolar.htm?oper=hpolar&testid="+AssetTree.selectedsection;
 	AssetTree.monitorstat="Reports";}
 	if(typ=="3db") {
 		window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+AssetTree.selectedsection;
