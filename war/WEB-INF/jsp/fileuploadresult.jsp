@@ -8,5 +8,14 @@
 	FileName : "
 	<strong> ${fileName} </strong>" 
  
+ 
+  <script>
+     $(document).ready(function () {
+    	
+   	         var url = '<%=request.getContextPath()%>/assettree.htm?treemode=edit';     
+   	                       parent.frames['AssetTree'].location = url; 
+  		 
+  	});
+     </script>
 </body>
 </html>

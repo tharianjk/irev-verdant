@@ -1,46 +1,31 @@
 package ireveal.repository;
 
-import ireveal.domain.EncryptDecrypt;
+
 import ireveal.domain.AssetTree;
+import ireveal.domain.DataLog;
 import ireveal.domain.Operator;
+import ireveal.domain.Product;
+import ireveal.domain.ProductSerial;
 import ireveal.domain.RoleDsp;
+import ireveal.domain.TestData;
+import ireveal.domain.TestFiles;
+import ireveal.domain.TestFrequency;
 import ireveal.domain.User;
 import ireveal.domain.UserPref;
 import ireveal.repository.JdbcAssetTreeDao.RoleMapper;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import java.util.ArrayList;  
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.List;  
-import java.util.Map;
 
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
-import javax.sql.DataSource;  
-import javax.swing.tree.RowMapper;
-
-import org.springframework.beans.factory.annotation.Autowired;  
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;  
 import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -258,6 +243,464 @@ public UserPref mapRow(ResultSet rs, int rowNum) throws SQLException {
    	
   	return true;
    }
+   
+   public List<TestFrequency> getFreqList(int testid){
+	   
+	   logger.info("***inside getFreqList** ");
+	   List<TestFrequency> dataList =null;
+    String sql = "select frequency,lineargain from testFreq  where test_id =" + testid;  
+   try
+   {
+	   dataList = getJdbcTemplate().query(sql, new TestFreqMapper());
+  
+   }
+   catch(Exception e)
+   {
+    logger.info("***Exception** "+ e.getMessage() );
+   }
+    return dataList;  
+   }  
+   private static class TestFreqMapper implements ParameterizedRowMapper<TestFrequency> {
+	   
+       public TestFrequency mapRow(ResultSet rs, int rowNum) throws SQLException {
+    	   TestFrequency testfreq = new TestFrequency();
+    	   testfreq.setFrequency(rs.getDouble("frequency"));  
+    	   testfreq.setLineargain(rs.getDouble("lineargain"));  
+    	       	   
+           return testfreq;
+       }
+
+   }
+   
+   //import test data
+   @Transactional
+   public int insertTestData(TestData testdata,List<TestFrequency> testfreqlist,List<DataLog> dataloglist,String strmode,String action ){
+	  
+	   int testid=0;
+	   logger.info(" strmode "+strmode);
+	   try{
+	   
+if(strmode.equals("new")){
+	   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+   final String  sql = "INSERT INTO testdata(TestName,TestDesc,ProdSerial_id,TestDate,frequnit,testcenter,instruments,calibration) VALUES  (?,?,?,?,?,?,?,?)";    
+	     KeyHolder keyHolder = new GeneratedKeyHolder();
+	    
+	     final String testname = testdata.getTestname();
+	     final String testdesc = testdata.getTestdesc();	    
+	     final int prdserid = testdata.getProductserialid();
+	     final String testdate=sdf.format(testdata.getDttestdate());
+	     final String frequnit="MHz";//testdata.getFrequnit();
+	     final String testcenter=testdata.getTestcenter();
+	     final String instruments=testdata.getInstruments();
+	     final String calibration=testdata.getCalibration();
+	  	getJdbcTemplate().update(
+	  	    new PreparedStatementCreator() {
+	  	        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+	  	            PreparedStatement ps =
+	  	                connection.prepareStatement(sql, new String[] {"TEST_ID"});
+	  	           
+	  	            ps.setString(1, testname);
+	  	            ps.setString(2, testdesc);
+	  	            ps.setInt(3, prdserid);	  	           
+	  	            ps.setString(4, testdate);
+	  	            ps.setString(5, frequnit);
+	  	            ps.setString(6, testcenter);
+	  	            ps.setString(7, instruments);
+	  	            ps.setString(8, calibration);
+	  	            return ps;
+	  	        }
+	  	    },
+	  	    keyHolder);
+	  	testid= keyHolder.getKey().intValue();
+	  	logger.info(" TestData record inserted. Key = "+testid); 
+	  	 
+	   }
+	   else{testid=testdata.getTestid();
+	   }
+	  	  	
+	  	
+	  	// test freq
+	  	String sqltestfreq=	"INSERT INTO testfreq(Test_id,Frequency,lineargain)  VALUES   (?,?,?)";  
+	  	for (int i=0;i<testfreqlist.size();i++){
+	  		int cnt =getJdbcTemplate().queryForInt("select count(*) from testfreq where Test_id=? and Frequency=?",testid,testfreqlist.get(i).getFrequency());
+		if(cnt==0){
+			logger.info("lg"+testfreqlist.get(i).getLineargain());
+	  		getJdbcTemplate().update(  
+				sqltestfreq,  
+		 new Object[] {testid, testfreqlist.get(i).getFrequency(), testfreqlist.get(i).getLineargain()==0.00?null:testfreqlist.get(i).getLineargain() });}
+
+		}
+	  	
+	 // datalog
+	  	 String sqltest="";
+	  	if(testdata.getFiletype().equals("Vdata"))
+	  	{
+	  		sqltest="insert into Vdata (test_id,Frequency,Angle,Amplitude) values (?,?,?,?);"; 
+	  	}
+	  	else if(testdata.getFiletype().equals("Hdata"))
+	  	{
+	  		sqltest="insert into Hdata (test_id,Frequency,Angle,Amplitude) values (?,?,?,?);"; 
+	  	}
+	  	else {
+	  		sqltest="insert into CPdata (test_id,Frequency,Angle,Amplitude) values (?,?,?,?);"; 
+		  	
+	  	}
+	  	for (int i=0;i<dataloglist.size();i++){		 
+		getJdbcTemplate().update(  
+				sqltest,  
+		 new Object[] {testid, dataloglist.get(i).getFreq(), dataloglist.get(i).getAngle(),dataloglist.get(i).getAmplitude() });
+
+		}
+	  	if(action.equals("Done"))
+	  	{
+	  		final String ptype = testdata.getPtype()=="Linear"?"L":"C";
+	  		//final String funit = testdata.getFrequnit()=="MHz"?"M":"G";
+	  		final String funit = "M";
+	  		getJdbcTemplate().update("call Calculate_params (?,?)", testid,ptype);
+	  		
+	  	}	  	
+	   }
+	   catch(Exception e){
+		   if(!strmode.equals("new")){
+			   
+		   }
+	   }
+	    return testid;	    
+	   }
+   
+   
+   
+   public int InsertProduct(Product prod) {
+	   
+	   int primaryKey;
+	   
+   final String  sql = "INSERT INTO product(Productname,Version,PType,ImageFileName) VALUES   (?,?,?,?)";    
+	     KeyHolder keyHolder = new GeneratedKeyHolder();
+	    
+	     final String prdname = prod.getProductname();
+	     final String version = prod.getVersion();	    
+	     final String ptype = prod.getPtype();
+	     final String iname = prod.getImagefilename();
+	  	getJdbcTemplate().update(
+	  	    new PreparedStatementCreator() {
+	  	        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+	  	            PreparedStatement ps =
+	  	                connection.prepareStatement(sql, new String[] {"PRODUCT_ID"}); 
+	  	            ps.setString(1, prdname);	
+	  	            ps.setString(2, version);
+	  	            ps.setString(3, ptype);	  
+	  	          ps.setString(4, iname);
+	  	            return ps;
+	  	        }
+	  	    },
+	  	    keyHolder);
+	  	primaryKey= keyHolder.getKey().intValue();
+	  	logger.info(" Product record inserted. Key = "+primaryKey); 	       
+	    return primaryKey;	
+	   }
+   
+   //product
+   public List<Product> getProductList() {  
+	    List dataList = new ArrayList();  
+	   
+	    String sql = "select Product_id,Productname,Version,PType,ImageFileName from product";  
+	   
+	    dataList = getJdbcTemplate().query(sql, new ProductMapper());  
+	    return dataList;  
+	   }  
+	    
+	   @Transactional
+	   public boolean deleteproduct(int id) { 
+		   String sql = ""; 
+		   
+			   try{
+	     sql = "delete from product where product_id=" + id;  
+	    getJdbcTemplate().update(sql);
+	   
+	    return true;
+	    }
+			   catch(Exception e)
+			   {
+				   logger.info("prduct Delete error " +e.getMessage()); 
+				   return false;
+			   }
+		   
+	   }
+	    
+	     
+	   public boolean updateProduct(Product prduct) {  
+		   try{
+	    String sql = "UPDATE Product set productname = ?,version = ?,ptype=?,imagefilename=? where product_id = ?";  
+	    getJdbcTemplate().update(  
+	      sql,  
+	      new Object[] { prduct.getProductname(), prduct.getVersion(),  prduct.getPtype(),prduct.getImagefilename(),
+	    		  prduct.getProductid() }); 
+	    
+	   
+	    return true;    
+	    }
+	    catch(Exception e ){
+			   logger.info("prduct Update error " +e.getMessage()); 
+			   return false;
+		   }
+	   }  
+	    
+	   
+	   public Product getProduct(int id) {  
+		   logger.info("***inside prduct** ");
+		   List<Product> dataList =null;
+	    String sql = "select Product_id,Productname,Version,PType,ImageFileName from product  where Product_id =" + id;  
+	   try
+	   {
+		   dataList = getJdbcTemplate().query(sql, new ProductMapper());
+	  
+	   }
+	   catch(Exception e)
+	   {
+	    logger.info("***Exception** "+ e.getMessage() );
+	   }
+	    return dataList.get(0);  
+	   }  
+	   private static class ProductMapper implements ParameterizedRowMapper<Product> {
+		   
+	       public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
+	    	   Product product = new Product();
+	    	   product.setProductid(rs.getInt("product_id"));  
+	    	   product.setProductname(rs.getString("productname"));  
+	    	   product.setPtype(rs.getString("ptype"));  
+	    	   product.setVersion(rs.getString("version")); 	    	  
+	    	   product.setImagefilename(rs.getString("imagefilename"));
+	    	   
+	           return product;
+	       }
+
+	   }
+//productSerial
+	   public int InsertProductSer(ProductSerial prodser) {
+		   int primaryKey;
+		   
+		   final String  sql = "INSERT INTO product_serial(SerialNo,Product_id)  VALUES   (?,?)";
+			     KeyHolder keyHolder = new GeneratedKeyHolder();
+			    
+			     final String prdsername = prodser.getProductserial();
+			     final int prodid = prodser.getProductid();	    
+			     
+			  	getJdbcTemplate().update(
+			  	    new PreparedStatementCreator() {
+			  	        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+			  	            PreparedStatement ps =
+			  	                connection.prepareStatement(sql, new String[] {"Prodserial_id"}); 
+			  	            ps.setString(1, prdsername);	
+			  	            ps.setInt(2, prodid);
+			  	           
+			  	            return ps;
+			  	        }
+			  	    },
+			  	    keyHolder);
+			  	primaryKey= keyHolder.getKey().intValue();
+			  	logger.info(" Product Serial record inserted. Key = "+primaryKey); 	       
+			    return primaryKey;	 	
+		   
+		   }
+		   
+		   
+
+	   public List<ProductSerial> getProductSerList() {  
+		    List dataList = new ArrayList();  
+		   
+		    String sql = "select Prodserial_id, S.Product_id ,SerialNo,productname from product_serial S inner join product p on s.Product_id=p.Product_id";  
+		   
+		    dataList = getJdbcTemplate().query(sql, new ProductMapper());  
+		    return dataList;  
+		   }  
+		    
+		   @Transactional
+		   public boolean deleteproductser(int id) { 
+			   String sql = ""; 
+			   
+				   try{
+		     sql = "delete from product_serial where Prodserial_id=" + id;  
+		    getJdbcTemplate().update(sql);
+		   
+		    return true;
+		    }
+				   catch(Exception e)
+				   {
+					   logger.info("Prodserial Delete error " +e.getMessage()); 
+					   return false;
+				   }
+			   
+		   }
+		    
+		     
+		   public boolean updateProductSer(ProductSerial prduct) {  
+			   try{
+		    String sql = "UPDATE product_serial set SerialNo = ?,product_id = ? where Prodserial_id = ?";  
+		    getJdbcTemplate().update(  
+		      sql,  
+		      new Object[] { prduct.getProductserial(), prduct.getProductid(),  prduct.getProductserialid() }); 
+		    
+		   
+		    return true;    
+		    }
+		    catch(Exception e ){
+				   logger.info("prduct Update error " +e.getMessage()); 
+				   return false;
+			   }
+		   }  
+		    
+		   
+		   public ProductSerial getProductSer(int id) {  
+			   logger.info("***inside prduct** ");
+			   List<ProductSerial> dataList =null;
+		    String sql = "select Prodserial_id, S.Product_id ,SerialNo,productname from product_serial S inner join product p on s.Product_id=p.Product_id  where Prodserial_id =" + id;  
+		   try
+		   {
+			   dataList = getJdbcTemplate().query(sql, new ProductSerMapper());
+		  
+		   }
+		   catch(Exception e)
+		   {
+		    logger.info("***Exception** "+ e.getMessage() );
+		   }
+		    return dataList.get(0);  
+		   }  
+		   
+		   public List<ProductSerial> getProdVerSer() {  
+			   logger.info("***inside getProdVerSer** ");
+			   List<ProductSerial> dataList =null;
+		    String sql = " select Prodserial_id ,CONCAT(productname, ' ', Version,' ',SerialNo) SerialNo from product_serial S inner join product p on s.Product_id=p.Product_id  ";  
+		   try
+		   {
+			   dataList = getJdbcTemplate().query(sql, new ProdVerSerMapper());
+		  
+		   }
+		   catch(Exception e)
+		   {
+		    logger.info("***Exception** "+ e.getMessage() );
+		   }
+		    return dataList;  
+		   } 
+private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductSerial> {
+			   
+		       public ProductSerial mapRow(ResultSet rs, int rowNum) throws SQLException {
+		    	   ProductSerial product = new ProductSerial(); 
+		    	   product.setProductserial(rs.getString("SerialNo"));  
+		    	   product.setProductserialid(rs.getInt("Prodserial_id")); 	 
+		           return product;
+		       }
+
+		   }
+		   
+		   
+		   private static class ProductSerMapper implements ParameterizedRowMapper<ProductSerial> {
+			   
+		       public ProductSerial mapRow(ResultSet rs, int rowNum) throws SQLException {
+		    	   ProductSerial product = new ProductSerial();
+		    	   product.setProductid(rs.getInt("product_id"));  
+		    	   product.setProductname(rs.getString("productname"));  
+		    	   product.setProductserial(rs.getString("SerialNo"));  
+		    	   product.setProductserialid(rs.getInt("Prodserial_id")); 	    	  
+		    	   
+		    	   
+		           return product;
+		       }
+
+		   }
+		   
+		
+			   @Transactional
+	public boolean deleteTestData(int id) { 
+				   String sql = ""; 
+				   
+					   try{
+						   sql = " delete from arcalculated where Test_id=" + id;
+						   getJdbcTemplate().update(sql);
+						   sql = "delete from cpcalculated where Test_id=" + id;
+						   getJdbcTemplate().update(sql);
+						   sql = "delete from hcalculated where Test_id=" + id;
+						   getJdbcTemplate().update(sql);
+						   sql = "delete from vcalculated where Test_id=" + id;
+						   getJdbcTemplate().update(sql);
+						   sql = "delete from hdata where Test_id=" + id;
+						   getJdbcTemplate().update(sql);
+						   sql = "delete from vdata where Test_id=" + id;
+						   getJdbcTemplate().update(sql);
+						   sql = "delete from cpdata where Test_id=" + id;
+						   getJdbcTemplate().update(sql);
+						   sql = "delete from testfreq where Test_id=" + id;
+						   getJdbcTemplate().update(sql);
+						   sql = "delete from testdata where Test_id=" + id;
+						   getJdbcTemplate().update(sql);
+						     sql = "delete from testdata where Test_id=" + id;  
+						    getJdbcTemplate().update(sql);
+			   
+			    return true;
+			    }
+					   catch(Exception e)
+					   {
+						   logger.info("Test Delete error " +e.getMessage()); 
+						   return false;
+					   }
+				   
+			   }
+			    
+			     
+			   public boolean updateTestData(TestData testdata) {  
+				   try{
+			    String sql = "UPDATE TestData set testname = ?,testdesc = ?,ProdSerial_id,testdate where test_id = ?";  
+			    getJdbcTemplate().update(  
+			      sql,  
+			      new Object[] { testdata.getTestname(), testdata.getTestdesc(),  testdata.getProductserialid(),testdata.getDttestdate() }); 
+			    
+			   
+			    return true;    
+			    }
+			    catch(Exception e ){
+					   logger.info("testdata Update error " +e.getMessage()); 
+					   return false;
+				   }
+			   }
+			
+			   
+			   public TestData getTestData(int id) {  
+				   logger.info("***inside testdata** ");
+				   List<TestData> dataList =null;
+			    String sql = "select Test_id,TestName,testdesc,T.ProdSerial_id,TestDate,SerialNo,Productname,Version,frequnit,ptype,testcenter,instruments,calibration from testdata t inner join product_serial s on t.Prodserial_id=S.Prodserial_id "+
+			    		" inner join product p on s.Product_id=p.Product_id  where TEST_id =" + id;  
+			   try
+			   {
+				   dataList = getJdbcTemplate().query(sql, new TestDataMapper());
+			  
+			   }
+			   catch(Exception e)
+			   {
+			    logger.info("***Exception** "+ e.getMessage() );
+			   }
+			    return dataList.get(0);  
+			   }  
+			   
+			   
+			   private static class TestDataMapper implements ParameterizedRowMapper<TestData> {
+				   
+			       public TestData mapRow(ResultSet rs, int rowNum) throws SQLException {
+			    	   TestData testdata = new TestData();
+			    	   testdata.setTestid(rs.getInt("Test_id"));  
+			    	   testdata.setTestname(rs.getString("testName"));  
+			    	   testdata.setTestdesc(rs.getString("testdesc"));  
+			    	   testdata.setProductserial(rs.getString("productname") +" " +rs.getString("Version") +" "+rs.getString("SerialNo") );  
+			    	   testdata.setProductserialid(rs.getInt("Prodserial_id")); 	    	  
+			    	   testdata.setDttestdate(rs.getTimestamp("testdate"));
+			    	   testdata.setFrequnit(rs.getString("frequnit"));  
+			    	   testdata.setPtype(rs.getString("ptype")); 
+			    	   testdata.setTestcenter(rs.getString("testcenter")); 
+			    	   testdata.setInstruments(rs.getString("instruments")); 
+			    	   testdata.setCalibration(rs.getString("calibration")); 
+			    	   
+			           return testdata;
+			       }
+
+			   }
    
   }
 

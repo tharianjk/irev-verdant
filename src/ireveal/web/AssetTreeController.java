@@ -17,6 +17,7 @@ import org.apache.commons.logging.LogFactory;
 
 import ireveal.domain.AssetTree;
 import ireveal.service.AssetTreeManager;
+import ireveal.service.MastersService;
 
  
 @SuppressWarnings({ "serial", "deprecation" })
@@ -24,10 +25,10 @@ import ireveal.service.AssetTreeManager;
 public class AssetTreeController extends SimpleFormController {
 	private String viewName = null;
 	public AssetTreeManager assetTreeManager ;
-	
+	public MastersService mastersservice ;
 	public AssetTree assetTree;
 	String deletemsg="Deleted Successfully ";
-	String strType="Location";
+	String strType="Product";
 	protected final Log logger = LogFactory.getLog(getClass());
 	
 	
@@ -76,7 +77,20 @@ public class AssetTreeController extends SimpleFormController {
 	           intid=Integer.parseInt(id);
 	        }
 	                      
-	      
+	        if(inttyp==2)
+	        {
+	        	saveStat=mastersservice.deleteproduct(intid);
+	        }
+	        if(inttyp==3)
+	        {
+	        	strType="Product Serial";
+	        	saveStat=mastersservice.deleteproductser(intid);
+	        }
+	        if(inttyp==4)
+	        {
+	        	strType="Test Data";
+	        	saveStat=mastersservice.deleteTestData(intid);
+	        } 
 	        if(saveStat==false)
 	        	deletemsg="Could not delete " ;
 	     }
@@ -122,5 +136,14 @@ public class AssetTreeController extends SimpleFormController {
 	   public AssetTree getAssetTree() {
 	       return assetTree;
 	   }
+	   
+	   public void setMastersManager(MastersService mastersservice) {
+	       this.mastersservice = mastersservice;
+	   }   
+
+	   public MastersService getMastersManager() {
+	       return mastersservice;
+	   }
+
 
 }

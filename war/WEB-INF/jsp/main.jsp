@@ -42,6 +42,15 @@ function fnsetstat(typ,msg)
 	if(typ=="Polar") {
 	window.location="hpolar.htm?oper=hpolar&testid="+AssetTree.selectedsection;
 	AssetTree.monitorstat="Reports";}
+	if(typ=="3db") {
+		window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+AssetTree.selectedsection;
+		AssetTree.monitorstat="Reports";}
+	if(typ=="10db") {
+		window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+AssetTree.selectedsection;
+		AssetTree.monitorstat="Reports";}
+	if(typ=="ar") {
+		window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+AssetTree.selectedsection;
+		AssetTree.monitorstat="Reports";}
 	
 }
 function fnHomeClick()
@@ -158,12 +167,12 @@ dialog.dialog( "open" );
 				<li><a href="#">Polar Report</a>
 				<ul>
 					<!-- <li><a rel="Polar Report" href="/birt-viewer/frameset?__report=HdataVerdant_report.rptdesign&freq=1540" TARGET="AppBody" class="menuarray" onclick="fnsetstat('Reports');">H Data Report</a></li>  -->
-					<li><a rel="Polar Report" class="menuarray" onclick="fnsetstat('Polar');">H Data Report</a></li>				
+					<li><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('Polar');">H Data Report</a></li>				
 				</ul>
 				</li>
-				<li><a rel="Polar Report" class="menuarray" onclick="fnsetstat('Polar');">3db Beamwidth</a> </li>
-				<li><a rel="Polar Report" class="menuarray" onclick="fnsetstat('Polar');">10db Beamwidth</a> </li>
-				<li><a rel="Polar Report" class="menuarray" onclick="fnsetstat('Polar');">Axial Ratio</a> </li>
+				<li><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('3db');">3db Beamwidth</a> </li>
+				<li><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('10db');">10db Beamwidth</a> </li>
+				<li><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('ar');">Axial Ratio</a> </li>
 			</ul>
 		</li>
 		</c:if>
