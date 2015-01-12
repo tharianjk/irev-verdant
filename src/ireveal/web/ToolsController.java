@@ -53,25 +53,44 @@ public class ToolsController implements Controller {
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ParseException {
     	
-        logger.info("*** Inside Tools controller ");
+        logger.info("*** Inside Tools controller "+request.getParameter("testid"));
         Calendar cal = Calendar.getInstance();
      	Date curTime = cal.getTime();
      	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Map<String, Object> myModel = new HashMap<String, Object>();
         String operstr = request.getParameter("oper");
-        
+        String testid="0";
+        testid=	request.getParameter("testid");
+        String freq=request.getParameter("freq");
+        if(testid==null || testid=="" || testid=="null" ||  testid.equals("undefined")){
+        	testid="0";
+        }
+        if(freq==null || freq=="" || freq=="null" ||  freq.equals("undefined") ){
+        	freq="-1";
+        }
         if (operstr == null){
     		logger.info("*** error condition. operstr is null !!**");
     		operstr = "null";
         }else{
         		
-			if (operstr.contains("eventanalysis")){
-        		logger.info("*** Event Analysis **");
-                return new ModelAndView("eventchart", "model", myModel);        	
+			if (operstr.contains("hpolar")){
+        		logger.info("*** hpolar ** testid "+testid);
+        		 myModel.put("freqlist", this.mastersservice.getFreqList(Integer.parseInt(testid)));
+        		 myModel.put("testid",testid);
+        		 myModel.put("freq",freq);
+                return new ModelAndView("hpolar", "model", myModel);        	
         	}
+			else if (operstr.contains("db")){
+				String typ = request.getParameter("typ");
+        		logger.info("*** db ** testid "+testid);
+       		 //myModel.put("freqlist", this.mastersservice.getFreqList(Integer.parseInt(testid)));
+       		 myModel.put("testid",testid);
+       		 myModel.put("typ",typ);
+               return new ModelAndView("xdb_bw_bs", "model", myModel);        	
+       	}
 			        }
         logger.info("*** not able to identify tools options!!**");
-		return new ModelAndView("tagvallist", "model", myModel);
+        return new ModelAndView("setup", "model", myModel);
     }
     
     

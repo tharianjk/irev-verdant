@@ -26,6 +26,8 @@
  
 	<bean name="/fileupload.htm" class="ireveal.web.FileUploadController">
 		<property name="formView" value="fileupload" />
+		 <property name="commandClass" value="ireveal.domain.TestData"/>
+		  <property name="commandName" value="TestData"/>
 		<property name="successView" value="fileuploadresult" />
         <property name="mastersManager" ref="mastersManager"/>
 		
@@ -72,7 +74,12 @@
         
          <property name="mastersManager" ref="mastersManager"/>
     </bean>
-
+<bean name="/hpolar.htm" class="ireveal.web.ToolsController">        
+         <property name="mastersManager" ref="mastersManager"/>
+    </bean>
+    <bean name="/xdb_bw_bs.htm" class="ireveal.web.ToolsController">        
+         <property name="mastersManager" ref="mastersManager"/>
+    </bean>
     <bean name="/setup.htm" class="ireveal.web.SetupController" >
         <property name="setupManager" ref="setupManager"/>        
         <property name="mastersManager" ref="mastersManager"/>
@@ -86,14 +93,29 @@
         <property name="companyManager" ref="companyManager"/>
         <property name="successView" value="main.htm"/>
     </bean>
-   
+   <bean name="/product.htm" class="ireveal.web.ProductController" >
+    <property name="sessionForm" value="true"/>
+        <property name="commandName" value="newProduct"/>			        
+        <property name="commandClass" value="ireveal.domain.Product"/>
+        <property name="formView" value="product"/>  
+        <property name="successView" value="product.htm"/>
+        <property name="mastersManager" ref="mastersManager"/>
+    </bean>
+    <bean name="/productserial.htm" class="ireveal.web.ProductSerialController" >
+    <property name="sessionForm" value="true"/>
+        <property name="commandName" value="newProductSerial"/>			        
+        <property name="commandClass" value="ireveal.domain.ProductSerial"/>
+        <property name="formView" value="productserial"/>  
+        <property name="successView" value="productserial.htm"/>
+        <property name="mastersManager" ref="mastersManager"/>
+    </bean>
 
    <bean name="/assettree.htm" class="ireveal.web.AssetTreeController">
     <property name="viewName" value="assettree"/>
     <property name="commandClass" value="ireveal.domain.AssetTree"/>
     <property name="formView" value="assettree"/>
     <property name="assetTreeManager" ref="assetTreeManager"/>
-	
+	<property name="mastersManager" ref="mastersManager"/>
     </bean>
    
     

@@ -39,35 +39,18 @@ public class JdbcAssetTreeDao extends JdbcDaoSupport implements AssetTreeDao {
         role=rle.get(0).getRolename();
         logger.info("role "+ role);
         List<AssetTree> AssetTree=null;
-        if(role.equalsIgnoreCase("ROLE_ADMIN"))
-        {
+       
         	logger.info("inside admin role "+ role);
-        	String sql="select displayName assetname, Assettree_id,PARENT_ID,FA.ASSETTREETYPE_ID N_treelevel,N_LEVEL,T.ASSETTREETYPE,FA.COMPANY_ID "+ 
-" from FWK_ASSETTREE FA INNER JOIN FWK_ASSETTREE_TYPE T ON FA.ASSETTREETYPE_ID=T.ASSETTREETYPE_ID WHERE FA.company_id="+compid+
-		 "  order by PARENT_ID,assettree_id ";
+        	String sql="select companyname assetname,company_id Assettree_id,0 PARENT_ID,1 N_treelevel,0 N_level,'Company' ASSETTREETYPE from fwk_company "+
+" union select productname assetname,product_id Assettree_id,1 PARENT_ID, 2  N_treelevel,1 N_level,'Product' ASSETTREETYPE from PRODUCT FA "+ 
+" union select SerialNo assetname,Prodserial_id Assettree_id,Product_id PARENT_ID,3 N_treelevel,2 N_level,'ProductSer' ASSETTREETYPE from product_serial "+
+" union select TestName assetname,Test_id Assettree_id,ProdSerial_id PARENT_ID,4 N_treelevel,3 N_level,'testdata' ASSETTREETYPE from testdata "+
+		 "  order by n_level,PARENT_ID,assettree_id ";
         	//logger.info("***Asset tree sql** " + sql);
         	AssetTree = getJdbcTemplate().query(
                      sql, 
                      new AssetTreeMapper());
-        }
-        else
-        {
-        	/**
-     	    * 
-     	    * Getting asset list for populating assettree rolewise
-     	    *
-     	    * @param  
-     	    * @return 
-     	    */
-        fillTemp();
-        String sql ="select displayName assetname, Assettree_id,PARENT_ID,T.ASSETTREETYPE_ID N_treelevel,N_LEVEL,T.ASSETTREETYPE,FA.COMPANY_ID " +
-        " from FWK_ASSETTREE_TMP FA INNER JOIN FWK_ASSETTREE_TYPE T ON FA.ASSETTREETYPE_ID=T.ASSETTREETYPE_ID "+        		
-        " where M.PARENT_ID in (select Assettree_id from FWK_ASSETTREE_TMP) order by PARENT_ID,assettree_id" ;
-        
-         AssetTree = getJdbcTemplate().query(
-               sql , 
-                new AssetTreeMapper());
-        }
+       
         return AssetTree;
     }
     public List<RoleDsp> getRoleDtls()
@@ -80,62 +63,7 @@ public class JdbcAssetTreeDao extends JdbcDaoSupport implements AssetTreeDao {
     	
     	return roledsp;
     }
-    private void fillTemp()
-    {
-    	
-    	String sql=	"";
-    	try{
-    		List<RoleDsp> roledsp=getRoleDtls();
-    		 roleid = roledsp.get(0).getRole_id();
-    		 compid = roledsp.get(0).getRole_id();
-    	sql="Delete from FWK_ASSETTREE_TMP";
-    	 getJdbcTemplate().update(sql);
-    	
-    	 logger.info("***FWK_ASSETTREE_TMP deleted** ");
-    	 int maxlevel = getJdbcTemplate().queryForInt("select MAX(N_LEVEL) from FWK_ASSETTREE T WHERE T.company_id="+compid);
-    	 logger.info("***FWK_ASSETTREE_TMP maxlevel** " +maxlevel);
-    	 
-    	    	 
-        sql=	"INSERT INTO FWK_ASSETTREE_TMP ( ASSETTREE_ID, DISPLAYNAME, PARENT_ID, ASSETTREETYPE_ID,N_treelevel,N_LEVEL,COMPANY_ID) "+
-    	" select A.ASSETTREE_ID, DISPLAYNAME, PARENT_ID, ASSETTREETYPE_ID,0,N_LEVEL,A.COMPANY_ID from FWK_ASSETTREE A "+
-    	" inner join FWK_ROLE_ASSET R ON R.ASSETTREE_ID=A.ASSETTREE_ID where ROLE_ID= " +roleid ;
-        getJdbcTemplate().update(sql);
-        logger.info("***FWK_ASSETTREE_TMP first insert** ");
-        int i=0;
-        for(int j=0;j<=maxlevel;j++)
-        {
-        i=j+1;
-       /* List<AssetTree> AssetTree = getJdbcTemplate().query(
-        " select displayName assetname, Assettree_id,PARENT_ID,ASSETTREETYPE_ID,N_LEVEL,N_treelevel "+
-        " from FWK_ASSETTREE_TMP where N_treelevel="+j+"  order by PARENT_ID", new AssetTreeMapper());
-        logger.info("***AssetTree.size()** " +AssetTree.size());*/
-        //assets and meters
-        if(j==0)
-        {
-        	 sql=	"INSERT INTO FWK_ASSETTREE_TMP ( ASSETTREE_ID, DISPLAYNAME, PARENT_ID, ASSETTREETYPE_ID,N_treelevel,N_LEVEL,COMPANY_ID) "+
-                 	" select A.ASSETTREE_ID, DISPLAYNAME, PARENT_ID, ASSETTREETYPE_ID," + maxlevel+2 + ",N_LEVEL,A.COMPANY_ID from FWK_ASSETTREE A where "+
-             		"  A.ASSETTREE_ID not in ( select T.ASSETTREE_ID from FWK_ASSETTREE_TMP T) and A.PARENT_ID in (select ASSETTREE_ID from FWK_ASSETTREE_TMP)";
-             getJdbcTemplate().update(sql);
-        }
-              	
-        
-        sql=	"INSERT INTO FWK_ASSETTREE_TMP ( ASSETTREE_ID, DISPLAYNAME, PARENT_ID, ASSETTREETYPE_ID,N_treelevel,N_LEVEL,COMPANY_ID) "+
-            	" select A.ASSETTREE_ID, DISPLAYNAME, PARENT_ID, ASSETTREETYPE_ID," + i + ",N_LEVEL,A.COMPANY_ID from FWK_ASSETTREE A where "+
-        		"  A.ASSETTREE_ID not in ( select T.ASSETTREE_ID from FWK_ASSETTREE_TMP T ) and A.ASSETTREE_ID in (select PARENT_ID from FWK_ASSETTREE_TMP where N_treelevel="+j+")"; 
-        getJdbcTemplate().update(sql);
-        
-        
-        
-        logger.info("***FWK_ASSETTREE_TMP insert** " +j);
-        }
-        
-    	}
-    	catch(Exception e)
-    	{
-    		logger.info("***Exception** "+ e.getMessage() );
-    	}
-        
-    }
+   
      public String sbAssetName()
      {   	 
          List<RoleDsp> roledsp=getRoleDtls();
@@ -151,10 +79,9 @@ public class JdbcAssetTreeDao extends JdbcDaoSupport implements AssetTreeDao {
             assettree.setAssetname(rs.getString("assetname"));
             assettree.setAssetid(rs.getInt("assettree_id"));
             assettree.setAssetparentid(rs.getInt("PARENT_ID"));
-            assettree.setTreelevel(rs.getInt("N_treelevel"));
-            assettree.setNlevel(rs.getInt("N_LEVEL"));
+            assettree.setTreelevel(rs.getInt("N_treelevel"));            
             assettree.setAssettype(rs.getString("ASSETTREETYPE"));
-            assettree.setCompanyid(rs.getInt("COMPANY_ID"));
+            assettree.setNlevel(rs.getInt("N_level"));  
             return assettree;
         }
 

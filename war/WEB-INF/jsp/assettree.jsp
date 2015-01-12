@@ -99,7 +99,7 @@ var treemode='<%=request.getParameter("treemode")%>';
                             "image" : "<%=request.getContextPath()%>/js/themes/TreeIcons/company.png"
                         }
                     } ,
-                    "Location" : {
+                    "Product" : {
                         //"valid_children" : ["none"],
                         "icon" : {
                             "image" : "<%=request.getContextPath()%>/js/themes/TreeIcons/location.png",
@@ -107,21 +107,21 @@ var treemode='<%=request.getParameter("treemode")%>';
                             "uncheck_node" : false
                         }
                     } ,
-                    "Section" : {
+                    "ProductSer" : {
                         "icon" : {
                             "image" : "<%=request.getContextPath()%>/js/themes/TreeIcons/section.png",
                             "check_node" : false,
                             "uncheck_node" : false
                         }
                     },
-                    "Asset" : {
+                    "TestData" : {
                         "icon" : {
                             "image" : "<%=request.getContextPath()%>/js/themes/TreeIcons/asset.png",
                             "check_node" : false,
                             "uncheck_node" : false
                         }
                     },
-                    "Tag" : {
+                    "TestFiles" : {
                         "icon" : {
                             "image" : "<%=request.getContextPath()%>/js/themes/TreeIcons/tag.png",
                             "check_node" : false,
@@ -205,21 +205,15 @@ var treemode='<%=request.getParameter("treemode")%>';
              	 }
              	 else if(treeType==2)
          		 {
-                	   url = '<%=request.getContextPath()%>/location.htm?ComId='+ node.attr('assetId')+'&Nlevel='+ node.attr('nlevel');
+                	   url = '<%=request.getContextPath()%>/product.htm?prodid='+ node.attr('assetId')+'&Nlevel='+ node.attr('nlevel');
                  }
              	 else if(treeType==3)
          		 {
-                	   url = '<%=request.getContextPath()%>/section.htm?ComId='+ node.attr('assetId')+'&Nlevel='+ node.attr('nlevel');
+                	   url = '<%=request.getContextPath()%>/productserial.htm?prodserid='+ node.attr('assetId')+'&Nlevel='+ node.attr('nlevel');
                  }
-             	 else if(treeType==4)
-         		 {
-                	   url = '<%=request.getContextPath()%>/asset.htm?ComId='+ node.attr('assetId')+'&Nlevel='+ node.attr('nlevel');
-                 }
-             	  
-             	 // document.getElementById('AppBody').href = url;
-             	//   alert("url= " + url);
+             	 
              	 parent.frames['AppBody'].location =url;
-             //	alert("url= " + url);
+             
              	 
             }
                 	});
@@ -442,7 +436,7 @@ function recreatewithparents()
                         label: "Create Product",                        
                         action: function(response) 
                         {
-                            var url = '<%=request.getContextPath()%>/location.htm?PId='+ node.attr('assetId') +'&PName='+node.attr('assetName')+'&Nlevel='+ node.attr('nlevel');
+                            var url = '<%=request.getContextPath()%>/product.htm?PId='+ node.attr('assetId') +'&PName='+node.attr('assetName')+'&Nlevel='+ node.attr('nlevel');
                             parent.frames['AppBody'].location = url;
                         }
                     },
@@ -458,9 +452,9 @@ function recreatewithparents()
         else if(treeType==2){
          items = {
         		  createItem: { // The "rename" menu item
-                      label: "Create Product Version",                      
+                      label: "Create Product Serial",                      
                       action: function(response) {
-                          var url = '<%=request.getContextPath()%>/section.htm?PId='+ node.attr('assetId') +'&PName='+node.attr('assetName')+'&Nlevel='+ node.attr('nlevel');
+                          var url = '<%=request.getContextPath()%>/productserial.htm?PId='+ node.attr('assetId') +'&PName='+node.attr('assetName')+'&Nlevel='+ node.attr('nlevel');
                           //alert("url "+ url);
                           parent.frames['AppBody'].location = url;
                                 }
@@ -468,7 +462,7 @@ function recreatewithparents()
             renameItem: { // The "rename" menu item
                 label: "Edit Product",
                 action: function(response) {
-                    var url = '<%=request.getContextPath()%>/location.htm?ComId='+ node.attr('assetId')+'&Nlevel='+ node.attr('nlevel');
+                    var url = '<%=request.getContextPath()%>/product.htm?prodid='+ node.attr('assetId')+'&Nlevel='+ node.attr('nlevel');
                     parent.frames['AppBody'].location = url;
                           }
             },
@@ -479,47 +473,29 @@ function recreatewithparents()
                     window.location.href = url;                    
                	 }
             }
+        };
         }
-        }
+              
          else if (treeType==3){
-             items = {
-            		  createItem: { // The "rename" menu item
-                          label: "Create Serial No.",
-                          action: function(response) {
-                              var url = '<%=request.getContextPath()%>/section.htm?PId='+ node.attr('assetId') +'&PName='+node.attr('assetName')+'&Nlevel='+ node.attr('nlevel');
-                             // alert("url "+ url);
-                              parent.frames['AppBody'].location = url;
-                                    }
-                      },
-                renameItem: { // The "rename" menu item
-                    label: "Edit Product Version",
-                    action: function(response) {
-                        var url = '<%=request.getContextPath()%>/section.htm?ComId='+ node.attr('assetId')+'&Nlevel='+ node.attr('nlevel');
-                        parent.frames['AppBody'].location = url;
-                              }
-                },
-                deleteItem: { // The "delete" menu item
-                    label: "Delete Product Version",
-                    action: function (obj) {
-                   	// this.remove(obj);
-                    	var url = '<%=request.getContextPath()%>/assettree.htm?treemode=edit&stat=delete&id='+ node.attr('assetId')+'&typ='+ treeType+'&assetname='+node.attr('assetName');
-                    	window.location.href = url;
-                    	
-                    }
-                }
-            }
-             
-       }
-        
-         else if (treeType==4){             
+        	 
+        	 
         	 items = {   
-        			 editItem: { // The "rename" menu item
-                    label: "Edit Serial No.",
+        			 createItem: { // The "rename" menu item
+                    label: "Add Test Date",
                     action: function(response) {
-                        var url = '<%=request.getContextPath()%>/asset.htm?ComId='+ node.attr('assetId') ;
+                        var url = '<%=request.getContextPath()%>/fileupload.htm?PId='+ node.attr('assetId') ;
+                       // alert("url "+url);
                         parent.frames['AppBody'].location = url;
                               }
                 },
+                   
+       			 editItem: { // The "rename" menu item
+                   label: "Edit Serial No.",
+                   action: function(response) {
+                	   var url = '<%=request.getContextPath()%>/fileupload.htm?id='+ node.attr('assetId') ;
+                       parent.frames['AppBody'].location = url;
+                             }
+               },
                 deleteItem: { // The "delete" menu item
                     label: "Delete Serial No.",
                     action: function (obj) {
@@ -528,9 +504,22 @@ function recreatewithparents()
                        	window.location.href = url;                        
                     }
                 }
-            }
+            };
              
-       };        
+       }
+         else if(treeType==4){
+             items = {
+            		  
+                deleteItem: { // The "delete" menu item
+                    label: "Delete Test",
+                    action: function (obj) {
+                    	var url = '<%=request.getContextPath()%>/assettree.htm?treemode=edit&stat=delete&id='+ node.attr('assetId')+'&typ='+ treeType+'&assetname='+node.attr('assetName');                    
+                        window.location.href = url;                    
+                   	 }
+                }
+            };
+            } 
+         
      };
         return items;
     }
