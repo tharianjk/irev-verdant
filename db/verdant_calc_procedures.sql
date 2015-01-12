@@ -2,7 +2,8 @@ use Verdant
 
 # ***************** func to calculate axial ratio ******************
 DELIMITER $$
-CREATE FUNCTION `calc_AxialRatio`(
+
+CREATE  FUNCTION `calc_AxialRatio`(
 test_id INT, freq decimal(20,10), degree INT
 ) RETURNS decimal(20,10)
 BEGIN
@@ -11,6 +12,12 @@ BEGIN
 
 DECLARE AR decimal(20,10) default 0;
 
+if degree = 0 then 
+set degree = 360;
+ elseif degree = -45 then
+set degree = 315;
+end if;
+
 select axialRatio 
 into AR
 from axialratio_view
@@ -18,6 +25,7 @@ from axialratio_view
  
 RETURN AR;
 END$$
+
 DELIMITER ;
 # ***************** func to calculate backlobe ******************
 DELIMITER $$
@@ -343,11 +351,14 @@ where test_id = test_id and frequency = freq;
 END$$
 DELIMITER ;
 # ***************** proc to calculate antenna params ******************
+USE `verdant`;
+DROP procedure IF EXISTS `calculate`;
+
 DELIMITER $$
+
 CREATE PROCEDURE `calculate`(
 myTest_Id INT,
 Polarization_type char(2), -- 'L'=linear, 'C'= circular
-freq_unit char(1),
 freq decimal(20,10),
 linear_Gain decimal(20,10),
 mytest_date datetime
@@ -356,10 +367,6 @@ BEGIN
 
 
 # Declarations -begin
--- DECLARE freq decimal(20,10);
--- DECLARE linear_Gain decimal(20,10);
--- DECLARE Test_Id INT;
--- Calculated params
 DECLARE omni_HP,omni_VP decimal(20,10);
 DECLARE _3dB_BW_HP_BM, _3dB_BW_VP_BM, _3dB_BW_CP_BM decimal(20,10);
 DECLARE _3dB_BW_HP_0, _3dB_BW_VP_0, _3dB_BW_CP_0 decimal(20,10);
@@ -380,20 +387,9 @@ DECLARE CP_Gain decimal(20,10);
 
  -- for the cursor
 
-  
- 
--- Get the testId from file_Id
---  select Test_Id = Test_id from testfiles where file_id = file_Id ; 
-
-
-        select freq;
-	   #calculations - begin
+ 	   #calculations - begin
        
-       -- convert GHz to MHz for matching raw data 
-	    if freq_unit = 'G' then
-			set freq = freq*1000;
-		end if;
-       
+           
 		   # omni deviation (for linear polarization only)
 		   IF Polarization_type = 'L' THEN
 				-- Calculate Omni deviation for HP data and store
@@ -559,13 +555,16 @@ DECLARE CP_Gain decimal(20,10);
             
      
 END$$
+
 DELIMITER ;
+
+
 # ***************** Calculate procedure - starting point ******************
 DELIMITER $$
-CREATE PROCEDURE `Calculate_params`(
+
+CREATE  PROCEDURE `Calculate_params`(
 myTestId INT,
-myPoltype char(2), -- 'L'=linear, 'C'= circular
-myfrequnit char(1)
+myPoltype char(2) -- 'L'=linear, 'C'= circular
 )
 BEGIN
 
@@ -599,7 +598,7 @@ from testdata where test_id = myTestId;
 			LEAVE the_loop;
 		END IF;
 	    
-   call calculate(myTestId,myPolType,myFreqUnit,myfreq,mylinear_Gain,myTestDate);
+   call calculate(myTestId,myPolType,myfreq,mylinear_Gain,myTestDate);
     
     END LOOP the_loop;
  
@@ -607,4 +606,5 @@ from testdata where test_id = myTestId;
     
 
 END$$
+
 DELIMITER ;
