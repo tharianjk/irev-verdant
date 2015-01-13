@@ -1,0 +1,1597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.3.2.v20140211-1400 Build &lt;4.3.2.v20140218-1056></property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">13</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">13</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">13</property>
+        </structure>
+    </list-property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="VerdantProfile" id="7">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://localhost:3306/verdant</property>
+            <property name="odaUser">root</property>
+            <property name="OdaConnProfileName">VerdantProfile</property>
+            <property name="OdaConnProfileStorePath">VerdantProfile</property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="HdataData Set" id="8">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Angle</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Angle</text-property>
+                    <text-property name="heading">Angle</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Amplitude</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Amplitude</text-property>
+                    <text-property name="heading">Amplitude</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Frequency</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Frequency</text-property>
+                    <text-property name="heading">Frequency</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Test_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Test_id</text-property>
+                    <text-property name="heading">Test_id</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">FreQ</property>
+                    <property name="paramName">freq</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">testIDGR</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Angle</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Amplitude</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">Frequency</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">Test_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Angle</property>
+                    <property name="nativeName">Angle</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">Amplitude</property>
+                    <property name="nativeName">Amplitude</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">Frequency</property>
+                    <property name="nativeName">Frequency</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">Test_id</property>
+                    <property name="nativeName">Test_id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id FROM hdata HD 
+where HD.Frequency=? and HD.Test_id=? ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>HData_id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>HData_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>HData_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>file_id</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>file_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>file_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Frequency</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>10</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Frequency</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Frequency</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Angle</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>10</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Angle</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Angle</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Amplitude</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>10</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Amplitude</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Amplitude</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Data SetGrid" id="13">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="computedColumns">
+                <structure>
+                    <property name="name">Frequency</property>
+                    <expression name="expression">params["freq"].value+" "+row["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">TestName</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TestName</text-property>
+                    <text-property name="heading">TestName</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TestDesc</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TestDesc</text-property>
+                    <text-property name="heading">TestDesc</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TestDate</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TestDate</text-property>
+                    <text-property name="heading">TestDate</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">frequnit</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <text-property name="heading">frequnit</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">testcenter</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">testcenter</text-property>
+                    <text-property name="heading">testcenter</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">instruments</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">instruments</text-property>
+                    <text-property name="heading">instruments</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">calibration</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">calibration</text-property>
+                    <text-property name="heading">calibration</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SerialNo</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">SerialNo</text-property>
+                    <text-property name="heading">SerialNo</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Productname</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Productname</text-property>
+                    <text-property name="heading">Productname</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Version</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">version</text-property>
+                    <text-property name="heading">version</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">testidGrid</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">TestName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">TestDesc</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">TestDate</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">frequnit</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">testcenter</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">instruments</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">calibration</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">SerialNo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">Productname</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">Version</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">Frequency</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">TestName</property>
+                    <property name="nativeName">TestName</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">TestDesc</property>
+                    <property name="nativeName">TestDesc</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">TestDate</property>
+                    <property name="nativeName">TestDate</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">frequnit</property>
+                    <property name="nativeName">frequnit</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">testcenter</property>
+                    <property name="nativeName">testcenter</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">instruments</property>
+                    <property name="nativeName">instruments</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">calibration</property>
+                    <property name="nativeName">calibration</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">SerialNo</property>
+                    <property name="nativeName">SerialNo</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">Productname</property>
+                    <property name="nativeName">Productname</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">Version</property>
+                    <property name="nativeName">Version</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT distinct TD.TestName,TD.TestDesc,TD.TestDate,TD.frequnit,TD.testcenter,TD.instruments,TD.calibration ,s.SerialNo,p.Productname,p.version
+FROM testdata TD inner join product_serial s on td.ProdSerial_id=S.Prodserial_id 
+inner join product p on s.Product_id=p.Product_id   where TD.Test_id=?]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Test_id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Test_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Test_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>TestName</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TestName</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TestName</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>TestDesc</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TestDesc</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TestDesc</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>ProdSerial_id</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ProdSerial_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ProdSerial_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>TestDate</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TestDate</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TestDate</design:label>
+            <design:formattingHints>
+              <design:displaySize>19</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="3Db_BW_BMax" id="402">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">3Db_BW_BMax</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">3Db_BW_BMax</text-property>
+                    <text-property name="heading">3Db_BW_BMax</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">3Db_BS_BMax</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">3Db_BS_BMax</text-property>
+                    <text-property name="heading">3Db_BS_BMax</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">3Db_BW_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">3Db_BS_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">3Db_BW_BMax</property>
+                    <property name="nativeName">3Db_BW_BMax</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">3Db_BS_BMax</property>
+                    <property name="nativeName">3Db_BS_BMax</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT 3Db_BW_BMax,3Db_BS_BMax FROM cpcalculated ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>3Db_BW_BMax</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>10</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>3Db_BW_BMax</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>3Db_BW_BMax</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="fq" id="464">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Frequency</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">frequency</text-property>
+                    <text-property name="heading">frequency</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Frequency</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Frequency</property>
+                    <property name="nativeName">Frequency</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT frequency FROM verdant.cpcalculated;]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Frequency</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>10</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>frequency</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>frequency</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="3dbhp0" id="583">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">3Db_BW_0</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">3Db_BW_0</text-property>
+                    <text-property name="heading">3Db_BW_0</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">3Db_BS_0</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">3Db_BS_0</text-property>
+                    <text-property name="heading">3Db_BS_0</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">3Db_BW_0</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">3Db_BS_0</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">3Db_BW_0</property>
+                    <property name="nativeName">3Db_BW_0</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">3Db_BS_0</property>
+                    <property name="nativeName">3Db_BS_0</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select 3Db_BW_0,3Db_BS_0 from cpcalculated]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>3Db_BW_0</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>10</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>3Db_BW_0</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>3Db_BW_0</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>3Db_BS_0</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>10</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>3Db_BS_0</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>3Db_BS_0</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="3dbhp90" id="608">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">3Db_BW_90</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">3Db_BW_90</text-property>
+                    <text-property name="heading">3Db_BW_90</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">3Db_BS_90</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">3Db_BS_90</text-property>
+                    <text-property name="heading">3Db_BS_90</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">3Db_BW_90</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">3Db_BS_90</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">3Db_BW_90</property>
+                    <property name="nativeName">3Db_BW_90</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">3Db_BS_90</property>
+                    <property name="nativeName">3Db_BS_90</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select 3Db_BW_90,3Db_BS_90
+from cpcalculated]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>3Db_BW_90</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>10</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>3Db_BW_90</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>3Db_BW_90</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>3Db_BS_90</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>10</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>3Db_BS_90</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>3Db_BS_90</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <cubes>
+        <tabular-cube name="Data CubeTestGrid" id="14">
+            <property name="dimensions">
+                <tabular-dimension name="Group" id="15">
+                    <property name="defaultHierarchy">NewTabularHierarchy</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy" id="16">
+                            <property name="levels">
+                                <tabular-level name="TestName" id="17">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">TestName</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group1" id="18">
+                    <property name="defaultHierarchy">NewTabularHierarchy1</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy1" id="19">
+                            <property name="levels">
+                                <tabular-level name="TestDesc" id="20">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">TestDesc</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group2" id="21">
+                    <property name="isTimeType">false</property>
+                    <property name="defaultHierarchy">NewTabularHierarchy3</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy3" id="22">
+                            <property name="levels">
+                                <tabular-level name="TestDate" id="23">
+                                    <property name="dataType">date-time</property>
+                                    <property name="columnName">TestDate</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group3" id="56">
+                    <property name="defaultHierarchy">NewTabularHierarchy2</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy2" id="57">
+                            <property name="levels">
+                                <tabular-level name="frequnit" id="58">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">frequnit</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group4" id="59">
+                    <property name="defaultHierarchy">NewTabularHierarchy4</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy4" id="60">
+                            <property name="levels">
+                                <tabular-level name="calibration" id="61">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">calibration</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group5" id="62">
+                    <property name="defaultHierarchy">NewTabularHierarchy5</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy5" id="63">
+                            <property name="levels">
+                                <tabular-level name="instruments" id="64">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">instruments</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group6" id="65">
+                    <property name="defaultHierarchy">NewTabularHierarchy6</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy6" id="66">
+                            <property name="levels">
+                                <tabular-level name="testcenter" id="67">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">testcenter</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group7" id="270">
+                    <property name="defaultHierarchy">NewTabularHierarchy7</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy7" id="271">
+                            <property name="levels">
+                                <tabular-level name="Productname" id="272">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">Productname</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group8" id="273">
+                    <property name="defaultHierarchy">NewTabularHierarchy8</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy8" id="274">
+                            <property name="levels">
+                                <tabular-level name="SerialNo" id="275">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">SerialNo</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group9" id="282">
+                    <property name="defaultHierarchy">NewTabularHierarchy9</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy9" id="283">
+                            <property name="levels">
+                                <tabular-level name="version" id="284">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">Version</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group10" id="297">
+                    <property name="defaultHierarchy">NewTabularHierarchy10</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy10" id="298">
+                            <property name="levels">
+                                <tabular-level name="Frequency" id="299">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">Frequency</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+            </property>
+            <property name="dataSet">Data SetGrid</property>
+        </tabular-cube>
+    </cubes>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab-detail" id="52">
+            <property name="backgroundColor">#F0F3FD</property>
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">9px</property>
+            <property name="color">#000000</property>
+        </style>
+        <style name="crosstab-header" id="53">
+            <property name="backgroundColor">#AEC0B1</property>
+            <property name="fontFamily">"Arial"</property>
+            <property name="fontSize">10px</property>
+            <property name="fontWeight">bold</property>
+            <property name="color">#000000</property>
+        </style>
+        <style name="crosstab-cell" id="54">
+            <property name="borderBottomColor">#FFFFFF</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">thin</property>
+            <property name="borderLeftColor">#FFFFFF</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">thin</property>
+            <property name="borderRightColor">#FFFFFF</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">thin</property>
+            <property name="borderTopColor">#FFFFFF</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">thin</property>
+        </style>
+        <style name="table-header" id="451">
+            <property name="backgroundColor">#AEC0B1</property>
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">x-small</property>
+            <property name="fontWeight">bold</property>
+            <property name="color">#FFFFE0</property>
+            <property name="borderBottomColor">#FFFFFF</property>
+            <property name="borderBottomStyle">double</property>
+            <property name="borderLeftColor">#FFFFFF</property>
+            <property name="borderRightColor">#FFFFFF</property>
+            <property name="borderTopColor">#FFFFFF</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">thin</property>
+        </style>
+        <style name="table-detail" id="452">
+            <property name="backgroundColor">#F0F3FD</property>
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">x-small</property>
+            <property name="color">#426E44</property>
+            <property name="borderBottomColor">#FFFFFF</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">thin</property>
+            <property name="borderLeftColor">#FFFFFF</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">thin</property>
+            <property name="borderRightColor">#FFFFFF</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">thin</property>
+            <property name="borderTopColor">#FFFFFF</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">thin</property>
+        </style>
+        <style name="table-cell" id="453">
+            <property name="backgroundColor">#F0F3FD</property>
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">x-small</property>
+            <property name="color">#426E44</property>
+            <property name="borderBottomColor">#FFFFFF</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">thin</property>
+            <property name="borderLeftColor">#FFFFFF</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">thin</property>
+            <property name="borderRightColor">#FFFFFF</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">thin</property>
+            <property name="borderTopColor">#FFFFFF</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">thin</property>
+        </style>
+        <style name="grid" id="582">
+            <property name="backgroundColor">#E5F1F4</property>
+            <property name="borderBottomColor">#7C9A82</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1px</property>
+            <property name="borderLeftColor">#7C9A82</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1px</property>
+            <property name="borderRightColor">#7C9A82</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1px</property>
+            <property name="borderTopColor">#7C9A82</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1px</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="rightMargin">0in</property>
+            <page-footer>
+                <text id="55">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<html>
+<body>
+<style>
+.outer{
+  text-align: center;
+}
+.outer img{
+  display: inline-block;
+}
+</style>
+<table border="1">
+<tr>
+<td>
+<div class="outer">
+
+<img src="C:\work\apache-tomee-1.6.0.2\webapps\irev-verdant\img\unnamed.png" height="50px" width="200px" align="baseline" name="myimage">
+
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid id="335">
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">medium</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">medium</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">medium</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">medium</property>
+            <property name="canShrink">true</property>
+            <column id="336"/>
+            <row id="337">
+                <cell id="338">
+                    <label id="341">
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">center</property>
+                        <text-property name="text">3dB Beamwidth</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="339">
+                <cell id="340">
+                    <grid id="532">
+                        <column id="533"/>
+                        <column id="534"/>
+                        <column id="535"/>
+                        <column id="536"/>
+                        <row id="537">
+                            <cell id="538">
+                                <grid id="565">
+                                    <expression name="bookmark" type="javascript">"BMHP"</expression>
+                                    <column id="566"/>
+                                    <row id="567">
+                                        <cell id="568">
+                                            <label id="581">
+                                                <property name="fontWeight">bold</property>
+                                                <property name="textAlign">center</property>
+                                                <text-property name="text">Spot Freq.</text-property>
+                                            </label>
+                                        </cell>
+                                    </row>
+                                    <row id="569">
+                                        <cell id="570">
+                                            <table id="571">
+                                                <property name="dataSet">fq</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Frequency</property>
+                                                        <text-property name="displayName">frequency</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Frequency"]</expression>
+                                                        <property name="dataType">decimal</property>
+                                                    </structure>
+                                                </list-property>
+                                                <column id="580"/>
+                                                <header>
+                                                    <row id="572">
+                                                        <cell id="573">
+                                                            <label id="574">
+                                                                <text-property name="text">(GHz)</text-property>
+                                                            </label>
+                                                        </cell>
+                                                    </row>
+                                                </header>
+                                                <detail>
+                                                    <row id="575">
+                                                        <cell id="576">
+                                                            <data id="577">
+                                                                <property name="textAlign">center</property>
+                                                                <property name="resultSetColumn">Frequency</property>
+                                                            </data>
+                                                        </cell>
+                                                    </row>
+                                                </detail>
+                                                <footer>
+                                                    <row id="578">
+                                                        <cell id="579"/>
+                                                    </row>
+                                                </footer>
+                                            </table>
+                                        </cell>
+                                    </row>
+                                </grid>
+                            </cell>
+                            <cell id="539">
+                                <grid id="542">
+                                    <column id="543"/>
+                                    <row id="544">
+                                        <cell id="545">
+                                            <label id="564">
+                                                <property name="fontWeight">bold</property>
+                                                <property name="textAlign">center</property>
+                                                <text-property name="text">Beam Max.</text-property>
+                                            </label>
+                                        </cell>
+                                    </row>
+                                    <row id="546">
+                                        <cell id="547">
+                                            <table id="548">
+                                                <property name="dataSet">3Db_BW_BMax</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Frequency</property>
+                                                        <text-property name="displayName">bwmax</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                        <property name="dataType">decimal</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">3Db_BW_BMax</property>
+                                                        <text-property name="displayName">3Db_Bs_BMax</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                        <property name="dataType">decimal</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <column id="562"/>
+                                                <column id="563"/>
+                                                <header>
+                                                    <row id="549">
+                                                        <cell id="550">
+                                                            <label id="551">
+                                                                <text-property name="text">3dB BW (deg.)</text-property>
+                                                            </label>
+                                                        </cell>
+                                                        <cell id="552">
+                                                            <label id="553">
+                                                                <text-property name="text">BSq (dB)</text-property>
+                                                            </label>
+                                                        </cell>
+                                                    </row>
+                                                </header>
+                                                <detail>
+                                                    <row id="554">
+                                                        <cell id="555">
+                                                            <data id="556">
+                                                                <property name="textAlign">center</property>
+                                                                <property name="resultSetColumn">Frequency</property>
+                                                            </data>
+                                                        </cell>
+                                                        <cell id="557">
+                                                            <data id="558">
+                                                                <property name="textAlign">center</property>
+                                                                <property name="resultSetColumn">3Db_BW_BMax</property>
+                                                            </data>
+                                                        </cell>
+                                                    </row>
+                                                </detail>
+                                                <footer>
+                                                    <row id="559">
+                                                        <cell id="560"/>
+                                                        <cell id="561"/>
+                                                    </row>
+                                                </footer>
+                                            </table>
+                                        </cell>
+                                    </row>
+                                </grid>
+                            </cell>
+                            <cell id="540">
+                                <grid id="584">
+                                    <expression name="bookmark" type="javascript">"3db0hp"</expression>
+                                    <column id="585"/>
+                                    <row id="586">
+                                        <cell id="587">
+                                            <label id="607">
+                                                <property name="fontWeight">bold</property>
+                                                <property name="textAlign">center</property>
+                                                <text-property name="text">0</text-property>
+                                            </label>
+                                        </cell>
+                                    </row>
+                                    <row id="588">
+                                        <cell id="589">
+                                            <table id="590">
+                                                <property name="dataSet">3dbhp0</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">3Db_BW_0</property>
+                                                        <text-property name="displayName">3Db_BW_0</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["3Db_BW_0"]</expression>
+                                                        <property name="dataType">decimal</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">3Db_BS_0</property>
+                                                        <text-property name="displayName">3Db_BS_0</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["3Db_BS_0"]</expression>
+                                                        <property name="dataType">decimal</property>
+                                                    </structure>
+                                                </list-property>
+                                                <column id="604"/>
+                                                <column id="605"/>
+                                                <header>
+                                                    <row id="591">
+                                                        <cell id="592">
+                                                            <label id="593">
+                                                                <text-property name="text">3dB BW (deg.)</text-property>
+                                                            </label>
+                                                        </cell>
+                                                        <cell id="594">
+                                                            <label id="595">
+                                                                <text-property name="text">BS (dB)</text-property>
+                                                            </label>
+                                                        </cell>
+                                                    </row>
+                                                </header>
+                                                <detail>
+                                                    <row id="596">
+                                                        <cell id="597">
+                                                            <data id="598">
+                                                                <property name="textAlign">center</property>
+                                                                <property name="resultSetColumn">3Db_BW_0</property>
+                                                            </data>
+                                                        </cell>
+                                                        <cell id="599">
+                                                            <data id="600">
+                                                                <property name="textAlign">center</property>
+                                                                <property name="resultSetColumn">3Db_BS_0</property>
+                                                            </data>
+                                                        </cell>
+                                                    </row>
+                                                </detail>
+                                                <footer>
+                                                    <row id="601">
+                                                        <cell id="602"/>
+                                                        <cell id="603"/>
+                                                    </row>
+                                                </footer>
+                                            </table>
+                                        </cell>
+                                    </row>
+                                </grid>
+                            </cell>
+                            <cell id="541">
+                                <grid id="609">
+                                    <expression name="bookmark" type="javascript">"3dbhp90"</expression>
+                                    <column id="610"/>
+                                    <row id="611">
+                                        <cell id="612">
+                                            <label id="631">
+                                                <property name="fontWeight">bold</property>
+                                                <property name="textAlign">center</property>
+                                                <text-property name="text">90</text-property>
+                                            </label>
+                                        </cell>
+                                    </row>
+                                    <row id="613">
+                                        <cell id="614">
+                                            <table id="615">
+                                                <property name="dataSet">3dbhp90</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">3Db_BW_90</property>
+                                                        <text-property name="displayName">3Db_BW_90</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["3Db_BW_90"]</expression>
+                                                        <property name="dataType">decimal</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">3Db_BS_90</property>
+                                                        <text-property name="displayName">3Db_BS_90</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["3Db_BS_90"]</expression>
+                                                        <property name="dataType">decimal</property>
+                                                    </structure>
+                                                </list-property>
+                                                <column id="629"/>
+                                                <column id="630"/>
+                                                <header>
+                                                    <row id="616">
+                                                        <cell id="617">
+                                                            <label id="618">
+                                                                <text-property name="text">3dB BW (deg.)</text-property>
+                                                            </label>
+                                                        </cell>
+                                                        <cell id="619">
+                                                            <label id="620">
+                                                                <text-property name="text">BS (dB)</text-property>
+                                                            </label>
+                                                        </cell>
+                                                    </row>
+                                                </header>
+                                                <detail>
+                                                    <row id="621">
+                                                        <cell id="622">
+                                                            <data id="623">
+                                                                <property name="textAlign">center</property>
+                                                                <property name="resultSetColumn">3Db_BW_90</property>
+                                                            </data>
+                                                        </cell>
+                                                        <cell id="624">
+                                                            <data id="625">
+                                                                <property name="textAlign">center</property>
+                                                                <property name="resultSetColumn">3Db_BS_90</property>
+                                                            </data>
+                                                        </cell>
+                                                    </row>
+                                                </detail>
+                                                <footer>
+                                                    <row id="626">
+                                                        <cell id="627"/>
+                                                        <cell id="628"/>
+                                                    </row>
+                                                </footer>
+                                            </table>
+                                        </cell>
+                                    </row>
+                                </grid>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+            </row>
+        </grid>
+    </body>
+</report>
