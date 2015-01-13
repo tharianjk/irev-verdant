@@ -151,14 +151,10 @@ progress_clear();
 		<tr>
 		<td>
 		<div id="imp">
-		<p><input type="file" name="filename" id="filename" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" title=" click here to select an VP Data file"/></p>
+		<p><input type="file" name="filename" id="filename" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" title=" click here to select an excel file"/></p>
 		</div>
 		</td>
-		<td>
-		<div id="imp">
-		<p><input type="file" name="filename" id="filename" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" title=" click here to select an HP Data file"/></p>
-		</div>
-		</td>
+		
 		
 		</table>
 		<table>
