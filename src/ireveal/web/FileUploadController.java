@@ -142,7 +142,7 @@ public class FileUploadController extends SimpleFormController{
 			      {
 			    	  //logger.info("yrow "+y); 
 			    	  selfreq=freqlist.get(y).getFrequency();
-			      for (int i=0; i<rowNum-1; i++){
+			      for (int i=0; i<rowNum; i++){
 						  //logger.info("introw "+i);  
 						  if(i>1) //header
 						  {
@@ -178,7 +178,7 @@ public class FileUploadController extends SimpleFormController{
 				      for(y=0;y<freqlist.size();y++)
 				      {				    	  
 				    	  selfreq=freqlist.get(y).getFrequency();				    	 
-				      for (int i=0; i<rowNum-1; i++){				
+				      for (int i=0; i<rowNum; i++){				
 							  if(i>1) //header
 							  {
 								  HSSFRow row =(HSSFRow) sheet.getRow(i);
