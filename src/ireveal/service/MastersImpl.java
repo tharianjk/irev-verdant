@@ -117,9 +117,8 @@ public List<ProductSerial> getProdVerSer() {
 	return mastersdao.getProdVerSer();
 }
 @Override
-public int insertTestData(TestData testdata, List<TestFrequency> testfreqlist,
-		List<DataLog> dataloglist,String strmode,String action) {
-	return mastersdao.insertTestData(testdata, testfreqlist, dataloglist, strmode,action);
+public int insertTestData(TestData testdata,List<TestFrequency> testfreqlist,List<DataLog> datalogvdata,List<DataLog> dataloghdata,String strmode,String action ) {
+	return mastersdao.insertTestData(testdata, testfreqlist,datalogvdata, dataloghdata, strmode,action);
 }
 
 @Override

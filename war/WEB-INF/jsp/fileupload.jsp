@@ -134,29 +134,22 @@ progress_clear();
         </table> 
          <br> 
        <table>  
-       <tr> 
-      
-		<td>File Type * :</td> 
-          
-          <td width="50">
-          
-           <form:select   path="filetype" required="required" >
-          <option value="">--Select--</option>                 
-   		 <option value="Vdata">VP Data</option>
-   		 <option value="Hdata">HP Data</option>
-		</form:select>
+      	<tr>
+		<td>
+		<div id="imp">
+		<p>Select VP Data<input type="file" name="filename" id="filename" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" title=" click here to select an excel file"/></p>
+		</div>
 		</td>
 		</tr>
-	
 		<tr>
 		<td>
 		<div id="imp">
-		<p><input type="file" name="filename" id="filename" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" title=" click here to select an excel file"/></p>
+		<p>Select HP Data<input type="file" name="filename" id="filename1" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" title=" click here to select an excel file"/></p>
 		</div>
 		</td>
-		
-		
+		</tr>
 		</table>
+		<br>
 		<table>
 		<tr>
 		<td width="20%"> Frequency :</td>

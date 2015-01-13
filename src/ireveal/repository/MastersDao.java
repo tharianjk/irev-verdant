@@ -22,6 +22,7 @@ import java.util.List;
 
 
 
+
 import ireveal.domain.User;
 
 public interface MastersDao { 
@@ -45,7 +46,7 @@ public interface MastersDao {
 	public boolean deleteproduct(int id);
 	public List<Product> getProductList();
 	
-	public int insertTestData(TestData testdata,List<TestFrequency> testfreqlist,List<DataLog> dataloglist,String strmode,String action);
+	public int insertTestData(TestData testdata,List<TestFrequency> testfreqlist,List<DataLog> datalogvdata,List<DataLog> dataloghdata,String strmode,String action );
 	
 	public List<TestFrequency> getFreqList(int testid);
 	 //product serial

@@ -56,7 +56,7 @@ function Redirect(){
           
           <td>
        	  
-	   <form:checkbox id="bwithcp"  path="bwithcp" style="visibility:hidden;"  /><label id="lbl1" style="visibility:hidden;" >With CP</label></td> 
+	   <form:checkbox id="bwithcp"  path="bwithcp" style="visibility:hidden;"  /><label id="lbl1" style="visibility:hidden;" >With CP conversion</label></td> 
          </tr> 
         <!--  <tr>  
           <td>Image File Name :</td>  

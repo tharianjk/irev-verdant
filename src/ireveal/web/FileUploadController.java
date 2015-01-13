@@ -74,16 +74,15 @@ public class FileUploadController extends SimpleFormController{
 		 if(strtestid!=null && strtestid!="" && strtestid!="null" && strtestid!="0"){
 			 strmode="addfile";
 		 }
-		 
-		List<DataLog> datalogList = new ArrayList<DataLog>();
+		List<DataLog> datalogVdata = new ArrayList<DataLog>();
+		List<DataLog> datalogHdata = new ArrayList<DataLog>();
 		List<TestFrequency> freqlist=new ArrayList<TestFrequency>();
 		TestData file = (TestData)command;
 		Date dtfrom = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(file.getStrtestdate().replace("T", " "));
     	
-		file.setDttestdate(dtfrom);
-		int logid=100000;
+		file.setDttestdate(dtfrom);		
 		
-		MultipartFile multipartFile = file.getFilename();
+		MultipartFile[] multipartFile = file.getFilename();
 		
 	    JSONObject obj1 = new JSONObject(file.getStrjsonfreq());
 	     try {
@@ -91,10 +90,10 @@ public class FileUploadController extends SimpleFormController{
 	    for(int i=0;i<result.length();i++)
 	     {
 	    	TestFrequency testfreq= new TestFrequency();
-	    	logger.info(result.get(i));
+	    	//logger.info(result.get(i));
 	    	JSONObject obj2 = (JSONObject)result.get(i);
-	    	logger.info(obj2.get("freq"));
-	    	logger.info(obj2.get("lg"));
+	    	//logger.info(obj2.get("freq"));
+	    	//logger.info(obj2.get("lg"));
 	    	testfreq.setFrequency(Double.parseDouble(obj2.get("freq").toString()));
 	    	testfreq.setLineargain(Double.parseDouble(obj2.get("lg").toString()));
 	    	freqlist.add(testfreq);
@@ -102,28 +101,19 @@ public class FileUploadController extends SimpleFormController{
 	     } catch (JSONException e) {
 	         e.printStackTrace();
 	    }
-
-
 		
-		/*
-	      int cnt=0;
-	      for(@SuppressWarnings("rawtypes")
-		Iterator iterator = jsonObject.keySet().iterator(); iterator.hasNext();) {
-	    	    String key = (String) iterator.next();
-	    	    logger.info(cnt);
-	    	    cnt=cnt+1;
-	      }*/
-		//JsonFreq json = (JsonFreq)new JSONParser().parse(file.getStrjsonfreq());
-		
-		String fileName="";
+		String OriginalFilename="";
 		logger.info("Inside FileUpload Controller");
-		if(multipartFile!=null){
-			fileName = multipartFile.getOriginalFilename();
-			logger.info("Inside FileUpload Controller fileName" +fileName);
-			try {
+		if (multipartFile != null && multipartFile.length >0) {
+    		for(int m =0 ;m< multipartFile.length; m++)
+    		{
+	            try {		
+	            	OriginalFilename = multipartFile[m].getOriginalFilename();
+			logger.info("Inside FileUpload Controller fileName" +OriginalFilename);
+			
 				// Read excel file 
-			      InputStream inp = multipartFile.getInputStream() ;
-			      String fileExtn = GetFileExtension(fileName);
+			      InputStream inp = multipartFile[m].getInputStream() ;
+			      String fileExtn = GetFileExtension(OriginalFilename);
 			      Workbook wb_xssf; //Declare XSSF WorkBook
 			      Workbook wb_hssf; //Declare HSSF WorkBook
 			      Sheet sheet = null; // sheet can be used as common for XSSF and HSSF 	WorkBook
@@ -169,7 +159,9 @@ public class FileUploadController extends SimpleFormController{
 								amplitude=row.getCell(u).toString();
 								datalog.setAmplitude(Double.parseDouble(amplitude));
 								//logger.info("Inside FileUpload Controller sreading " +row.getCell(u));
-								datalogList.add(datalog);
+								if(m==0){
+								datalogVdata.add(datalog);}
+								else{datalogHdata.add(datalog);}
 								break;
 								}									
 								}
@@ -202,7 +194,9 @@ public class FileUploadController extends SimpleFormController{
 									amplitude=row.getCell(u).toString();
 									datalog.setAmplitude(Double.parseDouble(amplitude));
 									// logger.info("Inside FileUpload Controller sreading " +row.getCell(u));
-									datalogList.add(datalog);
+									if(m==0){
+										datalogVdata.add(datalog);}
+									else{datalogHdata.add(datalog);}
 									break;
 									}										
 									}
@@ -212,11 +206,17 @@ public class FileUploadController extends SimpleFormController{
 				      }
 				      }
 				  inp.close();		
-				 
-					logger.info(" datalogList.size "+datalogList.size());
-					if(datalogList.size()>0)
+	            } catch (Exception ex) {
+					err="File Upload Failed due to " + ex;
+					request.setAttribute("message", "File Upload Failed due to " + ex);
+					logger.info("Inside FileUpload Controller Exception " + ex.getMessage());
+				}
+    		}
+			try{		
+    		logger.info(" datalogVdata.size "+datalogVdata.size()+ " datalogHdata " +datalogHdata.size());
+					if(datalogVdata.size()>0)
 					{
-				testid=	mastersservice.insertTestData(file,freqlist,datalogList,strmode,action);
+				testid=	mastersservice.insertTestData(file,freqlist,datalogVdata,datalogHdata,strmode,action);
 					}
 					request.setAttribute("message", "File Uploaded Successfully");
 					
@@ -231,7 +231,7 @@ public class FileUploadController extends SimpleFormController{
 		//
 		if(action.equals("More")){
 		return new ModelAndView(new RedirectView("fileupload.htm?id="+testid));}
-		else return new ModelAndView("fileuploadresult","fileName",fileName +" " +err);
+		else return new ModelAndView("fileuploadresult","fileName","VP & HP Files " +err);
 	}
 	@Override
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder)

@@ -9,6 +9,7 @@ import java.util.List;
 
 
 
+
 import ireveal.domain.AssetTree;
 import ireveal.domain.DataLog;
 import ireveal.domain.Operator;
@@ -38,7 +39,7 @@ public interface MastersService {
 		public List<Product> getProductList();
 		
 		
-		public int insertTestData(TestData testdata,List<TestFrequency> testfreqlist,List<DataLog> dataloglist,String strmode,String action);
+		public int insertTestData(TestData testdata,List<TestFrequency> testfreqlist,List<DataLog> datalogvdata,List<DataLog> dataloghdata,String strmode,String action );
 		
 		public List<TestFrequency> getFreqList(int testid);
 		//product serial
