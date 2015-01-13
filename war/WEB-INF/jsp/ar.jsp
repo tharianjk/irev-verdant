@@ -12,7 +12,7 @@
  <tr>
 		
        <td>
-       	  
+       	  <label>Select Max Diff Option : </label>
 	   <input type="checkbox" id="p45" value="p45" checked >0 to +45 &#176; &nbsp; &nbsp;&nbsp;
        <input type="checkbox" id="n45" value="n45" checked >0 to -45 &#176;  &nbsp; &nbsp;&nbsp;
       

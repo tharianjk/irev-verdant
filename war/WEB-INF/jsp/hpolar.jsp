@@ -27,6 +27,9 @@
 		</select>			           
 			   
           </td>
+          <td>
+          &nbsp; &nbsp;&nbsp;  <input type="checkbox" id="hdata" value="h" checked >HP Data &nbsp; &nbsp;&nbsp;
+       <input type="checkbox" id="vdata" value="vdata"  >VP Data  &nbsp; &nbsp;&nbsp;<td>
 		<td>&nbsp; &nbsp;&nbsp;<input type="button" value="Go" name="go" class="myButtonGo" onclick="Redirect()"/>
 	<!-- &nbsp; &nbsp;&nbsp;<input type="button" value="back" name="go" class="myButtonGo" onclick="back()"/> -->
 		</td>

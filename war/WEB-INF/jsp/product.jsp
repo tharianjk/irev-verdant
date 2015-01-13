@@ -27,7 +27,8 @@ function Redirect(){
 </div>      
        
       <div>  
-       <form:form method="post" align ="left" commandName="newProduct" >  
+       <form:form method="post" align ="left" commandName="newProduct" > 
+       <br> 
         <table>  
          <tr>  
           <td>Product *  :</td>  
@@ -57,11 +58,11 @@ function Redirect(){
        	  
 	   <form:checkbox id="bwithcp"  path="bwithcp" style="visibility:hidden;"  /><label id="lbl1" style="visibility:hidden;" >With CP</label></td> 
          </tr> 
-         <tr>  
+        <!--  <tr>  
           <td>Image File Name :</td>  
           <td><form:input path="imagefilename"   />  
           </td>  
-         </tr>  
+         </tr>  -->
          <tr> 
         
           

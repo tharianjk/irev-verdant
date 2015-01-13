@@ -122,7 +122,7 @@ progress_clear();
         <td><form:textarea id="testdesc"  path="testdesc"  rows="2" cols="50" /></td>   
           
 		<td>Test Procedure  :</td> 
-		<td><form:textarea id="testproc"  path="testproc"  rows="2" cols="50" /></td>   
+		<td><form:textarea id="testproc"  path="testproc"  rows="2" cols="40" /></td>   
 		        
 		</tr>
 		<tr>
@@ -131,17 +131,19 @@ progress_clear();
 		<td>Calibration Status  :</td> 
 		<td><form:textarea   path="calibration"  rows="2" cols="40" /></td> 
 		</tr>
-        </table>  
+        </table> 
+         <br> 
        <table>  
        <tr> 
+      
 		<td>File Type * :</td> 
           
           <td width="50">
           
            <form:select   path="filetype" required="required" >
           <option value="">--Select--</option>                 
-   		 <option value="Vdata">VData</option>
-   		 <option value="Hdata">HData</option>
+   		 <option value="Vdata">VP Data</option>
+   		 <option value="Hdata">HP Data</option>
 		</form:select>
 		</td>
 		</tr>
@@ -149,9 +151,15 @@ progress_clear();
 		<tr>
 		<td>
 		<div id="imp">
-		<p><input type="file" name="filename" id="filename" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" title=" click here to select an excel file"/></p>
+		<p><input type="file" name="filename" id="filename" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" title=" click here to select an VP Data file"/></p>
 		</div>
 		</td>
+		<td>
+		<div id="imp">
+		<p><input type="file" name="filename" id="filename" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" title=" click here to select an HP Data file"/></p>
+		</div>
+		</td>
+		
 		</table>
 		<table>
 		<tr>

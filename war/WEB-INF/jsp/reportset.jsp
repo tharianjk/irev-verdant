@@ -15,8 +15,8 @@
 <table >
 <tr><td><label><b>---Select Report---</b></label></td></tr>
 	    <tr><td><input type="checkbox" id="polar" value="p" checked >Polar</td></tr>
-        <tr><td><input type="checkbox" id="3db" value="3db" checked >3db Beam With With Beam Squint </td></tr>
-        <tr><td><input type="checkbox" id="10db" value="10db" checked >10db Beam With With Beam Squint </td></tr>
+        <tr><td><input type="checkbox" id="3db" value="3db" checked >3db BeamWidth and Beam Squint </td></tr>
+        <tr><td><input type="checkbox" id="10db" value="10db"  >10db BeamWidth and Backlobe level </td></tr>
         <tr><td><input type="checkbox" id="ar" value="ar" checked >Axial Ratio </td></tr>      
 </table>
 </td>
@@ -68,12 +68,7 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 		var freqid =document.getElementById("freqid").value;	
 		var testid=${model.testid};
 		var typ='${model.typ}';
-		if(document.getElementById("p45").checked)
-			{deg='p';}
-		if(document.getElementById("n45").checked)
-		{
-			if(deg=="" || deg==null){deg='n';}
-		else deg='b';}
+		
 		
 				var url="/birt-viewer/frameset?__report=verdantreportset.rptdesign&freq="+freqid+"&testid="+testid;
 			

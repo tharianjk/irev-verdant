@@ -481,7 +481,7 @@ function recreatewithparents()
         	 
         	 items = {   
         			 createItem: { // The "rename" menu item
-                    label: "Add Test Date",
+                    label: "Add Test",
                     action: function(response) {
                         var url = '<%=request.getContextPath()%>/fileupload.htm?PId='+ node.attr('assetId') ;
                        // alert("url "+url);

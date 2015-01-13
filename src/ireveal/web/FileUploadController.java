@@ -272,6 +272,7 @@ public class FileUploadController extends SimpleFormController{
 	        	TestData testdata=new TestData();
 	        	testdata.setProductserialid(Integer.parseInt(PId));
 	        	testdata.setStrtestdate(sdf.format(curTime)+"T"+sdftime.format(curTime));
+	        	testdata.setTestcenter("Verdant");
 	        	return testdata;
 	        }else{
 	        	  logger.info("inside fileuploadcontroller id:" +id);
