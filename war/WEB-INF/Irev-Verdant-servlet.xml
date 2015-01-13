@@ -74,10 +74,16 @@
         
          <property name="mastersManager" ref="mastersManager"/>
     </bean>
+    <bean name="/reportset.htm" class="ireveal.web.ToolsController">        
+         <property name="mastersManager" ref="mastersManager"/>
+    </bean>
 <bean name="/hpolar.htm" class="ireveal.web.ToolsController">        
          <property name="mastersManager" ref="mastersManager"/>
     </bean>
     <bean name="/xdb_bw_bs.htm" class="ireveal.web.ToolsController">        
+         <property name="mastersManager" ref="mastersManager"/>
+    </bean>
+    <bean name="/ar.htm" class="ireveal.web.ToolsController">        
          <property name="mastersManager" ref="mastersManager"/>
     </bean>
     <bean name="/setup.htm" class="ireveal.web.SetupController" >

@@ -63,7 +63,7 @@ public class FileUploadController extends SimpleFormController{
 		String action="More";
 		String strmode="new";
 		logger.info("*** Inside testcontroller in onsubmit**: btn= "+request.getParameter("fmaction"));
-        // check if user pressed cancel
+        // check if user pressed Done
         if (request.getParameter("fmaction").equals("Done"))
         {
         	action="Done";

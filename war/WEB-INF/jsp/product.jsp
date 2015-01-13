@@ -37,7 +37,7 @@ function Redirect(){
          <tr> 
          
          <tr>  
-          <td>Version :</td>  
+          <td>Product Part No * :</td>  
           <td><form:input path="version"  />  
           </td>  
          </tr>  
@@ -46,13 +46,16 @@ function Redirect(){
           
           <td width="50">
           
-           <form:select   path="ptype" required="required" >
+           <form:select id="ptype"  path="ptype" required="required" onchange="fntypechange();">
           <option value="">--Select--</option>                 
-   		 <option value="Circular">Circular</option>
-   		 <option value="Linear">Linear</option>    
-		</form:select>  
-            
-          </td>  
+   		 <form:option value="Circular" label="Circular"></form:option>
+   		 <form:option value="Linear" label="Linear"></form:option>    
+		</form:select>              
+          </td> 
+          
+          <td>
+       	  
+	   <form:checkbox id="bwithcp"  path="bwithcp" style="visibility:hidden;"  /><label id="lbl1" style="visibility:hidden;" >With CP</label></td> 
          </tr> 
          <tr>  
           <td>Image File Name :</td>  
@@ -74,7 +77,20 @@ function Redirect(){
       </div>  
      
       <script>
+      function fntypechange(){
+    	  if(document.getElementById("ptype").value=="Circular")
+    		  {
+    		  document.getElementById("bwithcp").style.visibility="visible";
+    		  document.getElementById("lbl1").style.visibility="visible";
+    		  
+    		  }
+    	  else
+    		  {document.getElementById("bwithcp").style.visibility="hidden";
+    	  document.getElementById("lbl1").style.visibility="hidden";
+		        }
+      }
      $(document).ready(function () {
+    	 fntypechange();
     	 var savestat='<%=request.getParameter("savestat")%>';
    		//alert (parmdelete);
    		if(savestat!=null && savestat!="")

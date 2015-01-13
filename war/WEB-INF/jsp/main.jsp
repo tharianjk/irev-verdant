@@ -49,7 +49,10 @@ function fnsetstat(typ,msg)
 		window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+AssetTree.selectedsection;
 		AssetTree.monitorstat="Reports";}
 	if(typ=="ar") {
-		window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+AssetTree.selectedsection;
+		window.frames['AppBody'].location="ar.htm?oper=ar&typ="+typ+"&testid="+AssetTree.selectedsection;
+		AssetTree.monitorstat="Reports";}
+	if(typ=="rset") {
+		window.frames['AppBody'].location="reportset.htm?oper=rset&typ="+typ+"&testid="+AssetTree.selectedsection;
 		AssetTree.monitorstat="Reports";}
 	
 }
@@ -161,22 +164,19 @@ dialog.dialog( "open" );
  <nav>
 	<ul>
 	
-	<c:if test="${model.blnreports eq 'true'}">
+	<li><a rel="reportset" class="menuarray" TARGET="AppBody" onclick="fnsetstat('rset');"><b>Report Set</b></a>
+			
+		</li>
 		<li><a href="#"><b>Reports</b></a>
 			<ul>
-				<li><a href="#">Polar Report</a>
-				<ul>
-					<!-- <li><a rel="Polar Report" href="/birt-viewer/frameset?__report=HdataVerdant_report.rptdesign&freq=1540" TARGET="AppBody" class="menuarray" onclick="fnsetstat('Reports');">H Data Report</a></li>  -->
-					<li><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('Polar');">H Data Report</a></li>				
-				</ul>
-				</li>
+				<li><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('Polar');">Polar Graph</a></li>				
 				<li><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('3db');">3db Beamwidth</a> </li>
 				<li><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('10db');">10db Beamwidth</a> </li>
 				<li><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('ar');">Axial Ratio</a> </li>
 			</ul>
 		</li>
-		</c:if>
-		<c:if test="${model.blnsettings eq 'true'}">
+		
+		
 		<li><a href="#"><b>Settings</b></a>
 				<ul>
 					<li><a href="#">System</a><ul>											
@@ -186,7 +186,7 @@ dialog.dialog( "open" );
 					<li><a href="setup.htm?oper=role" onclick="fnsetstat('Settings');" TARGET="AppBody">Manage Roles</a></li>						
 				</ul>
 		</li>
-		</c:if>
+		
 	</ul>
 </nav>
 </div>

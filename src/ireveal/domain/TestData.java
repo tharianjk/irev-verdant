@@ -1,6 +1,7 @@
 package ireveal.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,6 +22,23 @@ private String ptype;
 private String testcenter;
 private String instruments;
 private String calibration;
+private String testproc;
+private List<MultipartFile> uploadedfiles;
+
+public List<MultipartFile> getFiles() {
+    return uploadedfiles;
+}
+
+public void setFiles(List<MultipartFile> files) {
+    this.uploadedfiles = files;
+}
+
+public String getTestproc() {
+	return testproc;
+}
+public void setTestproc(String testproc) {
+	this.testproc = testproc;
+}
 public String getTestcenter() {
 	return testcenter;
 }

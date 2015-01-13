@@ -98,7 +98,7 @@ progress_clear();
 		<tr><td>Test Center * :</td>  
 		<td><form:input path="testcenter" required="required" /></td></tr>
 		<tr>
-		<td>Test Description * :</td>  
+		<td>Test Name * :</td>  
           <td><form:input path="testname" required="required" />  
           </td>
           <td>Test date *:</td>
@@ -118,8 +118,11 @@ progress_clear();
           
           </tr>
           <tr>
+          <td>Test Description * :</td>  
+        <td><form:textarea id="testdesc"  path="testdesc"  rows="2" cols="50" /></td>   
+          
 		<td>Test Procedure  :</td> 
-		<td><form:textarea id="testdesc"  path="testdesc"  rows="2" cols="50" /></td>   
+		<td><form:textarea id="testproc"  path="testproc"  rows="2" cols="50" /></td>   
 		        
 		</tr>
 		<tr>

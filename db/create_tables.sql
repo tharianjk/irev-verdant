@@ -101,6 +101,7 @@ CREATE TABLE IF NOT EXISTS `Verdant`.`Product` (
   `Version` VARCHAR(45) NULL,
   `PType` VARCHAR(45) NULL,
   `ImageFileName` VARCHAR(100) NULL,
+  b_withcp boolean default false,
   PRIMARY KEY (`Product_id`))
 ENGINE = InnoDB;
 
@@ -132,7 +133,8 @@ TestDate datetime,
 frequnit varchar(5) default 'MHz',
 testcenter varchar(100),
 instruments varchar(100),
-Calibration varchar(100));
+Calibration varchar(100),
+testproc varchar(100));
 
 -- -----------------------------------------------------
 -- Table `Verdant`.`TestFreq

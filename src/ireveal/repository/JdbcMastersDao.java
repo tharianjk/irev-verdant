@@ -282,7 +282,7 @@ public UserPref mapRow(ResultSet rs, int rowNum) throws SQLException {
 	   
 if(strmode.equals("new")){
 	   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-   final String  sql = "INSERT INTO testdata(TestName,TestDesc,ProdSerial_id,TestDate,frequnit,testcenter,instruments,calibration) VALUES  (?,?,?,?,?,?,?,?)";    
+   final String  sql = "INSERT INTO testdata(TestName,TestDesc,ProdSerial_id,TestDate,frequnit,testcenter,instruments,calibration,testproc) VALUES  (?,?,?,?,?,?,?,?,?)";    
 	     KeyHolder keyHolder = new GeneratedKeyHolder();
 	    
 	     final String testname = testdata.getTestname();
@@ -293,6 +293,7 @@ if(strmode.equals("new")){
 	     final String testcenter=testdata.getTestcenter();
 	     final String instruments=testdata.getInstruments();
 	     final String calibration=testdata.getCalibration();
+	     final String testproc=testdata.getTestproc();
 	  	getJdbcTemplate().update(
 	  	    new PreparedStatementCreator() {
 	  	        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
@@ -307,6 +308,7 @@ if(strmode.equals("new")){
 	  	            ps.setString(6, testcenter);
 	  	            ps.setString(7, instruments);
 	  	            ps.setString(8, calibration);
+	  	            ps.setString(9, testproc);
 	  	            return ps;
 	  	        }
 	  	    },
@@ -374,13 +376,14 @@ if(strmode.equals("new")){
 	   
 	   int primaryKey;
 	   
-   final String  sql = "INSERT INTO product(Productname,Version,PType,ImageFileName) VALUES   (?,?,?,?)";    
+   final String  sql = "INSERT INTO product(Productname,Version,PType,ImageFileName,b_withcp) VALUES   (?,?,?,?,?)";    
 	     KeyHolder keyHolder = new GeneratedKeyHolder();
 	    
 	     final String prdname = prod.getProductname();
 	     final String version = prod.getVersion();	    
 	     final String ptype = prod.getPtype();
 	     final String iname = prod.getImagefilename();
+	     final Boolean bwithcp = prod.getBwithcp();
 	  	getJdbcTemplate().update(
 	  	    new PreparedStatementCreator() {
 	  	        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
@@ -390,6 +393,7 @@ if(strmode.equals("new")){
 	  	            ps.setString(2, version);
 	  	            ps.setString(3, ptype);	  
 	  	          ps.setString(4, iname);
+	  	        ps.setBoolean(5, bwithcp);
 	  	            return ps;
 	  	        }
 	  	    },
@@ -403,7 +407,7 @@ if(strmode.equals("new")){
    public List<Product> getProductList() {  
 	    List dataList = new ArrayList();  
 	   
-	    String sql = "select Product_id,Productname,Version,PType,ImageFileName from product";  
+	    String sql = "select Product_id,Productname,Version,PType,ImageFileName,b_withcp from product";  
 	   
 	    dataList = getJdbcTemplate().query(sql, new ProductMapper());  
 	    return dataList;  
@@ -430,10 +434,10 @@ if(strmode.equals("new")){
 	     
 	   public boolean updateProduct(Product prduct) {  
 		   try{
-	    String sql = "UPDATE Product set productname = ?,version = ?,ptype=?,imagefilename=? where product_id = ?";  
+	    String sql = "UPDATE Product set productname = ?,version = ?,ptype=?,imagefilename=?,b_withcp=? where product_id = ?";  
 	    getJdbcTemplate().update(  
 	      sql,  
-	      new Object[] { prduct.getProductname(), prduct.getVersion(),  prduct.getPtype(),prduct.getImagefilename(),
+	      new Object[] { prduct.getProductname(), prduct.getVersion(),  prduct.getPtype(),prduct.getImagefilename(),prduct.getBwithcp(),
 	    		  prduct.getProductid() }); 
 	    
 	   
@@ -449,7 +453,7 @@ if(strmode.equals("new")){
 	   public Product getProduct(int id) {  
 		   logger.info("***inside prduct** ");
 		   List<Product> dataList =null;
-	    String sql = "select Product_id,Productname,Version,PType,ImageFileName from product  where Product_id =" + id;  
+	    String sql = "select Product_id,Productname,Version,PType,ImageFileName,b_withcp from product  where Product_id =" + id;  
 	   try
 	   {
 		   dataList = getJdbcTemplate().query(sql, new ProductMapper());
@@ -470,7 +474,7 @@ if(strmode.equals("new")){
 	    	   product.setPtype(rs.getString("ptype"));  
 	    	   product.setVersion(rs.getString("version")); 	    	  
 	    	   product.setImagefilename(rs.getString("imagefilename"));
-	    	   
+	    	   product.setBwithcp(rs.getBoolean("b_withcp"));
 	           return product;
 	       }
 
@@ -666,7 +670,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 			   public TestData getTestData(int id) {  
 				   logger.info("***inside testdata** ");
 				   List<TestData> dataList =null;
-			    String sql = "select Test_id,TestName,testdesc,T.ProdSerial_id,TestDate,SerialNo,Productname,Version,frequnit,ptype,testcenter,instruments,calibration from testdata t inner join product_serial s on t.Prodserial_id=S.Prodserial_id "+
+			    String sql = "select Test_id,TestName,testdesc,T.ProdSerial_id,TestDate,SerialNo,Productname,Version,frequnit,ptype,testcenter,instruments,calibration,testproc from testdata t inner join product_serial s on t.Prodserial_id=S.Prodserial_id "+
 			    		" inner join product p on s.Product_id=p.Product_id  where TEST_id =" + id;  
 			   try
 			   {
@@ -696,6 +700,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 			    	   testdata.setTestcenter(rs.getString("testcenter")); 
 			    	   testdata.setInstruments(rs.getString("instruments")); 
 			    	   testdata.setCalibration(rs.getString("calibration")); 
+			    	   testdata.setTestproc(rs.getString("testproc")); 
 			    	   
 			           return testdata;
 			       }

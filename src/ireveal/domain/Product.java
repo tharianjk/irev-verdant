@@ -6,8 +6,14 @@ public class Product {
 	private String version;
 	private String ptype;
 	private String imagefilename;
+	private Boolean bwithcp;
 	
-	
+	public Boolean getBwithcp() {
+		return bwithcp;
+	}
+	public void setBwithcp(Boolean bwithcp) {
+		this.bwithcp = bwithcp;
+	}
 	public String getVersion() {
 		return version;
 	}

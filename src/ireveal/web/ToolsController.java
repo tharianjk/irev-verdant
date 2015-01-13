@@ -21,6 +21,8 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Date;
 import java.text.DateFormat;
+
+import ireveal.domain.Product;
 import ireveal.service.MastersService;
 
 
@@ -73,7 +75,14 @@ public class ToolsController implements Controller {
     		operstr = "null";
         }else{
         		
-			if (operstr.contains("hpolar")){
+			if (operstr.contains("rset")){
+        		logger.info("*** rset ** testid "+testid);
+        		 myModel.put("freqlist", this.mastersservice.getFreqList(Integer.parseInt(testid)));
+        		 myModel.put("testid",testid);
+        		 myModel.put("freq",freq);
+                return new ModelAndView("reportset", "model", myModel);        	
+        	}
+			else if (operstr.contains("hpolar")){
         		logger.info("*** hpolar ** testid "+testid);
         		 myModel.put("freqlist", this.mastersservice.getFreqList(Integer.parseInt(testid)));
         		 myModel.put("testid",testid);
@@ -81,12 +90,29 @@ public class ToolsController implements Controller {
                 return new ModelAndView("hpolar", "model", myModel);        	
         	}
 			else if (operstr.contains("db")){
+				String ptype="L";
+				String bwithcp="0";
+				String typ = request.getParameter("typ");
+        		logger.info("*** db ** testid "+testid);
+       		 //myModel.put("freqlist", this.mastersservice.getFreqList(Integer.parseInt(testid)));
+        		if(testid==null || testid=="" || testid=="null" ||  testid.equals("undefined") ){
+        		Product prd=mastersservice.getProduct(Integer.parseInt(testid));
+        		ptype=prd.getPtype()=="Linear"?"L":"C";
+        		bwithcp=prd.getBwithcp()==true?"1":"0";
+        		}
+        		myModel.put("ptype",ptype);
+        		myModel.put("bwithcp",bwithcp);
+       		 myModel.put("testid",testid);
+       		 myModel.put("typ",typ);
+               return new ModelAndView("xdb_bw_bs", "model", myModel);        	
+       	}
+			else if (operstr.contains("ar")){
 				String typ = request.getParameter("typ");
         		logger.info("*** db ** testid "+testid);
        		 //myModel.put("freqlist", this.mastersservice.getFreqList(Integer.parseInt(testid)));
        		 myModel.put("testid",testid);
        		 myModel.put("typ",typ);
-               return new ModelAndView("xdb_bw_bs", "model", myModel);        	
+             return new ModelAndView("ar", "model", myModel);        	
        	}
 			        }
         logger.info("*** not able to identify tools options!!**");
