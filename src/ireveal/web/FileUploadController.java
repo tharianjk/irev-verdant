@@ -218,7 +218,7 @@ public class FileUploadController extends SimpleFormController{
 					{
 				testid=	mastersservice.insertTestData(file,freqlist,datalogVdata,datalogHdata,strmode,action);
 					}
-					request.setAttribute("message", "File Uploaded Successfully");
+					request.setAttribute("message", " Uploaded Successfully");
 					
 					} catch (Exception ex) {
 						err="File Upload Failed due to " + ex;

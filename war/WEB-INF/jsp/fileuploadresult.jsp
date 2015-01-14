@@ -1,7 +1,14 @@
 
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+    <html>  
+    <head>  
+  
+    <script src="js/jquery.js"></script>
+	<script src="js/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="irev-style.css" />	
+	<link rel="stylesheet" href="css/jquery-ui.css">
  
-<html>
+</head>
 <body>
 	<h2>Import Status</h2>
  

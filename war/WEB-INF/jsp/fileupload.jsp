@@ -105,7 +105,7 @@ progress_clear();
 	     <td><form:input id="dttest" path="strtestdate" type="datetime-local" required="required" /> </td>
 		</tr>
 		<tr>
-		<td width="20%"> Product Serial No: </td>
+		<td > Product Serial No: </td>
        <td width="50">
 			           
 			 <form:select path="productserialid" required="required" >  
@@ -147,16 +147,22 @@ progress_clear();
 		<p>Select HP Data<input type="file" name="filename" id="filename" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" title=" click here to select an excel file"/></p>
 		</div>
 		</td>
+		<td>
+		<div id="pwait" style="visibility:hidden;color:red;font-style:italic;" >
+             &nbsp; &nbsp;Please Wait........
+        </div>
+        </td>
 		</tr>
 		</table>
 		<br>
+		
 		<table>
 		<tr>
-		<td width="20%"> Frequency :</td>
+		<td > Frequency* :</td>
        <td>		
            <select id="selfreq" name="D1"  ></select>
         </td>
-        <td width="20%"> Linear Gain :</td>
+        <td > Linear Gain* :</td>
         <td>		
            <input type="number" id="lg" />
         </td>
@@ -240,8 +246,12 @@ function AddNew(){
 
 	var freq=document.getElementById("selfreq").value;
 	var lg=document.getElementById("lg").value;
-	console.log("selfreq"+selfreq);
-	console.log("lg"+lg);
+	
+	if(freq=="" || freq==null || lg=="" || lg==null)
+	{alert("Please Enter Frequiency and Linear Gain !!!");
+	return;}
+	//console.log("selfreq"+selfreq);
+	//console.log("lg"+lg);
 	document.getElementById("selfreq").value="";
 	document.getElementById("lg").value="";
 	$("#tblData tbody").append(
@@ -365,11 +375,12 @@ function loadLov(output)
 	    //}
 	    selfreq.appendChild(el);
 }
+	document.getElementById("pwait").style.visibility="hidden";
 }
 var xlf = document.getElementById('filename');
 
 function handleFile(e) {
-
+	document.getElementById("pwait").style.visibility="visible";
 //	rABS = document.getElementsByName("userabs")[0].checked;
 //	use_worker = document.getElementsByName("useworker")[0].checked;
 	var files = e.target.files;
@@ -397,11 +408,12 @@ function handleFile(e) {
 			
 		};
 		 reader.readAsArrayBuffer(f);
+		 
 	}
 }
 
 if(xlf.addEventListener) xlf.addEventListener('change', handleFile, false);
-
+	
 
 function tabledata()
 {
