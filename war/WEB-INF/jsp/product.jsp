@@ -50,7 +50,8 @@ function Redirect(){
            <form:select id="ptype"  path="ptype" required="required" onchange="fntypechange();">
           <option value="">--Select--</option>                 
    		 <form:option value="Circular" label="Circular"></form:option>
-   		 <form:option value="Linear" label="Linear"></form:option>    
+   		 <form:option value="Linear" label="Linear"></form:option>  
+   		 <form:option value="slant" label="Slant"></form:option>    
 		</form:select>              
           </td> 
           

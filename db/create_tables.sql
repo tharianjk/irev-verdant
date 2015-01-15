@@ -5,6 +5,7 @@ USE `Verdant` ;
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `Verdant` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
 USE `Verdant` ;
+
 drop procedure if exists calc_MaxDiffAxialRatio;
 drop procedure if exists calc_XdB_BW_BS;
 drop procedure if exists calculate;
@@ -18,6 +19,13 @@ drop function if exists calc_omni;
 
 drop view if exists axialratio_view;
 
+
+drop table IF  EXISTS PitchData;
+drop table IF  EXISTS rollData;
+drop table IF  EXISTS yawdata;
+drop table IF  EXISTS pitchcalculated;
+drop table IF  EXISTS rollcalculated;
+drop table IF  EXISTS yawcalculated;
  Drop table IF EXISTS VDATA cascade;
  Drop table IF EXISTS HDATA cascade;
  Drop table IF EXISTS CPDATA cascade;
@@ -273,6 +281,123 @@ CREATE TABLE IF NOT EXISTS `Verdant`.`ARCalculated` (
   `MaxAR_M_Angle` DECIMAL(20,10) NULL, -- Angle corresp to Max Axial Ratio from 0 to -45 
   PRIMARY KEY (`ARCalculated_Id`))
 ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Verdant`.`PitchData`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS PitchData (
+  `pitchData_id` INT  AUTO_INCREMENT,
+  `Test_id` INT NULL,
+  Frequency DECIMAL(20,10),
+  `Angle` DECIMAL(12,2) NULL,
+  `Amplitude` DECIMAL(12,8) NULL,  
+  PRIMARY KEY (`pitchData_id`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `Verdant`.`rollData`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS rollData (
+  `rollData_id` INT  AUTO_INCREMENT,
+  `Test_id` INT NULL,
+  Frequency DECIMAL(20,10),
+  `Angle` DECIMAL(12,2) NULL,
+  `Amplitude` DECIMAL(12,8) NULL,  
+  PRIMARY KEY (`rollData_id`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `Verdant`.`yawData`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS yawData (
+  `yawData_id` INT  AUTO_INCREMENT,
+  `Test_id` INT NULL,
+  Frequency DECIMAL(20,10),
+  `Angle` DECIMAL(12,2) NULL,
+  `Amplitude` DECIMAL(12,8) NULL,  
+  PRIMARY KEY (`yawData_id`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `Verdant`.`pitchCalculated`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Verdant`.`PitchCalculated` (
+  pitchCalculated_Id INT AUTO_INCREMENT,
+  `Test_id` INT NULL,
+  `Frequency` DECIMAL(20,10) NULL,
+  `TestDate` DATETIME NULL,
+  `OmniDeviation` DECIMAL(20,10) NULL, -- omni deviation
+  `3Db_BW_BMax` DECIMAL(20,10) NULL, -- 3db Beam width from Beam Max
+  `3Db_BW_0` DECIMAL(20,10) NULL, -- 3db Beam width from 0 degree
+  `3Db_BW_90` DECIMAL(20,10) NULL, -- 3db Beam width from 90 degree
+  `3Db_BS_BMax` DECIMAL(20,10) NULL, -- 3db Beam squint from Beam Max
+  `3Db_BS_0` DECIMAL(20,10) NULL, -- 3db Beam squint from 0 degree
+  `3Db_BS_90` DECIMAL(20,10) NULL, -- 3db Beam squint from 90 degree
+  `10Db_BW_BMax` DECIMAL(20,10) NULL, -- 10db Beam width from Beam Max
+  `10Db_BW_0` DECIMAL(20,10) NULL, -- 10db Beam width from 0 degree
+  `10Db_BW_90` DECIMAL(20,10) NULL, -- 10db Beam width from 90 degree
+  `10Db_BS_BMax` DECIMAL(20,10) NULL, -- 10db Beam squint from Beam Max
+  `10Db_BS_0` DECIMAL(20,10) NULL, -- 10db Beam squint from 0 degree
+  `10Db_BS_90` DECIMAL(20,10) NULL, -- 10db Beam squint from 90 degree
+  `BackLobe` DECIMAL(20,10) NULL, -- Back Lobe level
+    
+  PRIMARY KEY (`pitchCalculated_Id`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `Verdant`.`rollCalculated`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Verdant`.`rollCalculated` (
+  rollCalculated_Id INT AUTO_INCREMENT,
+  `Test_id` INT NULL,
+  `Frequency` DECIMAL(20,10) NULL,
+  `TestDate` DATETIME NULL,
+  `OmniDeviation` DECIMAL(20,10) NULL, -- omni deviation
+  `3Db_BW_BMax` DECIMAL(20,10) NULL, -- 3db Beam width from Beam Max
+  `3Db_BW_0` DECIMAL(20,10) NULL, -- 3db Beam width from 0 degree
+  `3Db_BW_90` DECIMAL(20,10) NULL, -- 3db Beam width from 90 degree
+  `3Db_BS_BMax` DECIMAL(20,10) NULL, -- 3db Beam squint from Beam Max
+  `3Db_BS_0` DECIMAL(20,10) NULL, -- 3db Beam squint from 0 degree
+  `3Db_BS_90` DECIMAL(20,10) NULL, -- 3db Beam squint from 90 degree
+  `10Db_BW_BMax` DECIMAL(20,10) NULL, -- 10db Beam width from Beam Max
+  `10Db_BW_0` DECIMAL(20,10) NULL, -- 10db Beam width from 0 degree
+  `10Db_BW_90` DECIMAL(20,10) NULL, -- 10db Beam width from 90 degree
+  `10Db_BS_BMax` DECIMAL(20,10) NULL, -- 10db Beam squint from Beam Max
+  `10Db_BS_0` DECIMAL(20,10) NULL, -- 10db Beam squint from 0 degree
+  `10Db_BS_90` DECIMAL(20,10) NULL, -- 10db Beam squint from 90 degree
+  `BackLobe` DECIMAL(20,10) NULL, -- Back Lobe level
+    
+  PRIMARY KEY (`rollCalculated_Id`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `Verdant`.`roleCalculated`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Verdant`.`yawCalculated` (
+  yawCalculated_Id INT AUTO_INCREMENT,
+  `Test_id` INT NULL,
+  `Frequency` DECIMAL(20,10) NULL,
+  `TestDate` DATETIME NULL,
+  `OmniDeviation` DECIMAL(20,10) NULL, -- omni deviation
+  `3Db_BW_BMax` DECIMAL(20,10) NULL, -- 3db Beam width from Beam Max
+  `3Db_BW_0` DECIMAL(20,10) NULL, -- 3db Beam width from 0 degree
+  `3Db_BW_90` DECIMAL(20,10) NULL, -- 3db Beam width from 90 degree
+  `3Db_BS_BMax` DECIMAL(20,10) NULL, -- 3db Beam squint from Beam Max
+  `3Db_BS_0` DECIMAL(20,10) NULL, -- 3db Beam squint from 0 degree
+  `3Db_BS_90` DECIMAL(20,10) NULL, -- 3db Beam squint from 90 degree
+  `10Db_BW_BMax` DECIMAL(20,10) NULL, -- 10db Beam width from Beam Max
+  `10Db_BW_0` DECIMAL(20,10) NULL, -- 10db Beam width from 0 degree
+  `10Db_BW_90` DECIMAL(20,10) NULL, -- 10db Beam width from 90 degree
+  `10Db_BS_BMax` DECIMAL(20,10) NULL, -- 10db Beam squint from Beam Max
+  `10Db_BS_0` DECIMAL(20,10) NULL, -- 10db Beam squint from 0 degree
+  `10Db_BS_90` DECIMAL(20,10) NULL, -- 10db Beam squint from 90 degree
+  `BackLobe` DECIMAL(20,10) NULL, -- Back Lobe level
+    
+  PRIMARY KEY (`yawCalculated_Id`))
+ENGINE = InnoDB;
+
 
 
 -- Create View axialratio_view

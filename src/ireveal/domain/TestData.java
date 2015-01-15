@@ -11,7 +11,7 @@ private Date dttestdate;
 private String strtestdate;
 private String testname;
 private String testdesc;
-private MultipartFile[] filename; 
+private MultipartFile filename; 
 private String originalfilename;
 private String strjsonfreq;
 private int productserialid;
@@ -23,7 +23,15 @@ private String testcenter;
 private String instruments;
 private String calibration;
 private String testproc;
+private List<MultipartFile> uploadedfiles;
 
+public List<MultipartFile> getFiles() {
+    return uploadedfiles;
+}
+
+public void setFiles(List<MultipartFile> files) {
+    this.uploadedfiles = files;
+}
 
 public String getTestproc() {
 	return testproc;
@@ -116,11 +124,10 @@ public String getTestdesc() {
 public void setTestdesc(String testdesc) {
 	this.testdesc = testdesc;
 }
-
-public MultipartFile[] getFilename() {
+public MultipartFile getFilename() {
 	return filename;
 }
-public void setFilename(MultipartFile[] filename) {
+public void setFilename(MultipartFile filename) {
 	this.filename = filename;
 }
 public String getOriginalfilename() {

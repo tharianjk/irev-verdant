@@ -24,8 +24,8 @@
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
  
-	<bean name="/fileupload.htm" class="ireveal.web.FileUploadController">
-		<property name="formView" value="fileupload" />
+	<bean name="/testimport.htm" class="ireveal.web.TestImportController">
+		<property name="formView" value="testimport" />
 		 <property name="commandClass" value="ireveal.domain.TestData"/>
 		  <property name="commandName" value="TestData"/>
 		<property name="successView" value="fileuploadresult" />

@@ -23,6 +23,7 @@ import java.util.Date;
 import java.text.DateFormat;
 
 import ireveal.domain.Product;
+import ireveal.domain.TestFrequency;
 import ireveal.service.MastersService;
 
 
@@ -77,9 +78,17 @@ public class ToolsController implements Controller {
         		
 			if (operstr.contains("rset")){
         		logger.info("*** rset ** testid "+testid);
-        		 myModel.put("freqlist", this.mastersservice.getFreqList(Integer.parseInt(testid)));
+        		String strfreqs="";
+        		List<TestFrequency> freqlist=this.mastersservice.getFreqList(Integer.parseInt(testid));
+        		for (int i=0;i<freqlist.size();i++){
+        			if(i==0)
+        				{strfreqs=freqlist.get(i).getFrequency()+"";}
+        			else {strfreqs=strfreqs+","+freqlist.get(i).getFrequency();}
+        		}
+        		logger.info("*** strfreqs ** "+strfreqs);
+        		 //myModel.put("freqlist", this.mastersservice.getFreqList(Integer.parseInt(testid)));
         		 myModel.put("testid",testid);
-        		 myModel.put("freq",freq);
+        		 myModel.put("strfreqs",strfreqs);
                 return new ModelAndView("reportset", "model", myModel);        	
         	}
 			else if (operstr.contains("hpolar")){

@@ -24,23 +24,7 @@
 <td>
 <table>
  <tr>
-		<td > Frequency : </td>
-       <td width="50">
-       <select id="freqid" >          
-         <option value="-1">--Select--</option>      
-   		 <c:forEach items="${model.freqlist}" var="freq">
-   		  <c:choose>
-   		 <c:when test="${freq.frequency eq model.freq}">	
-            <option value=<c:out value="${freq.frequency}" /> selected ><c:out value="${freq.frequency}"/></option>
-           </c:when>
-	    <c:otherwise>
-	       <option value=<c:out value="${freq.frequency}" /> ><c:out value="${freq.frequency}"/></option>
-	    </c:otherwise>      
-		</c:choose>
-    	</c:forEach>
-		</select>			           
-			   
-          </td>
+	
 		<td>&nbsp; &nbsp;&nbsp;<input type="button" value="Go" name="go" class="myButtonGo" onclick="Redirect()"/>
 	<!-- &nbsp; &nbsp;&nbsp;<input type="button" value="back" name="go" class="myButtonGo" onclick="back()"/> -->
 		</td>
@@ -68,12 +52,21 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 		var freqid =document.getElementById("freqid").value;	
 		var testid=${model.testid};
 		var typ='${model.typ}';
-		
-		
-				var url="/birt-viewer/frameset?__report=verdantreportset.rptdesign&freq="+freqid+"&testid="+testid;
+		var strfreqs=[20]; 
+		var freqs=[];
+		var i=0;
+		var fre= '${model.strfreqs}';
+		freqs=fre.split(",");
+		for (i==0;i<freqs.length;i++){
+			strfreqs[i]=freqs[i];
+		}
+				var url="/birt-viewer/frameset?__report=verdantreportset.rptdesign&testid="+testid+"&freq1="+strfreqs[0]+
+						"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
+						"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9];
+						
 			
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
-		//alert("url " + url);
+		alert("url " + url);
 		//window.location =url; 
 		window.frames['AppBody'].location=url;
 		 }

@@ -483,7 +483,7 @@ function recreatewithparents()
         			 createItem: { // The "rename" menu item
                     label: "Add Test",
                     action: function(response) {
-                        var url = '<%=request.getContextPath()%>/fileupload.htm?PId='+ node.attr('assetId') ;
+                        var url = '<%=request.getContextPath()%>/testimport.htm?PId='+ node.attr('assetId') ;
                        // alert("url "+url);
                         parent.frames['AppBody'].location = url;
                               }
@@ -492,7 +492,7 @@ function recreatewithparents()
        			 editItem: { // The "rename" menu item
                    label: "Edit Serial No.",
                    action: function(response) {
-                	   var url = '<%=request.getContextPath()%>/fileupload.htm?id='+ node.attr('assetId') ;
+                	   var url = '<%=request.getContextPath()%>/testimport.htm?id='+ node.attr('assetId') ;
                        parent.frames['AppBody'].location = url;
                              }
                },

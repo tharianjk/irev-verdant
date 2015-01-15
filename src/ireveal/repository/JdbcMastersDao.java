@@ -274,7 +274,7 @@ public UserPref mapRow(ResultSet rs, int rowNum) throws SQLException {
    
    //import test data
    @Transactional
-   public int insertTestData(TestData testdata,List<TestFrequency> testfreqlist,List<DataLog> datalogvdata,List<DataLog> dataloghdata,String strmode,String action ){
+   public int insertTestData(TestData testdata,List<TestFrequency> testfreqlist,List<DataLog> dataloglist,String strmode,String action ){
 	  
 	   int testid=0;
 	   logger.info(" strmode "+strmode);
@@ -289,7 +289,7 @@ if(strmode.equals("new")){
 	     final String testdesc = testdata.getTestdesc();	    
 	     final int prdserid = testdata.getProductserialid();
 	     final String testdate=sdf.format(testdata.getDttestdate());
-	     final String frequnit="MHz";//testdata.getFrequnit();
+	     final String frequnit=testdata.getFrequnit();
 	     final String testcenter=testdata.getTestcenter();
 	     final String instruments=testdata.getInstruments();
 	     final String calibration=testdata.getCalibration();
@@ -333,29 +333,31 @@ if(strmode.equals("new")){
 
 		}
 	  	
-	 // vdata
-	  	 String sqltest="";	  	
-	  	 sqltest="insert into Vdata (test_id,Frequency,Angle,Amplitude) values (?,?,?,?)"; 	  		 
-	  	
-	  	for (int i=0;i<datalogvdata.size();i++){		 
+	 // datalog
+	  	 String sqltest="";
+	  	if(testdata.getFiletype().equals("Vdata"))
+	  	{
+	  		sqltest="insert into Vdata (test_id,Frequency,Angle,Amplitude) values (?,?,?,?);"; 
+	  	}
+	  	else if(testdata.getFiletype().equals("Hdata"))
+	  	{
+	  		sqltest="insert into Hdata (test_id,Frequency,Angle,Amplitude) values (?,?,?,?);"; 
+	  	}
+	  	else {
+	  		sqltest="insert into CPdata (test_id,Frequency,Angle,Amplitude) values (?,?,?,?);"; 
+		  	
+	  	}
+	  	for (int i=0;i<dataloglist.size();i++){		 
 		getJdbcTemplate().update(  
 				sqltest,  
-		 new Object[] {testid, datalogvdata.get(i).getFreq(), datalogvdata.get(i).getAngle(),datalogvdata.get(i).getAmplitude() });
+		 new Object[] {testid, dataloglist.get(i).getFreq(), dataloglist.get(i).getAngle()==360.00?0:dataloglist.get(i).getAngle(),dataloglist.get(i).getAmplitude() });
 
 		}
-	  	//hdata
-	  	sqltest="insert into Hdata (test_id,Frequency,Angle,Amplitude) values (?,?,?,?)";
-	  	for (int i=0;i<dataloghdata.size();i++){		 
-			getJdbcTemplate().update(  
-					sqltest,  
-			 new Object[] {testid, dataloghdata.get(i).getFreq(), dataloghdata.get(i).getAngle(),dataloghdata.get(i).getAmplitude() });
-
-			}
 	  	if(action.equals("Done"))
 	  	{
 	  		final String ptype = testdata.getPtype()=="Linear"?"L":"C";
-	  		//final String funit = testdata.getFrequnit()=="MHz"?"M":"G";
-	  		final String funit = "M";
+	  		final String funit = testdata.getFrequnit().equals("MHz")?"M":"G";
+	  		//final String funit = "M";
 	  		getJdbcTemplate().update("call Calculate_params (?,?)", testid,ptype);
 	  		
 	  	}	  	
