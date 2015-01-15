@@ -49,7 +49,7 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 	}
 	function Redirect(){
 		//alert("go clicked");
-		var freqid =document.getElementById("freqid").value;	
+		//var freqid =document.getElementById("freqid").value;	
 		var testid=${model.testid};
 		var typ='${model.typ}';
 		var strfreqs=[20]; 
