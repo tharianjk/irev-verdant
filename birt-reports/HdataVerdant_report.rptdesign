@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
     <property name="createdBy">Eclipse BIRT Designer Version 4.3.2.v20140211-1400 Build &lt;4.3.2.v20140218-1056></property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">13</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">13</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">13</property>
+        </structure>
+    </list-property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="layoutPreference">auto layout</property>
@@ -34,6 +48,36 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
+        <scalar-parameter name="max" id="764">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">-47</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="min" id="765">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">-67</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="VerdantProfile" id="7">
@@ -62,9 +106,21 @@
     </data-sources>
     <data-sets>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="HdataData Set" id="8">
+            <list-property name="computedColumns">
+                <structure>
+                    <property name="name">MX</property>
+                    <expression name="expression">params["max"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">MN</property>
+                    <expression name="expression">params["min"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
             <list-property name="columnHints">
                 <structure>
-                    <property name="columnName">angle</property>
+                    <property name="columnName">Angle</property>
                     <property name="analysis">measure</property>
                     <text-property name="displayName">Angle</text-property>
                     <text-property name="heading">Angle</text-property>
@@ -100,7 +156,7 @@
                     <property name="isOutput">false</property>
                 </structure>
                 <structure>
-                    <property name="name">test_id</property>
+                    <property name="name">testIDGR</property>
                     <property name="paramName">testid</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
@@ -114,7 +170,7 @@
                 <list-property name="resultSet">
                     <structure>
                         <property name="position">1</property>
-                        <property name="name">angle</property>
+                        <property name="name">Angle</property>
                         <property name="dataType">float</property>
                     </structure>
                     <structure>
@@ -132,13 +188,25 @@
                         <property name="name">Test_id</property>
                         <property name="dataType">integer</property>
                     </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">MX</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">MN</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
+            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX", dataSetRow["MX"]);
+reportContext.setPersistentGlobalVariable("MN", dataSetRow["MN"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
                     <property name="position">1</property>
-                    <property name="name">angle</property>
+                    <property name="name">Angle</property>
                     <property name="nativeName">Angle</property>
                     <property name="dataType">float</property>
                     <property name="nativeDataType">8</property>
@@ -302,12 +370,20 @@ where HD.Frequency=? and HD.Test_id=? ]]></xml-property>
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Data SetGrid" id="13">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="computedColumns">
+                <structure>
+                    <property name="name">Frequency</property>
+                    <expression name="expression">params["freq"].value+" "+row["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
             <list-property name="columnHints">
                 <structure>
-                    <property name="columnName">TestName</property>
+                    <property name="columnName">testproc</property>
                     <property name="analysis">dimension</property>
-                    <text-property name="displayName">TestName</text-property>
-                    <text-property name="heading">TestName</text-property>
+                    <text-property name="displayName">testproc</text-property>
+                    <text-property name="heading">testproc</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">TestDesc</property>
@@ -321,10 +397,52 @@ where HD.Frequency=? and HD.Test_id=? ]]></xml-property>
                     <text-property name="displayName">TestDate</text-property>
                     <text-property name="heading">TestDate</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">frequnit</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <text-property name="heading">frequnit</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">testcenter</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">testcenter</text-property>
+                    <text-property name="heading">testcenter</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">instruments</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">instruments</text-property>
+                    <text-property name="heading">instruments</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">calibration</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">calibration</text-property>
+                    <text-property name="heading">calibration</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SerialNo</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">SerialNo</text-property>
+                    <text-property name="heading">SerialNo</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Productname</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Productname</text-property>
+                    <text-property name="heading">Productname</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Version</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">version</text-property>
+                    <text-property name="heading">version</text-property>
+                </structure>
             </list-property>
             <list-property name="parameters">
                 <structure>
-                    <property name="name">TestIDG</property>
+                    <property name="name">testidGrid</property>
                     <property name="paramName">testid</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
@@ -338,7 +456,7 @@ where HD.Frequency=? and HD.Test_id=? ]]></xml-property>
                 <list-property name="resultSet">
                     <structure>
                         <property name="position">1</property>
-                        <property name="name">TestName</property>
+                        <property name="name">testproc</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
@@ -351,14 +469,54 @@ where HD.Frequency=? and HD.Test_id=? ]]></xml-property>
                         <property name="name">TestDate</property>
                         <property name="dataType">date-time</property>
                     </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">frequnit</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">testcenter</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">instruments</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">calibration</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">SerialNo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">Productname</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">Version</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">Frequency</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
                     <property name="position">1</property>
-                    <property name="name">TestName</property>
-                    <property name="nativeName">TestName</property>
+                    <property name="name">testproc</property>
+                    <property name="nativeName">testproc</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
@@ -376,8 +534,59 @@ where HD.Frequency=? and HD.Test_id=? ]]></xml-property>
                     <property name="dataType">date-time</property>
                     <property name="nativeDataType">93</property>
                 </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">frequnit</property>
+                    <property name="nativeName">frequnit</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">testcenter</property>
+                    <property name="nativeName">testcenter</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">instruments</property>
+                    <property name="nativeName">instruments</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">calibration</property>
+                    <property name="nativeName">calibration</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">SerialNo</property>
+                    <property name="nativeName">SerialNo</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">Productname</property>
+                    <property name="nativeName">Productname</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">Version</property>
+                    <property name="nativeName">Version</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[SELECT TD.TestName,TD.TestDesc,TD.TestDate FROM testdata TD where TD.Test_id=?]]></xml-property>
+            <xml-property name="queryText"><![CDATA[SELECT distinct TD.testproc,TD.TestDesc,TD.TestDate,TD.frequnit,TD.testcenter,TD.instruments,TD.calibration ,s.SerialNo,p.Productname,p.version
+FROM testdata TD inner join product_serial s on td.ProdSerial_id=S.Prodserial_id 
+inner join product p on s.Product_id=p.Product_id   where TD.Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -516,19 +725,6 @@ where HD.Frequency=? and HD.Test_id=? ]]></xml-property>
     <cubes>
         <tabular-cube name="Data CubeTestGrid" id="14">
             <property name="dimensions">
-                <tabular-dimension name="Group" id="15">
-                    <property name="defaultHierarchy">NewTabularHierarchy</property>
-                    <property name="hierarchies">
-                        <tabular-hierarchy name="NewTabularHierarchy" id="16">
-                            <property name="levels">
-                                <tabular-level name="TestName" id="17">
-                                    <property name="dataType">string</property>
-                                    <property name="columnName">TestName</property>
-                                </tabular-level>
-                            </property>
-                        </tabular-hierarchy>
-                    </property>
-                </tabular-dimension>
                 <tabular-dimension name="Group1" id="18">
                     <property name="defaultHierarchy">NewTabularHierarchy1</property>
                     <property name="hierarchies">
@@ -551,6 +747,123 @@ where HD.Frequency=? and HD.Test_id=? ]]></xml-property>
                                 <tabular-level name="TestDate" id="23">
                                     <property name="dataType">date-time</property>
                                     <property name="columnName">TestDate</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group3" id="56">
+                    <property name="defaultHierarchy">NewTabularHierarchy2</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy2" id="57">
+                            <property name="levels">
+                                <tabular-level name="frequnit" id="58">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">frequnit</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group4" id="59">
+                    <property name="defaultHierarchy">NewTabularHierarchy4</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy4" id="60">
+                            <property name="levels">
+                                <tabular-level name="calibration" id="61">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">calibration</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group5" id="62">
+                    <property name="defaultHierarchy">NewTabularHierarchy5</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy5" id="63">
+                            <property name="levels">
+                                <tabular-level name="instruments" id="64">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">instruments</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group6" id="65">
+                    <property name="defaultHierarchy">NewTabularHierarchy6</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy6" id="66">
+                            <property name="levels">
+                                <tabular-level name="testcenter" id="67">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">testcenter</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group7" id="270">
+                    <property name="defaultHierarchy">NewTabularHierarchy7</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy7" id="271">
+                            <property name="levels">
+                                <tabular-level name="Productname" id="272">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">Productname</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group8" id="273">
+                    <property name="defaultHierarchy">NewTabularHierarchy8</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy8" id="274">
+                            <property name="levels">
+                                <tabular-level name="SerialNo" id="275">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">SerialNo</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group9" id="282">
+                    <property name="defaultHierarchy">NewTabularHierarchy9</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy9" id="283">
+                            <property name="levels">
+                                <tabular-level name="version" id="284">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">Version</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group10" id="297">
+                    <property name="defaultHierarchy">NewTabularHierarchy10</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy10" id="298">
+                            <property name="levels">
+                                <tabular-level name="Frequency" id="299">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">Frequency</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group11" id="755">
+                    <property name="defaultHierarchy">NewTabularHierarchy11</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy11" id="756">
+                            <property name="levels">
+                                <tabular-level name="testproc" id="757">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">testproc</property>
                                 </tabular-level>
                             </property>
                         </tabular-hierarchy>
@@ -609,8 +922,10 @@ where HD.Frequency=? and HD.Test_id=? ]]></xml-property>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
-            <page-header>
-                <text id="11">
+            <property name="leftMargin">0in</property>
+            <property name="rightMargin">0in</property>
+            <page-footer>
+                <text id="55">
                     <property name="contentType">html</property>
                     <text-property name="content"><![CDATA[<html>
 <body>
@@ -636,12 +951,6 @@ where HD.Frequency=? and HD.Test_id=? ]]></xml-property>
 </body>
 </html>]]></text-property>
                 </text>
-            </page-header>
-            <page-footer>
-                <text id="3">
-                    <property name="contentType">html</property>
-                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
-                </text>
             </page-footer>
         </simple-master-page>
     </page-setup>
@@ -651,25 +960,25 @@ where HD.Frequency=? and HD.Test_id=? ]]></xml-property>
             <property name="fontWeight">bold</property>
             <property name="textAlign">left</property>
             <property name="canShrink">true</property>
-            <text-property name="text">H Data Polar Chart</text-property>
+            <text-property name="text">HP Data Polar Chart</text-property>
         </label>
-        <extended-item extensionName="Crosstab" extensionVersion="3.7.0" id="24">
+        <extended-item extensionName="Crosstab" extensionVersion="3.7.0" id="232">
             <property name="cube">Data CubeTestGrid</property>
-            <property name="rows">
-                <extended-item extensionName="CrosstabView" id="26">
+            <property name="columns">
+                <extended-item extensionName="CrosstabView" id="240">
                     <property name="views">
-                        <extended-item extensionName="DimensionView" id="27">
-                            <property name="dimension">Group</property>
+                        <extended-item extensionName="DimensionView" id="758">
+                            <property name="dimension">Group11</property>
                             <property name="levels">
-                                <extended-item extensionName="LevelView" name="NewLevel View" id="28">
-                                    <property name="level">Group/TestName</property>
+                                <extended-item extensionName="LevelView" name="NewLevel View" id="759">
+                                    <property name="level">Group11/testproc</property>
                                     <property name="member">
-                                        <extended-item extensionName="CrosstabCell" id="29">
+                                        <extended-item extensionName="CrosstabCell" id="760">
                                             <property name="content">
-                                                <data name="TestName" id="30">
-                                                    <property name="fontStyle">normal</property>
-                                                    <property name="textAlign">center</property>
-                                                    <property name="resultSetColumn">TestName</property>
+                                                <data name="testproc" id="762">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">testproc</property>
                                                 </data>
                                             </property>
                                         </extended-item>
@@ -677,17 +986,17 @@ where HD.Frequency=? and HD.Test_id=? ]]></xml-property>
                                 </extended-item>
                             </property>
                         </extended-item>
-                        <extended-item extensionName="DimensionView" id="32">
+                        <extended-item extensionName="DimensionView" id="246">
                             <property name="dimension">Group1</property>
                             <property name="levels">
-                                <extended-item extensionName="LevelView" name="NewLevel View1" id="33">
+                                <extended-item extensionName="LevelView" name="NewLevel View8" id="247">
                                     <property name="level">Group1/TestDesc</property>
                                     <property name="member">
-                                        <extended-item extensionName="CrosstabCell" id="34">
+                                        <extended-item extensionName="CrosstabCell" id="248">
                                             <property name="content">
-                                                <data name="TestDesc" id="36">
-                                                    <property name="fontStyle">normal</property>
-                                                    <property name="textAlign">center</property>
+                                                <data name="TestDesc1" id="250">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
                                                     <property name="resultSetColumn">TestDesc</property>
                                                 </data>
                                             </property>
@@ -696,18 +1005,132 @@ where HD.Frequency=? and HD.Test_id=? ]]></xml-property>
                                 </extended-item>
                             </property>
                         </extended-item>
-                        <extended-item extensionName="DimensionView" id="38">
-                            <property name="dimension">Group2</property>
+                        <extended-item extensionName="DimensionView" id="252">
+                            <property name="dimension">Group5</property>
                             <property name="levels">
-                                <extended-item extensionName="LevelView" name="NewLevel View2" id="39">
-                                    <property name="level">Group2/TestDate</property>
+                                <extended-item extensionName="LevelView" name="NewLevel View9" id="253">
+                                    <property name="level">Group5/instruments</property>
                                     <property name="member">
-                                        <extended-item extensionName="CrosstabCell" id="40">
+                                        <extended-item extensionName="CrosstabCell" id="254">
                                             <property name="content">
-                                                <data name="TestDate" id="42">
-                                                    <property name="fontStyle">normal</property>
-                                                    <property name="textAlign">center</property>
-                                                    <property name="resultSetColumn">TestDate</property>
+                                                <data name="instruments1" id="256">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">instruments</property>
+                                                </data>
+                                            </property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="DimensionView" id="258">
+                            <property name="dimension">Group4</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View10" id="259">
+                                    <property name="level">Group4/calibration</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="260">
+                                            <property name="content">
+                                                <data name="calibration1" id="262">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">calibration</property>
+                                                </data>
+                                            </property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="DimensionView" id="264">
+                            <property name="dimension">Group6</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View11" id="265">
+                                    <property name="level">Group6/testcenter</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="266">
+                                            <property name="content">
+                                                <data name="testcenter1" id="268">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">testcenter</property>
+                                                </data>
+                                            </property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="DimensionView" id="276">
+                            <property name="dimension">Group7</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View12" id="277">
+                                    <property name="level">Group7/Productname</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="278">
+                                            <property name="content">
+                                                <data name="Productname" id="280">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">Productname</property>
+                                                </data>
+                                            </property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="DimensionView" id="285">
+                            <property name="dimension">Group9</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View13" id="286">
+                                    <property name="level">Group9/version</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="287">
+                                            <property name="content">
+                                                <data name="version" id="289">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">version</property>
+                                                </data>
+                                            </property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="DimensionView" id="291">
+                            <property name="dimension">Group8</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View14" id="292">
+                                    <property name="level">Group8/SerialNo</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="293">
+                                            <property name="content">
+                                                <data name="SerialNo" id="295">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">SerialNo</property>
+                                                </data>
+                                            </property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="DimensionView" id="300">
+                            <property name="dimension">Group10</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View15" id="301">
+                                    <property name="level">Group10/Frequency</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="302">
+                                            <property name="content">
+                                                <data name="Frequency" id="304">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">Frequency</property>
                                                 </data>
                                             </property>
                                         </extended-item>
@@ -719,56 +1142,133 @@ where HD.Frequency=? and HD.Test_id=? ]]></xml-property>
                 </extended-item>
             </property>
             <property name="header">
-                <extended-item extensionName="CrosstabCell" id="25">
+                <extended-item extensionName="CrosstabCell" id="761">
                     <property name="content">
-                        <label id="31">
+                        <label id="763">
                             <property name="fontSize">12px</property>
-                            <property name="fontWeight">bold</property>
-                            <property name="fontStyle">normal</property>
-                            <property name="textAlign">center</property>
-                            <text-property name="text">Test Name</text-property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Test Procedure</text-property>
                         </label>
                     </property>
                 </extended-item>
-                <extended-item extensionName="CrosstabCell" id="35">
+                <extended-item extensionName="CrosstabCell" id="249">
                     <property name="content">
-                        <label id="37">
+                        <label id="251">
                             <property name="fontSize">12px</property>
-                            <property name="fontWeight">bold</property>
-                            <property name="fontStyle">normal</property>
-                            <property name="textAlign">center</property>
+                            <property name="textAlign">left</property>
                             <text-property name="text">Test Description</text-property>
                         </label>
                     </property>
                 </extended-item>
-                <extended-item extensionName="CrosstabCell" id="41">
+                <extended-item extensionName="CrosstabCell" id="255">
                     <property name="content">
-                        <label id="43">
+                        <label id="257">
                             <property name="fontSize">12px</property>
-                            <property name="fontWeight">bold</property>
-                            <property name="fontStyle">normal</property>
-                            <property name="textAlign">center</property>
-                            <text-property name="text">Test Date</text-property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Instruments Used</text-property>
+                        </label>
+                    </property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="261">
+                    <property name="content">
+                        <label id="263">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Calibration Status</text-property>
+                        </label>
+                    </property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="267">
+                    <property name="content">
+                        <label id="269">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Test Center</text-property>
+                        </label>
+                    </property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="279">
+                    <property name="content">
+                        <label id="281">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Product Title</text-property>
+                        </label>
+                    </property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="288">
+                    <property name="content">
+                        <label id="290">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Product Part No.</text-property>
+                        </label>
+                    </property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="294">
+                    <property name="content">
+                        <label id="296">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Serial No.</text-property>
+                        </label>
+                    </property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="303">
+                    <property name="content">
+                        <label id="305">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Frequency</text-property>
                         </label>
                     </property>
                 </extended-item>
             </property>
-            <property name="canShrink">true</property>
             <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">TestName</property>
-                    <expression name="expression">dimension["Group"]["TestName"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
                 <structure>
                     <property name="name">TestDesc</property>
                     <expression name="expression">dimension["Group1"]["TestDesc"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">TestDate</property>
-                    <expression name="expression">dimension["Group2"]["TestDate"]</expression>
-                    <property name="dataType">date-time</property>
+                    <property name="name">instruments</property>
+                    <expression name="expression">dimension["Group5"]["instruments"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">calibration</property>
+                    <expression name="expression">dimension["Group4"]["calibration"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">testcenter</property>
+                    <expression name="expression">dimension["Group6"]["testcenter"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Productname</property>
+                    <expression name="expression">dimension["Group7"]["Productname"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">version</property>
+                    <expression name="expression">dimension["Group9"]["version"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">SerialNo</property>
+                    <expression name="expression">dimension["Group8"]["SerialNo"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Frequency</property>
+                    <expression name="expression">dimension["Group10"]["Frequency"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">testproc</property>
+                    <expression name="expression">dimension["Group11"]["testproc"]</expression>
+                    <property name="dataType">string</property>
                 </structure>
             </list-property>
         </extended-item>
@@ -809,7 +1309,7 @@ where HD.Frequency=? and HD.Test_id=? ]]></xml-property>
       <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>H Data Polar Chart</Value>
+          <Value>HP Data Polar Chart</Value>
           <Font>
             <Size>16.0</Size>
             <Bold>true</Bold>
@@ -1065,8 +1565,12 @@ function beforeGeneration( chart, icsc )&#xD;
 		var series = valSeriesDef.getSeries().get(0);&#xD;
 		&#xD;
 			series.setPlotSteps(BigInteger.valueOf(5));&#xD;
-			series.setWebLabelMin( -67);&#xD;
-			series.setWebLabelMax(-47);&#xD;
+			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX&quot;);&#xD;
+			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN&quot;);&#xD;
+			series.setWebLabelMin(MinAmp);&#xD;
+			series.setWebLabelMax(MaxAmp);&#xD;
+			//series.setWebLabelMin( -67);&#xD;
+			//series.setWebLabelMax(-47);&#xD;
 			series.setRadarAutoScale( false);&#xD;
 		&#xD;
 		&#xD;
@@ -1717,7 +2221,7 @@ icsc.getChartInstance().getBlock().getBounds().setWidth(600);&#xD;
         <Visible>false</Visible>
       </Label>
       <DataDefinition>
-        <Definition>row[&quot;angle&quot;]</Definition>
+        <Definition>row[&quot;Angle&quot;]</Definition>
       </DataDefinition>
       <SeriesIdentifier></SeriesIdentifier>
       <DataPoint>
@@ -1747,8 +2251,8 @@ icsc.getChartInstance().getBlock().getBounds().setWidth(600);&#xD;
             <property name="dataSet">HdataData Set</property>
             <list-property name="boundDataColumns">
                 <structure>
-                    <property name="name">angle</property>
-                    <expression name="expression" type="javascript">dataSetRow["angle"]</expression>
+                    <property name="name">Angle</property>
+                    <expression name="expression" type="javascript">dataSetRow["Angle"]</expression>
                     <property name="dataType">float</property>
                 </structure>
                 <structure>
@@ -1760,6 +2264,11 @@ icsc.getChartInstance().getBlock().getBounds().setWidth(600);&#xD;
                     <property name="name">Frequency</property>
                     <expression name="expression" type="javascript">dataSetRow["Frequency"]</expression>
                     <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Test_id</property>
+                    <expression name="expression" type="javascript">dataSetRow["Test_id"]</expression>
+                    <property name="dataType">integer</property>
                 </structure>
             </list-property>
         </extended-item>
