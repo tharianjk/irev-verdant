@@ -10,17 +10,17 @@
 <body>
 <table>
  <tr>
-		<td width="20%"> Frequency : </td>
+		<td > Frequency : </td>
        <td width="50">
        <select id="freqid" >          
          <option value="-1">--Select--</option>      
    		 <c:forEach items="${model.freqlist}" var="freq">
    		  <c:choose>
    		 <c:when test="${freq.frequency eq model.freq}">	
-            <option value=<c:out value="${freq.frequency}" /> selected ><c:out value="${freq.frequency}"/></option>
+            <option value=<c:out value="${freq.frequencyid}" /> selected ><c:out value="${freq.frequency}"/></option>
            </c:when>
 	    <c:otherwise>
-	       <option value=<c:out value="${freq.frequency}" /> ><c:out value="${freq.frequency}"/></option>
+	       <option value=<c:out value="${freq.frequencyid}" /> ><c:out value="${freq.frequency}"/></option>
 	    </c:otherwise>      
 		</c:choose>
     	</c:forEach>
@@ -31,10 +31,10 @@
           &nbsp; &nbsp;&nbsp;  <input type="checkbox" id="hdata" value="h" checked >HP Data &nbsp; &nbsp;&nbsp;
        <input type="checkbox" id="vdata" value="vdata"  >VP Data  &nbsp; &nbsp;&nbsp;<td>
        
-       <td width="20%">&nbsp; &nbsp;&nbsp; Max. Amplitude : </td>
-       <td width="50"><input id="max">
-       <td width="20%">&nbsp; &nbsp;&nbsp; Min. Amplitude : </td>
-       <td width="50"><input id="min">
+       <td >&nbsp; &nbsp;&nbsp; Max. Amplitude : </td>
+       <td ><input id="max" value="-40">
+       <td >&nbsp; &nbsp;&nbsp; Min. Amplitude : </td>
+       <td ><input id="min"  value="-70">
 		<td>&nbsp; &nbsp;&nbsp;<input type="button" value="Go" name="go" class="myButtonGo" onclick="Redirect()"/>
 	<!-- &nbsp; &nbsp;&nbsp;<input type="button" value="back" name="go" class="myButtonGo" onclick="back()"/> -->
 		</td>

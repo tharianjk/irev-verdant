@@ -248,7 +248,7 @@ public UserPref mapRow(ResultSet rs, int rowNum) throws SQLException {
 	   
 	   logger.info("***inside getFreqList** ");
 	   List<TestFrequency> dataList =null;
-    String sql = "select frequency,lineargain from testFreq  where test_id =" + testid;  
+    String sql = "select case t.frequnit when 'GHz' then frequency*1000 else frequency end frequencyid, frequency,lineargain from testFreq f inner join testdata t on f.test_id=t.test_id  where t.test_id =" + testid;  
    try
    {
 	   dataList = getJdbcTemplate().query(sql, new TestFreqMapper());
@@ -266,7 +266,7 @@ public UserPref mapRow(ResultSet rs, int rowNum) throws SQLException {
     	   TestFrequency testfreq = new TestFrequency();
     	   testfreq.setFrequency(rs.getDouble("frequency"));  
     	   testfreq.setLineargain(rs.getDouble("lineargain"));  
-    	       	   
+    	   testfreq.setFrequencyid(rs.getDouble("Frequencyid"));  
            return testfreq;
        }
 
