@@ -370,7 +370,9 @@ if(strmode.equals("new")){
 	  		//DCP - direct cp
 	  		//A-Azimuth
 	  		//E-Elevation
+	  		
 	  		final String ptype = testdata.getPtype();
+	  		logger.info("ptype "+ptype);
 	  		final String funit = testdata.getFrequnit().equals("MHz")?"M":"G";
 	  		//final String funit = "M";
 	  		getJdbcTemplate().update("call Calculate_params (?,?)", testid,ptype);

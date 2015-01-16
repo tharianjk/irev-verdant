@@ -95,7 +95,12 @@ public class TestImportController extends SimpleFormController{
 	    	JSONObject obj2 = (JSONObject)result.get(i);
 	    	logger.info(obj2.get("freq"));
 	    //	logger.info(obj2.get("lg"));
-	    	testfreq.setFrequency(Double.parseDouble(obj2.get("freq").toString()));
+	    	if(file.getFrequnit().equals("GHz"))
+	    	{    		  
+	    	testfreq.setFrequency(Double.parseDouble(obj2.get("freq").toString())*1000);
+	    	}
+	    	else
+	    		{testfreq.setFrequency(Double.parseDouble(obj2.get("freq").toString()));}
 	    //	testfreq.setLineargain(Double.parseDouble(obj2.get("lg").toString()));
 	    	freqlist.add(testfreq);
 	     }
