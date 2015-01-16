@@ -41,10 +41,10 @@ public class JdbcAssetTreeDao extends JdbcDaoSupport implements AssetTreeDao {
         List<AssetTree> AssetTree=null;
        
         	logger.info("inside admin role "+ role);
-        	String sql="select companyname assetname,company_id Assettree_id,0 PARENT_ID,1 N_treelevel,0 N_level,'Company' ASSETTREETYPE from fwk_company "+
-" union select productname assetname,product_id Assettree_id,1 PARENT_ID, 2  N_treelevel,1 N_level,'Product' ASSETTREETYPE from PRODUCT FA "+ 
-" union select SerialNo assetname,Prodserial_id Assettree_id,Product_id PARENT_ID,3 N_treelevel,2 N_level,'ProductSer' ASSETTREETYPE from product_serial "+
-" union select TestName assetname,Test_id Assettree_id,ProdSerial_id PARENT_ID,4 N_treelevel,3 N_level,'testdata' ASSETTREETYPE from testdata "+
+        	String sql="select companyname assetname,company_id Assettree_id,0 PARENT_ID,1 N_treelevel,0 N_level,'Company' assettype,'Company' ATYPE from fwk_company "+
+" union select productname assetname,product_id Assettree_id,1 PARENT_ID, 2  N_treelevel,1 N_level,'Product' assettype,FA.PTYPE ATYPE from PRODUCT FA "+ 
+" union select SerialNo assetname,Prodserial_id Assettree_id,ps.Product_id PARENT_ID,3 N_treelevel,2 N_level,'ProductSer' assettype,P.PTYPE ATYPE from product_serial ps inner join product p on ps.product_id=p.product_id "+
+" union select TestName assetname,Test_id Assettree_id,ProdSerial_id PARENT_ID,4 N_treelevel,3 N_level,'TestData' assettype,TESTTYPE ATYPE from testdata "+
 		 "  order by n_level,PARENT_ID,assettree_id ";
         	//logger.info("***Asset tree sql** " + sql);
         	AssetTree = getJdbcTemplate().query(
@@ -80,7 +80,8 @@ public class JdbcAssetTreeDao extends JdbcDaoSupport implements AssetTreeDao {
             assettree.setAssetid(rs.getInt("assettree_id"));
             assettree.setAssetparentid(rs.getInt("PARENT_ID"));
             assettree.setTreelevel(rs.getInt("N_treelevel"));            
-            assettree.setAssettype(rs.getString("ASSETTREETYPE"));
+            assettree.setAtype(rs.getString("ATYPE"));
+            assettree.setAssettype(rs.getString("assettype"));
             assettree.setNlevel(rs.getInt("N_level"));  
             return assettree;
         }

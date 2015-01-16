@@ -66,7 +66,7 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 						
 			
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
-		alert("url " + url);
+		//alert("url " + url);
 		//window.location =url; 
 		window.frames['AppBody'].location=url;
 		 }

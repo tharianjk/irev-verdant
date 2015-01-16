@@ -52,6 +52,7 @@ var treemode='<%=request.getParameter("treemode")%>';
  </script>
  
     <script>
+    var atype;
     var parents = [];
     var selectedsection;
     var selectedtype;
@@ -145,6 +146,7 @@ var treemode='<%=request.getParameter("treemode")%>';
                	    var url ='';	
     					selectedname=node.attr('Assetname');
     					selectedtype=node.attr('treeType');
+    					atype=node.attr('atype');
     			        selectedsection=node.attr('assetId');
     			      // alert("monitorstat "+monitorstat);
                 	 if(monitorstat=="monitor"){
@@ -483,7 +485,7 @@ function recreatewithparents()
         			 createItem: { // The "rename" menu item
                     label: "Add Test",
                     action: function(response) {
-                        var url = '<%=request.getContextPath()%>/testimport.htm?PId='+ node.attr('assetId') ;
+                        var url = '<%=request.getContextPath()%>/testimport.htm?PId='+ node.attr('assetId')+'&atype='+ node.attr('atype') ;
                        // alert("url "+url);
                         parent.frames['AppBody'].location = url;
                               }
@@ -509,7 +511,13 @@ function recreatewithparents()
        }
          else if(treeType==4){
              items = {
-            		  
+            		 editItem: { // The "rename" menu item
+                         label: "Add Files/Frequency.",
+                         action: function(response) {
+                      	   var url = '<%=request.getContextPath()%>/testimport.htm?id='+ node.attr('assetId') ;
+                             parent.frames['AppBody'].location = url;
+                                   }
+                     },
                 deleteItem: { // The "delete" menu item
                     label: "Delete Test",
                     action: function (obj) {

@@ -47,17 +47,17 @@ function Redirect(){
           
           <td width="50">
           
-           <form:select id="ptype"  path="ptype" required="required" onchange="fntypechange();">
+           <form:select id="ptype"  path="ptype" required="required" >
           <option value="">--Select--</option>                 
-   		 <form:option value="Circular" label="Circular"></form:option>
-   		 <form:option value="Linear" label="Linear"></form:option>  
-   		 <form:option value="slant" label="Slant"></form:option>    
+   		 <form:option value="C" label="Circular"></form:option>
+   		 <form:option value="L" label="Linear"></form:option>  
+   		 <form:option value="S" label="Slant"></form:option>    
 		</form:select>              
           </td> 
           
           <td>
        	  
-	   <form:checkbox id="bwithcp"  path="bwithcp" style="visibility:hidden;"  /><label id="lbl1" style="visibility:hidden;" >With CP conversion</label></td> 
+	  <!--  <form:checkbox id="bwithcp"  path="bwithcp" style="visibility:hidden;"  /><label id="lbl1" style="visibility:hidden;" >With CP conversion</label></td>--> 
          </tr> 
         <!--  <tr>  
           <td>Image File Name :</td>  

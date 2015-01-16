@@ -110,7 +110,20 @@ progress_clear();
 			</c:forEach>
 			</form:select>     
           </td>
+          <td>Test Type * :</td> 
           
+          <td width="50">
+          
+           <form:select id="testtype"  path="testtype" required="required" >
+          <option value="">--Select--</option>                 
+   		 <form:option id="CP" value="CP" label="CP-with Conversion"></form:option>
+   		 <form:option id="NCP" value="NCP" label="CP-with No Conversion"></form:option>  
+   		 <form:option id="DCP" value="DCP" label="Direct CP"></form:option>   
+   		 <form:option id="A" value="A" label="Azimuth"></form:option>
+   		 <form:option id="E" value="E" label="Elevation"></form:option>  
+   		 
+		</form:select>              
+          </td> 
           </tr>
           <tr>
           <td>Test Description * :</td>  
@@ -140,9 +153,9 @@ progress_clear();
    		 <option value="Vdata">VP Data</option>
    		 <option value="Hdata">HP Data</option>
    		 <option value="CPdata">CP Data</option>
-   		 <option value="pitch">Pitch</option>
-   		 <option value="roll">Roll</option>
-   		 <option value="yaw">Yaw</option>
+   		 <option value="pitch">Pitch Data</option>
+   		 <option value="roll">Roll Data</option>
+   		 <option value="yaw">Yaw Data</option>
 		</form:select>
 		</td>
 		</tr>
@@ -231,6 +244,17 @@ progress_clear();
 
 $(document).ready( function () {
 	//document.getElementById("strfreq").value='{"jsonfreq":[{"freq":100, "lg":1},{"freq":1000, "lg":2},{"freq":2000, "lg":2}]}';
+	if(document.getElementById("ptype").value=="C")
+		{
+		document.getElementById("A").style.visibility="hidden";
+		document.getElementById("E").style.visibility="hidden";
+		}
+	else
+		{
+		document.getElementById("NCP").style.visibility="hidden";
+		document.getElementById("DCP").style.visibility="hidden";
+		document.getElementById("CP").style.visibility="hidden";
+		}
 	
 	var testid=document.getElementById("testid").value;
 	

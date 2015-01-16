@@ -142,7 +142,8 @@ frequnit varchar(5) default 'MHz',
 testcenter varchar(100),
 instruments varchar(100),
 Calibration varchar(100),
-testproc varchar(100));
+testproc varchar(100),
+testtype varchar(10));
 
 -- -----------------------------------------------------
 -- Table `Verdant`.`TestFreq

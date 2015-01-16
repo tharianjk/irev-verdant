@@ -30,6 +30,11 @@
           <td>
           &nbsp; &nbsp;&nbsp;  <input type="checkbox" id="hdata" value="h" checked >HP Data &nbsp; &nbsp;&nbsp;
        <input type="checkbox" id="vdata" value="vdata"  >VP Data  &nbsp; &nbsp;&nbsp;<td>
+       
+       <td width="20%">&nbsp; &nbsp;&nbsp; Max. Amplitude : </td>
+       <td width="50"><input id="max">
+       <td width="20%">&nbsp; &nbsp;&nbsp; Min. Amplitude : </td>
+       <td width="50"><input id="min">
 		<td>&nbsp; &nbsp;&nbsp;<input type="button" value="Go" name="go" class="myButtonGo" onclick="Redirect()"/>
 	<!-- &nbsp; &nbsp;&nbsp;<input type="button" value="back" name="go" class="myButtonGo" onclick="back()"/> -->
 		</td>
@@ -53,9 +58,11 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 	function Redirect(){
 		//alert("go clicked");
 		var freqid =document.getElementById("freqid").value;	
+		var max =document.getElementById("max").value;
+		var min =document.getElementById("min").value;
 		var testid=${model.testid};
 		
-		var url="/birt-viewer/frameset?__report=HdataVerdant_report.rptdesign&freq="+freqid+"&testid="+testid;
+		var url="/birt-viewer/frameset?__report=HdataVerdant_report.rptdesign&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min;
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
 		//alert("url " + url);
 		//window.location =url; 

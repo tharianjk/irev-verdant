@@ -160,7 +160,8 @@ public class TestImportController extends SimpleFormController{
 			    	  selfreq=freqlist.get(y).getFrequency();
 			    	  if(file.getFrequnit().equals("GHz"))
 				    	{
-			    		  colfreq=ClosetFreq(selfreq*1000,freqarr);
+			    		  selfreq=selfreq*1000;
+			    		  colfreq=ClosetFreq(selfreq,freqarr);
 				    	}
 			    	  else colfreq=ClosetFreq( selfreq,freqarr);
 			      for (int i=0; i<rowNum; i++){
@@ -207,7 +208,8 @@ public class TestImportController extends SimpleFormController{
 				    	  if(file.getFrequnit().equals("GHz"))
 					    	{
 				    		  logger.info("inside GHz"); 
-				    		  colfreq=ClosetFreq(selfreq*1000,freqarr);
+				    		  selfreq=selfreq*1000;
+				    		  colfreq=ClosetFreq(selfreq,freqarr);
 					    	}
 				    	  else colfreq=ClosetFreq( selfreq,freqarr);
 				    	  
@@ -287,10 +289,11 @@ public class TestImportController extends SimpleFormController{
 	    	String typ = request.getParameter("type");
 	        String id = request.getParameter("id");
 	        String PId=request.getParameter("PId");
+	        String atype=request.getParameter("atype");
 	        request.getSession().setAttribute("savestat", null);
 	        logger.info("inside ProductSerialController"); 
 	        if (id == null || id == "" || id.equals("null")){
-	   	       
+	        	logger.info(" atype "+atype);
 	        	logger.info(" going to create new Test Data");
 	        	request.getSession().setAttribute("id", null);
 	        	cursess.setAttribute("id",null);
@@ -298,6 +301,7 @@ public class TestImportController extends SimpleFormController{
 	        	testdata.setProductserialid(Integer.parseInt(PId));
 	        	testdata.setStrtestdate(sdf.format(curTime)+"T"+sdftime.format(curTime));
 	        	testdata.setTestcenter("Verdant");
+	        	testdata.setPtype(atype);
 	        	return testdata;
 	        }else{
 	        	  logger.info("inside fileuploadcontroller id:" +id);
