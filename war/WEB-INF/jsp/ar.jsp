@@ -52,7 +52,7 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 				var url="/birt-viewer/frameset?__report=AxialRation_report.rptdesign&deg="+deg+"&testid="+testid;
 			
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
-		//alert("url " + url);
+		console.log("url " + url);
 		//window.location =url; 
 		window.frames['AppBody'].location=url;
 		 }
