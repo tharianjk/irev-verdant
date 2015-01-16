@@ -163,12 +163,7 @@ public class TestImportController extends SimpleFormController{
 			      {
 			    	  double colfreq=0;	
 			    	  selfreq=freqlist.get(y).getFrequency();
-			    	  if(file.getFrequnit().equals("GHz"))
-				    	{
-			    		  selfreq=selfreq*1000;
-			    		  colfreq=ClosetFreq(selfreq,freqarr);
-				    	}
-			    	  else colfreq=ClosetFreq( selfreq,freqarr);
+			    	  colfreq=ClosetFreq( selfreq,freqarr);
 			      for (int i=0; i<rowNum; i++){
 						  //logger.info("introw "+i);  
 						  if(i>1) //header
@@ -210,13 +205,7 @@ public class TestImportController extends SimpleFormController{
 				      {		  
 				    	  double colfreq=0;	
 				    	  selfreq=freqlist.get(y).getFrequency();
-				    	  if(file.getFrequnit().equals("GHz"))
-					    	{
-				    		  logger.info("inside GHz"); 
-				    		  selfreq=selfreq*1000;
-				    		  colfreq=ClosetFreq(selfreq,freqarr);
-					    	}
-				    	  else colfreq=ClosetFreq( selfreq,freqarr);
+				    	  colfreq=ClosetFreq( selfreq,freqarr);
 				    	  
 				      for (int i=0; i<rowNum; i++){				
 							  if(i>1) //header
