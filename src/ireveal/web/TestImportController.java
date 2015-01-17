@@ -198,7 +198,7 @@ public class TestImportController extends SimpleFormController{
 				      HSSFRow freqrow =(HSSFRow) sheet.getRow(1);		
 				      for(int u=1;u<colNum;u++){
 				    	  freqarr.add(Double.parseDouble(freqrow.getCell(u).toString()));
-				    	  logger.info( u +' '+freqrow.getCell(u).toString()); 
+				    	  //logger.info( u +' '+freqrow.getCell(u).toString()); 
 				      }
 				      logger.info("freqlist.size() "+freqlist.size()); 
 				      for(y=0;y<freqlist.size();y++)
