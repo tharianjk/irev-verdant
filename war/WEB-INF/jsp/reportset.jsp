@@ -60,7 +60,7 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 		for (i==0;i<freqs.length;i++){
 			strfreqs[i]=freqs[i];
 		}
-				var url="/birt-viewer/frameset?__report=verdantreportset.rptdesign&testid="+testid+"&freq1="+strfreqs[0]+
+				var url="/birt-verdant/frameset?__report=verdantreportset.rptdesign&testid="+testid+"&freq1="+strfreqs[0]+
 						"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
 						"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9];
 						

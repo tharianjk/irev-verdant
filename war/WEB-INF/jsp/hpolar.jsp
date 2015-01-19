@@ -62,7 +62,7 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 		var min =document.getElementById("min").value;
 		var testid=${model.testid};
 		
-		var url="/birt-viewer/frameset?__report=HdataVerdant_report.rptdesign&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min;
+		var url="/birt-verdant/frameset?__report=HdataVerdant_report.rptdesign&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min;
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
 		//alert("url " + url);
 		//window.location =url; 

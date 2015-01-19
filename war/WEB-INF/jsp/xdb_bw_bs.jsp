@@ -58,9 +58,9 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 		}
 			//3dbWithCP_report.rptdesign
 			if(typ=='3db'){
-		var url="/birt-viewer/frameset?__report=3db_report.rptdesign&deg="+deg+"&testid="+testid;}
+		var url="/birt-verdant/frameset?__report=3db_report.rptdesign&deg="+deg+"&testid="+testid;}
 			if(ptyp=='C'){
-				var url="/birt-viewer/frameset?__report=3dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid;}
+				var url="/birt-verdant/frameset?__report=3dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid;}
 			
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
 		//alert("url " + url);
