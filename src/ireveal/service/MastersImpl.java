@@ -130,6 +130,11 @@ public List<TestFrequency> getFreqList(int testid) {
 public boolean deleteproductser(int id) {
 	return mastersdao.deleteproductser(id);
 }
+@Override
+public void UpdateTestFreq(List<TestFrequency> testfreqlist,int testid) {
+	 mastersdao.UpdateTestFreq( testfreqlist,testid );
+	
+}
 
 
 }

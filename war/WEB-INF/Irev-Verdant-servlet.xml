@@ -32,6 +32,10 @@
         <property name="mastersManager" ref="mastersManager"/>
 		
 	</bean>
+	<bean name="/lineargain.htm" class="ireveal.web.TestFreqController">
+        <property name="mastersManager" ref="mastersManager"/>
+		
+	</bean>
 	
 
     <!-- the application context definition for the ireveal-base DispatcherServlet -->

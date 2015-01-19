@@ -13,7 +13,7 @@
 		
        <td>
        	  
-	   <input type="checkbox" id="bm" value="bm" checked >Beam Max &nbsp; &nbsp;&nbsp;
+	   <input type="checkbox" id="bm" value="bm" style="visibility:hidden;" >Beam Max &nbsp; &nbsp;&nbsp;
        <input type="checkbox" id="0d" value="0d" checked >0 &#176;  &nbsp; &nbsp;&nbsp;
        <input type="checkbox" id="90d" value="90d" checked >90 &deg; &nbsp; &nbsp;&nbsp;
           </td>

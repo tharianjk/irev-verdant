@@ -22,6 +22,7 @@ import java.util.List;
 
 
 
+
 import ireveal.domain.User;
 
 public interface MastersDao { 
@@ -60,6 +61,7 @@ public interface MastersDao {
 	 public boolean deleteTestData(int id);
 	 public boolean updateTestData(TestData testdata);
 	 public TestData getTestData(int id);
+	 public void UpdateTestFreq(List<TestFrequency> testfreqlist,int testid);
 	 
 	 
 }

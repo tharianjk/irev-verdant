@@ -108,17 +108,6 @@ public class TestImportController extends SimpleFormController{
 	         e.printStackTrace();
 	    }
 
-
-		
-		/*
-	      int cnt=0;
-	      for(@SuppressWarnings("rawtypes")
-		Iterator iterator = jsonObject.keySet().iterator(); iterator.hasNext();) {
-	    	    String key = (String) iterator.next();
-	    	    logger.info(cnt);
-	    	    cnt=cnt+1;
-	      }*/
-		//JsonFreq json = (JsonFreq)new JSONParser().parse(file.getStrjsonfreq());
 		
 		String fileName="";
 		 
