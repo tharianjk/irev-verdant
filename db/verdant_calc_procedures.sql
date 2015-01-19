@@ -608,3 +608,86 @@ from testdata where test_id = myTestId;
 END$$
 
 DELIMITER ;
+
+
+DELIMITER $$
+
+CREATE  PROCEDURE `spGetPolarPlot`(
+test_id INT, freq decimal(20,10),typ char(1), lg decimal(20,10)
+)
+BEGIN
+DECLARE ampl decimal(20,10) default 0;
+DECLARE vampl decimal(20,10) default 0;
+if lg=0 then
+		if typ='H' then
+		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id FROM hdata HD 
+		where HD.Frequency=freq and HD.Test_id=test_id;
+		end if;
+		if typ='V' then
+		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id FROM vdata HD 
+		where HD.Frequency=freq and HD.Test_id=test_id;
+		end if;
+		if typ='B' then
+		select test_id,frequency,angle,sum(hamplitude) hamplitude,sum(vamplitude) vamplitude 
+		from vw_polardata where Frequency=freq and Test_id=test_id group by test_id,frequency,angle;
+		end if;
+		if  typ='P' then
+		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id FROM pitchdata HD 
+		where HD.Frequency=freq and HD.Test_id=test_id;
+		end if;
+		if typ='R' then
+		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id FROM rolldata HD 
+		where HD.Frequency=freq and HD.Test_id=test_id;
+		end if;
+		if typ='Y' then 
+		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id FROM yawdata HD 
+		where HD.Frequency=freq and HD.Test_id=test_id;
+		end if;
+end if;
+ if lg!=0 then
+		if typ='H' then
+		SELECT HD.Amplitude into ampl FROM hdata HD 
+		where HD.Frequency=freq and HD.Test_id=test_id and angle=0;
+
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id FROM hdata HD 
+		where HD.Frequency=freq and HD.Test_id=test_id;
+		end if;
+		if typ='V' then
+        SELECT HD.Amplitude into ampl FROM vdata HD 
+		where HD.Frequency=freq and HD.Test_id=test_id and angle=0;
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id FROM vdata HD 
+		where HD.Frequency=freq and HD.Test_id=test_id;
+		end if;
+		if typ='B' then
+        SELECT HD.Amplitude into ampl FROM hdata HD 
+		where HD.Frequency=freq and HD.Test_id=test_id and angle=0;
+        SELECT HD.Amplitude into vampl FROM vdata HD 
+		where HD.Frequency=freq and HD.Test_id=test_id and angle=0;
+		select test_id,frequency,angle,sum(hamplitude)-ampl+lg hamplitude,sum(vamplitude)-vampl+lg vamplitude 
+		from vw_polardata where Frequency=freq and Test_id=test_id group by test_id,frequency,angle;
+		end if;		
+		if  typ='P' then
+		SELECT HD.Amplitude into ampl FROM pitchdata HD 
+		where HD.Frequency=freq and HD.Test_id=test_id and angle=0;
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id FROM pitchdata HD 
+		where HD.Frequency=freq and HD.Test_id=test_id;
+		end if;
+		if typ='R' then
+		SELECT HD.Amplitude into ampl FROM rolldata HD 
+		where HD.Frequency=freq and HD.Test_id=test_id and angle=0;
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id FROM rolldata HD 
+		where HD.Frequency=freq and HD.Test_id=test_id;
+		end if;
+		if typ='Y' then
+		SELECT HD.Amplitude into ampl FROM yawdata HD 
+		where HD.Frequency=freq and HD.Test_id=test_id and angle=0;
+		 SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id FROM yawdata HD 
+		where HD.Frequency=freq and HD.Test_id=test_id;
+		end if;
+
+end if;
+
+
+END $$
+
+DELIMITER ;
