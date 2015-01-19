@@ -248,7 +248,7 @@ public UserPref mapRow(ResultSet rs, int rowNum) throws SQLException {
 	   
 	   logger.info("***inside getFreqList** ");
 	   List<TestFrequency> dataList =null;
-    String sql = "select case t.frequnit when 'GHz' then frequency*1000 else frequency end frequencyid, frequency,lineargain from testFreq f inner join testdata t on f.test_id=t.test_id  where t.test_id =" + testid;  
+    String sql = "select case t.frequnit when 'GHz' then frequency/1000 else frequency end frequency, frequency frequencyid,lineargain from testFreq f inner join testdata t on f.test_id=t.test_id  where t.test_id =" + testid;  
    try
    {
 	   dataList = getJdbcTemplate().query(sql, new TestFreqMapper());
@@ -259,7 +259,8 @@ public UserPref mapRow(ResultSet rs, int rowNum) throws SQLException {
     logger.info("***Exception** "+ e.getMessage() );
    }
     return dataList;  
-   }  
+   } 
+
    private static class TestFreqMapper implements ParameterizedRowMapper<TestFrequency> {
 	   
        public TestFrequency mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -734,6 +735,21 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 			           return testdata;
 			       }
 
+			   }
+			   
+			   //update testfreq table with linear gain
+			// test freq
+			   public void UpdateTestFreq(List<TestFrequency> testfreqlist,int testid){
+			  	String sqltestfreq=	"Update testfreq set lineargain=? where Test_id =? and Frequency=? " ; 
+			  	for (int i=0;i<testfreqlist.size();i++){
+			  		
+					logger.info("lg"+testfreqlist.get(i).getLineargain());
+			  		getJdbcTemplate().update(  
+						sqltestfreq,  
+				 new Object[] { testfreqlist.get(i).getLineargain()==0.00?null:testfreqlist.get(i).getLineargain(),testid,testfreqlist.get(i).getFrequency() });
+			  		}
+
+				
 			   }
    
   }

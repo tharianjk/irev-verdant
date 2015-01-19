@@ -79,20 +79,9 @@ function Redirect(){
       </div>  
      
       <script>
-      function fntypechange(){
-    	  if(document.getElementById("ptype").value=="Circular")
-    		  {
-    		  document.getElementById("bwithcp").style.visibility="visible";
-    		  document.getElementById("lbl1").style.visibility="visible";
-    		  
-    		  }
-    	  else
-    		  {document.getElementById("bwithcp").style.visibility="hidden";
-    	  document.getElementById("lbl1").style.visibility="hidden";
-		        }
-      }
+     
      $(document).ready(function () {
-    	 fntypechange();
+    	 //fntypechange();
     	 var savestat='<%=request.getParameter("savestat")%>';
    		//alert (parmdelete);
    		if(savestat!=null && savestat!="")

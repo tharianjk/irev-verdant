@@ -54,6 +54,9 @@ function fnsetstat(typ,msg)
 	if(typ=="rset") {
 		window.frames['AppBody'].location="reportset.htm?oper=rset&typ="+typ+"&testid="+AssetTree.selectedsection;
 		AssetTree.monitorstat="Reports";}
+	if(typ=="cpg") {
+		window.frames['AppBody'].location="lineargain.htm?oper=cpg&typ="+typ+"&testid="+AssetTree.selectedsection;
+		AssetTree.monitorstat="Reports";}
 	
 }
 function fnHomeClick()
