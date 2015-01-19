@@ -42,7 +42,7 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 		var deg ;	
 		var testid=${model.testid};
 		var typ='${model.typ}';
-		var atyp='${model.atype}';
+		var atype='${model.atype}';
 		if(document.getElementById("bm").checked)
 			{deg='bm';}
 		if(document.getElementById("0d").checked)
