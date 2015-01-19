@@ -179,7 +179,7 @@ dialog.dialog( "open" );
 				<li id="pp" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('Polar');">Polar Plot</a></li>				
 				<li id="3db" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('3db');">3db Beamwidth</a> </li>
 				<li id="10db" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('10db');">10db Beamwidth</a> </li>
-				<li id="blobe" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('blobe');">Black-lobe</a> </li>
+				<li id="blobe" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('blobe');">Back-lobe</a> </li>
 				<li id="ar" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('ar');">Axial Ratio</a> </li>
 				<li id="cpg" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('cpg');">CP Gain</a> </li>
 			</ul>
