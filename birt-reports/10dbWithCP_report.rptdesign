@@ -1062,7 +1062,7 @@ from cpcalculated where Test_id=?]]></xml-property>
                                                     <row id="616">
                                                         <cell id="617">
                                                             <label id="618">
-                                                                <text-property name="text">3dB BW (deg.)</text-property>
+                                                                <text-property name="text"> BW (deg.)</text-property>
                                                             </label>
                                                         </cell>
                                                         <cell id="619">
