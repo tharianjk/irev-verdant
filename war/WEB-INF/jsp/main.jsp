@@ -168,12 +168,16 @@ dialog.dialog( "open" );
 			
 		</li>
 		<li><a href="#"><b>Reports</b></a>
+		
 			<ul>
-				<li><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('Polar');">Polar Graph</a></li>				
-				<li><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('3db');">3db Beamwidth</a> </li>
-				<li><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('10db');">10db Beamwidth</a> </li>
-				<li><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('ar');">Axial Ratio</a> </li>
+			    <li id="od" style="display:none;"><a rel="Omini Devation" class="menuarray" TARGET="AppBody" onclick="fnsetstat('od');">Omni Devation</a> </li>
+				<li id="pp" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('Polar');">Polar Plot</a></li>				
+				<li id="3db" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('3db');">3db Beamwidth</a> </li>
+				<li id="10db" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('10db');">10db Beamwidth</a> </li>
+				<li id="ar" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('ar');">Axial Ratio</a> </li>
+				<li id="cpg" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('cpg');">CP Gain</a> </li>
 			</ul>
+		
 		</li>
 		
 		

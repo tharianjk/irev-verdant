@@ -95,7 +95,12 @@ public class TestImportController extends SimpleFormController{
 	    	JSONObject obj2 = (JSONObject)result.get(i);
 	    	logger.info(obj2.get("freq"));
 	    //	logger.info(obj2.get("lg"));
-	    	testfreq.setFrequency(Double.parseDouble(obj2.get("freq").toString()));
+	    	if(file.getFrequnit().equals("GHz"))
+	    	{    		  
+	    	testfreq.setFrequency(Double.parseDouble(obj2.get("freq").toString())*1000);
+	    	}
+	    	else
+	    		{testfreq.setFrequency(Double.parseDouble(obj2.get("freq").toString()));}
 	    //	testfreq.setLineargain(Double.parseDouble(obj2.get("lg").toString()));
 	    	freqlist.add(testfreq);
 	     }
@@ -158,11 +163,7 @@ public class TestImportController extends SimpleFormController{
 			      {
 			    	  double colfreq=0;	
 			    	  selfreq=freqlist.get(y).getFrequency();
-			    	  if(file.getFrequnit().equals("GHz"))
-				    	{
-			    		  colfreq=ClosetFreq(selfreq*1000,freqarr);
-				    	}
-			    	  else colfreq=ClosetFreq( selfreq,freqarr);
+			    	  colfreq=ClosetFreq( selfreq,freqarr);
 			      for (int i=0; i<rowNum; i++){
 						  //logger.info("introw "+i);  
 						  if(i>1) //header
@@ -197,19 +198,14 @@ public class TestImportController extends SimpleFormController{
 				      HSSFRow freqrow =(HSSFRow) sheet.getRow(1);		
 				      for(int u=1;u<colNum;u++){
 				    	  freqarr.add(Double.parseDouble(freqrow.getCell(u).toString()));
-				    	  logger.info( u +' '+freqrow.getCell(u).toString()); 
+				    	  //logger.info( u +' '+freqrow.getCell(u).toString()); 
 				      }
 				      logger.info("freqlist.size() "+freqlist.size()); 
 				      for(y=0;y<freqlist.size();y++)
 				      {		  
 				    	  double colfreq=0;	
 				    	  selfreq=freqlist.get(y).getFrequency();
-				    	  if(file.getFrequnit().equals("GHz"))
-					    	{
-				    		  logger.info("inside GHz"); 
-				    		  colfreq=ClosetFreq(selfreq*1000,freqarr);
-					    	}
-				    	  else colfreq=ClosetFreq( selfreq,freqarr);
+				    	  colfreq=ClosetFreq( selfreq,freqarr);
 				    	  
 				      for (int i=0; i<rowNum; i++){				
 							  if(i>1) //header
@@ -287,10 +283,11 @@ public class TestImportController extends SimpleFormController{
 	    	String typ = request.getParameter("type");
 	        String id = request.getParameter("id");
 	        String PId=request.getParameter("PId");
+	        String atype=request.getParameter("atype");
 	        request.getSession().setAttribute("savestat", null);
 	        logger.info("inside ProductSerialController"); 
 	        if (id == null || id == "" || id.equals("null")){
-	   	       
+	        	logger.info(" atype "+atype);
 	        	logger.info(" going to create new Test Data");
 	        	request.getSession().setAttribute("id", null);
 	        	cursess.setAttribute("id",null);
@@ -298,6 +295,7 @@ public class TestImportController extends SimpleFormController{
 	        	testdata.setProductserialid(Integer.parseInt(PId));
 	        	testdata.setStrtestdate(sdf.format(curTime)+"T"+sdftime.format(curTime));
 	        	testdata.setTestcenter("Verdant");
+	        	testdata.setPtype(atype);
 	        	return testdata;
 	        }else{
 	        	  logger.info("inside fileuploadcontroller id:" +id);

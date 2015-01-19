@@ -23,6 +23,17 @@ private String testcenter;
 private String instruments;
 private String calibration;
 private String testproc;
+private String testtype;
+
+
+
+public String getTesttype() {
+	return testtype;
+}
+
+public void setTesttype(String testtype) {
+	this.testtype = testtype;
+}
 private List<MultipartFile> uploadedfiles;
 
 public List<MultipartFile> getFiles() {

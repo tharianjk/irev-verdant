@@ -5,8 +5,14 @@ private int testid;
 private double frequency;
 private double lineargain;
 
+private double frequencyid;
 
-
+public double getFrequencyid() {
+	return frequencyid;
+}
+public void setFrequencyid(double frequencyid) {
+	this.frequencyid = frequencyid;
+}
 public int getTestid() {
 	return testid;
 }

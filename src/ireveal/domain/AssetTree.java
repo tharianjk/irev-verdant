@@ -11,9 +11,15 @@ public class AssetTree implements Serializable {
     private int treelevel;
     private String assettype;
     private int companyid;
-      
+    private String atype;
 
-    public int getCompanyid() {
+    public String getAtype() {
+		return atype;
+	}
+	public void setAtype(String atype) {
+		this.atype = atype;
+	}
+	public int getCompanyid() {
 		return companyid;
 	}
 	public void setCompanyid(int companyid) {

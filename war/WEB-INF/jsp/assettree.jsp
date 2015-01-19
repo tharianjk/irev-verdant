@@ -52,6 +52,7 @@ var treemode='<%=request.getParameter("treemode")%>';
  </script>
  
     <script>
+    var atype;
     var parents = [];
     var selectedsection;
     var selectedtype;
@@ -145,8 +146,67 @@ var treemode='<%=request.getParameter("treemode")%>';
                	    var url ='';	
     					selectedname=node.attr('Assetname');
     					selectedtype=node.attr('treeType');
+    					atype=node.attr('atype');
     			        selectedsection=node.attr('assetId');
-    			      // alert("monitorstat "+monitorstat);
+    			        if(selectedtype==4){
+    			        if(atype=="A")
+    			        	{
+    			        	  parent.document.getElementById("od").style.display="block";
+	  			        	  parent.document.getElementById("ar").style.display="none";
+	  			        	  parent.document.getElementById("pp").style.display="block";
+	  			        	  parent.document.getElementById("3db").style.display="block";
+	  			        	  parent.document.getElementById("10db").style.display="block";
+	  			        	  parent.document.getElementById("cpg").style.display="none";
+    			        	}
+    			        else if(atype=="L")
+			        	{
+			        	  parent.document.getElementById("od").style.display="block";
+  			        	  parent.document.getElementById("ar").style.display="none";
+  			        	  parent.document.getElementById("pp").style.display="block";
+  			        	  parent.document.getElementById("3db").style.display="block";
+  			        	  parent.document.getElementById("10db").style.display="block";
+  			        	  parent.document.getElementById("cpg").style.display="none";
+			        	}
+    			        else if(atype=="CP")
+			        	{
+			        	 
+			        	  parent.document.getElementById("od").style.display="none";
+			        	  parent.document.getElementById("ar").style.display="block";
+			        	  parent.document.getElementById("pp").style.display="block";
+			        	  parent.document.getElementById("3db").style.display="block";
+			        	  parent.document.getElementById("10db").style.display="block";
+			        	  parent.document.getElementById("cpg").style.display="block";
+			        	}
+    			        else if(atype=="DCP")
+			        	{
+			        	 
+			        	  parent.document.getElementById("od").style.display="none";
+			        	  parent.document.getElementById("ar").style.display="block";
+			        	  parent.document.getElementById("pp").style.display="block";
+			        	  parent.document.getElementById("3db").style.display="block";
+			        	  parent.document.getElementById("10db").style.display="block";
+			        	  parent.document.getElementById("cpg").style.display="block";
+			        	}
+    			        else if(atype=="NCP")
+			        	{
+			        	 
+			        	  parent.document.getElementById("od").style.display="none";
+			        	  parent.document.getElementById("ar").style.display="block";
+			        	  parent.document.getElementById("pp").style.display="block";
+			        	  parent.document.getElementById("3db").style.display="block";
+			        	  parent.document.getElementById("10db").style.display="block";
+			        	  parent.document.getElementById("cpg").style.display="none";
+			        	}
+    			        }
+    			        else
+    			        	{
+    			        	parent.document.getElementById("od").style.display="none";
+  			        	  parent.document.getElementById("ar").style.display="none";
+  			        	  parent.document.getElementById("pp").style.display="none";
+  			        	  parent.document.getElementById("3db").style.display="none";
+  			        	  parent.document.getElementById("10db").style.display="none";
+  			        	  parent.document.getElementById("cpg").style.display="none";
+    			        	}
                 	 if(monitorstat=="monitor"){
                 		// alert("treeType " +monitorstat);
                 		if(treeType==2){
@@ -483,7 +543,7 @@ function recreatewithparents()
         			 createItem: { // The "rename" menu item
                     label: "Add Test",
                     action: function(response) {
-                        var url = '<%=request.getContextPath()%>/testimport.htm?PId='+ node.attr('assetId') ;
+                        var url = '<%=request.getContextPath()%>/testimport.htm?PId='+ node.attr('assetId')+'&atype='+ node.attr('atype') ;
                        // alert("url "+url);
                         parent.frames['AppBody'].location = url;
                               }
@@ -509,7 +569,13 @@ function recreatewithparents()
        }
          else if(treeType==4){
              items = {
-            		  
+            		 editItem: { // The "rename" menu item
+                         label: "Add Files/Frequency.",
+                         action: function(response) {
+                      	   var url = '<%=request.getContextPath()%>/testimport.htm?id='+ node.attr('assetId') ;
+                             parent.frames['AppBody'].location = url;
+                                   }
+                     },
                 deleteItem: { // The "delete" menu item
                     label: "Delete Test",
                     action: function (obj) {

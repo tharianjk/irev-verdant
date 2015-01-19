@@ -144,12 +144,12 @@ public class GetJSON extends HttpServlet {
              jSONObject.put("parent",treeval.get(0).getAssetparentid());                         
              JSONObject jsonAttr = new JSONObject();   
              jsonAttr.put("id",treeval.get(0).getAssetid());
-             jsonAttr.put("rel",treeval.get(0).getAssettype());
+             jsonAttr.put("atype",treeval.get(0).getAtype());
              jsonAttr.put("Assetname", treeval.get(0).getAssetname());
              jsonAttr.put("Assetid", treeval.get(0).getAssetid());
              jsonAttr.put("parentId", treeval.get(0).getAssetparentid());
              jsonAttr.put("treeType", treeval.get(0).getTreelevel());            
-            
+             jsonAttr.put("rel",treeval.get(0).getAssettype());
              jSONObject.put("attr", jsonAttr);
              jsonAttr = null;
              
@@ -190,13 +190,13 @@ public class GetJSON extends HttpServlet {
                        child.put("parent",treeval.get(0).getAssetparentid());  
                        JSONObject jsonChildAttr = new JSONObject();
                        jsonChildAttr.put("id",treeval.get(i).getAssetid());
-                       jsonChildAttr.put("rel",treeval.get(i).getAssettype());
+                       jsonChildAttr.put("atype",treeval.get(i).getAtype());
                        jsonChildAttr.put("Assetname", treeval.get(i).getAssetname());
                        jsonChildAttr.put("Assetid", treeval.get(i).getAssetid());
                        jsonChildAttr.put("parentId", treeval.get(i).getAssetparentid());
                        jsonChildAttr.put("treeType", treeval.get(i).getTreelevel());
                        jsonChildAttr.put("nlevel", treeval.get(i).getNlevel());
-                      
+                       jsonChildAttr.put("rel",treeval.get(i).getAssettype());
                        child.put("attr", jsonChildAttr);
                        jsonChildAttr = null;
                        

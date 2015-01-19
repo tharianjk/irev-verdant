@@ -248,7 +248,7 @@ public UserPref mapRow(ResultSet rs, int rowNum) throws SQLException {
 	   
 	   logger.info("***inside getFreqList** ");
 	   List<TestFrequency> dataList =null;
-    String sql = "select frequency,lineargain from testFreq  where test_id =" + testid;  
+    String sql = "select case t.frequnit when 'GHz' then frequency*1000 else frequency end frequencyid, frequency,lineargain from testFreq f inner join testdata t on f.test_id=t.test_id  where t.test_id =" + testid;  
    try
    {
 	   dataList = getJdbcTemplate().query(sql, new TestFreqMapper());
@@ -266,7 +266,7 @@ public UserPref mapRow(ResultSet rs, int rowNum) throws SQLException {
     	   TestFrequency testfreq = new TestFrequency();
     	   testfreq.setFrequency(rs.getDouble("frequency"));  
     	   testfreq.setLineargain(rs.getDouble("lineargain"));  
-    	       	   
+    	   testfreq.setFrequencyid(rs.getDouble("Frequencyid"));  
            return testfreq;
        }
 
@@ -282,7 +282,7 @@ public UserPref mapRow(ResultSet rs, int rowNum) throws SQLException {
 	   
 if(strmode.equals("new")){
 	   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-   final String  sql = "INSERT INTO testdata(TestName,TestDesc,ProdSerial_id,TestDate,frequnit,testcenter,instruments,calibration,testproc) VALUES  (?,?,?,?,?,?,?,?,?)";    
+   final String  sql = "INSERT INTO testdata(TestName,TestDesc,ProdSerial_id,TestDate,frequnit,testcenter,instruments,calibration,testproc,testtype) VALUES  (?,?,?,?,?,?,?,?,?,?)";    
 	     KeyHolder keyHolder = new GeneratedKeyHolder();
 	    
 	     final String testname = testdata.getTestname();
@@ -294,6 +294,7 @@ if(strmode.equals("new")){
 	     final String instruments=testdata.getInstruments();
 	     final String calibration=testdata.getCalibration();
 	     final String testproc=testdata.getTestproc();
+	     final String testtype=testdata.getTesttype();
 	  	getJdbcTemplate().update(
 	  	    new PreparedStatementCreator() {
 	  	        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
@@ -309,6 +310,7 @@ if(strmode.equals("new")){
 	  	            ps.setString(7, instruments);
 	  	            ps.setString(8, calibration);
 	  	            ps.setString(9, testproc);
+	  	            ps.setString(10, testtype);
 	  	            return ps;
 	  	        }
 	  	    },
@@ -337,15 +339,23 @@ if(strmode.equals("new")){
 	  	 String sqltest="";
 	  	if(testdata.getFiletype().equals("Vdata"))
 	  	{
-	  		sqltest="insert into Vdata (test_id,Frequency,Angle,Amplitude) values (?,?,?,?);"; 
+	  		sqltest="insert into Vdata (test_id,Frequency,Angle,Amplitude) values (?,?,?,?)"; 
 	  	}
 	  	else if(testdata.getFiletype().equals("Hdata"))
 	  	{
-	  		sqltest="insert into Hdata (test_id,Frequency,Angle,Amplitude) values (?,?,?,?);"; 
+	  		sqltest="insert into Hdata (test_id,Frequency,Angle,Amplitude) values (?,?,?,?)"; 
 	  	}
-	  	else {
-	  		sqltest="insert into CPdata (test_id,Frequency,Angle,Amplitude) values (?,?,?,?);"; 
-		  	
+	  	else if(testdata.getFiletype().equals("CPdata")){
+	  		sqltest="insert into CPdata (test_id,Frequency,Angle,Amplitude) values (?,?,?,?)"; 		  	
+	  	}
+	  	else if(testdata.getFiletype().equals("pitch")){
+	  		sqltest="insert into pitchdata (test_id,Frequency,Angle,Amplitude) values (?,?,?,?)"; 		  	
+	  	}
+	  	else if(testdata.getFiletype().equals("roll")){
+	  		sqltest="insert into rolldata (test_id,Frequency,Angle,Amplitude) values (?,?,?,?)"; 		  	
+	  	}
+	  	else if(testdata.getFiletype().equals("yaw")){
+	  		sqltest="insert into yawdata (test_id,Frequency,Angle,Amplitude) values (?,?,?,?)"; 		  	
 	  	}
 	  	for (int i=0;i<dataloglist.size();i++){		 
 		getJdbcTemplate().update(  
@@ -355,7 +365,14 @@ if(strmode.equals("new")){
 		}
 	  	if(action.equals("Done"))
 	  	{
-	  		final String ptype = testdata.getPtype()=="Linear"?"L":"C";
+	  		//CP -WIth CP Conversion
+	  		//NCP - no cp conversion
+	  		//DCP - direct cp
+	  		//A-Azimuth
+	  		//E-Elevation
+	  		
+	  		final String ptype = testdata.getPtype();
+	  		logger.info("ptype "+ptype);
 	  		final String funit = testdata.getFrequnit().equals("MHz")?"M":"G";
 	  		//final String funit = "M";
 	  		getJdbcTemplate().update("call Calculate_params (?,?)", testid,ptype);
@@ -376,14 +393,14 @@ if(strmode.equals("new")){
 	   
 	   int primaryKey;
 	   
-   final String  sql = "INSERT INTO product(Productname,Version,PType,ImageFileName,b_withcp) VALUES   (?,?,?,?,?)";    
+   final String  sql = "INSERT INTO product(Productname,Version,PType,ImageFileName) VALUES   (?,?,?,?)";    
 	     KeyHolder keyHolder = new GeneratedKeyHolder();
 	    
 	     final String prdname = prod.getProductname();
 	     final String version = prod.getVersion();	    
 	     final String ptype = prod.getPtype();
 	     final String iname = prod.getImagefilename();
-	     final Boolean bwithcp = prod.getBwithcp();
+	   //  final Boolean bwithcp = prod.getBwithcp();
 	  	getJdbcTemplate().update(
 	  	    new PreparedStatementCreator() {
 	  	        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
@@ -393,7 +410,7 @@ if(strmode.equals("new")){
 	  	            ps.setString(2, version);
 	  	            ps.setString(3, ptype);	  
 	  	          ps.setString(4, iname);
-	  	        ps.setBoolean(5, bwithcp);
+//	  	        ps.setBoolean(5, bwithcp);
 	  	            return ps;
 	  	        }
 	  	    },
@@ -407,7 +424,7 @@ if(strmode.equals("new")){
    public List<Product> getProductList() {  
 	    List dataList = new ArrayList();  
 	   
-	    String sql = "select Product_id,Productname,Version,PType,ImageFileName,b_withcp from product";  
+	    String sql = "select Product_id,Productname,Version,PType,ImageFileName from product";  
 	   
 	    dataList = getJdbcTemplate().query(sql, new ProductMapper());  
 	    return dataList;  
@@ -434,10 +451,10 @@ if(strmode.equals("new")){
 	     
 	   public boolean updateProduct(Product prduct) {  
 		   try{
-	    String sql = "UPDATE Product set productname = ?,version = ?,ptype=?,imagefilename=?,b_withcp=? where product_id = ?";  
+	    String sql = "UPDATE Product set productname = ?,version = ?,ptype=?,imagefilename=? where product_id = ?";  
 	    getJdbcTemplate().update(  
 	      sql,  
-	      new Object[] { prduct.getProductname(), prduct.getVersion(),  prduct.getPtype(),prduct.getImagefilename(),prduct.getBwithcp(),
+	      new Object[] { prduct.getProductname(), prduct.getVersion(),  prduct.getPtype(),prduct.getImagefilename(),
 	    		  prduct.getProductid() }); 
 	    
 	   
@@ -453,7 +470,7 @@ if(strmode.equals("new")){
 	   public Product getProduct(int id) {  
 		   logger.info("***inside prduct** ");
 		   List<Product> dataList =null;
-	    String sql = "select Product_id,Productname,Version,PType,ImageFileName,b_withcp from product  where Product_id =" + id;  
+	    String sql = "select Product_id,Productname,Version,PType,ImageFileName from product  where Product_id =" + id;  
 	   try
 	   {
 		   dataList = getJdbcTemplate().query(sql, new ProductMapper());
@@ -474,7 +491,7 @@ if(strmode.equals("new")){
 	    	   product.setPtype(rs.getString("ptype"));  
 	    	   product.setVersion(rs.getString("version")); 	    	  
 	    	   product.setImagefilename(rs.getString("imagefilename"));
-	    	   product.setBwithcp(rs.getBoolean("b_withcp"));
+	    	   
 	           return product;
 	       }
 
@@ -626,11 +643,23 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 						   getJdbcTemplate().update(sql);
 						   sql = "delete from vcalculated where Test_id=" + id;
 						   getJdbcTemplate().update(sql);
+						   sql = " delete from pitchcalculated where Test_id=" + id;
+						   getJdbcTemplate().update(sql);
+						   sql = " delete from rollcalculated where Test_id=" + id;
+						   getJdbcTemplate().update(sql);
+						   sql = " delete from yawcalculated where Test_id=" + id;
+						   getJdbcTemplate().update(sql);
 						   sql = "delete from hdata where Test_id=" + id;
 						   getJdbcTemplate().update(sql);
 						   sql = "delete from vdata where Test_id=" + id;
 						   getJdbcTemplate().update(sql);
 						   sql = "delete from cpdata where Test_id=" + id;
+						   getJdbcTemplate().update(sql);
+						   sql = "delete from pitchdata where Test_id=" + id;
+						   getJdbcTemplate().update(sql);
+						   sql = "delete from rolldata where Test_id=" + id;
+						   getJdbcTemplate().update(sql);
+						   sql = "delete from yawdata where Test_id=" + id;
 						   getJdbcTemplate().update(sql);
 						   sql = "delete from testfreq where Test_id=" + id;
 						   getJdbcTemplate().update(sql);
@@ -670,7 +699,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 			   public TestData getTestData(int id) {  
 				   logger.info("***inside testdata** ");
 				   List<TestData> dataList =null;
-			    String sql = "select Test_id,TestName,testdesc,T.ProdSerial_id,TestDate,SerialNo,Productname,Version,frequnit,ptype,testcenter,instruments,calibration,testproc from testdata t inner join product_serial s on t.Prodserial_id=S.Prodserial_id "+
+			    String sql = "select Test_id,TestName,testdesc,T.ProdSerial_id,TestDate,SerialNo,Productname,Version,frequnit,ptype,testcenter,instruments,calibration,testproc,testtype from testdata t inner join product_serial s on t.Prodserial_id=S.Prodserial_id "+
 			    		" inner join product p on s.Product_id=p.Product_id  where TEST_id =" + id;  
 			   try
 			   {
@@ -701,7 +730,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 			    	   testdata.setInstruments(rs.getString("instruments")); 
 			    	   testdata.setCalibration(rs.getString("calibration")); 
 			    	   testdata.setTestproc(rs.getString("testproc")); 
-			    	   
+			    	   testdata.setTesttype(rs.getString("testtype"));
 			           return testdata;
 			       }
 
