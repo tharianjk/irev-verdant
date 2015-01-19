@@ -32,30 +32,32 @@ function fnsetstat(typ,msg)
 	AssetTree.monitorstat=typ;
 	// Reset the following globals. These are used inside BIRT when rendering a report. We don
 	// not one reports settings to get used in another report.
-	selected_source_ndx=0;
-	selected_prod_ndx=0; 
-	selected_period_ndx=0;
-	selected_sum_ndx=0;
-	selected_prodasset_ndx=0;
+	
+	var testid=AssetTree.selectedsection;
+	var atype=AssetTree.atype;
+	
 	if(msg!=null && msg=='msg'){
 		reportflashMessenger.setText('<b>Please make a Selection from the Asset Tree on the left side</b>  ');}
 	if(typ=="Polar") {
-		window.frames['AppBody'].location="hpolar.htm?oper=hpolar&testid="+AssetTree.selectedsection;
+		window.frames['AppBody'].location="hpolar.htm?oper=hpolar&testid="+testid +"&atype="+atype;
 	AssetTree.monitorstat="Reports";}
 	if(typ=="3db") {
-		window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+AssetTree.selectedsection;
+		window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+testid+"&atype="+atype;
 		AssetTree.monitorstat="Reports";}
 	if(typ=="10db") {
-		window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+AssetTree.selectedsection;
+		window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+testid+"&atype="+atype;
+		AssetTree.monitorstat="Reports";}
+	if(typ=="blobe") {
+		window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+testid+"&atype="+atype;
 		AssetTree.monitorstat="Reports";}
 	if(typ=="ar") {
-		window.frames['AppBody'].location="ar.htm?oper=ar&typ="+typ+"&testid="+AssetTree.selectedsection;
+		window.frames['AppBody'].location="ar.htm?oper=ar&typ="+typ+"&testid="+testid+"&atype="+atype;
 		AssetTree.monitorstat="Reports";}
 	if(typ=="rset") {
-		window.frames['AppBody'].location="reportset.htm?oper=rset&typ="+typ+"&testid="+AssetTree.selectedsection;
+		window.frames['AppBody'].location="reportset.htm?oper=rset&typ="+typ+"&testid="+testid+"&atype="+atype;
 		AssetTree.monitorstat="Reports";}
 	if(typ=="cpg") {
-		window.frames['AppBody'].location="lineargain.htm?oper=cpg&typ="+typ+"&testid="+AssetTree.selectedsection;
+		window.frames['AppBody'].location="lineargain.htm?oper=cpg&typ="+typ+"&testid="+testid+"&atype="+atype;
 		AssetTree.monitorstat="Reports";}
 	
 }
@@ -177,6 +179,7 @@ dialog.dialog( "open" );
 				<li id="pp" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('Polar');">Polar Plot</a></li>				
 				<li id="3db" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('3db');">3db Beamwidth</a> </li>
 				<li id="10db" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('10db');">10db Beamwidth</a> </li>
+				<li id="blobe" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('blobe');">Black-lobe</a> </li>
 				<li id="ar" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('ar');">Axial Ratio</a> </li>
 				<li id="cpg" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('cpg');">CP Gain</a> </li>
 			</ul>

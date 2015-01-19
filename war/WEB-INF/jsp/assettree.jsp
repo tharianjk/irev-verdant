@@ -157,6 +157,7 @@ var treemode='<%=request.getParameter("treemode")%>';
 	  			        	  parent.document.getElementById("3db").style.display="block";
 	  			        	  parent.document.getElementById("10db").style.display="block";
 	  			        	  parent.document.getElementById("cpg").style.display="none";
+	  			        	  parent.document.getElementById("blobe").style.display="none";
     			        	}
     			        else if(atype=="L")
 			        	{
@@ -166,6 +167,7 @@ var treemode='<%=request.getParameter("treemode")%>';
   			        	  parent.document.getElementById("3db").style.display="block";
   			        	  parent.document.getElementById("10db").style.display="block";
   			        	  parent.document.getElementById("cpg").style.display="none";
+  			        	 parent.document.getElementById("blobe").style.display="none";
 			        	}
     			        else if(atype=="CP")
 			        	{
@@ -176,6 +178,8 @@ var treemode='<%=request.getParameter("treemode")%>';
 			        	  parent.document.getElementById("3db").style.display="block";
 			        	  parent.document.getElementById("10db").style.display="block";
 			        	  parent.document.getElementById("cpg").style.display="block";
+			        	  parent.document.getElementById("blobe").style.display="block";
+			        	  
 			        	}
     			        else if(atype=="DCP")
 			        	{
@@ -186,6 +190,7 @@ var treemode='<%=request.getParameter("treemode")%>';
 			        	  parent.document.getElementById("3db").style.display="block";
 			        	  parent.document.getElementById("10db").style.display="block";
 			        	  parent.document.getElementById("cpg").style.display="block";
+			        	  parent.document.getElementById("blobe").style.display="block";
 			        	}
     			        else if(atype=="NCP")
 			        	{
@@ -196,6 +201,7 @@ var treemode='<%=request.getParameter("treemode")%>';
 			        	  parent.document.getElementById("3db").style.display="block";
 			        	  parent.document.getElementById("10db").style.display="block";
 			        	  parent.document.getElementById("cpg").style.display="none";
+			        	  parent.document.getElementById("blobe").style.display="block";
 			        	}
     			        }
     			        else

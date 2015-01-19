@@ -62,6 +62,7 @@ public class ToolsController implements Controller {
      	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Map<String, Object> myModel = new HashMap<String, Object>();
         String operstr = request.getParameter("oper");
+        String atype=request.getParameter("atype");
         String testid="0";
         testid=	request.getParameter("testid");
         String freq=request.getParameter("freq");
@@ -89,6 +90,7 @@ public class ToolsController implements Controller {
         		 //myModel.put("freqlist", this.mastersservice.getFreqList(Integer.parseInt(testid)));
         		 myModel.put("testid",testid);
         		 myModel.put("strfreqs",strfreqs);
+        		 myModel.put("atype",atype);
                 return new ModelAndView("reportset", "model", myModel);        	
         	}
 			else if (operstr.contains("hpolar")){
@@ -96,6 +98,7 @@ public class ToolsController implements Controller {
         		 myModel.put("freqlist", this.mastersservice.getFreqList(Integer.parseInt(testid)));
         		 myModel.put("testid",testid);
         		 myModel.put("freq",freq);
+        		 myModel.put("atype",atype);
                 return new ModelAndView("hpolar", "model", myModel);        	
         	}
 			else if (operstr.contains("db")){
@@ -103,24 +106,18 @@ public class ToolsController implements Controller {
 				String bwithcp="0";
 				String typ = request.getParameter("typ");
         		logger.info("*** db ** testid "+testid);
-       		 //myModel.put("freqlist", this.mastersservice.getFreqList(Integer.parseInt(testid)));
-        		if(testid==null || testid=="" || testid=="null" ||  testid.equals("undefined") ){
-        		Product prd=mastersservice.getProduct(Integer.parseInt(testid));
-        		ptype=prd.getPtype()=="Linear"?"L":"C";
-        		bwithcp=prd.getBwithcp()==true?"1":"0";
-        		}
-        		myModel.put("ptype",ptype);
-        		myModel.put("bwithcp",bwithcp);
-       		 myModel.put("testid",testid);
-       		 myModel.put("typ",typ);
+        		myModel.put("atype",atype);
+       		    myModel.put("testid",testid);
+       		    myModel.put("typ",typ);
                return new ModelAndView("xdb_bw_bs", "model", myModel);        	
        	}
 			else if (operstr.contains("ar")){
 				String typ = request.getParameter("typ");
         		logger.info("*** db ** testid "+testid);
-       		 //myModel.put("freqlist", this.mastersservice.getFreqList(Integer.parseInt(testid)));
+       
        		 myModel.put("testid",testid);
        		 myModel.put("typ",typ);
+       		 myModel.put("atype",atype);
              return new ModelAndView("ar", "model", myModel);        	
        	}
 			        }

@@ -42,7 +42,7 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 		var deg ;	
 		var testid=${model.testid};
 		var typ='${model.typ}';
-		var ptyp='${model.ptype}';
+		var atyp='${model.atype}';
 		if(document.getElementById("bm").checked)
 			{deg='bm';}
 		if(document.getElementById("0d").checked)
@@ -57,13 +57,28 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 		else deg='bm90d';
 		}
 			//3dbWithCP_report.rptdesign
-			if(typ=='3db'){
-		var url="/birt-verdant/frameset?__report=3db_report.rptdesign&deg="+deg+"&testid="+testid;}
-			if(ptyp=='C'){
-				var url="/birt-verdant/frameset?__report=3dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid;}
+			var url="";
+			if(typ=='3db' ){
+				if(atyp=='E' || atyp=='E'){ //Elevation or Azumith
+		         url="/birt-verdant/frameset?__report=3db_report.rptdesign&deg="+deg+"&testid="+testid+"&atype="+atype;}
+				else{
+				 url="/birt-verdant/frameset?__report=3dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&atype="+atype;}
+			}
+			if(typ=='10db' ){
+				if(atyp=='E' || atyp=='E'){ //Elevation or Azumith
+		         url="/birt-verdant/frameset?__report=10db_report.rptdesign&deg="+deg+"&testid="+testid+"&atype="+atype;}
+				else{
+				 url="/birt-verdant/frameset?__report=10dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&atype="+atype;}
+			}
+			if(typ=='blobe' ){
+				if(atyp=='NCP' ){ //with out cp
+		         url="/birt-verdant/frameset?__report=BlobWithOutCP.rptdesign&deg="+deg+"&testid="+testid+"&atype="+atype;}
+				else{
+				 url="/birt-verdant/frameset?__report=BlobWithCP.rptdesign&deg="+deg+"&testid="+testid+"&atype="+atype;}
+			}
 			
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
-		//alert("url " + url);
+		console.log("url " + url);
 		//window.location =url; 
 		window.frames['AppBody'].location=url;
 		 }
