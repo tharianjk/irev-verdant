@@ -75,6 +75,9 @@ $(document).ready(function(){
 		var freqid =document.getElementById("freqid").value;	
 		var max =document.getElementById("max").value;
 		var min =document.getElementById("min").value;
+		var lg=document.getElementById("lg").value;
+		if(lg=="" || lg==null || lg=="null")
+			lg=0;
 		var testid='${model.testid}';
 		if((document.getElementById("hdata").checked) && (document.getElementById("vdata").checked))
 		{
@@ -85,9 +88,11 @@ $(document).ready(function(){
 		else if (document.getElementById("vdata").checked)
 			{typ="V";}
 
-		var url="/birt-verdant/frameset?__report=HdataVerdant_report.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min;
+		var url="/birt-verdant/frameset?__report=PolarGeneric.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min+"&lg="+lg;
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
-		console.log("url " + url);
+		if(typ=="B")
+			var url="/birt-verdant/frameset?__report=PolarHPVP.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min+"&lg="+lg;
+			console.log("url " + url);
 		//window.location =url; 
 		window.frames['AppBody'].location=url;
 		 }
