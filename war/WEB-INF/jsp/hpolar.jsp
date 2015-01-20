@@ -28,9 +28,14 @@
 			   
           </td>
           <td>
-          &nbsp; &nbsp;&nbsp;  <input type="checkbox" id="hdata" value="h" checked >HP Data &nbsp; &nbsp;&nbsp;
+          <div id="cp">
+          &nbsp; &nbsp;&nbsp;  <input type="checkbox" id="hdata" value="h" >HP Data &nbsp; &nbsp;&nbsp;
        <input type="checkbox" id="vdata" value="vdata"  >VP Data  &nbsp; &nbsp;&nbsp;<td>
-       
+       <td>Linear Gain:<input type="test" id="lg" > </td>
+       </div>
+       </td>
+       </tr>
+       <tr>
        <td >&nbsp; &nbsp;&nbsp; Max. Amplitude : </td>
        <td ><input id="max" value="-40">
        <td >&nbsp; &nbsp;&nbsp; Min. Amplitude : </td>
@@ -50,6 +55,16 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 
 
 <script type="text/javascript">
+var typ="${model.atype}";
+
+$(document).ready(function(){
+	if(typ=="P" || typ=="R" || typ=="Y")
+		{document.getElementById("cp").style.visibility="hidden";}
+	else{
+		document.getElementById("cp").style.visibility="visible";
+		document.getElementById("hdata").checked=true;
+	}});
+
 	function back()
 	{
 		 window.location="/irev-verdant/start.htm";
@@ -60,11 +75,19 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 		var freqid =document.getElementById("freqid").value;	
 		var max =document.getElementById("max").value;
 		var min =document.getElementById("min").value;
-		var testid=${model.testid};
-		
-		var url="/birt-verdant/frameset?__report=HdataVerdant_report.rptdesign&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min;
+		var testid='${model.testid}';
+		if((document.getElementById("hdata").checked) && (document.getElementById("vdata").checked))
+		{
+		typ="B";
+		}
+		else if (document.getElementById("hdata").checked)
+		{typ="H";}
+		else if (document.getElementById("vdata").checked)
+			{typ="V";}
+
+		var url="/birt-verdant/frameset?__report=HdataVerdant_report.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min;
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
-		//alert("url " + url);
+		console.log("url " + url);
 		//window.location =url; 
 		window.frames['AppBody'].location=url;
 		 }

@@ -95,6 +95,16 @@ public class ToolsController implements Controller {
         	}
 			else if (operstr.contains("hpolar")){
         		logger.info("*** hpolar ** testid "+testid);
+        		Product pd=mastersservice.getProduct(Integer.parseInt(testid));
+        		String ptype=pd.getPtype();
+        		if(atype.equals("E") && ptype.equals("L") )
+        		{
+        			atype=mastersservice.getType(Integer.parseInt(testid));
+        		}
+        		if(atype.equals("A") && ptype.equals("L"))
+        		{
+        			atype="Y";
+        		}
         		 myModel.put("freqlist", this.mastersservice.getFreqList(Integer.parseInt(testid)));
         		 myModel.put("testid",testid);
         		 myModel.put("freq",freq);

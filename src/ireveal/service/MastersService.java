@@ -10,6 +10,7 @@ import java.util.List;
 
 
 
+
 import ireveal.domain.AssetTree;
 import ireveal.domain.DataLog;
 import ireveal.domain.Operator;
@@ -56,5 +57,6 @@ public interface MastersService {
 		 public TestData getTestData(int id);
 		 
 		 public void UpdateTestFreq(List<TestFrequency> testfreqlist,int testid);
+		 public String getType(int testid);
 		 
 } 

@@ -135,6 +135,10 @@ public void UpdateTestFreq(List<TestFrequency> testfreqlist,int testid) {
 	 mastersdao.UpdateTestFreq( testfreqlist,testid );
 	
 }
+@Override
+public String getType(int testid) {
+	return mastersdao.getType(testid);
+}
 
 
 }

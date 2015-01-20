@@ -757,6 +757,21 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 				   }
 				
 			   }
+			   
+			   public String getType(int testid)
+			   {
+				   String typ="";
+				   String sql="select count(*) from pitchdata where test_id=?";
+				   int cnt=getJdbcTemplate().queryForInt(sql,testid);
+				   if (cnt==0){
+					  // sql="select count(*) from rawdata where test_id=?";
+					   //cnt=getJdbcTemplate().queryForInt(sql,testid);
+					   return "R";
+				   }
+				   else 
+					   return "P";
+					   
+			   }
    
   }
 
