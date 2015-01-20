@@ -59,13 +59,13 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 			//3dbWithCP_report.rptdesign
 			var url="";
 			if(typ=='3db' ){
-				if(atype=='E' || atype=='E'){ //Elevation or Azumith
+				if(atype=='E' || atype=='NCP'){ //Elevation or Circular without CP
 		         url="/birt-verdant/frameset?__report=3db_report.rptdesign&deg="+deg+"&testid="+testid+"&atype="+atype;}
 				else{
 				 url="/birt-verdant/frameset?__report=3dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&atype="+atype;}
 			}
 			if(typ=='10db' ){
-				if(atype=='E' || atype=='E'){ //Elevation or Azumith
+				if(atype=='E' || atype=='NCP'){ //Elevation or Circular without CP
 		         url="/birt-verdant/frameset?__report=10db_report.rptdesign&deg="+deg+"&testid="+testid+"&atype="+atype;}
 				else{
 				 url="/birt-verdant/frameset?__report=10dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&atype="+atype;}
