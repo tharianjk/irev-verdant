@@ -740,6 +740,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 			   //update testfreq table with linear gain
 			// test freq
 			   public void UpdateTestFreq(List<TestFrequency> testfreqlist,int testid){
+				   try{
 			  	String sqltestfreq=	"Update testfreq set lineargain=? where Test_id =? and Frequency=? " ; 
 			  	for (int i=0;i<testfreqlist.size();i++){
 			  		
@@ -748,7 +749,12 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 						sqltestfreq,  
 				 new Object[] { testfreqlist.get(i).getLineargain()==0.00?null:testfreqlist.get(i).getLineargain(),testid,testfreqlist.get(i).getFrequency() });
 			  		}
-
+			  	getJdbcTemplate().update("call spCalCPGain (?)", testid);
+				   }
+				   catch(Exception ep)
+				   {
+					   logger.info("Exception in UpdateTestFreq "+ep.getMessage());  
+				   }
 				
 			   }
    

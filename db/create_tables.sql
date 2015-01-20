@@ -12,6 +12,7 @@ drop procedure if exists calculate;
 drop procedure if exists Calculate_params;
 drop procedure if exists convert_to_CP;
 drop procedure if exists spGetPolarPlot;
+drop procedure if exists spCalCPGain;
 
 drop function if exists calc_AxialRatio;
 drop function if exists calc_backlobe;
@@ -414,6 +415,13 @@ alter table FWK_USER_FAVORITE add constraint FK_UseFav_user foreign key (USER_ID
 create index testid_freq_angle_hp on hdata(Test_id, Frequency, angle,Amplitude);
 create index testid_freq_angle_vp on vdata(Test_id, Frequency, angle,Amplitude);
 create index testid_freq_angle_cp on cpdata(Test_id, Frequency, angle,Amplitude);
+
+ALTER TABLE `verdant`.`pitchdata` 
+ADD INDEX `test_freq_angle_ampl_pitch` (`Test_id` ASC, `Frequency` ASC, `Angle` ASC, `Amplitude` ASC);
+ALTER TABLE `verdant`.`rolldata`
+ADD INDEX `test_freq_angle_ampl_pitch` (`Test_id` ASC, `Frequency` ASC, `Angle` ASC, `Amplitude` ASC);
+ALTER TABLE `verdant`.`yawdata`
+ADD INDEX `test_freq_angle_ampl_pitch` (`Test_id` ASC, `Frequency` ASC, `Angle` ASC, `Amplitude` ASC);
 
 INSERT INTO FWK_COMPANY (COMPANY_ID, COMPANYNAME, ADDRESS,expirydate ) VALUES (1 , 'Verdant', 'VERDANT TELEMETRY & ANTENNA SYSTEMS PVT. LTD.
 REGD. OFFICE: 26/411A KONTHURUTHY, COCHIN- 682 013, INDIA. TEL: 91-484-2663104 FAX: 91-484-2663576
