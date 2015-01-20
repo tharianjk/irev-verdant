@@ -13,6 +13,13 @@ drop procedure if exists Calculate_params;
 drop procedure if exists convert_to_CP;
 drop procedure if exists spGetPolarPlot;
 drop procedure if exists spCalCPGain;
+drop procedure if exists calc_CP;
+drop procedure if exists calc_Linear_Azimuth;
+drop procedure if exists calc_Linear_Elevation;
+drop procedure if exists calc_MaxDiffAxialRatio;
+drop procedure if exists calc_Slant_Azimuth;
+drop procedure if exists calc_Slant_Elevation;
+drop procedure if exists convert_to_CP;
 
 drop function if exists calc_AxialRatio;
 drop function if exists calc_backlobe;

@@ -70,12 +70,7 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 				else{
 				 url="/birt-verdant/frameset?__report=10dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&atype="+atype;}
 			}
-			if(typ=='blobe' ){
-				if(atype=='NCP' ){ //with out cp
-		         url="/birt-verdant/frameset?__report=BlobWithOutCP.rptdesign&deg="+deg+"&testid="+testid+"&atype="+atype;}
-				else{
-				 url="/birt-verdant/frameset?__report=BlobWithCP.rptdesign&deg="+deg+"&testid="+testid+"&atype="+atype;}
-			}
+			
 			
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
 		console.log("url " + url);

@@ -48,7 +48,10 @@ function fnsetstat(typ,msg)
 		window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+testid+"&atype="+atype;
 		AssetTree.monitorstat="Reports";}
 	if(typ=="blobe") {
-		window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+testid+"&atype="+atype;
+		if(atype=="NCP")
+		window.frames['AppBody'].location="/birt-verdant/frameset?__report=BlobWithOutCP.rptdesign&testid="+testid;
+		else
+			window.frames['AppBody'].location="/birt-verdant/frameset?__report=BlobWithCP.rptdesign&testid="+testid;	
 		AssetTree.monitorstat="Reports";}
 	if(typ=="ar") {
 		window.frames['AppBody'].location="ar.htm?oper=ar&typ="+typ+"&testid="+testid+"&atype="+atype;
@@ -59,6 +62,10 @@ function fnsetstat(typ,msg)
 	if(typ=="cpg") {
 		window.frames['AppBody'].location="lineargain.htm?oper=cpg&typ="+typ+"&testid="+testid+"&atype="+atype;
 		AssetTree.monitorstat="Reports";}
+	if(typ=="od") {
+		window.frames['AppBody'].location="/birt-verdant/frameset?__report=BlobWithOutCP.rptdesign&testid="+testid;
+		AssetTree.monitorstat="Reports";}
+	
 	
 }
 function fnHomeClick()
