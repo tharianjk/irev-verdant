@@ -159,7 +159,7 @@ var treemode='<%=request.getParameter("treemode")%>';
 	  			        	  parent.document.getElementById("cpg").style.display="none";
 	  			        	  parent.document.getElementById("blobe").style.display="none";
     			        	}
-    			        else if(atype=="L")
+    			        else if(atype=="E")
 			        	{
 			        	  parent.document.getElementById("od").style.display="block";
   			        	  parent.document.getElementById("ar").style.display="none";
