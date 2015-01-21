@@ -816,13 +816,18 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 			   public boolean InsertAmpPhase(List<DataLog> datalist,ImportData impdata)
 			   {
 				   String sqlinsert="";
+				   String sqldelete="";
 				   try{
 				   if(impdata.getFiletype().equals("A"))
 				  	{
+					   sqldelete="delete from amplitudedata where prodserial_id=?";
+					   getJdbcTemplate().update(sqldelete,impdata.getProductserialid());  
 				  		sqlinsert="insert into amplitudedata (prodserial_id,Frequency,ampvalue) values (?,?,?)"; 
 				  	}
 				  	else if(impdata.getFiletype().equals("P"))
 				  	{
+				  		sqldelete="delete from phasedata where prodserial_id=?";
+						   getJdbcTemplate().update(sqldelete,impdata.getProductserialid()); 
 				  		sqlinsert="insert into phasedata (prodserial_id,Frequency,phasevalue) values (?,?,?)"; 
 				  	}
 				   
