@@ -947,7 +947,7 @@ Declare v_freq decimal(20,10);
 Declare v_lg decimal(20,10);
 Declare v_cpgain decimal(20,10); 
 declare cnt int;
-DECLARE C1 CURSOR FOR select distinct Frequenc,lineargain from testfreq where test_id=testid;
+DECLARE C1 CURSOR FOR select distinct Frequency,lineargain from testfreq where test_id=testid;
  
 -- declare NOT FOUND handler
 DECLARE CONTINUE HANDLER
