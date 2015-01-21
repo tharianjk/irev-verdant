@@ -112,8 +112,14 @@ public class ToolsController implements Controller {
                 return new ModelAndView("hpolar", "model", myModel);        	
         	}
 			else if (operstr.contains("db")){
-				String ptype="L";
-				String bwithcp="0";
+				Product pd=mastersservice.getProduct(Integer.parseInt(testid));
+        		String ptype=pd.getPtype();
+        		if(atype.equals("E") && ptype.equals("L") )
+        		{
+        			atype=mastersservice.getType(Integer.parseInt(testid));
+        		}
+				//String ptype="L";
+				
 				String typ = request.getParameter("typ");
         		logger.info("*** db ** testid "+testid);
         		myModel.put("atype",atype);
