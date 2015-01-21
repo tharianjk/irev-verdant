@@ -1117,18 +1117,18 @@ from pitchcalculated where Test_id=?]]></xml-property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">medium</property>
                         <property name="canShrink">true</property>
-                        <property name="dataSet">fqR</property>
+                        <property name="dataSet">fq</property>
                         <list-property name="visibility">
                             <structure>
                                 <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">( (row["Hide2"]&lt;1) || ((params["deg"].value!="0d90d")))</expression>
+                                <expression name="valueExpr" type="javascript">( (row["Hide"]&lt;1) || ((params["deg"].value!="0d90d")))</expression>
                             </structure>
                         </list-property>
                         <list-property name="boundDataColumns">
                             <structure>
-                                <property name="name">Hide2</property>
-                                <text-property name="displayName">Hide2</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["Hide2"]</expression>
+                                <property name="name">Hide</property>
+                                <text-property name="displayName">Hide</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["Hide"]</expression>
                                 <property name="dataType">integer</property>
                             </structure>
                         </list-property>
@@ -1390,18 +1390,18 @@ from pitchcalculated where Test_id=?]]></xml-property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">medium</property>
                         <property name="canShrink">true</property>
-                        <property name="dataSet">fqR</property>
+                        <property name="dataSet">fq</property>
                         <list-property name="visibility">
                             <structure>
                                 <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">( (row["Hide2"]&lt;1) || ((params["deg"].value=="0d90d")))</expression>
+                                <expression name="valueExpr" type="javascript">( (row["Hide"]&lt;1) || ((params["deg"].value=="0d90d")))</expression>
                             </structure>
                         </list-property>
                         <list-property name="boundDataColumns">
                             <structure>
-                                <property name="name">Hide2</property>
-                                <text-property name="displayName">Hide2</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["Hide2"]</expression>
+                                <property name="name">Hide</property>
+                                <text-property name="displayName">Hide</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["Hide"]</expression>
                                 <property name="dataType">integer</property>
                             </structure>
                         </list-property>
@@ -1731,18 +1731,18 @@ from pitchcalculated where Test_id=?]]></xml-property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">medium</property>
                         <property name="canShrink">true</property>
-                        <property name="dataSet">fq</property>
+                        <property name="dataSet">fqR</property>
                         <list-property name="visibility">
                             <structure>
                                 <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">( (row["Hide"]&lt;1) || ((params["deg"].value=="0d90d")  ))</expression>
+                                <expression name="valueExpr" type="javascript">( (row["Hide2"]&lt;1) || ((params["deg"].value=="0d90d")  ))</expression>
                             </structure>
                         </list-property>
                         <list-property name="boundDataColumns">
                             <structure>
-                                <property name="name">Hide</property>
-                                <text-property name="displayName">Hide</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["Hide"]</expression>
+                                <property name="name">Hide2</property>
+                                <text-property name="displayName">Hide2</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["Hide2"]</expression>
                                 <property name="dataType">integer</property>
                             </structure>
                         </list-property>
@@ -2016,18 +2016,18 @@ from pitchcalculated where Test_id=?]]></xml-property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">medium</property>
                         <property name="canShrink">true</property>
-                        <property name="dataSet">fq</property>
+                        <property name="dataSet">fqR</property>
                         <list-property name="visibility">
                             <structure>
                                 <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">( (row["Hide"]&lt;1) || ((params["deg"].value!="0d90d") ))</expression>
+                                <expression name="valueExpr" type="javascript">( (row["Hide2"]&lt;1) || ((params["deg"].value!="0d90d") ))</expression>
                             </structure>
                         </list-property>
                         <list-property name="boundDataColumns">
                             <structure>
-                                <property name="name">Hide</property>
-                                <text-property name="displayName">Hide</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["Hide"]</expression>
+                                <property name="name">Hide2</property>
+                                <text-property name="displayName">Hide2</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["Hide2"]</expression>
                                 <property name="dataType">integer</property>
                             </structure>
                         </list-property>
