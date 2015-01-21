@@ -59,7 +59,7 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 			//3dbWithCP_report.rptdesign
 			var url="";
 			if(typ=='3db' ){
-				if(atype=='E' ){ //Elevation or Circular without CP
+				if(atype=='P' || atype='R' ){ //Elevation (pitch or roll)
 		         url="/birt-verdant/frameset?__report=3dbPitchRoll_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype;}
 				else if (atype=='NCP'){
 					 url="/birt-verdant/frameset?__report=3db_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype;}
