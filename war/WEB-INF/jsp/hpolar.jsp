@@ -112,10 +112,10 @@ $(document).ready(function(){
 		else if (document.getElementById("cpdata").checked)
 		{typ="C";}
 
-		var url="/birt-verdant/frameset?__report=PolarGeneric.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min+"&lg="+lg;
+		var url="/birt-verdant/frameset?__report=PolarGeneric.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min+"&lgain="+lg;
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
 		if(typ=="B")
-			var url="/birt-verdant/frameset?__report=PolarHPVP.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min+"&lg="+lg;
+			var url="/birt-verdant/frameset?__report=PolarHPVP.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min+"&lgain="+lg;
 			console.log("url " + url);
 		//window.location =url; 
 		window.frames['AppBody'].location=url;
