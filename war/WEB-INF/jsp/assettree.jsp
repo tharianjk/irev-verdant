@@ -154,14 +154,14 @@ var treemode='<%=request.getParameter("treemode")%>';
     			        	  parent.document.getElementById("od").style.display="block";
 	  			        	  parent.document.getElementById("ar").style.display="none";
 	  			        	  parent.document.getElementById("pp").style.display="block";
-	  			        	  parent.document.getElementById("3db").style.display="block";
-	  			        	  parent.document.getElementById("10db").style.display="block";
+	  			        	  parent.document.getElementById("3db").style.display="none";
+	  			        	  parent.document.getElementById("10db").style.display="none";
 	  			        	  parent.document.getElementById("cpg").style.display="none";
 	  			        	  parent.document.getElementById("blobe").style.display="none";
     			        	}
     			        else if(atype=="E")
 			        	{
-			        	  parent.document.getElementById("od").style.display="block";
+			        	  parent.document.getElementById("od").style.display="none";
   			        	  parent.document.getElementById("ar").style.display="none";
   			        	  parent.document.getElementById("pp").style.display="block";
   			        	  parent.document.getElementById("3db").style.display="block";
