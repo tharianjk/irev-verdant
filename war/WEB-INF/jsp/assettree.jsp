@@ -554,7 +554,14 @@ function recreatewithparents()
                         parent.frames['AppBody'].location = url;
                               }
                 },
-                   
+                newItem: { // The "rename" menu item
+                    label: "Add Amplitude/Phase",
+                    action: function(response) {
+                        var url = '<%=request.getContextPath()%>/ampphaseimp.htm?PId='+ node.attr('assetId')+'&atype='+ node.attr('atype') ;
+                       // alert("url "+url);
+                        parent.frames['AppBody'].location = url;
+                              }
+                },
        			 editItem: { // The "rename" menu item
                    label: "Edit Serial No.",
                    action: function(response) {

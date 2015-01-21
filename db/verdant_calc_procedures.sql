@@ -975,9 +975,15 @@ CLOSE C1;
 END$$
  
 DELIMITER ;
+
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE PROCEDURE `spGetPolarPlot`(
+CREATE  PROCEDURE `spGetPolarPlot`(
 testid INT,
 freq decimal(20,10),
 typ varchar(5), -- H HP,V VP,B HP&VP,P Pitch,R Roll ,Y Yaw
@@ -993,6 +999,10 @@ if lg=0 then
 		end if;
 		if typ='V' then
 		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id FROM vdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid;
+		end if;
+		if typ='C' then
+		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='B' then
@@ -1026,6 +1036,12 @@ end if;
 		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
+        if typ='C' then
+        SELECT HD.Amplitude into ampl FROM cpdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id FROM cpdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid;
+		end if;
 		if typ='B' then
         SELECT HD.Amplitude into ampl FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
@@ -1057,5 +1073,4 @@ end if;
 
 
 END $$
-
 DELIMITER ;

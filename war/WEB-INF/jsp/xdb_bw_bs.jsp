@@ -59,16 +59,18 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 			//3dbWithCP_report.rptdesign
 			var url="";
 			if(typ=='3db' ){
-				if(atype=='E' || atype=='NCP'){ //Elevation or Circular without CP
-		         url="/birt-verdant/frameset?__report=3db_report.rptdesign&deg="+deg+"&testid="+testid+"&atype="+atype;}
+				if(atype=='E' ){ //Elevation or Circular without CP
+		         url="/birt-verdant/frameset?__report=3dbPitchRoll_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype;}
+				else if (atype=='NCP'){
+					 url="/birt-verdant/frameset?__report=3db_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype;}
 				else{
-				 url="/birt-verdant/frameset?__report=3dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&atype="+atype;}
+				 url="/birt-verdant/frameset?__report=3dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype;}
 			}
 			if(typ=='10db' ){
 				if(atype=='E' || atype=='NCP'){ //Elevation or Circular without CP
-		         url="/birt-verdant/frameset?__report=10db_report.rptdesign&deg="+deg+"&testid="+testid+"&atype="+atype;}
+		         url="/birt-verdant/frameset?__report=10db_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype;}
 				else{
-				 url="/birt-verdant/frameset?__report=10dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&atype="+atype;}
+				 url="/birt-verdant/frameset?__report=10dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype;}
 			}
 			
 			

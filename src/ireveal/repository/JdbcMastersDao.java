@@ -3,6 +3,7 @@ package ireveal.repository;
 
 import ireveal.domain.AssetTree;
 import ireveal.domain.DataLog;
+import ireveal.domain.ImportData;
 import ireveal.domain.Operator;
 import ireveal.domain.Product;
 import ireveal.domain.ProductSerial;
@@ -323,7 +324,8 @@ if(strmode.equals("new")){
 	   else{testid=testdata.getTestid();
 	   }
 	  	  	
-	  	
+	  	String sqlcnt="";
+	  	String sqldelete="";
 	  	// test freq
 	  	String sqltestfreq=	"INSERT INTO testfreq(Test_id,Frequency,lineargain)  VALUES   (?,?,?)";  
 	  	for (int i=0;i<testfreqlist.size();i++){
@@ -332,8 +334,46 @@ if(strmode.equals("new")){
 			logger.info("lg"+testfreqlist.get(i).getLineargain());
 	  		getJdbcTemplate().update(  
 				sqltestfreq,  
-		 new Object[] {testid, testfreqlist.get(i).getFrequency(), testfreqlist.get(i).getLineargain()==0.00?null:testfreqlist.get(i).getLineargain() });}
-
+		 new Object[] {testid, testfreqlist.get(i).getFrequency(), testfreqlist.get(i).getLineargain()==0.00?null:testfreqlist.get(i).getLineargain() });
+	  		}
+		else{
+			if(testdata.getFiletype().equals("Vdata"))
+			{
+				sqlcnt="select count(*) from Vdata where test_id=? and frequency=?";
+				sqldelete="delete from vdata where test_id=? and frequency=?";
+			}
+			if(testdata.getFiletype().equals("Hdata"))
+			{
+				sqlcnt="select count(*) from hdata where test_id=? and frequency=?";
+				sqldelete="delete from hdata where test_id=? and frequency=?";
+			}
+			if(testdata.getFiletype().equals("CPdata"))
+			{
+				sqlcnt="select count(*) from cpdata where test_id=? and frequency=?";
+				sqldelete="delete from cpdata where test_id=? and frequency=?";
+			}
+			if(testdata.getFiletype().equals("pitch"))
+			{
+				sqlcnt="select count(*) from pitchdata where test_id=? and frequency=?";
+				sqldelete="delete from pitchdata where test_id=? and frequency=?";
+			}
+			if(testdata.getFiletype().equals("roll"))
+			{
+				sqlcnt="select count(*) from rolldata where test_id=? and frequency=?";
+				sqldelete="delete from rolldata where test_id=? and frequency=?";
+			}
+			if(testdata.getFiletype().equals("yaw"))
+			{
+				sqlcnt="select count(*) from yawdata where test_id=? and frequency=?";
+				sqldelete="delete from yawdata where test_id=? and frequency=?";
+			}
+			int cntfreq=getJdbcTemplate().queryForInt(sqlcnt,testid,testfreqlist.get(i).getFrequency());
+			if(cntfreq >0)
+			{
+				getJdbcTemplate().update(sqldelete,testid,testfreqlist.get(i).getFrequency());
+			}
+		}
+		
 		}
 	  	
 	 // datalog
@@ -358,7 +398,8 @@ if(strmode.equals("new")){
 	  	else if(testdata.getFiletype().equals("yaw")){
 	  		sqltest="insert into yawdata (test_id,Frequency,Angle,Amplitude) values (?,?,?,?)"; 		  	
 	  	}
-	  	for (int i=0;i<dataloglist.size();i++){		 
+	  	for (int i=0;i<dataloglist.size();i++){	
+	  		
 		getJdbcTemplate().update(  
 				sqltest,  
 		 new Object[] {testid, dataloglist.get(i).getFreq(), dataloglist.get(i).getAngle()==360.00?0:dataloglist.get(i).getAngle(),dataloglist.get(i).getAmplitude() });
@@ -770,7 +811,33 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 				   }
 				   else 
 					   return "P";
-					   
+			}
+			   
+			   public boolean InsertAmpPhase(List<DataLog> datalist,ImportData impdata)
+			   {
+				   String sqlinsert="";
+				   try{
+				   if(impdata.getFiletype().equals("A"))
+				  	{
+				  		sqlinsert="insert into amplitudedata (prodserial_id,Frequency,ampvalue) values (?,?,?)"; 
+				  	}
+				  	else if(impdata.getFiletype().equals("P"))
+				  	{
+				  		sqlinsert="insert into phasedata (prodserial_id,Frequency,phasevalue) values (?,?,?)"; 
+				  	}
+				   
+				   for (int i=0;i<datalist.size();i++){	
+				  		
+						getJdbcTemplate().update(  
+								sqlinsert,  
+						 new Object[] {impdata.getProductserialid(), datalist.get(i).getFreq(), datalist.get(i).getAmplitude() });
+
+						}
+				   return true;
+				   }catch(Exception e)
+				   {
+					   return false;
+				   }
 			   }
    
   }

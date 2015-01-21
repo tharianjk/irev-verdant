@@ -6,6 +6,7 @@ import ireveal.repository.MastersDao;
 import ireveal.domain.AssetTree;
 import ireveal.domain.Company;
 import ireveal.domain.DataLog;
+import ireveal.domain.ImportData;
 import ireveal.domain.Operator;
 import ireveal.domain.Product;
 import ireveal.domain.ProductSerial;
@@ -138,6 +139,10 @@ public void UpdateTestFreq(List<TestFrequency> testfreqlist,int testid) {
 @Override
 public String getType(int testid) {
 	return mastersdao.getType(testid);
+}
+@Override
+public boolean InsertAmpPhase(List<DataLog> datalist, ImportData impdata) {
+	return mastersdao.InsertAmpPhase(datalist,impdata);
 }
 
 

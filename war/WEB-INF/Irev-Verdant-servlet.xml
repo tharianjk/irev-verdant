@@ -32,6 +32,14 @@
         <property name="mastersManager" ref="mastersManager"/>
 		
 	</bean>
+	<bean name="/ampphaseimp.htm" class="ireveal.web.AmpPhaseImpController">
+		<property name="formView" value="ampphaseimp" />
+		 <property name="commandClass" value="ireveal.domain.ImportData"/>
+		  <property name="commandName" value="ImportData"/>
+		<property name="successView" value="fileuploadresult" />
+        <property name="mastersManager" ref="mastersManager"/>
+		
+	</bean>
 	<bean name="/lineargain.htm" class="ireveal.web.TestFreqController">
         <property name="mastersManager" ref="mastersManager"/>
 		

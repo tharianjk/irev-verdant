@@ -30,6 +30,8 @@ drop function if exists calc_omni;
 drop view if exists axialratio_view;
 drop view if exists vw_polardata;
 
+drop table IF  EXISTS phasedata;
+drop table IF  EXISTS amplitudedata;
 drop table IF  EXISTS PitchData;
 drop table IF  EXISTS rollData;
 drop table IF  EXISTS yawdata;
@@ -349,7 +351,7 @@ CREATE TABLE IF NOT EXISTS `Verdant`.`PitchCalculated` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `Verdant`.`roleCalculated`
+-- Table `Verdant`.`rollCalculated`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Verdant`.`rollCalculated` (
   rollCalculated_Id INT AUTO_INCREMENT,
@@ -367,7 +369,7 @@ CREATE TABLE IF NOT EXISTS `Verdant`.`rollCalculated` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `Verdant`.`roleCalculated`
+-- Table `Verdant`.`yawCalculated`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Verdant`.`yawCalculated` (
   yawCalculated_Id INT AUTO_INCREMENT,
@@ -379,13 +381,38 @@ CREATE TABLE IF NOT EXISTS `Verdant`.`yawCalculated` (
  PRIMARY KEY (`yawCalculated_Id`))
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
 -- View for Polar Plot
+-- -----------------------------------------------------
+
 create view vw_polardata as
 SELECT hp.test_id,case t.frequnit when 'GHz' then hp.frequency/1000 else hp.frequency end frequency ,hp.angle,hp.amplitude hamplitude, 0 vamplitude, 0 camplitude, 0 pamplitude, 0 ramplitude, 0 yamplitude
 FROM hdata hp inner join testdata t on hp.test_id=t.test_id 
 UNION All
 SELECT hp.test_id,case t.frequnit when 'GHz' then hp.frequency/1000 else hp.frequency end frequency,hp.angle,0 hamplitude,hp.amplitude vamplitude, 0 camplitude, 0 pamplitude, 0 ramplitude, 0 yamplitude
 FROM vdata hp inner join testdata t on hp.test_id=t.test_id;
+
+
+-- -----------------------------------------------------
+-- Table `Verdant`.`amplitudedata`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Verdant`.`amplitudedata` (
+  `amp_id` INT AUTO_INCREMENT NOT NULL,
+  `prodserial_id` INT NULL,
+   `frequency` DECIMAL(20,10),  
+  `ampvalue` DECIMAL(12,8) NULL,  
+  PRIMARY KEY (`amp_id`))
+ENGINE = InnoDB;
+-- -----------------------------------------------------
+-- Table `Verdant`.`phasedata`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Verdant`.`phasedata` (
+  `phase_id` INT AUTO_INCREMENT NOT NULL,
+  `prodserial_id` INT NULL,
+   `frequency` DECIMAL(20,10),  
+  `phasevalue` DECIMAL(12,8) NULL,  
+  PRIMARY KEY (`phase_id`))
+ENGINE = InnoDB;
 
 
 -- Create View axialratio_view
@@ -417,7 +444,8 @@ alter table cpdata add constraint FK_cpdata_test foreign key (Test_id) reference
 alter table vdata add constraint FK_vdata_test foreign key (Test_id) references testdata(Test_id);
 alter table hdata add constraint FK_hdata_test foreign key (Test_id) references testdata(Test_id);
 alter table FWK_USER_FAVORITE add constraint FK_UseFav_user foreign key (USER_ID) references FWK_USER(USER_ID);
-
+alter table amplitudedata add constraint fk_amplitudedata foreign key (prodserial_id) references product_serial(prodserial_id);
+alter table phasedata add constraint fk_phasedata foreign key (prodserial_id) references product_serial(prodserial_id);
 
 create index testid_freq_angle_hp on hdata(Test_id, Frequency, angle,Amplitude);
 create index testid_freq_angle_vp on vdata(Test_id, Frequency, angle,Amplitude);

@@ -1,6 +1,7 @@
 package ireveal.repository;
 import ireveal.domain.AssetTree;
 import ireveal.domain.DataLog;
+import ireveal.domain.ImportData;
 import ireveal.domain.Product;
 import ireveal.domain.ProductSerial;
 import ireveal.domain.RoleDsp;
@@ -13,6 +14,7 @@ import ireveal.domain.UserPref;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 
 
 
@@ -65,4 +67,5 @@ public interface MastersDao {
 	 public void UpdateTestFreq(List<TestFrequency> testfreqlist,int testid);
 	 
 	 public String getType(int testid);
+	 public boolean InsertAmpPhase(List<DataLog> datalist,ImportData impdata);
 }
