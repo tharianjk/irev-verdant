@@ -1121,7 +1121,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                         <list-property name="visibility">
                             <structure>
                                 <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">( (row["Hide2"]&lt;1) || ((params["deg"].value!="0d90d")  || (params["type"].value!="R")))</expression>
+                                <expression name="valueExpr" type="javascript">( (row["Hide2"]&lt;1) || ((params["deg"].value!="0d90d")))</expression>
                             </structure>
                         </list-property>
                         <list-property name="boundDataColumns">
@@ -1394,7 +1394,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                         <list-property name="visibility">
                             <structure>
                                 <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">( (row["Hide2"]&lt;1) || ((params["deg"].value=="0d90d")  || (params["type"].value!="R")))</expression>
+                                <expression name="valueExpr" type="javascript">( (row["Hide2"]&lt;1) || ((params["deg"].value=="0d90d")))</expression>
                             </structure>
                         </list-property>
                         <list-property name="boundDataColumns">
@@ -1735,7 +1735,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                         <list-property name="visibility">
                             <structure>
                                 <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">( (row["Hide"]&lt;1) || ((params["deg"].value=="0d90d")  || (params["type"].value!="P")))</expression>
+                                <expression name="valueExpr" type="javascript">( (row["Hide"]&lt;1) || ((params["deg"].value=="0d90d")  ))</expression>
                             </structure>
                         </list-property>
                         <list-property name="boundDataColumns">
@@ -2020,7 +2020,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                         <list-property name="visibility">
                             <structure>
                                 <property name="format">all</property>
-                                <expression name="valueExpr" type="javascript">( (row["Hide"]&lt;1) || ((params["deg"].value!="0d90d")  || (params["type"].value!="P")))</expression>
+                                <expression name="valueExpr" type="javascript">( (row["Hide"]&lt;1) || ((params["deg"].value!="0d90d") ))</expression>
                             </structure>
                         </list-property>
                         <list-property name="boundDataColumns">
