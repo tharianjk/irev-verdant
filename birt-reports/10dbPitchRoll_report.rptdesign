@@ -1226,7 +1226,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                 <row id="792">
                                                     <cell id="793">
                                                         <table id="794">
-                                                            <property name="dataSet">10Db_BW_BMaxR</property>
+                                                            <property name="dataSet">10Db_BW_BMax</property>
                                                             <list-property name="boundDataColumns">
                                                                 <structure>
                                                                     <property name="name">10Db_BW_BMax</property>
