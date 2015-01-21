@@ -120,7 +120,7 @@ function tabledata()
 		console.log("cancel: True");
 		
 		tabledata();
-		var url="/birt-verdant/frameset?__report=HdataVerdant_report.rptdesign";
+		var url="/birt-verdant/frameset?__report=CPGain.rptdesign";
 		console.log("url "+url);
 		window.location = url;
 	});

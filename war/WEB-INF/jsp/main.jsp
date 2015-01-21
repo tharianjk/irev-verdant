@@ -63,7 +63,11 @@ function fnsetstat(typ,msg)
 		window.frames['AppBody'].location="lineargain.htm?oper=cpg&typ="+typ+"&testid="+testid+"&atype="+atype;
 		AssetTree.monitorstat="Reports";}
 	if(typ=="od") {
-		window.frames['AppBody'].location="/birt-verdant/frameset?__report=BlobWithOutCP.rptdesign&testid="+testid;
+		if(AssetTree.selectedparenttype=="L"){
+		window.frames['AppBody'].location="/birt-verdant/frameset?__report=LinAzimuthOD.rptdesign&testid="+testid;}
+		else{
+			window.frames['AppBody'].location="/birt-verdant/frameset?__report=SlantAzimuthOD.rptdesign&testid="+testid;
+		}
 		AssetTree.monitorstat="Reports";}
 	
 	

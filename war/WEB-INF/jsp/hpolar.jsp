@@ -6,12 +6,16 @@
 <html>
 <head><title>Polar Graph</title>
 <link rel="stylesheet" type="text/css" href="irev-style.css" />
+<link rel="stylesheet" href="css/jquery-ui.css">
+		
+		<script src="js/jquery.js"></script>
+		<script src="js/jquery-ui.js"></script>
 </head>
 <body>
 <table>
  <tr>
-		<td > Frequency : </td>
-       <td width="50">
+		<td >Frequency : </td>
+       <td >
        <select id="freqid" >          
          <option value="-1">--Select--</option>      
    		 <c:forEach items="${model.freqlist}" var="freq">
@@ -29,17 +33,21 @@
           </td>
           <td>
           <div id="cp">
-          &nbsp; &nbsp;&nbsp;  <input type="checkbox" id="hdata" value="h" >HP Data &nbsp; &nbsp;&nbsp;
-       <input type="checkbox" id="vdata" value="vdata"  >VP Data  &nbsp; &nbsp;&nbsp;<td>
-       <td>Linear Gain:<input type="test" id="lg" > </td>
-       </div>
-       </td>
+          
+       <input type="checkbox" id="hdata" value="hdata" onclick="fnenable('h');">HP Data &nbsp; &nbsp;&nbsp;
+       <input type="checkbox" id="vdata" value="vdata" onclick="fnenable('v');" >VP Data  &nbsp; &nbsp;&nbsp;
+       <input type="checkbox" id="cpdata" value="cpdata" onclick="fnenable('c');" >CP Data  &nbsp; &nbsp;&nbsp;
+       Linear Gain:<input type="text" id="lg" >
+        </div> </td>
+      
        </tr>
+       </table>
+       <table>
        <tr>
-       <td >&nbsp; &nbsp;&nbsp; Max. Amplitude : </td>
+       <td > Max. Amplitude : </td>
        <td ><input id="max" value="-40">
-       <td >&nbsp; &nbsp;&nbsp; Min. Amplitude : </td>
-       <td ><input id="min"  value="-70">
+       <td > &nbsp; &nbsp;&nbsp;Min. Amplitude : </td>
+       <td ><input id="min"  value="-70"></td>
 		<td>&nbsp; &nbsp;&nbsp;<input type="button" value="Go" name="go" class="myButtonGo" onclick="Redirect()"/>
 	<!-- &nbsp; &nbsp;&nbsp;<input type="button" value="back" name="go" class="myButtonGo" onclick="back()"/> -->
 		</td>
@@ -50,12 +58,25 @@
 marginwidth="0" marginheight="0" align="right" class="AppBody"> 
 </iframe>
 
-</body>
-
-
-
 <script type="text/javascript">
 var typ="${model.atype}";
+function fnenable(ctyp){
+	console.log("checked");
+	if(ctyp=='c'){
+	if(document.getElementById("cpdata").checked){
+		document.getElementById("hdata").checked=false;
+		document.getElementById("vdata").checked=false;
+	}
+}
+	else{
+	if(document.getElementById("hdata").checked){
+		document.getElementById("cpdata").checked=false;
+	}
+	if(document.getElementById("vdata").checked){
+		document.getElementById("cpdata").checked=false;
+	}
+	}
+}
 
 $(document).ready(function(){
 	if(typ=="P" || typ=="R" || typ=="Y")
@@ -72,13 +93,14 @@ $(document).ready(function(){
 	}
 	function Redirect(){
 		//alert("go clicked");
+		var testid="${model.testid}";
 		var freqid =document.getElementById("freqid").value;	
 		var max =document.getElementById("max").value;
 		var min =document.getElementById("min").value;
 		var lg=document.getElementById("lg").value;
 		if(lg=="" || lg==null || lg=="null")
-			lg=0;
-		var testid='${model.testid}';
+			{lg=0;}
+		
 		if((document.getElementById("hdata").checked) && (document.getElementById("vdata").checked))
 		{
 		typ="B";
@@ -87,6 +109,8 @@ $(document).ready(function(){
 		{typ="H";}
 		else if (document.getElementById("vdata").checked)
 			{typ="V";}
+		else if (document.getElementById("cpdata").checked)
+		{typ="C";}
 
 		var url="/birt-verdant/frameset?__report=PolarGeneric.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min+"&lg="+lg;
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
@@ -97,5 +121,5 @@ $(document).ready(function(){
 		window.frames['AppBody'].location=url;
 		 }
 </script>
-
+</body>
 </html>

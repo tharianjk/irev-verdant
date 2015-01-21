@@ -92,7 +92,7 @@ public class TestFreqController implements Controller{
 	    }
 
 
-		return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=HdataVerdant_report.rptdesign"));
+		return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=CPGain.rptdesign&testid="+testid));
 		}
 	}
 	
