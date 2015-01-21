@@ -23,6 +23,7 @@ import java.util.Date;
 import java.text.DateFormat;
 
 import ireveal.domain.Product;
+import ireveal.domain.TestData;
 import ireveal.domain.TestFrequency;
 import ireveal.service.MastersService;
 
@@ -95,7 +96,7 @@ public class ToolsController implements Controller {
         	}
 			else if (operstr.contains("hpolar")){
         		logger.info("*** hpolar ** testid "+testid);
-        		Product pd=mastersservice.getProduct(Integer.parseInt(testid));
+        		TestData pd=mastersservice.getTestData(Integer.parseInt(testid));
         		String ptype=pd.getPtype();
         		if(atype.equals("E") && ptype.equals("L") )
         		{
@@ -112,7 +113,7 @@ public class ToolsController implements Controller {
                 return new ModelAndView("hpolar", "model", myModel);        	
         	}
 			else if (operstr.contains("db")){
-				Product pd=mastersservice.getProduct(Integer.parseInt(testid));
+				TestData pd=mastersservice.getTestData(Integer.parseInt(testid));
         		String ptype=pd.getPtype();
         		if(atype.equals("E") && ptype.equals("L") )
         		{
@@ -121,7 +122,7 @@ public class ToolsController implements Controller {
 				//String ptype="L";
 				
 				String typ = request.getParameter("typ");
-        		logger.info("*** db ** testid "+testid);
+        		logger.info("*** db ** testid= "+testid +" atype= "+atype);
         		myModel.put("atype",atype);
        		    myModel.put("testid",testid);
        		    myModel.put("typ",typ);
