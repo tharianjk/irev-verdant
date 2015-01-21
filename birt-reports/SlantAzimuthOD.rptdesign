@@ -159,10 +159,10 @@
                     <property name="nativeDataType">3</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[ SELECT distinct case t.frequnit when 'GHz' then ar.frequency/1000 else ar.frequency end frequency,t.frequnit,ar.OmniDeviation as Homni,vc.OmniDeviation as VOmni
+            <xml-property name="queryText"><![CDATA[SELECT  distinct (case t.frequnit when 'GHz' then ar.frequency/1000 else ar.frequency end) frequency,t.frequnit,ar.OmniDeviation as Homni,vc.OmniDeviation as VOmni
 FROM hcalculated ar
 inner join testdata t on ar.test_id=t.test_id
-inner join vcalculated vc on vc.Test_id=t.Test_id  where ar.Test_id=? and ar.OmniDeviation is not null and vc.OmniDeviation is not null]]></xml-property>
+inner join vcalculated vc on vc.Frequency=ar.Frequency  where t.Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
