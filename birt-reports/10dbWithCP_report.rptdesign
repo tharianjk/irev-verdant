@@ -168,7 +168,7 @@
   </design:ResultSets>
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
-        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="fq" id="464">
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="fq10dbwithCP" id="464">
             <list-property name="computedColumns">
                 <structure>
                     <property name="name">Hide</property>
@@ -704,7 +704,7 @@ from cpcalculated where Test_id=?]]></xml-property>
     </page-setup>
     <body>
         <grid id="635">
-            <property name="dataSet">fq</property>
+            <property name="dataSet">fq10dbwithCP</property>
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
@@ -748,7 +748,7 @@ from cpcalculated where Test_id=?]]></xml-property>
             <property name="borderTopStyle">solid</property>
             <property name="borderTopWidth">medium</property>
             <property name="canShrink">true</property>
-            <property name="dataSet">fq</property>
+            <property name="dataSet">fq10dbwithCP</property>
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
@@ -797,7 +797,7 @@ from cpcalculated where Test_id=?]]></xml-property>
                                     <row id="569">
                                         <cell id="570">
                                             <table id="571">
-                                                <property name="dataSet">fq</property>
+                                                <property name="dataSet">fq10dbwithCP</property>
                                                 <list-property name="boundDataColumns">
                                                     <structure>
                                                         <property name="name">Frequency</property>
@@ -1114,7 +1114,7 @@ from cpcalculated where Test_id=?]]></xml-property>
             <property name="borderTopStyle">solid</property>
             <property name="borderTopWidth">medium</property>
             <property name="canShrink">true</property>
-            <property name="dataSet">fq</property>
+            <property name="dataSet">fq10dbwithCP</property>
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
@@ -1163,7 +1163,7 @@ from cpcalculated where Test_id=?]]></xml-property>
                                     <row id="659">
                                         <cell id="660">
                                             <table id="661">
-                                                <property name="dataSet">fq</property>
+                                                <property name="dataSet">fq10dbwithCP</property>
                                                 <list-property name="boundDataColumns">
                                                     <structure>
                                                         <property name="name">Frequency</property>
