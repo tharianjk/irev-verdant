@@ -559,6 +559,7 @@
             <row id="837">
                 <cell id="838">
                     <label id="839">
+                        <property name="fontSize">medium</property>
                         <property name="fontWeight">bold</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">medium</property>
@@ -605,6 +606,7 @@
                 <cell id="767"/>
                 <cell id="768">
                     <label id="789">
+                        <property name="fontSize">medium</property>
                         <property name="fontWeight">bold</property>
                         <property name="textAlign">center</property>
                         <text-property name="text">Back Lobe Level (dB)</text-property>
@@ -627,6 +629,7 @@
                         <row id="567">
                             <cell id="568">
                                 <label id="581">
+                                    <property name="fontSize">medium</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="textAlign">center</property>
                                     <text-property name="text">Spot Frequency</text-property>
@@ -661,6 +664,7 @@
                                                     <row id="820">
                                                         <cell id="821">
                                                             <data id="834">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="resultSetColumn">frequnit</property>
                                                             </data>
                                                         </cell>
@@ -670,6 +674,7 @@
                                                     <row id="822">
                                                         <cell id="823">
                                                             <data id="833">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">Frequency</property>
                                                             </data>
@@ -705,6 +710,7 @@
                         <row id="775">
                             <cell id="776">
                                 <label id="812">
+                                    <property name="fontSize">medium</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="textAlign">center</property>
                                     <text-property name="text">HP</text-property>
@@ -712,6 +718,7 @@
                             </cell>
                             <cell id="777">
                                 <label id="813">
+                                    <property name="fontSize">medium</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="textAlign">center</property>
                                     <text-property name="text">VP</text-property>
@@ -748,6 +755,7 @@
                                                     <row id="795">
                                                         <cell id="796">
                                                             <data id="801">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">BackLobe</property>
                                                             </data>
@@ -793,6 +801,7 @@
                                                     <row id="805">
                                                         <cell id="806">
                                                             <data id="811">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">BackLobe</property>
                                                             </data>

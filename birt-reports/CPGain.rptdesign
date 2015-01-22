@@ -418,6 +418,7 @@ where CP.Test_id=? and lineargain is not null and CPGain is not null]]></xml-pro
             <row id="865">
                 <cell id="866">
                     <label id="839">
+                        <property name="fontSize">medium</property>
                         <property name="fontWeight">bold</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">medium</property>
@@ -470,16 +471,19 @@ where CP.Test_id=? and lineargain is not null and CPGain is not null]]></xml-pro
                             <row id="841">
                                 <cell id="842">
                                     <data id="862">
+                                        <property name="fontSize">small</property>
                                         <property name="resultSetColumn">frequnit</property>
                                     </data>
                                 </cell>
                                 <cell id="843">
                                     <label id="856">
+                                        <property name="fontSize">small</property>
                                         <text-property name="text">Linear Gain (dB)</text-property>
                                     </label>
                                 </cell>
                                 <cell id="844">
                                     <label id="858">
+                                        <property name="fontSize">small</property>
                                         <text-property name="text">CP Gain (dBic)</text-property>
                                     </label>
                                 </cell>
@@ -489,18 +493,21 @@ where CP.Test_id=? and lineargain is not null and CPGain is not null]]></xml-pro
                             <row id="845">
                                 <cell id="846">
                                     <data id="861">
+                                        <property name="fontSize">small</property>
                                         <property name="textAlign">center</property>
                                         <property name="resultSetColumn">Frequency</property>
                                     </data>
                                 </cell>
                                 <cell id="847">
                                     <data id="870">
+                                        <property name="fontSize">small</property>
                                         <property name="textAlign">center</property>
                                         <property name="resultSetColumn">lineargain</property>
                                     </data>
                                 </cell>
                                 <cell id="848">
                                     <data id="869">
+                                        <property name="fontSize">small</property>
                                         <property name="textAlign">center</property>
                                         <property name="resultSetColumn">CPGain</property>
                                     </data>
