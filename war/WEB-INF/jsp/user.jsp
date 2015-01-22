@@ -15,35 +15,7 @@
 </head>
 <body>
 <script>
-function fnCheck()
-{
-var usrname=document.getElementById("username").value;
-   console.log("usrname: "+ usrname);
-var urls = '/ireveal-base/MWAPI/validateuser/'+$("#username" ).val();
-			$.ajax({
-				type: "GET",
-				url: urls,
-				error: function(XMLHttpRequest, textStatus, errorThrown)  {
-							alert("An error has occurred making the request: " + errorThrown)
-						},
-				success : function(response) {
-                console.log("Success-usr: "+ response);
-				if(response=='1')
-				{
-		        document.getElementById("btnreg").disabled = true;
-				$( "#usrvalidate" ).dialog({
-				height: 200,
-				width: 300,
-				modal: true				
-				});	
-				}
-				else
-				{
-				document.getElementById("btnreg").disabled = false;
-				}
-				},				
-			});
-}
+
 </script>
 <div id="pageHdr">
 	<fmt:message key="User.heading"/>
@@ -55,7 +27,7 @@ var urls = '/ireveal-base/MWAPI/validateuser/'+$("#username" ).val();
   <table bgcolor="f8f8ff" border="1" cellspacing="1" cellpadding="2">
     <tr>
 		<td> UserName :</td>
-		<td>	<form:input id="username" path="username" maxlength="20" required="required" onchange="fnCheck();"/>    </td>
+		<td>	<form:input id="username" path="username" maxlength="20" required="required" />    </td>
 	</tr>
 	<tr>
 		<td> Password :</td>
@@ -76,11 +48,11 @@ var urls = '/ireveal-base/MWAPI/validateuser/'+$("#username" ).val();
 	</tr>
 	<tr>
 		<td>Mobile no.</td>
-		<td><form:input type="number" path="mobileno" required="required" maxlength="20"  /></td>
+		<td><form:input type="number" path="mobileno"  maxlength="20"  /></td>
 	</tr>
 	<tr>
 		<td>E-Mail</td>
-		<td><form:input type="email" path="email" required="required" maxlength="50" /></td>
+		<td><form:input type="email" path="email"  maxlength="50" /></td>
 	</tr>
 	<!-- <tr>
 		<td> Current Role</td>

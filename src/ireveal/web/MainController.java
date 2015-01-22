@@ -4,13 +4,16 @@ import org.springframework.web.servlet.mvc.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
 
+
 import ireveal.domain.EncryptDecrypt;
 import ireveal.domain.RoleDsp;
 import ireveal.domain.UserPref;
 import ireveal.service.MastersService;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -90,7 +93,11 @@ private String precision; // Holds the precision for value in monitor
         	return new ModelAndView("403", "model", myModel);
         }
        
-		
+        if (requri.contains("dropdown")){
+        	String prodid = request.getParameter("prodid");
+        	
+        	return new ModelAndView("dropdown", "model", myModel);
+        }
 		// User has been successfully authenticated. Log her last login date
 		 if (requri.contains("start")){
         	User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();

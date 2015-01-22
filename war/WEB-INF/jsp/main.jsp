@@ -69,7 +69,9 @@ function fnsetstat(typ,msg)
 			window.frames['AppBody'].location="/birt-verdant/frameset?__report=SlantAzimuthOD.rptdesign&testid="+testid;
 		}
 		AssetTree.monitorstat="Reports";}
-	
+	if(typ=="apt") {
+		window.frames['AppBody'].location="ampphaserpt.htm?oper=ampphaseview&typ="+typ+"&testid="+testid+"&atype="+atype;
+		AssetTree.monitorstat="Reports";}
 	
 }
 function fnHomeClick()
@@ -193,6 +195,7 @@ dialog.dialog( "open" );
 				<li id="blobe" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('blobe');">Back-lobe</a> </li>
 				<li id="ar" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('ar');">Axial Ratio</a> </li>
 				<li id="cpg" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('cpg');">CP Gain</a> </li>
+				<li id="apt" ><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('apt');">Amplitude & Phase Tracking</a> </li>
 			</ul>
 		
 		</li>

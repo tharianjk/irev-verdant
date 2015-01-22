@@ -12,6 +12,8 @@ import java.util.List;
 
 
 
+import java.util.Map;
+
 import ireveal.domain.AssetTree;
 import ireveal.domain.DataLog;
 import ireveal.domain.ImportData;
@@ -61,5 +63,6 @@ public interface MastersService {
 		 public void UpdateTestFreq(List<TestFrequency> testfreqlist,int testid);
 		 public String getType(int testid);
 		 public boolean InsertAmpPhase(List<DataLog> datalist,ImportData impdata);
+		 public Map<String, Object> GetAmpPhaseValue(String prodserids,String typ);
 		 
 } 

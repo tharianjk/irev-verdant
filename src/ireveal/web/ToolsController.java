@@ -1,6 +1,7 @@
 package ireveal.web;
 
 import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletException;
@@ -57,7 +58,7 @@ public class ToolsController implements Controller {
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ParseException {
     	
-        logger.info("*** Inside Tools controller "+request.getParameter("testid"));
+        logger.info("*** Inside Tools controller "+request.getParameter("oper"));
         Calendar cal = Calendar.getInstance();
      	Date curTime = cal.getTime();
      	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -91,6 +92,7 @@ public class ToolsController implements Controller {
         		 //myModel.put("freqlist", this.mastersservice.getFreqList(Integer.parseInt(testid)));
         		 myModel.put("testid",testid);
         		 myModel.put("strfreqs",strfreqs);
+        		 myModel.put("freqlist",freqlist);
         		 myModel.put("atype",atype);
                 return new ModelAndView("reportset", "model", myModel);        	
         	}
@@ -135,9 +137,26 @@ public class ToolsController implements Controller {
        		 myModel.put("testid",testid);
        		 myModel.put("typ",typ);
        		 myModel.put("atype",atype);
-             return new ModelAndView("ar", "model", myModel);        	
-       	}
+             return new ModelAndView("ar", "model", myModel);   
+             
+       	    }
+			else if (operstr.contains("ampphase")){
+				
+        		logger.info("*** ampphase ** ");
+       
+       		 myModel.put("prodlist",mastersservice.getProductList());
+       		
+             return new ModelAndView("ampphaserpt", "model", myModel);   
+             
+       	    }
+			else if (operstr.contains("ampphaseview")){
+				String typ = request.getParameter("typ");
+				String prodseriallist = request.getParameter("prodseriallist");
+        		logger.info("*** ampphase ** typ "+typ+" prodseriallist "+prodseriallist);    
+       		
+             return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=CPGain.rptdesign&testid="+testid)); 
 			        }
+        }
         logger.info("*** not able to identify tools options!!**");
         return new ModelAndView("setup", "model", myModel);
     }

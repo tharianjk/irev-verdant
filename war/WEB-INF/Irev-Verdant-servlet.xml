@@ -70,7 +70,9 @@
    
     </bean>
    
-
+   <bean name="/dropdown.htm" class="ireveal.web.MainController">
+		<property name="mastersManager" ref="mastersManager"/>
+    </bean>
     <bean name="/start.htm" class="ireveal.web.MainController">
 		    <property name="mastersManager" ref="mastersManager"/>
     </bean>
@@ -84,6 +86,9 @@
 
 	<bean name="/tools.htm" class="ireveal.web.ToolsController">
         
+         <property name="mastersManager" ref="mastersManager"/>
+    </bean>
+    <bean name="/ampphaserpt.htm" class="ireveal.web.ToolsController">        
          <property name="mastersManager" ref="mastersManager"/>
     </bean>
     <bean name="/reportset.htm" class="ireveal.web.ToolsController">        

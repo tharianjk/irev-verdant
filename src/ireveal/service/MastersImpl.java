@@ -1,6 +1,7 @@
 package ireveal.service;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import ireveal.repository.MastersDao;
 import ireveal.domain.AssetTree;
@@ -143,6 +144,10 @@ public String getType(int testid) {
 @Override
 public boolean InsertAmpPhase(List<DataLog> datalist, ImportData impdata) {
 	return mastersdao.InsertAmpPhase(datalist,impdata);
+}
+@Override
+public Map<String, Object> GetAmpPhaseValue(String prodserids, String typ) {
+	return mastersdao.GetAmpPhaseValue(prodserids,typ);
 }
 
 

@@ -52,7 +52,7 @@ public class JdbcSetupDao extends JdbcDaoSupport implements SetupDao {
     	final String SQL_SEL_USR = "select u.user_id, u.username, u.password, u.b_enabled, r.rolename,u.mobilno,u.email,ur.role_id , u.dt_lastlogin"+
     								" from fwk_user u, fwk_role r,  fwk_user_role ur "+
     								" where u.user_id = ur.user_id and ur.role_id = r.role_id and r.rolename <> 'ROLE_USER' and r.company_id=?" ;
-        logger.info("Getting users! SQL_SEL_USR" +SQL_SEL_USR);
+       // logger.info("Getting users! SQL_SEL_USR" +SQL_SEL_USR);
         List<User> users = getJdbcTemplate().query(SQL_SEL_USR,  new UserMapper(),compid );
         return users;
     }
@@ -171,10 +171,10 @@ public class JdbcSetupDao extends JdbcDaoSupport implements SetupDao {
     	int compid =1;
    	    List<RoleDsp> rle =getRoleDtls();
         compid=rle.get(0).getCompanyid();
-        final String SQL_SEL_ROLE = "select r.role_id, r.rolename,r.utility_id,r.b_monitor,r.b_reports,r.b_events,r.b_tools,r.b_settings,u.utility from fwk_role r "+
-        "left join ems_utility u on r.utility_id=u.utility_id  where r.company_id=? and rolename not in ('ROLE_USER')";
+        final String SQL_SEL_ROLE = "select r.role_id, r.rolename,r.b_reports,r.b_settings from fwk_role r "+
+        "  where  rolename not in ('ROLE_USER')";
      	logger.info("Getting roles!");
-     	List<RoleDsp> roles = getJdbcTemplate().query(SQL_SEL_ROLE, new  RoleDtlsMapper(),compid);
+     	List<RoleDsp> roles = getJdbcTemplate().query(SQL_SEL_ROLE, new  RoleDtlsMapper());
      	return roles;
     }
 
@@ -230,12 +230,10 @@ public class JdbcSetupDao extends JdbcDaoSupport implements SetupDao {
     	
    	    List<RoleDsp> rle =getRoleDtls();
         final int compid=rle.get(0).getCompanyid();
-        final String SQL_INS_ROLE = "insert into fwk_role (rolename,company_id,b_reports,b_events,b_tools,b_settings) values (?,?,?,?,?,?)";
+        final String SQL_INS_ROLE = "insert into fwk_role (rolename,company_id,b_reports,b_settings) values (?,?,?,?)";
 
         final String rolename = role.getRolename();        
-        final String breports = (role.getBln_reports()==true)?"true":"false";
-        final String bevents = (role.getBln_events()==true)?"true":"false";
-        final String btools = (role.getBln_tools()==true)?"true":"false";
+        final String breports = (role.getBln_reports()==true)?"true":"false";       
         final String bsettings = (role.getBln_settings()==true)?"true":"false";
         
       	logger.info("JdbcSetupDao: Going to create role:"+rolename);
@@ -247,10 +245,8 @@ public class JdbcSetupDao extends JdbcDaoSupport implements SetupDao {
     	                connection.prepareStatement(SQL_INS_ROLE, new String[] {"ROLE_ID"});
     	            ps.setString(1, rolename);
     	            ps.setInt(2, compid);    	          
-    	            ps.setString(3, breports);
-    	            ps.setString(4, bevents);
-    	            ps.setString(5, btools);
-    	            ps.setString(6, bsettings);
+    	            ps.setString(3, breports);    	          
+    	            ps.setString(4, bsettings);
     	            return ps;
     	        }
     	    },
@@ -272,8 +268,8 @@ public class JdbcSetupDao extends JdbcDaoSupport implements SetupDao {
     * @return RoleDsp object
     */        
     public RoleDsp getRole(String roleid_s){
-    	final String SQL_SEL_ROLE = "select r.role_id, r.rolename,r.b_reports,r.b_events,r.b_tools,r.b_settings,u.utility from fwk_role r "+
-    	        "left join ems_utility u on r.utility_id=u.utility_id  where role_id = ?";
+    	final String SQL_SEL_ROLE = "select r.role_id, r.rolename,r.b_reports,r.b_settings from fwk_role r "+
+    	        " where role_id = ?";
       	logger.info("JdbcSetupDao: Getting details of role:"+roleid_s);
       	if (roleid_s.length() == 0){
       		logger.info("JdbcSetupDao: ERRROR: roleid is null!!"); 
@@ -526,14 +522,7 @@ public class JdbcSetupDao extends JdbcDaoSupport implements SetupDao {
                 role.setBln_reports((rs.getString("B_REPORTS").equals("true"))?true:false);
 		            }
 		            catch(Exception e){role.setBln_reports(false);}
-                try{
-                role.setBln_events((rs.getString("B_EVENTS").equals("true"))?true:false);
-		        }
-		        catch(Exception e){role.setBln_events(false);}
-		        try{
-		                role.setBln_tools((rs.getString("B_TOOLS").equals("true"))?true:false);   
-		        }
-		        catch(Exception e){role.setBln_tools(false);}
+               
                 try{
                 role.setBln_settings((rs.getString("B_SETTINGS").equals("true"))?true:false); 
 				}

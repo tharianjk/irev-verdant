@@ -261,7 +261,8 @@ $(document).ready( function () {
 	 if(testid!="" && testid!=null && testid !='null')
 		{
 		 console.log("testid "+testid);
-		document.getElementById("tblmain").disabled=true;
+		 $('#tblmain').find('input, textarea, button, select,checkbox').attr('disabled',true);
+			
 		}
 	
 } );

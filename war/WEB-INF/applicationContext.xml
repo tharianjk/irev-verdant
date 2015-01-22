@@ -21,7 +21,9 @@
     <bean id="mastersDao" class="ireveal.repository.JdbcMastersDao">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-
+    <bean id="DataDao" class="ireveal.repository.JdbcDataDao">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
 
     <bean id="setupManager" class="ireveal.service.SetupManagerImpl">
         <property name="setupDao" ref="setupDao"/>

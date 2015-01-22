@@ -60,12 +60,7 @@ function RedirectCancel(){
 			<tr>
 		<td> <form:checkbox path="bln_reports" value="${map.RoleDsp.bln_reports}" />Reports</td>
 		</tr>
-			<tr>
-		<td> <form:checkbox path="bln_events" value="${map.RoleDsp.bln_events}"/>Events</td>
-		</tr>
-			<tr>
-		<td> <form:checkbox path="bln_tools" value="${map.RoleDsp.bln_tools}"/>Tools</td>
-		</tr>
+			
 			<tr>
 		<td> <form:checkbox path="bln_settings" value="${map.RoleDsp.bln_settings}"/>Settings</td>
 		</tr>

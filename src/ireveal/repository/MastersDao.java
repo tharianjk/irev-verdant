@@ -26,6 +26,8 @@ import java.util.List;
 
 
 
+import java.util.Map;
+
 import ireveal.domain.User;
 
 public interface MastersDao { 
@@ -68,4 +70,5 @@ public interface MastersDao {
 	 
 	 public String getType(int testid);
 	 public boolean InsertAmpPhase(List<DataLog> datalist,ImportData impdata);
+	 public Map<String, Object> GetAmpPhaseValue(String prodserids,String typ);
 }

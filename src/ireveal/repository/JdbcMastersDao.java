@@ -15,18 +15,25 @@ import ireveal.domain.User;
 import ireveal.domain.UserPref;
 import ireveal.repository.JdbcAssetTreeDao.RoleMapper;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ArrayList;  
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.CallableStatementCreator;
 import org.springframework.jdbc.core.JdbcTemplate;  
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.SqlOutParameter;
+import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -844,6 +851,45 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 					   return false;
 				   }
 			   }
+			   @Autowired
+				private JdbcTemplate jdbcTemplate;
+
+				@Override
+				public Map<String, Object> GetAmpPhaseValue(String prodserids,String typ) {
+					
+										
+					// TO use CallableStatementCreator below is the code
+					SqlParameter myProdSerialList = new SqlParameter(Types.VARCHAR);
+					SqlParameter amp_or_phase = new SqlParameter(Types.VARCHAR);
+					SqlOutParameter maxDiff = new SqlOutParameter("maxDiff", Types.DECIMAL);
+					SqlOutParameter maxFreq = new SqlOutParameter("maxFreq", Types.DECIMAL);
+					
+					List<SqlParameter> paramList = new ArrayList<SqlParameter>();
+					paramList.add(myProdSerialList);
+					paramList.add(amp_or_phase);
+					paramList.add(maxDiff);
+					paramList.add(maxFreq);
+
+					final String procedureCall = "{call calc_tracking(?, ?,?,?)}";
+					final String pserids=prodserids;
+					final String amporphase=typ;
+					Map<String, Object> resultMap = jdbcTemplate.call(new CallableStatementCreator() {
+
+								@Override
+								public CallableStatement createCallableStatement(Connection connection) throws SQLException {
+
+									CallableStatement callableStatement = connection.prepareCall(procedureCall);
+									callableStatement.setString(1, pserids);
+									callableStatement.setString(2, amporphase);
+									callableStatement.registerOutParameter(3, Types.DECIMAL);
+									callableStatement.registerOutParameter(4, Types.DECIMAL);
+									return callableStatement;
+
+								}
+							}, paramList);
+					logger.info("Return out value:"+resultMap.get("myProdSerialList"));
+					return resultMap;
+				}
    
   }
 
