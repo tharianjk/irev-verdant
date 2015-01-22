@@ -47,7 +47,7 @@
         </oda-data-source>
     </data-sources>
     <data-sets>
-        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="fq" id="464">
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="fqBlobe" id="464">
             <list-property name="computedColumns">
                 <structure>
                     <property name="name">Hide</property>
@@ -413,7 +413,7 @@
     </page-setup>
     <body>
         <grid id="635">
-            <property name="dataSet">fq</property>
+            <property name="dataSet">fqBlobe</property>
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
@@ -449,7 +449,7 @@
         </grid>
         <grid id="835">
             <property name="canShrink">true</property>
-            <property name="dataSet">fq</property>
+            <property name="dataSet">fqBlobe</property>
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
@@ -493,7 +493,7 @@
             <property name="borderTopStyle">solid</property>
             <property name="borderTopWidth">thin</property>
             <property name="canShrink">true</property>
-            <property name="dataSet">fq</property>
+            <property name="dataSet">fqBlobe</property>
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
@@ -549,7 +549,7 @@
                                     <row id="831">
                                         <cell id="832">
                                             <table id="819">
-                                                <property name="dataSet">fq</property>
+                                                <property name="dataSet">fqBlobe</property>
                                                 <list-property name="boundDataColumns">
                                                     <structure>
                                                         <property name="name">frequnit</property>
