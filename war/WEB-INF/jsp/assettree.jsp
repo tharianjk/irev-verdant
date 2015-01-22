@@ -568,7 +568,7 @@ function recreatewithparents()
        			 editItem: { // The "rename" menu item
                    label: "Edit Serial No.",
                    action: function(response) {
-                	   var url = '<%=request.getContextPath()%>/testimport.htm?id='+ node.attr('assetId') ;
+                	   var url = '<%=request.getContextPath()%>/productserial.htm?prodserid='+ node.attr('assetId') ;
                        parent.frames['AppBody'].location = url;
                              }
                },
