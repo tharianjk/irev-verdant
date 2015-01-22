@@ -12,7 +12,7 @@ drop procedure if exists calc_MaxDiffAxialRatio;
 drop procedure if exists calc_Slant_Azimuth;
 drop procedure if exists calc_Slant_Elevation;
 drop procedure if exists convert_to_CP;
-
+drop procedure if exists calc_tracking;
 drop function if exists calc_AxialRatio;
 drop function if exists calc_backlobe;
 drop function if exists calc_cpdata;
@@ -1074,3 +1074,40 @@ end if;
 
 END $$
 DELIMITER ;
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE  PROCEDURE `calc_tracking`(
+myProdSerialList varchar(200), -- eg: "1,2,3,4"
+amp_or_phase char(1), -- 'A' = amp, 'P' = phase
+out maxDiff decimal(20,10),
+out maxFreq decimal(20,10)
+)
+BEGIN
+
+if amp_or_phase = 'A' then
+
+select  (MAX(ampvalue)-MIN(ampvalue))/2 diff, frequency 
+into maxDiff,maxFreq
+from amplitudedata
+where find_in_set(prodserial_id, myProdSerialList) >0
+group by frequency
+order by diff desc
+LIMIT 1;
+
+else
+
+select  (MAX(phasevalue)-MIN(phasevalue))/2 diff, frequency 
+into maxDiff,maxFreq
+from phasedata
+where find_in_set(prodserial_id, myProdSerialList) >0
+group by frequency
+order by diff desc
+LIMIT 1;
+
+end if;
+END $$
