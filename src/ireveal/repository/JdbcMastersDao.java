@@ -873,7 +873,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 					final String procedureCall = "{call calc_tracking(?, ?,?,?)}";
 					final String pserids=prodserids;
 					final String amporphase=typ;
-					Map<String, Object> resultMap = jdbcTemplate.call(new CallableStatementCreator() {
+					Map<String, Object> resultMap = getJdbcTemplate().call(new CallableStatementCreator() {
 
 								@Override
 								public CallableStatement createCallableStatement(Connection connection) throws SQLException {

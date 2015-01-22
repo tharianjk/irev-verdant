@@ -152,7 +152,7 @@ public class ToolsController implements Controller {
 			else if (operstr.contains("viewaptracking")){
 				String typ = request.getParameter("typ");
 				String prodseriallist = request.getParameter("prodseriallist");
-				//Map<String, Object> resultset=mastersservice.GetAmpPhaseValue(prodseriallist,typ);
+				Map<String, Object> resultset=mastersservice.GetAmpPhaseValue(prodseriallist,typ);
 				//logger.info("Return out value:"+resultset.get("maxDiff"));
         		logger.info("*** ampphase ** typ "+typ+" prodseriallist "+prodseriallist);    
        		
