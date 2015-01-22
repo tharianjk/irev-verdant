@@ -100,8 +100,10 @@ var typ="";
 		document.getElementById("chktbl").innerHTML="";
 	}
 	function Redirect(){
-		
+		if(document.getElementById("chktbl").innerHTML !="")
+			 Add();
 		typ=document.getElementById("typ").value;
+		
 		if(typ=="" || prodserids=="")
 			{
 			alert("Please select mandatory fields!");
