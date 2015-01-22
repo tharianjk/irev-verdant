@@ -181,10 +181,10 @@ dialog.dialog( "open" );
 <div id="menubar">
  <nav>
 	<ul>
-	
-	<li><a rel="reportset" class="menuarray" TARGET="AppBody" onclick="fnsetstat('rset');"><b>Report Set</b></a>
-			
-		</li>
+	<c:if test="${model.blntools eq 'true'}">
+	<li><a rel="reportset" class="menuarray" TARGET="AppBody" onclick="fnsetstat('rset');"><b>Report Set</b></a></li>
+	</c:if>
+	<c:if test="${model.blnreports eq 'true'}">
 		<li><a href="#"><b>Reports</b></a>
 		
 			<ul>
@@ -199,8 +199,8 @@ dialog.dialog( "open" );
 			</ul>
 		
 		</li>
-		
-		
+		</c:if>
+		<c:if test="${model.blnsettings eq 'true'}">
 		<li><a href="#"><b>Settings</b></a>
 				<ul>
 					<li><a href="#">System</a><ul>											
@@ -210,7 +210,7 @@ dialog.dialog( "open" );
 					<li><a href="setup.htm?oper=role" onclick="fnsetstat('Settings');" TARGET="AppBody">Manage Roles</a></li>						
 				</ul>
 		</li>
-		
+		</c:if>
 	</ul>
 </nav>
 </div>

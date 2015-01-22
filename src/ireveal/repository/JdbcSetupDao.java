@@ -4,6 +4,7 @@ package ireveal.repository;
 import ireveal.domain.RoleDsp;
 import ireveal.domain.User;
 import ireveal.domain.UserPref;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Connection;
@@ -171,7 +172,7 @@ public class JdbcSetupDao extends JdbcDaoSupport implements SetupDao {
     	int compid =1;
    	    List<RoleDsp> rle =getRoleDtls();
         compid=rle.get(0).getCompanyid();
-        final String SQL_SEL_ROLE = "select r.role_id, r.rolename,r.b_reports,r.b_settings from fwk_role r "+
+        final String SQL_SEL_ROLE = "select r.role_id, r.rolename,r.b_reports,r.b_settings,b_tools from fwk_role r "+
         "  where  rolename not in ('ROLE_USER')";
      	logger.info("Getting roles!");
      	List<RoleDsp> roles = getJdbcTemplate().query(SQL_SEL_ROLE, new  RoleDtlsMapper());
@@ -197,29 +198,6 @@ public class JdbcSetupDao extends JdbcDaoSupport implements SetupDao {
 
     
     /**
-     * 
-     * Assign sections to specified role 
-     *
-     * @param  role_id, section-list
-     * @return 
-     */    
-    public boolean assignAssets(int role_id, String[] seclst){
-    	int compid =1;
-   	    List<RoleDsp> rle =getRoleDtls();
-        compid=rle.get(0).getCompanyid();
-        final String SQL_INS_ROLESEC = "insert into fwk_role_asset (role_id, assettree_id) values (?,?) ";    
-        final String SQL_SEL_SECTIONID = "select assettree_id from fwk_assettree where displayname = ? and company_id= ?";
-      	logger.info("JdbcSetupDao: Going to assign assets to role-ID:"+role_id+" seclst.length "+seclst.length);
-      	JdbcTemplate jdt = getJdbcTemplate();
-    	for (int i=0; i<seclst.length; i++){
-    		logger.info(" Inserting section = "+seclst[i]);
-    		int secid = jdt.queryForInt(SQL_SEL_SECTIONID, seclst[i],compid);
-    		jdt.update(SQL_INS_ROLESEC, role_id, secid);
-    	}
-    	return true;
-    }
-    
-    /**
     * 
     * Save a new role and associated sections 
     *
@@ -230,12 +208,12 @@ public class JdbcSetupDao extends JdbcDaoSupport implements SetupDao {
     	
    	    List<RoleDsp> rle =getRoleDtls();
         final int compid=rle.get(0).getCompanyid();
-        final String SQL_INS_ROLE = "insert into fwk_role (rolename,company_id,b_reports,b_settings) values (?,?,?,?)";
+        final String SQL_INS_ROLE = "insert into fwk_role (rolename,company_id,b_reports,b_settings,b_tools) values (?,?,?,?,?)";
 
         final String rolename = role.getRolename();        
         final String breports = (role.getBln_reports()==true)?"true":"false";       
         final String bsettings = (role.getBln_settings()==true)?"true":"false";
-        
+        final String btools = (role.getBln_tools()==true)?"true":"false";
       	logger.info("JdbcSetupDao: Going to create role:"+rolename);
     	KeyHolder keyHolder = new GeneratedKeyHolder();
     	getJdbcTemplate().update(
@@ -247,6 +225,7 @@ public class JdbcSetupDao extends JdbcDaoSupport implements SetupDao {
     	            ps.setInt(2, compid);    	          
     	            ps.setString(3, breports);    	          
     	            ps.setString(4, bsettings);
+    	            ps.setString(5, btools);
     	            return ps;
     	        }
     	    },
@@ -268,7 +247,7 @@ public class JdbcSetupDao extends JdbcDaoSupport implements SetupDao {
     * @return RoleDsp object
     */        
     public RoleDsp getRole(String roleid_s){
-    	final String SQL_SEL_ROLE = "select r.role_id, r.rolename,r.b_reports,r.b_settings from fwk_role r "+
+    	final String SQL_SEL_ROLE = "select r.role_id, r.rolename,r.b_reports,r.b_settings,b_tools from fwk_role r "+
     	        " where role_id = ?";
       	logger.info("JdbcSetupDao: Getting details of role:"+roleid_s);
       	if (roleid_s.length() == 0){
@@ -289,22 +268,7 @@ public class JdbcSetupDao extends JdbcDaoSupport implements SetupDao {
     * @param  Roleid
     * @return List of Section names
     */    
-    public List<String> getAssignedSections(String roleid_s){
-       	final String SQL_SEL_ROLE = "select displayname sectionname from fwk_assettree s, fwk_role_asset ra "+
-       								"where ra.assettree_id = s.assettree_id and ra.role_id =  ?";
-      	logger.info("JdbcSetupDao: Getting details of role:"+roleid_s);
-      	if (roleid_s.length() == 0){
-      		logger.info("JdbcSetupDao: ERRROR: roleid is null!!"); 
-      		return null;
-      	}
-      	JdbcTemplate jdt = getJdbcTemplate();
-      	List<Map<String, Object>>  seclst = jdt.queryForList(SQL_SEL_ROLE, roleid_s);
-      	List<String> cursections = new ArrayList<String>();
-      	for (int i=0; i< seclst.size(); i++){
-      		cursections.add(""+seclst.get(i).get("sectionname"));
-      	}
-      	return cursections;
-    }
+   
 
     /**
     * 
@@ -314,14 +278,14 @@ public class JdbcSetupDao extends JdbcDaoSupport implements SetupDao {
     * @return List of Section names
     */    
     public boolean updateRole(RoleDsp role){
-       	final String SQL_UPD_ROLENM = "update fwk_role set rolename = ?,b_reports=?,b_events=?,b_tools=?,b_settings=? where role_id = ?";
-       	final String SQL_DEL_SEC = "delete from fwk_role_asset where role_id = ?";
+       	final String SQL_UPD_ROLENM = "update fwk_role set rolename = ?,b_reports=?,b_tools=?,b_settings=? where role_id = ?";
+       	
        	JdbcTemplate jdt = getJdbcTemplate();
        	
        	logger.info("updating details of role:" +role.getRole_id());
-       	jdt.update(SQL_UPD_ROLENM, role.getRolename(),(role.getBln_reports()==true)?"true":"false",(role.getBln_events()==true)?"true":"false",
+       	jdt.update(SQL_UPD_ROLENM, role.getRolename(),(role.getBln_reports()==true)?"true":"false",
        			(role.getBln_tools()==true)?"true":"false",(role.getBln_settings()==true)?"true":"false",role.getRole_id());
-       	jdt.update(SQL_DEL_SEC, role.getRole_id());
+       	
        	return true;      	
  	
     }
@@ -527,7 +491,10 @@ public class JdbcSetupDao extends JdbcDaoSupport implements SetupDao {
                 role.setBln_settings((rs.getString("B_SETTINGS").equals("true"))?true:false); 
 				}
 				catch(Exception e){role.setBln_settings(false);}
-             
+                try{
+	                role.setBln_tools((rs.getString("B_TOOLS").equals("true"))?true:false);   
+	        }
+	        catch(Exception e){role.setBln_tools(false);}
                 return role;
             }
          }

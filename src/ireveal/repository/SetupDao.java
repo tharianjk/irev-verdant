@@ -20,12 +20,10 @@ public interface SetupDao {
     
     public boolean createRole(RoleDsp role);
     
-    public RoleDsp getRole(String roleid_s);
+    public RoleDsp getRole(String roleid_s);   
     
-    public List<String> getAssignedSections(String roleid_s);
     
-    public boolean updateRole(RoleDsp role);
-    
+    public boolean updateRole(RoleDsp role);   
     
     
     public UserPref getUserPreferences(String user);
