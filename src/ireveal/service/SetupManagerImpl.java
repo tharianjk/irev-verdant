@@ -129,16 +129,7 @@ public class SetupManagerImpl implements SetupManager {
     	return setupDao.getRole(roleid_s);
     }
     
-    /**
-     *  Return assigned sections details of a Role
-     * 
-     *
-     * @param  roleid
-     * @return RoleDsp object
-     */        
-    public List<String> getAssignedSections(String roleid_s){
-    	return setupDao.getAssignedSections(roleid_s);
-    }
+   
     
     /**
      *  Update details of a Role
