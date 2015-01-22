@@ -767,6 +767,7 @@ from cpcalculated where Test_id=?]]></xml-property>
             <row id="337">
                 <cell id="338">
                     <label id="341">
+                        <property name="fontSize">medium</property>
                         <property name="fontWeight">bold</property>
                         <property name="textAlign">center</property>
                         <text-property name="text">3dB Beamwidth</text-property>
@@ -788,6 +789,7 @@ from cpcalculated where Test_id=?]]></xml-property>
                                     <row id="567">
                                         <cell id="568">
                                             <label id="581">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">Spot Freq.</text-property>
@@ -817,6 +819,7 @@ from cpcalculated where Test_id=?]]></xml-property>
                                                     <row id="572">
                                                         <cell id="573">
                                                             <data id="634">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="resultSetColumn">frequnit</property>
                                                             </data>
                                                         </cell>
@@ -826,6 +829,7 @@ from cpcalculated where Test_id=?]]></xml-property>
                                                     <row id="575">
                                                         <cell id="576">
                                                             <data id="577">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">Frequency</property>
                                                             </data>
@@ -848,6 +852,7 @@ from cpcalculated where Test_id=?]]></xml-property>
                                     <row id="544">
                                         <cell id="545">
                                             <label id="564">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">Beam Max.</text-property>
@@ -880,11 +885,13 @@ from cpcalculated where Test_id=?]]></xml-property>
                                                     <row id="549">
                                                         <cell id="550">
                                                             <label id="551">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">3dB BW (deg.)</text-property>
                                                             </label>
                                                         </cell>
                                                         <cell id="552">
                                                             <label id="553">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">BSq (dB)</text-property>
                                                             </label>
                                                         </cell>
@@ -894,12 +901,14 @@ from cpcalculated where Test_id=?]]></xml-property>
                                                     <row id="554">
                                                         <cell id="555">
                                                             <data id="556">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">Frequency</property>
                                                             </data>
                                                         </cell>
                                                         <cell id="557">
                                                             <data id="558">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">3Db_BW_BMax</property>
                                                             </data>
@@ -924,6 +933,7 @@ from cpcalculated where Test_id=?]]></xml-property>
                                     <row id="586">
                                         <cell id="587">
                                             <label id="607">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">0</text-property>
@@ -954,11 +964,13 @@ from cpcalculated where Test_id=?]]></xml-property>
                                                     <row id="591">
                                                         <cell id="592">
                                                             <label id="593">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">3dB BW (deg.)</text-property>
                                                             </label>
                                                         </cell>
                                                         <cell id="594">
                                                             <label id="595">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">BS (dB)</text-property>
                                                             </label>
                                                         </cell>
@@ -968,12 +980,14 @@ from cpcalculated where Test_id=?]]></xml-property>
                                                     <row id="596">
                                                         <cell id="597">
                                                             <data id="598">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">3Db_BW_0</property>
                                                             </data>
                                                         </cell>
                                                         <cell id="599">
                                                             <data id="600">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">3Db_BS_0</property>
                                                             </data>
@@ -998,6 +1012,7 @@ from cpcalculated where Test_id=?]]></xml-property>
                                     <row id="611">
                                         <cell id="612">
                                             <label id="631">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">90</text-property>
@@ -1028,11 +1043,13 @@ from cpcalculated where Test_id=?]]></xml-property>
                                                     <row id="616">
                                                         <cell id="617">
                                                             <label id="618">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">3dB BW (deg.)</text-property>
                                                             </label>
                                                         </cell>
                                                         <cell id="619">
                                                             <label id="620">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">BS (dB)</text-property>
                                                             </label>
                                                         </cell>
@@ -1042,12 +1059,14 @@ from cpcalculated where Test_id=?]]></xml-property>
                                                     <row id="621">
                                                         <cell id="622">
                                                             <data id="623">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">3Db_BW_90</property>
                                                             </data>
                                                         </cell>
                                                         <cell id="624">
                                                             <data id="625">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">3Db_BS_90</property>
                                                             </data>
@@ -1099,6 +1118,7 @@ from cpcalculated where Test_id=?]]></xml-property>
             <row id="642">
                 <cell id="643">
                     <label id="644">
+                        <property name="fontSize">medium</property>
                         <property name="fontWeight">bold</property>
                         <property name="textAlign">center</property>
                         <text-property name="text">3dB Beamwidth</text-property>
@@ -1120,6 +1140,7 @@ from cpcalculated where Test_id=?]]></xml-property>
                                     <row id="656">
                                         <cell id="657">
                                             <label id="658">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">Spot Freq.</text-property>
@@ -1149,6 +1170,7 @@ from cpcalculated where Test_id=?]]></xml-property>
                                                     <row id="662">
                                                         <cell id="663">
                                                             <data id="664">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="resultSetColumn">frequnit</property>
                                                             </data>
                                                         </cell>
@@ -1158,6 +1180,7 @@ from cpcalculated where Test_id=?]]></xml-property>
                                                     <row id="665">
                                                         <cell id="666">
                                                             <data id="667">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">Frequency</property>
                                                             </data>
@@ -1180,6 +1203,7 @@ from cpcalculated where Test_id=?]]></xml-property>
                                     <row id="674">
                                         <cell id="675">
                                             <label id="676">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">Beam Max.</text-property>
@@ -1212,11 +1236,13 @@ from cpcalculated where Test_id=?]]></xml-property>
                                                     <row id="680">
                                                         <cell id="681">
                                                             <label id="682">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">3dB BW (deg.)</text-property>
                                                             </label>
                                                         </cell>
                                                         <cell id="683">
                                                             <label id="684">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">BSq (dB)</text-property>
                                                             </label>
                                                         </cell>
@@ -1226,12 +1252,14 @@ from cpcalculated where Test_id=?]]></xml-property>
                                                     <row id="685">
                                                         <cell id="686">
                                                             <data id="687">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">Frequency</property>
                                                             </data>
                                                         </cell>
                                                         <cell id="688">
                                                             <data id="689">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">3Db_BW_BMax</property>
                                                             </data>
@@ -1264,6 +1292,7 @@ from cpcalculated where Test_id=?]]></xml-property>
                                     <row id="698">
                                         <cell id="699">
                                             <label id="700">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">0</text-property>
@@ -1294,11 +1323,13 @@ from cpcalculated where Test_id=?]]></xml-property>
                                                     <row id="704">
                                                         <cell id="705">
                                                             <label id="706">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">3dB BW (deg.)</text-property>
                                                             </label>
                                                         </cell>
                                                         <cell id="707">
                                                             <label id="708">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">BS (dB)</text-property>
                                                             </label>
                                                         </cell>
@@ -1308,12 +1339,14 @@ from cpcalculated where Test_id=?]]></xml-property>
                                                     <row id="709">
                                                         <cell id="710">
                                                             <data id="711">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">3Db_BW_0</property>
                                                             </data>
                                                         </cell>
                                                         <cell id="712">
                                                             <data id="713">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">3Db_BS_0</property>
                                                             </data>
@@ -1342,6 +1375,7 @@ from cpcalculated where Test_id=?]]></xml-property>
                                     <row id="722">
                                         <cell id="723">
                                             <label id="724">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">90</text-property>
@@ -1372,11 +1406,13 @@ from cpcalculated where Test_id=?]]></xml-property>
                                                     <row id="728">
                                                         <cell id="729">
                                                             <label id="730">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">3dB BW (deg.)</text-property>
                                                             </label>
                                                         </cell>
                                                         <cell id="731">
                                                             <label id="732">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">BS (dB)</text-property>
                                                             </label>
                                                         </cell>
@@ -1386,12 +1422,14 @@ from cpcalculated where Test_id=?]]></xml-property>
                                                     <row id="733">
                                                         <cell id="734">
                                                             <data id="735">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">3Db_BW_90</property>
                                                             </data>
                                                         </cell>
                                                         <cell id="736">
                                                             <data id="737">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">3Db_BS_90</property>
                                                             </data>

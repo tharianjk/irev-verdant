@@ -1173,6 +1173,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
             <row id="842">
                 <cell id="843">
                     <label id="844">
+                        <property name="fontSize">medium</property>
                         <property name="fontWeight">bold</property>
                         <property name="textAlign">center</property>
                         <text-property name="text">3dB Beamwidth </text-property>
@@ -1194,6 +1195,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                     <row id="856">
                                         <cell id="857">
                                             <label id="858">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">Spot Freq.</text-property>
@@ -1223,6 +1225,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="862">
                                                         <cell id="863">
                                                             <data id="864">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="resultSetColumn">frequnit</property>
                                                             </data>
                                                         </cell>
@@ -1232,6 +1235,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="865">
                                                         <cell id="866">
                                                             <data id="867">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">frequency</property>
                                                             </data>
@@ -1254,6 +1258,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                     <row id="874">
                                         <cell id="875">
                                             <label id="876">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">Beam Max.</text-property>
@@ -1277,6 +1282,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="880">
                                                         <cell id="881">
                                                             <label id="882">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">3dB BW (deg.)</text-property>
                                                             </label>
                                                         </cell>
@@ -1286,6 +1292,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="883">
                                                         <cell id="884">
                                                             <data id="885">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">3Db_BW_BMax</property>
                                                             </data>
@@ -1317,6 +1324,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                     <row id="892">
                                         <cell id="893">
                                             <label id="894">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">0</text-property>
@@ -1340,6 +1348,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="898">
                                                         <cell id="899">
                                                             <label id="900">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">3dB BW (deg.)</text-property>
                                                             </label>
                                                         </cell>
@@ -1349,6 +1358,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="901">
                                                         <cell id="902">
                                                             <data id="903">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">3Db_BW_0</property>
                                                             </data>
@@ -1376,6 +1386,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                     <row id="909">
                                         <cell id="910">
                                             <label id="911">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">90</text-property>
@@ -1399,6 +1410,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="915">
                                                         <cell id="916">
                                                             <label id="917">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">3dB BW (deg.)</text-property>
                                                             </label>
                                                         </cell>
@@ -1408,6 +1420,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="918">
                                                         <cell id="919">
                                                             <data id="920">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">3Db_BW_90</property>
                                                             </data>
@@ -1458,6 +1471,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
             <row id="757">
                 <cell id="758">
                     <label id="759">
+                        <property name="fontSize">medium</property>
                         <property name="fontWeight">bold</property>
                         <property name="textAlign">center</property>
                         <text-property name="text">3dB Beamwidth </text-property>
@@ -1479,6 +1493,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                     <row id="771">
                                         <cell id="772">
                                             <label id="773">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">Spot Freq.</text-property>
@@ -1508,6 +1523,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="777">
                                                         <cell id="778">
                                                             <data id="779">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="resultSetColumn">frequnit</property>
                                                             </data>
                                                         </cell>
@@ -1517,6 +1533,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="780">
                                                         <cell id="781">
                                                             <data id="782">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">frequency</property>
                                                             </data>
@@ -1539,6 +1556,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                     <row id="789">
                                         <cell id="790">
                                             <label id="791">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">Beam Max.</text-property>
@@ -1562,6 +1580,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="795">
                                                         <cell id="796">
                                                             <label id="797">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">3dB BW (deg.)</text-property>
                                                             </label>
                                                         </cell>
@@ -1571,6 +1590,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="798">
                                                         <cell id="799">
                                                             <data id="800">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">3Db_BW_BMax</property>
                                                             </data>
@@ -1594,6 +1614,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                     <row id="807">
                                         <cell id="808">
                                             <label id="809">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">0</text-property>
@@ -1617,6 +1638,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="813">
                                                         <cell id="814">
                                                             <label id="815">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">3dB BW (deg.)</text-property>
                                                             </label>
                                                         </cell>
@@ -1626,6 +1648,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="816">
                                                         <cell id="817">
                                                             <data id="818">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">3Db_BW_0</property>
                                                             </data>
@@ -1649,6 +1672,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                     <row id="825">
                                         <cell id="826">
                                             <label id="827">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">90</text-property>
@@ -1672,6 +1696,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="831">
                                                         <cell id="832">
                                                             <label id="833">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">3dB BW (deg.)</text-property>
                                                             </label>
                                                         </cell>
@@ -1681,6 +1706,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="834">
                                                         <cell id="835">
                                                             <data id="836">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">3Db_BW_90</property>
                                                             </data>
@@ -1731,6 +1757,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
             <row id="642">
                 <cell id="643">
                     <label id="644">
+                        <property name="fontSize">medium</property>
                         <property name="fontWeight">bold</property>
                         <property name="textAlign">center</property>
                         <text-property name="text">3dB Beamwidth</text-property>
@@ -1752,6 +1779,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                     <row id="656">
                                         <cell id="657">
                                             <label id="658">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">Spot Freq.</text-property>
@@ -1781,6 +1809,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="662">
                                                         <cell id="663">
                                                             <data id="664">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="resultSetColumn">frequnit</property>
                                                             </data>
                                                         </cell>
@@ -1790,6 +1819,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="665">
                                                         <cell id="666">
                                                             <data id="667">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">Frequency</property>
                                                             </data>
@@ -1812,6 +1842,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                     <row id="674">
                                         <cell id="675">
                                             <label id="676">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">Beam Max.</text-property>
@@ -1835,6 +1866,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="680">
                                                         <cell id="681">
                                                             <label id="682">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">3dB BW (deg.)</text-property>
                                                             </label>
                                                         </cell>
@@ -1844,6 +1876,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="685">
                                                         <cell id="686">
                                                             <data id="687">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">3Db_BW_BMax</property>
                                                             </data>
@@ -1875,6 +1908,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                     <row id="698">
                                         <cell id="699">
                                             <label id="700">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">0</text-property>
@@ -1898,6 +1932,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="704">
                                                         <cell id="705">
                                                             <label id="706">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">3dB BW (deg.)</text-property>
                                                             </label>
                                                         </cell>
@@ -1907,6 +1942,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="709">
                                                         <cell id="710">
                                                             <data id="711">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">3Db_BW_0</property>
                                                             </data>
@@ -1934,6 +1970,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                     <row id="722">
                                         <cell id="723">
                                             <label id="724">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">90</text-property>
@@ -1957,6 +1994,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="728">
                                                         <cell id="729">
                                                             <label id="730">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">3dB BW (deg.)</text-property>
                                                             </label>
                                                         </cell>
@@ -1966,6 +2004,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="733">
                                                         <cell id="734">
                                                             <data id="735">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">3Db_BW_90</property>
                                                             </data>
@@ -2016,6 +2055,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
             <row id="337">
                 <cell id="338">
                     <label id="341">
+                        <property name="fontSize">medium</property>
                         <property name="fontWeight">bold</property>
                         <property name="textAlign">center</property>
                         <text-property name="text">3dB Beamwidth</text-property>
@@ -2037,6 +2077,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                     <row id="567">
                                         <cell id="568">
                                             <label id="581">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">Spot Freq.</text-property>
@@ -2066,6 +2107,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="572">
                                                         <cell id="573">
                                                             <data id="634">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="resultSetColumn">frequnit</property>
                                                             </data>
                                                         </cell>
@@ -2075,6 +2117,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="575">
                                                         <cell id="576">
                                                             <data id="577">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">Frequency</property>
                                                             </data>
@@ -2097,6 +2140,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                     <row id="544">
                                         <cell id="545">
                                             <label id="564">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">Beam Max.</text-property>
@@ -2120,6 +2164,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="549">
                                                         <cell id="550">
                                                             <label id="551">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">3dB BW (deg.)</text-property>
                                                             </label>
                                                         </cell>
@@ -2129,6 +2174,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="554">
                                                         <cell id="555">
                                                             <data id="556">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">3Db_BW_BMax</property>
                                                             </data>
@@ -2152,6 +2198,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                     <row id="586">
                                         <cell id="587">
                                             <label id="607">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">0</text-property>
@@ -2175,6 +2222,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="591">
                                                         <cell id="592">
                                                             <label id="593">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">3dB BW (deg.)</text-property>
                                                             </label>
                                                         </cell>
@@ -2184,6 +2232,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="596">
                                                         <cell id="597">
                                                             <data id="598">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">3Db_BW_0</property>
                                                             </data>
@@ -2207,6 +2256,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                     <row id="611">
                                         <cell id="612">
                                             <label id="631">
+                                                <property name="fontSize">medium</property>
                                                 <property name="fontWeight">bold</property>
                                                 <property name="textAlign">center</property>
                                                 <text-property name="text">90</text-property>
@@ -2230,6 +2280,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="616">
                                                         <cell id="617">
                                                             <label id="618">
+                                                                <property name="fontSize">small</property>
                                                                 <text-property name="text">3dB BW (deg.)</text-property>
                                                             </label>
                                                         </cell>
@@ -2239,6 +2290,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                                                     <row id="621">
                                                         <cell id="622">
                                                             <data id="623">
+                                                                <property name="fontSize">small</property>
                                                                 <property name="textAlign">center</property>
                                                                 <property name="resultSetColumn">3Db_BW_90</property>
                                                             </data>

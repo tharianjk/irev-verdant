@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
     <property name="createdBy">Eclipse BIRT Designer Version 4.3.2.v20140211-1400 Build &lt;4.3.2.v20140218-1056></property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">odaDriverClass</property>
+            <property name="id">7</property>
+        </structure>
+        <structure>
+            <property name="name">odaURL</property>
+            <property name="id">7</property>
+        </structure>
+        <structure>
+            <property name="name">odaUser</property>
+            <property name="id">7</property>
+        </structure>
+        <structure>
+            <property name="name">odaAutoCommit</property>
+            <property name="id">7</property>
+        </structure>
+        <structure>
+            <property name="name">odaIsolationMode</property>
+            <property name="id">7</property>
+        </structure>
+        <structure>
+            <property name="name">odaPassword</property>
+            <property name="id">7</property>
+        </structure>
+        <structure>
+            <property name="name">odaJndiName</property>
+            <property name="id">7</property>
+        </structure>
+        <structure>
+            <property name="name">OdaConnProfileName</property>
+            <property name="id">7</property>
+        </structure>
+        <structure>
+            <property name="name">OdaConnProfileStorePath</property>
+            <property name="id">7</property>
+        </structure>
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">402</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">402</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">402</property>
+        </structure>
+    </list-property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="layoutPreference">auto layout</property>
@@ -55,12 +105,35 @@
             <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
             <property name="odaURL">jdbc:mysql://localhost:3306/verdant</property>
             <property name="odaUser">root</property>
-            <property name="OdaConnProfileName">VerdantProfile</property>
-            <property name="OdaConnProfileStorePath">VerdantProfile</property>
+        </oda-data-source>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="VerdantProfileN" id="1016">
+            <text-property name="displayName"></text-property>
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://localhost:3306/verdant</property>
+            <property name="odaUser">root</property>
+            <property name="OdaConnProfileName">VerdantProfileN</property>
+            <property name="OdaConnProfileStorePath">VerdantProfile.xml</property>
         </oda-data-source>
     </data-sources>
     <data-sets>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="3Db_BW_BMax" id="402">
+            <property name="nullsOrdering">nulls lowest</property>
             <list-property name="columnHints">
                 <structure>
                     <property name="columnName">3Db_BW_BMax</property>
@@ -1210,6 +1283,7 @@ from vcalculated where Test_id=?]]></xml-property>
                         <row id="337">
                             <cell id="338">
                                 <label id="341">
+                                    <property name="fontSize">medium</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="textAlign">center</property>
                                     <text-property name="text">HP</text-property>
@@ -1231,6 +1305,7 @@ from vcalculated where Test_id=?]]></xml-property>
                                                 <row id="567">
                                                     <cell id="568">
                                                         <label id="581">
+                                                            <property name="fontSize">medium</property>
                                                             <property name="fontWeight">bold</property>
                                                             <property name="textAlign">center</property>
                                                             <text-property name="text">Spot Freq.</text-property>
@@ -1260,6 +1335,7 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="572">
                                                                     <cell id="573">
                                                                         <data id="1009">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="resultSetColumn">frequnit</property>
                                                                         </data>
                                                                     </cell>
@@ -1269,6 +1345,7 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="575">
                                                                     <cell id="576">
                                                                         <data id="577">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">Frequency</property>
                                                                         </data>
@@ -1291,6 +1368,7 @@ from vcalculated where Test_id=?]]></xml-property>
                                                 <row id="544">
                                                     <cell id="545">
                                                         <label id="564">
+                                                            <property name="fontSize">medium</property>
                                                             <property name="fontWeight">bold</property>
                                                             <property name="textAlign">center</property>
                                                             <text-property name="text">Beam Max</text-property>
@@ -1323,11 +1401,13 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="549">
                                                                     <cell id="550">
                                                                         <label id="551">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BW(dg) </text-property>
                                                                         </label>
                                                                     </cell>
                                                                     <cell id="552">
                                                                         <label id="553">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BS(dB)</text-property>
                                                                         </label>
                                                                     </cell>
@@ -1337,12 +1417,14 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="554">
                                                                     <cell id="555">
                                                                         <data id="556">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">Frequency</property>
                                                                         </data>
                                                                     </cell>
                                                                     <cell id="557">
                                                                         <data id="558">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">3Db_BW_BMax</property>
                                                                         </data>
@@ -1367,6 +1449,7 @@ from vcalculated where Test_id=?]]></xml-property>
                                                 <row id="586">
                                                     <cell id="587">
                                                         <label id="607">
+                                                            <property name="fontSize">medium</property>
                                                             <property name="fontWeight">bold</property>
                                                             <property name="textAlign">center</property>
                                                             <text-property name="text">0</text-property>
@@ -1397,11 +1480,13 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="591">
                                                                     <cell id="592">
                                                                         <label id="593">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BW(dg) </text-property>
                                                                         </label>
                                                                     </cell>
                                                                     <cell id="594">
                                                                         <label id="595">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BS(dB)</text-property>
                                                                         </label>
                                                                     </cell>
@@ -1411,12 +1496,14 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="596">
                                                                     <cell id="597">
                                                                         <data id="598">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">3Db_BW_0</property>
                                                                         </data>
                                                                     </cell>
                                                                     <cell id="599">
                                                                         <data id="600">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">3Db_BS_0</property>
                                                                         </data>
@@ -1441,6 +1528,7 @@ from vcalculated where Test_id=?]]></xml-property>
                                                 <row id="611">
                                                     <cell id="612">
                                                         <label id="631">
+                                                            <property name="fontSize">medium</property>
                                                             <property name="fontWeight">bold</property>
                                                             <property name="textAlign">center</property>
                                                             <text-property name="text">90</text-property>
@@ -1471,11 +1559,13 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="616">
                                                                     <cell id="617">
                                                                         <label id="618">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BW(dg) </text-property>
                                                                         </label>
                                                                     </cell>
                                                                     <cell id="619">
                                                                         <label id="620">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BS(dB)</text-property>
                                                                         </label>
                                                                     </cell>
@@ -1485,12 +1575,14 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="621">
                                                                     <cell id="622">
                                                                         <data id="623">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">3Db_BW_90</property>
                                                                         </data>
                                                                     </cell>
                                                                     <cell id="624">
                                                                         <data id="625">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">3Db_BS_90</property>
                                                                         </data>
@@ -1528,6 +1620,7 @@ from vcalculated where Test_id=?]]></xml-property>
                         <row id="808">
                             <cell id="809">
                                 <label id="812">
+                                    <property name="fontSize">medium</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="textAlign">center</property>
                                     <text-property name="text">VP</text-property>
@@ -1547,6 +1640,7 @@ from vcalculated where Test_id=?]]></xml-property>
                                                 <row id="717">
                                                     <cell id="718">
                                                         <label id="719">
+                                                            <property name="fontSize">medium</property>
                                                             <property name="fontWeight">bold</property>
                                                             <property name="textAlign">center</property>
                                                             <text-property name="text">Beam Max</text-property>
@@ -1584,11 +1678,13 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="723">
                                                                     <cell id="724">
                                                                         <label id="725">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BW(dg) </text-property>
                                                                         </label>
                                                                     </cell>
                                                                     <cell id="726">
                                                                         <label id="727">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BS (dB)</text-property>
                                                                         </label>
                                                                     </cell>
@@ -1598,12 +1694,14 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="728">
                                                                     <cell id="729">
                                                                         <data id="730">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">Column Binding</property>
                                                                         </data>
                                                                     </cell>
                                                                     <cell id="731">
                                                                         <data id="732">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">3Db_BW_BMax</property>
                                                                         </data>
@@ -1628,6 +1726,7 @@ from vcalculated where Test_id=?]]></xml-property>
                                                 <row id="741">
                                                     <cell id="742">
                                                         <label id="743">
+                                                            <property name="fontSize">medium</property>
                                                             <property name="fontWeight">bold</property>
                                                             <property name="textAlign">center</property>
                                                             <text-property name="text">0</text-property>
@@ -1658,11 +1757,13 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="747">
                                                                     <cell id="748">
                                                                         <label id="749">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BW(dg) </text-property>
                                                                         </label>
                                                                     </cell>
                                                                     <cell id="750">
                                                                         <label id="751">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BS(dB)</text-property>
                                                                         </label>
                                                                     </cell>
@@ -1672,12 +1773,14 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="752">
                                                                     <cell id="753">
                                                                         <data id="754">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">3Db_BW_0</property>
                                                                         </data>
                                                                     </cell>
                                                                     <cell id="755">
                                                                         <data id="756">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">3Db_BS_0</property>
                                                                         </data>
@@ -1702,6 +1805,7 @@ from vcalculated where Test_id=?]]></xml-property>
                                                 <row id="765">
                                                     <cell id="766">
                                                         <label id="767">
+                                                            <property name="fontSize">medium</property>
                                                             <property name="fontWeight">bold</property>
                                                             <property name="textAlign">center</property>
                                                             <text-property name="text">90</text-property>
@@ -1732,11 +1836,13 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="771">
                                                                     <cell id="772">
                                                                         <label id="773">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BW(dg) </text-property>
                                                                         </label>
                                                                     </cell>
                                                                     <cell id="774">
                                                                         <label id="775">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BS(dB)</text-property>
                                                                         </label>
                                                                     </cell>
@@ -1746,12 +1852,14 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="776">
                                                                     <cell id="777">
                                                                         <data id="778">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">3Db_BW_90</property>
                                                                         </data>
                                                                     </cell>
                                                                     <cell id="779">
                                                                         <data id="780">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">3Db_BS_90</property>
                                                                         </data>
@@ -1820,6 +1928,7 @@ from vcalculated where Test_id=?]]></xml-property>
                         <row id="823">
                             <cell id="824">
                                 <label id="825">
+                                    <property name="fontSize">medium</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="textAlign">center</property>
                                     <text-property name="text">HP</text-property>
@@ -1870,6 +1979,7 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="843">
                                                                     <cell id="844">
                                                                         <data id="1010">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="resultSetColumn">frequnit</property>
                                                                         </data>
                                                                     </cell>
@@ -1879,6 +1989,7 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="846">
                                                                     <cell id="847">
                                                                         <data id="848">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">Frequency</property>
                                                                         </data>
@@ -1901,6 +2012,7 @@ from vcalculated where Test_id=?]]></xml-property>
                                                 <row id="855">
                                                     <cell id="856">
                                                         <label id="857">
+                                                            <property name="fontSize">medium</property>
                                                             <property name="fontWeight">bold</property>
                                                             <property name="textAlign">center</property>
                                                             <text-property name="text">Beam Max</text-property>
@@ -1933,11 +2045,13 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="861">
                                                                     <cell id="862">
                                                                         <label id="863">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BW(dg) </text-property>
                                                                         </label>
                                                                     </cell>
                                                                     <cell id="864">
                                                                         <label id="865">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BS(dB)</text-property>
                                                                         </label>
                                                                     </cell>
@@ -1947,12 +2061,14 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="866">
                                                                     <cell id="867">
                                                                         <data id="868">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">Frequency</property>
                                                                         </data>
                                                                     </cell>
                                                                     <cell id="869">
                                                                         <data id="870">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">3Db_BW_BMax</property>
                                                                         </data>
@@ -1985,6 +2101,7 @@ from vcalculated where Test_id=?]]></xml-property>
                                                 <row id="879">
                                                     <cell id="880">
                                                         <label id="881">
+                                                            <property name="fontSize">medium</property>
                                                             <property name="fontWeight">bold</property>
                                                             <property name="textAlign">center</property>
                                                             <text-property name="text">0</text-property>
@@ -2015,11 +2132,13 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="885">
                                                                     <cell id="886">
                                                                         <label id="887">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BW(dg) </text-property>
                                                                         </label>
                                                                     </cell>
                                                                     <cell id="888">
                                                                         <label id="889">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BS(dB)</text-property>
                                                                         </label>
                                                                     </cell>
@@ -2029,12 +2148,14 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="890">
                                                                     <cell id="891">
                                                                         <data id="892">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">3Db_BW_0</property>
                                                                         </data>
                                                                     </cell>
                                                                     <cell id="893">
                                                                         <data id="894">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">3Db_BS_0</property>
                                                                         </data>
@@ -2063,6 +2184,7 @@ from vcalculated where Test_id=?]]></xml-property>
                                                 <row id="903">
                                                     <cell id="904">
                                                         <label id="905">
+                                                            <property name="fontSize">medium</property>
                                                             <property name="fontWeight">bold</property>
                                                             <property name="textAlign">center</property>
                                                             <text-property name="text">90</text-property>
@@ -2093,11 +2215,13 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="909">
                                                                     <cell id="910">
                                                                         <label id="911">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BW(dg) </text-property>
                                                                         </label>
                                                                     </cell>
                                                                     <cell id="912">
                                                                         <label id="913">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BS(dB)</text-property>
                                                                         </label>
                                                                     </cell>
@@ -2107,12 +2231,14 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="914">
                                                                     <cell id="915">
                                                                         <data id="916">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">3Db_BW_90</property>
                                                                         </data>
                                                                     </cell>
                                                                     <cell id="917">
                                                                         <data id="918">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">3Db_BS_90</property>
                                                                         </data>
@@ -2150,6 +2276,7 @@ from vcalculated where Test_id=?]]></xml-property>
                         <row id="927">
                             <cell id="928">
                                 <label id="929">
+                                    <property name="fontSize">medium</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="textAlign">center</property>
                                     <text-property name="text">VP</text-property>
@@ -2169,6 +2296,7 @@ from vcalculated where Test_id=?]]></xml-property>
                                                 <row id="940">
                                                     <cell id="941">
                                                         <label id="942">
+                                                            <property name="fontSize">medium</property>
                                                             <property name="fontWeight">bold</property>
                                                             <property name="textAlign">center</property>
                                                             <text-property name="text">Beam Max</text-property>
@@ -2206,11 +2334,13 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="946">
                                                                     <cell id="947">
                                                                         <label id="948">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BW(dg) </text-property>
                                                                         </label>
                                                                     </cell>
                                                                     <cell id="949">
                                                                         <label id="950">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BS (dB)</text-property>
                                                                         </label>
                                                                     </cell>
@@ -2220,12 +2350,14 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="951">
                                                                     <cell id="952">
                                                                         <data id="953">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">Column Binding</property>
                                                                         </data>
                                                                     </cell>
                                                                     <cell id="954">
                                                                         <data id="955">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">3Db_BW_BMax</property>
                                                                         </data>
@@ -2258,6 +2390,7 @@ from vcalculated where Test_id=?]]></xml-property>
                                                 <row id="964">
                                                     <cell id="965">
                                                         <label id="966">
+                                                            <property name="fontSize">medium</property>
                                                             <property name="fontWeight">bold</property>
                                                             <property name="textAlign">center</property>
                                                             <text-property name="text">0</text-property>
@@ -2288,11 +2421,13 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="970">
                                                                     <cell id="971">
                                                                         <label id="972">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BW(dg) </text-property>
                                                                         </label>
                                                                     </cell>
                                                                     <cell id="973">
                                                                         <label id="974">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BS(dB)</text-property>
                                                                         </label>
                                                                     </cell>
@@ -2302,12 +2437,14 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="975">
                                                                     <cell id="976">
                                                                         <data id="977">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">3Db_BW_0</property>
                                                                         </data>
                                                                     </cell>
                                                                     <cell id="978">
                                                                         <data id="979">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">3Db_BS_0</property>
                                                                         </data>
@@ -2336,6 +2473,7 @@ from vcalculated where Test_id=?]]></xml-property>
                                                 <row id="988">
                                                     <cell id="989">
                                                         <label id="990">
+                                                            <property name="fontSize">medium</property>
                                                             <property name="fontWeight">bold</property>
                                                             <property name="textAlign">center</property>
                                                             <text-property name="text">90</text-property>
@@ -2366,11 +2504,13 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="994">
                                                                     <cell id="995">
                                                                         <label id="996">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BW(dg) </text-property>
                                                                         </label>
                                                                     </cell>
                                                                     <cell id="997">
                                                                         <label id="998">
+                                                                            <property name="fontSize">small</property>
                                                                             <text-property name="text">BS(dB)</text-property>
                                                                         </label>
                                                                     </cell>
@@ -2380,12 +2520,14 @@ from vcalculated where Test_id=?]]></xml-property>
                                                                 <row id="999">
                                                                     <cell id="1000">
                                                                         <data id="1001">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">3Db_BW_90</property>
                                                                         </data>
                                                                     </cell>
                                                                     <cell id="1002">
                                                                         <data id="1003">
+                                                                            <property name="fontSize">small</property>
                                                                             <property name="textAlign">center</property>
                                                                             <property name="resultSetColumn">3Db_BS_90</property>
                                                                         </data>
