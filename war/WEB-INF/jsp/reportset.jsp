@@ -65,6 +65,7 @@
          <input type="checkbox" id="n45" value="n45" checked >0 to -45 &#176;  &nbsp; &nbsp;&nbsp;</td></tr>
 	    </table></td></tr>    
         <tr><td><input type="checkbox" id="cpg" value="cpg" checked >CP Gain </td></tr>
+        <tr><td><input type="checkbox" id="blobe" value="blobe" checked >Back-Lobe Level </td></tr>
 </table>
 </td>
 <td>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</td>
@@ -182,8 +183,11 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 		if(document.getElementById('cpg').checked){
 			cpg="yes";
 		}
+		if(document.getElementById('blobe').checked){
+			blobe="yes";
+		}
 				var url="/birt-verdant/frameset?__report=CPReportset.rptdesign&testid="+testid+"&polar="+polar+"&axr="+axr+"&AxDeg="+AxDeg+
-						"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+"&cpg="+cpg+"&freq1="+strfreqs[0]+
+						"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+"&cpg="+cpg+"&blobe="+blobe+"&freq1="+strfreqs[0]+
 						"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
 						"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9];
 						
