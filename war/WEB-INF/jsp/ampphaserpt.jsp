@@ -6,6 +6,9 @@
 <html>
 <head><title>Amplitude Phase Tracking</title>
 <link rel="stylesheet" type="text/css" href="irev-style.css" />
+		<link rel="stylesheet" href="css/jquery-ui.css">		
+		<script src="js/jquery.js"></script>
+		<script src="js/jquery-ui.js"></script>
 </head>
 <body>
  <script type="text/javascript">
@@ -38,9 +41,9 @@
     </script>
 <table>
  <tr>
-		<td>Select Type</td>
+		<td>Select Type *</td>
        <td>
-       	 <select>
+       	 <select id="typ">
        	 <option>--Select--</option>
        	 <option value ='A'>Amplitude</option>
        	 <option value='P'>Phase</option>
@@ -48,11 +51,11 @@
 	   
           </td>
           
-          <td width="20%"> &nbsp; &nbsp;&nbsp;Product: </td>
+          <td width="20%"> &nbsp; &nbsp;&nbsp;Product: *</td>
        <td >
 			           
 			 <select  id="prodk" onchange="showPS(this.value);">  
-			 <option value="">--Select--</option>              
+			 <option value='-1'>--Select--</option>              
 			 <c:forEach items='${model.prodlist}' var="prd"> 
 			  <option value='${prd.productid}'>${prd.productname}</option>	     
 			</c:forEach>
@@ -79,17 +82,32 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 
 
 <script type="text/javascript">
-	function back()
-	{
-		 window.location="/irev-verdant/start.htm";
-		// self.close();
+var prodserids="";
+var typ="";
+	function Add()
+	{		
+		$(".chkclass").each(function(index, element){							
+			if(element.checked){
+				if(prodserids=="")
+					{
+					prodserids=element.value;
+					}
+				else
+				prodserids=prodserids+','+element.value;				
+			}			
+		});		
+		document.getElementById("prodk").value="-1";
+		document.getElementById("chktbl").innerHTML="";
 	}
 	function Redirect(){
-		//alert("go clicked");
 		
-		var prodserids="";
-		
-				var url="ampphaserpt.htm?oper=ampphaseview&prodseriallist="+prodserids+"&typ="+typ;
+		typ=document.getElementById("typ").value;
+		if(typ=="" || prodserids=="")
+			{
+			alert("Please select mandatory fields!");
+			return;
+			}
+				var url="ampphaserpt.htm?oper=viewaptracking&prodseriallist="+prodserids+"&typ="+typ;
 			
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
 		console.log("url " + url);

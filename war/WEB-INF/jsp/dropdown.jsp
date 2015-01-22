@@ -22,7 +22,7 @@
 	 for(int i=0;i<pslist.size();i++)
 	 {
 		 
-   buffer=buffer+"<tr><td><input type='checkbox' value='"+pslist.get(i).getProductserialid()+"'>"+pslist.get(i).getProductserial() +"</td></tr>";  
+   buffer=buffer+"<tr><td><input type='checkbox' class='chkclass' value='"+pslist.get(i).getProductserialid()+"'>"+pslist.get(i).getProductserial() +"</td></tr>";  
 	 }
     
    buffer=buffer+"</table>";  

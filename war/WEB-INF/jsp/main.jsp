@@ -70,7 +70,7 @@ function fnsetstat(typ,msg)
 		}
 		AssetTree.monitorstat="Reports";}
 	if(typ=="apt") {
-		window.frames['AppBody'].location="ampphaserpt.htm?oper=ampphaseview&typ="+typ+"&testid="+testid+"&atype="+atype;
+		window.frames['AppBody'].location="ampphaserpt.htm?oper=ampphase&typ="+typ+"&testid="+testid+"&atype="+atype;
 		AssetTree.monitorstat="Reports";}
 	
 }

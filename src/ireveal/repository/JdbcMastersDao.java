@@ -887,7 +887,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 
 								}
 							}, paramList);
-					logger.info("Return out value:"+resultMap.get("myProdSerialList"));
+					logger.info("Return out value:"+resultMap.get("maxDiff"));
 					return resultMap;
 				}
    

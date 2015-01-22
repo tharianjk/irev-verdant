@@ -149,9 +149,11 @@ public class ToolsController implements Controller {
              return new ModelAndView("ampphaserpt", "model", myModel);   
              
        	    }
-			else if (operstr.contains("ampphaseview")){
+			else if (operstr.contains("viewaptracking")){
 				String typ = request.getParameter("typ");
 				String prodseriallist = request.getParameter("prodseriallist");
+				//Map<String, Object> resultset=mastersservice.GetAmpPhaseValue(prodseriallist,typ);
+				//logger.info("Return out value:"+resultset.get("maxDiff"));
         		logger.info("*** ampphase ** typ "+typ+" prodseriallist "+prodseriallist);    
        		
              return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=CPGain.rptdesign&testid="+testid)); 
