@@ -792,7 +792,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 					logger.info("lg"+testfreqlist.get(i).getLineargain());
 			  		getJdbcTemplate().update(  
 						sqltestfreq,  
-				 new Object[] { testfreqlist.get(i).getLineargain()==0.00?null:testfreqlist.get(i).getLineargain(),testid,testfreqlist.get(i).getFrequency() });
+				 new Object[] { testfreqlist.get(i).getLineargain(),testid,testfreqlist.get(i).getFrequency() });
 			  		}
 			  	getJdbcTemplate().update("call spCalCPGain (?)", testid);
 				   }
