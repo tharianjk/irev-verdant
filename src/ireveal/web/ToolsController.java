@@ -156,11 +156,12 @@ public class ToolsController implements Controller {
 				String prodseriallist = request.getParameter("prodseriallist");
 				Map<String, Object> resultset=mastersservice.GetAmpPhaseValue(prodseriallist,typ);
 				logger.info("viewaptracking prodseriallist="+prodseriallist);
-				//logger.info("Return out value:"+resultset.get("maxDiff"));
-				if(resultset!=null)
+				logger.info("Return out value:"+resultset.size());
+				if(resultset!=null && resultset.size()>0 && !resultset.isEmpty() )
 				{
+					if(resultset.get("maxDiff")!=null && resultset.get("maxFreq")!=null){
 					maxDiff=resultset.get("maxDiff").toString();
-					freq=resultset.get("maxFreq").toString();
+					freq=resultset.get("maxFreq").toString();}
 				}
         		logger.info("*** ampphase ** typ "+typ+" prodseriallist "+prodseriallist);    
        		//type,prodserialids,maxamp,freq
