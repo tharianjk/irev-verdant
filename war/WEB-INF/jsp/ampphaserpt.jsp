@@ -114,6 +114,7 @@ var typ="";
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
 		console.log("url " + url);
 		//window.location =url; 
+		prodserids="";
 		window.frames['AppBody'].location=url;
 		 }
 </script>
