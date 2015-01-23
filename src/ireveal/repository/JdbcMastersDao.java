@@ -881,10 +881,9 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 									callableStatement.registerOutParameter(3, Types.DECIMAL);
 									callableStatement.registerOutParameter(4, Types.DECIMAL);
 									return callableStatement;
-
 								}
 							}, paramList);
-					logger.info("Return out value:"+resultMap.get("maxDiff"));
+					logger.info("Return out value:"+resultMap.get("maxFreq").toString());
 					return resultMap;
 				}
    

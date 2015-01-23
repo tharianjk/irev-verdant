@@ -155,6 +155,7 @@ public class ToolsController implements Controller {
 				String typ = request.getParameter("typ");
 				String prodseriallist = request.getParameter("prodseriallist");
 				Map<String, Object> resultset=mastersservice.GetAmpPhaseValue(prodseriallist,typ);
+				logger.info("viewaptracking prodseriallist="+prodseriallist);
 				//logger.info("Return out value:"+resultset.get("maxDiff"));
 				if(resultset!=null)
 				{
@@ -163,7 +164,7 @@ public class ToolsController implements Controller {
 				}
         		logger.info("*** ampphase ** typ "+typ+" prodseriallist "+prodseriallist);    
        		//type,prodserialids,maxamp,freq
-             return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=PhaseTracking.rptdesign&type="+typ+"&prodserialids="+prodseriallist+"&maxamp="+maxDiff+"&freq="+maxFreq)); 
+             return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=PhaseTracking.rptdesign&type="+typ+"&prodserialids="+prodseriallist+"&maxamp="+maxDiff+"&freq="+freq)); 
 			        }
         }
         logger.info("*** not able to identify tools options!!**");
