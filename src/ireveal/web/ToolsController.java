@@ -150,13 +150,20 @@ public class ToolsController implements Controller {
              
        	    }
 			else if (operstr.contains("viewaptracking")){
+				String maxDiff="";
+				String maxFreq="";
 				String typ = request.getParameter("typ");
 				String prodseriallist = request.getParameter("prodseriallist");
 				Map<String, Object> resultset=mastersservice.GetAmpPhaseValue(prodseriallist,typ);
 				//logger.info("Return out value:"+resultset.get("maxDiff"));
+				if(resultset!=null)
+				{
+					maxDiff=resultset.get("maxDiff").toString();
+					freq=resultset.get("maxFreq").toString();
+				}
         		logger.info("*** ampphase ** typ "+typ+" prodseriallist "+prodseriallist);    
-       		
-             return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=CPGain.rptdesign&testid="+testid)); 
+       		//type,prodserialids,maxamp,freq
+             return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=CPGain.rptdesign&type="+typ+"&prodserialids="+prodseriallist+"&maxamp="+maxDiff+"&freq="+maxFreq)); 
 			        }
         }
         logger.info("*** not able to identify tools options!!**");

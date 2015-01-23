@@ -62,22 +62,32 @@ public class TestImportController extends SimpleFormController{
 		throws Exception {
 		String action="More";
 		String strmode="new";
+		String fileName="";
 		logger.info("*** Inside testcontroller in onsubmit**: btn= "+request.getParameter("fmaction"));
-        // check if user pressed Done
-        if (request.getParameter("fmaction").equals("Done"))
-        {
-        	action="Done";
-        }
+              
 		
 		 String strtestid = (String)cursess.getAttribute("id");
-		 
-		 if(strtestid!=null && strtestid!="" && strtestid!="null" && strtestid!="0"){
+		 strmode= (String)cursess.getAttribute("mode");
+		 if(strmode==null)strmode="new";
+		 logger.info("*** Inside testcontroller in onsubmit** strmode:"+strmode);
+		 if(strtestid!=null && strtestid!="" && strtestid!="null" && strtestid!="0" && strmode.equals("new")){
 			 strmode="addfile";
 		 }
-		 
+		 TestData file = (TestData)command;
+		 if(strmode.equals("edit")){
+			 logger.info("*** Inside testcontroller in onsubmit**: update");
+			 action="Save";
+			 mastersservice.updateTestData(file);
+		 }
+		 else
+		 {
+			 if (request.getParameter("fmaction").equals("Done"))
+		        {
+		        	action="Done";
+		        }
 		List<DataLog> datalogList = new ArrayList<DataLog>();
 		List<TestFrequency> freqlist=new ArrayList<TestFrequency>();
-		TestData file = (TestData)command;
+		
 		Date dtfrom = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(file.getStrtestdate().replace("T", " "));
     	
 		file.setDttestdate(dtfrom);
@@ -107,9 +117,7 @@ public class TestImportController extends SimpleFormController{
 	     } catch (JSONException e) {
 	         e.printStackTrace();
 	    }
-
-		
-		String fileName="";
+	
 		 
 		logger.info("Inside FileUpload Controller");
 		if(multipartFile!=null){
@@ -237,11 +245,16 @@ public class TestImportController extends SimpleFormController{
 					}
 				 logger.info(" imported testid "+testid);
 		}
-		        	
+		 }       	
 		//
+		request.setAttribute("id", null);
+     	cursess.setAttribute("id",null);
+     	request.setAttribute("mode", null);
+     	cursess.setAttribute("mode",null);
 		if(action.equals("More")){
 		return new ModelAndView(new RedirectView("testimport.htm?id="+testid));}
-		else return new ModelAndView("fileuploadresult","fileName",fileName +" " +err);
+		else if (action.equals("Done")) return new ModelAndView("fileuploadresult","fileName",fileName +" " +err);
+		else return new ModelAndView(new RedirectView("testimport.htm?id="+testid+"&mode=edit"));
 	}
 	@Override
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder)
@@ -269,11 +282,13 @@ public class TestImportController extends SimpleFormController{
          	Date curTime = cal.getTime();
          	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
          	SimpleDateFormat sdftime = new SimpleDateFormat("HH:mm");
-	    	String typ = request.getParameter("type");
+	    	String mode = request.getParameter("mode");
 	        String id = request.getParameter("id");
 	        String PId=request.getParameter("PId");
 	        String atype=request.getParameter("atype");
-	        request.getSession().setAttribute("savestat", null);
+	        request.setAttribute("savestat", null);
+	        request.setAttribute("mode", mode);
+        	cursess.setAttribute("mode",mode);
 	        logger.info("inside ProductSerialController"); 
 	        if (id == null || id == "" || id.equals("null")){
 	        	logger.info(" atype "+atype);
@@ -290,6 +305,8 @@ public class TestImportController extends SimpleFormController{
 	        	  logger.info("inside fileuploadcontroller id:" +id);
 	        	request.getSession().setAttribute("id", id);
 	        	cursess.setAttribute("id",id);
+	        	request.getSession().setAttribute("mode", mode);
+	        	cursess.setAttribute("mode",mode);
 	            logger.info(" going to retrieve details of testdata="+id);
 	            testid=Integer.parseInt(id);
 	            TestData testdata=mastersservice.getTestData(Integer.parseInt(id));

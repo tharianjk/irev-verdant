@@ -29,6 +29,9 @@ drop function if exists calc_omni;
 
 drop view if exists axialratio_view;
 drop view if exists vw_polardata;
+drop view if exists vw_ampphase;
+
+
 
 drop table IF  EXISTS phasedata;
 drop table IF  EXISTS amplitudedata;
@@ -431,6 +434,13 @@ VIEW `axialratio_view` AS
         JOIN `vdata` `v` ON (((`h`.`Test_id` = `v`.`Test_id`)
             AND (`h`.`Frequency` = `v`.`Frequency`)
             AND (`h`.`Angle` = `v`.`Angle`))));
+            
+            
+create view vw_ampphase as select distinct a.frequency,a.prodserial_id,a.ampvalue amplitude, 'A' typ
+,p.productname,s.SerialNo from amplitudedata a
+inner join product_serial s on a.prodserial_id=s.Prodserial_id inner join product p on s.Product_id=p.Product_id
+union select distinct a.frequency,a.prodserial_id,a.phasevalue amplitude, 'P' typ,p.productname,s.SerialNo from phasedata a
+inner join product_serial s on a.prodserial_id=s.Prodserial_id inner join product p on s.Product_id=p.Product_id;            
 
 alter table FWK_ROLE add constraint fk_role_company foreign key (company_id) references fwk_company(company_id);
 alter table fwk_user_role add constraint FK_ROLE_User foreign key (role_id) references FWK_ROLE(role_id);

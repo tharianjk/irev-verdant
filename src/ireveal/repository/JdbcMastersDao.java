@@ -730,20 +730,17 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 			     
 			   public boolean updateTestData(TestData testdata) {  
 				   try{
-			    String sql = "UPDATE TestData set testname = ?,testdesc = ?,ProdSerial_id,testdate where test_id = ?";  
+			    String sql = "UPDATE TestData set testname = ?,testdesc = ?,ProdSerial_id=?,testdate=?,testcenter=?,instruments=?,calibration=?,testproc=? where test_id = ?";  
 			    getJdbcTemplate().update(  
 			      sql,  
-			      new Object[] { testdata.getTestname(), testdata.getTestdesc(),  testdata.getProductserialid(),testdata.getDttestdate() }); 
-			    
-			   
+			      new Object[] { testdata.getTestname(), testdata.getTestdesc(),  testdata.getProductserialid(),testdata.getDttestdate(),testdata.getTestcenter(),testdata.getInstruments(),testdata.getCalibration(),testdata.getTestproc(),testdata.getTestid() }); 
 			    return true;    
 			    }
 			    catch(Exception e ){
 					   logger.info("testdata Update error " +e.getMessage()); 
 					   return false;
-				   }
-			   }
-			
+					   }
+			   }		
 			   
 			   public TestData getTestData(int id) {  
 				   logger.info("***inside testdata** ");

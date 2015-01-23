@@ -266,7 +266,7 @@ var treemode='<%=request.getParameter("treemode")%>';
                 	var data = node.data("jsTreeComponent");
                 	var treeType=node.attr('treeType');
                 	var url ='';
-            if(treemode=="edit" && treeType!=5){             	  
+            if(treemode=="edit" ){            //&& treeType!=4 	  
              	 
              	 if(treeType==1)
              	 {
@@ -280,6 +280,10 @@ var treemode='<%=request.getParameter("treemode")%>';
          		 {
                 	   url = '<%=request.getContextPath()%>/productserial.htm?prodserid='+ node.attr('assetId')+'&Nlevel='+ node.attr('nlevel');
                  }
+             	else if(treeType==4)
+        		 {
+               	   url = '<%=request.getContextPath()%>/testimport.htm?id='+ node.attr('assetId')+'&mode=edit';
+                }
              	 
              	 parent.frames['AppBody'].location =url;
              
@@ -492,8 +496,23 @@ function recreatewithparents()
     <script>
     function customMenu(node) {
         // The default set of all items
+        treeType=$(node).attr('treeType')
+        if(treemode==null || treemode=='null' ||treemode=='undefined')
+        	treemode="";
+        console.log("treeType="+treeType+" treemode="+treemode);
          var items;
-         
+         if (treeType==3 && treemode!="edit"){        	 
+        	 console.log("inside edit");
+          	 items = {   
+          			 createItem: { // The "rename" menu item
+                      label: "Add Test",
+                      action: function(response) {
+                          var url = '<%=request.getContextPath()%>/testimport.htm?mode=add&PId='+ node.attr('assetId')+'&atype='+ node.attr('atype') ;
+                         // alert("url "+url);
+                          parent.frames['AppBody'].location = url;
+                                }
+                  }};
+          	 return items;}
        if(treemode=="edit"){
        
        // alert(" alert " +node.attr('treeType'));
@@ -545,14 +564,13 @@ function recreatewithparents()
         };
         }
               
-         else if (treeType==3){
-        	 
+         else if (treeType==3){        	 
         	 
         	 items = {   
         			 createItem: { // The "rename" menu item
                     label: "Add Test",
                     action: function(response) {
-                        var url = '<%=request.getContextPath()%>/testimport.htm?PId='+ node.attr('assetId')+'&atype='+ node.attr('atype') ;
+                        var url = '<%=request.getContextPath()%>/testimport.htm?mode=add&PId='+ node.attr('assetId')+'&atype='+ node.attr('atype') ;
                        // alert("url "+url);
                         parent.frames['AppBody'].location = url;
                               }
@@ -588,7 +606,7 @@ function recreatewithparents()
             		 editItem: { // The "rename" menu item
                          label: "Add Files/Frequency.",
                          action: function(response) {
-                      	   var url = '<%=request.getContextPath()%>/testimport.htm?id='+ node.attr('assetId') ;
+                      	   var url = '<%=request.getContextPath()%>/testimport.htm?mode=add&id='+ node.attr('assetId') ;
                              parent.frames['AppBody'].location = url;
                                    }
                      },

@@ -19,7 +19,7 @@
   <script>
      $(document).ready(function () {
     	
-    	 var url = '<%=request.getContextPath()%>/assettree.htm?treemode=edit';     
+    	 var url = '<%=request.getContextPath()%>/assettree.htm?treemode=view';     
             parent.frames['AssetTree'].location = url; 
   		 
   	});

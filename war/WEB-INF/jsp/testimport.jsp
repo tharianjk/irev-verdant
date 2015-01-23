@@ -141,7 +141,9 @@ progress_clear();
 		</tr>
         </table> 
          <br> 
-       <table>  
+         
+         
+       <table id="tbimport">  
        <tr> 
       
 		<td>File Type * :</td> 
@@ -169,7 +171,7 @@ progress_clear();
 		
 		
 		</table>
-		<table>
+		<table id="tbimport1">
 		<tr>
 		<td width="20%"> Frequency :</td>
        <td>		
@@ -214,8 +216,10 @@ progress_clear();
 		<form:hidden id="strfreq" path="strjsonfreq"></form:hidden>
 		<form:hidden id="originalfilename" path="originalfilename"></form:hidden>
 		<form:hidden path="ptype" ></form:hidden>
-		<input type="submit" value="More" name="fmaction" class="myButton" onclick="progress_update();form1.submit();"/>
-		<input type="submit" value="Done" name="fmaction" class="myButton" onclick="progress_update();form1.submit();"/>
+		<input type="submit" id="more" value="More" name="fmaction" class="myButton" onclick="progress_update();form1.submit();"/>
+		<input type="submit" id="done" value="Done" name="fmaction" class="myButton" onclick="progress_update();form1.submit();"/>
+		<input type="submit" id="save" value="Save" name="fmaction" class="myButton" onclick="form1.submit();" style="visibility:hidden"/>
+		<input type="button" id="cancel" value="Cancel"  class="myButton" style="visibility:hidden" onclick="fncancel();"/>
 		<span><form:errors path="filename" cssClass="error" />
 		</span>
  
@@ -241,8 +245,10 @@ progress_clear();
 
 
 <script>
+var mode='<%=request.getParameter("mode")%>';
 
 $(document).ready( function () {
+	
 	//document.getElementById("strfreq").value='{"jsonfreq":[{"freq":100, "lg":1},{"freq":1000, "lg":2},{"freq":2000, "lg":2}]}';
 	if(document.getElementById("ptype").value=="C")
 		{
@@ -257,29 +263,53 @@ $(document).ready( function () {
 		}
 	
 	var testid=document.getElementById("testid").value;
-	
-	 if(testid!="" && testid!=null && testid !='null')
+	 console.log("testid "+testid);
+	 if(testid!="" && testid!=null && testid !='null' && testid!=0)
 		{
-		 console.log("testid "+testid);
-		 $('#tblmain').find('input, textarea, button, select,checkbox').attr('disabled',true);
-			
+		 if(mode=='edit')
+			 {
+			 document.getElementById("tbimport").style.visibility="hidden";
+			 document.getElementById("tbimport1").style.visibility="hidden";
+			 document.getElementById("tblData").style.visibility="hidden";
+			 document.getElementById("more").style.visibility="hidden";
+			 document.getElementById("done").style.visibility="hidden";
+			 document.getElementById("save").style.visibility="visible";
+			 document.getElementById("cancel").style.visibility="visible";
+			 }		 
 		}
+	 else{
+		 document.getElementById("more").style.visibility="visible";
+		 document.getElementById("done").style.visibility="visible";
+		 document.getElementById("save").style.visibility="hidden";
+		 document.getElementById("cancel").style.visibility="hidden";
+	 }
+	 
+	 if( testid!="" && testid!=null && testid !='null' && testid!=0 && mode!='edit'){
+	 $('#tblmain').find('input, textarea, button, select,checkbox').attr('disabled',true);
+	 document.getElementById("more").style.visibility="visible";
+	 document.getElementById("done").style.visibility="visible";
+	 document.getElementById("save").style.visibility="hidden";
+	 document.getElementById("cancel").style.visibility="hidden";
+	 }
 	
 } );
+
+
+function fncancel(){
+	//alert("redirect");
+	window.location = "setup.htm?oper=test";
+	 }
+
 function AddNew(){
 
-	var freq=document.getElementById("selfreq").value;
-	
-	
+	var freq=document.getElementById("selfreq").value;	
 	document.getElementById("selfreq").value="";
 	
 	$("#tblData tbody").append(
 		"<tr>"+
 		"<td>"+freq+"</td>"+		
-		"<td><img src='img/edit.jpg' class='btnEdit'><img src='img/delete.jpg' class='btnDelete'/></td>"+
+		"<td><img src='img/delete.jpg' class='btnDelete'/></td>"+
 		"</tr>");
-	
-	$(".btnEdit").bind("click", Edit);
 	$(".btnDelete").bind("click", Delete);
 };
 function Add(){
