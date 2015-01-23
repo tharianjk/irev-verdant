@@ -45,9 +45,10 @@
        <table>
        <tr>
        <td > Max. Amplitude : </td>
-       <td ><input id="max" value="-40">
+       <td width="20"><input id="max" value="-40">
        <td > &nbsp; &nbsp;&nbsp;Min. Amplitude : </td>
-       <td ><input id="min"  value="-70"></td>
+       <td width="20"><input id="min"  value="-70"></td>
+        <td><div id="divimg">&nbsp; &nbsp;&nbsp;<input type="checkbox" id="img" value="img" >Show Aircraft Image</div></td>
 		<td>&nbsp; &nbsp;&nbsp;<input type="button" value="Go" name="go" class="myButtonGo" onclick="Redirect()"/>
 	<!-- &nbsp; &nbsp;&nbsp;<input type="button" value="back" name="go" class="myButtonGo" onclick="back()"/> -->
 		</td>
@@ -79,6 +80,16 @@ function fnenable(ctyp){
 }
 
 $(document).ready(function(){
+	
+	console.log("parenttype="+parent.AssetTree.selectedparenttype);
+	console.log("atype="+parent.AssetTree.atype);
+	if(parent.AssetTree.selectedparenttype=="L")
+		document.getElementById("divimg").style.visibility="visible";
+	else if(parent.AssetTree.selectedparenttype=="S" && parent.AssetTree.atype=="A")
+		document.getElementById("divimg").style.visibility="visible";
+	else
+		document.getElementById("divimg").style.visibility="hidden";
+	
 	if(typ=="P" || typ=="R" || typ=="Y")
 		{document.getElementById("cp").style.visibility="hidden";}
 	else{
@@ -92,6 +103,7 @@ $(document).ready(function(){
 		// self.close();
 	}
 	function Redirect(){
+		var img="no";
 		//alert("go clicked");
 		var testid="${model.testid}";
 		var freqid =document.getElementById("freqid").value;	
@@ -111,11 +123,13 @@ $(document).ready(function(){
 			{typ="V";}
 		else if (document.getElementById("cpdata").checked)
 		{typ="C";}
-
-		var url="/birt-verdant/frameset?__report=PolarGeneric.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min+"&lgain="+lg;
+if(document.getElementById("img").checked)
+	img="yes";
+		
+		var url="/birt-viewer/frameset?__report=PolarGeneric.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img;
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
 		if(typ=="B")
-			var url="/birt-verdant/frameset?__report=PolarHPVP.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min+"&lgain="+lg;
+			var url="/birt-viewer/frameset?__report=PolarHPVP.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img;
 			console.log("url " + url);
 		//window.location =url; 
 		window.frames['AppBody'].location=url;
