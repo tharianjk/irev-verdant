@@ -107,6 +107,11 @@ $(document).ready(function(){
 		//alert("go clicked");
 		var testid="${model.testid}";
 		var freqid =document.getElementById("freqid").value;	
+		if(freqid=="-1")
+			{
+			alert("Frequency not selected");
+			return;
+			}
 		var max =document.getElementById("max").value;
 		var min =document.getElementById("min").value;
 		var lg=document.getElementById("lg").value;

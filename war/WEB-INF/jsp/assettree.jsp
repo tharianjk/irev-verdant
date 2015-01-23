@@ -507,7 +507,7 @@ function recreatewithparents()
           			 createItem: { // The "rename" menu item
                       label: "Add Test",
                       action: function(response) {
-                          var url = '<%=request.getContextPath()%>/testimport.htm?mode=add&PId='+ node.attr('assetId')+'&atype='+ node.attr('atype') ;
+                          var url = '<%=request.getContextPath()%>/testimport.htm?mode=new&PId='+ node.attr('assetId')+'&atype='+ node.attr('atype') ;
                          // alert("url "+url);
                           parent.frames['AppBody'].location = url;
                                 }
@@ -578,7 +578,7 @@ function recreatewithparents()
         			 createItem: { // The "rename" menu item
                     label: "Add Test",
                     action: function(response) {
-                        var url = '<%=request.getContextPath()%>/testimport.htm?mode=add&PId='+ node.attr('assetId')+'&atype='+ node.attr('atype') ;
+                        var url = '<%=request.getContextPath()%>/testimport.htm?mode=new&PId='+ node.attr('assetId')+'&atype='+ node.attr('atype') ;
                        // alert("url "+url);
                         parent.frames['AppBody'].location = url;
                               }
