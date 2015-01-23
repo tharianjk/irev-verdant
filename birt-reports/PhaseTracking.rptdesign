@@ -1108,7 +1108,7 @@ mychart.setHeight("5");
 <td>
 <div class="outer">
 
-<img src="\irev-verdant\img\unnamed.png" height="50px" width="200px" align="baseline" name="myimage">
+<img src="\img\Verdantlogo.png" height="50px" width="200px" align="baseline" name="myimage">
 
 </div>
 </td>

@@ -81,7 +81,7 @@ function fnHomeClick()
 
 function HelpClick()
 {
-	window.open("/reg/doc/");
+	window.open("/doc-verdant/");
 }
  function userpwdclick()
 {
