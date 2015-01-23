@@ -188,7 +188,7 @@ var treemode='<%=request.getParameter("treemode")%>';
 			        	{
 			        	 
 			        	  parent.document.getElementById("od").style.display="none";
-			        	  parent.document.getElementById("ar").style.display="block";
+			        	  parent.document.getElementById("ar").style.display="none";
 			        	  parent.document.getElementById("pp").style.display="block";
 			        	  parent.document.getElementById("3db").style.display="block";
 			        	  parent.document.getElementById("10db").style.display="block";
@@ -196,8 +196,7 @@ var treemode='<%=request.getParameter("treemode")%>';
 			        	  parent.document.getElementById("blobe").style.display="block";
 			        	}
     			        else if(atype=="NCP")
-			        	{
-			        	 
+			        	{			        	 
 			        	  parent.document.getElementById("od").style.display="none";
 			        	  parent.document.getElementById("ar").style.display="block";
 			        	  parent.document.getElementById("pp").style.display="block";
@@ -210,11 +209,12 @@ var treemode='<%=request.getParameter("treemode")%>';
     			        else
     			        	{
     			        	parent.document.getElementById("od").style.display="none";
-  			        	  parent.document.getElementById("ar").style.display="none";
-  			        	  parent.document.getElementById("pp").style.display="none";
-  			        	  parent.document.getElementById("3db").style.display="none";
-  			        	  parent.document.getElementById("10db").style.display="none";
-  			        	  parent.document.getElementById("cpg").style.display="none";
+  			        	    parent.document.getElementById("ar").style.display="none";
+  			        	    parent.document.getElementById("pp").style.display="none";
+  			        	    parent.document.getElementById("3db").style.display="none";
+  			        	    parent.document.getElementById("10db").style.display="none";
+  			        	    parent.document.getElementById("cpg").style.display="none";
+  			        	    parent.document.getElementById("blobe").style.display="none";
     			        	}
                 	 if(monitorstat=="monitor"){
                 		// alert("treeType " +monitorstat);

@@ -160,7 +160,7 @@ public class ToolsController implements Controller {
 				if(resultset!=null && resultset.size()>0 && !resultset.isEmpty() )
 				{
 					if(resultset.get("maxDiff")!=null && resultset.get("maxFreq")!=null){
-					maxDiff=resultset.get("maxDiff").toString();
+					maxDiff="±"+resultset.get("maxDiff").toString();
 					freq=resultset.get("maxFreq").toString();}
 				}
         		logger.info("*** ampphase ** typ "+typ+" prodseriallist "+prodseriallist);    
