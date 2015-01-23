@@ -126,10 +126,10 @@ $(document).ready(function(){
 if(document.getElementById("img").checked)
 	img="yes";
 		
-		var url="/birt-viewer/frameset?__report=PolarGeneric.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img;
+		var url="/birt-verdant/frameset?__report=PolarGeneric.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img;
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
 		if(typ=="B")
-			var url="/birt-viewer/frameset?__report=PolarHPVP.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img;
+			var url="/birt-verdant/frameset?__report=PolarHPVP.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img;
 			console.log("url " + url);
 		//window.location =url; 
 		window.frames['AppBody'].location=url;
