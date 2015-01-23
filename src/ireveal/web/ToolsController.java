@@ -163,7 +163,7 @@ public class ToolsController implements Controller {
 				}
         		logger.info("*** ampphase ** typ "+typ+" prodseriallist "+prodseriallist);    
        		//type,prodserialids,maxamp,freq
-             return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=CPGain.rptdesign&type="+typ+"&prodserialids="+prodseriallist+"&maxamp="+maxDiff+"&freq="+maxFreq)); 
+             return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=PhaseTracking.rptdesign&type="+typ+"&prodserialids="+prodseriallist+"&maxamp="+maxDiff+"&freq="+maxFreq)); 
 			        }
         }
         logger.info("*** not able to identify tools options!!**");
