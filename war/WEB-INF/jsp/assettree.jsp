@@ -504,6 +504,12 @@ function recreatewithparents()
     function customMenu(node) {
         // The default set of all items
         treeType=$(node).attr('treeType')
+        
+        selectedname=node.attr('Assetname');
+    	selectedtype=node.attr('treeType');
+    	atype=node.attr('atype');
+    	selectedsection=node.attr('assetId');
+    	selectedparenttype=parent_node.attr('atype');
         if(treemode==null || treemode=='null' ||treemode=='undefined')
         	treemode="";
         console.log("treeType="+treeType+" treemode="+treemode);
