@@ -1224,7 +1224,7 @@ mychart.setHeight("5");
                     <label id="264">
                         <property name="fontWeight">bold</property>
                         <property name="textAlign">center</property>
-                        <text-property name="text">MAXIMUM AMPLITUDE</text-property>
+                        <text-property name="text">WINDOW</text-property>
                     </label>
                 </cell>
             </row>
@@ -1443,7 +1443,7 @@ mychart.setHeight("5");
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Serail No(s)</Value>
+          <Value>Serial No(s)</Value>
           <Font>
             <Alignment/>
           </Font>

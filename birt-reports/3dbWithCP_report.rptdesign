@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
     <property name="createdBy">Eclipse BIRT Designer Version 4.3.2.v20140211-1400 Build &lt;4.3.2.v20140218-1056></property>
+    <text-property name="title">3dB Beamwidth and Beam Squint</text-property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="layoutPreference">auto layout</property>
@@ -668,14 +669,30 @@ from cpcalculated where Test_id=?]]></xml-property>
             <property name="borderTopStyle">solid</property>
             <property name="borderTopWidth">1px</property>
         </style>
+        <style name="NewStyle" id="1114">
+            <property name="height">1cm</property>
+        </style>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
             <property name="rightMargin">0in</property>
+            <page-header>
+                <label id="1113">
+                    <property name="style">NewStyle</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <text-property name="text">Birt Report Header</text-property>
+                </label>
+            </page-header>
             <page-footer>
-                <text id="55">
-                    <property name="contentType">html</property>
-                    <text-property name="content"><![CDATA[<html>
+                <grid id="1104">
+                    <column id="1105"/>
+                    <column id="1106"/>
+                    <row id="1107">
+                        <cell id="1108">
+                            <text id="1111">
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<html>
 <body>
 <style>
 .outer{
@@ -685,12 +702,12 @@ from cpcalculated where Test_id=?]]></xml-property>
   display: inline-block;
 }
 </style>
-<table border="1">
+<table>
 <tr>
 <td>
 <div class="outer">
 
-<img src="C:\work\apache-tomee-1.6.0.2\webapps\irev-verdant\img\unnamed.png" height="50px" width="200px" align="baseline" name="myimage">
+<img src="\img\Verdantlogo.png" height="50px" width="200px" align="baseline" name="myimage">
 
 </div>
 </td>
@@ -698,7 +715,15 @@ from cpcalculated where Test_id=?]]></xml-property>
 </table>
 </body>
 </html>]]></text-property>
-                </text>
+                            </text>
+                        </cell>
+                        <cell id="1109">
+                            <label id="1112">
+                                <text-property name="text">Verdant Footer Content</text-property>
+                            </label>
+                        </cell>
+                    </row>
+                </grid>
             </page-footer>
         </simple-master-page>
     </page-setup>
@@ -770,7 +795,7 @@ from cpcalculated where Test_id=?]]></xml-property>
                         <property name="fontSize">medium</property>
                         <property name="fontWeight">bold</property>
                         <property name="textAlign">center</property>
-                        <text-property name="text">3dB Beamwidth</text-property>
+                        <text-property name="text">3dB Beamwidth and Beam Squint</text-property>
                     </label>
                 </cell>
             </row>
@@ -1103,7 +1128,7 @@ from cpcalculated where Test_id=?]]></xml-property>
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">row["Hide"]&lt;1 || params["deg"].value=="0d90d"</expression>
+                    <expression name="valueExpr" type="javascript">row["Hide"]&lt;1 || params["deg"].value=="0d90d" || params["deg"].value=="bm"</expression>
                 </structure>
             </list-property>
             <list-property name="boundDataColumns">
@@ -1121,7 +1146,7 @@ from cpcalculated where Test_id=?]]></xml-property>
                         <property name="fontSize">medium</property>
                         <property name="fontWeight">bold</property>
                         <property name="textAlign">center</property>
-                        <text-property name="text">3dB Beamwidth</text-property>
+                        <text-property name="text">3dB Beamwidth and Beam Squint</text-property>
                     </label>
                 </cell>
             </row>
@@ -1440,6 +1465,189 @@ from cpcalculated where Test_id=?]]></xml-property>
                                                     <row id="738">
                                                         <cell id="739"/>
                                                         <cell id="740"/>
+                                                    </row>
+                                                </footer>
+                                            </table>
+                                        </cell>
+                                    </row>
+                                </grid>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+            </row>
+        </grid>
+        <grid id="743">
+            <property name="canShrink">true</property>
+            <property name="dataSet">fq3dbwithCP</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Hide"]&lt;1 || params["deg"].value!="bm"</expression>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Hide</property>
+                    <text-property name="displayName">Hide</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Hide"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <column id="744"/>
+            <row id="745">
+                <cell id="746">
+                    <label id="795">
+                        <property name="fontSize">medium</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">center</property>
+                        <text-property name="text">3dB Beamwidth and Beam Squint</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="747">
+                <cell id="748">
+                    <grid id="749">
+                        <column id="750"/>
+                        <column id="751"/>
+                        <row id="752">
+                            <cell id="753">
+                                <grid id="755">
+                                    <expression name="bookmark" type="javascript">"BMHP"</expression>
+                                    <column id="756"/>
+                                    <row id="757">
+                                        <cell id="758">
+                                            <label id="759">
+                                                <property name="fontSize">medium</property>
+                                                <property name="fontWeight">bold</property>
+                                                <property name="textAlign">center</property>
+                                                <text-property name="text">Spot Freq.</text-property>
+                                            </label>
+                                        </cell>
+                                    </row>
+                                    <row id="760">
+                                        <cell id="761">
+                                            <table id="762">
+                                                <property name="dataSet">fq3dbwithCP</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Frequency</property>
+                                                        <text-property name="displayName">frequency</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Frequency"]</expression>
+                                                        <property name="dataType">decimal</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">frequnit</property>
+                                                        <text-property name="displayName">frequnit</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                </list-property>
+                                                <column id="771"/>
+                                                <header>
+                                                    <row id="763">
+                                                        <cell id="764">
+                                                            <data id="765">
+                                                                <property name="fontSize">small</property>
+                                                                <property name="resultSetColumn">frequnit</property>
+                                                            </data>
+                                                        </cell>
+                                                    </row>
+                                                </header>
+                                                <detail>
+                                                    <row id="766">
+                                                        <cell id="767">
+                                                            <data id="768">
+                                                                <property name="fontSize">small</property>
+                                                                <property name="textAlign">center</property>
+                                                                <property name="resultSetColumn">Frequency</property>
+                                                            </data>
+                                                        </cell>
+                                                    </row>
+                                                </detail>
+                                                <footer>
+                                                    <row id="769">
+                                                        <cell id="770"/>
+                                                    </row>
+                                                </footer>
+                                            </table>
+                                        </cell>
+                                    </row>
+                                </grid>
+                            </cell>
+                            <cell id="754">
+                                <grid id="772">
+                                    <column id="773"/>
+                                    <row id="774">
+                                        <cell id="775">
+                                            <label id="776">
+                                                <property name="fontSize">medium</property>
+                                                <property name="fontWeight">bold</property>
+                                                <property name="textAlign">center</property>
+                                                <text-property name="text">Beam Max.</text-property>
+                                            </label>
+                                        </cell>
+                                    </row>
+                                    <row id="777">
+                                        <cell id="778">
+                                            <table id="779">
+                                                <property name="dataSet">3Db_BW_BMax</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Frequency</property>
+                                                        <text-property name="displayName">bwmax</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                        <property name="dataType">decimal</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">3Db_BW_BMax</property>
+                                                        <text-property name="displayName">3Db_Bs_BMax</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                        <property name="dataType">decimal</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <column id="793"/>
+                                                <column id="794"/>
+                                                <header>
+                                                    <row id="780">
+                                                        <cell id="781">
+                                                            <label id="782">
+                                                                <property name="fontSize">small</property>
+                                                                <text-property name="text">3dB BW (deg.)</text-property>
+                                                            </label>
+                                                        </cell>
+                                                        <cell id="783">
+                                                            <label id="784">
+                                                                <property name="fontSize">small</property>
+                                                                <text-property name="text">BSq (dB)</text-property>
+                                                            </label>
+                                                        </cell>
+                                                    </row>
+                                                </header>
+                                                <detail>
+                                                    <row id="785">
+                                                        <cell id="786">
+                                                            <data id="787">
+                                                                <property name="fontSize">small</property>
+                                                                <property name="textAlign">center</property>
+                                                                <property name="resultSetColumn">Frequency</property>
+                                                            </data>
+                                                        </cell>
+                                                        <cell id="788">
+                                                            <data id="789">
+                                                                <property name="fontSize">small</property>
+                                                                <property name="textAlign">center</property>
+                                                                <property name="resultSetColumn">3Db_BW_BMax</property>
+                                                            </data>
+                                                        </cell>
+                                                    </row>
+                                                </detail>
+                                                <footer>
+                                                    <row id="790">
+                                                        <cell id="791"/>
+                                                        <cell id="792"/>
                                                     </row>
                                                 </footer>
                                             </table>

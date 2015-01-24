@@ -1,43 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
     <property name="createdBy">Eclipse BIRT Designer Version 4.3.2.v20140211-1400 Build &lt;4.3.2.v20140218-1056></property>
+    <text-property name="title">3dB Beamwidth &amp; Beam Squint</text-property>
     <list-property name="propertyBindings">
-        <structure>
-            <property name="name">odaDriverClass</property>
-            <property name="id">7</property>
-        </structure>
-        <structure>
-            <property name="name">odaURL</property>
-            <property name="id">7</property>
-        </structure>
-        <structure>
-            <property name="name">odaUser</property>
-            <property name="id">7</property>
-        </structure>
-        <structure>
-            <property name="name">odaAutoCommit</property>
-            <property name="id">7</property>
-        </structure>
-        <structure>
-            <property name="name">odaIsolationMode</property>
-            <property name="id">7</property>
-        </structure>
-        <structure>
-            <property name="name">odaPassword</property>
-            <property name="id">7</property>
-        </structure>
-        <structure>
-            <property name="name">odaJndiName</property>
-            <property name="id">7</property>
-        </structure>
-        <structure>
-            <property name="name">OdaConnProfileName</property>
-            <property name="id">7</property>
-        </structure>
-        <structure>
-            <property name="name">OdaConnProfileStorePath</property>
-            <property name="id">7</property>
-        </structure>
         <structure>
             <property name="name">queryText</property>
             <property name="id">402</property>
@@ -85,28 +50,7 @@
         </scalar-parameter>
     </parameters>
     <data-sources>
-        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="VerdantProfile" id="7">
-            <list-property name="privateDriverProperties">
-                <ex-property>
-                    <name>metadataBidiFormatStr</name>
-                    <value>ILYNN</value>
-                </ex-property>
-                <ex-property>
-                    <name>disabledMetadataBidiFormatStr</name>
-                </ex-property>
-                <ex-property>
-                    <name>contentBidiFormatStr</name>
-                    <value>ILYNN</value>
-                </ex-property>
-                <ex-property>
-                    <name>disabledContentBidiFormatStr</name>
-                </ex-property>
-            </list-property>
-            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
-            <property name="odaURL">jdbc:mysql://localhost:3306/verdant</property>
-            <property name="odaUser">root</property>
-        </oda-data-source>
-        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="VerdantProfileN" id="1016">
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="VerdantProfilenew" id="1123">
             <text-property name="displayName"></text-property>
             <list-property name="privateDriverProperties">
                 <ex-property>
@@ -127,8 +71,8 @@
             <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
             <property name="odaURL">jdbc:mysql://localhost:3306/verdant</property>
             <property name="odaUser">root</property>
-            <property name="OdaConnProfileName">VerdantProfileN</property>
-            <property name="OdaConnProfileStorePath">VerdantProfile.xml</property>
+            <property name="OdaConnProfileName">VerdantProfile</property>
+            <property name="OdaConnProfileStorePath">VerdantProfile</property>
         </oda-data-source>
     </data-sources>
     <data-sets>
@@ -174,7 +118,7 @@
                     </structure>
                 </list-property>
             </structure>
-            <property name="dataSource">VerdantProfile</property>
+            <property name="dataSource">VerdantProfilenew</property>
             <list-property name="resultSet">
                 <structure>
                     <property name="position">2</property>
@@ -301,7 +245,7 @@
                     </structure>
                 </list-property>
             </structure>
-            <property name="dataSource">VerdantProfile</property>
+            <property name="dataSource">VerdantProfilenew</property>
             <list-property name="resultSet">
                 <structure>
                     <property name="position">1</property>
@@ -410,7 +354,7 @@
                     </structure>
                 </list-property>
             </structure>
-            <property name="dataSource">VerdantProfile</property>
+            <property name="dataSource">VerdantProfilenew</property>
             <list-property name="resultSet">
                 <structure>
                     <property name="position">1</property>
@@ -540,7 +484,7 @@
                     </structure>
                 </list-property>
             </structure>
-            <property name="dataSource">VerdantProfile</property>
+            <property name="dataSource">VerdantProfilenew</property>
             <list-property name="resultSet">
                 <structure>
                     <property name="position">1</property>
@@ -671,7 +615,7 @@ from hcalculated where Test_id=?]]></xml-property>
                     </structure>
                 </list-property>
             </structure>
-            <property name="dataSource">VerdantProfile</property>
+            <property name="dataSource">VerdantProfilenew</property>
             <list-property name="resultSet">
                 <structure>
                     <property name="position">1</property>
@@ -801,7 +745,7 @@ from hcalculated where Test_id=?]]></xml-property>
                     </structure>
                 </list-property>
             </structure>
-            <property name="dataSource">VerdantProfile</property>
+            <property name="dataSource">VerdantProfilenew</property>
             <list-property name="resultSet">
                 <structure>
                     <property name="position">1</property>
@@ -931,7 +875,7 @@ from hcalculated where Test_id=?]]></xml-property>
                     </structure>
                 </list-property>
             </structure>
-            <property name="dataSource">VerdantProfile</property>
+            <property name="dataSource">VerdantProfilenew</property>
             <list-property name="resultSet">
                 <structure>
                     <property name="position">1</property>
@@ -1133,15 +1077,31 @@ from vcalculated where Test_id=?]]></xml-property>
             <property name="borderTopStyle">solid</property>
             <property name="borderTopWidth">1px</property>
         </style>
+        <style name="NewStyle" id="1122">
+            <property name="height">1cm</property>
+        </style>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
             <property name="leftMargin">0in</property>
             <property name="rightMargin">0in</property>
+            <page-header>
+                <label id="1121">
+                    <property name="style">NewStyle</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <text-property name="text">Birt Report Header</text-property>
+                </label>
+            </page-header>
             <page-footer>
-                <text id="55">
-                    <property name="contentType">html</property>
-                    <text-property name="content"><![CDATA[<html>
+                <grid id="1113">
+                    <column id="1114"/>
+                    <column id="1115"/>
+                    <row id="1116">
+                        <cell id="1117">
+                            <text id="1118">
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<html>
 <body>
 <style>
 .outer{
@@ -1151,12 +1111,12 @@ from vcalculated where Test_id=?]]></xml-property>
   display: inline-block;
 }
 </style>
-<table border="1">
+<table>
 <tr>
 <td>
 <div class="outer">
 
-<img src="C:\work\apache-tomee-1.6.0.2\webapps\irev-verdant\img\unnamed.png" height="50px" width="200px" align="baseline" name="myimage">
+<img src="\img\Verdantlogo.png" height="50px" width="200px" align="baseline" name="myimage">
 
 </div>
 </td>
@@ -1164,7 +1124,15 @@ from vcalculated where Test_id=?]]></xml-property>
 </table>
 </body>
 </html>]]></text-property>
-                </text>
+                            </text>
+                        </cell>
+                        <cell id="1119">
+                            <label id="1120">
+                                <text-property name="text">Verdant Footer Content</text-property>
+                            </label>
+                        </cell>
+                    </row>
+                </grid>
             </page-footer>
         </simple-master-page>
     </page-setup>
@@ -1235,7 +1203,7 @@ from vcalculated where Test_id=?]]></xml-property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">medium</property>
                         <property name="textAlign">center</property>
-                        <text-property name="text">3dB Beamwidth</text-property>
+                        <text-property name="text">3dB Beamwidth &amp; Beam Squint</text-property>
                     </label>
                 </cell>
             </row>
@@ -1899,7 +1867,7 @@ from vcalculated where Test_id=?]]></xml-property>
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">row["Hide"]&lt;1 || params["deg"].value=="0d90d"</expression>
+                    <expression name="valueExpr" type="javascript">row["Hide"]&lt;1 || params["deg"].value=="0d90d" || params["deg"].value=="bm"</expression>
                 </structure>
             </list-property>
             <list-property name="boundDataColumns">
@@ -1950,6 +1918,7 @@ from vcalculated where Test_id=?]]></xml-property>
                                                 <row id="837">
                                                     <cell id="838">
                                                         <label id="839">
+                                                            <property name="fontSize">medium</property>
                                                             <property name="fontWeight">bold</property>
                                                             <property name="textAlign">center</property>
                                                             <text-property name="text">Spot Freq.</text-property>
@@ -2544,6 +2513,290 @@ from vcalculated where Test_id=?]]></xml-property>
                                                     </cell>
                                                 </row>
                                             </grid>
+                                        </cell>
+                                    </row>
+                                </grid>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+            </row>
+        </grid>
+        <grid id="1023">
+            <property name="canShrink">true</property>
+            <property name="dataSet">fq</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Hide"]&lt;1 || params["deg"].value!="bm"</expression>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Hide</property>
+                    <text-property name="displayName">Hide</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Hide"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <column id="1024"/>
+            <column id="1025"/>
+            <row id="1026">
+                <cell id="1027">
+                    <label id="1107">
+                        <property name="fontSize">medium</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">center</property>
+                        <text-property name="text">HP</text-property>
+                    </label>
+                </cell>
+                <cell id="1028">
+                    <label id="1108">
+                        <property name="fontSize">medium</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">center</property>
+                        <text-property name="text">VP</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="1029">
+                <cell id="1030">
+                    <grid id="1049">
+                        <column id="1050"/>
+                        <column id="1051"/>
+                        <row id="1052">
+                            <cell id="1053">
+                                <grid id="1032">
+                                    <expression name="bookmark" type="javascript">"BMHP"</expression>
+                                    <column id="1033"/>
+                                    <row id="1034">
+                                        <cell id="1035">
+                                            <label id="1036">
+                                                <property name="fontSize">medium</property>
+                                                <property name="fontWeight">bold</property>
+                                                <property name="textAlign">center</property>
+                                                <text-property name="text">Spot Freq.</text-property>
+                                            </label>
+                                        </cell>
+                                    </row>
+                                    <row id="1037">
+                                        <cell id="1038">
+                                            <table id="1039">
+                                                <property name="dataSet">fq</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Frequency</property>
+                                                        <text-property name="displayName">frequency</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["Frequency"]</expression>
+                                                        <property name="dataType">decimal</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">frequnit</property>
+                                                        <text-property name="displayName">frequnit</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                                                        <property name="dataType">string</property>
+                                                    </structure>
+                                                </list-property>
+                                                <column id="1048"/>
+                                                <header>
+                                                    <row id="1040">
+                                                        <cell id="1041">
+                                                            <data id="1042">
+                                                                <property name="fontSize">small</property>
+                                                                <property name="resultSetColumn">frequnit</property>
+                                                            </data>
+                                                        </cell>
+                                                    </row>
+                                                </header>
+                                                <detail>
+                                                    <row id="1043">
+                                                        <cell id="1044">
+                                                            <data id="1045">
+                                                                <property name="fontSize">small</property>
+                                                                <property name="textAlign">center</property>
+                                                                <property name="resultSetColumn">Frequency</property>
+                                                            </data>
+                                                        </cell>
+                                                    </row>
+                                                </detail>
+                                                <footer>
+                                                    <row id="1046">
+                                                        <cell id="1047"/>
+                                                    </row>
+                                                </footer>
+                                            </table>
+                                        </cell>
+                                    </row>
+                                </grid>
+                            </cell>
+                            <cell id="1054">
+                                <grid id="1055">
+                                    <column id="1056"/>
+                                    <row id="1057">
+                                        <cell id="1058">
+                                            <label id="1059">
+                                                <property name="fontSize">medium</property>
+                                                <property name="fontWeight">bold</property>
+                                                <property name="textAlign">center</property>
+                                                <text-property name="text">Beam Max</text-property>
+                                            </label>
+                                        </cell>
+                                    </row>
+                                    <row id="1060">
+                                        <cell id="1061">
+                                            <table id="1062">
+                                                <property name="dataSet">3Db_BW_BMax</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">Frequency</property>
+                                                        <text-property name="displayName">bwmax</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                        <property name="dataType">decimal</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">3Db_BW_BMax</property>
+                                                        <text-property name="displayName">3Db_Bs_BMax</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                        <property name="dataType">decimal</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <column id="1076"/>
+                                                <column id="1077"/>
+                                                <header>
+                                                    <row id="1063">
+                                                        <cell id="1064">
+                                                            <label id="1065">
+                                                                <property name="fontSize">small</property>
+                                                                <text-property name="text">BW(dg) </text-property>
+                                                            </label>
+                                                        </cell>
+                                                        <cell id="1066">
+                                                            <label id="1067">
+                                                                <property name="fontSize">small</property>
+                                                                <text-property name="text">BS(dB)</text-property>
+                                                            </label>
+                                                        </cell>
+                                                    </row>
+                                                </header>
+                                                <detail>
+                                                    <row id="1068">
+                                                        <cell id="1069">
+                                                            <data id="1070">
+                                                                <property name="fontSize">small</property>
+                                                                <property name="textAlign">center</property>
+                                                                <property name="resultSetColumn">Frequency</property>
+                                                            </data>
+                                                        </cell>
+                                                        <cell id="1071">
+                                                            <data id="1072">
+                                                                <property name="fontSize">small</property>
+                                                                <property name="textAlign">center</property>
+                                                                <property name="resultSetColumn">3Db_BW_BMax</property>
+                                                            </data>
+                                                        </cell>
+                                                    </row>
+                                                </detail>
+                                                <footer>
+                                                    <row id="1073">
+                                                        <cell id="1074"/>
+                                                        <cell id="1075"/>
+                                                    </row>
+                                                </footer>
+                                            </table>
+                                        </cell>
+                                    </row>
+                                </grid>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+                <cell id="1031">
+                    <grid id="1109">
+                        <column id="1110"/>
+                        <row id="1111">
+                            <cell id="1112">
+                                <grid id="1084">
+                                    <column id="1085"/>
+                                    <row id="1086">
+                                        <cell id="1087">
+                                            <label id="1088">
+                                                <property name="fontSize">medium</property>
+                                                <property name="fontWeight">bold</property>
+                                                <property name="textAlign">center</property>
+                                                <text-property name="text">Beam Max</text-property>
+                                            </label>
+                                        </cell>
+                                    </row>
+                                    <row id="1089">
+                                        <cell id="1090">
+                                            <table id="1091">
+                                                <property name="dataSet">beammaxvp</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">3Db_BW_BMax</property>
+                                                        <text-property name="displayName">3Db_BW_BMax</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                        <property name="dataType">decimal</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">3Db_BS_BMax</property>
+                                                        <text-property name="displayName">3Db_BS_BMax</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                        <property name="dataType">decimal</property>
+                                                    </structure>
+                                                    <structure>
+                                                        <property name="name">Column Binding</property>
+                                                        <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                        <property name="dataType">string</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <column id="1105"/>
+                                                <column id="1106"/>
+                                                <header>
+                                                    <row id="1092">
+                                                        <cell id="1093">
+                                                            <label id="1094">
+                                                                <property name="fontSize">small</property>
+                                                                <text-property name="text">BW(dg) </text-property>
+                                                            </label>
+                                                        </cell>
+                                                        <cell id="1095">
+                                                            <label id="1096">
+                                                                <property name="fontSize">small</property>
+                                                                <text-property name="text">BS (dB)</text-property>
+                                                            </label>
+                                                        </cell>
+                                                    </row>
+                                                </header>
+                                                <detail>
+                                                    <row id="1097">
+                                                        <cell id="1098">
+                                                            <data id="1099">
+                                                                <property name="fontSize">small</property>
+                                                                <property name="textAlign">center</property>
+                                                                <property name="resultSetColumn">Column Binding</property>
+                                                            </data>
+                                                        </cell>
+                                                        <cell id="1100">
+                                                            <data id="1101">
+                                                                <property name="fontSize">small</property>
+                                                                <property name="textAlign">center</property>
+                                                                <property name="resultSetColumn">3Db_BW_BMax</property>
+                                                            </data>
+                                                        </cell>
+                                                    </row>
+                                                </detail>
+                                                <footer>
+                                                    <row id="1102">
+                                                        <cell id="1103"/>
+                                                        <cell id="1104"/>
+                                                    </row>
+                                                </footer>
+                                            </table>
                                         </cell>
                                     </row>
                                 </grid>

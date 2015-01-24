@@ -74,13 +74,25 @@
                     <text-property name="displayName">frequnit</text-property>
                     <text-property name="heading">frequnit</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">BackLobe</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">bh</text-property>
+                    <text-property name="heading">bh</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">BackLobe_4</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">bv</text-property>
+                    <text-property name="heading">bv</text-property>
+                </structure>
             </list-property>
             <list-property name="parameters">
                 <structure>
                     <property name="name">param_1</property>
                     <property name="paramName">testid</property>
                     <property name="nativeName"></property>
-                    <property name="dataType">integer</property>
+                    <property name="dataType">string</property>
                     <property name="nativeDataType">-1</property>
                     <property name="position">1</property>
                     <property name="isInput">true</property>
@@ -101,6 +113,16 @@
                     </structure>
                     <structure>
                         <property name="position">3</property>
+                        <property name="name">BackLobe</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">BackLobe_4</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
                         <property name="name">Hide</property>
                         <property name="dataType">integer</property>
                     </structure>
@@ -122,8 +144,25 @@
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">BackLobe</property>
+                    <property name="nativeName">BackLobe</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">BackLobe_4</property>
+                    <property name="nativeName">BackLobe</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[SELECT case t.frequnit when 'GHz' then frequency/1000 else frequency end frequency,t.frequnit FROM hcalculated ar inner join testdata t on ar.test_id=t.test_id  where ar.Test_id=?]]></xml-property>
+            <xml-property name="queryText"><![CDATA[SELECT case t.frequnit when 'GHz' then ar.frequency/1000 else ar.frequency end frequency,t.frequnit,
+ar.BackLobe as bh,v.BackLobe as bv FROM hcalculated ar 
+inner join  vcalculated v on v.Frequency=ar.Frequency 
+inner join testdata t on ar.test_id=t.test_id  where ar.Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -468,14 +507,30 @@
             <property name="borderTopStyle">solid</property>
             <property name="borderTopWidth">1px</property>
         </style>
+        <style name="NewStyle" id="1122">
+            <property name="height">1cm</property>
+        </style>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
             <property name="rightMargin">0in</property>
+            <page-header>
+                <label id="1121">
+                    <property name="style">NewStyle</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <text-property name="text">Birt Report Header</text-property>
+                </label>
+            </page-header>
             <page-footer>
-                <text id="55">
-                    <property name="contentType">html</property>
-                    <text-property name="content"><![CDATA[<html>
+                <grid id="1113">
+                    <column id="1114"/>
+                    <column id="1115"/>
+                    <row id="1116">
+                        <cell id="1117">
+                            <text id="1118">
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<html>
 <body>
 <style>
 .outer{
@@ -485,12 +540,12 @@
   display: inline-block;
 }
 </style>
-<table border="1">
+<table>
 <tr>
 <td>
 <div class="outer">
 
-<img src="C:\work\apache-tomee-1.6.0.2\webapps\irev-verdant\img\unnamed.png" height="50px" width="200px" align="baseline" name="myimage">
+<img src="\img\Verdantlogo.png" height="50px" width="200px" align="baseline" name="myimage">
 
 </div>
 </td>
@@ -498,7 +553,15 @@
 </table>
 </body>
 </html>]]></text-property>
-                </text>
+                            </text>
+                        </cell>
+                        <cell id="1119">
+                            <label id="1120">
+                                <text-property name="text">Verdant Footer Content</text-property>
+                            </label>
+                        </cell>
+                    </row>
+                </grid>
             </page-footer>
         </simple-master-page>
     </page-setup>
@@ -575,15 +638,7 @@
                 </cell>
             </row>
         </grid>
-        <grid id="763">
-            <property name="borderBottomStyle">solid</property>
-            <property name="borderBottomWidth">thin</property>
-            <property name="borderLeftStyle">solid</property>
-            <property name="borderLeftWidth">thin</property>
-            <property name="borderRightStyle">solid</property>
-            <property name="borderRightWidth">thin</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">thin</property>
+        <grid id="863">
             <property name="canShrink">true</property>
             <property name="dataSet">fq</property>
             <list-property name="visibility">
@@ -600,12 +655,10 @@
                     <property name="dataType">integer</property>
                 </structure>
             </list-property>
-            <column id="764"/>
-            <column id="765"/>
-            <row id="766">
-                <cell id="767"/>
-                <cell id="768">
-                    <label id="789">
+            <column id="864"/>
+            <row id="865">
+                <cell id="866">
+                    <label id="869">
                         <property name="fontSize">medium</property>
                         <property name="fontWeight">bold</property>
                         <property name="textAlign">center</property>
@@ -613,213 +666,95 @@
                     </label>
                 </cell>
             </row>
-            <row id="769">
-                <cell id="770">
-                    <grid id="565">
-                        <property name="borderBottomStyle">solid</property>
-                        <property name="borderBottomWidth">thin</property>
-                        <property name="borderLeftStyle">solid</property>
-                        <property name="borderLeftWidth">thin</property>
-                        <property name="borderRightStyle">solid</property>
-                        <property name="borderRightWidth">thin</property>
-                        <property name="borderTopStyle">solid</property>
-                        <property name="borderTopWidth">thin</property>
-                        <expression name="bookmark" type="javascript">"BMHP"</expression>
-                        <column id="566"/>
-                        <row id="567">
-                            <cell id="568">
-                                <label id="581">
-                                    <property name="fontSize">medium</property>
-                                    <property name="fontWeight">bold</property>
-                                    <property name="textAlign">center</property>
-                                    <text-property name="text">Spot Frequency</text-property>
-                                </label>
-                            </cell>
-                        </row>
-                        <row id="569">
-                            <cell id="570">
-                                <grid id="829">
-                                    <column id="830"/>
-                                    <row id="831">
-                                        <cell id="832">
-                                            <table id="819">
-                                                <property name="dataSet">fq</property>
-                                                <list-property name="boundDataColumns">
-                                                    <structure>
-                                                        <property name="name">frequnit</property>
-                                                        <text-property name="displayName">frequnit</text-property>
-                                                        <expression name="expression" type="javascript">"("+dataSetRow["frequnit"]+")"</expression>
-                                                        <property name="dataType">string</property>
-                                                        <property name="allowExport">true</property>
-                                                    </structure>
-                                                    <structure>
-                                                        <property name="name">Frequency</property>
-                                                        <text-property name="displayName">frequency</text-property>
-                                                        <expression name="expression" type="javascript">dataSetRow["Frequency"]</expression>
-                                                        <property name="dataType">decimal</property>
-                                                    </structure>
-                                                </list-property>
-                                                <column id="826"/>
-                                                <header>
-                                                    <row id="820">
-                                                        <cell id="821">
-                                                            <data id="834">
-                                                                <property name="fontSize">small</property>
-                                                                <property name="resultSetColumn">frequnit</property>
-                                                            </data>
-                                                        </cell>
-                                                    </row>
-                                                </header>
-                                                <detail>
-                                                    <row id="822">
-                                                        <cell id="823">
-                                                            <data id="833">
-                                                                <property name="fontSize">small</property>
-                                                                <property name="textAlign">center</property>
-                                                                <property name="resultSetColumn">Frequency</property>
-                                                            </data>
-                                                        </cell>
-                                                    </row>
-                                                </detail>
-                                                <footer>
-                                                    <row id="824">
-                                                        <cell id="825"/>
-                                                    </row>
-                                                </footer>
-                                            </table>
-                                        </cell>
-                                    </row>
-                                </grid>
-                            </cell>
-                        </row>
-                    </grid>
-                </cell>
-                <cell id="771">
-                    <grid id="772">
-                        <property name="borderBottomStyle">solid</property>
-                        <property name="borderBottomWidth">thin</property>
-                        <property name="borderLeftStyle">solid</property>
-                        <property name="borderLeftWidth">thin</property>
-                        <property name="borderRightStyle">solid</property>
-                        <property name="borderRightWidth">thin</property>
-                        <property name="borderTopStyle">solid</property>
-                        <property name="borderTopWidth">thin</property>
-                        <property name="height">1.1666666666666667in</property>
-                        <column id="773"/>
-                        <column id="774"/>
-                        <row id="775">
-                            <cell id="776">
-                                <label id="812">
-                                    <property name="fontSize">medium</property>
-                                    <property name="fontWeight">bold</property>
-                                    <property name="textAlign">center</property>
-                                    <text-property name="text">HP</text-property>
-                                </label>
-                            </cell>
-                            <cell id="777">
-                                <label id="813">
-                                    <property name="fontSize">medium</property>
-                                    <property name="fontWeight">bold</property>
-                                    <property name="textAlign">center</property>
-                                    <text-property name="text">VP</text-property>
-                                </label>
-                            </cell>
-                        </row>
-                        <row id="778">
-                            <cell id="779">
-                                <grid id="781">
-                                    <column id="782"/>
-                                    <row id="783">
-                                        <cell id="784">
-                                            <table id="792">
-                                                <property name="dataSet">hplobe</property>
-                                                <list-property name="boundDataColumns">
-                                                    <structure>
-                                                        <property name="name">BackLobe</property>
-                                                        <text-property name="displayName">BackLobe</text-property>
-                                                        <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
-                                                        <property name="dataType">decimal</property>
-                                                    </structure>
-                                                </list-property>
-                                                <column id="799"/>
-                                                <header>
-                                                    <row id="793">
-                                                        <cell id="794">
-                                                            <label id="800">
-                                                                <text-property name="text"></text-property>
-                                                            </label>
-                                                        </cell>
-                                                    </row>
-                                                </header>
-                                                <detail>
-                                                    <row id="795">
-                                                        <cell id="796">
-                                                            <data id="801">
-                                                                <property name="fontSize">small</property>
-                                                                <property name="textAlign">center</property>
-                                                                <property name="resultSetColumn">BackLobe</property>
-                                                            </data>
-                                                        </cell>
-                                                    </row>
-                                                </detail>
-                                                <footer>
-                                                    <row id="797">
-                                                        <cell id="798"/>
-                                                    </row>
-                                                </footer>
-                                            </table>
-                                        </cell>
-                                    </row>
-                                </grid>
-                            </cell>
-                            <cell id="780">
-                                <grid id="785">
-                                    <column id="786"/>
-                                    <row id="787">
-                                        <cell id="788">
-                                            <table id="802">
-                                                <property name="dataSet">vpbacklobe</property>
-                                                <list-property name="boundDataColumns">
-                                                    <structure>
-                                                        <property name="name">BackLobe</property>
-                                                        <text-property name="displayName">BackLobe</text-property>
-                                                        <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
-                                                        <property name="dataType">decimal</property>
-                                                    </structure>
-                                                </list-property>
-                                                <column id="809"/>
-                                                <header>
-                                                    <row id="803">
-                                                        <cell id="804">
-                                                            <label id="810">
-                                                                <text-property name="text"></text-property>
-                                                            </label>
-                                                        </cell>
-                                                    </row>
-                                                </header>
-                                                <detail>
-                                                    <row id="805">
-                                                        <cell id="806">
-                                                            <data id="811">
-                                                                <property name="fontSize">small</property>
-                                                                <property name="textAlign">center</property>
-                                                                <property name="resultSetColumn">BackLobe</property>
-                                                            </data>
-                                                        </cell>
-                                                    </row>
-                                                </detail>
-                                                <footer>
-                                                    <row id="807">
-                                                        <cell id="808"/>
-                                                    </row>
-                                                </footer>
-                                            </table>
-                                        </cell>
-                                    </row>
-                                </grid>
-                            </cell>
-                        </row>
-                    </grid>
+            <row id="867">
+                <cell id="868">
+                    <table id="840">
+                        <property name="dataSet">fq</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">Frequency</property>
+                                <text-property name="displayName">frequency</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["Frequency"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">BackLobe</property>
+                                <text-property name="displayName">bh</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">BackLobe_4</property>
+                                <text-property name="displayName">bv</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["BackLobe_4"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">frequnit</property>
+                                <text-property name="displayName">frequnit</text-property>
+                                <expression name="expression" type="javascript">'Spot Freq.('+dataSetRow["frequnit"]+')'</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <column id="853"/>
+                        <column id="854"/>
+                        <column id="855"/>
+                        <header>
+                            <row id="841">
+                                <cell id="842">
+                                    <data id="862">
+                                        <property name="fontSize">small</property>
+                                        <property name="resultSetColumn">frequnit</property>
+                                    </data>
+                                </cell>
+                                <cell id="843">
+                                    <label id="858">
+                                        <property name="fontSize">small</property>
+                                        <text-property name="text">HP</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="844">
+                                    <label id="860">
+                                        <property name="fontSize">small</property>
+                                        <text-property name="text">VP</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="845">
+                                <cell id="846">
+                                    <data id="857">
+                                        <property name="fontSize">small</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">Frequency</property>
+                                    </data>
+                                </cell>
+                                <cell id="847">
+                                    <data id="859">
+                                        <property name="fontSize">small</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">BackLobe</property>
+                                    </data>
+                                </cell>
+                                <cell id="848">
+                                    <data id="861">
+                                        <property name="fontSize">small</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">BackLobe_4</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="849">
+                                <cell id="850"/>
+                                <cell id="851"/>
+                                <cell id="852"/>
+                            </row>
+                        </footer>
+                    </table>
                 </cell>
             </row>
         </grid>
