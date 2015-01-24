@@ -256,7 +256,7 @@ public class TestImportController extends SimpleFormController{
      	cursess.setAttribute("mode",null);
 		if(action.equals("More")){
 		return new ModelAndView(new RedirectView("testimport.htm?id="+testid));}
-		else if (action.equals("Done")) return new ModelAndView("fileuploadresult","fileName",fileName +" " +err);
+		else if (action.equals("Done")) return new ModelAndView("fileuploadresult","fileName"," " +" " +err);
 		else return new ModelAndView(new RedirectView("testimport.htm?id="+testid+"&mode=edit"));
 	}
 	@Override

@@ -12,8 +12,8 @@
 <body>
 	<h2>Import Status</h2>
  
-	FileName : "
-	<strong> ${fileName} </strong>" 
+	
+	"<strong> ${fileName} </strong>" 
  
  
   <script>

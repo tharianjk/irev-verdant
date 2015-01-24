@@ -35,7 +35,7 @@ function fnsetstat(typ,msg)
 	
 	var testid=AssetTree.selectedsection;
 	var atype=AssetTree.atype;
-	
+	AssetTree.selectedreport=typ;
 	if(msg!=null && msg=='msg'){
 		reportflashMessenger.setText('<b>Please make a Selection from the Asset Tree on the left side</b>  ');}
 	if(typ=="Polar") {

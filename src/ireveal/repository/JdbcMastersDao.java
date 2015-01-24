@@ -893,7 +893,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 				 public List<Product> getProductWithAmpphase() {  
 					    List dataList = new ArrayList();  
 					   
-					    String sql = "select p.Product_id,Productname,Version,PType,ImageFileName from product p inner join product_serial s on p.product_id=s.product_id  where s.prodserial_id in (select prodserial_id from vw_ampphase)";  
+					    String sql = "select distinct p.Product_id,Productname,Version,PType,ImageFileName from product p inner join product_serial s on p.product_id=s.product_id  where s.prodserial_id in (select prodserial_id from vw_ampphase)";  
 					   
 					    dataList = getJdbcTemplate().query(sql, new ProductMapper());  
 					    return dataList;  

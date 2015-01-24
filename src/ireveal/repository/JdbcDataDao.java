@@ -31,7 +31,7 @@ public class JdbcDataDao implements DataDao {
 		String sql="";
 		logger.info("JdbcDataDao inside getDWProductSerial prodid "+prodid);
 		
-	      sql = "SELECT T.ProdSerial_ID, Serialno "+
+	      sql = "SELECT distinct T.ProdSerial_ID, Serialno "+
 	  		  						" FROM product_serial T WHERE product_id ="+prodid + " and t.prodserial_id in (select prodserial_id from vw_ampphase) ";
 		
 	    List<ProductSerial> prodser = jdbcTemplate.query(sql, new ProdSerMapper());

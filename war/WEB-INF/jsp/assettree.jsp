@@ -52,6 +52,7 @@ var treemode='<%=request.getParameter("treemode")%>';
  </script>
  
     <script>
+    var selectedreport;
     var atype;
     var parents = [];
     var selectedsection;
@@ -235,7 +236,13 @@ var treemode='<%=request.getParameter("treemode")%>';
                 	 }
                 	//alert(" monitorstat "+monitorstat);
                 	 if(monitorstat=="monitor" || monitorstat=="Reports" || monitorstat=="Events"){
-                	 breadcrumbs(data);}
+                	 breadcrumbs(data);
+                	 //alert(selectedreport);
+                	 if(treeType==4){
+                	 parent.fnsetstat(selectedreport,"");}
+                	 //var currenturl=parent.frames['AppBody'].location;
+                	 //parent.frames['AppBody'].location=currenturl;
+                	 }
                 	 var attrarr="";
                 	 var cnt=0;
                 	 $.jstree._reference('#jsTreeComponent')._get_node(null, true).each(function() {

@@ -54,6 +54,11 @@ progressAt = 0;
 function progress_update() {
 	//console.log("progress_update");
 	tabledata();
+	if(document.getElementById("strfreq").value=="" ||document.getElementById("strfreq").value==null || document.getElementById("strfreq").value=='null'){
+		alert("Frequencies not added");
+		progress_stop();
+		return;
+	}
 	/*var filename=document.getElementById("filename").value;
 	if(filename==null || filename=="")
 		{
@@ -97,7 +102,7 @@ progress_clear();
 		
 		<tr>
 		<td>Test Name * :</td>  
-          <td><form:input path="testname" required="required" />  
+          <td><form:input path="testname" id="testname" required="required" />  
           </td>
           <td>Test date *:</td>
 	     <td><form:input id="dttest" path="strtestdate" type="datetime-local" required="required" /> </td>
@@ -106,13 +111,12 @@ progress_clear();
 		<td > Product Serial No: </td>
        <td >
 			           
-			 <form:select path="productserialid" required="required" >  
-			 <option value="">--Select--</option>              
+			 <form:select path="productserialid" required="required" > 			              
 			 <c:forEach items="${prodserlist}" var="prdser"> 
 			  <form:option label="${prdser.productserial}"   value="${prdser.productserialid}"/>	     
 			</c:forEach>
 			</form:select>
-			   &nbsp; &nbsp;&nbsp;  Selected Product Type : ${prodtype}
+			   &nbsp; &nbsp;&nbsp;  Selected Antenna Type : ${prodtype}
           </td>
           <td>Test Type * :</td> 
           
@@ -153,7 +157,7 @@ progress_clear();
 		<tr>
 		<td>
 		<div id="imp">
-		<p><input type="file" name="filename" id="filename" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" title=" click here to select an VP Data file"/></p>
+		<p><input type="file" name="filename" id="filename" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" title=" click here to select Data file"/></p>
 		</div>
 		</td>
 		
@@ -212,7 +216,7 @@ progress_clear();
 		</span>
  
 	</form:form>
-	<table align="center" id="progressbar" style="display:none"><tr><td><b>Loading ....</b>
+	<table align="center" id="progressbar" style="display:none"><tr><td><b>Saving ....</b>
 <div style="font-size:8pt;padding:2px;border:solid black 1px">
 <span id="progress0">&nbsp; &nbsp;</span>
 <span id="progress1">&nbsp; &nbsp;</span>
@@ -306,10 +310,13 @@ $(document).ready( function () {
 			 }		 
 		}
 	 else{
+		 
 		 document.getElementById("more").style.visibility="visible";
 		 document.getElementById("done").style.visibility="visible";
 		 document.getElementById("save").style.visibility="hidden";
 		 document.getElementById("cancel").style.visibility="hidden";
+		 document.getElementById("more").disabled = true;
+		 document.getElementById("done").disabled = true;
 	 }
 	 
 	 if( testid!="" && testid!=null && testid !='null' && testid!=0 && mode!='edit'){
@@ -318,6 +325,8 @@ $(document).ready( function () {
 	 document.getElementById("done").style.visibility="visible";
 	 document.getElementById("save").style.visibility="hidden";
 	 document.getElementById("cancel").style.visibility="hidden";
+	 document.getElementById("more").disabled = true;
+	 document.getElementById("done").disabled = true;
 	 }
 	
 } );
@@ -405,16 +414,47 @@ function fncancel(){
 	 }
 
 function AddNew(){
-console.log("filetype " +document.getElementById("ftype").value);
+	
+	var testname=document.getElementById("testname").value;
+	if(testname==null || testname=="")
+	{
+	alert(" Enter Test Name");
+	return;
+	}
+	var testtype=document.getElementById("testtype").value;
+	if(testtype==null || testtype=="" || testtype=="-1")
+	{
+	alert(" Select Test Type");
+	return;
+	}
+	var ftype=document.getElementById("ftype").value;
+	if(ftype==null || ftype=="" || ftype=="-1")
+	{
+	alert(" Select File Type");
+	return;
+	}
+	var filename=document.getElementById("filename").value;
+	if(filename==null || filename=="")
+		{
+	alert("Please Select file to import");
+	return;
+		}
+
 	var freq=document.getElementById("selfreq").value;	
 	document.getElementById("selfreq").value="";
-	
+	if(freq==null || freq=="")
+	{
+	alert(" Select frequency");
+	return;
+	}
 	$("#tblData tbody").append(
 		"<tr>"+
 		"<td>"+freq+"</td>"+		
 		"<td><img src='img/delete.jpg' class='btnDelete'/></td>"+
 		"</tr>");
 	$(".btnDelete").bind("click", Delete);
+	document.getElementById("more").disabled = false;
+	document.getElementById("done").disabled = false;
 };
 function Add(){
 	$("#tblData tbody").append(
