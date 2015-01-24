@@ -64,11 +64,8 @@
           <td>
           <table id="chktbl"></table>
           </td>
-          <td>&nbsp; &nbsp;&nbsp;<input type="button" value="Add More" name="add" class="myButtonGo" onclick="Add()"/></td>
-          </tr>
-          
-		<tr><td><input type="button" value="Go" name="go" class="myButtonGo" onclick="Redirect()"/>
-		
+          <td>&nbsp; &nbsp;&nbsp;<input type="button" value="Add More" name="add" class="myButtonGo" onclick="Add()"/>
+         &nbsp; &nbsp;&nbsp;<input type="button" value="Go" name="go" class="myButtonGo" onclick="Redirect()"/>		
 		</td>
 		</tr>
 </table>

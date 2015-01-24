@@ -144,7 +144,7 @@ public class ToolsController implements Controller {
 				
         		logger.info("*** ampphase ** ");
        
-       		 myModel.put("prodlist",mastersservice.getProductList());
+       		 myModel.put("prodlist",mastersservice.getProductWithAmpphase());
        		
              return new ModelAndView("ampphaserpt", "model", myModel);   
              

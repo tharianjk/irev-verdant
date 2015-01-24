@@ -149,6 +149,10 @@ public boolean InsertAmpPhase(List<DataLog> datalist, ImportData impdata) {
 public Map<String, Object> GetAmpPhaseValue(String prodserids, String typ) {
 	return mastersdao.GetAmpPhaseValue(prodserids,typ);
 }
+@Override
+public List<Product> getProductWithAmpphase() {
+	return mastersdao.getProductWithAmpphase();
+}
 
 
 }
