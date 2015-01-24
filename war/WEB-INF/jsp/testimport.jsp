@@ -91,7 +91,10 @@ progress_clear();
 		<br>
 		<table id="tblmain">
 		<tr><td>Test Center * :</td>  
-		<td><form:input path="testcenter" required="required" /></td></tr>
+		<td><form:input path="testcenter" required="required" /></td>
+		
+		</tr>
+		
 		<tr>
 		<td>Test Name * :</td>  
           <td><form:input path="testname" required="required" />  
@@ -100,28 +103,21 @@ progress_clear();
 	     <td><form:input id="dttest" path="strtestdate" type="datetime-local" required="required" /> </td>
 		</tr>
 		<tr>
-		<td width="20%"> Product Serial No: </td>
-       <td width="50">
+		<td > Product Serial No: </td>
+       <td >
 			           
 			 <form:select path="productserialid" required="required" >  
 			 <option value="">--Select--</option>              
 			 <c:forEach items="${prodserlist}" var="prdser"> 
 			  <form:option label="${prdser.productserial}"   value="${prdser.productserialid}"/>	     
 			</c:forEach>
-			</form:select>     
+			</form:select>
+			   &nbsp; &nbsp;&nbsp;  Selected Product Type : ${prodtype}
           </td>
           <td>Test Type * :</td> 
           
-          <td width="50">
-          
-           <form:select id="testtype"  path="testtype" required="required" >
-          <option value="">--Select--</option>                 
-   		 <form:option id="CP" value="CP" label="CP-with Conversion"></form:option>
-   		 <form:option id="NCP" value="NCP" label="CP-with No Conversion"></form:option>  
-   		 <form:option id="DCP" value="DCP" label="Direct CP"></form:option>   
-   		 <form:option id="A" value="A" label="Azimuth"></form:option>
-   		 <form:option id="E" value="E" label="Elevation"></form:option>  
-   		 
+          <td>          
+           <form:select id="testtype"  path="testtype"  required="required" >           		 
 		</form:select>              
           </td> 
           </tr>
@@ -149,16 +145,8 @@ progress_clear();
 		<td>File Type * :</td> 
           
           <td width="50">
-          
-           <form:select   path="filetype" required="required" >
-          <option value="">--Select--</option>                 
-   		 <option value="Vdata">VP Data</option>
-   		 <option value="Hdata">HP Data</option>
-   		 <option value="CPdata">CP Data</option>
-   		 <option value="pitch">Pitch Data</option>
-   		 <option value="roll">Roll Data</option>
-   		 <option value="yaw">Yaw Data</option>
-		</form:select>
+           <form:select id="ftype" name="D1" path="filetype"  ></form:select>
+         
 		</td>
 		</tr>
 	
@@ -175,9 +163,9 @@ progress_clear();
 		<tr>
 		<td width="20%"> Frequency :</td>
        <td>		
-           <input type="text" id="selfreq" name="D1"  ></input>
+           <input type="number" id="selfreq" name="D1" size="10" ></input>
         </td>
-        <td><form:select path="frequnit">
+        <td><form:select path="frequnit" id="frequnit">
         <form:option value="MHz" label="MHz"></form:option>
    		 <form:option value="GHz" label="GHz"></form:option>  
    		 
@@ -248,9 +236,45 @@ progress_clear();
 var mode='<%=request.getParameter("mode")%>';
 
 $(document).ready( function () {
+	var testtype = document.getElementById('testtype');
+	var ptype=document.getElementById("ptype").value;
+	var i;
+	testtype.innerHTML="";
+	
+	if( ptype=="L" || ptype=="S" ) {	
+		var el = document.createElement("option");
+		el.textContent = "--Select--";
+		el.value = "-1";
+		testtype.appendChild(el);
+	    el = document.createElement("option");
+	    el.textContent = 'Azimuth';
+	    el.value ='A';
+	    testtype.appendChild(el);
+	    el = document.createElement("option");
+	    el.textContent = 'Elevation';
+	    el.value ='E';
+	    testtype.appendChild(el);  }
+	else 	
+	{	 
+		var el = document.createElement("option");
+		el.textContent = "--Select--";
+		el.value = "-1";
+		testtype.appendChild(el);
+	    el = document.createElement("option");
+	    el.textContent = 'With CP Conversion';
+	    el.value ='CP';
+	    testtype.appendChild(el);
+	    el = document.createElement("option");
+	    el.textContent = 'Without CP Conversion';
+	    el.value ='NCP';
+	    testtype.appendChild(el); 
+	    el = document.createElement("option");
+	    el.textContent = 'Direct CP';
+	    el.value ='DCP';
+	    testtype.appendChild(el); }
 	
 	//document.getElementById("strfreq").value='{"jsonfreq":[{"freq":100, "lg":1},{"freq":1000, "lg":2},{"freq":2000, "lg":2}]}';
-	if(document.getElementById("ptype").value=="C")
+	/*if(document.getElementById("ptype").value=="C")
 		{
 		document.getElementById("A").style.visibility="hidden";
 		document.getElementById("E").style.visibility="hidden";
@@ -260,12 +284,16 @@ $(document).ready( function () {
 		document.getElementById("NCP").style.visibility="hidden";
 		document.getElementById("DCP").style.visibility="hidden";
 		document.getElementById("CP").style.visibility="hidden";
-		}
+		}*/
 	
 	var testid=document.getElementById("testid").value;
 	 console.log("testid "+testid);
 	 if(testid!="" && testid!=null && testid !='null' && testid!=0)
 		{
+		 document.getElementById("frequnit").disabled = true;
+		 document.getElementById("testtype").value='${testtype}';
+		 //$("#testtype").trigger( "onchange" );
+		 $("#testtype").val('${testtype}').change();
 		 if(mode=='edit')
 			 {
 			 document.getElementById("tbimport").style.visibility="hidden";
@@ -293,7 +321,83 @@ $(document).ready( function () {
 	 }
 	
 } );
-
+$('#testtype').on('change', function() {
+	  var sel= this.value ; // or $(this).val()
+	  var ftype = document.getElementById('ftype');
+	  var ptype=document.getElementById("ptype").value;
+	  ftype.innerHTML="";
+		
+		if(sel=="A" && ptype=="L") {	   
+		    var el = document.createElement("option");
+		    el.textContent = 'Yaw Data';
+		    el.value ='yaw';		    
+		    ftype.appendChild(el);}
+		if(sel=="A" && ptype=="S") {
+			 var el = document.createElement("option");
+			el.textContent = "--Select--";
+			el.value = "-1";
+			ftype.appendChild(el);
+		    el = document.createElement("option");
+		    el.textContent = 'VP Data';
+		    el.value ='Vdata';
+		    ftype.appendChild(el);
+		    el = document.createElement("option");
+		    el.textContent = 'HP Data';
+		    el.value ='Hdata';
+		    ftype.appendChild(el);    
+		}
+		if(sel=="E" && ptype=="L") {
+			 var el = document.createElement("option");
+			el.textContent = "--Select--";
+			el.value = "-1";
+			ftype.appendChild(el);
+		    el = document.createElement("option");
+		    el.textContent = 'Pitch Data';
+		    el.value ='pitch';
+		    ftype.appendChild(el);
+		    el = document.createElement("option");
+		    el.textContent = 'Roll Data';
+		    el.value ='roll';
+		    ftype.appendChild(el);    
+		}
+		if(sel=="CP" && ptype=="C") {
+			 var el = document.createElement("option");
+			el.textContent = "--Select--";
+			el.value = "-1";
+			ftype.appendChild(el);	  
+		    el = document.createElement("option");
+		    el.textContent = 'VP Data';
+		    el.value ='Vdata';
+		    ftype.appendChild(el);
+		    el = document.createElement("option");
+		    el.textContent = 'HP Data';
+		    el.value ='Hdata';
+		    ftype.appendChild(el);
+		        
+		}
+		if(sel=="NCP" && ptype=="C") {
+			 var el = document.createElement("option");
+			el.textContent = "--Select--";
+			el.value = "-1";
+			ftype.appendChild(el);	  
+		     el = document.createElement("option");
+		    el.textContent = 'VP Data';
+		    el.value ='Vdata';
+		    ftype.appendChild(el);
+		    el = document.createElement("option");
+		    el.textContent = 'HP Data';
+		    el.value ='Hdata';
+		    ftype.appendChild(el);
+		    ftype.appendChild(el);    
+		}
+		if(sel=="DCP" && ptype=="C") {
+			   
+		    var el = document.createElement("option");
+		    el.textContent = 'CP Data';
+		    el.value ='CPdata';
+		    ftype.appendChild(el);}
+		
+	});
 
 function fncancel(){
 	//alert("redirect");
@@ -301,7 +405,7 @@ function fncancel(){
 	 }
 
 function AddNew(){
-
+console.log("filetype " +document.getElementById("ftype").value);
 	var freq=document.getElementById("selfreq").value;	
 	document.getElementById("selfreq").value="";
 	

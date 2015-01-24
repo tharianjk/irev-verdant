@@ -51,6 +51,8 @@ public class TestImportController extends SimpleFormController{
 	public MastersService mastersservice ;
 	private HttpSession cursess;
 	private int testid=0;
+	String testtype="";
+	String atype="";
 	public TestImportController(){
 		setCommandClass(TestData.class);
 		setCommandName("TestData");
@@ -63,6 +65,7 @@ public class TestImportController extends SimpleFormController{
 		String action="More";
 		String strmode="new";
 		String fileName="";
+		
 		logger.info("*** Inside testcontroller in onsubmit**: btn= "+request.getParameter("fmaction"));
               
 		
@@ -285,7 +288,7 @@ public class TestImportController extends SimpleFormController{
 	    	String mode = request.getParameter("mode");
 	        String id = request.getParameter("id");
 	        String PId=request.getParameter("PId");
-	        String atype=request.getParameter("atype");
+	        atype=request.getParameter("atype");
 	        request.setAttribute("savestat", null);
 	        request.setAttribute("mode", mode);
         	cursess.setAttribute("mode",mode);
@@ -312,6 +315,8 @@ public class TestImportController extends SimpleFormController{
 	            TestData testdata=mastersservice.getTestData(Integer.parseInt(id));
 	            String strdate=sdf.format(testdata.getDttestdate())+"T"+sdftime.format(testdata.getDttestdate());	           
 	            testdata.setStrtestdate(strdate);
+	            testtype=testdata.getTesttype();
+	            atype=testdata.getPtype();
 	        	return testdata;
 	        	}
 	              
@@ -319,8 +324,13 @@ public class TestImportController extends SimpleFormController{
 	    protected HashMap referenceData(HttpServletRequest request) throws Exception {
 			HashMap referenceData = new HashMap();	
 	        List<ProductSerial> prodserlist = mastersservice.getProdVerSer();        
-	       
+	       String prodtype="";
+	       if(atype.equals("C"))prodtype="Circular";
+	        else if(atype.equals("L"))prodtype="Linear";
+	        else prodtype="Slant";
 	        referenceData.put("prodserlist", prodserlist);
+	        referenceData.put("prodtype", prodtype);
+	        referenceData.put("testtype", testtype);
 	        
 	       // referenceData.put("freqlist",mastersservice.getFreqList(testid));
 	 		return referenceData;
