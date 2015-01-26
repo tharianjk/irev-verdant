@@ -56,6 +56,8 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 		else if (deg=='0d') deg='0d90d';
 		else deg='bm90d';
 		}
+		if(!document.getElementById("0d").checked && !document.getElementById("90d").checked)
+			{deg="bm";}
 			//3dbWithCP_report.rptdesign
 			var url="";
 			if(typ=='3db' ){
