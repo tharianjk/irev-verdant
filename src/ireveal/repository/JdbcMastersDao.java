@@ -919,7 +919,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 		        		for (int i=0;i<freqlist.size();i++){
 		        			if(i==0)
 		        				{strfreqs=freqlist.get(i).getFrequency()+"";}
-		        			else {strfreqs=strfreqs+","+freqlist.get(i).getFrequency();}
+		        			else {strfreqs=strfreqs+", "+freqlist.get(i).getFrequency();}
 		        		}
 		        		return strfreqs;
 				 }

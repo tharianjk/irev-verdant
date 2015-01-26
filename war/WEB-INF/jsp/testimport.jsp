@@ -235,59 +235,83 @@ progress_clear();
 </td></tr></table>
 	
  </div>
-<div id="dialog-prevfreq" title="Imported Files" style="display:none;">
+<div id="dialog-prevfreq" title="Imported Files" style="display:none;overflow:hidden">
   <table>
   <tr>
-  <td nowrap>
+  <td >
   <c:if test="${pfreq!='' && pfreq !=null}">
-  <label>Pitch Data </label>
-  <br>
-  &nbsp; &nbsp; &nbsp; &nbsp;${pfreq}
+  <table><tr><td width="50">Pitch Data </td></tr>
+  <tr><td></td><td style="display: inline-block;
+               width: 600em; 
+               overflow: hidden; 
+               word-wrap: break-word;">
+  ${pfreq}
+  </td></tr></table>
   </c:if>
   </td>
   </tr>
    <tr>
-  <td nowrap>
+  <td >
   <c:if test="${rfreq!='' && rfreq !=null}">
-  <label>Roll Data </label>
-  <br>
-  &nbsp; &nbsp; &nbsp; &nbsp;${rfreq}
+  <table><tr><td width="50">Roll Data </td></tr>
+  <tr><td></td><td style="display: inline-block;
+               width: 600em; 
+               overflow: hidden; 
+               word-wrap: break-word;">
+  ${rfreq}
+  </td></tr></table>
   </c:if>
   </td>
   </tr>
    <tr>
-  <td nowrap>
+  <td >
   <c:if test="${yfreq!='' && yfreq !=null}">
-  <label>Yaw Data </label>
-  <br>
-  &nbsp; &nbsp; &nbsp; &nbsp;${yfreq}
+  <table><tr><td width="50">Yaw Data </td></tr>
+  <tr><td></td><td style="display: inline-block;
+               width: 600em; 
+               overflow: hidden; 
+               word-wrap: break-word;">
+  ${yfreq}
+  </td></tr></table>
   </c:if>
   </td>
   </tr>
    <tr>
-  <td nowrap>
+  <td >
   <c:if test="${cfreq!='' && cfreq !=null}">
-  <label>CP Data </label>
-  <br>
-  &nbsp; &nbsp; &nbsp; &nbsp;${cfreq}
+  <table><tr><td width="50">CP Data </td></tr>
+  <tr><td></td><td style="display: inline-block;
+               width: 600em; 
+               overflow: hidden; 
+               word-wrap: break-word;">
+  ${cfreq}
+  </td></tr></table>
   </c:if>
   </td>
   </tr>
    <tr>
-  <td nowrap>
+  <td >
   <c:if test="${hfreq!='' && hfreq !=null}">
-  <label>HP Data </label>
-  <br>
-  &nbsp; &nbsp; &nbsp; &nbsp;${hfreq}
+  <table><tr><td width="50">HP Data </td></tr>
+  <tr><td></td><td style="display: inline-block;
+               width: 600em; 
+               overflow: hidden; 
+               word-wrap: break-word;">
+  ${hfreq}
+  </td></tr></table>
   </c:if>
   </td>
   </tr>
    <tr>
   <td nowrap>
   <c:if test="${vfreq!='' && vfreq !=null}">
-  <label>VP Data </label>
-  <br>
-  &nbsp; &nbsp; &nbsp; &nbsp;${vfreq}
+  <table><tr><td width="50">VP Data </td></tr>
+  <tr><td></td><td style="display: inline-block;
+               width: 600em; 
+               overflow: hidden; 
+               word-wrap: break-word;">
+  ${vfreq}
+  </td></tr></table>
   </c:if>
   </td>
   </tr>
@@ -593,8 +617,8 @@ $( "#prevfreq" ).click(function() {
 	dialog = $( "#dialog-prevfreq" ).dialog({
 	      autoOpen: false,
 	      height: 200,
-	      width: 500,
-	      modal: true
+	      width: 700,
+	      modal: true,overflow: false
 	      
 	    });  
 dialog.dialog( "open" );
