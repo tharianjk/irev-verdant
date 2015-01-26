@@ -240,7 +240,7 @@ progress_clear();
   <tr>
   <td >
   <c:if test="${pfreq!='' && pfreq !=null}">
-  <table><tr><td width="50">Pitch Data </td></tr>
+  <table><tr><td width="50">Pitch-Data </td></tr>
   <tr><td></td><td style="display: inline-block;
                width: 600em; 
                overflow: hidden; 
@@ -253,7 +253,7 @@ progress_clear();
    <tr>
   <td >
   <c:if test="${rfreq!='' && rfreq !=null}">
-  <table><tr><td width="50">Roll Data </td></tr>
+  <table><tr><td width="50">Roll-Data </td></tr>
   <tr><td></td><td style="display: inline-block;
                width: 600em; 
                overflow: hidden; 
@@ -266,7 +266,7 @@ progress_clear();
    <tr>
   <td >
   <c:if test="${yfreq!='' && yfreq !=null}">
-  <table><tr><td width="50">Yaw Data </td></tr>
+  <table><tr><td width="50">Yaw-Data </td></tr>
   <tr><td></td><td style="display: inline-block;
                width: 600em; 
                overflow: hidden; 
@@ -279,7 +279,7 @@ progress_clear();
    <tr>
   <td >
   <c:if test="${cfreq!='' && cfreq !=null}">
-  <table><tr><td width="50">CP Data </td></tr>
+  <table><tr><td width="50">CP-Data </td></tr>
   <tr><td></td><td style="display: inline-block;
                width: 600em; 
                overflow: hidden; 
@@ -292,7 +292,7 @@ progress_clear();
    <tr>
   <td >
   <c:if test="${hfreq!='' && hfreq !=null}">
-  <table><tr><td width="50">HP Data </td></tr>
+  <table><tr><td width="50">HP-Data </td></tr>
   <tr><td></td><td style="display: inline-block;
                width: 600em; 
                overflow: hidden; 
@@ -305,7 +305,7 @@ progress_clear();
    <tr>
   <td nowrap>
   <c:if test="${vfreq!='' && vfreq !=null}">
-  <table><tr><td width="50">VP Data </td></tr>
+  <table><tr><td width="50">VP-Data </td></tr>
   <tr><td></td><td style="display: inline-block;
                width: 600em; 
                overflow: hidden; 
