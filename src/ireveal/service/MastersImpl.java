@@ -153,6 +153,10 @@ public Map<String, Object> GetAmpPhaseValue(String prodserids, String typ) {
 public List<Product> getProductWithAmpphase() {
 	return mastersdao.getProductWithAmpphase();
 }
+@Override
+public String getFreqdatafile(String typ, int testid) {
+	return mastersdao.getFreqdatafile(typ,testid);
+}
 
 
 }

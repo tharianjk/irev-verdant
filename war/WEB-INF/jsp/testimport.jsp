@@ -144,6 +144,7 @@ progress_clear();
          
          
        <table id="tbimport">  
+       <tr><td><input type="button" id="prevfreq" value="Show Previous Entries"  class="myButton" /></td></tr>
        <tr> 
       
 		<td>File Type * :</td> 
@@ -164,6 +165,7 @@ progress_clear();
 		
 		</table>
 		<table id="tbimport1">
+		
 		<tr>
 		<td width="20%"> Frequency :</td>
        <td>		
@@ -233,7 +235,65 @@ progress_clear();
 </td></tr></table>
 	
  </div>
-
+<div id="dialog-prevfreq" title="Imported Files" style="display:none;">
+  <table>
+  <tr>
+  <td nowrap>
+  <c:if test="${pfreq!='' && pfreq !=null}">
+  <label>Pitch Data </label>
+  <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;${pfreq}
+  </c:if>
+  </td>
+  </tr>
+   <tr>
+  <td nowrap>
+  <c:if test="${rfreq!='' && rfreq !=null}">
+  <label>Roll Data </label>
+  <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;${rfreq}
+  </c:if>
+  </td>
+  </tr>
+   <tr>
+  <td nowrap>
+  <c:if test="${yfreq!='' && yfreq !=null}">
+  <label>Yaw Data </label>
+  <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;${yfreq}
+  </c:if>
+  </td>
+  </tr>
+   <tr>
+  <td nowrap>
+  <c:if test="${cfreq!='' && cfreq !=null}">
+  <label>CP Data </label>
+  <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;${cfreq}
+  </c:if>
+  </td>
+  </tr>
+   <tr>
+  <td nowrap>
+  <c:if test="${hfreq!='' && hfreq !=null}">
+  <label>HP Data </label>
+  <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;${hfreq}
+  </c:if>
+  </td>
+  </tr>
+   <tr>
+  <td nowrap>
+  <c:if test="${vfreq!='' && vfreq !=null}">
+  <label>VP Data </label>
+  <br>
+  &nbsp; &nbsp; &nbsp; &nbsp;${vfreq}
+  </c:if>
+  </td>
+  </tr>
+   
+  </table>
+</div>
 
 
 <script>
@@ -296,6 +356,7 @@ $(document).ready( function () {
 		{
 		 document.getElementById("frequnit").disabled = true;
 		 document.getElementById("testtype").value='${testtype}';
+		 document.getElementById("prevfreq").disabled = false;
 		 //$("#testtype").trigger( "onchange" );
 		 $("#testtype").val('${testtype}').change();
 		 if(mode=='edit')
@@ -317,6 +378,7 @@ $(document).ready( function () {
 		 document.getElementById("cancel").style.visibility="hidden";
 		 document.getElementById("more").disabled = true;
 		 document.getElementById("done").disabled = true;
+		 document.getElementById("prevfreq").disabled = true;
 	 }
 	 
 	 if( testid!="" && testid!=null && testid !='null' && testid!=0 && mode!='edit'){
@@ -525,6 +587,18 @@ function tabledata()
 		console.log(""+json);
 		}
 }
+
+
+$( "#prevfreq" ).click(function() {
+	dialog = $( "#dialog-prevfreq" ).dialog({
+	      autoOpen: false,
+	      height: 200,
+	      width: 500,
+	      modal: true
+	      
+	    });  
+dialog.dialog( "open" );
+	});
 
 </script>
 

@@ -899,7 +899,40 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 					    return dataList;  
 					   }  
 					    
-					  
+				 public String getFreqdatafile(String typ,int testid ){
+					 String sql="";
+					 String strfreqs="";
+					 if(typ.equals("P"))
+					 sql="select distinct frequency from pitchdata where test_id=?";
+					 else if(typ.equals("R"))
+						 sql="select distinct frequency from rolldata where test_id=?";
+					 else if(typ.equals("Y"))
+						 sql="select distinct frequency from yawdata where test_id=?";
+					 else if(typ.equals("C"))
+						 sql="select distinct frequency from cpdata where test_id=?";
+					 else if(typ.equals("H"))
+						 sql="select distinct frequency from hdata where test_id=?";
+					 else if(typ.equals("V"))
+						 sql="select distinct frequency from vdata where test_id=?";
+						 
+					 List<TestFrequency> freqlist=getJdbcTemplate().query(sql, new FreqdatafileMapper(),testid);  
+		        		for (int i=0;i<freqlist.size();i++){
+		        			if(i==0)
+		        				{strfreqs=freqlist.get(i).getFrequency()+"";}
+		        			else {strfreqs=strfreqs+","+freqlist.get(i).getFrequency();}
+		        		}
+		        		return strfreqs;
+				 }
+				 private static class FreqdatafileMapper implements ParameterizedRowMapper<TestFrequency> {
+					   
+				       public TestFrequency mapRow(ResultSet rs, int rowNum) throws SQLException {
+				    	   TestFrequency testfreq = new TestFrequency();
+				    	   testfreq.setFrequency(rs.getDouble("frequency"));  
+				    	 
+				           return testfreq;
+				       }
+
+				   }  
    
   }
 

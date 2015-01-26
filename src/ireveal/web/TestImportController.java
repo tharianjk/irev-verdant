@@ -323,14 +323,45 @@ public class TestImportController extends SimpleFormController{
 	    }
 	    protected HashMap referenceData(HttpServletRequest request) throws Exception {
 			HashMap referenceData = new HashMap();	
+			
+			String pfreq="";
+			String rfreq="";
+			String yfreq="";
+			String cfreq="";
+			String hfreq="";
+			String vfreq="";
 	        List<ProductSerial> prodserlist = mastersservice.getProdVerSer();        
 	       String prodtype="";
 	       if(atype.equals("C"))prodtype="Circular";
 	        else if(atype.equals("L"))prodtype="Linear";
 	        else prodtype="Slant";
+	       
+	       
+	       if(testtype.equals("E") && atype.equals("L")){
+	    	   pfreq=mastersservice.getFreqdatafile("P",testid);
+	    	   rfreq=mastersservice.getFreqdatafile("R",testid);}
+	       if(testtype.equals("A") && atype.equals("L"))
+	    	   yfreq=mastersservice.getFreqdatafile("Y",testid);
+	       
+	       if(testtype.equals("DCP") && atype.equals("C")){
+	    	   cfreq=mastersservice.getFreqdatafile("C",testid);}
+	       else {
+	    	   hfreq=mastersservice.getFreqdatafile("H",testid);
+	    	   vfreq=mastersservice.getFreqdatafile("V",testid);}
+	      
+	       
+	       
 	        referenceData.put("prodserlist", prodserlist);
 	        referenceData.put("prodtype", prodtype);
 	        referenceData.put("testtype", testtype);
+	       
+	        referenceData.put("pfreq", pfreq);
+	        referenceData.put("rfreq", rfreq);
+	        referenceData.put("yfreq", yfreq);
+	        referenceData.put("cfreq", cfreq);
+	        referenceData.put("hfreq", hfreq);
+	        referenceData.put("vfreq", vfreq);
+	        
 	        
 	       // referenceData.put("freqlist",mastersservice.getFreqList(testid));
 	 		return referenceData;

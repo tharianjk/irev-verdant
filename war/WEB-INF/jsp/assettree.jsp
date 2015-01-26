@@ -503,6 +503,7 @@ function recreatewithparents()
     <script>
     function customMenu(node) {
         // The default set of all items
+        parent_node = $.jstree._reference('#jsTreeComponent')._get_parent(node);
         treeType=$(node).attr('treeType')
         
         selectedname=node.attr('Assetname');

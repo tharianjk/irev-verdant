@@ -72,4 +72,5 @@ public interface MastersDao {
 	 public boolean InsertAmpPhase(List<DataLog> datalist,ImportData impdata);
 	 public Map<String, Object> GetAmpPhaseValue(String prodserids,String typ);
 	 public List<Product> getProductWithAmpphase();
+	 public String getFreqdatafile(String typ,int testid );
 }
