@@ -15,7 +15,7 @@
  var xmlHttp  
   
     function showPS(str){
-  	  
+  	  var seltyp=document.getElementById("typ").value
     if (typeof XMLHttpRequest != "undefined"){
     xmlHttp= new XMLHttpRequest();
     }
@@ -27,7 +27,7 @@
     return;
     } 
     var url="dropdown.htm";
-    url +="?prodid=" +str;
+    url +="?prodid=" +str+"&typ="+seltyp;
     xmlHttp.onreadystatechange = prodChange;
     xmlHttp.open("GET", url, true);
     xmlHttp.send(null);

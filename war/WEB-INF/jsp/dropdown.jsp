@@ -10,6 +10,7 @@
  
  <%
  String prodid=request.getParameter("prodid");  
+ String typ=request.getParameter("typ");  
  
  String buffer="<table id='chktbl' name='chktbl'> ";  
  try{
@@ -17,7 +18,7 @@
 	// ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 	 DataDao datadao = (DataDao) context.getBean("DataDao");
 	  
-	  List<ProductSerial> pslist= datadao.getDWProductSerial(prodid);
+	  List<ProductSerial> pslist= datadao.getDWProductSerial(prodid,typ);
 	 
 	 for(int i=0;i<pslist.size();i++)
 	 {

@@ -27,12 +27,12 @@ public class JdbcDataDao implements DataDao {
 	}
 	
 	
-	public List<ProductSerial> getDWProductSerial(String prodid){
+	public List<ProductSerial> getDWProductSerial(String prodid,String typ){
 		String sql="";
 		logger.info("JdbcDataDao inside getDWProductSerial prodid "+prodid);
 		
 	      sql = "SELECT distinct T.ProdSerial_ID, Serialno "+
-	  		  						" FROM product_serial T WHERE product_id ="+prodid + " and t.prodserial_id in (select prodserial_id from vw_ampphase) ";
+	  		  						" FROM product_serial T WHERE product_id ="+prodid + " and t.prodserial_id in (select prodserial_id from vw_ampphase where typ='"+typ+"') ";
 		
 	    List<ProductSerial> prodser = jdbcTemplate.query(sql, new ProdSerMapper());
 	  

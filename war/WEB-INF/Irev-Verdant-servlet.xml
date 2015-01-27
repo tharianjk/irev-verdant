@@ -88,6 +88,9 @@
         
          <property name="mastersManager" ref="mastersManager"/>
     </bean>
+    <bean name="/blank.htm" class="ireveal.web.ToolsController">        
+         <property name="mastersManager" ref="mastersManager"/>
+    </bean>
     <bean name="/ampphaserpt.htm" class="ireveal.web.ToolsController">        
          <property name="mastersManager" ref="mastersManager"/>
     </bean>

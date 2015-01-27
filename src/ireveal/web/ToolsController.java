@@ -167,6 +167,11 @@ public class ToolsController implements Controller {
        		//type,prodserialids,maxamp,freq
              return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=PhaseTracking.rptdesign&type="+typ+"&prodserialids="+prodseriallist+"&maxamp="+maxDiff+"&freq="+freq)); 
 			        }
+			else if(operstr.contains("blank")){
+				String msg="Please make a Selection from the Asset Tree on the left side";
+				myModel.put("text",msg);
+				 return new ModelAndView("blank", "model", myModel);   
+			}
         }
         logger.info("*** not able to identify tools options!!**");
         return new ModelAndView("setup", "model", myModel);

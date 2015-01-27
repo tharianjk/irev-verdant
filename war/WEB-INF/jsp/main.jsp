@@ -36,43 +36,70 @@ function fnsetstat(typ,msg)
 	var testid=AssetTree.selectedsection;
 	var atype=AssetTree.atype;
 	AssetTree.selectedreport=typ;
+	var url="";
 	if(msg!=null && msg=='msg'){
 		reportflashMessenger.setText('<b>Please make a Selection from the Asset Tree on the left side</b>  ');}
 	if(typ=="Polar") {
+		url="hpolar.htm?oper=hpolar&testid="+testid +"&atype="+atype;
 		window.frames['AppBody'].location="hpolar.htm?oper=hpolar&testid="+testid +"&atype="+atype;
 	AssetTree.monitorstat="Reports";}
 	if(typ=="3db") {
+		if( atype!="A"){
 		window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+testid+"&atype="+atype;
 		AssetTree.monitorstat="Reports";}
+		else window.frames['AppBody'].location="blank.htm?oper=blank";
+	}
 	if(typ=="10db") {
+		if( atype!="A"){
 		window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+testid+"&atype="+atype;
 		AssetTree.monitorstat="Reports";}
+		else window.frames['AppBody'].location="blank.htm?oper=blank";
+	}
 	if(typ=="blobe") {
-		if(atype=="NCP")
-		window.frames['AppBody'].location="/birt-verdant/frameset?__report=BlobWithOutCP.rptdesign&testid="+testid;
-		else
-			window.frames['AppBody'].location="/birt-verdant/frameset?__report=BlobWithCP.rptdesign&testid="+testid;	
+		if(atype=="NCP"){
+			url="/birt-verdant/frameset?__report=BlobWithOutCP.rptdesign&testid="+testid;
+		window.frames['AppBody'].location="/birt-verdant/frameset?__report=BlobWithOutCP.rptdesign&testid="+testid;}
+		else if(AssetTree.selectedparenttype=="C"){
+			url="/birt-verdant/frameset?__report=BlobWithCP.rptdesign&testid="+testid;
+			window.frames['AppBody'].location="/birt-verdant/frameset?__report=BlobWithCP.rptdesign&testid="+testid;}
+		else if(AssetTree.selectedparenttype=="S" && atype=="E" ){
+			url="/birt-verdant/frameset?__report=BlobWithCP.rptdesign&testid="+testid;
+			window.frames['AppBody'].location="/birt-verdant/frameset?__report=BlobWithCP.rptdesign&testid="+testid;}
+		else window.frames['AppBody'].location="blank.htm?oper=blank";
 		AssetTree.monitorstat="Reports";}
 	if(typ=="ar") {
-		window.frames['AppBody'].location="ar.htm?oper=ar&typ="+typ+"&testid="+testid+"&atype="+atype;
-		AssetTree.monitorstat="Reports";}
+		if(AssetTree.selectedparenttype=="C" && atype!="NCP"){
+		window.frames['AppBody'].location="ar.htm?oper=ar&typ="+typ+"&testid="+testid+"&atype="+atype;}
+		else if(AssetTree.selectedparenttype=="S" && atype=="E"){
+			window.frames['AppBody'].location="ar.htm?oper=ar&typ="+typ+"&testid="+testid+"&atype="+atype;}
+		else window.frames['AppBody'].location="blank.htm?oper=blank";
+		AssetTree.monitorstat="Reports";
+	}
 	if(typ=="rset") {
 		window.frames['AppBody'].location="reportset.htm?oper=rset&typ="+typ+"&testid="+testid+"&atype="+atype;
 		AssetTree.monitorstat="Reports";}
 	if(typ=="cpg") {
+		if(AssetTree.selectedparenttype=="C" && atype!="NCP"){
 		window.frames['AppBody'].location="lineargain.htm?oper=cpg&typ="+typ+"&testid="+testid+"&atype="+atype;
 		AssetTree.monitorstat="Reports";}
+		else window.frames['AppBody'].location="blank.htm?oper=blank";
+	}
 	if(typ=="od") {
-		if(AssetTree.selectedparenttype=="L"){
+		if( AssetTree.atype=="A"){
+		if(AssetTree.selectedparenttype=="L" ){
+			url="/birt-verdant/frameset?__report=LinAzimuthOD.rptdesign&testid="+testid;
 		window.frames['AppBody'].location="/birt-verdant/frameset?__report=LinAzimuthOD.rptdesign&testid="+testid;}
 		else{
+			url="/birt-verdant/frameset?__report=SlantAzimuthOD.rptdesign&testid="+testid
 			window.frames['AppBody'].location="/birt-verdant/frameset?__report=SlantAzimuthOD.rptdesign&testid="+testid;
 		}
+		}
+		else window.frames['AppBody'].location="blank.htm?oper=blank";
 		AssetTree.monitorstat="Reports";}
 	if(typ=="apt") {
 		window.frames['AppBody'].location="ampphaserpt.htm?oper=ampphase&typ="+typ+"&testid="+testid+"&atype="+atype;
 		AssetTree.monitorstat="Reports";}
-	
+	console.log("url "+url);
 }
 function fnHomeClick()
 {
