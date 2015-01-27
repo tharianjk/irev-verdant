@@ -59,7 +59,7 @@ var treemode='<%=request.getParameter("treemode")%>';
     var selectedtype;
     var selectedname;
     var selectedparent;
-    var selectedparenttype;
+    var selectedparenttype;  // Can have values of 'S', 'L' or 'C'
     var parentname;
     var array_id=[];
     var array_data=[];
@@ -153,7 +153,7 @@ var treemode='<%=request.getParameter("treemode")%>';
     			        selectedparenttype=parent_node.attr('atype');
     			        console.log(" selectedparenttype ="+selectedparenttype)
     			        if(selectedtype==4){
-    			        if(atype=="A")
+    			        if ((atype=="A") )
     			        	{
     			        	  parent.document.getElementById("od").style.display="block";
 	  			        	  parent.document.getElementById("ar").style.display="none";
@@ -163,7 +163,7 @@ var treemode='<%=request.getParameter("treemode")%>';
 	  			        	  parent.document.getElementById("cpg").style.display="none";
 	  			        	  parent.document.getElementById("blobe").style.display="none";
     			        	}
-    			        else if(atype=="E")
+    			        else if ((atype=="E") && (selectedparenttype == 'L'))
 			        	{
 			        	  parent.document.getElementById("od").style.display="none";
   			        	  parent.document.getElementById("ar").style.display="none";
@@ -172,6 +172,16 @@ var treemode='<%=request.getParameter("treemode")%>';
   			        	  parent.document.getElementById("10db").style.display="block";
   			        	  parent.document.getElementById("cpg").style.display="none";
   			        	 parent.document.getElementById("blobe").style.display="none";
+			        	}
+						else if ((atype=="E") && (selectedparenttype == 'S'))
+			        	{
+			        	  parent.document.getElementById("od").style.display="none";
+  			        	  parent.document.getElementById("ar").style.display="block";
+  			        	  parent.document.getElementById("pp").style.display="block";
+  			        	  parent.document.getElementById("3db").style.display="block";
+  			        	  parent.document.getElementById("10db").style.display="block";
+  			        	  parent.document.getElementById("cpg").style.display="none";
+  			        	 parent.document.getElementById("blobe").style.display="block";
 			        	}
     			        else if(atype=="CP")
 			        	{
