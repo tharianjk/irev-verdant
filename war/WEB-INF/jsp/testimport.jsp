@@ -443,6 +443,21 @@ $('#testtype').on('change', function() {
 		    el.value ='Hdata';
 		    ftype.appendChild(el);    
 		}
+		if(sel=="E" && ptype=="S") {
+			 var el = document.createElement("option");
+				el.textContent = "--Select--";
+				el.value = "-1";
+				ftype.appendChild(el);
+			    el = document.createElement("option");
+			    el.textContent = 'VP Data';
+			    el.value ='Vdata';
+			    ftype.appendChild(el);
+			    el = document.createElement("option");
+			    el.textContent = 'HP Data';
+			    el.value ='Hdata';
+			    ftype.appendChild(el);    
+			}
+		
 		if(sel=="E" && ptype=="L") {
 			 var el = document.createElement("option");
 			el.textContent = "--Select--";
