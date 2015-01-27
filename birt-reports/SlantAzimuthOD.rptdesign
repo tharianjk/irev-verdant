@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
     <property name="createdBy">Eclipse BIRT Designer Version 4.3.2.v20140211-1400 Build &lt;4.3.2.v20140218-1056></property>
+    <text-property name="title">Omni Deviation (dB)</text-property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="layoutPreference">auto layout</property>
@@ -75,16 +76,16 @@
                     <text-property name="heading">frequnit</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">OmniDeviation</property>
+                    <property name="columnName">Homni</property>
                     <property name="analysis">measure</property>
                     <text-property name="displayName">Homni</text-property>
                     <text-property name="heading">Homni</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">OmniDeviation_4</property>
+                    <property name="columnName">Vomni</property>
                     <property name="analysis">measure</property>
-                    <text-property name="displayName">VOmni</text-property>
-                    <text-property name="heading">VOmni</text-property>
+                    <text-property name="displayName">Vomni</text-property>
+                    <text-property name="heading">Vomni</text-property>
                 </structure>
             </list-property>
             <list-property name="parameters">
@@ -113,12 +114,12 @@
                     </structure>
                     <structure>
                         <property name="position">3</property>
-                        <property name="name">OmniDeviation</property>
+                        <property name="name">Homni</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
-                        <property name="name">OmniDeviation_4</property>
+                        <property name="name">Vomni</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
@@ -146,23 +147,25 @@
                 </structure>
                 <structure>
                     <property name="position">3</property>
-                    <property name="name">OmniDeviation</property>
-                    <property name="nativeName">OmniDeviation</property>
+                    <property name="name">Homni</property>
+                    <property name="nativeName">Homni</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
-                    <property name="name">OmniDeviation_4</property>
-                    <property name="nativeName">OmniDeviation</property>
+                    <property name="name">Vomni</property>
+                    <property name="nativeName">Vomni</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[SELECT  distinct (case t.frequnit when 'GHz' then ar.frequency/1000 else ar.frequency end) frequency,t.frequnit,ar.OmniDeviation as Homni,vc.OmniDeviation as VOmni
-FROM hcalculated ar
-inner join testdata t on ar.test_id=t.test_id
-inner join vcalculated vc on vc.Frequency=ar.Frequency  where t.Test_id=?]]></xml-property>
+            <xml-property name="queryText"><![CDATA[select distinct (case t.frequnit when 'GHz' then frequency/1000 else frequency end) frequency,frequnit,sum(Homni) Homni,sum(Vomni) Vomni from ( 
+select frequency,OmniDeviation Homni,0 Vomni,test_id from hcalculated  
+union select frequency,0 Homni,OmniDeviation Vomni,test_id from vcalculated ) as tab 
+inner join testdata t on tab.test_id=t.test_id 
+where t.test_id=?
+group by frequency,t.test_id;]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -325,14 +328,33 @@ inner join vcalculated vc on vc.Frequency=ar.Frequency  where t.Test_id=?]]></xm
             <property name="borderTopStyle">solid</property>
             <property name="borderTopWidth">1px</property>
         </style>
+        <style name="NewStyle" id="1102">
+            <property name="height">1cm</property>
+        </style>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
             <property name="rightMargin">0in</property>
+            <page-header>
+                <label id="1101">
+                    <property name="style">NewStyle</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <text-property name="text">Verdant Report Header</text-property>
+                </label>
+            </page-header>
             <page-footer>
-                <text id="55">
-                    <property name="contentType">html</property>
-                    <text-property name="content"><![CDATA[<html>
+                <grid id="2373">
+                    <column id="2374"/>
+                    <column id="2375"/>
+                    <row id="2376">
+                        <cell id="2377">
+                            <text id="2378">
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<html>
 <body>
 <style>
 .outer{
@@ -342,12 +364,12 @@ inner join vcalculated vc on vc.Frequency=ar.Frequency  where t.Test_id=?]]></xm
   display: inline-block;
 }
 </style>
-<table border="1">
+<table>
 <tr>
 <td>
 <div class="outer">
 
-<img src="C:\work\apache-tomee-1.6.0.2\webapps\irev-verdant\img\unnamed.png" height="50px" width="200px" align="baseline" name="myimage">
+<img src="\img\Verdantlogo.png" height="50px" width="200px" align="baseline" name="myimage">
 
 </div>
 </td>
@@ -355,7 +377,15 @@ inner join vcalculated vc on vc.Frequency=ar.Frequency  where t.Test_id=?]]></xm
 </table>
 </body>
 </html>]]></text-property>
-                </text>
+                            </text>
+                        </cell>
+                        <cell id="2379">
+                            <label id="2380">
+                                <text-property name="text">Verdant Footer Content</text-property>
+                            </label>
+                        </cell>
+                    </row>
+                </grid>
             </page-footer>
         </simple-master-page>
     </page-setup>
@@ -416,6 +446,7 @@ inner join vcalculated vc on vc.Frequency=ar.Frequency  where t.Test_id=?]]></xm
             <row id="865">
                 <cell id="866">
                     <label id="839">
+                        <property name="fontSize">medium</property>
                         <property name="fontWeight">bold</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">medium</property>
@@ -436,18 +467,6 @@ inner join vcalculated vc on vc.Frequency=ar.Frequency  where t.Test_id=?]]></xm
                         <property name="dataSet">SlantAzimuthOD</property>
                         <list-property name="boundDataColumns">
                             <structure>
-                                <property name="name">OmniDeviation</property>
-                                <text-property name="displayName">Homni</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
-                                <property name="dataType">decimal</property>
-                            </structure>
-                            <structure>
-                                <property name="name">OmniDeviation_4</property>
-                                <text-property name="displayName">VOmni</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation_4"]</expression>
-                                <property name="dataType">decimal</property>
-                            </structure>
-                            <structure>
                                 <property name="name">Frequency</property>
                                 <text-property name="displayName">frequency</text-property>
                                 <expression name="expression" type="javascript">dataSetRow["Frequency"]</expression>
@@ -456,9 +475,27 @@ inner join vcalculated vc on vc.Frequency=ar.Frequency  where t.Test_id=?]]></xm
                             <structure>
                                 <property name="name">frequnit</property>
                                 <text-property name="displayName">frequnit</text-property>
-                                <expression name="expression" type="javascript">'Spot Frequency ('+dataSetRow["frequnit"]+')'</expression>
+                                <expression name="expression" type="javascript">"Spot Freq.("+dataSetRow["frequnit"]+")"</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Homni</property>
+                                <text-property name="displayName">Homni</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["Homni"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Vomni</property>
+                                <text-property name="displayName">Vomni</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["Vomni"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Hide</property>
+                                <text-property name="displayName">Hide</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["Hide"]</expression>
+                                <property name="dataType">integer</property>
                             </structure>
                         </list-property>
                         <column id="853"/>
@@ -468,16 +505,19 @@ inner join vcalculated vc on vc.Frequency=ar.Frequency  where t.Test_id=?]]></xm
                             <row id="841">
                                 <cell id="842">
                                     <data id="862">
+                                        <property name="fontSize">small</property>
                                         <property name="resultSetColumn">frequnit</property>
                                     </data>
                                 </cell>
                                 <cell id="843">
                                     <label id="856">
+                                        <property name="fontSize">small</property>
                                         <text-property name="text">HP</text-property>
                                     </label>
                                 </cell>
                                 <cell id="844">
                                     <label id="858">
+                                        <property name="fontSize">small</property>
                                         <text-property name="text">VP</text-property>
                                     </label>
                                 </cell>
@@ -487,20 +527,23 @@ inner join vcalculated vc on vc.Frequency=ar.Frequency  where t.Test_id=?]]></xm
                             <row id="845">
                                 <cell id="846">
                                     <data id="861">
+                                        <property name="fontSize">small</property>
                                         <property name="textAlign">center</property>
                                         <property name="resultSetColumn">Frequency</property>
                                     </data>
                                 </cell>
                                 <cell id="847">
                                     <data id="857">
+                                        <property name="fontSize">small</property>
                                         <property name="textAlign">center</property>
-                                        <property name="resultSetColumn">OmniDeviation</property>
+                                        <property name="resultSetColumn">Homni</property>
                                     </data>
                                 </cell>
                                 <cell id="848">
                                     <data id="859">
+                                        <property name="fontSize">small</property>
                                         <property name="textAlign">center</property>
-                                        <property name="resultSetColumn">OmniDeviation_4</property>
+                                        <property name="resultSetColumn">Vomni</property>
                                     </data>
                                 </cell>
                             </row>
