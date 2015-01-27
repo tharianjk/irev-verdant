@@ -282,6 +282,18 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
+        <scalar-parameter name="img" id="2327">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="VerdantProfile" id="7">
@@ -1052,6 +1064,13 @@ from cpcalculated where Test_id=?]]></xml-property>
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="graphset" id="973">
+            <list-property name="computedColumns">
+                <structure>
+                    <property name="name">showimage</property>
+                    <expression name="expression">params["img"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
             <list-property name="columnHints">
                 <structure>
                     <property name="columnName">Angle</property>
@@ -1122,8 +1141,14 @@ from cpcalculated where Test_id=?]]></xml-property>
                         <property name="name">Test_id</property>
                         <property name="dataType">integer</property>
                     </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">showimage</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
+            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -1312,6 +1337,31 @@ from cpcalculated where Test_id=?]]></xml-property>
                     <expression name="expression">params["freq5"].value+" "+row["frequnit"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">frqncy6</property>
+                    <expression name="expression">params["freq6"].value+" "+row["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">frqncy7</property>
+                    <expression name="expression">params["freq7"].value+" "+row["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">frqncy8</property>
+                    <expression name="expression">params["freq8"].value+" "+row["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">frqncy9</property>
+                    <expression name="expression">params["freq9"].value+" "+row["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">frqncy10</property>
+                    <expression name="expression">params["freq10"].value+" "+row["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints">
                 <structure>
@@ -1462,6 +1512,31 @@ from cpcalculated where Test_id=?]]></xml-property>
                     <structure>
                         <property name="position">15</property>
                         <property name="name">frqncy5</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">frqncy6</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">frqncy7</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">18</property>
+                        <property name="name">frqncy8</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">19</property>
+                        <property name="name">frqncy9</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">20</property>
+                        <property name="name">frqncy10</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -1765,6 +1840,13 @@ inner join product p on s.Product_id=p.Product_id   where TD.Test_id=?]]></xml-p
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="graphset2" id="1183">
+            <list-property name="computedColumns">
+                <structure>
+                    <property name="name">showimage</property>
+                    <expression name="expression">params["img"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
             <list-property name="columnHints">
                 <structure>
                     <property name="columnName">Angle</property>
@@ -1835,8 +1917,14 @@ inner join product p on s.Product_id=p.Product_id   where TD.Test_id=?]]></xml-p
                         <property name="name">Test_id</property>
                         <property name="dataType">integer</property>
                     </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">showimage</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
+            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -1999,6 +2087,13 @@ inner join product p on s.Product_id=p.Product_id   where TD.Test_id=?]]></xml-p
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="graphset3" id="1263">
+            <list-property name="computedColumns">
+                <structure>
+                    <property name="name">showimage</property>
+                    <expression name="expression">params["img"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
             <list-property name="columnHints">
                 <structure>
                     <property name="columnName">Angle</property>
@@ -2069,8 +2164,14 @@ inner join product p on s.Product_id=p.Product_id   where TD.Test_id=?]]></xml-p
                         <property name="name">Test_id</property>
                         <property name="dataType">integer</property>
                     </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">showimage</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
+            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -2233,6 +2334,13 @@ inner join product p on s.Product_id=p.Product_id   where TD.Test_id=?]]></xml-p
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="graphset4" id="1350">
+            <list-property name="computedColumns">
+                <structure>
+                    <property name="name">showimage</property>
+                    <expression name="expression">params["img"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
             <list-property name="columnHints">
                 <structure>
                     <property name="columnName">Angle</property>
@@ -2303,8 +2411,14 @@ inner join product p on s.Product_id=p.Product_id   where TD.Test_id=?]]></xml-p
                         <property name="name">Test_id</property>
                         <property name="dataType">integer</property>
                     </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">showimage</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
+            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -2467,6 +2581,13 @@ inner join product p on s.Product_id=p.Product_id   where TD.Test_id=?]]></xml-p
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="graphset5" id="1426">
+            <list-property name="computedColumns">
+                <structure>
+                    <property name="name">showimage</property>
+                    <expression name="expression">params["img"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
             <list-property name="columnHints">
                 <structure>
                     <property name="columnName">Angle</property>
@@ -2537,8 +2658,14 @@ inner join product p on s.Product_id=p.Product_id   where TD.Test_id=?]]></xml-p
                         <property name="name">Test_id</property>
                         <property name="dataType">integer</property>
                     </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">showimage</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
+            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -4664,6 +4791,13 @@ from cpcalculated where Test_id=?]]></xml-property>
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="graphset6" id="1845">
+            <list-property name="computedColumns">
+                <structure>
+                    <property name="name">showimage</property>
+                    <expression name="expression">params["img"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
             <list-property name="columnHints">
                 <structure>
                     <property name="columnName">Angle</property>
@@ -4734,8 +4868,14 @@ from cpcalculated where Test_id=?]]></xml-property>
                         <property name="name">Test_id</property>
                         <property name="dataType">integer</property>
                     </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">showimage</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
+            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -4898,6 +5038,13 @@ from cpcalculated where Test_id=?]]></xml-property>
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="graphset7" id="1846">
+            <list-property name="computedColumns">
+                <structure>
+                    <property name="name">showimage</property>
+                    <expression name="expression">params["img"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
             <list-property name="columnHints">
                 <structure>
                     <property name="columnName">Angle</property>
@@ -4968,8 +5115,14 @@ from cpcalculated where Test_id=?]]></xml-property>
                         <property name="name">Test_id</property>
                         <property name="dataType">integer</property>
                     </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">showimage</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
+            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -5132,6 +5285,13 @@ from cpcalculated where Test_id=?]]></xml-property>
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="graphset8" id="1851">
+            <list-property name="computedColumns">
+                <structure>
+                    <property name="name">showimage</property>
+                    <expression name="expression">params["img"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
             <list-property name="columnHints">
                 <structure>
                     <property name="columnName">Angle</property>
@@ -5202,8 +5362,14 @@ from cpcalculated where Test_id=?]]></xml-property>
                         <property name="name">Test_id</property>
                         <property name="dataType">integer</property>
                     </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">showimage</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
+            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -5366,6 +5532,13 @@ from cpcalculated where Test_id=?]]></xml-property>
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="graphset9" id="1852">
+            <list-property name="computedColumns">
+                <structure>
+                    <property name="name">showimage</property>
+                    <expression name="expression">params["img"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
             <list-property name="columnHints">
                 <structure>
                     <property name="columnName">Angle</property>
@@ -5436,8 +5609,14 @@ from cpcalculated where Test_id=?]]></xml-property>
                         <property name="name">Test_id</property>
                         <property name="dataType">integer</property>
                     </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">showimage</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
+            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -5612,6 +5791,11 @@ from cpcalculated where Test_id=?]]></xml-property>
                         </structure>
                     </list-property>
                 </structure>
+                <structure>
+                    <property name="name">showimage</property>
+                    <expression name="expression">params["img"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints">
                 <structure>
@@ -5688,8 +5872,14 @@ from cpcalculated where Test_id=?]]></xml-property>
                         <property name="name">hide10</property>
                         <property name="dataType">integer</property>
                     </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">showimage</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
+            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -6051,6 +6241,71 @@ from cpcalculated where Test_id=?]]></xml-property>
                         </tabular-hierarchy>
                     </property>
                 </tabular-dimension>
+                <tabular-dimension name="Group15" id="2328">
+                    <property name="defaultHierarchy">NewTabularHierarchy15</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy15" id="2329">
+                            <property name="levels">
+                                <tabular-level name="frqncy6" id="2330">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">frqncy6</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group16" id="2331">
+                    <property name="defaultHierarchy">NewTabularHierarchy16</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy16" id="2332">
+                            <property name="levels">
+                                <tabular-level name="frqncy7" id="2333">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">frqncy7</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group17" id="2334">
+                    <property name="defaultHierarchy">NewTabularHierarchy17</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy17" id="2335">
+                            <property name="levels">
+                                <tabular-level name="frqncy8" id="2336">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">frqncy8</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group18" id="2337">
+                    <property name="defaultHierarchy">NewTabularHierarchy18</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy18" id="2338">
+                            <property name="levels">
+                                <tabular-level name="frqncy9" id="2339">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">frqncy9</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group19" id="2340">
+                    <property name="defaultHierarchy">NewTabularHierarchy19</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy19" id="2341">
+                            <property name="levels">
+                                <tabular-level name="frqncy10" id="2342">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">frqncy10</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
             </property>
             <property name="dataSet">graphgrid</property>
         </tabular-cube>
@@ -6186,14 +6441,14 @@ from cpcalculated where Test_id=?]]></xml-property>
                 </label>
             </page-header>
             <page-footer>
-                <text id="55">
-                    <property name="borderBottomStyle">none</property>
-                    <property name="borderLeftStyle">none</property>
-                    <property name="borderRightStyle">none</property>
-                    <property name="borderTopStyle">solid</property>
-                    <property name="borderTopWidth">thin</property>
-                    <property name="contentType">html</property>
-                    <text-property name="content"><![CDATA[<html>
+                <grid id="2373">
+                    <column id="2374"/>
+                    <column id="2375"/>
+                    <row id="2376">
+                        <cell id="2377">
+                            <text id="2378">
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<html>
 <body>
 <style>
 .outer{
@@ -6208,7 +6463,7 @@ from cpcalculated where Test_id=?]]></xml-property>
 <td>
 <div class="outer">
 
-<img src="C:\work\apache-tomee-1.6.0.2\webapps\irev-verdant\img\unnamed.png" height="50px" width="200px" align="baseline" name="myimage">
+<img src="\img\Verdantlogo.png" height="50px" width="200px" align="baseline" name="myimage">
 
 </div>
 </td>
@@ -6216,7 +6471,15 @@ from cpcalculated where Test_id=?]]></xml-property>
 </table>
 </body>
 </html>]]></text-property>
-                </text>
+                            </text>
+                        </cell>
+                        <cell id="2379">
+                            <label id="2380">
+                                <text-property name="text">Verdant Footer Content</text-property>
+                            </label>
+                        </cell>
+                    </row>
+                </grid>
             </page-footer>
         </simple-master-page>
     </page-setup>
@@ -9638,6 +9901,17 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
  			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+}&#xD;
+&#xD;
+function beforeDrawBlock( block, icsc )&#xD;
+{&#xD;
+title=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;showimage&quot;);&#xD;
+if(title==&quot;no&quot;)&#xD;
+{&#xD;
+block.setBackground(null)&#xD;
+}&#xD;
+else&#xD;
+{}&#xD;
 }</Script>
   <Units>Points</Units>
   <SeriesThickness>10.0</SeriesThickness>
@@ -11010,6 +11284,17 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
  			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+}&#xD;
+&#xD;
+function beforeDrawBlock( block, icsc )&#xD;
+{&#xD;
+title=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;showimage&quot;);&#xD;
+if(title==&quot;no&quot;)&#xD;
+{&#xD;
+block.setBackground(null)&#xD;
+}&#xD;
+else&#xD;
+{}&#xD;
 }</Script>
   <Units>Points</Units>
   <SeriesThickness>10.0</SeriesThickness>
@@ -12382,6 +12667,16 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
  			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+}&#xD;
+function beforeDrawBlock( block, icsc )&#xD;
+{&#xD;
+title=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;showimage&quot;);&#xD;
+if(title==&quot;no&quot;)&#xD;
+{&#xD;
+block.setBackground(null)&#xD;
+}&#xD;
+else&#xD;
+{}&#xD;
 }</Script>
   <Units>Points</Units>
   <SeriesThickness>10.0</SeriesThickness>
@@ -13754,6 +14049,17 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
  			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+}&#xD;
+&#xD;
+function beforeDrawBlock( block, icsc )&#xD;
+{&#xD;
+title=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;showimage&quot;);&#xD;
+if(title==&quot;no&quot;)&#xD;
+{&#xD;
+block.setBackground(null)&#xD;
+}&#xD;
+else&#xD;
+{}&#xD;
 }</Script>
   <Units>Points</Units>
   <SeriesThickness>10.0</SeriesThickness>
@@ -15126,6 +15432,17 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
  			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+}&#xD;
+&#xD;
+function beforeDrawBlock( block, icsc )&#xD;
+{&#xD;
+title=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;showimage&quot;);&#xD;
+if(title==&quot;no&quot;)&#xD;
+{&#xD;
+block.setBackground(null)&#xD;
+}&#xD;
+else&#xD;
+{}&#xD;
 }</Script>
   <Units>Points</Units>
   <SeriesThickness>10.0</SeriesThickness>
@@ -15982,18 +16299,18 @@ icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
                                             </extended-item>
                                         </property>
                                     </extended-item>
-                                    <extended-item extensionName="DimensionView" id="1888">
-                                        <property name="dimension">Group14</property>
+                                    <extended-item extensionName="DimensionView" id="2367">
+                                        <property name="dimension">Group15</property>
                                         <property name="levels">
-                                            <extended-item extensionName="LevelView" name="NewLevel View151" id="1889">
-                                                <property name="level">Group14/frqncy5</property>
+                                            <extended-item extensionName="LevelView" name="NewLevel View20" id="2368">
+                                                <property name="level">Group15/frqncy6</property>
                                                 <property name="member">
-                                                    <extended-item extensionName="CrosstabCell" id="1890">
+                                                    <extended-item extensionName="CrosstabCell" id="2369">
                                                         <property name="content">
-                                                            <data name="frqncy51" id="1891">
+                                                            <data name="frqncy6" id="2371">
                                                                 <property name="fontSize">12px</property>
                                                                 <property name="textAlign">left</property>
-                                                                <property name="resultSetColumn">frqncy5</property>
+                                                                <property name="resultSetColumn">frqncy6</property>
                                                             </data>
                                                         </property>
                                                     </extended-item>
@@ -16106,9 +16423,9 @@ icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
                                     </label>
                                 </property>
                             </extended-item>
-                            <extended-item extensionName="CrosstabCell" id="1914">
+                            <extended-item extensionName="CrosstabCell" id="2370">
                                 <property name="content">
-                                    <label id="1915">
+                                    <label id="2372">
                                         <property name="fontSize">12px</property>
                                         <property name="textAlign">left</property>
                                         <text-property name="text">Frequency</text-property>
@@ -16182,8 +16499,8 @@ icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
                                 <property name="dataType">string</property>
                             </structure>
                             <structure>
-                                <property name="name">frqncy5</property>
-                                <expression name="expression">dimension["Group14"]["frqncy5"]</expression>
+                                <property name="name">frqncy6</property>
+                                <expression name="expression">dimension["Group15"]["frqncy6"]</expression>
                                 <property name="dataType">string</property>
                             </structure>
                         </list-property>
@@ -16498,6 +16815,16 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
  			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+}&#xD;
+function beforeDrawBlock( block, icsc )&#xD;
+{&#xD;
+title=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;showimage&quot;);&#xD;
+if(title==&quot;no&quot;)&#xD;
+{&#xD;
+block.setBackground(null)&#xD;
+}&#xD;
+else&#xD;
+{}&#xD;
 }</Script>
   <Units>Points</Units>
   <SeriesThickness>10.0</SeriesThickness>
@@ -17354,18 +17681,18 @@ icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
                                             </extended-item>
                                         </property>
                                     </extended-item>
-                                    <extended-item extensionName="DimensionView" id="1957">
-                                        <property name="dimension">Group14</property>
+                                    <extended-item extensionName="DimensionView" id="2361">
+                                        <property name="dimension">Group16</property>
                                         <property name="levels">
-                                            <extended-item extensionName="LevelView" name="NewLevel View152" id="1958">
-                                                <property name="level">Group14/frqncy5</property>
+                                            <extended-item extensionName="LevelView" name="NewLevel View19" id="2362">
+                                                <property name="level">Group16/frqncy7</property>
                                                 <property name="member">
-                                                    <extended-item extensionName="CrosstabCell" id="1959">
+                                                    <extended-item extensionName="CrosstabCell" id="2363">
                                                         <property name="content">
-                                                            <data name="frqncy52" id="1960">
+                                                            <data name="frqncy7" id="2365">
                                                                 <property name="fontSize">12px</property>
                                                                 <property name="textAlign">left</property>
-                                                                <property name="resultSetColumn">frqncy5</property>
+                                                                <property name="resultSetColumn">frqncy7</property>
                                                             </data>
                                                         </property>
                                                     </extended-item>
@@ -17478,9 +17805,9 @@ icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
                                     </label>
                                 </property>
                             </extended-item>
-                            <extended-item extensionName="CrosstabCell" id="1983">
+                            <extended-item extensionName="CrosstabCell" id="2364">
                                 <property name="content">
-                                    <label id="1984">
+                                    <label id="2366">
                                         <property name="fontSize">12px</property>
                                         <property name="textAlign">left</property>
                                         <text-property name="text">Frequency</text-property>
@@ -17554,8 +17881,8 @@ icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
                                 <property name="dataType">string</property>
                             </structure>
                             <structure>
-                                <property name="name">frqncy5</property>
-                                <expression name="expression">dimension["Group14"]["frqncy5"]</expression>
+                                <property name="name">frqncy7</property>
+                                <expression name="expression">dimension["Group16"]["frqncy7"]</expression>
                                 <property name="dataType">string</property>
                             </structure>
                         </list-property>
@@ -17870,6 +18197,16 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
  			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+}&#xD;
+function beforeDrawBlock( block, icsc )&#xD;
+{&#xD;
+title=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;showimage&quot;);&#xD;
+if(title==&quot;no&quot;)&#xD;
+{&#xD;
+block.setBackground(null)&#xD;
+}&#xD;
+else&#xD;
+{}&#xD;
 }</Script>
   <Units>Points</Units>
   <SeriesThickness>10.0</SeriesThickness>
@@ -18726,18 +19063,18 @@ icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
                                             </extended-item>
                                         </property>
                                     </extended-item>
-                                    <extended-item extensionName="DimensionView" id="2026">
-                                        <property name="dimension">Group14</property>
+                                    <extended-item extensionName="DimensionView" id="2355">
+                                        <property name="dimension">Group17</property>
                                         <property name="levels">
-                                            <extended-item extensionName="LevelView" name="NewLevel View153" id="2027">
-                                                <property name="level">Group14/frqncy5</property>
+                                            <extended-item extensionName="LevelView" name="NewLevel View18" id="2356">
+                                                <property name="level">Group17/frqncy8</property>
                                                 <property name="member">
-                                                    <extended-item extensionName="CrosstabCell" id="2028">
+                                                    <extended-item extensionName="CrosstabCell" id="2357">
                                                         <property name="content">
-                                                            <data name="frqncy53" id="2029">
+                                                            <data name="frqncy8" id="2359">
                                                                 <property name="fontSize">12px</property>
                                                                 <property name="textAlign">left</property>
-                                                                <property name="resultSetColumn">frqncy5</property>
+                                                                <property name="resultSetColumn">frqncy8</property>
                                                             </data>
                                                         </property>
                                                     </extended-item>
@@ -18850,9 +19187,9 @@ icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
                                     </label>
                                 </property>
                             </extended-item>
-                            <extended-item extensionName="CrosstabCell" id="2052">
+                            <extended-item extensionName="CrosstabCell" id="2358">
                                 <property name="content">
-                                    <label id="2053">
+                                    <label id="2360">
                                         <property name="fontSize">12px</property>
                                         <property name="textAlign">left</property>
                                         <text-property name="text">Frequency</text-property>
@@ -18926,8 +19263,8 @@ icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
                                 <property name="dataType">string</property>
                             </structure>
                             <structure>
-                                <property name="name">frqncy5</property>
-                                <expression name="expression">dimension["Group14"]["frqncy5"]</expression>
+                                <property name="name">frqncy8</property>
+                                <expression name="expression">dimension["Group17"]["frqncy8"]</expression>
                                 <property name="dataType">string</property>
                             </structure>
                         </list-property>
@@ -19242,6 +19579,17 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
  			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+}&#xD;
+&#xD;
+function beforeDrawBlock( block, icsc )&#xD;
+{&#xD;
+title=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;showimage&quot;);&#xD;
+if(title==&quot;no&quot;)&#xD;
+{&#xD;
+block.setBackground(null)&#xD;
+}&#xD;
+else&#xD;
+{}&#xD;
 }</Script>
   <Units>Points</Units>
   <SeriesThickness>10.0</SeriesThickness>
@@ -20098,18 +20446,18 @@ icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
                                             </extended-item>
                                         </property>
                                     </extended-item>
-                                    <extended-item extensionName="DimensionView" id="2095">
-                                        <property name="dimension">Group14</property>
+                                    <extended-item extensionName="DimensionView" id="2349">
+                                        <property name="dimension">Group18</property>
                                         <property name="levels">
-                                            <extended-item extensionName="LevelView" name="NewLevel View154" id="2096">
-                                                <property name="level">Group14/frqncy5</property>
+                                            <extended-item extensionName="LevelView" name="NewLevel View17" id="2350">
+                                                <property name="level">Group18/frqncy9</property>
                                                 <property name="member">
-                                                    <extended-item extensionName="CrosstabCell" id="2097">
+                                                    <extended-item extensionName="CrosstabCell" id="2351">
                                                         <property name="content">
-                                                            <data name="frqncy54" id="2098">
+                                                            <data name="frqncy9" id="2353">
                                                                 <property name="fontSize">12px</property>
                                                                 <property name="textAlign">left</property>
-                                                                <property name="resultSetColumn">frqncy5</property>
+                                                                <property name="resultSetColumn">frqncy9</property>
                                                             </data>
                                                         </property>
                                                     </extended-item>
@@ -20222,9 +20570,9 @@ icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
                                     </label>
                                 </property>
                             </extended-item>
-                            <extended-item extensionName="CrosstabCell" id="2121">
+                            <extended-item extensionName="CrosstabCell" id="2352">
                                 <property name="content">
-                                    <label id="2122">
+                                    <label id="2354">
                                         <property name="fontSize">12px</property>
                                         <property name="textAlign">left</property>
                                         <text-property name="text">Frequency</text-property>
@@ -20298,8 +20646,8 @@ icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
                                 <property name="dataType">string</property>
                             </structure>
                             <structure>
-                                <property name="name">frqncy5</property>
-                                <expression name="expression">dimension["Group14"]["frqncy5"]</expression>
+                                <property name="name">frqncy9</property>
+                                <expression name="expression">dimension["Group18"]["frqncy9"]</expression>
                                 <property name="dataType">string</property>
                             </structure>
                         </list-property>
@@ -20614,6 +20962,18 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
  			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+}&#xD;
+&#xD;
+&#xD;
+function beforeDrawBlock( block, icsc )&#xD;
+{&#xD;
+title=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;showimage&quot;);&#xD;
+if(title==&quot;no&quot;)&#xD;
+{&#xD;
+block.setBackground(null)&#xD;
+}&#xD;
+else&#xD;
+{}&#xD;
 }</Script>
   <Units>Points</Units>
   <SeriesThickness>10.0</SeriesThickness>
@@ -21470,18 +21830,18 @@ icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
                                             </extended-item>
                                         </property>
                                     </extended-item>
-                                    <extended-item extensionName="DimensionView" id="2164">
-                                        <property name="dimension">Group14</property>
+                                    <extended-item extensionName="DimensionView" id="2343">
+                                        <property name="dimension">Group19</property>
                                         <property name="levels">
-                                            <extended-item extensionName="LevelView" name="NewLevel View155" id="2165">
-                                                <property name="level">Group14/frqncy5</property>
+                                            <extended-item extensionName="LevelView" name="NewLevel View16" id="2344">
+                                                <property name="level">Group19/frqncy10</property>
                                                 <property name="member">
-                                                    <extended-item extensionName="CrosstabCell" id="2166">
+                                                    <extended-item extensionName="CrosstabCell" id="2345">
                                                         <property name="content">
-                                                            <data name="frqncy55" id="2167">
+                                                            <data name="frqncy10" id="2347">
                                                                 <property name="fontSize">12px</property>
                                                                 <property name="textAlign">left</property>
-                                                                <property name="resultSetColumn">frqncy5</property>
+                                                                <property name="resultSetColumn">frqncy10</property>
                                                             </data>
                                                         </property>
                                                     </extended-item>
@@ -21594,9 +21954,9 @@ icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
                                     </label>
                                 </property>
                             </extended-item>
-                            <extended-item extensionName="CrosstabCell" id="2190">
+                            <extended-item extensionName="CrosstabCell" id="2346">
                                 <property name="content">
-                                    <label id="2191">
+                                    <label id="2348">
                                         <property name="fontSize">12px</property>
                                         <property name="textAlign">left</property>
                                         <text-property name="text">Frequency</text-property>
@@ -21670,8 +22030,8 @@ icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
                                 <property name="dataType">string</property>
                             </structure>
                             <structure>
-                                <property name="name">frqncy5</property>
-                                <expression name="expression">dimension["Group14"]["frqncy5"]</expression>
+                                <property name="name">frqncy10</property>
+                                <expression name="expression">dimension["Group19"]["frqncy10"]</expression>
                                 <property name="dataType">string</property>
                             </structure>
                         </list-property>
@@ -21986,6 +22346,17 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
  			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+}&#xD;
+&#xD;
+function beforeDrawBlock( block, icsc )&#xD;
+{&#xD;
+title=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;showimage&quot;);&#xD;
+if(title==&quot;no&quot;)&#xD;
+{&#xD;
+block.setBackground(null)&#xD;
+}&#xD;
+else&#xD;
+{}&#xD;
 }</Script>
   <Units>Points</Units>
   <SeriesThickness>10.0</SeriesThickness>
