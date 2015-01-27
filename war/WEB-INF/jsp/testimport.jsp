@@ -107,6 +107,8 @@ progress_clear();
           <td>Test date *:</td>
 	     <td><form:input id="dttest" path="strtestdate" type="datetime-local" required="required" /> </td>
 		</tr>
+		<tr><td>
+		Antenna Type :</td> <td><input type="text" value='${prodtype}' readonly="readonly"/></td></tr>
 		<tr>
 		<td > Product Serial No: </td>
        <td >
@@ -116,7 +118,7 @@ progress_clear();
 			  <form:option label="${prdser.productserial}"   value="${prdser.productserialid}"/>	     
 			</c:forEach>
 			</form:select>
-			   &nbsp; &nbsp;&nbsp;  Selected Antenna Type : ${prodtype}
+			   
           </td>
           <td>Test Type * :</td> 
           
@@ -380,7 +382,7 @@ $(document).ready( function () {
 		{
 		 document.getElementById("frequnit").disabled = true;
 		 document.getElementById("testtype").value='${testtype}';
-		 document.getElementById("prevfreq").disabled = false;
+		 document.getElementById("prevfreq").style.visibility = 'visible';
 		 //$("#testtype").trigger( "onchange" );
 		 $("#testtype").val('${testtype}').change();
 		 if(mode=='edit')
@@ -402,7 +404,7 @@ $(document).ready( function () {
 		 document.getElementById("cancel").style.visibility="hidden";
 		 document.getElementById("more").disabled = true;
 		 document.getElementById("done").disabled = true;
-		 document.getElementById("prevfreq").disabled = true;
+		 document.getElementById("prevfreq").style.visibility = 'hidden';
 	 }
 	 
 	 if( testid!="" && testid!=null && testid !='null' && testid!=0 && mode!='edit'){
