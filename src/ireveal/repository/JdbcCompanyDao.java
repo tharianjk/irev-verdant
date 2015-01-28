@@ -43,7 +43,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
    public List<Company> getCompanyList() {  
     List companyList = new ArrayList();  
     
-    String sql = "select C.company_id,A.displayname,c.companyName,c.Address,A.N_LEVEL from FWK_COMPANY C INNER JOIN FWK_ASSETTREE A ON A.ASSETTREE_ID=C.COMPANY_ID";  
+    String sql = "select C.company_id,c.companyName,c.Address from FWK_COMPANY C ";  
    
     companyList = getJdbcTemplate().query(sql, new CompanyMapper());  
     return companyList;  
@@ -65,11 +65,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
       new Object[] { company.getCompanyname(), company.getCompanyAddress(),  
     		  company.getCompanyid() }); 
     
-    sql = "UPDATE fwk_assettree set displayname = ? where assettree_id = ?";  
-    getJdbcTemplate().update(  
-      sql,  
-      new Object[] { company.getDisplayname(),  
-    		  company.getCompanyid() }); 
+    
     return true;    
    }  
     
@@ -77,7 +73,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
    public Company getCompany(int id) {  
 	   logger.info("***inside JDBCCompany** ");
 	   List<Company> companyList =null;
-    String sql = "select C.company_id,A.displayname,c.companyName,c.Address,A.N_LEVEL from FWK_COMPANY C INNER JOIN FWK_ASSETTREE A ON A.ASSETTREE_ID=C.COMPANY_ID where c.company_id=?";  
+    String sql = "select C.company_id,c.companyName,c.Address from FWK_COMPANY C  where c.company_id=?";  
    try
    {
     companyList = getJdbcTemplate().query(sql, new CompanyMapper(),id);
@@ -94,11 +90,10 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 	   
        public Company mapRow(ResultSet rs, int rowNum) throws SQLException {
            Company company = new Company();
-           company.setCompanyid(rs.getInt("company_id"));  
-    	   company.setDisplayname(rs.getString("displayname"));  
+           company.setCompanyid(rs.getInt("company_id"));
     	   company.setCompanyname(rs.getString("companyName"));  
     	   company.setCompanyAddress(rs.getString("Address")); 
-    	   company.setNlevel(rs.getInt("N_LEVEL"));
+    	   
            return company;
        }
 

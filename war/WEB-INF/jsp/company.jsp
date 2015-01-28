@@ -33,24 +33,20 @@
       
       <div>  
        <form:form method="post" align ="left" commandName="editCompany" >  
+       <br>
         <table>  
          <tr>  
           <td>Company Name :</td>  
-          <td><form:input path="Companyname"  
-            value="${map.Company.Companyname}" />  
+          <td><form:input path="Companyname" required="required" />  
           </td>  
          </tr>  
          <tr> 
-         <tr>  
-          <td>Display Name :</td>  
-          <td><form:input path="Displayname"  
-            value="${map.Company.Displayname}" />  
-          </td>  
-         </tr>  
+          
          <tr>  
           <td>Company Address :</td>  
-          <td><form:input path="CompanyAddress" value="${map.Company.CompanyAddress}" />  
-          </td>  
+          
+          <td><form:textarea   path="CompanyAddress"  rows="5" cols="70" /></td>
+           
          </tr>
          
          <tr> 
@@ -59,11 +55,11 @@
           </td> 
          </tr>  
         </table>  
-        <form:hidden path="Companyid" value="${map.Company.Companyid}" />  
+        <form:hidden path="Companyid" />  
         
        </form:form>  
       </div>  
-     </center>  
+       
      <script>
      $(document).ready(function () {
     	 var savestat='<%=request.getParameter("savestat")%>';
