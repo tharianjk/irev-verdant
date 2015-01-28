@@ -48,13 +48,14 @@
           <div id=divlg>
           Linear Gain   :<input type="text" id="lg" style="width:50;"></div>
           </td>
+          </tr>
+          <tr>
           <td>
           <div id="cp">          
        <input type="checkbox" id="hdata" value="hdata" onclick="fnenable('h');">HP Data &nbsp; &nbsp;&nbsp;
        <input type="checkbox" id="vdata" value="vdata" onclick="fnenable('v');" >VP Data  &nbsp; &nbsp;&nbsp;
        <input type="checkbox" id="cpdata" value="cpdata" onclick="fnenable('c');" >CP Data  &nbsp; &nbsp;&nbsp;       
         </div> </td>
-      
        </tr>
        </table>
        <table>
@@ -101,23 +102,23 @@ $(document).ready(function(){
 	console.log("parenttype="+parent.AssetTree.selectedparenttype);
 	console.log("atype="+parent.AssetTree.atype);
 	if(parent.AssetTree.selectedparenttype=="L")
-		document.getElementById("divimg").style.visibility="visible";
+		document.getElementById("divimg").style.display="block";
 	else if(parent.AssetTree.selectedparenttype=="S" && parent.AssetTree.atype=="A")
-		document.getElementById("divimg").style.visibility="visible";
+		document.getElementById("divimg").style.display="block";
 	else
-		document.getElementById("divimg").style.visibility="hidden";
+		document.getElementById("divimg").style.display="none";
 	
 	var lgtype=parent.AssetTree.atype;
 	if(lgtype=="CP" || lgtype=="A")
-		    document.getElementById("divlg").style.visibility="visible";
+		    document.getElementById("divlg").style.display="block";
 		else
-			document.getElementById("divlg").style.visibility="hidden";
+			document.getElementById("divlg").style.display="none";
 	
 	
 	if(lgtype=="DCP" || parent.AssetTree.selectedparenttype=="L")
-		{document.getElementById("cp").style.visibility="hidden";}
+		{document.getElementById("cp").style.display="none";}
 	else{
-		document.getElementById("cp").style.visibility="visible";
+		document.getElementById("cp").style.display="block";
 		document.getElementById("hdata").checked=true;
 	}});
 
@@ -165,7 +166,9 @@ $(document).ready(function(){
 			}
 			scale="yes";
 			}
-		
+		if(scale=="no")
+			{max=0;
+			min=0;}
 		
 		var lg=document.getElementById("lg").value;
 		if(lg=="" || lg==null || lg=="null")
