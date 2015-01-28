@@ -97,8 +97,8 @@ public class ToolsController implements Controller {
         		List<TestFrequency> freqlist=this.mastersservice.getFreqList(Integer.parseInt(testid));
         		for (int i=0;i<freqlist.size();i++){
         			if(i==0)
-        				{strfreqs=freqlist.get(i).getFrequency()+"";}
-        			else {strfreqs=strfreqs+","+freqlist.get(i).getFrequency();}
+        				{strfreqs=freqlist.get(i).getFrequencyid()+"";}
+        			else {strfreqs=strfreqs+","+freqlist.get(i).getFrequencyid();}
         		}
         		logger.info("*** strfreqs ** "+strfreqs);
         		 //myModel.put("freqlist", this.mastersservice.getFreqList(Integer.parseInt(testid)));
@@ -122,7 +122,18 @@ public class ToolsController implements Controller {
         		{
         			atype="Y";
         		}
-        		 myModel.put("freqlist", this.mastersservice.getFreqList(Integer.parseInt(testid)));
+        		String strfreqs="";
+        		List<TestFrequency> freqlist=this.mastersservice.getFreqList(Integer.parseInt(testid));
+        		for (int i=0;i<freqlist.size();i++){
+        			if(i==0)
+        				{strfreqs=freqlist.get(i).getFrequencyid()+"";}
+        			else {strfreqs=strfreqs+","+freqlist.get(i).getFrequencyid();}
+        		}
+        		logger.info("*** strfreqs ** "+strfreqs);
+        		 //myModel.put("freqlist", this.mastersservice.getFreqList(Integer.parseInt(testid)));
+        		 
+        		 myModel.put("strfreqs",strfreqs);
+        		 myModel.put("freqlist", freqlist);
         		 myModel.put("testid",testid);
         		 myModel.put("freq",freq);
         		 myModel.put("atype",atype);

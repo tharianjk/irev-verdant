@@ -992,6 +992,7 @@ lg decimal(20,10)
 BEGIN
 DECLARE ampl decimal(20,10) default 0;
 DECLARE vampl decimal(20,10) default 0;
+declare lgampl decimal(20,10) default 0;
 if lg=0 then
 		if typ='H' then
 		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id FROM hdata HD 
@@ -1037,10 +1038,15 @@ end if;
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
         if typ='C' then
+        select calc_cpgain(testid,testid,lg) into lgampl;
+        -- update testfreq set lineargain =lg where test_id=testid and frequency=freq;
         SELECT HD.Amplitude into ampl FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
-		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id FROM cpdata HD 
-		where HD.Frequency=freq and HD.Test_id=testid;
+
+        SELECT HD.Amplitude into ampl FROM cpdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
+		SELECT HD.Angle,HD.Amplitude-ampl+lgampl Amplitude,HD.Frequency,HD.Test_id FROM cpdata HD 
+		where HD.Frequency=testid and HD.Test_id=testid;
 		end if;
 		if typ='B' then
         SELECT HD.Amplitude into ampl FROM hdata HD 

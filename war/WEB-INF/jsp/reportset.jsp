@@ -142,9 +142,10 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 		var i=0;
 		var j=0;
 		var fre= '${model.strfreqs}';
+		freqs=fre.split(",");
 		var rptheader='${model.rptheader}';
 		var rptfooter='${model.rptfooter}';
-		freqs=fre.split(",");
+		
 		if(document.getElementById('polar').checked){
 			polar="yes";
 		for (i==0;i<freqs.length;i++){

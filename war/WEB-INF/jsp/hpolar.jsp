@@ -14,40 +14,55 @@
 <body>
 <table>
  <tr>
-		<td >Frequency : </td>
-       <td >
-       <select id="freqid" >          
-         <option value="-1">--Select--</option>      
-   		 <c:forEach items="${model.freqlist}" var="freq">
-   		  <c:choose>
-   		 <c:when test="${freq.frequency eq model.freq}">	
-            <option value=<c:out value="${freq.frequencyid}" /> selected ><c:out value="${freq.frequency}"/></option>
-           </c:when>
-	    <c:otherwise>
-	       <option value=<c:out value="${freq.frequencyid}" /> ><c:out value="${freq.frequency}"/></option>
-	    </c:otherwise>      
-		</c:choose>
-    	</c:forEach>
-		</select>			           
+		<td >Frequency : <table id ='ptab' >
+	    <c:set var="cnt" value="1"/>
+	    <tbody><tr><td><c:forEach items="${model.freqlist}" var="freq">			
+				
+				<c:if test="${ cnt < 7}">
+					<c:set var="cnt" value="${cnt + 1 }"/>
+					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency} 
+				</c:if>
+				<c:if test="${ cnt == 6 }">
+				<br>
+				</c:if>
+				<c:if test="${ cnt > 6 && cnt<19}">
+					<c:set var="cnt" value="${cnt + 1 }"/>
+					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}  
+				</c:if>
+				<c:if test="${ cnt == 12 }">
+				<br>
+				</c:if>
+				<c:if test="${ cnt > 12}">
+					<c:set var="cnt" value="${cnt + 1 }"/>
+					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}  
+				</c:if>
+				
+			</c:forEach></td></tr></tbody>
+	    
+	    </table>  			           
 			   
           </td>
+          </tr>
+          <tr>
           <td>
-          <div id="cp">
-          
+          <div id=divlg>
+          Linear Gain   :<input type="text" id="lg" style="width:50;"></div>
+          </td>
+          <td>
+          <div id="cp">          
        <input type="checkbox" id="hdata" value="hdata" onclick="fnenable('h');">HP Data &nbsp; &nbsp;&nbsp;
        <input type="checkbox" id="vdata" value="vdata" onclick="fnenable('v');" >VP Data  &nbsp; &nbsp;&nbsp;
-       <input type="checkbox" id="cpdata" value="cpdata" onclick="fnenable('c');" >CP Data  &nbsp; &nbsp;&nbsp;
-       Linear Gain:<input type="text" id="lg" >
+       <input type="checkbox" id="cpdata" value="cpdata" onclick="fnenable('c');" >CP Data  &nbsp; &nbsp;&nbsp;       
         </div> </td>
       
        </tr>
        </table>
        <table>
        <tr>
-       <td > Max. Amplitude : </td>
-       <td width="20"><input id="max" value="-40">
-       <td > &nbsp; &nbsp;&nbsp;Min. Amplitude : </td>
-       <td width="20"><input id="min"  value="-70"></td>
+       <td > Max.Amplitude: </td>
+       <td ><input id="max" value="" style="width:50;">
+       <td > &nbsp; &nbsp;&nbsp;Min.Amplitude: </td>
+       <td ><input id="min"  value="" style="width:50;"></td>
         <td><div id="divimg">&nbsp; &nbsp;&nbsp;<input type="checkbox" id="img" value="img" >Show Aircraft Image</div></td>
 		<td>&nbsp; &nbsp;&nbsp;<input type="button" value="Go" name="go" class="myButtonGo" onclick="Redirect()"/>
 	<!-- &nbsp; &nbsp;&nbsp;<input type="button" value="back" name="go" class="myButtonGo" onclick="back()"/> -->
@@ -92,7 +107,14 @@ $(document).ready(function(){
 	else
 		document.getElementById("divimg").style.visibility="hidden";
 	
-	if(typ=="P" || typ=="R" || typ=="Y")
+	var lgtype=parent.AssetTree.atype;
+	if(lgtype=="CP" || lgtype=="A")
+		    document.getElementById("divlg").style.visibility="visible";
+		else
+			document.getElementById("divlg").style.visibility="hidden";
+	
+	
+	if(lgtype=="DCP" || parent.AssetTree.selectedparenttype=="L")
 		{document.getElementById("cp").style.visibility="hidden";}
 	else{
 		document.getElementById("cp").style.visibility="visible";
@@ -107,15 +129,44 @@ $(document).ready(function(){
 	function Redirect(){
 		var img="no";
 		//alert("go clicked");
+		var scale="no";
 		var testid="${model.testid}";
-		var freqid =document.getElementById("freqid").value;	
-		if(freqid=="-1")
+		var strfreqs=[]; 
+		var freqs=[];
+		var i=0;
+		var j=0;
+		var fre= '${model.strfreqs}';
+		freqs=fre.split(",");
+		for (i==0;i<freqs.length;i++){
+			if(document.getElementById(freqs[i]).checked){
+			strfreqs[j]=freqs[i];
+			j=j+1;}
+		}
+		console.log(strfreqs[0]);
+		if(strfreqs[0]==0 ||strfreqs[0]=="" || strfreqs[0]==null || strfreqs[0]=='undefined')
 			{
 			alert("Frequency not selected");
 			return;
 			}
 		var max =document.getElementById("max").value;
 		var min =document.getElementById("min").value;
+		if(min!=null && min !=""){
+		if(max==""|| max==null ){
+			alert("Max.Amplitude should be entered");
+			return;
+		}
+		scale="yes";
+		}
+		
+		if(max!=null && max !=""){
+			if(min==""|| min==null ){
+				alert("Min.Amplitude should be entered");
+				return;
+			}
+			scale="yes";
+			}
+		
+		
 		var lg=document.getElementById("lg").value;
 		if(lg=="" || lg==null || lg=="null")
 			{lg=0;}
@@ -133,10 +184,14 @@ $(document).ready(function(){
 if(document.getElementById("img").checked)
 	img="yes";
 		
-		var url="/birt-verdant/frameset?__report=PolarGeneric.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
+		var url="/birt-verdant/frameset?__report=PolarGeneric.rptdesign&type="+typ+"&testid="+testid+"&scale="+scale+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&freq1="+strfreqs[0]+
+		"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
+		"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9];
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
 		if(typ=="B")
-			var url="/birt-verdant/frameset?__report=PolarHPVP.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
+			var url="/birt-verdant/frameset?__report=PolarHPVP.rptdesign&type="+typ+"&testid="+testid+"&scale="+scale+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&freq1="+strfreqs[0]+
+			"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
+			"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9];
 			console.log("url " + url);
 		//window.location =url; 
 		window.frames['AppBody'].location=url;
