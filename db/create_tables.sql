@@ -463,6 +463,8 @@ create index testid_freq_angle_hp on hdata(Test_id, Frequency, angle,Amplitude);
 create index testid_freq_angle_vp on vdata(Test_id, Frequency, angle,Amplitude);
 create index testid_freq_angle_cp on cpdata(Test_id, Frequency, angle,Amplitude);
 
+alter table product add constraint uk_prodname unique (productname);
+
 ALTER TABLE `verdant`.`pitchdata` 
 ADD INDEX `test_freq_angle_ampl_pitch` (`Test_id` ASC, `Frequency` ASC, `Angle` ASC, `Amplitude` ASC);
 ALTER TABLE `verdant`.`rolldata`

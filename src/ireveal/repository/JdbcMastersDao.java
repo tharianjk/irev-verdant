@@ -440,8 +440,8 @@ if(strmode.equals("new")){
    
    public int InsertProduct(Product prod) {
 	   
-	   int primaryKey;
-	   
+	   int primaryKey=0;
+	  try{ 
    final String  sql = "INSERT INTO product(Productname,Version,PType,ImageFileName) VALUES   (?,?,?,?)";    
 	     KeyHolder keyHolder = new GeneratedKeyHolder();
 	    
@@ -465,7 +465,10 @@ if(strmode.equals("new")){
 	  	    },
 	  	    keyHolder);
 	  	primaryKey= keyHolder.getKey().intValue();
-	  	logger.info(" Product record inserted. Key = "+primaryKey); 	       
+	  	logger.info(" Product record inserted. Key = "+primaryKey); 	
+	  }catch(Exception ex){
+		  logger.info(" Product inserted. Exception = "+ex.getMessage()); 
+	  }
 	    return primaryKey;	
 	   }
    

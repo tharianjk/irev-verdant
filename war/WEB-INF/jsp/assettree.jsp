@@ -303,9 +303,14 @@ var treemode='<%=request.getParameter("treemode")%>';
                 }
              	 
              	 parent.frames['AppBody'].location =url;
-             
-             	 
             }
+            else{
+            	if(treeType==4)
+   		        {
+            	   url = '<%=request.getContextPath()%>/testimport.htm?id='+ node.attr('assetId')+'&mode=edit';
+            	   parent.frames['AppBody'].location =url;
+                }          	 
+          	 }
                 	});
                // $("#jsTreeComponent").bind("open_node.jstree",function(event,data){opennode(data)});
                 
