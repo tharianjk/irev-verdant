@@ -138,16 +138,18 @@ $(document).ready(function(){
 		var j=0;
 		var fre= '${model.strfreqs}';
 		freqs=fre.split(",");
+		var freqsel=0;
 		for (i==0;i<freqs.length;i++){
 			if(document.getElementById(freqs[i]).checked){
 			strfreqs[j]=freqs[i];
+			freqsel=1;
 			}
 			else 
 				{strfreqs[j]=-1;}
 				j=j+1;
 		}
 		console.log(strfreqs[0]);
-		if(strfreqs[0]==-1 ||strfreqs[0]=="" || strfreqs[0]==null || strfreqs[0]=='undefined')
+		if(freqsel==0)
 			{
 			alert("Frequency not selected");
 			return;
