@@ -174,7 +174,11 @@ $(document).ready(function(){
 		if(scale=="yes")
 			{max=0;
 			min=0;}
-		
+		if(min>max){
+			alert("Max.Amplitude less than Min.Amplitude");
+			return;
+		}
+			
 		var lg=document.getElementById("lg").value;
 		if(lg=="" || lg==null || lg=="null")
 			{lg=0;}
