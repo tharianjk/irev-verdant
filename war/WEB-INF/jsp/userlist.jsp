@@ -33,7 +33,7 @@
     <c:forEach items="${model.users}" var="user">
 		<tr><td> <a href="<c:url value="user.htm?usr=${user.user_id}"/>"> <c:out value="${user.username}"/> </a> </td>
 			<td> <c:out value="${user.enabled}"/>  <td> <c:out value="${user.lastlogin}"/> </td>
-			<td> <a id="deleteclick" href='<c:url value="setup.htm?oper=deleteusr&userid=${user.user_id}&user=${user.username}"/>' class="confirm"><img  src ="/ireveal-base/img/delete.jpg" >  </a> </td>
+			<td> <a id="deleteclick" href='<c:url value="setup.htm?oper=deleteusr&userid=${user.user_id}&user=${user.username}"/>' class="confirm"><img  src ="/irev-verdant/img/delete.jpg" >  </a> </td>
 		</tr>
     </c:forEach> 
 	</tbody>

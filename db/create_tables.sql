@@ -136,6 +136,8 @@ CREATE TABLE IF NOT EXISTS `Verdant`.`Product_serial` (
   `Prodserial_id` int AUTO_INCREMENT,
   `Product_id` INT NULL,
   `SerialNo` VARCHAR(45) NULL,
+  rptheader varchar(200),
+  rptfooter varchar(200),
   INDEX `Product_id_idx` (`Product_id` ASC),
   PRIMARY KEY (`Prodserial_id`),
   CONSTRAINT `Product_id`

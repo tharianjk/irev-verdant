@@ -61,6 +61,8 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 
 <script type="text/javascript">
 var typ="${model.atype}";
+var rptheader='${model.rptheader}';
+var rptfooter='${model.rptfooter}';
 function fnenable(ctyp){
 	console.log("checked");
 	if(ctyp=='c'){
@@ -131,10 +133,10 @@ $(document).ready(function(){
 if(document.getElementById("img").checked)
 	img="yes";
 		
-		var url="/birt-verdant/frameset?__report=PolarGeneric.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img;
+		var url="/birt-verdant/frameset?__report=PolarGeneric.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
 		if(typ=="B")
-			var url="/birt-verdant/frameset?__report=PolarHPVP.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img;
+			var url="/birt-verdant/frameset?__report=PolarHPVP.rptdesign&type="+typ+"&freq="+freqid+"&testid="+testid+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
 			console.log("url " + url);
 		//window.location =url; 
 		window.frames['AppBody'].location=url;

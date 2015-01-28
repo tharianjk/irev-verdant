@@ -73,4 +73,5 @@ public interface MastersDao {
 	 public Map<String, Object> GetAmpPhaseValue(String prodserids,String typ);
 	 public List<Product> getProductWithAmpphase();
 	 public String getFreqdatafile(String typ,int testid );
+	 public ProductSerial getheaderfooter(int testid);
 }

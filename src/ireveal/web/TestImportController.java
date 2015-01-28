@@ -242,8 +242,8 @@ public class TestImportController extends SimpleFormController{
 					request.setAttribute("message", "File Uploaded Successfully");
 					
 					} catch (Exception ex) {
-						err="File Upload Failed due to " + ex;
-						request.setAttribute("message", "File Upload Failed due to " + ex);
+						err="File Upload Failed due to " + ex.getMessage();
+						request.setAttribute("message", "File Upload Failed due to " + ex.getMessage());
 						logger.info("Inside FileUpload Controller Exception " + ex.getMessage());
 					}
 				 logger.info(" imported testid "+testid);

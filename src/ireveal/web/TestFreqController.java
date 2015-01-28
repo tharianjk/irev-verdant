@@ -1,6 +1,7 @@
 package ireveal.web;
 
 
+import ireveal.domain.ProductSerial;
 import ireveal.domain.TestData;
 import ireveal.domain.TestFrequency;
 import ireveal.service.MastersService;
@@ -27,7 +28,6 @@ import org.apache.commons.logging.LogFactory;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONArray;
-
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 import org.springframework.web.servlet.view.RedirectView;
@@ -90,9 +90,15 @@ public class TestFreqController implements Controller{
 	     } catch (JSONException e) {
 	         e.printStackTrace();
 	    }
-
-
-		return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=CPGain.rptdesign&testid="+testid));
+	    
+	    ProductSerial lstp=mastersservice.getheaderfooter(testid);
+     	String rptheader=lstp.getRptheader();
+     	String rptfooter=lstp.getRptfooter();
+     	if(rptheader=="" || rptheader==null ||rptheader=="null")
+    		rptheader="No Header";
+    	if(rptfooter=="" || rptfooter==null ||rptfooter=="null")
+    		rptfooter="No Header";
+		return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=CPGain.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter));
 		}
 	}
 	

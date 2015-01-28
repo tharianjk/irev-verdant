@@ -48,7 +48,14 @@ function Redirect(){
           </td>
 		
 		</tr>
-        
+        <tr>
+		<td>Report Header  :</td> 
+		<td><form:textarea   path="rptheader"  rows="2" cols="50" /></td>
+		</tr>
+        <tr>
+		<td>Report Footer  :</td> 
+		<td><form:textarea   path="rptfooter"  rows="2" cols="40" /></td> 
+		</tr>
           
           <tr>
           <td> </td>  

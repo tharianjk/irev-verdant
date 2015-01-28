@@ -157,6 +157,10 @@ public List<Product> getProductWithAmpphase() {
 public String getFreqdatafile(String typ, int testid) {
 	return mastersdao.getFreqdatafile(typ,testid);
 }
+@Override
+public ProductSerial getheaderfooter(int testid) {
+	return mastersdao.getheaderfooter(testid);
+}
 
 
 }

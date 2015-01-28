@@ -24,6 +24,7 @@ import java.util.Date;
 import java.text.DateFormat;
 
 import ireveal.domain.Product;
+import ireveal.domain.ProductSerial;
 import ireveal.domain.TestData;
 import ireveal.domain.TestFrequency;
 import ireveal.service.MastersService;
@@ -68,8 +69,19 @@ public class ToolsController implements Controller {
         String testid="0";
         testid=	request.getParameter("testid");
         String freq=request.getParameter("freq");
+        String rptheader="";
+        String rptfooter="";
         if(testid==null || testid=="" || testid=="null" ||  testid.equals("undefined")){
         	testid="0";
+        }
+        else{
+        	ProductSerial lstp=mastersservice.getheaderfooter(Integer.parseInt(testid));
+        	rptheader=lstp.getRptheader();
+        	rptfooter=lstp.getRptfooter();
+        	if(rptheader=="" || rptheader==null ||rptheader=="null")
+        		rptheader="No Header";
+        	if(rptfooter=="" || rptfooter==null ||rptfooter=="null")
+        		rptfooter="No Header";
         }
         if(freq==null || freq=="" || freq=="null" ||  freq.equals("undefined") ){
         	freq="-1";
@@ -94,6 +106,8 @@ public class ToolsController implements Controller {
         		 myModel.put("strfreqs",strfreqs);
         		 myModel.put("freqlist",freqlist);
         		 myModel.put("atype",atype);
+        		 myModel.put("rptheader",rptheader);
+        		 myModel.put("rptfooter",rptfooter);
                 return new ModelAndView("reportset", "model", myModel);        	
         	}
 			else if (operstr.contains("hpolar")){
@@ -112,6 +126,8 @@ public class ToolsController implements Controller {
         		 myModel.put("testid",testid);
         		 myModel.put("freq",freq);
         		 myModel.put("atype",atype);
+        		 myModel.put("rptheader",rptheader);
+        		 myModel.put("rptfooter",rptfooter);
                 return new ModelAndView("hpolar", "model", myModel);        	
         	}
 			else if (operstr.contains("db")){
@@ -128,6 +144,8 @@ public class ToolsController implements Controller {
         		myModel.put("atype",atype);
        		    myModel.put("testid",testid);
        		    myModel.put("typ",typ);
+       		    myModel.put("rptheader",rptheader);
+    		    myModel.put("rptfooter",rptfooter);
                return new ModelAndView("xdb_bw_bs", "model", myModel);        	
        	}
 			else if (operstr.contains("ar")){
@@ -137,6 +155,8 @@ public class ToolsController implements Controller {
        		 myModel.put("testid",testid);
        		 myModel.put("typ",typ);
        		 myModel.put("atype",atype);
+       		 myModel.put("rptheader",rptheader);
+    		 myModel.put("rptfooter",rptfooter);
              return new ModelAndView("ar", "model", myModel);   
              
        	    }
@@ -145,7 +165,8 @@ public class ToolsController implements Controller {
         		logger.info("*** ampphase ** ");
        
        		 myModel.put("prodlist",mastersservice.getProductWithAmpphase());
-       		
+       		 myModel.put("rptheader",rptheader);
+    		 myModel.put("rptfooter",rptfooter);
              return new ModelAndView("ampphaserpt", "model", myModel);   
              
        	    }
@@ -165,7 +186,7 @@ public class ToolsController implements Controller {
 				}
         		logger.info("*** ampphase ** typ "+typ+" prodseriallist "+prodseriallist);    
        		//type,prodserialids,maxamp,freq
-             return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=PhaseTracking.rptdesign&type="+typ+"&prodserialids="+prodseriallist+"&maxamp="+maxDiff+"&freq="+freq)); 
+             return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=PhaseTracking.rptdesign&type="+typ+"&prodserialids="+prodseriallist+"&maxamp="+maxDiff+"&freq="+freq+"&rpth="+rptheader+"&rptf="+rptfooter)); 
 			        }
 			else if(operstr.contains("blank")){
 				String msg="Please make a Selection from the Asset Tree on the left side";

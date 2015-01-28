@@ -549,12 +549,13 @@ if(strmode.equals("new")){
 	   public int InsertProductSer(ProductSerial prodser) {
 		   int primaryKey;
 		   
-		   final String  sql = "INSERT INTO product_serial(SerialNo,Product_id)  VALUES   (?,?)";
+		   final String  sql = "INSERT INTO product_serial(SerialNo,Product_id,rptheader,rptfooter)  VALUES   (?,?,?,?)";
 			     KeyHolder keyHolder = new GeneratedKeyHolder();
 			    
 			     final String prdsername = prodser.getProductserial();
 			     final int prodid = prodser.getProductid();	    
-			     
+			     final String rptheader = prodser.getRptheader();
+			     final String rptfooter = prodser.getRptfooter();
 			  	getJdbcTemplate().update(
 			  	    new PreparedStatementCreator() {
 			  	        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
@@ -562,7 +563,8 @@ if(strmode.equals("new")){
 			  	                connection.prepareStatement(sql, new String[] {"Prodserial_id"}); 
 			  	            ps.setString(1, prdsername);	
 			  	            ps.setInt(2, prodid);
-			  	           
+			  	          ps.setString(3, rptheader);
+			  	        ps.setString(4, rptfooter);
 			  	            return ps;
 			  	        }
 			  	    },
@@ -578,9 +580,9 @@ if(strmode.equals("new")){
 	   public List<ProductSerial> getProductSerList() {  
 		    List dataList = new ArrayList();  
 		   
-		    String sql = "select Prodserial_id, S.Product_id ,SerialNo,productname from product_serial S inner join product p on s.Product_id=p.Product_id";  
+		    String sql = "select Prodserial_id, S.Product_id ,SerialNo,productname,rptheader,rptfooter from product_serial S inner join product p on s.Product_id=p.Product_id";  
 		   
-		    dataList = getJdbcTemplate().query(sql, new ProductMapper());  
+		    dataList = getJdbcTemplate().query(sql, new ProductSerMapper());  
 		    return dataList;  
 		   }  
 		    
@@ -605,10 +607,10 @@ if(strmode.equals("new")){
 		     
 		   public boolean updateProductSer(ProductSerial prduct) {  
 			   try{
-		    String sql = "UPDATE product_serial set SerialNo = ?,product_id = ? where Prodserial_id = ?";  
+		    String sql = "UPDATE product_serial set SerialNo = ?,product_id = ?,rptheader=?,rptfooter=? where Prodserial_id = ?";  
 		    getJdbcTemplate().update(  
 		      sql,  
-		      new Object[] { prduct.getProductserial(), prduct.getProductid(),  prduct.getProductserialid() }); 
+		      new Object[] { prduct.getProductserial(), prduct.getProductid(),  prduct.getRptheader(),prduct.getRptfooter(),  prduct.getProductserialid() }); 
 		    
 		   
 		    return true;    
@@ -623,7 +625,7 @@ if(strmode.equals("new")){
 		   public ProductSerial getProductSer(int id) {  
 			   logger.info("***inside prduct** ");
 			   List<ProductSerial> dataList =null;
-		    String sql = "select Prodserial_id, S.Product_id ,SerialNo,productname from product_serial S inner join product p on s.Product_id=p.Product_id  where Prodserial_id =" + id;  
+		    String sql = "select Prodserial_id, S.Product_id ,SerialNo,productname,rptheader,rptfooter from product_serial S inner join product p on s.Product_id=p.Product_id  where Prodserial_id =" + id;  
 		   try
 		   {
 			   dataList = getJdbcTemplate().query(sql, new ProductSerMapper());
@@ -639,7 +641,7 @@ if(strmode.equals("new")){
 		   public List<ProductSerial> getProdVerSer() {  
 			   logger.info("***inside getProdVerSer** ");
 			   List<ProductSerial> dataList =null;
-		    String sql = " select Prodserial_id ,CONCAT(productname, ' ', Version,' ',SerialNo) SerialNo from product_serial S inner join product p on s.Product_id=p.Product_id  ";  
+		    String sql = " select Prodserial_id , SerialNo from product_serial S inner join product p on s.Product_id=p.Product_id  ";  
 		   try
 		   {
 			   dataList = getJdbcTemplate().query(sql, new ProdVerSerMapper());
@@ -671,7 +673,8 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 		    	   product.setProductname(rs.getString("productname"));  
 		    	   product.setProductserial(rs.getString("SerialNo"));  
 		    	   product.setProductserialid(rs.getInt("Prodserial_id")); 	    	  
-		    	   
+		    	   product.setRptheader(rs.getString("rptheader"));
+		    	   product.setRptfooter(rs.getString("rptfooter"));
 		    	   
 		           return product;
 		       }
@@ -933,6 +936,25 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 				       }
 
 				   }  
+				 
+				 public ProductSerial getheaderfooter(int testid) {  
+					    
+					    String sql = "select rptheader,rptfooter from product_serial p inner join testdata t on p.Prodserial_id=t.Prodserial_id "+
+					    		" where t.test_id=?";  
+					   
+					    return getJdbcTemplate().query(sql, new rptheaderfooterMapper(),testid).get(0);  
+					     
+					   } 
+				 private static class rptheaderfooterMapper implements ParameterizedRowMapper<ProductSerial> {
+					   
+				       public ProductSerial mapRow(ResultSet rs, int rowNum) throws SQLException {
+				    	   ProductSerial prdser = new ProductSerial();
+				    	   prdser.setRptheader(rs.getString("rptheader"));  
+				    	   prdser.setRptfooter(rs.getString("rptfooter"));
+				           return prdser;
+				       }
+
+				   } 
    
   }
 

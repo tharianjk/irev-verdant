@@ -5,6 +5,21 @@ private int productserialid;
 private int productid;
 private String productname;
 private String productserial;
+private String rptheader;
+private String rptfooter;
+
+public String getRptheader() {
+	return rptheader;
+}
+public void setRptheader(String rptheader) {
+	this.rptheader = rptheader;
+}
+public String getRptfooter() {
+	return rptfooter;
+}
+public void setRptfooter(String rptfooter) {
+	this.rptfooter = rptfooter;
+}
 public int getProductserialid() {
 	return productserialid;
 }

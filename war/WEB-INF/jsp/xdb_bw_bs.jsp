@@ -43,6 +43,8 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 		var testid=${model.testid};
 		var typ='${model.typ}';
 		var atype='${model.atype}';
+		var rptheader='${model.rptheader}';
+		var rptfooter='${model.rptfooter}';
 		if(document.getElementById("bm").checked)
 			{deg='bm';}
 		if(document.getElementById("0d").checked)
@@ -62,19 +64,19 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 			var url="";
 			if(typ=='3db' ){
 				if(atype=='P' || atype=='R' ){ //Elevation (pitch or roll)
-		         url="/birt-verdant/frameset?__report=3dbPitchRoll_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype;}
+		         url="/birt-verdant/frameset?__report=3dbPitchRoll_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype+"&rpth="+rptheader+"&rptf="+rptfooter;}
 				else if (atype=='NCP' || atype=="E"){
-					 url="/birt-verdant/frameset?__report=3db_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype;}
+					 url="/birt-verdant/frameset?__report=3db_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype+"&rpth="+rptheader+"&rptf="+rptfooter;}
 				else{
-				 url="/birt-verdant/frameset?__report=3dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype;}
+				 url="/birt-verdant/frameset?__report=3dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype+"&rpth="+rptheader+"&rptf="+rptfooter;}
 			}
 			if(typ=='10db' ){
 				if(atype=='P' || atype=='R'){ //Elevation or (pitch or roll)
-		         url="/birt-verdant/frameset?__report=10dbPitchRoll_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype;}
+		         url="/birt-verdant/frameset?__report=10dbPitchRoll_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype+"&rpth="+rptheader+"&rptf="+rptfooter;}
 				else if (atype=='NCP' || atype=="E"){
-					 url="/birt-verdant/frameset?__report=10db_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype;}
+					 url="/birt-verdant/frameset?__report=10db_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype+"&rpth="+rptheader+"&rptf="+rptfooter;}
 				else{
-				 url="/birt-verdant/frameset?__report=10dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype;}
+				 url="/birt-verdant/frameset?__report=10dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype+"&rpth="+rptheader+"&rptf="+rptfooter;}
 			}
 			
 			
