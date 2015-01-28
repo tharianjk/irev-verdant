@@ -150,6 +150,18 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
+        <scalar-parameter name="scale" id="1128">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="VerdantProfile" id="7">
@@ -557,6 +569,11 @@ inner join product p on s.Product_id=p.Product_id   where TD.Test_id=?]]></xml-p
                     <expression name="expression">params["img"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">scaleparam</property>
+                    <expression name="expression">params["scale"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints"/>
             <list-property name="parameters">
@@ -650,12 +667,17 @@ inner join product p on s.Product_id=p.Product_id   where TD.Test_id=?]]></xml-p
                         <property name="name">showimage</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">scaleparam</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX", dataSetRow["MX"]);
 reportContext.setPersistentGlobalVariable("MN", dataSetRow["MN"]);
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
-
+reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
 //reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
@@ -1797,19 +1819,27 @@ function beforeGeneration( chart, icsc )&#xD;
 		var series = valSeriesDef.getSeries().get(0);&#xD;
 		&#xD;
 			series.setPlotSteps(BigInteger.valueOf(5));&#xD;
-			//ErrorHandler=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;ErrorHandler&quot;);&#xD;
+			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
 			&#xD;
-MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX&quot;);&#xD;
+			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX&quot;);&#xD;
 			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN&quot;);&#xD;
-			if(show==1)&#xD;
+			if(scaleparam==&quot;yes&quot;)&#xD;
 			{&#xD;
-			series.setWebLabelMin(MinAmp);&#xD;
-			series.setWebLabelMax(MaxAmp);&#xD;
+				series.setRadarAutoScale( true);&#xD;
+			}&#xD;
+			else&#xD;
+			{&#xD;
+				if(show==1)&#xD;
+				{&#xD;
+					series.setWebLabelMin(MinAmp);&#xD;
+					series.setWebLabelMax(MaxAmp);&#xD;
+				}&#xD;
+				series.setRadarAutoScale(false);&#xD;
 			}&#xD;
 			//series.setWebLabelMin(-67);&#xD;
 			//series.setWebLabelMax(-47);&#xD;
-			series.setRadarAutoScale( false);&#xD;
+			&#xD;
 		&#xD;
 		&#xD;
 &#xD;
@@ -2363,6 +2393,7 @@ else&#xD;
           <Visible>true</Visible>
         </WebLineAttributes>
         <ShowWebLabels>true</ShowWebLabels>
+        <RadarAutoScale>true</RadarAutoScale>
         <ConnectEndpoints>true</ConnectEndpoints>
         <WebLabel>
           <Caption>
@@ -2393,6 +2424,7 @@ else&#xD;
               <Green>0</Green>
               <Blue>0</Blue>
             </Color>
+            <Visible>false</Visible>
           </Outline>
           <Insets>
             <Top>0.0</Top>
