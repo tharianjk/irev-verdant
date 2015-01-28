@@ -141,10 +141,13 @@ $(document).ready(function(){
 		for (i==0;i<freqs.length;i++){
 			if(document.getElementById(freqs[i]).checked){
 			strfreqs[j]=freqs[i];
-			j=j+1;}
+			}
+			else 
+				{strfreqs[j]=-1;}
+				j=j+1;
 		}
 		console.log(strfreqs[0]);
-		if(strfreqs[0]==0 ||strfreqs[0]=="" || strfreqs[0]==null || strfreqs[0]=='undefined')
+		if(strfreqs[0]==-1 ||strfreqs[0]=="" || strfreqs[0]==null || strfreqs[0]=='undefined')
 			{
 			alert("Frequency not selected");
 			return;

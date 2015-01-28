@@ -830,22 +830,22 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 				   try{
 				   if(impdata.getFiletype().equals("A"))
 				  	{
-					   sqldelete="delete from amplitudedata where prodserial_id=?";
-					   getJdbcTemplate().update(sqldelete,impdata.getProductserialid());  
-				  		sqlinsert="insert into amplitudedata (prodserial_id,Frequency,ampvalue) values (?,?,?)"; 
+					   sqldelete="delete from amplitudedata where prodserial_id=? and testname=?";
+					   getJdbcTemplate().update(sqldelete,impdata.getProductserialid(),impdata.getTestname());  
+				  		sqlinsert="insert into amplitudedata (prodserial_id,Frequency,ampvalue,testname) values (?,?,?,?)"; 
 				  	}
 				  	else if(impdata.getFiletype().equals("P"))
 				  	{
-				  		sqldelete="delete from phasedata where prodserial_id=?";
+				  		sqldelete="delete from phasedata where prodserial_id=? and testname=?";
 						   getJdbcTemplate().update(sqldelete,impdata.getProductserialid()); 
-				  		sqlinsert="insert into phasedata (prodserial_id,Frequency,phasevalue) values (?,?,?)"; 
+				  		sqlinsert="insert into phasedata (prodserial_id,Frequency,phasevalue,testname) values (?,?,?,?)"; 
 				  	}
 				   
 				   for (int i=0;i<datalist.size();i++){	
 				  		
 						getJdbcTemplate().update(  
 								sqlinsert,  
-						 new Object[] {impdata.getProductserialid(), datalist.get(i).getFreq(), datalist.get(i).getAmplitude() });
+						 new Object[] {impdata.getProductserialid(), datalist.get(i).getFreq(), datalist.get(i).getAmplitude(), impdata.getTestname()});
 
 						}
 				   return true;

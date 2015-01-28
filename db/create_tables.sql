@@ -307,9 +307,9 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS PitchData (
   `pitchData_id` INT  AUTO_INCREMENT,
   `Test_id` INT NULL,
-  Frequency DECIMAL(20,10),
+   Frequency DECIMAL(20,10),
   `Angle` DECIMAL(12,2) NULL,
-  `Amplitude` DECIMAL(12,8) NULL,  
+  `Amplitude` DECIMAL(12,8) NULL,   
   PRIMARY KEY (`pitchData_id`))
 ENGINE = InnoDB;
 
@@ -401,22 +401,22 @@ FROM vdata hp inner join testdata t on hp.test_id=t.test_id;
 -- -----------------------------------------------------
 -- Table `Verdant`.`amplitudedata`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Verdant`.`amplitudedata` (
-  `amp_id` INT AUTO_INCREMENT NOT NULL,
+CREATE TABLE IF NOT EXISTS `Verdant`.`amplitudedata` (  
   `prodserial_id` INT NULL,
    `frequency` DECIMAL(20,10),  
   `ampvalue` DECIMAL(12,8) NULL,  
-  PRIMARY KEY (`amp_id`))
+  testname varchar(50),
+  PRIMARY KEY (prodserial_id,frequency,testname))
 ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Verdant`.`phasedata`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Verdant`.`phasedata` (
-  `phase_id` INT AUTO_INCREMENT NOT NULL,
+CREATE TABLE IF NOT EXISTS `Verdant`.`phasedata` (  
   `prodserial_id` INT NULL,
    `frequency` DECIMAL(20,10),  
   `phasevalue` DECIMAL(12,8) NULL,  
-  PRIMARY KEY (`phase_id`))
+  testname varchar(50),
+  PRIMARY KEY (prodserial_id,frequency,testname))
 ENGINE = InnoDB;
 
 

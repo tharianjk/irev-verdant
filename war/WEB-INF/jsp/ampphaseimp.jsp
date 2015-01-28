@@ -90,7 +90,10 @@ progress_clear();
  
 		<br>
 		<table id="tblmain">
-		
+		<tr>
+		<td > Test Name: </td>
+       <td width="50"><form:input type="text" path="testname"/>
+       </td>
 		<tr>
 		<td > Product Serial No: </td>
        <td width="50">

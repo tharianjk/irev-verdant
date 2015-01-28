@@ -81,7 +81,7 @@ public class ToolsController implements Controller {
         	if(rptheader=="" || rptheader==null ||rptheader=="null")
         		rptheader="No Header";
         	if(rptfooter=="" || rptfooter==null ||rptfooter=="null")
-        		rptfooter="No Header";
+        		rptfooter="No Footer";
         }
         if(freq==null || freq=="" || freq=="null" ||  freq.equals("undefined") ){
         	freq="-1";

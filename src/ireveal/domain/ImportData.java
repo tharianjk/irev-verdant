@@ -13,7 +13,14 @@ private int productserialid;
 private String productserial;
 private String filetype;
 private String frequnit;
+public String getTestname() {
+	return testname;
+}
+public void setTestname(String testname) {
+	this.testname = testname;
+}
 private String ptype;
+private String testname;
 public MultipartFile getFilename() {
 	return filename;
 }
