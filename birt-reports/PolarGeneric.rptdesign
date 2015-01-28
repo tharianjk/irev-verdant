@@ -1533,17 +1533,20 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </text-data>
             </page-header>
             <page-footer>
-                <grid id="1113">
-                    <property name="borderTopStyle">solid</property>
-                    <property name="borderTopWidth">thin</property>
-                    <column id="1114"/>
-                    <column id="1115"/>
-                    <row id="1116">
-                        <cell id="1117">
-                            <text id="1118">
-                                <property name="width">6cm</property>
-                                <property name="contentType">html</property>
-                                <text-property name="content"><![CDATA[<html>
+                <grid id="1266">
+                    <property name="canShrink">true</property>
+                    <column id="1267"/>
+                    <row id="1268">
+                        <cell id="1269">
+                            <grid id="1272">
+                                <column id="1273"/>
+                                <column id="1274"/>
+                                <row id="1275">
+                                    <cell id="1276">
+                                        <text id="1278">
+                                            <property name="width">6cm</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[<html>
 <body>
 <style>
 .outer{
@@ -1566,15 +1569,23 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
 </table>
 </body>
 </html>]]></text-property>
-                            </text>
+                                        </text>
+                                    </cell>
+                                    <cell id="1277">
+                                        <text-data id="1279">
+                                            <property name="fontWeight">normal</property>
+                                            <expression name="valueExpr">params["rptf"].value</expression>
+                                            <property name="contentType">html</property>
+                                        </text-data>
+                                    </cell>
+                                </row>
+                            </grid>
                         </cell>
-                        <cell id="1119">
-                            <text-data id="1127">
-                                <property name="fontWeight">normal</property>
-                                <expression name="valueExpr">params["rptf"].value</expression>
-                                <property name="contentType">html</property>
-                            </text-data>
-                            <text-data id="1265">
+                    </row>
+                    <row id="1270">
+                        <cell id="1271">
+                            <text-data id="1280">
+                                <property name="textAlign">center</property>
                                 <expression name="valueExpr">"Verdant Telemetry and Antenna Systems Pvt. Ltd., Cochin, India"</expression>
                                 <property name="contentType">html</property>
                             </text-data>
@@ -2388,7 +2399,7 @@ function beforeGeneration( chart, icsc )&#xD;
 		valSeriesDef = seriesDef.getSeriesDefinitions().get(0);&#xD;
 		var series = valSeriesDef.getSeries().get(0);&#xD;
 		&#xD;
-			series.setPlotSteps(BigInteger.valueOf(5));&#xD;
+			//series.setPlotSteps(BigInteger.valueOf(5));&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
 			&#xD;
@@ -3042,6 +3053,7 @@ else&#xD;
         <CatLabelFormatSpecifier xsi:type="attribute:JavaNumberFormatSpecifier">
           <Pattern>#</Pattern>
         </CatLabelFormatSpecifier>
+        <PlotSteps>5</PlotSteps>
       </Series>
       <Grouping>
         <GroupType>Text</GroupType>
@@ -6218,5 +6230,53 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
+        <grid id="1113">
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">thin</property>
+            <column id="1114"/>
+            <column id="1115"/>
+            <row id="1116">
+                <cell id="1117">
+                    <text id="1118">
+                        <property name="width">6cm</property>
+                        <property name="contentType">html</property>
+                        <text-property name="content"><![CDATA[<html>
+<body>
+<style>
+.outer{
+  text-align: center;
+}
+.outer img{
+  display: inline-block;
+}
+</style>
+<table>
+<tr>
+<td>
+<div class="outer">
+
+<img src="\img\Verdantlogo.png" height="50px" width="200px" align="baseline" name="myimage">
+
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>]]></text-property>
+                    </text>
+                </cell>
+                <cell id="1119">
+                    <text-data id="1127">
+                        <property name="fontWeight">normal</property>
+                        <expression name="valueExpr">params["rptf"].value</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                    <text-data id="1265">
+                        <expression name="valueExpr">"Verdant Telemetry and Antenna Systems Pvt. Ltd., Cochin, India"</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+        </grid>
     </body>
 </report>
