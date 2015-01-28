@@ -24,8 +24,8 @@ function Redirect(){
 </script>
            
     <div id="pageHdr">
-	<fmt:message key="Product.heading"/>
-</div>      
+	<h2><fmt:message key="Product.heading"/> </h2>
+	</div>      
        
       <div>  
        <form:form method="post" align ="left" commandName="newProduct" > 
@@ -71,7 +71,6 @@ function Redirect(){
           <tr>
           <td> </td>  
           <td><input type="submit" value="Save" class="myButton"  />  
-          <input type="button" value="Back" class="myButton" name="cancel" onclick="Redirect()"/>
           </td>  
          </tr>  
         </table>  
