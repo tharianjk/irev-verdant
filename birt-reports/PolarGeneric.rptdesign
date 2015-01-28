@@ -2037,7 +2037,7 @@ else&#13;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">params["freq1"].value=='undefined'</expression>
+                    <expression name="valueExpr" type="javascript">params["freq1"].value==-1</expression>
                 </structure>
             </list-property>
             <list-property name="boundDataColumns">
@@ -3115,7 +3115,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">params["freq1"].value=='undefined'</expression>
+                    <expression name="valueExpr" type="javascript">params["freq1"].value==-1</expression>
                 </structure>
             </list-property>
             <list-property name="boundDataColumns">
@@ -3561,7 +3561,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">params["freq2"].value=='undefined'</expression>
+                    <expression name="valueExpr" type="javascript">params["freq2"].value==-1</expression>
                 </structure>
             </list-property>
             <list-property name="boundDataColumns">
@@ -4639,7 +4639,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">params["freq2"].value=='undefined'</expression>
+                    <expression name="valueExpr" type="javascript">params["freq2"].value==-1</expression>
                 </structure>
             </list-property>
             <list-property name="boundDataColumns">
@@ -5094,7 +5094,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">params["freq3"].value=='undefined'</expression>
+                    <expression name="valueExpr" type="javascript">params["freq3"].value==-1</expression>
                 </structure>
             </list-property>
             <list-property name="boundDataColumns">
@@ -6172,7 +6172,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">params["freq3"].value=='undefined'</expression>
+                    <expression name="valueExpr" type="javascript">params["freq3"].value==-1</expression>
                 </structure>
             </list-property>
             <list-property name="boundDataColumns">
