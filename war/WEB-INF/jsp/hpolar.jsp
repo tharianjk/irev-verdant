@@ -130,7 +130,7 @@ $(document).ready(function(){
 	function Redirect(){
 		var img="no";
 		//alert("go clicked");
-		var scale="no";
+		var scale="yes";
 		var testid="${model.testid}";
 		var strfreqs=[]; 
 		var freqs=[];
@@ -161,7 +161,7 @@ $(document).ready(function(){
 			alert("Max.Amplitude should be entered");
 			return;
 		}
-		scale="yes";
+		scale="no";
 		}
 		
 		if(max!=null && max !=""){
@@ -169,9 +169,9 @@ $(document).ready(function(){
 				alert("Min.Amplitude should be entered");
 				return;
 			}
-			scale="yes";
+			scale="no";
 			}
-		if(scale=="no")
+		if(scale=="yes")
 			{max=0;
 			min=0;}
 		

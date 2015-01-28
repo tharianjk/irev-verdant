@@ -439,9 +439,9 @@ VIEW `axialratio_view` AS
             
             
 create view vw_ampphase as select distinct a.frequency,a.prodserial_id,a.ampvalue amplitude, 'A' typ
-,p.productname,s. testname SerialNo from amplitudedata a
+,p.productname,a.testname SerialNo from amplitudedata a
 inner join product_serial s on a.prodserial_id=s.Prodserial_id inner join product p on s.Product_id=p.Product_id
-union select distinct a.frequency,a.prodserial_id,a.phasevalue amplitude, 'P' typ,p.productname,s.testname SerialNo from phasedata a
+union select distinct a.frequency,a.prodserial_id,a.phasevalue amplitude, 'P' typ,p.productname,a.testname SerialNo from phasedata a
 inner join product_serial s on a.prodserial_id=s.Prodserial_id inner join product p on s.Product_id=p.Product_id;            
 
 alter table FWK_ROLE add constraint fk_role_company foreign key (company_id) references fwk_company(company_id);
