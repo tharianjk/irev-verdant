@@ -36,7 +36,7 @@
 		    <td> <c:out value="${Loop.index+1}" />
 		    
 			<td> <a href="<c:url value="role.htm?id=${role.role_id}"/>"> <c:out value="${role.rolename}"/> </a>  <br>
-			<td> <a id="deleteclick" href='<c:url value="setup.htm?oper=deleterle&roleid=${role.role_id}&role=${role.rolename}"/>' class="confirm"><img  src ="/ireveal-base/img/delete.jpg" >  </a> </td>
+			<td> <a id="deleteclick" href='<c:url value="setup.htm?oper=deleterle&roleid=${role.role_id}&role=${role.rolename}"/>' class="confirm"><img  src ="/irev-verdant/img/delete.jpg" >  </a> </td>
 		</tr>
     </c:forEach>
    		<tr> <td>
