@@ -86,9 +86,9 @@ progress_clear();
 <div id="appbody">
 
 
-
-	<h2>Import Test Data</h2>
- 
+    <div id="pageHdr">
+	<h2>Test Details</h2>
+	</div>
 	<form:form name="form1" id="form1" method="POST" commandName="TestData" enctype="multipart/form-data">
  
 		<form:errors path="*" cssClass="errorblock" element="div" />

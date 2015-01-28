@@ -86,8 +86,9 @@ progress_clear();
 <div id="appbody">
 
 
-
-	<h2>Import Test Data</h2>
+    <div id="pageHdr">
+	<h2>Test Details</h2>
+	</div>
  
 	<form:form name="form1" id="form1" method="POST" commandName="TestData" enctype="multipart/form-data">
  
@@ -215,7 +216,6 @@ progress_clear();
 		<input type="submit" id="more" value="More" name="fmaction" class="myButton" onclick="progress_update();form1.submit();"/>
 		<input type="submit" id="done" value="Done" name="fmaction" class="myButton" onclick="progress_update();form1.submit();"/>
 		<input type="submit" id="save" value="Save" name="fmaction" class="myButton" onclick="form1.submit();" style="visibility:hidden"/>
-		<input type="button" id="cancel" value="Cancel"  class="myButton" style="visibility:hidden" onclick="fncancel();"/>
 		<span><form:errors path="filename" cssClass="error" />
 		</span>
  
