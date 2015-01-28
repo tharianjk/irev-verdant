@@ -33,7 +33,7 @@
     <property name="bidiLayoutOrientation">ltr</property>
     <property name="imageDPI">96</property>
     <parameters>
-        <scalar-parameter name="freq" id="10">
+        <scalar-parameter name="freq1" id="10">
             <property name="hidden">true</property>
             <text-property name="helpText">Enter the frequency</text-property>
             <property name="valueType">static</property>
@@ -194,7 +194,7 @@
             <list-property name="computedColumns">
                 <structure>
                     <property name="name">Frequency</property>
-                    <expression name="expression">params["freq"].value+" "+row["frequnit"]</expression>
+                    <expression name="expression">params["freq1"].value+" "+row["frequnit"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -592,7 +592,7 @@ inner join product p on s.Product_id=p.Product_id   where TD.Test_id=?]]></xml-p
                 </structure>
                 <structure>
                     <property name="name">freq</property>
-                    <property name="paramName">freq</property>
+                    <property name="paramName">freq1</property>
                     <property name="nativeName">freq</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
