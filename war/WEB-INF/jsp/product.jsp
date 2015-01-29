@@ -89,7 +89,8 @@ function Redirect(){
    			if(savestat==1)
  				{
  		flashMessenger.setText('Saved');
- 				}               
+ 				} 
+   			else if(savestat==0) {errorflashMessenger.setText('Could not save');} 
    			}
    	var ref='<%=request.getParameter("refresh")%>';
    	   if(ref=="true")

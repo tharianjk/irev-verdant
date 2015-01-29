@@ -174,10 +174,14 @@ $(document).ready(function(){
 		if(scale=="yes")
 			{max=0;
 			min=0;}
-		if(min>max){
+		
+		/*if(min<0)
+			if(max<0){
+			if(Math.abs(max)<Math.abs(min)){
 			alert("Max.Amplitude less than Min.Amplitude");
 			return;
-		}
+			}		
+		}*/
 			
 		var lg=document.getElementById("lg").value;
 		if(lg=="" || lg==null || lg=="null")
