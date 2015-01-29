@@ -54,7 +54,7 @@
           <div id="cp">          
        <input type="checkbox" id="hdata" value="hdata" onclick="fnenable('h');">HP Data &nbsp; &nbsp;&nbsp;
        <input type="checkbox" id="vdata" value="vdata" onclick="fnenable('v');" >VP Data  &nbsp; &nbsp;&nbsp;
-       <input type="checkbox" id="cpdata" value="cpdata" onclick="fnenable('c');" >CP Data  &nbsp; &nbsp;&nbsp;       
+       <input type="checkbox" id="cpdata" value="cpdata" onclick="fnenable('c');"><label id="lblcp">CP Data </label> &nbsp; &nbsp;&nbsp;       
         </div> </td>
        </tr>
        </table>
@@ -110,7 +110,7 @@ $(document).ready(function(){
 	
 	var lgtype=parent.AssetTree.atype;
 	if(lgtype=="CP" || lgtype=="A")
-		    document.getElementById("divlg").style.display="block";
+		    document.getElementById("divlg").style.display="block";	
 		else
 			document.getElementById("divlg").style.display="none";
 	
@@ -120,6 +120,10 @@ $(document).ready(function(){
 	else{
 		document.getElementById("cp").style.display="block";
 		document.getElementById("hdata").checked=true;
+		if(parent.AssetTree.selectedparenttype=="S") {
+	    	document.getElementById("cpdata").style.display="none";
+	    	document.getElementById("lblcp").style.display="none";
+	    	}	
 	}});
 
 	function back()

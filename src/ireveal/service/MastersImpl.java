@@ -161,6 +161,10 @@ public String getFreqdatafile(String typ, int testid) {
 public ProductSerial getheaderfooter(int testid) {
 	return mastersdao.getheaderfooter(testid);
 }
+@Override
+public ProductSerial getPSheaderfooter(String psids) {
+	return mastersdao.getPSheaderfooter(psids);
+}
 
 
 }

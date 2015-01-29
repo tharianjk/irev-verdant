@@ -186,6 +186,14 @@ public class ToolsController implements Controller {
 				String maxFreq="";
 				String typ = request.getParameter("typ");
 				String prodseriallist = request.getParameter("prodseriallist");
+				ProductSerial lstp=mastersservice.getPSheaderfooter(prodseriallist);
+	        	rptheader=lstp.getRptheader();
+	        	rptfooter=lstp.getRptfooter();
+	        	if(rptheader=="" || rptheader==null ||rptheader=="null")
+	        		rptheader="No Header";
+	        	if(rptfooter=="" || rptfooter==null ||rptfooter=="null")
+	        		rptfooter="No Footer";
+				
 				Map<String, Object> resultset=mastersservice.GetAmpPhaseValue(prodseriallist,typ);
 				logger.info("viewaptracking prodseriallist="+prodseriallist);
 				logger.info("Return out value:"+resultset.size());

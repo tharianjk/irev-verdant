@@ -957,7 +957,15 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 				           return prdser;
 				       }
 
-				   } 
+				   }
+				 public ProductSerial getPSheaderfooter(String psids) {  
+					    
+					    String sql = "select rptheader,rptfooter from product_serial p "+
+					    		" where Prodserial_id in ("+psids+")";  
+					   
+					    return getJdbcTemplate().query(sql, new rptheaderfooterMapper()).get(0);  
+					     
+					   } 
    
   }
 

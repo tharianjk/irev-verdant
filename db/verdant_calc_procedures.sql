@@ -520,8 +520,11 @@ DELIMITER ;
 
 # PROCEDURE TO CALCULATE 3DB,10DB BW AND BS
 
+
+
 DELIMITER $$
-CREATE PROCEDURE `calc_XdB_BW_BS`(
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `calc_XdB_BW_BS`(
 xtest_id INT, freq decimal(20,10), X INT, polType char(2), fromAngle char(2),
 out beam_width decimal(20,10), out beam_squint decimal(20,10)
 )
@@ -530,116 +533,121 @@ declare C,D,E,AminX,i,j decimal(20,10);
 
 # ************************** HP ******************************
 if polType = 'HP' then
-	set @tab = 'hdata';
+set @tab = 'hdata';
 elseif polType = 'VP' then
-	set @tab = 'vdata';
+set @tab = 'vdata';
 elseif polType = 'P' then
-	set @tab = 'pitchData';
+set @tab = 'pitchData';
 elseif polType = 'R' then
-	set @tab = 'rollData';
+set @tab = 'rollData';
 else 
-	set @tab = 'cpdata';
+set @tab = 'cpdata';
 end if;
 
 if fromAngle = 'BM' then
-		SET @s = CONCAT('select MAX(amplitude) into @A from ', @tab, ' where test_id = ',xtest_id,' and Frequency = ',freq);  
-		
-		PREPARE stmt1 FROM @s; 
-		EXECUTE stmt1; 
-		DEALLOCATE PREPARE stmt1;
+SET @s = CONCAT('select MAX(amplitude) into @A from ', @tab, ' where test_id = ',xtest_id,' and Frequency = ',freq);  
+        -- select @s;
+        
+PREPARE stmt1 FROM @s; 
+EXECUTE stmt1; 
+DEALLOCATE PREPARE stmt1;
         
         SET @s = CONCAT('select MAX(angle) into @B from ', @tab, ' where test_id = ',xtest_id,' and Frequency = ',freq,' and amplitude = ',@A);  
-		
-		PREPARE stmt1 FROM @s; 
-		EXECUTE stmt1; 
-		DEALLOCATE PREPARE stmt1;
-		
+        -- select @s;
+        
+PREPARE stmt1 FROM @s; 
+EXECUTE stmt1; 
+DEALLOCATE PREPARE stmt1;
 elseif fromAngle = '0' then
-		SET @s = CONCAT('select amplitude, angle into @A,@B from ', @tab, 
-						' where test_id = ',xtest_id,' and Frequency = ',freq,
+SET @s = CONCAT('select amplitude, angle into @A,@B from ', @tab, 
+' where test_id = ',xtest_id,' and Frequency = ',freq,
                         ' and angle = 0');  
 
-		PREPARE stmt1 FROM @s; 
-		EXECUTE stmt1; 
-		DEALLOCATE PREPARE stmt1;
+PREPARE stmt1 FROM @s; 
+EXECUTE stmt1; 
+DEALLOCATE PREPARE stmt1;
         
 else -- fromAngle = '90' then
-		
         SET @s = CONCAT('select amplitude, angle into @A,@B from ', @tab, 
-						' where test_id = ',xtest_id,' and Frequency = ',freq,
+' where test_id = ',xtest_id,' and Frequency = ',freq,
                         ' and angle = 90');  
          
-		PREPARE stmt1 FROM @s; 
-		EXECUTE stmt1; 
-		DEALLOCATE PREPARE stmt1;
-		
+PREPARE stmt1 FROM @s; 
+EXECUTE stmt1; 
+DEALLOCATE PREPARE stmt1;
 end if;
     
 -- A-X to the right
 set AminX = @A-X;
   
-  -- select @A as 'A';
-  -- select AminX as 'A-X';
+   -- select @A as 'A';
+   -- select AminX as 'A-X';
   
     set i = @B+0.1;
    
     loop_right : while i <> @B do
-		
         if i = 360 then 
-			set i = 0;
-		end if;
+set i = 0;
+            if i = @B then
+leave loop_right;
+end if;
+end if;
         
-		SET @s = CONCAT('select amplitude into @temp from ', @tab, 
-						' where test_id = ',xtest_id,' and Frequency = ',freq,
+SET @s = CONCAT('select amplitude into @temp from ', @tab, 
+' where test_id = ',xtest_id,' and Frequency = ',freq,
                          ' and angle = ',i);  
         
-		PREPARE stmt1 FROM @s; 
-		EXECUTE stmt1; 
-		DEALLOCATE PREPARE stmt1;
+PREPARE stmt1 FROM @s; 
+EXECUTE stmt1; 
+DEALLOCATE PREPARE stmt1;
         
         
         if @temp <= AminX then
-			 -- select @temp as 'temp';
-			 -- select i as 'to_right';
-			leave loop_right;
-		end if;
-			
+-- select @temp as 'temp';
+-- select i as 'to_right';
+leave loop_right;
+end if;
         -- incr loop variable
        	set i=i+0.1;
-		
         
-	end while;
+end while;
     
-    set C= i;
+    if i <> @B then
+set C= i;
+end if;
     
     set j = @B-0.1;
-	    
+   
     loop_left : while j <> @B do
-		
         if j=-0.1 then
-			set j=359.9;
-		end if;
+set j=359.9;
+            if j = @B then
+leave loop_left;
+end if;
+end if;
         
         SET @s = CONCAT('select amplitude into @temp from ', @tab, 
-						' where test_id = ',xtest_id,' and Frequency = ',freq,
+' where test_id = ',xtest_id,' and Frequency = ',freq,
                         ' and angle = ',j);  
          
-		PREPARE stmt1 FROM @s; 
-		EXECUTE stmt1; 
-		DEALLOCATE PREPARE stmt1;
+PREPARE stmt1 FROM @s; 
+EXECUTE stmt1; 
+DEALLOCATE PREPARE stmt1;
         
         if @temp <= AminX then
-			-- select @temp as 'temp_left';
-			-- select j as 'to_left';
-			leave loop_left;
-		end if;
-			
+-- select @temp as 'temp_left';
+-- select j as 'to_left';
+leave loop_left;
+end if;
         -- decr loop variable
-        	set j=j-0.1;
-		
-	end while;
+        set j=j-0.1;
+end while;
     
-    set D= j;
+    
+    if j <> @B then
+set D= j;
+end if;
+    
     
     
 set E = 360-D;
@@ -647,7 +655,9 @@ set beam_width = C+E;
 set beam_squint = (C-E)/2;
 
 END$$
+
 DELIMITER ;
+
 
 # STARTING PROCEDURE
 
@@ -982,7 +992,7 @@ DELIMITER ;
 -- Note: comments before and after the routine body will not be stored by the server
 -- --------------------------------------------------------------------------------
 DELIMITER $$
-
+-- 
 CREATE  PROCEDURE `spGetPolarPlot`(
 testid INT,
 freq decimal(20,10),
@@ -993,33 +1003,70 @@ BEGIN
 DECLARE ampl decimal(20,10) default 0;
 DECLARE vampl decimal(20,10) default 0;
 declare lgampl decimal(20,10) default 0;
+declare strmaxvalue varchar(50);
+declare strminvalue varchar(50);
+
 if lg=0 then
 		if typ='H' then
-		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id FROM hdata HD 
+		
+        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
+		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM hdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid;
+        
+        SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM hdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid;
+
 		end if;
 		if typ='V' then
-		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id FROM vdata HD 
+		select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
+		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM vdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid;
+
+		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM vdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid;
+
 		end if;
 		if typ='C' then
-		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id FROM cpdata HD 
+        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM cpdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid;
+		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM cpdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid;
+		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='B' then
-		select test_id,frequency,angle,sum(hamplitude) hamplitude,sum(vamplitude) vamplitude 
-		from vw_polardata where Frequency=freq and Test_id=testid group by test_id,frequency,angle;
+        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM hdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid ;
+		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM hdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid ;
+		
+        select test_id,frequency,angle,sum(hamplitude) hamplitude,sum(vamplitude) vamplitude,strmaxvalue,strminvalue 
+		from vw_polardata where Frequency=freq and Test_id=testid group by test_id,frequency,angle,strmaxvalue,strminvalue;
 		end if;
 		if  typ='P' then
-		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id FROM pitchdata HD 
+        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM pitchdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid;
+		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pitchdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid;
+		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='R' then
-		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id FROM rolldata HD 
+        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM rolldata HD 
+		where HD.Frequency=freq and HD.Test_id=testid;
+		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM rolldata HD 
+		where HD.Frequency=freq and HD.Test_id=testid;
+		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='Y' then 
-		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id FROM yawdata HD 
+        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM yawdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid;
+		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM yawdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid;
+		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 end if;
@@ -1027,25 +1074,50 @@ end if;
 		if typ='H' then
 		SELECT HD.Amplitude into ampl FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
+        
+        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue from(
+        SELECT HD.Amplitude-ampl+lg Amplitude FROM hdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 
-		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id FROM hdata HD 
+        select convert(round(min(Amplitude),0),char(30)) into strminvalue from(
+        SELECT HD.Amplitude-ampl+lg Amplitude FROM hdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid) as tab;
+
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='V' then
         SELECT HD.Amplitude into ampl FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
-		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id FROM vdata HD 
+
+        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue from(
+        SELECT HD.Amplitude-ampl+lg Amplitude FROM vdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid) as tab;
+
+        select convert(round(min(Amplitude),0),char(30)) into strminvalue from(
+        SELECT HD.Amplitude-ampl+lg Amplitude FROM vdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid) as tab;
+
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
         if typ='C' then
+
         select calc_cpgain(testid,testid,lg) into lgampl;
         -- update testfreq set lineargain =lg where test_id=testid and frequency=freq;
         SELECT HD.Amplitude into ampl FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
 
-        SELECT HD.Amplitude into ampl FROM cpdata HD 
-		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
-		SELECT HD.Angle,HD.Amplitude-ampl+lgampl Amplitude,HD.Frequency,HD.Test_id FROM cpdata HD 
+        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue from(
+        SELECT HD.Amplitude-ampl+lgampl Amplitude FROM cpdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid) as tab;
+
+        select convert(round(min(Amplitude),0),char(30)) into strminvalue from(
+        SELECT HD.Amplitude-ampl+lgampl Amplitude FROM cpdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid) as tab;
+
+        
+		SELECT HD.Angle,HD.Amplitude-ampl+lgampl Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM cpdata HD 
 		where HD.Frequency=testid and HD.Test_id=testid;
 		end if;
 		if typ='B' then
@@ -1053,29 +1125,78 @@ end if;
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
         SELECT HD.Amplitude into vampl FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
-		select test_id,frequency,angle,sum(hamplitude)-ampl+lg hamplitude,sum(vamplitude)-vampl+lg vamplitude 
-		from vw_polardata where Frequency=freq and Test_id=testid group by test_id,frequency,angle;
+
+		select convert(round(max(Amplitude-ampl+lg),0),char(30)) into strmaxvalue from hdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid ;
+        
+        select convert(round(min(Amplitude-ampl+lg),0),char(30)) into strminvalue from hdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid ;
+        
+       /*select convert(round(max(Amplitude),0),char(30)) into strmaxvalue from 
+        (SELECT Amplitude -ampl+lg FROM hdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid 
+        union
+        SELECT Amplitude -vampl+lg Amplitude FROM vdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid) as tab;
+        
+        select convert(round(min(Amplitude),0),char(30)) into strminvalue from 
+        (SELECT Amplitude-ampl+lg FROM hdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid union
+        SELECT Amplitude-vampl+lg Amplitude FROM vdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid) as tab;*/
+
+
+		select test_id,frequency,angle,sum(hamplitude)-ampl+lg hamplitude,sum(vamplitude)-vampl+lg vamplitude,strmaxvalue,strminvalue 
+		from vw_polardata where Frequency=freq and Test_id=testid group by test_id,frequency,angle,strmaxvalue,strminvalue;
 		end if;		
+
 		if  typ='P' then
 		SELECT HD.Amplitude into ampl FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
-		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id FROM pitchdata HD 
+
+        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue from(
+        SELECT HD.Amplitude-ampl+lg Amplitude FROM pitchdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid) as tab;
+
+        select convert(round(min(Amplitude),0),char(30)) into strminvalue from(
+        SELECT HD.Amplitude-ampl+lg Amplitude FROM pitchdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid) as tab;
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='R' then
 		SELECT HD.Amplitude into ampl FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
-		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id FROM rolldata HD 
+
+        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue from(
+        SELECT HD.Amplitude-ampl+lg Amplitude FROM rolldata HD 
+		where HD.Frequency=freq and HD.Test_id=testid) as tab;
+
+        select convert(round(min(Amplitude),0),char(30)) into strminvalue from(
+        SELECT HD.Amplitude-ampl+lg Amplitude FROM rolldata HD 
+		where HD.Frequency=freq and HD.Test_id=testid) as tab;
+
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='Y' then
 		SELECT HD.Amplitude into ampl FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
-		 SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id FROM yawdata HD 
+
+        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue from(
+        SELECT HD.Amplitude-ampl+lg Amplitude FROM yawdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid) as tab;
+
+        select convert(round(min(Amplitude),0),char(30)) into strminvalue from(
+        SELECT HD.Amplitude-ampl+lg Amplitude FROM yawdata HD 
+		where HD.Frequency=freq and HD.Test_id=testid) as tab;
+
+		 SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 
 end if;
+
 
 
 END $$

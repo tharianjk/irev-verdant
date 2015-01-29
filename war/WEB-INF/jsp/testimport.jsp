@@ -102,7 +102,7 @@ progress_clear();
 		</tr>
 		
 		<tr>
-		<td>Test Name * :</td>  
+		<td>Test Configuration * :</td>  
           <td><form:input path="testname" id="testname" required="required" />  
           </td>
           <td>Test date *:</td>
@@ -129,7 +129,7 @@ progress_clear();
           </td> 
           </tr>
           <tr>
-          <td>Test Description * :</td>  
+          <td>Test Description :</td>  
         <td><form:textarea id="testdesc"  path="testdesc"  rows="2" cols="50" /></td>   
           
 		<td>Test Procedure  :</td> 
@@ -147,7 +147,7 @@ progress_clear();
          
          
        <table id="tbimport">  
-       <tr><td><input type="button" id="prevfreq" value="Show Previous Entries"  class="myButton" /></td></tr>
+       <tr><td><input type="button" id="prevfreq" value="Show Previous Entries"  class="myButton" style="display:none;" /></td></tr>
        <tr> 
       
 		<td>File Type * :</td> 
@@ -382,7 +382,7 @@ $(document).ready( function () {
 		{
 		 document.getElementById("frequnit").disabled = true;
 		 document.getElementById("testtype").value='${testtype}';
-		 document.getElementById("prevfreq").style.visibility = 'visible';
+		 document.getElementById("prevfreq").style.display="block";
 		 //$("#testtype").trigger( "onchange" );
 		 $("#testtype").val('${testtype}').change();
 		 if(mode=='edit')
@@ -393,18 +393,18 @@ $(document).ready( function () {
 			 document.getElementById("more").style.visibility="hidden";
 			 document.getElementById("done").style.visibility="hidden";
 			 document.getElementById("save").style.visibility="visible";
-			 document.getElementById("cancel").style.visibility="visible";
+			// document.getElementById("cancel").style.visibility="visible";
 			 }		 
 		}
 	 else{
-		 
+		 document.getElementById("prevfreq").style.display="none";
 		 document.getElementById("more").style.visibility="visible";
 		 document.getElementById("done").style.visibility="visible";
 		 document.getElementById("save").style.visibility="hidden";
-		 document.getElementById("cancel").style.visibility="hidden";
+		// document.getElementById("cancel").style.visibility="hidden";
 		 document.getElementById("more").disabled = true;
 		 document.getElementById("done").disabled = true;
-		 document.getElementById("prevfreq").style.visibility = 'hidden';
+		 
 	 }
 	 
 	 if( testid!="" && testid!=null && testid !='null' && testid!=0 && mode!='edit'){
@@ -412,7 +412,7 @@ $(document).ready( function () {
 	 document.getElementById("more").style.visibility="visible";
 	 document.getElementById("done").style.visibility="visible";
 	 document.getElementById("save").style.visibility="hidden";
-	 document.getElementById("cancel").style.visibility="hidden";
+	// document.getElementById("cancel").style.visibility="hidden";
 	 document.getElementById("more").disabled = true;
 	 document.getElementById("done").disabled = true;
 	 }
@@ -625,7 +625,7 @@ function tabledata()
 		{
 		json=json+']}';
 		document.getElementById("strfreq").value=json;
-		console.log(""+json);
+		//console.log(""+json);
 		}
 }
 
