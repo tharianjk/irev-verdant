@@ -587,114 +587,80 @@ from cpcalculated where Test_id=?]]></xml-property>
             <property name="fontFamily">sans-serif</property>
             <property name="fontSize">10pt</property>
         </style>
-        <style name="crosstab" id="6">
-            <property name="borderBottomColor">#CCCCCC</property>
-            <property name="borderBottomStyle">solid</property>
-            <property name="borderBottomWidth">1pt</property>
-            <property name="borderLeftColor">#CCCCCC</property>
-            <property name="borderLeftStyle">solid</property>
-            <property name="borderLeftWidth">1pt</property>
-            <property name="borderRightColor">#CCCCCC</property>
-            <property name="borderRightStyle">solid</property>
-            <property name="borderRightWidth">1pt</property>
-            <property name="borderTopColor">#CCCCCC</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">1pt</property>
+        <style name="NewStyle" id="1114">
+            <property name="height">1cm</property>
         </style>
-        <style name="crosstab-detail" id="52">
-            <property name="backgroundColor">#F0F3FD</property>
-            <property name="fontFamily">sans-serif</property>
-            <property name="fontSize">9px</property>
-            <property name="color">#000000</property>
-        </style>
-        <style name="crosstab-header" id="53">
-            <property name="backgroundColor">#AEC0B1</property>
-            <property name="fontFamily">"Arial"</property>
-            <property name="fontSize">10px</property>
-            <property name="fontWeight">bold</property>
-            <property name="color">#000000</property>
-        </style>
-        <style name="crosstab-cell" id="54">
-            <property name="borderBottomColor">#FFFFFF</property>
-            <property name="borderBottomStyle">solid</property>
-            <property name="borderBottomWidth">thin</property>
-            <property name="borderLeftColor">#FFFFFF</property>
-            <property name="borderLeftStyle">solid</property>
-            <property name="borderLeftWidth">thin</property>
-            <property name="borderRightColor">#FFFFFF</property>
-            <property name="borderRightStyle">solid</property>
-            <property name="borderRightWidth">thin</property>
-            <property name="borderTopColor">#FFFFFF</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">thin</property>
-        </style>
-        <style name="table-header" id="451">
-            <property name="backgroundColor">#AEC0B1</property>
-            <property name="fontFamily">sans-serif</property>
-            <property name="fontSize">x-small</property>
-            <property name="fontWeight">bold</property>
-            <property name="color">#FFFFE0</property>
-            <property name="borderBottomColor">#FFFFFF</property>
-            <property name="borderBottomStyle">double</property>
-            <property name="borderLeftColor">#FFFFFF</property>
-            <property name="borderRightColor">#FFFFFF</property>
-            <property name="borderTopColor">#FFFFFF</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">thin</property>
-        </style>
-        <style name="table-detail" id="452">
-            <property name="backgroundColor">#F0F3FD</property>
-            <property name="fontFamily">sans-serif</property>
-            <property name="fontSize">x-small</property>
-            <property name="color">#426E44</property>
-            <property name="borderBottomColor">#FFFFFF</property>
-            <property name="borderBottomStyle">solid</property>
-            <property name="borderBottomWidth">thin</property>
-            <property name="borderLeftColor">#FFFFFF</property>
-            <property name="borderLeftStyle">solid</property>
-            <property name="borderLeftWidth">thin</property>
-            <property name="borderRightColor">#FFFFFF</property>
-            <property name="borderRightStyle">solid</property>
-            <property name="borderRightWidth">thin</property>
-            <property name="borderTopColor">#FFFFFF</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">thin</property>
-        </style>
-        <style name="table-cell" id="453">
-            <property name="backgroundColor">#F0F3FD</property>
-            <property name="fontFamily">sans-serif</property>
-            <property name="fontSize">x-small</property>
-            <property name="color">#426E44</property>
-            <property name="borderBottomColor">#FFFFFF</property>
-            <property name="borderBottomStyle">solid</property>
-            <property name="borderBottomWidth">thin</property>
-            <property name="borderLeftColor">#FFFFFF</property>
-            <property name="borderLeftStyle">solid</property>
-            <property name="borderLeftWidth">thin</property>
-            <property name="borderRightColor">#FFFFFF</property>
-            <property name="borderRightStyle">solid</property>
-            <property name="borderRightWidth">thin</property>
-            <property name="borderTopColor">#FFFFFF</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">thin</property>
-        </style>
-        <style name="grid" id="582">
-            <property name="backgroundColor">#E5F1F4</property>
-            <property name="borderBottomColor">#7C9A82</property>
+        <style name="table-header" id="1283">
+            <property name="backgroundColor">#FFFFFF</property>
+            <property name="fontSize">12px</property>
+            <property name="borderBottomColor">#080808</property>
             <property name="borderBottomStyle">solid</property>
             <property name="borderBottomWidth">1px</property>
-            <property name="borderLeftColor">#7C9A82</property>
+            <property name="borderLeftColor">#080808</property>
             <property name="borderLeftStyle">solid</property>
             <property name="borderLeftWidth">1px</property>
-            <property name="borderRightColor">#7C9A82</property>
+            <property name="borderRightColor">#080808</property>
             <property name="borderRightStyle">solid</property>
             <property name="borderRightWidth">1px</property>
-            <property name="borderTopColor">#7C9A82</property>
+            <property name="borderTopColor">#080808</property>
             <property name="borderTopStyle">solid</property>
             <property name="borderTopWidth">1px</property>
         </style>
-        <style name="NewStyle" id="1114">
-            <property name="height">1cm</property>
+        <style name="table-detail" id="1284">
+            <property name="backgroundColor">#FFFFFF</property>
+            <property name="fontSize">10px</property>
+            <property name="borderBottomColor">#080808</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1px</property>
+            <property name="borderLeftColor">#080808</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1px</property>
+            <property name="borderRightColor">#080808</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1px</property>
+            <property name="borderTopColor">#080808</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1px</property>
+        </style>
+        <style name="table-cell" id="1285">
+            <property name="backgroundColor">#FFFFFF</property>
+            <property name="borderBottomColor">#000000</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1px</property>
+            <property name="borderLeftColor">#000000</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1px</property>
+            <property name="borderRightColor">#000000</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1px</property>
+            <property name="borderTopColor">#000000</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1px</property>
+        </style>
+        <style name="table" id="1286">
+            <property name="backgroundColor">#FFFFFF</property>
+            <property name="borderBottomColor">#000000</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1px</property>
+            <property name="borderLeftColor">#000000</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1px</property>
+            <property name="borderRightColor">#000000</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1px</property>
+            <property name="borderTopColor">#000000</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1px</property>
+        </style>
+        <style name="border" id="1288">
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">thin</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">thin</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">thin</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">thin</property>
         </style>
     </styles>
     <page-setup>
@@ -855,10 +821,18 @@ from cpcalculated where Test_id=?]]></xml-property>
             <row id="339">
                 <cell id="340">
                     <grid id="532">
-                        <column id="533"/>
-                        <column id="534"/>
-                        <column id="535"/>
-                        <column id="536"/>
+                        <column id="533">
+                            <property name="style">border</property>
+                        </column>
+                        <column id="534">
+                            <property name="style">border</property>
+                        </column>
+                        <column id="535">
+                            <property name="style">border</property>
+                        </column>
+                        <column id="536">
+                            <property name="style">border</property>
+                        </column>
                         <row id="537">
                             <cell id="538">
                                 <grid id="565">
@@ -1206,10 +1180,18 @@ from cpcalculated where Test_id=?]]></xml-property>
             <row id="645">
                 <cell id="646">
                     <grid id="647">
-                        <column id="648"/>
-                        <column id="649"/>
-                        <column id="650"/>
-                        <column id="651"/>
+                        <column id="648">
+                            <property name="style">border</property>
+                        </column>
+                        <column id="649">
+                            <property name="style">border</property>
+                        </column>
+                        <column id="650">
+                            <property name="style">border</property>
+                        </column>
+                        <column id="651">
+                            <property name="style">border</property>
+                        </column>
                         <row id="652">
                             <cell id="653">
                                 <grid id="654">
@@ -1561,8 +1543,12 @@ from cpcalculated where Test_id=?]]></xml-property>
             <row id="747">
                 <cell id="748">
                     <grid id="749">
-                        <column id="750"/>
-                        <column id="751"/>
+                        <column id="750">
+                            <property name="style">border</property>
+                        </column>
+                        <column id="751">
+                            <property name="style">border</property>
+                        </column>
                         <row id="752">
                             <cell id="753">
                                 <grid id="755">
