@@ -1046,6 +1046,8 @@ order by prodserial_id,SerialNo,frequency]]></xml-property>
             <page-footer>
                 <grid id="1266">
                     <property name="backgroundColor">white</property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">thin</property>
                     <property name="canShrink">true</property>
                     <column id="1267"/>
                     <row id="1268">

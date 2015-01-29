@@ -500,6 +500,8 @@ inner join testdata t on ar.test_id=t.test_id  where ar.Test_id=?]]></xml-proper
             <page-footer>
                 <grid id="1266">
                     <property name="backgroundColor">white</property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">thin</property>
                     <property name="canShrink">true</property>
                     <column id="1267"/>
                     <row id="1268">

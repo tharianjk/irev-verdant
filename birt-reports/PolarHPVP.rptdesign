@@ -37,12 +37,9 @@
             <property name="hidden">true</property>
             <text-property name="helpText">Enter the frequency</text-property>
             <property name="valueType">static</property>
-            <property name="isRequired">false</property>
+            <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
             <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="javascript">2000</value>
-            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="concealValue">false</property>
@@ -142,6 +139,18 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rptf" id="1281">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="scale" id="1283">
             <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
@@ -536,18 +545,23 @@ inner join product p on s.Product_id=p.Product_id   where TD.Test_id=?]]></xml-p
             <property name="nullsOrdering">nulls lowest</property>
             <list-property name="computedColumns">
                 <structure>
-                    <property name="name">MX</property>
+                    <property name="name">MXU</property>
                     <expression name="expression">params["max"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">MN</property>
+                    <property name="name">MNU</property>
                     <expression name="expression">params["min"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
                     <property name="name">showimage</property>
                     <expression name="expression">params["img"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">scaleparam</property>
+                    <expression name="expression">params["scale"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
             </list-property>
@@ -586,7 +600,7 @@ inner join product p on s.Product_id=p.Product_id   where TD.Test_id=?]]></xml-p
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                     <property name="position">3</property>
-                    <expression name="defaultValue" type="javascript">'H'</expression>
+                    <expression name="defaultValue" type="javascript">'B'</expression>
                     <property name="isOptional">true</property>
                     <property name="allowNull">true</property>
                     <property name="isInput">true</property>
@@ -635,24 +649,42 @@ inner join product p on s.Product_id=p.Product_id   where TD.Test_id=?]]></xml-p
                     </structure>
                     <structure>
                         <property name="position">6</property>
-                        <property name="name">MX</property>
+                        <property name="name">strmaxvalue</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">7</property>
-                        <property name="name">MN</property>
+                        <property name="name">strminvalue</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">8</property>
+                        <property name="name">MXU</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">MNU</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
                         <property name="name">showimage</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">scaleparam</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
             </structure>
-            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX", dataSetRow["MX"]);
-reportContext.setPersistentGlobalVariable("MN", dataSetRow["MN"]);
-reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);]]></method>
+            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX1", dataSetRow["strmaxvalue"]);
+reportContext.setPersistentGlobalVariable("MN1", dataSetRow["strminvalue"]);
+reportContext.setPersistentGlobalVariable("MXU1", dataSetRow["MXU"]);
+reportContext.setPersistentGlobalVariable("MNU1", dataSetRow["MNU"]);
+reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
+reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -684,6 +716,18 @@ reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
                     <property name="name">vamplitude</property>
                     <property name="nativeName">vamplitude</property>
                     <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">strmaxvalue</property>
+                    <property name="nativeName">strmaxvalue</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">strminvalue</property>
+                    <property name="nativeName">strminvalue</property>
+                    <property name="dataType">string</property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[{call spGetPolarPlot(?,?,?,?)} ]]></xml-property>
@@ -931,70 +975,24 @@ reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
             <property name="fontFamily">sans-serif</property>
             <property name="fontSize">10pt</property>
         </style>
-        <style name="crosstab" id="6">
-            <property name="borderBottomColor">#CCCCCC</property>
-            <property name="borderBottomStyle">solid</property>
-            <property name="borderBottomWidth">1pt</property>
-            <property name="borderLeftColor">#CCCCCC</property>
-            <property name="borderLeftStyle">solid</property>
-            <property name="borderLeftWidth">1pt</property>
-            <property name="borderRightColor">#CCCCCC</property>
-            <property name="borderRightStyle">solid</property>
-            <property name="borderRightWidth">1pt</property>
-            <property name="borderTopColor">#CCCCCC</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">1pt</property>
-        </style>
-        <style name="crosstab-detail" id="52">
-            <property name="backgroundColor">#F0F3FD</property>
-            <property name="fontFamily">sans-serif</property>
-            <property name="fontSize">9px</property>
-            <property name="color">#000000</property>
-        </style>
-        <style name="crosstab-header" id="53">
-            <property name="backgroundColor">#AEC0B1</property>
-            <property name="fontFamily">"Arial"</property>
-            <property name="fontSize">10px</property>
-            <property name="fontWeight">bold</property>
-            <property name="color">#000000</property>
-        </style>
-        <style name="crosstab-cell" id="54">
-            <property name="borderBottomColor">#FFFFFF</property>
-            <property name="borderBottomStyle">solid</property>
-            <property name="borderBottomWidth">thin</property>
-            <property name="borderLeftColor">#FFFFFF</property>
-            <property name="borderLeftStyle">solid</property>
-            <property name="borderLeftWidth">thin</property>
-            <property name="borderRightColor">#FFFFFF</property>
-            <property name="borderRightStyle">solid</property>
-            <property name="borderRightWidth">thin</property>
-            <property name="borderTopColor">#FFFFFF</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">thin</property>
-        </style>
         <style name="NewStyle" id="1122">
             <property name="height">1cm</property>
         </style>
-        <style name="grid" id="1123">
-            <property name="backgroundColor">#E5F1F4</property>
-            <property name="borderBottomColor">#7C9A82</property>
+        <style name="Cellborder" id="1282">
             <property name="borderBottomStyle">solid</property>
-            <property name="borderBottomWidth">1px</property>
-            <property name="borderLeftColor">#7C9A82</property>
+            <property name="borderBottomWidth">thin</property>
             <property name="borderLeftStyle">solid</property>
-            <property name="borderLeftWidth">1px</property>
-            <property name="borderRightColor">#7C9A82</property>
+            <property name="borderLeftWidth">thin</property>
             <property name="borderRightStyle">solid</property>
-            <property name="borderRightWidth">1px</property>
-            <property name="borderTopColor">#7C9A82</property>
+            <property name="borderRightWidth">thin</property>
             <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">1px</property>
+            <property name="borderTopWidth">thin</property>
         </style>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
-            <property name="leftMargin">0in</property>
-            <property name="rightMargin">0in</property>
+            <property name="leftMargin">0.21875in</property>
+            <property name="rightMargin">0.21875in</property>
             <page-header>
                 <text-data id="1126">
                     <property name="style">NewStyle</property>
@@ -1011,6 +1009,8 @@ reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
             <page-footer>
                 <grid id="1266">
                     <property name="backgroundColor">white</property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">thin</property>
                     <property name="canShrink">true</property>
                     <column id="1267"/>
                     <row id="1268">
@@ -1074,332 +1074,349 @@ reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
         </simple-master-page>
     </page-setup>
     <body>
-        <grid id="772">
-            <property name="backgroundColor">white</property>
-            <property name="height">4.28125in</property>
-            <column id="773"/>
-            <row id="774">
-                <property name="height">4.28125in</property>
-                <cell id="775">
-                    <label id="44">
-                        <property name="fontSize">16pt</property>
-                        <property name="fontWeight">bold</property>
-                        <property name="textAlign">left</property>
-                        <property name="canShrink">true</property>
-                        <text-property name="text">Polar Report</text-property>
-                    </label>
-                    <extended-item extensionName="Crosstab" extensionVersion="3.7.0" id="232">
-                        <property name="cube">Data CubeTestGrid</property>
-                        <property name="columns">
-                            <extended-item extensionName="CrosstabView" id="240">
-                                <property name="views">
-                                    <extended-item extensionName="DimensionView" id="758">
-                                        <property name="dimension">Group11</property>
-                                        <property name="levels">
-                                            <extended-item extensionName="LevelView" name="NewLevel View" id="759">
-                                                <property name="level">Group11/testproc</property>
-                                                <property name="member">
-                                                    <extended-item extensionName="CrosstabCell" id="760">
-                                                        <property name="content">
-                                                            <data name="testproc" id="762">
-                                                                <property name="fontSize">12px</property>
-                                                                <property name="textAlign">left</property>
-                                                                <property name="resultSetColumn">testproc</property>
-                                                            </data>
-                                                        </property>
-                                                    </extended-item>
-                                                </property>
-                                            </extended-item>
-                                        </property>
-                                    </extended-item>
-                                    <extended-item extensionName="DimensionView" id="246">
-                                        <property name="dimension">Group1</property>
-                                        <property name="levels">
-                                            <extended-item extensionName="LevelView" name="NewLevel View8" id="247">
-                                                <property name="level">Group1/TestDesc</property>
-                                                <property name="member">
-                                                    <extended-item extensionName="CrosstabCell" id="248">
-                                                        <property name="content">
-                                                            <data name="TestDesc1" id="250">
-                                                                <property name="fontSize">12px</property>
-                                                                <property name="textAlign">left</property>
-                                                                <property name="resultSetColumn">TestDesc</property>
-                                                            </data>
-                                                        </property>
-                                                    </extended-item>
-                                                </property>
-                                            </extended-item>
-                                        </property>
-                                    </extended-item>
-                                    <extended-item extensionName="DimensionView" id="252">
-                                        <property name="dimension">Group5</property>
-                                        <property name="levels">
-                                            <extended-item extensionName="LevelView" name="NewLevel View9" id="253">
-                                                <property name="level">Group5/instruments</property>
-                                                <property name="member">
-                                                    <extended-item extensionName="CrosstabCell" id="254">
-                                                        <property name="content">
-                                                            <data name="instruments1" id="256">
-                                                                <property name="fontSize">12px</property>
-                                                                <property name="textAlign">left</property>
-                                                                <property name="resultSetColumn">instruments</property>
-                                                            </data>
-                                                        </property>
-                                                    </extended-item>
-                                                </property>
-                                            </extended-item>
-                                        </property>
-                                    </extended-item>
-                                    <extended-item extensionName="DimensionView" id="258">
-                                        <property name="dimension">Group4</property>
-                                        <property name="levels">
-                                            <extended-item extensionName="LevelView" name="NewLevel View10" id="259">
-                                                <property name="level">Group4/calibration</property>
-                                                <property name="member">
-                                                    <extended-item extensionName="CrosstabCell" id="260">
-                                                        <property name="content">
-                                                            <data name="calibration1" id="262">
-                                                                <property name="fontSize">12px</property>
-                                                                <property name="textAlign">left</property>
-                                                                <property name="resultSetColumn">calibration</property>
-                                                            </data>
-                                                        </property>
-                                                    </extended-item>
-                                                </property>
-                                            </extended-item>
-                                        </property>
-                                    </extended-item>
-                                    <extended-item extensionName="DimensionView" id="264">
-                                        <property name="dimension">Group6</property>
-                                        <property name="levels">
-                                            <extended-item extensionName="LevelView" name="NewLevel View11" id="265">
-                                                <property name="level">Group6/testcenter</property>
-                                                <property name="member">
-                                                    <extended-item extensionName="CrosstabCell" id="266">
-                                                        <property name="content">
-                                                            <data name="testcenter1" id="268">
-                                                                <property name="fontSize">12px</property>
-                                                                <property name="textAlign">left</property>
-                                                                <property name="resultSetColumn">testcenter</property>
-                                                            </data>
-                                                        </property>
-                                                    </extended-item>
-                                                </property>
-                                            </extended-item>
-                                        </property>
-                                    </extended-item>
-                                    <extended-item extensionName="DimensionView" id="276">
-                                        <property name="dimension">Group7</property>
-                                        <property name="levels">
-                                            <extended-item extensionName="LevelView" name="NewLevel View12" id="277">
-                                                <property name="level">Group7/Productname</property>
-                                                <property name="member">
-                                                    <extended-item extensionName="CrosstabCell" id="278">
-                                                        <property name="content">
-                                                            <data name="Productname" id="280">
-                                                                <property name="fontSize">12px</property>
-                                                                <property name="textAlign">left</property>
-                                                                <property name="resultSetColumn">Productname</property>
-                                                            </data>
-                                                        </property>
-                                                    </extended-item>
-                                                </property>
-                                            </extended-item>
-                                        </property>
-                                    </extended-item>
-                                    <extended-item extensionName="DimensionView" id="285">
-                                        <property name="dimension">Group9</property>
-                                        <property name="levels">
-                                            <extended-item extensionName="LevelView" name="NewLevel View13" id="286">
-                                                <property name="level">Group9/version</property>
-                                                <property name="member">
-                                                    <extended-item extensionName="CrosstabCell" id="287">
-                                                        <property name="content">
-                                                            <data name="version" id="289">
-                                                                <property name="fontSize">12px</property>
-                                                                <property name="textAlign">left</property>
-                                                                <property name="resultSetColumn">version</property>
-                                                            </data>
-                                                        </property>
-                                                    </extended-item>
-                                                </property>
-                                            </extended-item>
-                                        </property>
-                                    </extended-item>
-                                    <extended-item extensionName="DimensionView" id="291">
-                                        <property name="dimension">Group8</property>
-                                        <property name="levels">
-                                            <extended-item extensionName="LevelView" name="NewLevel View14" id="292">
-                                                <property name="level">Group8/SerialNo</property>
-                                                <property name="member">
-                                                    <extended-item extensionName="CrosstabCell" id="293">
-                                                        <property name="content">
-                                                            <data name="SerialNo" id="295">
-                                                                <property name="fontSize">12px</property>
-                                                                <property name="textAlign">left</property>
-                                                                <property name="resultSetColumn">SerialNo</property>
-                                                            </data>
-                                                        </property>
-                                                    </extended-item>
-                                                </property>
-                                            </extended-item>
-                                        </property>
-                                    </extended-item>
-                                    <extended-item extensionName="DimensionView" id="300">
-                                        <property name="dimension">Group10</property>
-                                        <property name="levels">
-                                            <extended-item extensionName="LevelView" name="NewLevel View15" id="301">
-                                                <property name="level">Group10/Frequency</property>
-                                                <property name="member">
-                                                    <extended-item extensionName="CrosstabCell" id="302">
-                                                        <property name="content">
-                                                            <data name="Frequency" id="304">
-                                                                <property name="fontSize">12px</property>
-                                                                <property name="textAlign">left</property>
-                                                                <property name="resultSetColumn">Frequency</property>
-                                                            </data>
-                                                        </property>
-                                                    </extended-item>
-                                                </property>
-                                            </extended-item>
-                                        </property>
-                                    </extended-item>
-                                </property>
-                            </extended-item>
-                        </property>
-                        <property name="header">
-                            <extended-item extensionName="CrosstabCell" id="761">
-                                <property name="content">
-                                    <label id="763">
-                                        <property name="fontSize">12px</property>
-                                        <property name="textAlign">left</property>
-                                        <text-property name="text">Test Procedure</text-property>
-                                    </label>
-                                </property>
-                            </extended-item>
-                            <extended-item extensionName="CrosstabCell" id="249">
-                                <property name="content">
-                                    <label id="251">
-                                        <property name="fontSize">12px</property>
-                                        <property name="textAlign">left</property>
-                                        <text-property name="text">Test Description</text-property>
-                                    </label>
-                                </property>
-                            </extended-item>
-                            <extended-item extensionName="CrosstabCell" id="255">
-                                <property name="content">
-                                    <label id="257">
-                                        <property name="fontSize">12px</property>
-                                        <property name="textAlign">left</property>
-                                        <text-property name="text">Instruments Used</text-property>
-                                    </label>
-                                </property>
-                            </extended-item>
-                            <extended-item extensionName="CrosstabCell" id="261">
-                                <property name="content">
-                                    <label id="263">
-                                        <property name="fontSize">12px</property>
-                                        <property name="textAlign">left</property>
-                                        <text-property name="text">Calibration Status</text-property>
-                                    </label>
-                                </property>
-                            </extended-item>
-                            <extended-item extensionName="CrosstabCell" id="267">
-                                <property name="content">
-                                    <label id="269">
-                                        <property name="fontSize">12px</property>
-                                        <property name="textAlign">left</property>
-                                        <text-property name="text">Test Center</text-property>
-                                    </label>
-                                </property>
-                            </extended-item>
-                            <extended-item extensionName="CrosstabCell" id="279">
-                                <property name="content">
-                                    <label id="281">
-                                        <property name="fontSize">12px</property>
-                                        <property name="textAlign">left</property>
-                                        <text-property name="text">Product Title</text-property>
-                                    </label>
-                                </property>
-                            </extended-item>
-                            <extended-item extensionName="CrosstabCell" id="288">
-                                <property name="content">
-                                    <label id="290">
-                                        <property name="fontSize">12px</property>
-                                        <property name="textAlign">left</property>
-                                        <text-property name="text">Product Part No.</text-property>
-                                    </label>
-                                </property>
-                            </extended-item>
-                            <extended-item extensionName="CrosstabCell" id="294">
-                                <property name="content">
-                                    <label id="296">
-                                        <property name="fontSize">12px</property>
-                                        <property name="textAlign">left</property>
-                                        <text-property name="text">Serial No.</text-property>
-                                    </label>
-                                </property>
-                            </extended-item>
-                            <extended-item extensionName="CrosstabCell" id="303">
-                                <property name="content">
-                                    <label id="305">
-                                        <property name="fontSize">12px</property>
-                                        <property name="textAlign">left</property>
-                                        <text-property name="text">Frequency</text-property>
-                                    </label>
-                                </property>
-                            </extended-item>
-                        </property>
-                        <list-property name="boundDataColumns">
-                            <structure>
-                                <property name="name">TestDesc</property>
-                                <expression name="expression">dimension["Group1"]["TestDesc"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">instruments</property>
-                                <expression name="expression">dimension["Group5"]["instruments"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">calibration</property>
-                                <expression name="expression">dimension["Group4"]["calibration"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">testcenter</property>
-                                <expression name="expression">dimension["Group6"]["testcenter"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">Productname</property>
-                                <expression name="expression">dimension["Group7"]["Productname"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">version</property>
-                                <expression name="expression">dimension["Group9"]["version"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">SerialNo</property>
-                                <expression name="expression">dimension["Group8"]["SerialNo"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">Frequency</property>
-                                <expression name="expression">dimension["Group10"]["Frequency"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">testproc</property>
-                                <expression name="expression">dimension["Group11"]["testproc"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                        </list-property>
-                    </extended-item>
-                    <extended-item extensionName="Chart" id="9">
-                        <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/RadarChartModelType">
+        <label id="44">
+            <property name="fontSize">16pt</property>
+            <property name="fontWeight">bold</property>
+            <property name="textAlign">left</property>
+            <property name="canShrink">true</property>
+            <text-property name="text">Polar Report</text-property>
+        </label>
+        <extended-item extensionName="Crosstab" extensionVersion="3.7.0" id="232">
+            <property name="cube">Data CubeTestGrid</property>
+            <property name="columns">
+                <extended-item extensionName="CrosstabView" id="240">
+                    <property name="views">
+                        <extended-item extensionName="DimensionView" id="758">
+                            <property name="dimension">Group11</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View" id="759">
+                                    <property name="level">Group11/testproc</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="760">
+                                            <property name="content">
+                                                <data name="testproc" id="762">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">testproc</property>
+                                                </data>
+                                            </property>
+                                            <property name="style">Cellborder</property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="DimensionView" id="246">
+                            <property name="dimension">Group1</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View8" id="247">
+                                    <property name="level">Group1/TestDesc</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="248">
+                                            <property name="content">
+                                                <data name="TestDesc1" id="250">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">TestDesc</property>
+                                                </data>
+                                            </property>
+                                            <property name="style">Cellborder</property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="DimensionView" id="252">
+                            <property name="dimension">Group5</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View9" id="253">
+                                    <property name="level">Group5/instruments</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="254">
+                                            <property name="content">
+                                                <data name="instruments1" id="256">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">instruments</property>
+                                                </data>
+                                            </property>
+                                            <property name="style">Cellborder</property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="DimensionView" id="258">
+                            <property name="dimension">Group4</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View10" id="259">
+                                    <property name="level">Group4/calibration</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="260">
+                                            <property name="content">
+                                                <data name="calibration1" id="262">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">calibration</property>
+                                                </data>
+                                            </property>
+                                            <property name="style">Cellborder</property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="DimensionView" id="264">
+                            <property name="dimension">Group6</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View11" id="265">
+                                    <property name="level">Group6/testcenter</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="266">
+                                            <property name="content">
+                                                <data name="testcenter1" id="268">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">testcenter</property>
+                                                </data>
+                                            </property>
+                                            <property name="style">Cellborder</property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="DimensionView" id="276">
+                            <property name="dimension">Group7</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View12" id="277">
+                                    <property name="level">Group7/Productname</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="278">
+                                            <property name="content">
+                                                <data name="Productname" id="280">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">Productname</property>
+                                                </data>
+                                            </property>
+                                            <property name="style">Cellborder</property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="DimensionView" id="285">
+                            <property name="dimension">Group9</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View13" id="286">
+                                    <property name="level">Group9/version</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="287">
+                                            <property name="content">
+                                                <data name="version" id="289">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">version</property>
+                                                </data>
+                                            </property>
+                                            <property name="style">Cellborder</property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="DimensionView" id="291">
+                            <property name="dimension">Group8</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View14" id="292">
+                                    <property name="level">Group8/SerialNo</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="293">
+                                            <property name="content">
+                                                <data name="SerialNo" id="295">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">SerialNo</property>
+                                                </data>
+                                            </property>
+                                            <property name="style">Cellborder</property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="DimensionView" id="300">
+                            <property name="dimension">Group10</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View15" id="301">
+                                    <property name="level">Group10/Frequency</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="302">
+                                            <property name="content">
+                                                <data name="Frequency" id="304">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">Frequency</property>
+                                                </data>
+                                            </property>
+                                            <property name="style">Cellborder</property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                    </property>
+                </extended-item>
+            </property>
+            <property name="header">
+                <extended-item extensionName="CrosstabCell" id="761">
+                    <property name="content">
+                        <label id="763">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Test Procedure</text-property>
+                        </label>
+                    </property>
+                    <property name="style">Cellborder</property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="249">
+                    <property name="content">
+                        <label id="251">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Test Description</text-property>
+                        </label>
+                    </property>
+                    <property name="style">Cellborder</property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="255">
+                    <property name="content">
+                        <label id="257">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Instruments Used</text-property>
+                        </label>
+                    </property>
+                    <property name="style">Cellborder</property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="261">
+                    <property name="content">
+                        <label id="263">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Calibration Status</text-property>
+                        </label>
+                    </property>
+                    <property name="style">Cellborder</property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="267">
+                    <property name="content">
+                        <label id="269">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Test Center</text-property>
+                        </label>
+                    </property>
+                    <property name="style">Cellborder</property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="279">
+                    <property name="content">
+                        <label id="281">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Product Title</text-property>
+                        </label>
+                    </property>
+                    <property name="style">Cellborder</property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="288">
+                    <property name="content">
+                        <label id="290">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Product Part No.</text-property>
+                        </label>
+                    </property>
+                    <property name="style">Cellborder</property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="294">
+                    <property name="content">
+                        <label id="296">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Serial No.</text-property>
+                        </label>
+                    </property>
+                    <property name="style">Cellborder</property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="303">
+                    <property name="content">
+                        <label id="305">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Frequency</text-property>
+                        </label>
+                    </property>
+                    <property name="style">Cellborder</property>
+                </extended-item>
+            </property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">params["freq1"].value==-1</expression>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">TestDesc</property>
+                    <expression name="expression">dimension["Group1"]["TestDesc"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">instruments</property>
+                    <expression name="expression">dimension["Group5"]["instruments"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">calibration</property>
+                    <expression name="expression">dimension["Group4"]["calibration"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">testcenter</property>
+                    <expression name="expression">dimension["Group6"]["testcenter"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Productname</property>
+                    <expression name="expression">dimension["Group7"]["Productname"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">version</property>
+                    <expression name="expression">dimension["Group9"]["version"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">SerialNo</property>
+                    <expression name="expression">dimension["Group8"]["SerialNo"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Frequency</property>
+                    <expression name="expression">dimension["Group10"]["Frequency"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">testproc</property>
+                    <expression name="expression">dimension["Group11"]["testproc"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+        </extended-item>
+        <extended-item extensionName="Chart" id="9">
+            <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/RadarChartModelType">
   <Version>2.6.1</Version>
   <Type>Radar Chart</Type>
   <SubType>Standard Radar Chart</SubType>
@@ -1432,7 +1449,7 @@ reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>true</Visible>
+      <Visible>false</Visible>
       <Label>
         <Caption>
           <Value>Polar Report</Value>
@@ -1653,7 +1670,7 @@ reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
     </Outline>
     <Background xsi:type="attribute:EmbeddedImage">
       <URL>Flight.png</URL>
-      <Data>iVBORw0KGgoAAAANSUhEUgAABVYAAAMACAYAAADPPjzCAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAGArSURBVHhe7d1bqGVntSfwueuWdCoxOaUH7BztxE46VuxSUp0Tk1RCQLygRxFR8phCH4QQBG8PeRAEkVJ8SZRAAkYhD4IIAYkPBiLGF4kXUlHKwpSSjto+2PhgLLWCWrfe327mPrNm1r6M2nvsvdZYvw3Fvqyxxprj930E8udbcy2cX/zqfBEgQIAAAQIECBAgQIAAAQIECBAgQGDOBQ7c89ru3JmuO3d2EeLcQnf+/EK3+x/nuv/zqz92l/3bju787p3d+V1nu4U9XbcgWJ3z3WJ8AgQIECBAgAABAgQIECBAgAABAgSWBK45vBicLp1D3dEtdDu7hYXF7+f+3v3lf3fd7f9xc/eL/3u023V51+25YsdihS8CBAgQIECAAAECBAgQIECAAAECBAgQ6C79rwuLJ1N3dntf33WXX3N28d+Z7pLrd3WXvHah23td173qpq676n8t/vv3XYJV+4UAAQIECBAgQIAAAQIECBAgQIAAAQJN4Py/LN4D4NWL9wL417Pdjtee7Xb+25lux4Hz3e7/tqvb+z/3dP/y77u7K25a/PnG3YJVW4YAAQIECBAgQIAAAQIECBAgQIAAAQJNYMcVXbfrqq679F+7bu/ruu7K/76zu+RNZ7tLrl48wXrdru7y/7G7+y+LJ1p3LQaw7rFqzxAgQIAAAQIECBAgQIAAAQIECBAgQCAo4B6rQTDlBAgQIECAAAECBAgQIECAAAECBAgQEKzaAwQIECBAgAABAgQIECBAgAABAgQIEAgKCFaDYMoJECBAgAABAgQIECBAgAABAgQIECAgWLUHCBAgQIAAAQIECBAgQIAAAQIECBAgEBQQrAbBlBMgQIAAAQIECBAgQIAAAQIECBAgQECwag8QIECAAAECBAgQIECAAAECBAgQIEAgKCBYDYIpJ0CAAAECBAgQIECAAAECBAgQIECAgGDVHiBAgAABAgQIECBAgAABAgQIECBAgEBQQLAaBFNOgAABAgQIECBAgAABAgQIECBAgAABwao9QIAAAQIECBAgQIAAAQIECBAgQIAAgaCAYDUIppwAAQIECBAgQIAAAQIECBAgQIAAAQKCVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHBahBMOQECBAgQIECAAAECBAgQIECAAAECBASr9gABAgQIECBAgAABAgQIECBAgAABAgSCAoLVIJhyAgQIECBAgAABAgQIECBAgAABAgQICFbtAQIECBAgQIAAAQIECBAgQIAAAQIECAQFBKtBMOUECBAgQIAAAQIECBAgQIAAAQIECBAQrNoDBAgQIECAAAECBAgQIECAAAECBAgQCAoIVoNgygkQIECAAAECBAgQIECAAAECBAgQICBYtQcIECBAgAABAgQIECBAgAABAgQIECAQFBCsBsGUEyBAgAABAgQIECBAgAABAgQIECBAQLBqDxAgQIAAAQIECBAgQIAAAQIECBAgQCAoIFgNgiknQIAAAQIECBAgQIAAAQIECBAgQICAYNUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsBoEU06AAAECBAgQIECAAAECBAgQIECAAAHBqj1AgAABAgQIECBAgAABAgQIECBAgACBoIBgNQimnAABAgQIECBAgAABAgQIECBAgAABAoJVe4AAAQIECBAgQIAAAQIECBAgQIAAAQJBAcFqEEw5AQIECBAgQIAAAQIECBAgQIAAAQIEBKv2AAECBAgQIECAAAECBAgQIECAAAECBIICgtUgmHICBAgQIECAAAECBAgQIECAAAECBAgIVu0BAgQIECBAgAABAgQIECBAgAABAgQIBAUEq0Ew5QQIECBAgAABAgQIECBAgAABAgQIEBCs2gMECBAgQIAAAQIECBAgQIAAAQIECBAICghWg2DKCRAgQIAAAQIECBAgQIAAAQIECBAgIFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUEKwGwZQTIECAAAECBAgQIECAAAECBAgQIEBAsGoPECBAgAABAgQIECBAgAABAgQIECBAICggWA2CKSdAgAABAgQIECBAgAABAgQIECBAgIBg1R4gQIAAAQIECBAgQIAAAQIECBAgQIBAUECwGgRTToAAAQIECBAgQIAAAQIECBAgQIAAAcGqPUCAAAECBAgQIECAAAECBAgQIECAAIGggGA1CKacAAECBAgQIECAAAECBAgQIECAAAECglV7gAABAgQIECBAgAABAgQIECBAgAABAkEBwWoQTDkBAgQIECBAgAABAgQIECBAgAABAgQEq/YAAQIECBAgQIAAAQIECBAgQIAAAQIEggKC1SCYcgIECBAgQIAAAQIECBAgQIAAAQIECAhW7QECBAgQIECAAAECBAgQIECAAAECBAgEBQSrQTDlBAgQIECAAAECBAgQIECAAAECBAgQEKzaAwQIECBAgAABAgQIECBAgAABAgQIEAgKCFaDYMoJECBAgAABAgQIECBAgAABAgQIECAgWLUHCBAgQIAAAQIECBAgQIAAAQIECBAgEBQQrAbBlBMgQIAAAQIECBAgQIAAAQIECBAgQECwag8QIECAAAECBAgQIECAAAECBAgQIEAgKCBYDYIpJ0CAAAECBAgQIECAAAECBAgQIECAgGDVHiBAgAABAgQIECBAgAABAgQIECBAgEBQQLAaBFNOgAABAgQIECBAgAABAgQIECBAgAABwao9QIAAAQIECBAgQIAAAQIECBAgQIAAgaCAYDUIppwAAQIECBAgQIAAAQIECBAgQIAAAQKCVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHBahBMOQECBAgQIECAAAECBAgQIECAAAECBASr9gABAgQIECBAgAABAgQIECBAgAABAgSCAoLVIJhyAgQIECBAgAABAgQIECBAgAABAgQICFbtAQIECBAgQIAAAQIECBAgQIAAAQIECAQFBKtBMOUECBAgQIAAAQIECBAgQIAAAQIECBAQrNoDBAgQIECAAAECBAgQIECAAAECBAgQCAoIVoNgygkQIECAAAECBAgQIECAAAECBAgQICBYtQcIECBAgAABAgQIECBAgAABAgQIECAQFBCsBsGUEyBAgAABAgQIECBAgAABAgQIECBAQLBqDxAgQIAAAQIECBAgQIAAAQIECBAgQCAoIFgNgiknQIAAAQIECBAgQIAAAQIECBAgQICAYNUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsBoEU06AAAECBAgQIECAAAECBAgQIECAAAHBqj1AgAABAgQIECBAgAABAgQIECBAgACBoIBgNQimnAABAgQIECBAgAABAgQIECBAgAABAoJVe4AAAQIECBAgQIAAAQIECBAgQIAAAQJBAcFqEEw5AQIECBAgQIAAAQIECBAgQIAAAQIEBKv2AAECBAgQIECAAAECBAgQIECAAAECBIICgtUgmHICBAgQIECAAAECBAgQIECAAAECBAgIVu0BAgQIECBAgAABAgQIECBAgAABAgQIBAUEq0Ew5QQIECBAgAABAgQIECBAgAABAgQIEBCs2gMECBAgQIAAAQIECBAgQIAAAQIECBAICghWg2DKCRAgQIAAAQIECBAgQIAAAQIECBAgIFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUEKwGwZQTIECAAAECBAgQIECAAAECBAgQIEBAsGoPECBAgAABAgQIECBAgAABAgQIECBAICggWA2CKSdAgAABAgQIECBAgAABAgQIECBAgIBg1R4gQIAAAQIECBAgQIAAAQIECBAgQIBAUECwGgRTToAAAQIECBAgQIAAAQIECBAgQIAAAcGqPUCAAAECBAgQIECAAAECBAgQIECAAIGggGA1CKacAAECBAgQIECAAAECBAgQIECAAAECglV7gAABAgQIECBAgAABAgQIECBAgAABAkEBwWoQTDkBAgQIECBAgAABAgQIECBAgAABAgQEq/YAAQIECBAgQIAAAQIECBAgQIAAAQIEggKC1SCYcgIECBAgQIAAAQIECBAgQIAAAQIECAhW7QECBAgQIECAAAECBAgQIECAAAECBAgEBQSrQTDlBAgQIECAAAECBAgQIECAAAECBAgQEKzaAwQIECBAgAABAgQIECBAgAABAgQIEAgKCFaDYMoJECBAgAABAgQIECBAgAABAgQIECAgWLUHCBAgQIAAAQIECBAgQIAAAQIECBAgEBQQrAbBlBMgQIAAAQIECBAgQIAAAQIECBAgQECwag8QIECAAAECBAgQIECAAAECBAgQIEAgKCBYDYIpJ0CAAAECBAgQIECAAAECBAgQIECAgGDVHiBAgAABAgQIECBAgAABAgQIECBAgEBQQLAaBFNOgAABAgQIECBAgAABAgQIECBAgAABwao9QIAAAQIECBAgQIAAAQIECBAgQIAAgaCAYDUIppwAAQIECBAgQIAAAQIECBAgQIAAAQKCVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHBahBMOQECBAgQIECAAAECBAgQIECAAAECBASr9gABAgQIECBAgAABAgQIECBAgAABAgSCAoLVIJhyAgQIECBAgAABAgQIECBAgAABAgQICFbtAQIECBAgQIAAAQIECBAgQIAAAQIECAQFBKtBMOUECBAgQIAAAQIECBAgQIAAAQIECBAQrNoDBAgQIECAAAECBAgQIECAAAECBAgQCAoIVoNgygkQIECAAAECBAgQIECAAAECBAgQICBYtQcIECBAgAABAgQIECBAgAABAgQIECAQFBCsBsGUEyBAgAABAgQIECBAgAABAgQIECBAQLBqDxAgQIAAAQIECBAgQIAAAQIECBAgQCAoIFgNgiknQIAAAQIECBAgQIAAAQIECBAgQICAYNUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsBoEU06AAAECBAgQIECAAAECBAgQIECAAAHBqj1AgAABAgQIECBAgAABAgQIECBAgACBoIBgNQimnAABAgQIECBAgAABAgQIECBAgAABAoJVe4AAAQIECBAgQIAAAQIECBAgQIAAAQJBAcFqEEw5AQIECBAgQIAAAQIECBAgQIAAAQIEBKv2AAECBAgQIECAAAECBAgQIECAAAECBIICgtUgmHICBAgQIECAAAECBAgQIECAAAECBAgIVu0BAgQIECBAgAABAgQIECBAgAABAgQIBAUEq0Ew5QQIECBAgAABAgQIECBAgAABAgQIEBCs2gMECBAgQIAAAQIECBAgQIAAAQIECBAICghWg2DKCRAgQIAAAQIECBAgQIAAAQIECBAgIFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUEKwGwZQTIECAAAECBAgQIECAAAECBAgQIEBAsGoPECBAgAABAgQIECBAgAABAgQIECBAICggWA2CKSdAgAABAgQIECBAgAABAgQIECBAgIBg1R4gQIAAAQIECBAgQIAAAQIECBAgQIBAUECwGgRTToAAAQIECBAgQIAAAQIECBAgQIAAAcGqPUCAAAECBAgQIECAAAECBAgQIECAAIGggGA1CKacAAECBAgQIECAAAECBAgQIECAAAECglV7gAABAgQIECBAgAABAgQIECBAgAABAkEBwWoQTDkBAgQIECBAgAABAgQIECBAgAABAgQEq/YAAQIECBAgQIAAAQIECBAgQIAAAQIEggKC1SCYcgIECBAgQIAAAQIECBAgQIAAAQIECAhW7QECBAgQIECAAAECBAgQIECAAAECBAgEBQSrQTDlBAgQIECAAAECBAgQIECAAAECBAgQEKzaAwQIECBAgAABAgQIECBAgAABAgQIEAgKCFaDYMoJECBAgAABAgQIECBAgAABAgQIECAgWLUHCBAgQIAAAQIECBAgQIAAAQIECBAgEBQQrAbBlBMgQIAAAQIECBAgQIAAAQIECBAgQECwag8QIECAAAECBAgQIECAAAECBAgQIEAgKCBYDYIpJ0CAAAECBAgQIECAAAECBAgQIECAgGDVHiBAgAABAgQIECBAgAABAgQIECBAgEBQQLAaBFNOgAABAgQIECBAgAABAgQIECBAgAABwao9QIAAAQIECBAgQIAAAQIECBAgQIAAgaCAYDUIppwAAQIECBAgQIAAAQIECBAgQIAAAQKCVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHBahBMOQECBAgQIECAAAECBAgQIECAAAECBASr9gABAgQIECBAgAABAgQIECBAgAABAgSCAoLVIJhyAgQIECBAgAABAgQIECBAgAABAgQICFbtAQIECBAgQIAAAQIECBAgQIAAAQIECAQFBKtBMOUECBAgQIAAAQIECBAgQIAAAQIECBAQrNoDBAgQIECAAAECBAgQIECAAAECBAgQCAoIVoNgygkQIECAAAECBAgQIECAAAECBAgQICBYtQcIECBAgAABAgQIECBAgAABAgQIECAQFBCsBsGUEyBAgAABAgQIECBAgAABAgQIECBAQLBqDxAgQIAAAQIECBAgQIAAAQIECBAgQCAoIFgNgiknQIAAAQIECBAgQIAAAQIECBAgQICAYNUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsBoEU06AAAECBAgQIECAAAECBAgQIECAAAHBqj1AgAABAgQIECBAgAABAgQIECBAgACBoIBgNQimnAABAgQIECBAgAABAgQIECBAgAABAoJVe4AAAQIECBAgQIAAAQIECBAgQIAAAQJBAcFqEEw5AQIECBAgQIAAAQIECBAgQIAAAQIEBKv2AAECBAgQIECAAAECBAgQIECAAAECBIICgtUgmHICBAgQIECAAAECBAgQIECAAAECBAgIVu0BAgQIECBAgAABAgQIECBAgAABAgQIBAUEq0Ew5QQIECBAgAABAgQIECBAgAABAgQIEBCs2gMECBAgQIAAAQIECBAgQIAAAQIECBAICghWg2DKCRAgQIAAAQIECBAgQIAAAQIECBAgIFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUEKwGwZQTIECAAAECBAgQIECAAAECBAgQIEBAsGoPECBAgAABAgQIECBAgAABAgQIECBAICggWA2CKSdAgAABAgQIECBAgAABAgQIECBAgIBg1R4gQIAAAQIECBAgQIAAAQIECBAgQIBAUECwGgRTToAAAQIECBAgQIAAAQIECBAgQIAAAcGqPUCAAAECBAgQIECAAAECBAgQIECAAIGggGA1CKacAAECBAgQIECAAAECBAgQIECAAAECglV7gAABAgQIECBAgAABAgQIECBAgAABAkEBwWoQTDkBAgQIECBAgAABAgQIECBAgAABAgQEq/YAAQIECBAgQIAAAQIECBAgQIAAAQIEggKC1SCYcgIECBAgQIAAAQIECBAgQIAAAQIECAhW7QECBAgQIECAAAECBAgQIECAAAECBAgEBQSrQTDlBAgQIECAAAECBAgQIECAAAECBAgQEKzaAwQIECBAgAABAgQIECBAgAABAgQIEAgKCFaDYMoJECBAgAABAgQIECBAgAABAgQIECAgWLUHCBAgQIAAAQIECBAgQIAAAQIECBAgEBQQrAbBlBMgQIAAAQIECBAgQIAAAQIECBAgQECwag8QIECAAAECBAgQIECAAAECBAgQIEAgKCBYDYIpJ0CAAAECBAgQIECAAAECBAgQIECAgGDVHiBAgAABAgQIECBAgAABAgQIECBAgEBQQLAaBFNOgAABAgQIECBAgAABAgQIECBAgAABwao9QIAAAQIECBAgQIAAAQIECBAgQIAAgaCAYDUIppwAAQIECBAgQIAAAQIECBAgQIAAAQKCVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHBahBMOQECBAgQIECAAAECBAgQIECAAAECBASr9gABAgQIECBAgAABAgQIECBAgAABAgSCAoLVIJhyAgQIECBAgAABAgQIECBAgAABAgQICFbtAQIECBAgQIAAAQIECBAgQIAAAQIECAQFBKtBMOUECBAgQIAAAQIECBAgQIAAAQIECBAQrNoDBAgQIECAAAECBAgQIECAAAECBAgQCAoIVoNgygkQIECAAAECBAgQIECAAAECBAgQICBYtQcIECBAgAABAgQIECBAgAABAgQIECAQFBCsBsGUEyBAgAABAgQIECBAgAABAgQIECBAQLBqDxAgQIAAAQIECBAgQIAAAQIECBAgQCAoIFgNgiknQIAAAQIECBAgQIAAAQIECBAgQICAYNUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsBoEU06AAAECBAgQIECAAAECBAgQIECAAAHBqj1AgAABAgQIECBAgAABAgQIECBAgACBoIBgNQimnAABAgQIECBAgAABAgQIECBAgAABAoJVe4AAAQIECBAgQIAAAQIECBAgQIAAAQJBAcFqEEw5AQIECBAgQIAAAQIECBAgQIAAAQIEBKv2AAECBAgQIECAAAECBAgQIECAAAECBIICgtUgmHICBAgQIECAAAECBAgQIECAAAECBAgIVu0BAgQIECBAgAABAgQIECBAgAABAgQIBAUEq0Ew5QQIECBAgAABAgQIECBAgAABAgQIEBCs2gMECBAgQIAAAQIECBAgQIAAAQIECBAICghWg2DKCRAgQIAAAQIECBAgQIAAAQIECBAgIFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUEKwGwZQTIECAAAECBAgQIECAAAECBAgQIEBAsGoPECBAgAABAgQIECBAgAABAgQIECBAICggWA2CKSdAgAABAgQIECBAgAABAgQIECBAgIBg1R4gQIAAAQIECBAgQIAAAQIECBAgQIBAUECwGgRTToAAAQIECBAgQIAAAQIECBAgQIAAAcGqPUCAAAECBAgQIECAAAECBAgQIECAAIGggGA1CKacAAECBAgQIECAAAECBAgQIECAAAECglV7gAABAgQIECBAgAABAgQIECBAgAABAkEBwWoQTDkBAgQIECBAgAABAgQIECBAgAABAgQEq/YAAQIECBAgQIAAAQIECBAgQIAAAQIEggKC1SCYcgIECBAgQIAAAQIECBAgQIAAAQIECAhW7QECBAgQIECAAAECBAgQIECAAAECBAgEBQSrQTDlBAgQIECAAAECBAgQIECAAAECBAgQEKzaAwQIECBAgAABAgQIECBAgAABAgQIEAgKCFaDYMoJECBAgAABAgQIECBAgAABAgQIECAgWLUHCBAgQIAAAQIECBAgQIAAAQIECBAgEBQQrAbBlBMgQIAAAQIECBAgQIAAAQIECBAgQECwag8QIECAAAECBAgQIECAAAECBAgQIEAgKCBYDYIpJ0CAAAECBAgQIECAAAECBAgQIECAgGDVHiBAgAABAgQIECBAgAABAgQIECBAgEBQQLAaBFNOgAABAgQIECBAgAABAgQIECBAgAABwao9QIAAAQIECBAgQIAAAQIECBAgQIAAgaCAYDUIppwAAQIECBAgQIAAAQIECBAgQIAAAQKCVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHBahBMOQECBAgQIECAAAECBAgQIECAAAECBASr9gABAgQIECBAgAABAgQIECBAgAABAgSCAoLVIJhyAgQIECBAgAABAgQIECBAgAABAgQICFbtAQIECBAgQIAAAQIECBAgQIAAAQIECAQFBKtBMOUECBAgQIAAAQIECBAgQIAAAQIECBAQrNoDBAgQIECAAAECBAgQIECAAAECBAgQCAoIVoNgygkQIECAAAECBAgQIECAAAECBAgQICBYtQcIECBAgAABAgQIECBAgAABAgQIECAQFBCsBsGUEyBAgAABAgQIECBAgAABAgQIECBAQLBqDxAgQIAAAQIECBAgQIAAAQIECBAgQCAoIFgNgiknQIAAAQIECBAgQIAAAQIECBAgQICAYNUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsBoEU06AAAECBAgQIECAAAECBAgQIECAAAHBqj1AgAABAgQIECBAgAABAgQIECBAgACBoIBgNQimnAABAgQIECBAgAABAgQIECBAgAABAoJVe4AAAQIECBAgQIAAAQIECBAgQIAAAQJBAcFqEEw5AQIECBAgQIAAAQIECBAgQIAAAQIEBKv2AAECBAgQIECAAAECBAgQIECAAAECBIICgtUgmHICBAgQIECAAAECBAgQIECAAAECBAgIVu0BAgQIECBAgAABAgQIECBAgAABAgQIBAUEq0Ew5QQIECBAgAABAgQIECBAgAABAgQIEBCs2gMECBAgQIAAAQIECBAgQIAAAQIECBAICghWg2DKCRAgQIAAAQIECBAgQIAAAQIECBAgIFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUEKwGwZQTIECAAAECBAgQIECAAAECBAgQIEBAsGoPECBAgAABAgQIECBAgAABAgQIECBAICggWA2CKSdAgAABAgQIECBAgAABAgQIECBAgIBg1R4gQIAAAQIECBAgQIAAAQIECBAgQIBAUECwGgRTToAAAQIECBAgQIAAAQIECBAgQIAAAcGqPUCAAAECBAgQIECAAAECBAgQIECAAIGggGA1CKacAAECBAgQIECAAAECBAgQIECAAAECglV7gAABAgQIECBAgAABAgQIECBAgAABAkEBwWoQTDkBAgQIECBAgAABAgQIECBAgAABAgQEq/YAAQIECBAgQIAAAQIECBAgQIAAAQIEggKC1SCYcgIECBAgQIAAAQIECBAgQIAAAQIECAhW7QECBAgQIECAAAECBAgQIECAAAECBAgEBQSrQTDlBAgQIECAAAECBAgQIECAAAECBAgQEKzaAwQIECBAgAABAgQIECBAgAABAgQIEAgKCFaDYMoJECBAgAABAgQIECBAgAABAgQIECAgWLUHCBAgQIAAAQIECBAgQIAAAQIECBAgEBQQrAbBlBMgQIAAAQIECBAgQIAAAQIECBAgQECwag8QIECAAAECBAgQIECAAAECBAgQIEAgKCBYDYIpJ0CAAAECBAgQIECAAAECBAgQIECAgGDVHiBAgAABAgQIECBAgAABAgQIECBAgEBQQLAaBFNOgAABAgQIECBAgAABAgQIECBAgAABwao9QIAAAQIECBAgQIAAAQIECBAgQIAAgaCAYDUIppwAAQIECBAgQIAAAQIECBAgQIAAAQKCVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHBahBMOQECBAgQIECAAAECBAgQIECAAAECBASr9gABAgQIECBAgAABAgQIECBAgAABAgSCAoLVIJhyAgQIECBAgAABAgQIECBAgAABAgQICFbtAQIECBAgQIAAAQIECBAgQIAAAQIECAQFBKtBMOUECBAgQIAAAQIECBAgQIAAAQIECBAQrNoDBAgQIECAAAECBAgQIECAAAECBAgQCAoIVoNgygkQIECAAAECBAgQIECAAAECBAgQICBYtQcIECBAgAABAgQIECBAgAABAgQIECAQFBCsBsGUEyBAgAABAgQIECBAgAABAgQIECBAQLBqDxAgQIAAAQIECBAgQIAAAQIECBAgQCAoIFgNgiknQIAAAQIECBAgQIAAAQIECBAgQICAYNUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsBoEU06AAAECBAgQIECAAAECBAgQIECAAAHBqj1AgAABAgQIECBAgAABAgQIECBAgACBoIBgNQimnAABAgQIECBAgAABAgQIECBAgAABAoJVe4AAAQIECBAgQIAAAQIECBAgQIAAAQJBAcFqEEw5AQIECBAgQIAAAQIECBAgQIAAAQIEBKv2AAECBAgQIECAAAECBAgQIECAAAECBIICgtUgmHICBAgQIECAAAECBAgQIECAAAECBAgIVu0BAgQIECBAgAABAgQIECBAgAABAgQIBAUEq0Ew5QQIECBAgAABAgQIECBAgAABAgQIEBCs2gMECBAgQIAAAQIECBAgQIAAAQIECBAICghWg2DKCRAgQIAAAQIECBAgQIAAAQIECBAgIFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUEKwGwZQTIECAAAECBAgQIECAAAECBAgQIEBAsGoPECBAgAABAgQIECBAgAABAgQIECBAICggWA2CKSdAgAABAgQIECBAgAABAgQIECBAgIBg1R4gQIAAAQIECBAgQIAAAQIECBAgQIBAUECwGgRTToAAAQIECBAgQIAAAQIECBAgQIAAAcGqPUCAAAECBAgQIECAAAECBAgQIECAAIGggGA1CKacAAECBAgQIECAAAECBAgQIECAAAECglV7gAABAgQIECBAgAABAgQIECBAgAABAkEBwWoQTDkBAgQIECBAgAABAgQIECBAgAABAgQEq/YAAQIECBAgQIAAAQIECBAgQIAAAQIEggKC1SCYcgIECBAgQIAAAQIECBAgQIAAAQIECAhW7QECBAgQIECAAAECBAgQIECAAAECBAgEBQSrQTDlBAgQIECAAAECBAgQIECAAAECBAgQEKzaAwQIECBAgAABAgQIECBAgAABAgQIEAgKCFaDYMoJECBAgAABAgQIECBAgAABAgQIECAgWLUHCBAgQIAAAQIECBAgQIAAAQIECBAgEBQQrAbBlBMgQIAAAQIECBAgQIAAAQIECBAgQECwag8QIECAAAECBAgQIECAAAECBAgQIEAgKCBYDYIpJ0CAAAECBAgQIECAAAECBAgQIECAgGDVHiBAgAABAgQIECBAgAABAgQIECBAgEBQQLAaBFNOgAABAgQIECBAgAABAgQIECBAgAABwao9QIAAAQIECBAgQIAAAQIECBAgQIAAgaCAYDUIppwAAQIECBAgQIAAAQIECBAgQIAAAQKCVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHBahBMOQECBAgQIECAAAECBAgQIECAAAECBASr9gABAgQIECBAgAABAgQIECBAgAABAgSCAoLVIJhyAgQIECBAgAABAgQIECBAgAABAgQICFbtAQIECBAgQIAAAQIECBAgQIAAAQIECAQFBKtBMOUECBAgQIAAAQIECBAgQIAAAQIECBAQrNoDBAgQIECAAAECBAgQIECAAAECBAgQCAoIVoNgygkQIECAAAECBAgQIECAAAECBAgQICBYtQcIECBAgAABAgQIECBAgAABAgQIECAQFBCsBsGUEyBAgAABAgQIECBAgAABAgQIECBAQLBqDxAgQIAAAQIECBAgQIAAAQIECBAgQCAoIFgNgiknQIAAAQIECBAgQIAAAQIECBAgQICAYNUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsBoEU06AAAECBAgQIECAAAECBAgQIECAAAHBqj1AgAABAgQIECBAgAABAgQIECBAgACBoIBgNQimnAABAgQIECBAgAABAgQIECBAgAABAgvnF78wECBAgMDFC+zfv3/5ySdOnLj4Rp5JgAABAgQIECBAgAABAgQIzIyAE6szs1QulACBaRS47777uoWFheV/R48encbLdE0ECBAgQIAAAQIECBAgQIDAJgs4sbrJoNoRIDAfAqdOnepuueWWpWFbsNp/tTcBPPnkk90111wzHxCmJECAAAECBAgQIECAAAECcyrgxOqcLryxCRDYmMCRI0cuOKnad2sh65e//OWNNfdsAgQIECBAgAABAgQIECBAYOoFnFid+iVygQQITKPAgQMHli5reFq1/d7ftvr48ePTeNmuiQABAgQIECBAgAABAgQIENgkASdWNwlSGwIE5kugBao7duxY+rdz587ln9vv7bG//vWv8wViWgIECBAgQIAAAQIECBAgMGcCgtU5W3DjEiCwcYHTp09fcBuAPmQdfojV9773vY2/kA4ECBAgQIAAAQIECBAgQIDA1Aq4FcDULo0LI0BgWgU+8IEPdL/97W+XTqm2rxao9rcAaL+fO3du6d+xY8emdQTXRYAAAQIECBAgQIAAAQIECGxQQLC6QUBPJ0BgvgQOHjy4FKS2t/8PT6g2hRau9v/Onj3bPffcc/OFY1oCBAgQIECAAAECBAgQIDBHAm4FMEeLbVQCBDZPYByqts6T/rZ5r6gTAQIECBAgQIAAAQIECBAgME0CgtVpWg3XQoDAVAucPHnyFfdWbRfcf4jVMFjtbxMw1QO5OAIECBAgQIAAAQIECBAgQOCiBQSrF03niQQIzJvA2972tqVbAOzatWv5++7du7v2r/2t/9dC1VbniwABAgQIECBAgAABAgQIEKgrIFitu7YmI0BgkwX6E6mt7aSfW6Da/t5/3+SX144AAQIECBAgQIAAAQIECBCYIgHB6hQthkshQGB6BV588cWlU6jD8HR4erX93D8uWJ3edXRlBAgQIECAAAECBAgQIEBgswQEq5slqQ8BAqUFfvazny3PNzyV2n5uX8P7qw5Ps5ZGMRwBAgQIECBAgAABAgQIEJhjAcHqHC++0QkQWL/AE088sRye9idS+wB1eEJ1+Nj6u6skQIAAAQIECBAgQIAAAQIEZk1AsDprK+Z6CRDYFoETJ04sBav92/2Hb/vvbwPQvvenWVvA6osAAQIECBAgQIAAAQIECBCoK+D//OuurckIENhEgUlv75/09n+3AdhEdK0IECBAgAABAgQIECBAgMAUCwhWp3hxXBoBAtMlMH7r/zBEdY/V6VorV0OAAAECBAgQIECAAAECBLIFBKvZwvoTIFBCYLUTq5MG7D/UqsTwhiBAgAABAgQIECBAgAABAgReISBYtSkIECAQEBieTB0/TZgagFRKgAABAgQIECBAgAABAgRmXECwOuML6PIJENgagf5DqVa6r2p/FcPHX3jhha25OK9CgAABAgQIECBAgAABAgQIbLmAYHXLyb0gAQIVBM6fP788xvDn9sf+99OnT1cY1QwECBAgQIAAAQIECBAgQIDABAHBqm1BgACBdQj0b/Mff29PXekWAP/4xz/W0VkJAQIECBAgQIAAAQIECBAgMIsCgtVZXDXXTIDAtgqsdS/V/vFTp05t63V6cQIECBAgQIAAAQIECBAgQCBPQLCaZ6szAQKFBFYLU1e6FcDf/va3QgJGIUCAAAECBAgQIECAAAECBIYCglX7gQABAhsQGN9rdfi7E6sbgPVUAgQIECBAgAABAgQIECAw5QKC1SlfIJdHgMD0CLRTq+OTq2vdFmB6rt6VECBAgAABAgQIECBAgAABApspIFjdTE29CBCYewFB69xvAQAECBAgQIAAAQIECBAgMCcCgtU5WWhjEiCwcYH2Nv/+rf79z8Pf2yuM77e68VfVgQABAgQIECBAgAABAgQIEJhGAcHqNK6KayJAYKoFxvdV7S92UvA61YO4OAIE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8mPvfve71xx39+7d3c6dO5fqrrrqqu4jH/lI99BDD10QrvZNWri6d+/eNXsqIECAAAECBAgQIECAAAECBKZPYGHxLavnp++yXBEBAgS2VuDpp5/uHn744e7xxx9f9YXf/OY3r/p4O6m62tfRo0e7T33qU90DDzzQ3XzzzVs7pFcjQIAAAQIECBAgQIAAAQIENk1AsLpplBoRIDAPAhsNVufByIwECBAgQIAAAQIECBAgQGAeBNwKYB5W2YwECGyawOtf//pN66URAQIECBAgQIAAAQIECBAgMLsCgtXZXTtXToDANgjcdNNN2/CqXpIAAQIECBAgQIAAAQIECBCYNgHB6rStiOshQGCqBb7whS90119//VRfo4sjQIAAAQIECBAgQIAAAQIE8gUEq/nGXoEAgWIC3/72t7v2uX+T/hUb1TgECBAgQIAAAQIECBAgQIDACgKCVVuDAAECmyBw8ODB7kc/+tEmdNKCAAECBAgQIECAAAECBAgQmAUBweosrJJrJEBg6gQ++tGPLl/ToUOHuscee6y74oorpu46XRABAgQIECBAgAABAgQIECCQI7Cw+FbW8zmtdSVAgAABAgQIECBAgAABAgQIECBAgEBNASdWa66rqQgQIECAAAECBAgQIECAAAECBAgQSBQQrCbiak2AAAECBAgQIECAAAECBAgQIECAQE0BwWrNdTUVAQIECBAgQIAAAQIECBAgQIAAAQKJAoLVRFytCRAgQIAAAQIECBAgQIAAAQIECBCoKSBYrbmupiJAgAABAgQIECBAgAABAgQIECBAIFFAsJqIqzUBAgQIECBAgAABAgQIECBAgAABAjUFBKs119VUBAgQIECAAAECBAgQIECAAAECBAgkCghWE3G1JkCAAAECBAgQIECAAAECBAgQIECgpoBgtea6mooAAQIECBAgQIAAAQIECBAgQIAAgUQBwWoirtYECBAgQIAAAQIECBAgQIAAAQIECNQUEKzWXFdTESBAgAABAgQIECBAgAABAgQIECCQKCBYTcTVmgABAgQIECBAgAABAgQIECBAgACBmgKC1ZrraioCBAgQIECAAAECBAgQIECAAAECBBIFBKuJuFoTIECAAAECBAgQIECAAAECBAgQIFBTQLBac11NRYAAAQIECBAgQIAAAQIECBAgQIBAooBgNRFXawIECBAgQIAAAQIECBAgQIAAAQIEagoIVmuuq6kIECBAgAABAgQIECBAgAABAgQIEEgUEKwm4mpNgAABAgQIECBAgAABAgQIECBAgEBNAcFqzXU1FQECBAgQIECAAAECBAgQIECAAAECiQKC1URcrQkQIECAAAECBAgQIECAAAECBAgQqCkgWK25rqYiQIAAAQIECBAgQIAAAQIECBAgQCBRQLCaiKs1AQIECBAgQIAAAQIECBAgQIAAAQI1BQSrNdfVVAQIECBAgAABAgQIECBAgAABAgQIJAoIVhNxtSZAgAABAgQIECBAgAABAgQIECBAoKaAYLXmupqKAAECBAgQIECAAAECBAgQIECAAIFEAcFqIq7WBAgQIECAAAECBAgQIECAAAECBAjUFBCs1lxXUxEgQIAAAQIECBAgQIAAAQIECBAgkCggWE3E1ZoAAQIECBAgQIAAAQIECBAgQIAAgZoCgtWa62oqAgQIECBAgAABAgQIECBAgAABAgQSBQSribhaEyBAgAABAgQIECBAgAABAgQIECBQU0CwWnNdTUWAAAECBAgQIECAAAECBAgQIECAQKKAYDURV2sCBAgQIECAAAECBAgQIECAAAECBGoKCFZrrqupCBAgQIAAAQIECBAgQIAAAQIECBBIFBCsJuJqTYAAAQIECBAgQIAAAQIECBAgQIBATQHBas11NRUBAgQIECBAgAABAgQIECBAgAABAokCgtVEXK0JECBAgAABAgQIECBAgAABAgQIEKgpIFitua6mIkCAAAECBAgQIECAAAECBAgQIEAgUUCwmoirNQECBAgQIECAAAECBAgQIECAAAECNQUEqzXX1VQECBAgQIAAAQIECBAgQIAAAQIECCQKCFYTcbUmQIAAAQIECBAgQIAAAQIECBAgQKCmgGC15rqaigABAgQIECBAgAABAgQIECBAgACBRAHBaiKu1gQIECBAgAABAgQIECBAgAABAgQI1BQQrNZcV1MRIECAAAECBAgQIECAAAECBAgQIJAoIFhNxNWaAAECBAgQIECAAAECBAgQIECAAIGaAoLVmutqKgIECBAgQIAAAQIECBAgQIAAAQIEEgUEq4m4WhMgQIAAAQIECBAgQIAAAQIECBAgUFNAsFpzXU1FgAABAgQIECBAgAABAgQIECBAgECigGA1EVdrAgQIECBAgAABAgQIECBAgAABAgRqCghWa66rqQgQIECAAAECBAgQIECAAAECBAgQSBQQrCbiak2AAAECBAgQIECAAAECBAgQIECAQE0BwWrNdTUVAQIECBAgQIAAAQIECBAgQIAAAQKJAoLVRFytCRAgQIAAAQIECBAgQIAAAQIECBCoKSBYrbmupiJAgAABAgQIECBAgAABAgQIECBAIFFAsJqIqzUBAgQIECBAgAABAgQIECBAgAABAjUFBKs119VUBAgQIECAAAECBAgQIECAAAECBAgkCghWE3G1JkCAAAECBAgQIECAAAECBAgQIECgpoBgtea6mooAAQIECBAgQIAAAQIECBAgQIAAgUQBwWoirtYECBAgQIAAAQIECBAgQIAAAQIECNQUEKzWXFdTESBAgAABAgQIECBAgAABAgQIECCQKCBYTcTVmgABAgQIECBAgAABAgQIECBAgACBmgKC1ZrraioCBAgQIECAAAECBAgQIECAAAECBBIFBKuJuFoTIECAAAECBAgQIECAAAECBAgQIFBTQLBac11NRYAAAQIECBAgQIAAAQIECBAgQIBAooBgNRFXawIECBAgQIAAAQIECBAgQIAAAQIEagoIVmuuq6kIECBAgAABAgQIECBAgAABAgQIEEgUEKwm4mpNgAABAgQIECBAgAABAgQIECBAgEBNAcFqzXU1FQECBAgQIECAAAECBAgQIECAAAECiQKC1URcrQkQIECAAAECBAgQIECAAAECBAgQqCkgWK25rqYiQIAAAQIECBAgQIAAAQIECBAgQCBRQLCaiKs1AQIECBAgQIAAAQIECBAgQIAAAQI1BQSrNdfVVAQIECBAgAABAgQIECBAgAABAgQIJAoIVhNxtSZAgAABAgQIECBAgAABAgQIECBAoKaAYLXmupqKAAECBAgQIECAAAECBAgQIECAAIFEAcFqIq7WBAgQIECAAAECBAgQIECAAAECBAjUFBCs1lxXUxEgQIAAAQIECBAgQIAAAQIECBAgkCggWE3E1ZoAAQIECBAgQIAAAQIECBAgQIAAgZoCgtWa62oqAgQIECBAgAABAgQIECBAgAABAgQSBQSribhaEyBAgAABAgQIECBAgAABAgQIECBQU0CwWnNdTUWAAAECBAgQIECAAAECBAgQIECAQKKAYDURV2sCBAgQIECAAAECBAgQIECAAAECBGoKCFZrrqupCBAgQIAAAQIECBAgQIAAAQIECBBIFBCsJuJqTYAAAQIECBAgQIAAAQIECBAgQIBATQHBas11NRUBAgQIECBAgAABAgQIECBAgAABAokCgtVEXK0JECBAgAABAgQIECBAgAABAgQIEKgpIFitua6mIkCAAAECBAgQIECAAAECBAgQIEAgUUCwmoirNQECBAgQIECAAAECBAgQIECAAAECNQUEqzXX1VQECBAgQIAAAQIECBAgQIAAAQIECCQKCFYTcbUmQIAAAQIECBAgQIAAAQIECBAgQKCmgGC15rqaigABAgQIECBAgAABAgQIECBAgACBRAHBaiKu1gQIECBAgAABAgQIECBAgAABAgQI1BQQrNZcV1MRIECAAAECBAgQIECAAAECBAgQIJAoIFhNxNWaAAECBAgQIECAAAECBAgQIECAAIGaAoLVmutqKgIECBAgQIAAAQIECBAgQIAAAQIEEgUEq4m4WhMgQIAAAQIECBAgQIAAAQIECBAgUFNAsFpzXU1FgAABAgQIECBAgAABAgQIECBAgECigGA1EVdrAgQIECBAgAABAgQIECBAgAABAgRqCghWa66rqQgQIECAAAECBAgQIECAAAECBAgQSBQQrCbiak2AAAECBAgQIECAAAECBAgQIECAQE0BwWrNdTUVAQIECBAgQIAAAQIECBAgQIAAAQKJAoLVRFytCRAgQIAAAQIECBAgQIAAAQIECBCoKSBYrbmupiJAgAABAgQIECBAgAABAgQIECBAIFFAsJqIqzUBAgQIECBAgAABAgQIECBAgAABAjUFBKs119VUBAgQIECAAAECBAgQIECAAAECBAgkCghWE3G1JkCAAAECBAgQIECAAAECBAgQIECgpoBgtea6mooAAQIECBAgQIAAAQIECBAgQIAAgUQBwWoirtYECBAgQIAAAQIECBAgQIAAAQIECNQUEKzWXFdTESBAgAABAgQIECBAgAABAgQIECCQKCBYTcTVmgABAgQIECBAgAABAgQIECBAgACBmgKC1ZrraioCBAgQIECAAAECBAgQIECAAAECBBIFBKuJuFoTIECAAAECBAgQIECAAAECBAgQIFBTQLBac11NRYAAAQIECBAgQIAAAQIECBAgQIBAooBgNRFXawIECBAgQIAAAQIECBAgQIAAAQIEagoIVmuuq6kIECBAgAABAgQIECBAgAABAgQIEEgUEKwm4mpNgAABAgQIECBAgAABAgQIECBAgEBNAcFqzXU1FQECBAgQIECAAAECBAgQIECAAAECiQKC1URcrQkQIECAAAECBAgQIECAAAECBAgQqCkgWK25rqYiQIAAAQIECBAgQIAAAQIECBAgQCBRQLCaiKs1AQIECBAgQIAAAQIECBAgQIAAAQI1BQSrNdfVVAQIECBAgAABAgQIECBAgAABAgQIJAoIVhNxtSZAgAABAgQIECBAgAABAgQIECBAoKaAYLXmupqKAAECBAgQIECAAAECBAgQIECAAIFEAcFqIq7WBAgQIECAAAECBAgQIECAAAECBAjUFBCs1lxXUxEgQIAAAQIECBAgQIAAAQIECBAgkCggWE3E1ZoAAQIECBAgQIAAAQIECBAgQIAAgZoCgtWa62oqAgQIECBAgAABAgQIECBAgAABAgQSBQSribhaEyBAgAABAgQIECBAgAABAgQIECBQU0CwWnNdTUWAAAECBAgQIECAAAECBAgQIECAQKKAYDURV2sCBAgQIECAAAECBAgQIECAAAECBGoKCFZrrqupCBAgQIAAAQIECBAgQIAAAQIECBBIFBCsJuJqTYAAAQIECBAgQIAAAQIECBAgQIBATQHBas11NRUBAgQIECBAgAABAgQIECBAgAABAokCgtVEXK0JECBAgAABAgQIECBAgAABAgQIEKgpIFitua6mIkCAAAECBAgQIECAAAECBAgQIEAgUUCwmoirNQECBAgQIECAAAECBAgQIECAAAECNQUEqzXX1VQECBAgQIAAAQIECBAgQIAAAQIECCQKCFYTcbUmQIAAAQIECBAgQIAAAQIECBAgQKCmgGC15rqaigABAgQIECBAgAABAgQIECBAgACBRAHBaiKu1gQIECBAgAABAgQIECBAgAABAgQI1BQQrNZcV1MRIECAAAECBAgQIECAAAECBAgQIJAoIFhNxNWaAAECBAgQIECAAAECBAgQIECAAIGaAoLVmutqKgIECBAgQIAAAQIECBAgQIAAAQIEEgUEq4m4WhMgQIAAAQIECBAgQIAAAQIECBAgUFNAsFpzXU1FgAABAgQIECBAgAABAgQIECBAgECigGA1EVdrAgQIECBAgAABAgQIECBAgAABAgRqCghWa66rqQgQIECAAAECBAgQIECAAAECBAgQSBQQrCbiak2AAAECBAgQIECAAAECBAgQIECAQE0BwWrNdTUVAQIECBAgQIAAAQIECBAgQIAAAQKJAoLVRFytCRAgQIAAAQIECBAgQIAAAQIECBCoKSBYrbmupiJAgAABAgQIECBAgAABAgQIECBAIFFAsJqIqzUBAgQIECBAgAABAgQIECBAgAABAjUFBKs119VUBAgQIECAAAECBAgQIECAAAECBAgkCghWE3G1JkCAAAECBAgQIECAAAECBAgQIECgpoBgtea6mooAAQIECBAgQIAAAQIECBAgQIAAgUQBwWoirtYECBAgQIAAAQIECBAgQIAAAQIECNQUEKzWXFdTESBAgAABAgQIECBAgAABAgQIECCQKCBYTcTVmgABAgQIECBAgAABAgQIECBAgACBmgKC1ZrraioCBAgQIECAAAECBAgQIECAAAECBBIFBKuJuFoTIECAAAECBAgQIECAAAECBAgQIFBTQLBac11NRYAAAQIECBAgQIAAAQIECBAgQIBAooBgNRFXawIECBAgQIAAAQIECBAgQIAAAQIEagoIVmuuq6kIECBAgAABAgQIECBAgAABAgQIEEgUEKwm4mpNgAABAgQIECBAgAABAgQIECBAgEBNAcFqzXU1FQECBAgQIECAAAECBAgQIECAAAECiQKC1URcrQkQIECAAAECBAgQIECAAAECBAgQqCkgWK25rqYiQIAAAQIECBAgQIAAAQIECBAgQCBRQLCaiKs1AQIECBAgQIAAAQIECBAgQIAAAQI1BQSrNdfVVAQIECBAgAABAgQIECBAgAABAgQIJAoIVhNxtSZAgAABAgQIECBAgAABAgQIECBAoKaAYLXmupqKAAECBAgQIECAAAECBAgQIECAAIFEAcFqIq7WBAgQIECAAAECBAgQIECAAAECBAjUFBCs1lxXUxEgQIAAAQIECBAgQIAAAQIECBAgkCggWE3E1ZoAAQIECBAgQIAAAQIECBAgQIAAgZoCgtWa62oqAgQIECBAgAABAgQIECBAgAABAgQSBQSribhaEyBAgAABAgQIECBAgAABAgQIECBQU0CwWnNdTUWAAAECBAgQIECAAAECBAgQIECAQKKAYDURV2sCBAgQIECAAAECBAgQIECAAAECBGoKCFZrrqupCBAgQIAAAQIECBAgQIAAAQIECBBIFBCsJuJqTYAAAQIECBAgQIAAAQIECBAgQIBATQHBas11NRUBAgQIECBAgAABAgQIECBAgAABAokCgtVEXK0JECBAgAABAgQIECBAgAABAgQIEKgpIFitua6mIkCAAAECBAgQIECAAAECBAgQIEAgUUCwmoirNQECBAgQIECAAAECBAgQIECAAAECNQUEqzXX1VQECBAgQIAAAQIECBAgQIAAAQIECCQKCFYTcbUmQIAAAQIECBAgQIAAAQIECBAgQKCmgGC15rqaigABAgQIECBAgAABAgQIECBAgACBRAHBaiKu1gQIECBAgAABAgQIECBAgAABAgQI1BQQrNZcV1MRIECAAAECBAgQIECAAAECBAgQIJAoIFhNxNWaAAECBAgQIECAAAECBAgQIECAAIGaAoLVmutqKgIECBAgQIAAAQIECBAgQIAAAQIEEgUEq4m4WhMgQIAAAQIECBAgQIAAAQIECBAgUFNAsFpzXU1FgAABAgQIECBAgAABAgQIECBAgECigGA1EVdrAgQIECBAgAABAgQIECBAgAABAgRqCghWa66rqQgQIECAAAECBAgQIECAAAECBAgQSBQQrCbiak2AAAECBAgQIECAAAECBAgQIECAQE0BwWrNdTUVAQIECBAgQIAAAQIECBAgQIAAAQKJAoLVRFytCRAgQIAAAQIECBAgQIAAAQIECBCoKSBYrbmupiJAgAABAgQIECBAgAABAgQIECBAIFFAsJqIqzUBAgQIECBAgAABAgQIECBAgAABAjUFBKs119VUBAgQIECAAAECBAgQIECAAAECBAgkCghWE3G1JkCAAAECBAgQIECAAAECBAgQIECgpoBgtea6mooAAQIECBAgQIAAAQIECBAgQIAAgUQBwWoirtYECBAgQIAAAQIECBAgQIAAAQIECNQUEKzWXFdTESBAgAABAgQIECBAgAABAgQIECCQKCBYTcTVmgABAgQIECBAgAABAgQIECBAgACBmgKC1ZrraioCBAgQIECAAAECBAgQIECAAAECBBIFBKuJuFoTIECAAAECBAgQIECAAAECBAgQIFBTQLBac11NRYAAAQIECBAgQIAAAQIECBAgQIBAooBgNRFXawIECBAgQIAAAQIECBAgQIAAAQIEagoIVmuuq6kIECBAgAABAgQIECBAgAABAgQIEEgUEKwm4mpNgAABAgQIECBAgAABAgQIECBAgEBNAcFqzXU1FQECBAgQIECAAAECBAgQIECAAAECiQKC1URcrQkQIECAAAECBAgQIECAAAECBAgQqCkgWK25rqYiQIAAAQIECBAgQIAAAQIECBAgQCBRQLCaiKs1AQIECBAgQIAAAQIECBAgQIAAAQI1BQSrNdfVVAQIECBAgAABAgQIECBAgAABAgQIJAoIVhNxtSZAgAABAgQIECBAgAABAgQIECBAoKaAYLXmupqKAAECBAgQIECAAAECBAgQIECAAIFEAcFqIq7WBAgQIECAAAECBAgQIECAAAECBAjUFBCs1lxXUxEgQIAAAQIECBAgQIAAAQIECBAgkCggWE3E1ZoAAQIECBAgQIAAAQIECBAgQIAAgZoCgtWa62oqAgQIECBAgAABAgQIECBAgAABAgQSBQSribhaEyBAgAABAgQIECBAgAABAgQIECBQU0CwWnNdTUWAAAECBAgQIECAAAECBAgQIECAQKKAYDURV2sCBAgQIECAAAECBAgQIECAAAECBGoKCFZrrqupCBAgQIAAAQIECBAgQIAAAQIECBBIFBCsJuJqTYAAAQIECBAgQIAAAQIECBAgQIBATQHBas11NRUBAgQIECBAgAABAgQIECBAgAABAokCgtVEXK0JECBAgAABAgQIECBAgAABAgQIEKgpIFitua6mIkCAAAECBAgQIECAAAECBAgQIEAgUUCwmoirNQECBAgQIECAAAECBAgQIECAAAECNQUEqzXX1VQECBAgQIAAAQIECBAgQIAAAQIECCQKCFYTcbUmQIAAAQIECBAgQIAAAQIECBAgQKCmgGC15rqaigABAgQIECBAgAABAgQIECBAgACBRAHBaiKu1gQIECBAgAABAgQIECBAgAABAgQI1BQQrNZcV1MRIECAAAECBAgQIECAAAECBAgQIJAoIFhNxNWaAAECBAgQIECAAAECBAgQIECAAIGaAoLVmutqKgIECBAgQIAAAQIECBAgQIAAAQIEEgUEq4m4WhMgQIAAAQIECBAgQIAAAQIECBAgUFNAsFpzXU1FgAABAgQIECBAgAABAgQIECBAgECigGA1EVdrAgQIECBAgAABAgQIECBAgAABAgRqCghWa66rqQgQIECAAAECBAgQIECAAAECBAgQSBQQrCbiak2AAAECBAgQIECAAAECBAgQIECAQE0BwWrNdTUVAQIECBAgQIAAAQIECBAgQIAAAQKJAoLVRFytCRAgQIAAAQIECBAgQIAAAQIECBCoKSBYrbmupiJAgAABAgQIECBAgAABAgQIECBAIFFAsJqIqzUBAgQIECBAgAABAgQIECBAgAABAjUFBKs119VUBAgQIECAAAECBAgQIECAAAECBAgkCghWE3G1JkCAAAECBAgQIECAAAECBAgQIECgpoBgtea6mooAAQIECBAgQIAAAQIECBAgQIAAgUQBwWoirtYECBAgQIAAAQIECBAgQIAAAQIECNQUEKzWXFdTESBAgAABAgQIECBAgAABAgQIECCQKCBYTcTVmgABAgQIECBAgAABAgQIECBAgACBmgKC1ZrraioCBAgQIECAAAECBAgQIECAAAECBBIFBKuJuFoTIECAAAECBAgQIECAAAECBAgQIFBTQLBac11NRYAAAQIECBAgQIAAAQIECBAgQIBAooBgNRFXawIECBAgQIAAAQIECBAgQIAAAQIEagoIVmuuq6kIECBAgAABAgQIECBAgAABAgQIEEgUEKwm4mpNgAABAgQIECBAgAABAgQIECBAgEBNAcFqzXU1FQECBAgQIECAAAECBAgQIECAAAECiQKC1URcrQkQIECAAAECBAgQIECAAAECBAgQqCkgWK25rqYiQIAAAQIECBAgQIAAAQIECBAgQCBRQLCaiKs1AQIECBAgQIAAAQIECBAgQIAAAQI1BQSrNdfVVAQIECBAgAABAgQIECBAgAABAgQIJAoIVhNxtSZAgAABAgQIECBAgAABAgQIECBAoKaAYLXmupqKAAECBAgQIECAAAECBAgQIECAAIFEAcFqIq7WBAgQIECAAAECBAgQIECAAAECBAjUFBCs1lxXUxEgQIAAAQIECBAgQIAAAQIECBAgkCggWE3E1ZoAAQIECBAgQIAAAQIECBAgQIAAgZoCgtWa62oqAgQIECBAgAABAgQIECBAgAABAgQSBQSribhaEyBAgAABAgQIECBAgAABAgQIECBQU0CwWnNdTUWAAAECBAgQIECAAAECBAgQIECAQKKAYDURV2sCBAgQIECAAAECBAgQIECAAAECBGoKCFZrrqupCBAgQIAAAQIECBAgQIAAAQIECBBIFBCsJuJqTYAAAQIECBAgQIAAAQIECBAgQIBATQHBas11NRUBAgQIECBAgAABAgQIECBAgAABAokCgtVEXK0JECBAgAABAgQIECBAgAABAgQIEKgpIFitua6mIkCAAAECBAgQIECAAAECBAgQIEAgUUCwmoirNQECBAgQIECAAAECBAgQIECAAAECNQUEqzXX1VQECBAgQIAAAQIECBAgQIAAAQIECCQKCFYTcbUmQIAAAQIECBAgQIAAAQIECBAgQKCmgGC15rqaigABAgQIECBAgAABAgQIECBAgACBRAHBaiKu1gQIECBAgAABAgQIECBAgAABAgQI1BQQrNZcV1MRIECAAAECBAgQIECAAAECBAgQIJAoIFhNxNWaAAECBAgQIECAAAECBAgQIECAAIGaAoLVmutqKgIECBAgQIAAAQIECBAgQIAAAQIEEgUEq4m4WhMgQIAAAQIECBAgQIAAAQIECBAgUFNAsFpzXU1FgAABAgQIECBAgAABAgQIECBAgECigGA1EVdrAgQIECBAgAABAgQIECBAgAABAgRqCghWa66rqQgQIECAAAECBAgQIECAAAECBAgQSBT4f2fGCh0kQq7HAAAAAElFTkSuQmCC</Data>
+      <Data>iVBORw0KGgoAAAANSUhEUgAABVYAAAMACAYAAADPPjzCAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAGC9SURBVHhe7d1dqF1nuS/wsfLVnqa13dENnm49rac9NfVEaU53bZuWgviBbkVE6WWDXgilCH5d9EIQRKJ40yqFFqxCLwQRClIvLFSMN1I/aKrEYKL0VD1euPHCGjVFzddeY3HexcjoXB9PstZ85jPXb0HIWnO+c8z/+D3v1Z8xx1w4v/jT+SFAgAABAgQIECBAgAABAgQIECBAgMAWF9h332u7c2e67tzZRYhzC9358wvdzn+c6/7fr/7YXfFv27rzO7d353ec7RZ2dd2CYnWL7xanT4AAAQIECBAgQIAAAQIECBAgQIDAksB1BxeL06XrULd1C932bmFh8f9zf+/+8n+77s7/uLX7xX8e6XZc2XW7rtq2uMIPAQIECBAgQIAAAQIECBAgQIAAAQIECHSX//eFxStTt3e7X991V153dvHfme6yG3d0l712odt9Q9e96pauu+b/LP779x2KVfuFAAECBAgQIECAAAECBAgQIECAAAECvcD5f1m8B8CrF+8F8K9nu22vPdtt/7cz3bZ957ud/2NHt/t/7+r+5d93dlfdsvj7zTsVq7YMAQIECBAgQIAAAQIECBAgQIAAAQIEeoFtV3Xdjmu67vJ/7brdr+u6q//n9u6yN53tLrt28QrWG3Z0V/6vnd1/W7yidcdiAeseq/YMAQIECBAgQIAAAQIECBAgQIAAAQIEggLusRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECChW7QECBAgQIECAAAECBAgQIECAAAECBAgEBRSrQTDLCRAgQIAAAQIECBAgQIAAAQIECBAgoFi1BwgQIECAAAECBAgQIECAAAECBAgQIBAUUKwGwSwnQIAAAQIECBAgQIAAAQIECBAgQICAYtUeIECAAAECBAgQIECAAAECBAgQIECAQFBAsRoEs5wAAQIECBAgQIAAAQIECBAgQIAAAQKKVXuAAAECBAgQIECAAAECBAgQIECAAAECQQHFahDMcgIECBAgQIAAAQIECBAgQIAAAQIECCycX/zBQIAAgQoCe/fuXY554sSJCpFlJECAAAECBAgQIECAAAECBOZUwBWrczpYp0Vg3gQeeOCBbmFhYfnfkSNH5u0UnQ8BAgQIECBAgAABAgQIECBQSMAVq4WGJSqBrShw6tSp7rbbbls69b5YbT/9xfZPP/10d911121FFudMgAABAgQIECBAgAABAgQIJAu4YjV5AN6eAIHVBQ4dOnTBlaptdV+y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9+7d233wgx/sbrrppjUdW7E6PtakF7arR5999tmJxz19+nR3zz33vOK5le7JOixRJ92ftS9W22tb2dpe0x4/fvz4mudoAQECBAgQIECAAAECBAgQIFBfQLFaf4bOgMCGCtxyyy3Lxer4ytVJH+U/ePBg97GPfWzDMtxxxx3L7z+pXJ1Uiv74xz8Ov/9nP/vZ7le/+lX3u9/9bum144/4Dx9rJev4/1aqDm8f8Mtf/jKcxQsIECBAgAABAgQIECBAgACBegKK1Xozk5jApgrs37//gmKzXaXa/3/o0KGlq06vv/76TcvQitX+Dda6z2orQy+mWB2fwMsvv9x98Ytf7J555pnlp8b3ZG23AmiF6rhY7V/rHqubtjUcmAABAgQIECBAgAABAgQIzJTAtplKIwwBAjMp0BeMn/nMZ7p3vetdm1qq9ic/6cuhVrtidKPA+vujfv7zn+927969dMjVbhfQPz+p9FWqbtQ0HIcAAQIECBAgQIAAAQIECMy+gCtWZ39GEhKYqsD3v//97qWXXlouDt/xjnd0V1999dQy3H777WteqToM0xegP/nJTzY034svvth98pOf7P7whz9cULL2H/kfX8XaP9Zfyfrggw92991334bmcDACBAgQIECAAAECBAgQIEBgdgUUq7M7G8kIbEmBvlhtP+u5FcC+ffu6r3/961Ox6rO1L7BqBWuf8ciRI1N5f29CgAABAgQIECBAgAABAgQIzI6AYnV2ZiEJAQKLAm9961svuGJ1pXK1FZsPP/xwd+DAAXYECBAgQIAAAQIECBAgQIAAgakKuMfqVLm9GQECawn0H60ff+R++PH7dr/V/jj978MrXNc6tucJECBAgAABAgQIECBAgAABAhsloFjdKEnHIUBgQwRuuOGG5eOMv8hq+AatYN2+ffuGvK+DECBAgAABAgQIECBAgAABAgQiAorViJa1BAhsusCePXuWrkQdlqqb/qbegAABAgQIECBAgAABAgQIECAQFFCsBsEsJ0BgcwWuvvrq5WJ1UsHaHlO+bu4cHJ0AAQIECBAgQIAAAQIECBBYXUCxaocQIDBTAnfffffy1arjq1ZXutfqTJ2AMAQIECBAgAABAgQIECBAgMCWEFCsbokxO0kCdQSuv/76pbDtC6z6MnX4uytW68xSUgIECBAgQIAAAQIECBAgMM8CitV5nq5zI1BQ4HWve93E1MOrVfsF7sFacLgiEyBAgAABAgQIECBAgACBORJQrM7RMJ0KgXkQuOaaay64FcD4CtXhvVWVq/MwcedAgAABAgQIECBAgAABAgRqCihWa85NagJzLTAsT1e7DYBida63gZMjQIAAAQIECBAgQIAAAQIzLaBYnenxCEeAAAECBAgQIECAAAECBAgQIECAwCwKKFZncSoyESBAgAABAgQIECBAgAABAgQIECAw0wKK1Zkej3AEtqbA8L6qvcD47+FjW1PIWRMgQIAAAQIECBAgQIAAAQLZAorV7Al4fwIECBAgQIAAAQIECBAgQIAAAQIEygkoVsuNTGAC8y8wvEJ1/AVVqz03/zLOkAABAgQIECBAgAABAgQIEJgVAcXqrExCDgIECBAgQIAAAQIECBAgQIAAAQIEyggoVsuMSlACW0Pg3nvv3Ron6iwJECBAgAABAgQIECBAgACB0gKK1dLjE57A/AkcP358+aTabQDGH/+f9GVW8yfhjAgQIECAAAECBAgQIECAAIFZFlCszvJ0ZCNAYEWBhYWFpef27dtHiQABAgQIECBAgAABAgQIECAwdQHF6tTJvSEBAisJPPHEE0tPtStSJ/0+fowmAQIECBAgQIAAAQIECBAgQCBDYGGxwDif8cbekwABAk3g8ccf777yla90586d67Zt29b1V6OO/7VCdVistgK2f93b3/727pFHHoFKgAABAgQIECBAgAABAgQIEJiKgGJ1KszehACB1QRuvvnmpaf7UrUVq/3fw3J1rWK1f74vZ9/5znfCJkCAAAECBAgQIECAAAECBAhsuoBiddOJvQEBAqsJnD17duk+qa1EHV6xOixXh8Vq/3t/lerwitX2/PDLr8gTIECAAAECBAgQIECAAAECBDZLQLG6WbKOS4DAqgJ79+5dfr4vU1uJOumK1eGB2t1LWqna/9+XrK1Ybc9/5zvf6W666SZTIECAAAECBAgQIECAAAECBAhsioAvr9oUVgclQGA9Au0q1Vaq9n+3n+Hvw2NNWjPpfqzvf//7u3vvvXc9MawhQIAAAQIECBAgQIAAAQIECIQFFKthMi8gQOBSBQ4fPrzmIYZXpLbF7bHh35N+b48dPXp0zfexgAABAgQIECBAgAABAgQIECBwMQJuBXAxal5DgMAlCbzxjW9c+pKq/mfSVavtqtThc+MCtX3kv91rtX9+WLy250+cOHFJWb2YAAECBAgQIECAAAECBAgQIDBJwBWr9gUBAlMV6EvVYXG62psPr1qdVJr2j610O4H2HnfeeWf35z//earn6M0IECBAgAABAgQIECBAgACB+RdQrM7/jJ0hgZkR6O97Or4f6vDvPuhqV6u2E5lUzE66z2r/2EsvvdTdcccdM2MgCAECBAgQIECAAAECBAgQIDAfAorV+ZijsyBQQuDXv/71cs6VvpxqI05k0i0ENuK4jkGAAAECBAgQIECAAAECBAgQaAKKVXuBAIGZEmj3Rh3fBqAPOf5Cq7Z2PSfw+9//fj3LrCFAgAABAgQIECBAgAABAgQIrEtAsbouJosIENgogUn3RP3c5z7XPffcc92xY8e6X/ziF9373ve+C95upatbf/7zny+t/+EPf9h9+tOfXnrN+FYC7e89e/Zs1Ck4DgECBAgQIECAAAECBAgQIECgU6zaBAQITE3g2muvnfheH/rQh7rLL798+bl3v/vda2bauXNnt3379qV111xzTfeRj3yke+SRRy4oV9tB+nJ19+7dax7TAgIECBAgQIAAAQIECBAgQIDAegUWFj9Ke369i60jQIDApQocPny4e/TRR7snn3xy1UO9+c1vXvX5/krV1X6OHDnSfepTn+oeeuih7tZbb73U2F5PgAABAgQIECBAgAABAgQIELhAQLFqQxAgMJMCl1qszuRJCUWAAAECBAgQIECAAAECBAjMjYBbAczNKJ0IgfkSeP3rXz9fJ+RsCBAgQIAAAQIECBAgQIAAgbkSUKzO1TidDIH5Ebjlllvm52ScCQECBAgQIECAAAECBAgQIDB3AorVuRupEyIwHwJf+MIXuhtvvHE+TsZZECBAgAABAgQIECBAgAABAnMnoFidu5E6IQLzI/Dtb3+7679fb9K/+TlLZ0KAAAECBAgQIECAAAECBAhUFFCsVpyazAS2sMD+/fu7H/3oR1tYwKkTIECAAAECBAgQIECAAAECsyCgWJ2FKchAgMCKAh/96EeXnztw4ED3xBNPdFdddRUxAgQIECBAgAABAgQIECBAgECqwMLiR2zPpybw5gQIECBAgAABAgQIECBAgAABAgQIECgm4IrVYgMTlwABAgQIECBAgAABAgQIECBAgACBfAHFav4MJCBAgAABAgQIECBAgAABAgQIECBAoJiAYrXYwMQlQIAAAQIECBAgQIAAAQIECBAgQCBfQLGaPwMJCBAgQIAAAQIECBAgQIAAAQIECBAoJqBYLTYwcQkQIECAAAECBAgQIECAAAECBAgQyBdQrObPQAICBAgQIECAAAECBAgQIECAAAECBIoJKFaLDUxcAgQIECBAgAABAgQIECBAgAABAgTyBRSr+TOQgAABAgQIECBAgAABAgQIECBAgACBYgKK1WIDE5cAAQIECBAgQIAAAQIECBAgQIAAgXwBxWr+DCQgQIAAAQIECBAgQIAAAQIECBAgQKCYgGK12MDEJUCAAAECBAgQIECAAAECBAgQIEAgX0Cxmj8DCQgQIECAAAECBAgQIECAAAECBAgQKCagWC02MHEJECBAgAABAgQIECBAgAABAgQIEMgXUKzmz0ACAgQIECBAgAABAgQIECBAgAABAgSKCShWiw1MXAIECBAgQIAAAQIECBAgQIAAAQIE8gUUq/kzkIAAAQIECBAgQIAAAQIECBAgQIAAgWICitViAxOXAAECBAgQIECAAAECBAgQIECAAIF8AcVq/gwkIECAAAECBAgQIECAAAECBAgQIECgmIBitdjAxCVAgAABAgQIECBAgAABAgQIECBAIF9AsZo/AwkIECBAgAABAgQIECBAgAABAgQIECgmoFgtNjBxCRAgQIAAAQIECBAgQIAAAQIECBDIF1Cs5s9AAgIECBAgQIAAAQIECBAgQIAAAQIEigkoVosNTFwCBAgQIECAAAECBAgQIECAAAECBPIFFKv5M5CAAAECBAgQIECAAAECBAgQIECAAIFiAorVYgMTlwABAgQIECBAgAABAgQIECBAgACBfAHFav4MJCBAgAABAgQIECBAgAABAgQIECBAoJiAYrXYwMQlQIAAAQIECBAgQIAAAQIECBAgQCBfQLGaPwMJCBAgQIAAAQIECBAgQIAAAQIECBAoJqBYLTYwcQkQIECAAAECBAgQIECAAAECBAgQyBdQrObPQAICBAgQIECAAAECBAgQIECAAAECBIoJKFaLDUxcAgQIECBAgAABAgQIECBAgAABAgTyBRSr+TOQgAABAgQIECBAgAABAgQIECBAgACBYgKK1WIDE5cAAQIECBAgQIAAAQIECBAgQIAAgXwBxWr+DCQgQIAAAQIECBAgQIAAAQIECBAgQKCYgGK12MDEJUCAAAECBAgQIECAAAECBAgQIEAgX0Cxmj8DCQgQIECAAAECBAgQIECAAAECBAgQKCagWC02MHEJECBAgAABAgQIECBAgAABAgQIEMgXUKzmz0ACAgQIECBAgAABAgQIECBAgAABAgSKCShWiw1MXAIECBAgQIAAAQIECBAgQIAAAQIE8gUUq/kzkIAAAQIECBAgQIAAAQIECBAgQIAAgWICitViAxOXAAECBAgQIECAAAECBAgQIECAAIF8AcVq/gwkIECAAAECBAgQIECAAAECBAgQIECgmIBitdjAxCVAgAABAgQIECBAgAABAgQIECBAIF9AsZo/AwkIECBAgAABAgQIECBAgAABAgQIECgmoFgtNjBxCRAgQIAAAQIECBAgQIAAAQIECBDIF1Cs5s9AAgIECBAgQIAAAQIECBAgQIAAAQIEigkoVosNTFwCBAgQIECAAAECBAgQIECAAAECBPIFFKv5M5CAAAECBAgQIECAAAECBAgQIECAAIFiAorVYgMTlwABAgQIECBAgAABAgQIECBAgACBfAHFav4MJCBAgAABAgQIECBAgAABAgQIECBAoJiAYrXYwMQlQIAAAQIECBAgQIAAAQIECBAgQCBfQLGaPwMJCBAgQIAAAQIECBAgQIAAAQIECBAoJqBYLTYwcQkQIECAAAECBAgQIECAAAECBAgQyBdQrObPQAICBAgQIECAAAECBAgQIECAAAECBIoJKFaLDUxcAgQIECBAgAABAgQIECBAgAABAgTyBRSr+TOQgAABAgQIECBAgAABAgQIECBAgACBYgKK1WIDE5cAAQIECBAgQIAAAQIECBAgQIAAgXwBxWr+DCQgQIAAAQIECBAgQIAAAQIECBAgQKCYgGK12MDEJUCAAAECBAgQIECAAAECBAgQIEAgX0Cxmj8DCQgQIECAAAECBAgQIECAAAECBAgQKCagWC02MHEJECBAgAABAgQIECBAgAABAgQIEMgXUKzmz0ACAgQIECBAgAABAgQIECBAgAABAgSKCShWiw1MXAIECBAgQIAAAQIECBAgQIAAAQIE8gUUq/kzkIAAAQIECBAgQIAAAQIECBAgQIAAgWICitViAxOXAAECBAgQIECAAAECBAgQIECAAIF8AcVq/gwkIECAAAECBAgQIECAAAECBAgQIECgmIBitdjAxCVAgAABAgQIECBAgAABAgQIECBAIF9AsZo/AwkIECBAgAABAgQIECBAgAABAgQIECgmoFgtNjBxCRAgQIAAAQIECBAgQIAAAQIECBDIF1Cs5s9AAgIECBAgQIAAAQIECBAgQIAAAQIEigkoVosNTFwCBAgQIECAAAECBAgQIECAAAECBPIFFKv5M5CAAAECBAgQIECAAAECBAgQIECAAIFiAorVYgMTlwABAgQIECBAgAABAgQIECBAgACBfAHFav4MJCBAgAABAgQIECBAgAABAgQIECBAoJiAYrXYwMQlQIAAAQIECBAgQIAAAQIECBAgQCBfQLGaPwMJCBAgQIAAAQIECBAgQIAAAQIECBAoJqBYLTYwcQkQIECAAAECBAgQIECAAAECBAgQyBdQrObPQAICBAgQIECAAAECBAgQIECAAAECBIoJKFaLDUxcAgQIECBAgAABAgQIECBAgAABAgTyBRSr+TOQgAABAgQIECBAgAABAgQIECBAgACBYgKK1WIDE5cAAQIECBAgQIAAAQIECBAgQIAAgXwBxWr+DCQgQIAAAQIECBAgQIAAAQIECBAgQKCYgGK12MDEJUCAAAECBAgQIECAAAECBAgQIEAgX0Cxmj8DCQgQIECAAAECBAgQIECAAAECBAgQKCagWC02MHEJECBAgAABAgQIECBAgAABAgQIEMgXUKzmz0ACAgQIECBAgAABAgQIECBAgAABAgSKCShWiw1MXAIECBAgQIAAAQIECBAgQIAAAQIE8gUUq/kzkIAAAQIECBAgQIAAAQIECBAgQIAAgWICitViAxOXAAECBAgQIECAAAECBAgQIECAAIF8AcVq/gwkIECAAAECBAgQIECAAAECBAgQIECgmIBitdjAxCVAgAABAgQIECBAgAABAgQIECBAIF9AsZo/AwkIECBAgAABAgQIECBAgAABAgQIECgmoFgtNjBxCRAgQIAAAQIECBAgQIAAAQIECBDIF1Cs5s9AAgIECBAgQIAAAQIECBAgQIAAAQIEigkoVosNTFwCBAgQIECAAAECBAgQIECAAAECBPIFFKv5M5CAAAECBAgQIECAAAECBAgQIECAAIFiAorVYgMTlwABAgQIECBAgAABAgQIECBAgACBfAHFav4MJCBAgAABAgQIECBAgAABAgQIECBAoJiAYrXYwMQlQIAAAQIECBAgQIAAAQIECBAgQCBfQLGaPwMJCBAgQIAAAQIECBAgQIAAAQIECBAoJqBYLTYwcQkQIECAAAECBAgQIECAAAECBAgQyBdQrObPQAICBAgQIECAAAECBAgQIECAAAECBIoJKFaLDUxcAgQIECBAgAABAgQIECBAgAABAgTyBRSr+TOQgAABAgQIECBAgAABAgQIECBAgACBYgKK1WIDE5cAAQIECBAgQIAAAQIECBAgQIAAgXwBxWr+DCQgQIAAAQIECBAgQIAAAQIECBAgQKCYgGK12MDEJUCAAAECBAgQIECAAAECBAgQIEAgX0Cxmj8DCQgQIECAAAECBAgQIECAAAECBAgQKCagWC02MHEJECBAgAABAgQIECBAgAABAgQIEMgXUKzmz0ACAgQIECBAgAABAgQIECBAgAABAgSKCShWiw1MXAIECBAgQIAAAQIECBAgQIAAAQIE8gUUq/kzkIAAAQIECBAgQIAAAQIECBAgQIAAgWICitViAxOXAAECBAgQIECAAAECBAgQIECAAIF8AcVq/gwkIECAAAECBAgQIECAAAECBAgQIECgmIBitdjAxCVAgAABAgQIECBAgAABAgQIECBAIF9AsZo/AwkIECBAgAABAgQIECBAgAABAgQIECgmoFgtNjBxCRAgQIAAAQIECBAgQIAAAQIECBDIF1Cs5s9AAgIECBAgQIAAAQIECBAgQIAAAQIEigkoVosNTFwCBAgQIECAAAECBAgQIECAAAECBPIFFKv5M5CAAAECBAgQIECAAAECBAgQIECAAIFiAorVYgMTlwABAgQIECBAgAABAgQIECBAgACBfAHFav4MJCBAgAABAgQIECBAgAABAgQIECBAoJiAYrXYwMQlQIAAAQIECBAgQIAAAQIECBAgQCBfQLGaPwMJCBAgQIAAAQIECBAgQIAAAQIECBAoJqBYLTYwcQkQIECAAAECBAgQIECAAAECBAgQyBdQrObPQAICBAgQIECAAAECBAgQIECAAAECBIoJKFaLDUxcAgQIECBAgAABAgQIECBAgAABAgTyBRSr+TOQgAABAgQIECBAgAABAgQIECBAgACBYgKK1WIDE5cAAQIECBAgQIAAAQIECBAgQIAAgXwBxWr+DCQgQIAAAQIECBAgQIAAAQIECBAgQKCYgGK12MDEJUCAAAECBAgQIECAAAECBAgQIEAgX0Cxmj8DCQgQIECAAAECBAgQIECAAAECBAgQKCagWC02MHEJECBAgAABAgQIECBAgAABAgQIEMgXUKzmz0ACAgQIECBAgAABAgQIECBAgAABAgSKCShWiw1MXAIECBAgQIAAAQIECBAgQIAAAQIE8gUUq/kzkIAAAQIECBAgQIAAAQIECBAgQIAAgWICitViAxOXAAECBAgQIECAAAECBAgQIECAAIF8AcVq/gwkIECAAAECBAgQIECAAAECBAgQIECgmIBitdjAxCVAgAABAgQIECBAgAABAgQIECBAIF9AsZo/AwkIECBAgAABAgQIECBAgAABAgQIECgmoFgtNjBxCRAgQIAAAQIECBAgQIAAAQIECBDIF1Cs5s9AAgIECBAgQIAAAQIECBAgQIAAAQIEigkoVosNTFwCBAgQIECAAAECBAgQIECAAAECBPIFFKv5M5CAAAECBAgQIECAAAECBAgQIECAAIFiAorVYgMTlwABAgQIECBAgAABAgQIECBAgACBfAHFav4MJCBAgAABAgQIECBAgAABAgQIECBAoJiAYrXYwMQlQIAAAQIECBAgQIAAAQIECBAgQCBfQLGaPwMJCBAgQIAAAQIECBAgQIAAAQIECBAoJqBYLTYwcQkQIECAAAECBAgQIECAAAECBAgQyBdQrObPQAICBAgQIECAAAECBAgQIECAAAECBIoJKFaLDUxcAgQIECBAgAABAgQIECBAgAABAgTyBRSr+TOQgAABAgQIECBAgAABAgQIECBAgACBYgKK1WIDE5cAAQIECBAgQIAAAQIECBAgQIAAgXwBxWr+DCQgQIAAAQIECBAgQIAAAQIECBAgQKCYgGK12MDEJUCAAAECBAgQIECAAAECBAgQIEAgX0Cxmj8DCQgQIECAAAECBAgQIECAAAECBAgQKCagWC02MHEJECBAgAABAgQIECBAgAABAgQIEMgXUKzmz0ACAgQIECBAgAABAgQIECBAgAABAgSKCShWiw1MXAIECBAgQIAAAQIECBAgQIAAAQIE8gUUq/kzkIAAAQIECBAgQIAAAQIECBAgQIAAgWICitViAxOXAAECBAgQIECAAAECBAgQIECAAIF8AcVq/gwkIECAAAECBAgQIECAAAECBAgQIECgmIBitdjAxCVAgAABAgQIECBAgAABAgQIECBAIF9AsZo/AwkIECBAgAABAgQIECBAgAABAgQIECgmoFgtNjBxCRAgQIAAAQIECBAgQIAAAQIECBDIF1Cs5s9AAgIECBAgQIAAAQIECBAgQIAAAQIEigkoVosNTFwCBAgQIECAAAECBAgQIECAAAECBPIFFKv5M5CAAAECBAgQIECAAAECBAgQIECAAIFiAorVYgMTlwABAgQIECBAgAABAgQIECBAgACBfAHFav4MJCBAgAABAgQIECBAgAABAgQIECBAoJiAYrXYwMQlQIAAAQIECBAgQIAAAQIECBAgQCBfQLGaPwMJCBAgQIAAAQIECBAgQIAAAQIECBAoJqBYLTYwcQkQIECAAAECBAgQIECAAAECBAgQyBdQrObPQAICBAgQIECAAAECBAgQIECAAAECBIoJKFaLDUxcAgQIECBAgAABAgQIECBAgAABAgTyBRSr+TOQgAABAgQIECBAgAABAgQIECBAgACBYgKK1WIDE5cAAQIECBAgQIAAAQIECBAgQIAAgXwBxWr+DCQgQIAAAQIECBAgQIAAAQIECBAgQKCYgGK12MDEJUCAAAECBAgQIECAAAECBAgQIEAgX0Cxmj8DCQgQIECAAAECBAgQIECAAAECBAgQKCagWC02MHEJECBAgAABAgQIECBAgAABAgQIEMgXUKzmz0ACAgQIECBAgAABAgQIECBAgAABAgSKCShWiw1MXAIECBAgQIAAAQIECBAgQIAAAQIE8gUUq/kzkIAAAQIECBAgQIAAAQIECBAgQIAAgWICitViAxOXAAECBAgQIECAAAECBAgQIECAAIF8AcVq/gwkIECAAAECBAgQIECAAAECBAgQIECgmIBitdjAxCVAgAABAgQIECBAgAABAgQIECBAIF9AsZo/AwkIECBAgAABAgQIECBAgAABAgQIECgmoFgtNjBxCRAgQIAAAQIECBAgQIAAAQIECBDIF1Cs5s9AAgIECBAgQIAAAQIECBAgQIAAAQIEigkoVosNTFwCBAgQIECAAAECBAgQIECAAAECBPIFFKv5M5CAAAECBAgQIECAAAECBAgQIECAAIFiAorVYgMTlwABAgQIECBAgAABAgQIECBAgACBfAHFav4MJCBAgAABAgQIECBAgAABAgQIECBAoJiAYrXYwMQlQIAAAQIECBAgQIAAAQIECBAgQCBfQLGaPwMJCBAgQIAAAQIECBAgQIAAAQIECBAoJqBYLTYwcQkQIECAAAECBAgQIECAAAECBAgQyBdQrObPQAICBAgQIECAAAECBAgQIECAAAECBIoJKFaLDUxcAgQIECBAgAABAgQIECBAgAABAgTyBRSr+TOQgAABAgQIECBAgAABAgQIECBAgACBYgKK1WIDE5cAAQIECBAgQIAAAQIECBAgQIAAgXwBxWr+DCQgQIAAAQIECBAgQIAAAQIECBAgQKCYgGK12MDEJUCAAAECBAgQIECAAAECBAgQIEAgX0Cxmj8DCQgQIECAAAECBAgQIECAAAECBAgQKCagWC02MHEJECBAgAABAgQIECBAgAABAgQIEMgXUKzmz0ACAgQIECBAgAABAgQIECBAgAABAgSKCShWiw1MXAIECBAgQIAAAQIECBAgQIAAAQIE8gUUq/kzkIAAAQIECBAgQIAAAQIECBAgQIAAgWICitViAxOXAAECBAgQIECAAAECBAgQIECAAIF8AcVq/gwkIECAAAECBAgQIECAAAECBAgQIECgmIBitdjAxCVAgAABAgQIECBAgAABAgQIECBAIF9AsZo/AwkIECBAgAABAgQIECBAgAABAgQIECgmoFgtNjBxCRAgQIAAAQIECBAgQIAAAQIECBDIF1Cs5s9AAgIECBAgQIAAAQIECBAgQIAAAQIEigkoVosNTFwCBAgQIECAAAECBAgQIECAAAECBPIFFKv5M5CAAAECBAgQIECAAAECBAgQIECAAIFiAorVYgMTlwABAgQIECBAgAABAgQIECBAgACBfAHFav4MJCBAgAABAgQIECBAgAABAgQIECBAoJiAYrXYwMQlQIAAAQIECBAgQIAAAQIECBAgQCBfQLGaPwMJCBAgQIAAAQIECBAgQIAAAQIECBAoJqBYLTYwcQkQIECAAAECBAgQIECAAAECBAgQyBdQrObPQAICBAgQIECAAAECBAgQIECAAAECBIoJKFaLDUxcAgQIECBAgAABAgQIECBAgAABAgTyBRSr+TOQgAABAgQIECBAgAABAgQIECBAgACBYgKK1WIDE5cAAQIECBAgQIAAAQIECBAgQIAAgXwBxWr+DCQgQIAAAQIECBAgQIAAAQIECBAgQKCYgGK12MDEJUCAAAECBAgQIECAAAECBAgQIEAgX0Cxmj8DCQgQIECAAAECBAgQIECAAAECBAgQKCagWC02MHEJECBAgAABAgQIECBAgAABAgQIEMgXUKzmz0ACAgQIECBAgAABAgQIECBAgAABAgSKCShWiw1MXAIECBAgQIAAAQIECBAgQIAAAQIE8gUUq/kzkIAAAQIECBAgQIAAAQIECBAgQIAAgWICitViAxOXAAECBAgQIECAAAECBAgQIECAAIF8AcVq/gwkIECAAAECBAgQIECAAAECBAgQIECgmIBitdjAxCVAgAABAgQIECBAgAABAgQIECBAIF9AsZo/AwkIECBAgAABAgQIECBAgAABAgQIECgmoFgtNjBxCRAgQIAAAQIECBAgQIAAAQIECBDIF1Cs5s9AAgIECBAgQIAAAQIECBAgQIAAAQIEigkoVosNTFwCBAgQIECAAAECBAgQIECAAAECBPIFFKv5M5CAAAECBAgQIECAAAECBAgQIECAAIFiAorVYgMTlwABAgQIECBAgAABAgQIECBAgACBfAHFav4MJCBAgAABAgQIECBAgAABAgQIECBAoJiAYrXYwMQlQIAAAQIECBAgQIAAAQIECBAgQCBfQLGaPwMJCBAgQIAAAQIECBAgQIAAAQIECBAoJqBYLTYwcQkQIECAAAECBAgQIECAAAECBAgQyBdQrObPQAICBAgQIECAAAECBAgQIECAAAECBIoJKFaLDUxcAgQIECBAgAABAgQIECBAgAABAgTyBRSr+TOQgAABAgQIECBAgAABAgQIECBAgACBYgKK1WIDE5cAAQIECBAgQIAAAQIECBAgQIAAgXwBxWr+DCQgQIAAAQIECBAgQIAAAQIECBAgQKCYgGK12MDEJUCAAAECBAgQIECAAAECBAgQIEAgX0Cxmj8DCQgQIECAAAECBAgQIECAAAECBAgQKCagWC02MHEJECBAgAABAgQIECBAgAABAgQIEMgXUKzmz0ACAgQIECBAgAABAgQIECBAgAABAgSKCShWiw1MXAIECBAgQIAAAQIECBAgQIAAAQIE8gUUq/kzkIAAAQIECBAgQIAAAQIECBAgQIAAgWICitViAxOXAAECBAgQIECAAAECBAgQIECAAIF8AcVq/gwkIECAAAECBAgQIECAAAECBAgQIECgmIBitdjAxCVAgAABAgQIECBAgAABAgQIECBAIF9AsZo/AwkIECBAgAABAgQIECBAgAABAgQIECgmoFgtNjBxCRAgQIAAAQIECBAgQIAAAQIECBDIF1Cs5s9AAgIECBAgQIAAAQIECBAgQIAAAQIEigkoVosNTFwCBAgQIECAAAECBAgQIECAAAECBPIFFKv5M5CAAAECBAgQIECAAAECBAgQIECAAIFiAorVYgMTlwABAgQIECBAgAABAgQIECBAgACBfAHFav4MJCBAgAABAgQIECBAgAABAgQIECBAoJiAYrXYwMQlQIAAAQIECBAgQIAAAQIECBAgQCBfQLGaPwMJCBAgQIAAAQIECBAgQIAAAQIECBAoJqBYLTYwcQkQIECAAAECBAgQIECAAAECBAgQyBdQrObPQAICBAgQIECAAAECBAgQIECAAAECBIoJKFaLDUxcAgQIECBAgAABAgQIECBAgAABAgTyBRSr+TOQgAABAgQIECBAgAABAgQIECBAgACBYgKK1WIDE5cAAQIECBAgQIAAAQIECBAgQIAAgXwBxWr+DCQgQIAAAQIECBAgQIAAAQIECBAgQKCYgGK12MDEJUCAAAECBAgQIECAAAECBAgQIEAgX0Cxmj8DCQgQIECAAAECBAgQIECAAAECBAgQKCagWC02MHEJECBAgAABAgQIECBAgAABAgQIEMgXUKzmz0ACAgQIECBAgAABAgQIECBAgAABAgSKCShWiw1MXAIECBAgQIAAAQIECBAgQIAAAQIE8gUUq/kzkIAAAQIECBAgQIAAAQIECBAgQIAAgWICitViAxOXAAECBAgQIECAAAECBAgQIECAAIF8AcVq/gwkIECAAAECBAgQIECAAAECBAgQIECgmIBitdjAxCVAgAABAgQIECBAgAABAgQIECBAIF9AsZo/AwkIECBAgAABAgQIECBAgAABAgQIECgmoFgtNjBxCRAgQIAAAQIECBAgQIAAAQIECBDIF1Cs5s9AAgIECBAgQIAAAQIECBAgQIAAAQIEigkoVosNTFwCBAgQIECAAAECBAgQIECAAAECBPIFFKv5M5CAAAECBAgQIECAAAECBAgQIECAAIFiAorVYgMTlwABAgQIECBAgAABAgQIECBAgACBfAHFav4MJCBAgAABAgQIECBAgAABAgQIECBAoJiAYrXYwMQlQIAAAQIECBAgQIAAAQIECBAgQCBfQLGaPwMJCBAgQIAAAQIECBAgQIAAAQIECBAoJqBYLTYwcQkQIECAAAECBAgQIECAAAECBAgQyBdQrObPQAICBAgQIECAAAECBAgQIECAAAECBIoJKFaLDUxcAgQIECBAgAABAgQIECBAgAABAgTyBRSr+TOQgAABAgQIECBAgAABAgQIECBAgACBYgKK1WIDE5cAAQIECBAgQIAAAQIECBAgQIAAgXwBxWr+DCQgQIAAAQIECBAgQIAAAQIECBAgQKCYgGK12MDEJUCAAAECBAgQIECAAAECBAgQIEAgX0Cxmj8DCQgQIECAAAECBAgQIECAAAECBAgQKCagWC02MHEJECBAgAABAgQIECBAgAABAgQIEMgXUKzmz0ACAgQIECBAgAABAgQIECBAgAABAgSKCShWiw1MXAIECBAgQIAAAQIECBAgQIAAAQIE8gUUq/kzkIAAAQIECBAgQIAAAQIECBAgQIAAgWICitViAxOXAAECBAgQIECAAAECBAgQIECAAIF8AcVq/gwkIECAAAECBAgQIECAAAECBAgQIECgmIBitdjAxCVAgAABAgQIECBAgAABAgQIECBAIF9AsZo/AwkIECBAgAABAgQIECBAgAABAgQIECgmoFgtNjBxCRAgQIAAAQIECBAgQIAAAQIECBDIF1Cs5s9AAgIECBAgQIAAAQIECBAgQIAAAQIEigkoVosNTFwCBAgQIECAAAECBAgQIECAAAECBPIFFKv5M5CAAAECBAgQIECAAAECBAgQIECAAIFiAorVYgMTlwABAgQIECBAgAABAgQIECBAgACBfAHFav4MJCBAgAABAgQIECBAgAABAgQIECBAoJiAYrXYwMQlQIAAAQIECBAgQIAAAQIECBAgQCBfQLGaPwMJCBAgQIAAAQIECBAgQIAAAQIECBAoJqBYLTYwcQkQIECAAAECBAgQIECAAAECBAgQyBdQrObPQAICBAgQIECAAAECBAgQIECAAAECBIoJKFaLDUxcAgQIECBAgAABAgQIECBAgAABAgTyBRSr+TOQgAABAgQIECBAgAABAgQIECBAgACBYgKK1WIDE5cAAQIECBAgQIAAAQIECBAgQIAAgXwBxWr+DCQgQIAAAQIECBAgQIAAAQIECBAgQKCYgGK12MDEJUCAAAECBAgQIECAAAECBAgQIEAgX0Cxmj8DCQgQIECAAAECBAgQIECAAAECBAgQKCagWC02MHEJECBAgAABAgQIECBAgAABAgQIEMgXUKzmz0ACAgQIECBAgAABAgQIECBAgAABAgSKCShWiw1MXAIECBAgQIAAAQIECBAgQIAAAQIE8gUUq/kzkIAAAQIECBAgQIAAAQIECBAgQIAAgWICitViAxOXAAECBAgQIECAAAECBAgQIECAAIF8AcVq/gwkIECAAAECBAgQIECAAAECBAgQIECgmIBitdjAxCVAgAABAgQIECBAgAABAgQIECBAIF9AsZo/AwkIECBAgAABAgQIECBAgAABAgQIECgmoFgtNjBxCRAgQIAAAQIECBAgQIAAAQIECBDIF1Cs5s9AAgIECBAgQIAAAQIECBAgQIAAAQIEigkoVosNTFwCBAgQIECAAAECBAgQIECAAAECBPIFFKv5M5CAAAECBAgQIECAAAECBAgQIECAAIFiAorVYgMTlwABAgQIECBAgAABAgQIECBAgACBfAHFav4MJCBAgAABAgQIECBAgAABAgQIECBAoJiAYrXYwMQlQIAAAQIECBAgQIAAAQIECBAgQCBfQLGaPwMJCBAgQIAAAQIECBAgQIAAAQIECBAoJqBYLTYwcQkQIECAAAECBAgQIECAAAECBAgQyBdQrObPQAICBAgQIECAAAECBAgQIECAAAECBIoJKFaLDUxcAgQIECBAgAABAgQIECBAgAABAgTyBRSr+TOQgAABAgQIECBAgAABAgQIECBAgACBYgKK1WIDE5cAAQIECBAgQIAAAQIECBAgQIAAgXwBxWr+DCQgQIAAAQIECBAgQIAAAQIECBAgQKCYgGK12MDEJUCAAAECBAgQIECAAAECBAgQIEAgX0Cxmj8DCQgQIECAAAECBAgQIECAAAECBAgQKCagWC02MHEJECBAgAABAgQIECBAgAABAgQIEMgXUKzmz0ACAgQIECBAgAABAgQIECBAgAABAgSKCShWiw1MXAIECBAgQIAAAQIECBAgQIAAAQIE8gUUq/kzkIAAAQIECBAgQIAAAQIECBAgQIAAgWICitViAxOXAAECBAgQIECAAAECBAgQIECAAIF8AcVq/gwkIECAAAECBAgQIECAAAECBAgQIECgmIBitdjAxCVAgAABAgQIECBAgAABAgQIECBAIF9AsZo/AwkIECBAgAABAgQIECBAgAABAgQIECgmoFgtNjBxCRAgQIAAAQIECBAgQIAAAQIECBDIF1Cs5s9AAgIECBAgQIAAAQIECBAgQIAAAQIEigkoVosNTFwCBAgQIECAAAECBAgQIECAAAECBPIFFKv5M5CAAAECBAgQIECAAAECBAgQIECAAIFiAorVYgMTlwABAgQIECBAgAABAgQIECBAgACBfAHFav4MJCBAgAABAgQIECBAgAABAgQIECBAoJiAYrXYwMQlQIAAAQIECBAgQIAAAQIECBAgQCBfQLGaPwMJCBAgQIAAAQIECBAgQIAAAQIECBAoJqBYLTYwcQkQIECAAAECBAgQIECAAAECBAgQyBdQrObPQAICBAgQIECAAAECBAgQIECAAAECBIoJKFaLDUxcAgQIECBAgAABAgQIECBAgAABAgTyBRSr+TOQgAABAgQIECBAgAABAgQIECBAgACBYgKK1WIDE5cAAQIECBAgQIAAAQIECBAgQIAAgXwBxWr+DCQgQIAAAQIECBAgQIAAAQIECBAgQKCYgGK12MDEJUCAAAECBAgQIECAAAECBAgQIEAgX0Cxmj8DCQgQIECAAAECBAgQIECAAAECBAgQKCagWC02MHEJECBAgAABAgQIECBAgAABAgQIEMgXUKzmz0ACAgQIECBAgAABAgQIECBAgAABAgSKCShWiw1MXAIECBAgQIAAAQIECBAgQIAAAQIE8gUUq/kzkIAAAQIECBAgQIAAAQIECBAgQIAAgWICitViAxOXAAECBAgQIECAAAECBAgQIECAAIF8gf8CWTEKHRkSFjoAAAAASUVORK5CYII=</Data>
     </Background>
     <Visible>true</Visible>
   </Block>
@@ -1696,22 +1713,36 @@ function beforeGeneration( chart, icsc )&#xD;
 		var series = valSeriesDef.getSeries().get(0);&#xD;
 		&#xD;
 			series.setPlotSteps(BigInteger.valueOf(5));&#xD;
-			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX&quot;);&#xD;
-			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN&quot;);&#xD;
+			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
+			&#xD;
+			&#xD;
+			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX1&quot;);&#xD;
+			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN1&quot;);&#xD;
+			&#xD;
+			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU1&quot;);&#xD;
+			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU1&quot;);&#xD;
+			&#xD;
 			if(show==1)&#xD;
 			{&#xD;
-			series.setWebLabelMin(MinAmp);&#xD;
-			series.setWebLabelMax(MaxAmp);&#xD;
+				if(scaleparam==&quot;yes&quot;)&#xD;
+				{&#xD;
+					series.setWebLabelMin(MinAmp);&#xD;
+					series.setWebLabelMax(MaxAmp);&#xD;
+				}&#xD;
+				else&#xD;
+				{&#xD;
+					series.setWebLabelMin(MinAmpU);&#xD;
+					series.setWebLabelMax(MaxAmpU);&#xD;
+					&#xD;
+				}&#xD;
+				series.setRadarAutoScale(false);&#xD;
 			}&#xD;
 			//series.setWebLabelMin(-67);&#xD;
 			//series.setWebLabelMax(-47);&#xD;
-			series.setRadarAutoScale( false);&#xD;
-		&#xD;
-		&#xD;
+			}&#xD;
 &#xD;
-	}&#xD;
 &#xD;
-icsc.getChartInstance().getBlock().getBounds().setWidth(620);&#xD;
+icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
  			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
 }&#xD;
 &#xD;
@@ -2767,51 +2798,74 @@ else&#xD;
   </SeriesDefinitions>
 </model:ChartWithoutAxes>
 ]]></xml-property>
-                        <property name="outputFormat">SVG</property>
-                        <property name="inheritColumns">true</property>
-                        <property name="height">130pt</property>
-                        <property name="width">212pt</property>
-                        <property name="dataSet">HnVdataset</property>
-                        <list-property name="boundDataColumns">
-                            <structure>
-                                <property name="name">test_id</property>
-                                <expression name="expression" type="javascript">dataSetRow["test_id"]</expression>
-                                <property name="dataType">integer</property>
-                            </structure>
-                            <structure>
-                                <property name="name">frequency</property>
-                                <expression name="expression" type="javascript">dataSetRow["frequency"]</expression>
-                                <property name="dataType">decimal</property>
-                            </structure>
-                            <structure>
-                                <property name="name">angle</property>
-                                <expression name="expression" type="javascript">dataSetRow["angle"]</expression>
-                                <property name="dataType">float</property>
-                            </structure>
-                            <structure>
-                                <property name="name">hamplitude</property>
-                                <expression name="expression" type="javascript">dataSetRow["hamplitude"]</expression>
-                                <property name="dataType">decimal</property>
-                            </structure>
-                            <structure>
-                                <property name="name">vamplitude</property>
-                                <expression name="expression" type="javascript">dataSetRow["vamplitude"]</expression>
-                                <property name="dataType">decimal</property>
-                            </structure>
-                            <structure>
-                                <property name="name">MX</property>
-                                <expression name="expression" type="javascript">dataSetRow["MX"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">MN</property>
-                                <expression name="expression" type="javascript">dataSetRow["MN"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                        </list-property>
-                    </extended-item>
-                </cell>
-            </row>
-        </grid>
+            <property name="outputFormat">SVG</property>
+            <property name="inheritColumns">true</property>
+            <property name="height">130pt</property>
+            <property name="width">212pt</property>
+            <property name="dataSet">HnVdataset</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">params["freq1"].value==-1</expression>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">test_id</property>
+                    <expression name="expression" type="javascript">dataSetRow["test_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">frequency</property>
+                    <expression name="expression" type="javascript">dataSetRow["frequency"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">angle</property>
+                    <expression name="expression" type="javascript">dataSetRow["angle"]</expression>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="name">hamplitude</property>
+                    <expression name="expression" type="javascript">dataSetRow["hamplitude"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">vamplitude</property>
+                    <expression name="expression" type="javascript">dataSetRow["vamplitude"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">strmaxvalue</property>
+                    <expression name="expression" type="javascript">dataSetRow["strmaxvalue"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">strminvalue</property>
+                    <expression name="expression" type="javascript">dataSetRow["strminvalue"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">MXU</property>
+                    <expression name="expression" type="javascript">dataSetRow["MXU"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">MNU</property>
+                    <expression name="expression" type="javascript">dataSetRow["MNU"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">showimage</property>
+                    <expression name="expression" type="javascript">dataSetRow["showimage"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">scaleparam</property>
+                    <expression name="expression" type="javascript">dataSetRow["scaleparam"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+        </extended-item>
     </body>
 </report>

@@ -1090,6 +1090,8 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
             </page-header>
             <page-footer>
                 <grid id="1266">
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">thin</property>
                     <property name="canShrink">true</property>
                     <column id="1267"/>
                     <row id="1268">
