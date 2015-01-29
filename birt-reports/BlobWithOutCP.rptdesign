@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
     <property name="createdBy">Eclipse BIRT Designer Version 4.3.2.v20140211-1400 Build &lt;4.3.2.v20140218-1056></property>
+    <text-property name="title">Back Lobe Level</text-property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="layoutPreference">auto layout</property>
@@ -11,6 +12,30 @@
             <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="rpth" id="1124">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="rptf" id="1125">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
@@ -442,95 +467,53 @@ inner join testdata t on ar.test_id=t.test_id  where ar.Test_id=?]]></xml-proper
             <property name="borderTopStyle">solid</property>
             <property name="borderTopWidth">thin</property>
         </style>
-        <style name="table-header" id="451">
-            <property name="backgroundColor">#AEC0B1</property>
-            <property name="fontFamily">sans-serif</property>
-            <property name="fontSize">x-small</property>
-            <property name="fontWeight">bold</property>
-            <property name="color">#FFFFE0</property>
-            <property name="borderBottomColor">#FFFFFF</property>
-            <property name="borderBottomStyle">double</property>
-            <property name="borderLeftColor">#FFFFFF</property>
-            <property name="borderRightColor">#FFFFFF</property>
-            <property name="borderTopColor">#FFFFFF</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">thin</property>
-        </style>
-        <style name="table-detail" id="452">
-            <property name="backgroundColor">#F0F3FD</property>
-            <property name="fontFamily">sans-serif</property>
-            <property name="fontSize">x-small</property>
-            <property name="color">#426E44</property>
-            <property name="borderBottomColor">#FFFFFF</property>
-            <property name="borderBottomStyle">solid</property>
-            <property name="borderBottomWidth">thin</property>
-            <property name="borderLeftColor">#FFFFFF</property>
-            <property name="borderLeftStyle">solid</property>
-            <property name="borderLeftWidth">thin</property>
-            <property name="borderRightColor">#FFFFFF</property>
-            <property name="borderRightStyle">solid</property>
-            <property name="borderRightWidth">thin</property>
-            <property name="borderTopColor">#FFFFFF</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">thin</property>
-        </style>
-        <style name="table-cell" id="453">
-            <property name="backgroundColor">#F0F3FD</property>
-            <property name="fontFamily">sans-serif</property>
-            <property name="fontSize">x-small</property>
-            <property name="color">#426E44</property>
-            <property name="borderBottomColor">#FFFFFF</property>
-            <property name="borderBottomStyle">solid</property>
-            <property name="borderBottomWidth">thin</property>
-            <property name="borderLeftColor">#FFFFFF</property>
-            <property name="borderLeftStyle">solid</property>
-            <property name="borderLeftWidth">thin</property>
-            <property name="borderRightColor">#FFFFFF</property>
-            <property name="borderRightStyle">solid</property>
-            <property name="borderRightWidth">thin</property>
-            <property name="borderTopColor">#FFFFFF</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">thin</property>
-        </style>
-        <style name="grid" id="582">
-            <property name="backgroundColor">#E5F1F4</property>
-            <property name="borderBottomColor">#7C9A82</property>
-            <property name="borderBottomStyle">solid</property>
-            <property name="borderBottomWidth">1px</property>
-            <property name="borderLeftColor">#7C9A82</property>
-            <property name="borderLeftStyle">solid</property>
-            <property name="borderLeftWidth">1px</property>
-            <property name="borderRightColor">#7C9A82</property>
-            <property name="borderRightStyle">solid</property>
-            <property name="borderRightWidth">1px</property>
-            <property name="borderTopColor">#7C9A82</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">1px</property>
-        </style>
         <style name="NewStyle" id="1122">
             <property name="height">1cm</property>
+        </style>
+        <style name="Tableborder" id="1123">
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">thin</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">thin</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">thin</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">thin</property>
         </style>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
-            <property name="rightMargin">0in</property>
+            <property name="rightMargin">0.25in</property>
             <page-header>
-                <label id="1121">
+                <text-data id="1126">
                     <property name="style">NewStyle</property>
+                    <property name="fontFamily">sans-serif</property>
+                    <property name="fontSize">12pt</property>
+                    <property name="fontWeight">bold</property>
                     <property name="borderBottomStyle">solid</property>
                     <property name="borderBottomWidth">thin</property>
-                    <text-property name="text">Birt Report Header</text-property>
-                </label>
+                    <property name="textAlign">center</property>
+                    <expression name="valueExpr">params["rpth"].value</expression>
+                    <property name="contentType">html</property>
+                </text-data>
             </page-header>
             <page-footer>
-                <grid id="1113">
-                    <column id="1114"/>
-                    <column id="1115"/>
-                    <row id="1116">
-                        <cell id="1117">
-                            <text id="1118">
-                                <property name="contentType">html</property>
-                                <text-property name="content"><![CDATA[<html>
+                <grid id="1266">
+                    <property name="backgroundColor">white</property>
+                    <property name="canShrink">true</property>
+                    <column id="1267"/>
+                    <row id="1268">
+                        <cell id="1269">
+                            <grid id="1272">
+                                <property name="backgroundColor">white</property>
+                                <column id="1273"/>
+                                <column id="1274"/>
+                                <row id="1275">
+                                    <cell id="1276">
+                                        <text id="1278">
+                                            <property name="width">6cm</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[<html>
 <body>
 <style>
 .outer{
@@ -553,12 +536,26 @@ inner join testdata t on ar.test_id=t.test_id  where ar.Test_id=?]]></xml-proper
 </table>
 </body>
 </html>]]></text-property>
-                            </text>
+                                        </text>
+                                    </cell>
+                                    <cell id="1277">
+                                        <text-data id="1279">
+                                            <property name="fontWeight">normal</property>
+                                            <expression name="valueExpr">params["rptf"].value</expression>
+                                            <property name="contentType">html</property>
+                                        </text-data>
+                                    </cell>
+                                </row>
+                            </grid>
                         </cell>
-                        <cell id="1119">
-                            <label id="1120">
-                                <text-property name="text">Verdant Footer Content</text-property>
-                            </label>
+                    </row>
+                    <row id="1270">
+                        <cell id="1271">
+                            <text-data id="1280">
+                                <property name="textAlign">center</property>
+                                <expression name="valueExpr">"Verdant Telemetry and Antenna Systems Pvt. Ltd., Cochin, India"</expression>
+                                <property name="contentType">html</property>
+                            </text-data>
                         </cell>
                     </row>
                 </grid>
@@ -639,6 +636,7 @@ inner join testdata t on ar.test_id=t.test_id  where ar.Test_id=?]]></xml-proper
             </row>
         </grid>
         <grid id="863">
+            <property name="style">Tableborder</property>
             <property name="canShrink">true</property>
             <property name="dataSet">fq</property>
             <list-property name="visibility">
@@ -657,6 +655,7 @@ inner join testdata t on ar.test_id=t.test_id  where ar.Test_id=?]]></xml-proper
             </list-property>
             <column id="864"/>
             <row id="865">
+                <property name="style">Tableborder</property>
                 <cell id="866">
                     <label id="869">
                         <property name="fontSize">medium</property>
@@ -697,26 +696,35 @@ inner join testdata t on ar.test_id=t.test_id  where ar.Test_id=?]]></xml-proper
                                 <property name="allowExport">true</property>
                             </structure>
                         </list-property>
-                        <column id="853"/>
-                        <column id="854"/>
-                        <column id="855"/>
+                        <column id="853">
+                            <property name="style">Tableborder</property>
+                        </column>
+                        <column id="854">
+                            <property name="style">Tableborder</property>
+                        </column>
+                        <column id="855">
+                            <property name="style">Tableborder</property>
+                        </column>
                         <header>
                             <row id="841">
                                 <cell id="842">
                                     <data id="862">
                                         <property name="fontSize">small</property>
+                                        <property name="fontWeight">bold</property>
                                         <property name="resultSetColumn">frequnit</property>
                                     </data>
                                 </cell>
                                 <cell id="843">
                                     <label id="858">
                                         <property name="fontSize">small</property>
+                                        <property name="fontWeight">bold</property>
                                         <text-property name="text">HP</text-property>
                                     </label>
                                 </cell>
                                 <cell id="844">
                                     <label id="860">
                                         <property name="fontSize">small</property>
+                                        <property name="fontWeight">bold</property>
                                         <text-property name="text">VP</text-property>
                                     </label>
                                 </cell>
@@ -747,13 +755,6 @@ inner join testdata t on ar.test_id=t.test_id  where ar.Test_id=?]]></xml-proper
                                 </cell>
                             </row>
                         </detail>
-                        <footer>
-                            <row id="849">
-                                <cell id="850"/>
-                                <cell id="851"/>
-                                <cell id="852"/>
-                            </row>
-                        </footer>
                     </table>
                 </cell>
             </row>

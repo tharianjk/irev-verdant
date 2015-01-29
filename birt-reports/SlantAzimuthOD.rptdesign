@@ -21,6 +21,30 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
+        <scalar-parameter name="rpth" id="2381">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="rptf" id="2382">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="VerdantProfile" id="7">
@@ -263,98 +287,53 @@ group by frequency,t.test_id;]]></xml-property>
             <property name="borderTopStyle">solid</property>
             <property name="borderTopWidth">thin</property>
         </style>
-        <style name="table-header" id="451">
-            <property name="backgroundColor">#AEC0B1</property>
-            <property name="fontFamily">sans-serif</property>
-            <property name="fontSize">x-small</property>
-            <property name="fontWeight">bold</property>
-            <property name="color">#FFFFE0</property>
-            <property name="borderBottomColor">#FFFFFF</property>
-            <property name="borderBottomStyle">double</property>
-            <property name="borderLeftColor">#FFFFFF</property>
-            <property name="borderRightColor">#FFFFFF</property>
-            <property name="borderTopColor">#FFFFFF</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">thin</property>
-        </style>
-        <style name="table-detail" id="452">
-            <property name="backgroundColor">#F0F3FD</property>
-            <property name="fontFamily">sans-serif</property>
-            <property name="fontSize">x-small</property>
-            <property name="color">#426E44</property>
-            <property name="borderBottomColor">#FFFFFF</property>
+        <style name="NewStyleFullborder" id="1102">
             <property name="borderBottomStyle">solid</property>
             <property name="borderBottomWidth">thin</property>
-            <property name="borderLeftColor">#FFFFFF</property>
             <property name="borderLeftStyle">solid</property>
             <property name="borderLeftWidth">thin</property>
-            <property name="borderRightColor">#FFFFFF</property>
             <property name="borderRightStyle">solid</property>
             <property name="borderRightWidth">thin</property>
-            <property name="borderTopColor">#FFFFFF</property>
             <property name="borderTopStyle">solid</property>
             <property name="borderTopWidth">thin</property>
         </style>
-        <style name="table-cell" id="453">
-            <property name="backgroundColor">#F0F3FD</property>
-            <property name="fontFamily">sans-serif</property>
-            <property name="fontSize">x-small</property>
-            <property name="color">#426E44</property>
-            <property name="borderBottomColor">#FFFFFF</property>
-            <property name="borderBottomStyle">solid</property>
-            <property name="borderBottomWidth">thin</property>
-            <property name="borderLeftColor">#FFFFFF</property>
-            <property name="borderLeftStyle">solid</property>
-            <property name="borderLeftWidth">thin</property>
-            <property name="borderRightColor">#FFFFFF</property>
-            <property name="borderRightStyle">solid</property>
-            <property name="borderRightWidth">thin</property>
-            <property name="borderTopColor">#FFFFFF</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">thin</property>
-        </style>
-        <style name="grid" id="582">
-            <property name="backgroundColor">#E5F1F4</property>
-            <property name="borderBottomColor">#7C9A82</property>
-            <property name="borderBottomStyle">solid</property>
-            <property name="borderBottomWidth">1px</property>
-            <property name="borderLeftColor">#7C9A82</property>
-            <property name="borderLeftStyle">solid</property>
-            <property name="borderLeftWidth">1px</property>
-            <property name="borderRightColor">#7C9A82</property>
-            <property name="borderRightStyle">solid</property>
-            <property name="borderRightWidth">1px</property>
-            <property name="borderTopColor">#7C9A82</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">1px</property>
-        </style>
-        <style name="NewStyle" id="1102">
+        <style name="HeaderNewStyle" id="2383">
             <property name="height">1cm</property>
         </style>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
-            <property name="rightMargin">0in</property>
+            <property name="rightMargin">0.22916666666666666in</property>
             <page-header>
-                <label id="1101">
-                    <property name="style">NewStyle</property>
+                <text-data id="1126">
+                    <property name="style">HeaderNewStyle</property>
+                    <property name="fontFamily">sans-serif</property>
+                    <property name="fontSize">12pt</property>
                     <property name="fontWeight">bold</property>
                     <property name="borderBottomStyle">solid</property>
                     <property name="borderBottomWidth">thin</property>
-                    <property name="borderLeftStyle">none</property>
-                    <property name="borderRightStyle">none</property>
-                    <text-property name="text">Verdant Report Header</text-property>
-                </label>
+                    <property name="textAlign">center</property>
+                    <expression name="valueExpr">params["rpth"].value</expression>
+                    <property name="contentType">html</property>
+                </text-data>
             </page-header>
             <page-footer>
-                <grid id="2373">
-                    <column id="2374"/>
-                    <column id="2375"/>
-                    <row id="2376">
-                        <cell id="2377">
-                            <text id="2378">
-                                <property name="contentType">html</property>
-                                <text-property name="content"><![CDATA[<html>
+                <grid id="1266">
+                    <property name="backgroundColor">white</property>
+                    <property name="canShrink">true</property>
+                    <column id="1267"/>
+                    <row id="1268">
+                        <cell id="1269">
+                            <grid id="1272">
+                                <property name="backgroundColor">white</property>
+                                <column id="1273"/>
+                                <column id="1274"/>
+                                <row id="1275">
+                                    <cell id="1276">
+                                        <text id="1278">
+                                            <property name="width">6cm</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[<html>
 <body>
 <style>
 .outer{
@@ -377,12 +356,26 @@ group by frequency,t.test_id;]]></xml-property>
 </table>
 </body>
 </html>]]></text-property>
-                            </text>
+                                        </text>
+                                    </cell>
+                                    <cell id="1277">
+                                        <text-data id="1279">
+                                            <property name="fontWeight">normal</property>
+                                            <expression name="valueExpr">params["rptf"].value</expression>
+                                            <property name="contentType">html</property>
+                                        </text-data>
+                                    </cell>
+                                </row>
+                            </grid>
                         </cell>
-                        <cell id="2379">
-                            <label id="2380">
-                                <text-property name="text">Verdant Footer Content</text-property>
-                            </label>
+                    </row>
+                    <row id="1270">
+                        <cell id="1271">
+                            <text-data id="1280">
+                                <property name="textAlign">center</property>
+                                <expression name="valueExpr">"Verdant Telemetry and Antenna Systems Pvt. Ltd., Cochin, India"</expression>
+                                <property name="contentType">html</property>
+                            </text-data>
                         </cell>
                     </row>
                 </grid>
@@ -426,6 +419,7 @@ group by frequency,t.test_id;]]></xml-property>
             </row>
         </grid>
         <grid id="863">
+            <property name="style">NewStyleFullborder</property>
             <property name="canShrink">true</property>
             <property name="dataSet">SlantAzimuthOD</property>
             <list-property name="visibility">
@@ -498,26 +492,35 @@ group by frequency,t.test_id;]]></xml-property>
                                 <property name="dataType">integer</property>
                             </structure>
                         </list-property>
-                        <column id="853"/>
-                        <column id="854"/>
-                        <column id="855"/>
+                        <column id="853">
+                            <property name="style">NewStyleFullborder</property>
+                        </column>
+                        <column id="854">
+                            <property name="style">NewStyleFullborder</property>
+                        </column>
+                        <column id="855">
+                            <property name="style">NewStyleFullborder</property>
+                        </column>
                         <header>
                             <row id="841">
                                 <cell id="842">
                                     <data id="862">
                                         <property name="fontSize">small</property>
+                                        <property name="fontWeight">bold</property>
                                         <property name="resultSetColumn">frequnit</property>
                                     </data>
                                 </cell>
                                 <cell id="843">
                                     <label id="856">
                                         <property name="fontSize">small</property>
+                                        <property name="fontWeight">bold</property>
                                         <text-property name="text">HP</text-property>
                                     </label>
                                 </cell>
                                 <cell id="844">
                                     <label id="858">
                                         <property name="fontSize">small</property>
+                                        <property name="fontWeight">bold</property>
                                         <text-property name="text">VP</text-property>
                                     </label>
                                 </cell>
@@ -548,13 +551,6 @@ group by frequency,t.test_id;]]></xml-property>
                                 </cell>
                             </row>
                         </detail>
-                        <footer>
-                            <row id="849">
-                                <cell id="850"/>
-                                <cell id="851"/>
-                                <cell id="852"/>
-                            </row>
-                        </footer>
                     </table>
                 </cell>
             </row>

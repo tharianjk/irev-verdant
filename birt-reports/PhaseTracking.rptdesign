@@ -62,6 +62,30 @@ mychart.setHeight("5");
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
+        <scalar-parameter name="rpth" id="1113">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="rptf" id="1114">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="VerdantProfile" id="236">
@@ -560,21 +584,6 @@ order by prodserial_id,SerialNo,frequency]]></xml-property>
             <property name="textAlign">left</property>
             <property name="width">100%</property>
         </style>
-        <style name="table" id="55">
-            <property name="backgroundColor">#F0F3FD</property>
-            <property name="borderBottomColor">#000000</property>
-            <property name="borderBottomStyle">solid</property>
-            <property name="borderBottomWidth">1px</property>
-            <property name="borderLeftColor">#000000</property>
-            <property name="borderLeftStyle">solid</property>
-            <property name="borderLeftWidth">1px</property>
-            <property name="borderRightColor">#000000</property>
-            <property name="borderRightStyle">solid</property>
-            <property name="borderRightWidth">1px</property>
-            <property name="borderTopColor">#000000</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">1px</property>
-        </style>
         <style name="crosstab-detail1" id="56">
             <property name="backgroundColor">#F0F3FD</property>
             <property name="fontFamily">"Arial", "Helvetica", sans-serif</property>
@@ -679,21 +688,6 @@ order by prodserial_id,SerialNo,frequency]]></xml-property>
             <property name="paddingRight">0.2em</property>
             <property name="textAlign">left</property>
             <property name="width">100%</property>
-        </style>
-        <style name="grid" id="61">
-            <property name="backgroundColor">#E5F1F4</property>
-            <property name="borderBottomColor">#7C9A82</property>
-            <property name="borderBottomStyle">solid</property>
-            <property name="borderBottomWidth">1px</property>
-            <property name="borderLeftColor">#7C9A82</property>
-            <property name="borderLeftStyle">solid</property>
-            <property name="borderLeftWidth">1px</property>
-            <property name="borderRightColor">#7C9A82</property>
-            <property name="borderRightStyle">solid</property>
-            <property name="borderRightWidth">1px</property>
-            <property name="borderTopColor">#7C9A82</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">1px</property>
         </style>
         <style name="report1" id="62">
             <property name="backgroundColor">#E5F1F4</property>
@@ -1035,27 +1029,37 @@ order by prodserial_id,SerialNo,frequency]]></xml-property>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
-            <property name="rightMargin">0in</property>
+            <property name="rightMargin">0.25in</property>
             <page-header>
-                <label id="1101">
+                <text-data id="1126">
                     <property name="style">NewStyle</property>
+                    <property name="fontFamily">sans-serif</property>
+                    <property name="fontSize">12pt</property>
                     <property name="fontWeight">bold</property>
                     <property name="borderBottomStyle">solid</property>
                     <property name="borderBottomWidth">thin</property>
-                    <property name="borderLeftStyle">none</property>
-                    <property name="borderRightStyle">none</property>
-                    <text-property name="text">Verdant Report Header</text-property>
-                </label>
+                    <property name="textAlign">center</property>
+                    <expression name="valueExpr">params["rpth"].value</expression>
+                    <property name="contentType">html</property>
+                </text-data>
             </page-header>
             <page-footer>
-                <grid id="1104">
-                    <column id="1105"/>
-                    <column id="1106"/>
-                    <row id="1107">
-                        <cell id="1108">
-                            <text id="1111">
-                                <property name="contentType">html</property>
-                                <text-property name="content"><![CDATA[<html>
+                <grid id="1266">
+                    <property name="backgroundColor">white</property>
+                    <property name="canShrink">true</property>
+                    <column id="1267"/>
+                    <row id="1268">
+                        <cell id="1269">
+                            <grid id="1272">
+                                <property name="backgroundColor">white</property>
+                                <column id="1273"/>
+                                <column id="1274"/>
+                                <row id="1275">
+                                    <cell id="1276">
+                                        <text id="1278">
+                                            <property name="width">6cm</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[<html>
 <body>
 <style>
 .outer{
@@ -1078,12 +1082,26 @@ order by prodserial_id,SerialNo,frequency]]></xml-property>
 </table>
 </body>
 </html>]]></text-property>
-                            </text>
+                                        </text>
+                                    </cell>
+                                    <cell id="1277">
+                                        <text-data id="1279">
+                                            <property name="fontWeight">normal</property>
+                                            <expression name="valueExpr">params["rptf"].value</expression>
+                                            <property name="contentType">html</property>
+                                        </text-data>
+                                    </cell>
+                                </row>
+                            </grid>
                         </cell>
-                        <cell id="1109">
-                            <label id="1112">
-                                <text-property name="text">Verdant Footer Content</text-property>
-                            </label>
+                    </row>
+                    <row id="1270">
+                        <cell id="1271">
+                            <text-data id="1280">
+                                <property name="textAlign">center</property>
+                                <expression name="valueExpr">"Verdant Telemetry and Antenna Systems Pvt. Ltd., Cochin, India"</expression>
+                                <property name="contentType">html</property>
+                            </text-data>
                         </cell>
                     </row>
                 </grid>
@@ -1099,6 +1117,7 @@ order by prodserial_id,SerialNo,frequency]]></xml-property>
             <text-property name="text">AMPLITUDE AND PHASE TRACKING</text-property>
         </label>
         <grid id="315">
+            <property name="width">7.885416666666667in</property>
             <property name="dataSet">AmpPhaseGraph</property>
             <list-property name="visibility">
                 <structure>
@@ -1114,7 +1133,9 @@ order by prodserial_id,SerialNo,frequency]]></xml-property>
                     <property name="dataType">integer</property>
                 </structure>
             </list-property>
-            <column id="316"/>
+            <column id="316">
+                <property name="width">7.885416666666667in</property>
+            </column>
             <row id="317">
                 <cell id="318">
                     <label id="319">
@@ -1137,6 +1158,7 @@ order by prodserial_id,SerialNo,frequency]]></xml-property>
             <property name="borderTopStyle">solid</property>
             <property name="borderTopWidth">medium</property>
             <property name="canShrink">true</property>
+            <property name="width">7.864583333333333in</property>
             <property name="dataSet">AmpPhaseGraph</property>
             <list-property name="visibility">
                 <structure>
@@ -1169,6 +1191,7 @@ order by prodserial_id,SerialNo,frequency]]></xml-property>
             </column>
             <column id="256">
                 <property name="style">BorderNewStyle</property>
+                <property name="width">3.8958333333333335in</property>
             </column>
             <row id="257">
                 <cell id="258">
@@ -2394,7 +2417,7 @@ if( series.getSeriesIdentifier() == &quot;Series 1&quot; )
             <property name="inheritColumns">true</property>
             <property name="canShrink">true</property>
             <property name="height">3.8020833333333335in</property>
-            <property name="width">8.010416666666666in</property>
+            <property name="width">7.875in</property>
             <property name="dataSet">AmpPhaseGraph</property>
             <list-property name="boundDataColumns">
                 <structure>
