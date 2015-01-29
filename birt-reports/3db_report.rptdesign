@@ -48,10 +48,33 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
+        <scalar-parameter name="rpth" id="1124">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="rptf" id="1125">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="VerdantProfilenew" id="1123">
-            <text-property name="displayName"></text-property>
             <list-property name="privateDriverProperties">
                 <ex-property>
                     <name>metadataBidiFormatStr</name>
@@ -1086,22 +1109,37 @@ from vcalculated where Test_id=?]]></xml-property>
             <property name="leftMargin">0in</property>
             <property name="rightMargin">0in</property>
             <page-header>
-                <label id="1121">
+                <text-data id="1126">
                     <property name="style">NewStyle</property>
+                    <property name="fontFamily">sans-serif</property>
+                    <property name="fontSize">12pt</property>
+                    <property name="fontWeight">bold</property>
                     <property name="borderBottomStyle">solid</property>
                     <property name="borderBottomWidth">thin</property>
-                    <text-property name="text">Birt Report Header</text-property>
-                </label>
+                    <property name="textAlign">center</property>
+                    <expression name="valueExpr">params["rpth"].value</expression>
+                    <property name="contentType">html</property>
+                </text-data>
             </page-header>
             <page-footer>
-                <grid id="1113">
-                    <column id="1114"/>
-                    <column id="1115"/>
-                    <row id="1116">
-                        <cell id="1117">
-                            <text id="1118">
-                                <property name="contentType">html</property>
-                                <text-property name="content"><![CDATA[<html>
+                <grid id="1266">
+                    <property name="backgroundColor">white</property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">thin</property>
+                    <property name="canShrink">true</property>
+                    <column id="1267"/>
+                    <row id="1268">
+                        <cell id="1269">
+                            <grid id="1272">
+                                <property name="backgroundColor">white</property>
+                                <column id="1273"/>
+                                <column id="1274"/>
+                                <row id="1275">
+                                    <cell id="1276">
+                                        <text id="1278">
+                                            <property name="width">6cm</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[<html>
 <body>
 <style>
 .outer{
@@ -1124,12 +1162,26 @@ from vcalculated where Test_id=?]]></xml-property>
 </table>
 </body>
 </html>]]></text-property>
-                            </text>
+                                        </text>
+                                    </cell>
+                                    <cell id="1277">
+                                        <text-data id="1279">
+                                            <property name="fontWeight">normal</property>
+                                            <expression name="valueExpr">params["rptf"].value</expression>
+                                            <property name="contentType">html</property>
+                                        </text-data>
+                                    </cell>
+                                </row>
+                            </grid>
                         </cell>
-                        <cell id="1119">
-                            <label id="1120">
-                                <text-property name="text">Verdant Footer Content</text-property>
-                            </label>
+                    </row>
+                    <row id="1270">
+                        <cell id="1271">
+                            <text-data id="1280">
+                                <property name="textAlign">center</property>
+                                <expression name="valueExpr">"Verdant Telemetry and Antenna Systems Pvt. Ltd., Cochin, India"</expression>
+                                <property name="contentType">html</property>
+                            </text-data>
                         </cell>
                     </row>
                 </grid>

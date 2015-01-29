@@ -9,7 +9,7 @@
     <property name="imageDPI">96</property>
     <parameters>
         <scalar-parameter name="testid" id="762">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -22,7 +22,31 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="deg" id="772">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="rpth" id="938">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="rptf" id="939">
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -227,7 +251,7 @@
                     <property name="nativeDataType">3</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select AR_0 from arcalculated where Test_id=?]]></xml-property>
+            <xml-property name="queryText"><![CDATA[select round(AR_0,5) as AR_0 from arcalculated where Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -290,7 +314,7 @@
                     <property name="nativeDataType">3</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select AR_P45 from arcalculated where Test_id=?]]></xml-property>
+            <xml-property name="queryText"><![CDATA[select round(AR_P45,5) as AR_P45 from arcalculated where Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -381,7 +405,7 @@
                     <property name="nativeDataType">3</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select AR_M45 from arcalculated where Test_id=?]]></xml-property>
+            <xml-property name="queryText"><![CDATA[select round(AR_M45,5) as AR_M45 from arcalculated where Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -464,7 +488,7 @@
                     <structure>
                         <property name="position">1</property>
                         <property name="name">MaxAR_P_Ratio</property>
-                        <property name="dataType">decimal</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">2</property>
@@ -479,8 +503,8 @@
                     <property name="position">1</property>
                     <property name="name">MaxAR_P_Ratio</property>
                     <property name="nativeName">MaxAR_P_Ratio</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
@@ -490,7 +514,8 @@
                     <property name="nativeDataType">3</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select MaxAR_P_Ratio,MaxAR_P_Angle from arcalculated where Test_id=?]]></xml-property>
+            <xml-property name="queryText"><![CDATA[select round(MaxAR_P_Ratio,4) as MaxAR_P_Ratio,MaxAR_P_Angle from arcalculated where Test_id=?
+]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -571,7 +596,7 @@
                     <property name="nativeDataType">3</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select MaxAR_M_Ratio,MaxAR_M_Angle from arcalculated where Test_id=?]]></xml-property>
+            <xml-property name="queryText"><![CDATA[select round(MaxAR_M_Ratio,5) as MaxAR_M_Ratio,MaxAR_M_Angle from arcalculated where Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -649,26 +674,6 @@
             <property name="fontFamily">sans-serif</property>
             <property name="fontSize">10pt</property>
         </style>
-        <style name="crosstab" id="6">
-            <property name="borderBottomColor">#CCCCCC</property>
-            <property name="borderBottomStyle">solid</property>
-            <property name="borderBottomWidth">1pt</property>
-            <property name="borderLeftColor">#CCCCCC</property>
-            <property name="borderLeftStyle">solid</property>
-            <property name="borderLeftWidth">1pt</property>
-            <property name="borderRightColor">#CCCCCC</property>
-            <property name="borderRightStyle">solid</property>
-            <property name="borderRightWidth">1pt</property>
-            <property name="borderTopColor">#CCCCCC</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">1pt</property>
-        </style>
-        <style name="crosstab-detail" id="52">
-            <property name="backgroundColor">#F0F3FD</property>
-            <property name="fontFamily">sans-serif</property>
-            <property name="fontSize">9px</property>
-            <property name="color">#000000</property>
-        </style>
         <style name="crosstab-header" id="53">
             <property name="backgroundColor">#AEC0B1</property>
             <property name="fontFamily">"Arial"</property>
@@ -676,107 +681,56 @@
             <property name="fontWeight">bold</property>
             <property name="color">#000000</property>
         </style>
-        <style name="crosstab-cell" id="54">
-            <property name="borderBottomColor">#FFFFFF</property>
-            <property name="borderBottomStyle">solid</property>
-            <property name="borderBottomWidth">thin</property>
-            <property name="borderLeftColor">#FFFFFF</property>
-            <property name="borderLeftStyle">solid</property>
-            <property name="borderLeftWidth">thin</property>
-            <property name="borderRightColor">#FFFFFF</property>
-            <property name="borderRightStyle">solid</property>
-            <property name="borderRightWidth">thin</property>
-            <property name="borderTopColor">#FFFFFF</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">thin</property>
-        </style>
-        <style name="table-header" id="451">
-            <property name="backgroundColor">#AEC0B1</property>
-            <property name="fontFamily">sans-serif</property>
-            <property name="fontSize">x-small</property>
-            <property name="fontWeight">bold</property>
-            <property name="color">#FFFFE0</property>
-            <property name="borderBottomColor">#FFFFFF</property>
-            <property name="borderBottomStyle">double</property>
-            <property name="borderLeftColor">#FFFFFF</property>
-            <property name="borderRightColor">#FFFFFF</property>
-            <property name="borderTopColor">#FFFFFF</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">thin</property>
-        </style>
-        <style name="table-detail" id="452">
-            <property name="backgroundColor">#F0F3FD</property>
-            <property name="fontFamily">sans-serif</property>
-            <property name="fontSize">x-small</property>
-            <property name="color">#426E44</property>
-            <property name="borderBottomColor">#FFFFFF</property>
-            <property name="borderBottomStyle">solid</property>
-            <property name="borderBottomWidth">thin</property>
-            <property name="borderLeftColor">#FFFFFF</property>
-            <property name="borderLeftStyle">solid</property>
-            <property name="borderLeftWidth">thin</property>
-            <property name="borderRightColor">#FFFFFF</property>
-            <property name="borderRightStyle">solid</property>
-            <property name="borderRightWidth">thin</property>
-            <property name="borderTopColor">#FFFFFF</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">thin</property>
-        </style>
-        <style name="table-cell" id="453">
-            <property name="backgroundColor">#F0F3FD</property>
-            <property name="fontFamily">sans-serif</property>
-            <property name="fontSize">x-small</property>
-            <property name="color">#426E44</property>
-            <property name="borderBottomColor">#FFFFFF</property>
-            <property name="borderBottomStyle">solid</property>
-            <property name="borderBottomWidth">thin</property>
-            <property name="borderLeftColor">#FFFFFF</property>
-            <property name="borderLeftStyle">solid</property>
-            <property name="borderLeftWidth">thin</property>
-            <property name="borderRightColor">#FFFFFF</property>
-            <property name="borderRightStyle">solid</property>
-            <property name="borderRightWidth">thin</property>
-            <property name="borderTopColor">#FFFFFF</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">thin</property>
-        </style>
-        <style name="grid" id="582">
-            <property name="backgroundColor">#E5F1F4</property>
-            <property name="borderBottomColor">#7C9A82</property>
-            <property name="borderBottomStyle">solid</property>
-            <property name="borderBottomWidth">1px</property>
-            <property name="borderLeftColor">#7C9A82</property>
-            <property name="borderLeftStyle">solid</property>
-            <property name="borderLeftWidth">1px</property>
-            <property name="borderRightColor">#7C9A82</property>
-            <property name="borderRightStyle">solid</property>
-            <property name="borderRightWidth">1px</property>
-            <property name="borderTopColor">#7C9A82</property>
-            <property name="borderTopStyle">solid</property>
-            <property name="borderTopWidth">1px</property>
-        </style>
         <style name="NewStyle" id="764">
             <property name="height">1cm</property>
+        </style>
+        <style name="border" id="923">
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">thin</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">thin</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">thin</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">thin</property>
         </style>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
-            <property name="leftMargin">0in</property>
-            <property name="rightMargin">0in</property>
+            <property name="leftMargin">0.11458333333333333in</property>
+            <property name="rightMargin">0.020833333333333332in</property>
             <page-header>
-                <label id="763">
+                <text-data id="1126">
                     <property name="style">NewStyle</property>
+                    <property name="fontFamily">sans-serif</property>
+                    <property name="fontSize">12pt</property>
+                    <property name="fontWeight">bold</property>
                     <property name="borderBottomStyle">solid</property>
                     <property name="borderBottomWidth">thin</property>
-                    <text-property name="text">Verdant Report Header</text-property>
-                </label>
+                    <property name="textAlign">center</property>
+                    <expression name="valueExpr">params["rpth"].value</expression>
+                    <property name="contentType">html</property>
+                </text-data>
             </page-header>
             <page-footer>
-                <text id="55">
+                <grid id="1266">
+                    <property name="backgroundColor">white</property>
                     <property name="borderTopStyle">solid</property>
                     <property name="borderTopWidth">thin</property>
-                    <property name="contentType">html</property>
-                    <text-property name="content"><![CDATA[<html>
+                    <property name="canShrink">true</property>
+                    <column id="1267"/>
+                    <row id="1268">
+                        <cell id="1269">
+                            <grid id="1272">
+                                <property name="backgroundColor">white</property>
+                                <column id="1273"/>
+                                <column id="1274"/>
+                                <row id="1275">
+                                    <cell id="1276">
+                                        <text id="1278">
+                                            <property name="width">6cm</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[<html>
 <body>
 <style>
 .outer{
@@ -791,7 +745,7 @@
 <td>
 <div class="outer">
 
-<img src="C:\work\apache-tomee-1.6.0.2\webapps\irev-verdant\img\unnamed.png" height="50px" width="200px" align="baseline" name="myimage">
+<img src="\img\Verdantlogo.png" height="50px" width="200px" align="baseline" name="myimage">
 
 </div>
 </td>
@@ -799,7 +753,29 @@
 </table>
 </body>
 </html>]]></text-property>
-                </text>
+                                        </text>
+                                    </cell>
+                                    <cell id="1277">
+                                        <text-data id="1279">
+                                            <property name="fontWeight">normal</property>
+                                            <expression name="valueExpr">params["rptf"].value</expression>
+                                            <property name="contentType">html</property>
+                                        </text-data>
+                                    </cell>
+                                </row>
+                            </grid>
+                        </cell>
+                    </row>
+                    <row id="1270">
+                        <cell id="1271">
+                            <text-data id="1280">
+                                <property name="textAlign">center</property>
+                                <expression name="valueExpr">"Verdant Telemetry and Antenna Systems Pvt. Ltd., Cochin, India"</expression>
+                                <property name="contentType">html</property>
+                            </text-data>
+                        </cell>
+                    </row>
+                </grid>
             </page-footer>
         </simple-master-page>
     </page-setup>
@@ -890,7 +866,9 @@
                     <property name="dataType">integer</property>
                 </structure>
             </list-property>
-            <column id="633"/>
+            <column id="633">
+                <property name="width">2cm</property>
+            </column>
             <column id="634"/>
             <column id="635"/>
             <column id="636"/>
@@ -899,15 +877,16 @@
             <row id="646">
                 <cell id="647">
                     <grid id="565">
+                        <property name="style">border</property>
                         <expression name="bookmark" type="javascript">"BMHP"</expression>
                         <column id="566"/>
                         <row id="567">
                             <cell id="568">
-                                <label id="581">
-                                    <property name="fontSize">medium</property>
+                                <label id="917">
+                                    <property name="fontSize">10pt</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="textAlign">center</property>
-                                    <text-property name="text">Spot Freq.</text-property>
+                                    <text-property name="text">S.Fq</text-property>
                                 </label>
                             </cell>
                         </row>
@@ -929,7 +908,9 @@
                                             <property name="dataType">string</property>
                                         </structure>
                                     </list-property>
-                                    <column id="580"/>
+                                    <column id="580">
+                                        <property name="style">border</property>
+                                    </column>
                                     <header>
                                         <row id="572">
                                             <cell id="573">
@@ -963,12 +944,13 @@
                 </cell>
                 <cell id="648">
                     <grid id="653">
+                        <property name="style">border</property>
                         <property name="canShrink">true</property>
                         <column id="654"/>
                         <row id="655">
                             <cell id="656">
-                                <label id="659">
-                                    <property name="fontSize">medium</property>
+                                <label id="918">
+                                    <property name="fontSize">10pt</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="textAlign">center</property>
                                     <text-property name="text">On axis (0) </text-property>
@@ -987,13 +969,15 @@
                                             <property name="dataType">decimal</property>
                                         </structure>
                                     </list-property>
-                                    <column id="698"/>
+                                    <column id="698">
+                                        <property name="style">border</property>
+                                    </column>
                                     <header>
                                         <row id="690">
                                             <cell id="691">
                                                 <label id="692">
                                                     <property name="fontSize">small</property>
-                                                    <text-property name="text">Axial Ratio</text-property>
+                                                    <text-property name="text">Ax.Ratio</text-property>
                                                 </label>
                                             </cell>
                                         </row>
@@ -1021,12 +1005,13 @@
                 </cell>
                 <cell id="649">
                     <grid id="660">
+                        <property name="style">border</property>
                         <property name="canShrink">true</property>
                         <column id="661"/>
                         <row id="662">
                             <cell id="663">
-                                <label id="664">
-                                    <property name="fontSize">medium</property>
+                                <label id="919">
+                                    <property name="fontSize">10pt</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="textAlign">center</property>
                                     <text-property name="text">Off axis (+45)</text-property>
@@ -1045,13 +1030,15 @@
                                             <property name="dataType">decimal</property>
                                         </structure>
                                     </list-property>
-                                    <column id="709"/>
+                                    <column id="709">
+                                        <property name="style">border</property>
+                                    </column>
                                     <header>
                                         <row id="701">
                                             <cell id="702">
                                                 <label id="703">
                                                     <property name="fontSize">small</property>
-                                                    <text-property name="text">Axial Ratio</text-property>
+                                                    <text-property name="text">Ax.Ratio</text-property>
                                                 </label>
                                             </cell>
                                         </row>
@@ -1079,12 +1066,13 @@
                 </cell>
                 <cell id="650">
                     <grid id="667">
+                        <property name="style">border</property>
                         <property name="canShrink">true</property>
                         <column id="668"/>
                         <row id="669">
                             <cell id="670">
-                                <label id="671">
-                                    <property name="fontSize">medium</property>
+                                <label id="920">
+                                    <property name="fontSize">10pt</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="textAlign">center</property>
                                     <text-property name="text">Off axis (-45)</text-property>
@@ -1103,13 +1091,15 @@
                                             <property name="dataType">decimal</property>
                                         </structure>
                                     </list-property>
-                                    <column id="720"/>
+                                    <column id="720">
+                                        <property name="style">border</property>
+                                    </column>
                                     <header>
                                         <row id="712">
                                             <cell id="713">
                                                 <label id="714">
                                                     <property name="fontSize">small</property>
-                                                    <text-property name="text">Axial Ratio</text-property>
+                                                    <text-property name="text">Ax.Ratio</text-property>
                                                 </label>
                                             </cell>
                                         </row>
@@ -1137,13 +1127,14 @@
                 </cell>
                 <cell id="651">
                     <grid id="674">
+                        <property name="style">border</property>
                         <property name="canShrink">true</property>
                         <property name="allowExport">true</property>
                         <column id="675"/>
                         <row id="676">
                             <cell id="677">
-                                <label id="678">
-                                    <property name="fontSize">medium</property>
+                                <label id="921">
+                                    <property name="fontSize">10pt</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="textAlign">center</property>
                                     <text-property name="text">Max diff (0 to +45)</text-property>
@@ -1168,14 +1159,18 @@
                                             <property name="dataType">decimal</property>
                                         </structure>
                                     </list-property>
-                                    <column id="736"/>
-                                    <column id="737"/>
+                                    <column id="736">
+                                        <property name="style">border</property>
+                                    </column>
+                                    <column id="737">
+                                        <property name="style">border</property>
+                                    </column>
                                     <header>
                                         <row id="723">
                                             <cell id="724">
                                                 <label id="725">
                                                     <property name="fontSize">small</property>
-                                                    <text-property name="text">Axial Ratio</text-property>
+                                                    <text-property name="text">Ax.Ratio</text-property>
                                                 </label>
                                             </cell>
                                             <cell id="726">
@@ -1217,12 +1212,13 @@
                 </cell>
                 <cell id="652">
                     <grid id="681">
+                        <property name="style">border</property>
                         <property name="canShrink">true</property>
                         <column id="682"/>
                         <row id="683">
                             <cell id="684">
-                                <label id="685">
-                                    <property name="fontSize">medium</property>
+                                <label id="922">
+                                    <property name="fontSize">10pt</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="textAlign">center</property>
                                     <text-property name="text">Max diff (0 to -45)</text-property>
@@ -1247,14 +1243,18 @@
                                             <property name="dataType">decimal</property>
                                         </structure>
                                     </list-property>
-                                    <column id="753"/>
-                                    <column id="754"/>
+                                    <column id="753">
+                                        <property name="style">border</property>
+                                    </column>
+                                    <column id="754">
+                                        <property name="style">border</property>
+                                    </column>
                                     <header>
                                         <row id="740">
                                             <cell id="741">
                                                 <label id="742">
                                                     <property name="fontSize">small</property>
-                                                    <text-property name="text">Axial Ratio</text-property>
+                                                    <text-property name="text">Ax.Ratio</text-property>
                                                 </label>
                                             </cell>
                                             <cell id="743">
@@ -1323,15 +1323,16 @@
             <row id="796">
                 <cell id="797">
                     <grid id="798">
+                        <property name="style">border</property>
                         <expression name="bookmark" type="javascript">"BMHP"</expression>
                         <column id="799"/>
                         <row id="800">
                             <cell id="801">
                                 <label id="802">
-                                    <property name="fontSize">medium</property>
+                                    <property name="fontSize">10pt</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="textAlign">center</property>
-                                    <text-property name="text">Spot Freq.</text-property>
+                                    <text-property name="text">S.Fq</text-property>
                                 </label>
                             </cell>
                         </row>
@@ -1353,7 +1354,9 @@
                                             <property name="dataType">string</property>
                                         </structure>
                                     </list-property>
-                                    <column id="814"/>
+                                    <column id="814">
+                                        <property name="style">border</property>
+                                    </column>
                                     <header>
                                         <row id="806">
                                             <cell id="807">
@@ -1386,12 +1389,13 @@
                 </cell>
                 <cell id="815">
                     <grid id="816">
+                        <property name="style">border</property>
                         <property name="canShrink">true</property>
                         <column id="817"/>
                         <row id="818">
                             <cell id="819">
                                 <label id="820">
-                                    <property name="fontSize">medium</property>
+                                    <property name="fontSize">10pt</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="textAlign">center</property>
                                     <text-property name="text">On axis (0) </text-property>
@@ -1410,7 +1414,9 @@
                                             <property name="dataType">decimal</property>
                                         </structure>
                                     </list-property>
-                                    <column id="832"/>
+                                    <column id="832">
+                                        <property name="style">border</property>
+                                    </column>
                                     <header>
                                         <row id="824">
                                             <cell id="825">
@@ -1444,12 +1450,13 @@
                 </cell>
                 <cell id="833">
                     <grid id="834">
+                        <property name="style">border</property>
                         <property name="canShrink">true</property>
                         <column id="835"/>
                         <row id="836">
                             <cell id="837">
                                 <label id="838">
-                                    <property name="fontSize">medium</property>
+                                    <property name="fontSize">10pt</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="textAlign">center</property>
                                     <text-property name="text">Off axis (+45)</text-property>
@@ -1468,7 +1475,9 @@
                                             <property name="dataType">decimal</property>
                                         </structure>
                                     </list-property>
-                                    <column id="850"/>
+                                    <column id="850">
+                                        <property name="style">border</property>
+                                    </column>
                                     <header>
                                         <row id="842">
                                             <cell id="843">
@@ -1502,12 +1511,13 @@
                 </cell>
                 <cell id="851">
                     <grid id="852">
+                        <property name="style">border</property>
                         <property name="canShrink">true</property>
                         <column id="853"/>
                         <row id="854">
                             <cell id="855">
                                 <label id="856">
-                                    <property name="fontSize">medium</property>
+                                    <property name="fontSize">10pt</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="textAlign">center</property>
                                     <text-property name="text">Off axis (-45)</text-property>
@@ -1517,6 +1527,7 @@
                         <row id="857">
                             <cell id="858">
                                 <table id="859">
+                                    <property name="style">border</property>
                                     <property name="dataSet">offaxis-45</property>
                                     <list-property name="boundDataColumns">
                                         <structure>
@@ -1526,7 +1537,9 @@
                                             <property name="dataType">decimal</property>
                                         </structure>
                                     </list-property>
-                                    <column id="868"/>
+                                    <column id="868">
+                                        <property name="style">border</property>
+                                    </column>
                                     <header>
                                         <row id="860">
                                             <cell id="861">
@@ -1562,6 +1575,7 @@
                     <property name="colSpan">2</property>
                     <property name="rowSpan">1</property>
                     <grid id="870">
+                        <property name="style">border</property>
                         <property name="canShrink">true</property>
                         <list-property name="visibility">
                             <structure>
@@ -1574,7 +1588,7 @@
                         <row id="872">
                             <cell id="873">
                                 <label id="874">
-                                    <property name="fontSize">medium</property>
+                                    <property name="fontSize">10pt</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="textAlign">center</property>
                                     <text-property name="text">Max diff (0 to +45)</text-property>
@@ -1599,8 +1613,12 @@
                                             <property name="dataType">decimal</property>
                                         </structure>
                                     </list-property>
-                                    <column id="891"/>
-                                    <column id="892"/>
+                                    <column id="891">
+                                        <property name="style">border</property>
+                                    </column>
+                                    <column id="892">
+                                        <property name="style">border</property>
+                                    </column>
                                     <header>
                                         <row id="878">
                                             <cell id="879">
@@ -1646,6 +1664,7 @@
                         </row>
                     </grid>
                     <grid id="894">
+                        <property name="style">border</property>
                         <property name="canShrink">true</property>
                         <list-property name="visibility">
                             <structure>
@@ -1657,7 +1676,7 @@
                         <row id="896">
                             <cell id="897">
                                 <label id="898">
-                                    <property name="fontSize">medium</property>
+                                    <property name="fontSize">10pt</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="textAlign">center</property>
                                     <text-property name="text">Max diff (0 to -45)</text-property>
@@ -1682,8 +1701,12 @@
                                             <property name="dataType">decimal</property>
                                         </structure>
                                     </list-property>
-                                    <column id="915"/>
-                                    <column id="916"/>
+                                    <column id="915">
+                                        <property name="style">border</property>
+                                    </column>
+                                    <column id="916">
+                                        <property name="style">border</property>
+                                    </column>
                                     <header>
                                         <row id="902">
                                             <cell id="903">
