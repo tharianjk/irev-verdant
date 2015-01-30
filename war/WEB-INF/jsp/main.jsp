@@ -74,7 +74,7 @@ function fnsetstat(typ,msg)
 		AssetTree.monitorstat="Reports";
 	}
 	if(typ=="rset") {
-		window.frames['AppBody'].location="reportset.htm?oper=rset&typ="+typ+"&testid="+testid+"&atype="+atype;
+		window.frames['AppBody'].location="reportset.htm?oper=rset&typ="+typ+"&testid="+testid+"&atype="+atype+"&ptype="+AssetTree.selectedparenttype;
 		AssetTree.monitorstat="Reports";}
 	if(typ=="cpg") {
 		if(AssetTree.selectedparenttype=="C" && atype!="NCP"){
