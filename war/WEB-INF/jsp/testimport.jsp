@@ -114,7 +114,7 @@ progress_clear();
 		<td > Product Serial No: </td>
        <td >
 			           
-			 <form:select path="productserialid" required="required" > 			              
+			 <form:select id="psl" path="productserialid" required="required" disabled = "true"> 			              
 			 <c:forEach items="${prodserlist}" var="prdser"> 
 			  <form:option label="${prdser.productserial}"   value="${prdser.productserialid}"/>	     
 			</c:forEach>
@@ -330,7 +330,7 @@ $(document).ready( function () {
 	var ptype=document.getElementById("ptype").value;
 	var i;
 	testtype.innerHTML="";
-	
+	document.getElementById('psl').disabled = true;
 	if( ptype=="L" || ptype=="S" ) {	
 		var el = document.createElement("option");
 		el.textContent = "--Select--";
