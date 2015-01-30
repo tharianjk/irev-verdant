@@ -131,7 +131,7 @@
             <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
-            <property name="dataType">string</property>
+            <property name="dataType">decimal</property>
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -145,7 +145,7 @@
             <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
-            <property name="dataType">string</property>
+            <property name="dataType">decimal</property>
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -214,10 +214,12 @@
         <scalar-parameter name="freq8" id="1461">
             <property name="hidden">true</property>
             <property name="valueType">static</property>
-            <property name="dataType">string</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">decimal</property>
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
             <property name="controlType">text-box</property>
             <structure name="format">
                 <property name="category">Unformatted</property>
@@ -226,10 +228,12 @@
         <scalar-parameter name="freq9" id="1462">
             <property name="hidden">true</property>
             <property name="valueType">static</property>
-            <property name="dataType">string</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">decimal</property>
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
             <property name="controlType">text-box</property>
             <structure name="format">
                 <property name="category">Unformatted</property>
@@ -238,10 +242,12 @@
         <scalar-parameter name="freq10" id="1463">
             <property name="hidden">true</property>
             <property name="valueType">static</property>
-            <property name="dataType">string</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">decimal</property>
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
             <property name="controlType">text-box</property>
             <structure name="format">
                 <property name="category">Unformatted</property>
@@ -1130,7 +1136,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">freq</property>
-                    <property name="paramName">freq1</property>
+                    <property name="paramName">freq2</property>
                     <property name="nativeName">freq</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -1396,7 +1402,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">freq</property>
-                    <property name="paramName">freq1</property>
+                    <property name="paramName">freq3</property>
                     <property name="nativeName">freq</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -1662,7 +1668,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">freq</property>
-                    <property name="paramName">freq1</property>
+                    <property name="paramName">freq4</property>
                     <property name="nativeName">freq</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -1928,7 +1934,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">freq</property>
-                    <property name="paramName">freq1</property>
+                    <property name="paramName">freq5</property>
                     <property name="nativeName">freq</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -2194,7 +2200,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">freq</property>
-                    <property name="paramName">freq1</property>
+                    <property name="paramName">freq6</property>
                     <property name="nativeName">freq</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -2460,7 +2466,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">freq</property>
-                    <property name="paramName">freq1</property>
+                    <property name="paramName">freq7</property>
                     <property name="nativeName">freq</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -2726,7 +2732,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">freq</property>
-                    <property name="paramName">freq1</property>
+                    <property name="paramName">freq8</property>
                     <property name="nativeName">freq</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -2992,7 +2998,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">freq</property>
-                    <property name="paramName">freq1</property>
+                    <property name="paramName">freq9</property>
                     <property name="nativeName">freq</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -3258,7 +3264,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">freq</property>
-                    <property name="paramName">freq1</property>
+                    <property name="paramName">freq10</property>
                     <property name="nativeName">freq</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
