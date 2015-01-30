@@ -26,7 +26,16 @@ INPUT.hintTextboxActive { color: #000; }
 	    <tr><td><div id="lpp"><input type="checkbox" id="pp" value="p"  onchange='setVisible("p");' >Polar</div></td>	 
 	    <td><table id ='ptab' style="display:none;">
 	    <c:set var="cnt" value="1"/>
-	    <tbody><tr><td><c:forEach items="${model.freqlist}" var="freq">			
+	    <tbody>
+	    <tr>
+          <td>
+          <div id="cp">          
+       <input type="checkbox" id="hdata" value="hdata" onclick="fnenable('h');">HP Data &nbsp; &nbsp;&nbsp;
+       <input type="checkbox" id="vdata" value="vdata" onclick="fnenable('v');" >VP Data  &nbsp; &nbsp;&nbsp;
+       <input type="checkbox" id="cpdata" value="cpdata" onclick="fnenable('c');"><label id="lblcp">CP Data </label> &nbsp; &nbsp;&nbsp;       
+        </div> </td>
+       </tr>
+	    <tr><td><c:forEach items="${model.freqlist}" var="freq">			
 				
 				<c:if test="${ cnt < 7}">
 					<c:set var="cnt" value="${cnt + 1 }"/>
@@ -224,6 +233,27 @@ else if(atype=="NCP")
 
 });
 
+function fnenable(ctyp){
+	console.log("checked");
+	if(ctyp=='c'){
+	if(document.getElementById("cpdata").checked){
+		document.getElementById("hdata").checked=false;
+		document.getElementById("vdata").checked=false;
+	}
+}
+	else{
+	if(document.getElementById("hdata").checked){
+		document.getElementById("cpdata").checked=false;
+		document.getElementById("vdata").checked=false;
+	}
+	if(document.getElementById("vdata").checked){
+		document.getElementById("cpdata").checked=false;
+		document.getElementById("hdata").checked=false;
+	}
+	}
+}
+
+
 	function setVisible(typ)
 	{
 		// console.log("atype="+atype);
@@ -231,6 +261,25 @@ else if(atype=="NCP")
 			if(document.getElementById("pp").checked)
 				{
 				document.getElementById("ptab").style.display="block";
+				if(parent.AssetTree.selectedparenttype=="L")
+					document.getElementById("divimg").style.display="block";
+				else if(parent.AssetTree.selectedparenttype=="S" && parent.AssetTree.atype=="A")
+					document.getElementById("divimg").style.display="block";
+				else
+					document.getElementById("divimg").style.display="none";
+				if(ptype=="S" || ptype=="C")
+					{
+					document.getElementById("cp").style.display="block";
+					if(ptype=="S"){
+						document.getElementById("cpdata").style.visibility="hidden";
+						document.getElementById("lblcp").style.visibility="hidden";
+					}						
+					}
+				else
+					{
+					document.getElementById("cp").style.display="none";
+					}
+				
 				if(atype!="A" && atype!="CP")
 					{
 					var inputs = document.getElementsByName('lgid');
@@ -298,7 +347,7 @@ else if(atype=="NCP")
 		freqs=fre.split(",");
 		var rptheader='${model.rptheader}';
 		var rptfooter='${model.rptfooter}';
-		
+		var dtype="";
 		//var max =document.getElementById("max").value;
 		//var min =document.getElementById("min").value;
 		
@@ -332,6 +381,17 @@ else if(atype=="NCP")
 					lg[j]="0.00001";
 					j=j+1;				
 				}
+			
+			
+			if(document.getElementById("cpdata").checked)
+				dtype="C";
+			if(document.getElementById("hdata").checked)
+				dtype="H";
+			if(document.getElementById("vdata").checked)
+				dtype="V";
+			if(document.getElementById("cpdata").checked && document.getElementById("hdata").checked)
+				dtype="B";
+			
 		}
 			
 		
@@ -378,6 +438,8 @@ else if(atype=="NCP")
 			img="yes";
 		console.log("typ ="+typ);
 		
+		
+		
 		if(axr=="no" && cpg=="no" && blobe=="no" && db=="no" && dbv=="no" && polar=="no" && od=="no")
 		{
 			alert("No report Selected !!")
@@ -405,6 +467,14 @@ else if(atype=="NCP")
 					"&freq1="+strfreqs[0]+"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
 					"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
 	    }
+       if(atype=="A" && ptype=="S"){
+			
+			var url="/birt-viewer/frameset?__report=ReportSetSlantAzimuth.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&scale=yes&omni="+od+"&lg1="+lg[0]+
+					"&lg2="+lg[1]+"&lg3="+lg[2]+"&lg4="+lg[3]+"&lg5="+lg[4]+"&lg6="+lg[5]+"&lg7="+lg[6]+"&lg8="+lg[7]+"&lg9="+lg[8]+"&lg10="+lg[9]+
+					"&freq1="+strfreqs[0]+"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
+					"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
+	    }
+        
 		else{
 			var url="/birt-verdant/frameset?__report=CPReportset.rptdesign&testid="+testid+"&type=C&polar="+polar+"&axr="+axr+"&AxDeg="+AxDeg+"&scale=yes&lgain=0"+
 			"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+"&cpg="+cpg+"&blobe="+blobe+"&freq1="+strfreqs[0]+
