@@ -310,10 +310,8 @@ else if(atype=="NCP")
 			if(document.getElementById(freqs[i]).checked){
 				strfreqs[j]=freqs[i];
 				freqsel=1;
-				}
-				else 
-					{strfreqs[j]=-1;}
-					j=j+1;
+				j=j+1;
+				}	
 			}
 			console.log(strfreqs[0]);
 			if(freqsel==0)
@@ -321,7 +319,13 @@ else if(atype=="NCP")
 				alert("Frequency not selected");
 				return;
 				}
+			for (i==j;i<20;i++){				
+					strfreqs[j]=-1;					
+					j=j+1;				
+				}
 		}
+			
+		
 		if(document.getElementById('3db').checked){
 			db="yes";
 			if(document.getElementById('30d').checked && document.getElementById('390d').checked){
