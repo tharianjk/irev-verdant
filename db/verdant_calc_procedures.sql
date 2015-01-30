@@ -1006,7 +1006,7 @@ declare lgampl decimal(20,10) default 0;
 declare strmaxvalue varchar(50);
 declare strminvalue varchar(50);
 
-if lg=0 then
+if lg=0.0001 then
 		if typ='H' then
 		
         select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM hdata HD 
@@ -1070,7 +1070,7 @@ if lg=0 then
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 end if;
- if lg!=0 then
+ if lg!=0.0001 then
 		if typ='H' then
 		SELECT HD.Amplitude into ampl FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
