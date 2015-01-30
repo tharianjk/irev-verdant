@@ -66,6 +66,7 @@ public class ToolsController implements Controller {
         Map<String, Object> myModel = new HashMap<String, Object>();
         String operstr = request.getParameter("oper");
         String atype=request.getParameter("atype");
+        String ptype=request.getParameter("ptype");
         String testid="0";
         testid=	request.getParameter("testid");
         String freq=request.getParameter("freq");
@@ -94,11 +95,20 @@ public class ToolsController implements Controller {
 			if (operstr.contains("rset")){
         		logger.info("*** rset ** testid "+testid);
         		String strfreqs="";
+        		String typ="";
         		List<TestFrequency> freqlist=this.mastersservice.getFreqList(Integer.parseInt(testid));
         		for (int i=0;i<freqlist.size();i++){
         			if(i==0)
         				{strfreqs=freqlist.get(i).getFrequencyid()+"";}
         			else {strfreqs=strfreqs+","+freqlist.get(i).getFrequencyid();}
+        		}
+        		if(atype.equals("E") && ptype.equals("L") )
+        		{
+        			typ=mastersservice.getType(Integer.parseInt(testid));
+        		}
+        		if(atype.equals("A") && ptype.equals("L"))
+        		{
+        			typ="Y";
         		}
         		logger.info("*** strfreqs ** "+strfreqs);
         		 //myModel.put("freqlist", this.mastersservice.getFreqList(Integer.parseInt(testid)));
@@ -106,6 +116,7 @@ public class ToolsController implements Controller {
         		 myModel.put("strfreqs",strfreqs);
         		 myModel.put("freqlist",freqlist);
         		 myModel.put("atype",atype);
+        		 myModel.put("type",typ);
         		 myModel.put("rptheader",rptheader);
         		 myModel.put("rptfooter",rptfooter);
                 return new ModelAndView("reportset", "model", myModel);        	
@@ -113,7 +124,7 @@ public class ToolsController implements Controller {
 			else if (operstr.contains("hpolar")){
         		logger.info("*** hpolar ** testid "+testid);
         		TestData pd=mastersservice.getTestData(Integer.parseInt(testid));
-        		String ptype=pd.getPtype();
+        		ptype=pd.getPtype();
         		if(atype.equals("E") && ptype.equals("L") )
         		{
         			atype=mastersservice.getType(Integer.parseInt(testid));
@@ -143,7 +154,7 @@ public class ToolsController implements Controller {
         	}
 			else if (operstr.contains("db")){
 				TestData pd=mastersservice.getTestData(Integer.parseInt(testid));
-        		String ptype=pd.getPtype();
+        		ptype=pd.getPtype();
         		if(atype.equals("E") && ptype.equals("L") )
         		{
         			atype=mastersservice.getType(Integer.parseInt(testid));
@@ -209,7 +220,7 @@ public class ToolsController implements Controller {
 			        }
 			else if(operstr.equals("od")){
 				atype=request.getParameter("atype");
-			     String	ptype=request.getParameter("ptype");
+			     ptype=request.getParameter("ptype");
 				if(ptype.equals("L")){					
 				 return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=LinAzimuthOD.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter));}
 				else{
@@ -220,7 +231,7 @@ public class ToolsController implements Controller {
 			else if(operstr.equals("blobe")){
 				
 				atype=request.getParameter("atype");
-			     String	ptype=request.getParameter("ptype");
+			     ptype=request.getParameter("ptype");
 			     logger.info("*** blobe ** atype "+atype+" ptype "+ptype); 
 				if(atype.equals("NCP")){
 					return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=BlobWithOutCP.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter));

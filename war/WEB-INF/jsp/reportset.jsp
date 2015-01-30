@@ -50,7 +50,12 @@ INPUT.hintTextboxActive { color: #000; }
 					&nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}' class="hintTextbox" style="width:50;" value="l-gain"/>  
 				</c:if>
 				
-			</c:forEach></td></tr></tbody>
+			</c:forEach></td></tr>
+			<tr>
+	       
+	       <td><div id="divimg">&nbsp; &nbsp;&nbsp;<input type="checkbox" id="img" value="img" >Show Aircraft Image</div></td>
+			</tr>
+			</tbody>
 	    
 	    </table>  </td></tr>
         <tr><td><div id="l3db"><input type="checkbox" id="3db" value="3db" onchange='setVisible("3db");'>3db BeamWidth and Beam Squint</div> </td>
@@ -268,17 +273,22 @@ else if(atype=="NCP")
 		}
 	}
 	function Redirect(){
+		var img="no";
+		//alert("go clicked");
+		var scale="yes";
+		
 		 var axr="no";
 		 var cpg="no";
 		 var blobe="no";
 		 var db="no";
 		 var dbv="no";
 		 var polar="no";
+		 var od="no";
 		 var AxDeg ;
 		 var dbDegv ;
 		 var dbDeg ;
 		var testid=${model.testid};
-		var typ='${model.typ}';
+		var typ='${model.type}';
 		var strfreqs=[20]; 
 		var freqs=[];
 		var i=0;
@@ -288,13 +298,34 @@ else if(atype=="NCP")
 		var rptheader='${model.rptheader}';
 		var rptfooter='${model.rptfooter}';
 		
-		if(document.getElementById('polar').checked){
+		//var max =document.getElementById("max").value;
+		//var min =document.getElementById("min").value;
+		
+		
+		
+		if(document.getElementById('pp').checked){
 			polar="yes";
+			var freqsel=0;
 		for (i==0;i<freqs.length;i++){
 			if(document.getElementById(freqs[i]).checked){
-			strfreqs[j]=freqs[i];
-			j=j+1;}
-		}}
+				strfreqs[j]=freqs[i];
+				freqsel=1;
+				j=j+1;
+				}	
+			}
+			console.log(strfreqs[0]);
+			if(freqsel==0)
+				{
+				alert("Frequency not selected");
+				return;
+				}
+			for (i==j;i<20;i++){				
+					strfreqs[j]=-1;					
+					j=j+1;				
+				}
+		}
+			
+		
 		if(document.getElementById('3db').checked){
 			db="yes";
 			if(document.getElementById('30d').checked && document.getElementById('390d').checked){
@@ -331,11 +362,34 @@ else if(atype=="NCP")
 		if(document.getElementById('blobe').checked){
 			blobe="yes";
 		}
-				var url="/birt-verdant/frameset?__report=CPReportset.rptdesign&testid="+testid+"&polar="+polar+"&axr="+axr+"&AxDeg="+AxDeg+
-						"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+"&cpg="+cpg+"&blobe="+blobe+"&freq1="+strfreqs[0]+
-						"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
-						"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img=no&rpth="+rptheader+"&rptf="+rptfooter;
-						
+		if(document.getElementById('od').checked){
+			od="yes";
+		}
+		if(document.getElementById("img").checked)
+			img="yes";
+		console.log("typ ="+typ);
+		
+		if(axr=="no" && cpg=="no" && blobe=="no" && db=="no" && dbv=="no" && polar=="no" && od=="no")
+		{
+			alert("No report Selected !!")
+			return;
+		}
+		
+		if(typ=="P"){
+			
+				var url="/birt-verdant/frameset?__report=ReportSetPitch.rptdesign&testid="+testid+"&type=P&polar="+polar+"&scale=yes&lgain=0"+
+						"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+"&freq1="+strfreqs[0]+
+						"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
+						"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
+		}
+		else{
+			var url="/birt-verdant/frameset?__report=CPReportset.rptdesign&testid="+testid+"&type=P&polar="+polar+"&axr="+axr+"&AxDeg="+AxDeg+"&scale=yes"+
+			"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+"&cpg="+cpg+"&blobe="+blobe+"&freq1="+strfreqs[0]+
+			"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
+			"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img=no&rpth="+rptheader+"&rptf="+rptfooter;
+		
+			
+		}
 			
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
 		console.log("url " + url);
