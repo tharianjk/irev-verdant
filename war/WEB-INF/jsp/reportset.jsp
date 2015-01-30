@@ -291,6 +291,7 @@ else if(atype=="NCP")
 		var typ='${model.type}';
 		var strfreqs=[20]; 
 		var freqs=[];
+		var lg=[];
 		var i=0;
 		var j=0;
 		var fre= '${model.strfreqs}';
@@ -309,6 +310,13 @@ else if(atype=="NCP")
 		for (i==0;i<freqs.length;i++){
 			if(document.getElementById(freqs[i]).checked){
 				strfreqs[j]=freqs[i];
+				if(document.getElementById('lg-'+freqs[i]).value!="l-gain" && document.getElementById('lg-'+freqs[i]).value!=null && document.getElementById('lg-'+freqs[i]).value!="")
+					{
+					lg[j]=document.getElementById('lg-'+freqs[i]).value;
+					}
+				else{
+					lg[j]="0.00001";
+				}
 				freqsel=1;
 				j=j+1;
 				}	
@@ -320,7 +328,8 @@ else if(atype=="NCP")
 				return;
 				}
 			for (i==j;i<20;i++){				
-					strfreqs[j]=-1;					
+					strfreqs[j]=-1;	
+					lg[j]="0.00001";
 					j=j+1;				
 				}
 		}
@@ -377,16 +386,23 @@ else if(atype=="NCP")
 		
 		if(typ=="P"){
 			
-				var url="/birt-verdant/frameset?__report=ReportSetPitch.rptdesign&testid="+testid+"&type=P&polar="+polar+"&scale=yes&lgain=0"+
+				var url="/birt-verdant/frameset?__report=ReportSetPitch.rptdesign&testid="+testid+"&type=P&polar="+polar+"&scale=yes&lgain=0.0001"+
 						"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+"&freq1="+strfreqs[0]+
 						"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
 						"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
 		}
 		if(typ=="R"){
 			
-			var url="/birt-verdant/frameset?__report=ReportSetRoll.rptdesign&testid="+testid+"&type=R&polar="+polar+"&scale=yes&lgain=0"+
+			var url="/birt-verdant/frameset?__report=ReportSetRoll.rptdesign&testid="+testid+"&type=R&polar="+polar+"&scale=yes&lgain=0.0001"+
 					"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+"&freq1="+strfreqs[0]+
 					"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
+					"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
+	    }
+        if(typ=="Y"){
+			
+			var url="/birt-verdant/frameset?__report=ReportSetYaw.rptdesign&testid="+testid+"&type=Y&polar="+polar+"&scale=yes&omni="+od+"&lg1="+lg[0]+
+					"&lg2="+lg[1]+"&lg3="+lg[2]+"&lg4="+lg[3]+"&lg5="+lg[4]+"&lg6="+lg[5]+"&lg7="+lg[6]+"&lg8="+lg[7]+"&lg9="+lg[8]+"&lg10="+lg[9]+
+					"&freq1="+strfreqs[0]+"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
 					"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
 	    }
 		else{

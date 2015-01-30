@@ -189,7 +189,7 @@ $(document).ready(function(){
 			
 		var lg=document.getElementById("lg").value;
 		if(lg=="" || lg==null || lg=="null")
-			{lg=0;}
+			{lg=0.0001;}
 		
 		if((document.getElementById("hdata").checked) && (document.getElementById("vdata").checked))
 		{
