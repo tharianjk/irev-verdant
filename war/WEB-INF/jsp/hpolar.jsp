@@ -12,11 +12,14 @@
 		<script src="js/jquery-ui.js"></script>
 </head>
 <body>
-<table>
+<table >
  <tr>
-		<td >Frequency : <table id ='ptab' >
+		<td >Frequency : <table id ='ptab' style="display:none;">
 	    <c:set var="cnt" value="1"/>
-	    <tbody><tr><td><c:forEach items="${model.freqlist}" var="freq">			
+	    <tbody><tr><td>
+	    
+	    
+	    <c:forEach items="${model.freqlist}" var="freq">			
 				
 				<c:if test="${ cnt < 7}">
 					<c:set var="cnt" value="${cnt + 1 }"/>
@@ -40,7 +43,23 @@
 			</c:forEach></td></tr></tbody>
 	    
 	    </table>  			           
+	
+       <td >
+       <select id="freqid" >          
+         <option value="-1">--Select--</option>      
+   		 <c:forEach items="${model.freqlist}" var="freq">
+   		  <c:choose>
+   		 <c:when test="${freq.frequency eq model.freq}">	
+            <option value=<c:out value="${freq.frequencyid}" /> selected ><c:out value="${freq.frequency}"/></option>
+           </c:when>
+	    <c:otherwise>
+	       <option value=<c:out value="${freq.frequencyid}" /> ><c:out value="${freq.frequency}"/></option>
+	    </c:otherwise>      
+		</c:choose>
+    	</c:forEach>
+		</select>			           
 			   
+           
           </td>
           </tr>
           <tr>
@@ -143,7 +162,9 @@ $(document).ready(function(){
 		var fre= '${model.strfreqs}';
 		freqs=fre.split(",");
 		var freqsel=0;
-		for (i==0;i<freqs.length;i++){
+		var freqid =document.getElementById("freqid").value;	
+		
+		/*for (i==0;i<freqs.length;i++){
 			if(document.getElementById(freqs[i]).checked){
 			strfreqs[j]=freqs[i];
 			freqsel=1;
@@ -151,13 +172,17 @@ $(document).ready(function(){
 			else 
 				{strfreqs[j]=-1;}
 				j=j+1;
+		}*/
+		for (i==1;i<20;i++){
+			strfreqs[i]=-1;
 		}
 		console.log(strfreqs[0]);
-		if(freqsel==0)
+		if(document.getElementById("freqid").value==-1)
 			{
 			alert("Frequency not selected");
 			return;
 			}
+		strfreqs[0]=freqid;
 		var max =document.getElementById("max").value;
 		var min =document.getElementById("min").value;
 		if(min!=null && min !=""){
