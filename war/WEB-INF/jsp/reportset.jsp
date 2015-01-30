@@ -6,6 +6,15 @@
 <html>
 <head><title>Report Set</title>
 <link rel="stylesheet" type="text/css" href="irev-style.css" />
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/hint-textbox.js"></script>
+
+<style>
+INPUT.hintTextbox { color: #888; } 
+INPUT.hintTextboxActive { color: #000; }
+</style>
+
 </head>
 <body>
 
@@ -14,67 +23,73 @@
 <tr><td> 
 <table >
 <tr><td><label><b>---Select Report---</b></label></td></tr>
-	    <tr><td><input type="checkbox" id="polar" value="p"  onchange='setVisible("p");' >Polar</td>	 
-	    <td><table id ='ptab' style="visibility:hidden;">
+	    <tr><td><div id="lpp"><input type="checkbox" id="pp" value="p"  onchange='setVisible("p");' >Polar</div></td>	 
+	    <td><table id ='ptab' style="display:none;">
 	    <c:set var="cnt" value="1"/>
 	    <tbody><tr><td><c:forEach items="${model.freqlist}" var="freq">			
 				
 				<c:if test="${ cnt < 7}">
 					<c:set var="cnt" value="${cnt + 1 }"/>
-					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency} 
+					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}
+					 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}' class="hintTextbox" style="width:50;"  value="l-gain"/> 
 				</c:if>
 				<c:if test="${ cnt == 6 }">
 				<br>
 				</c:if>
 				<c:if test="${ cnt > 6 && cnt<19}">
 					<c:set var="cnt" value="${cnt + 1 }"/>
-					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}  
+					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}
+					 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}' class="hintTextbox" style="width:50;" value="l-gain"/>  
 				</c:if>
 				<c:if test="${ cnt == 12 }">
 				<br>
 				</c:if>
 				<c:if test="${ cnt > 12}">
 					<c:set var="cnt" value="${cnt + 1 }"/>
-					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}  
+					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}
+					&nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}' class="hintTextbox" style="width:50;" value="l-gain"/>  
 				</c:if>
 				
 			</c:forEach></td></tr></tbody>
 	    
-	    </table>  
-        <tr><td><input type="checkbox" id="3db" value="3db"  onchange='setVisible("3db");'>3db BeamWidth and Beam Squint </td>
+	    </table>  </td></tr>
+        <tr><td><div id="l3db"><input type="checkbox" id="3db" value="3db" onchange='setVisible("3db");'>3db BeamWidth and Beam Squint</div> </td>
         		<td>
-		        <table id="3dbtab" style="visibility:hidden;">
+		        <table id="3dbtab" style="display:none;">
 		         <tr><td>       	  
-			   <input type="checkbox" id="3bm" value="bm" style="visibility:hidden;" > &nbsp; &nbsp;&nbsp;
+			   <input type="checkbox" id="3bm" value="bm" style="display:none;" > &nbsp; &nbsp;&nbsp;
 		       <input type="checkbox" id="30d" value="0d" checked >0 &#176;  &nbsp; &nbsp;&nbsp;
 		       <input type="checkbox" id="390d" value="90d" checked >90 &deg; &nbsp; &nbsp;&nbsp;
 		          </td></tr>
 			    </table></td></tr>
-        <tr><td><input type="checkbox" id="10db" value="10db" onchange='setVisible("10db");' >10db BeamWidth and Back-lobe level </td>
-        <td><table id="10dbtab" style="visibility:hidden;">
+        <tr><td><div id="l10db"><input type="checkbox" id="10db" value="10db" onchange='setVisible("10db");' >10db BeamWidth and Back-lobe level</div> </td>
+        <td><table id="10dbtab" style="display:none;">
         <tr><td>       	  
-			   <input type="checkbox" id="bm" value="bm" style="visibility:hidden;" > &nbsp; &nbsp;&nbsp;
+			   <input type="checkbox" id="bm" value="bm" style="display:none;" > &nbsp; &nbsp;&nbsp;
 		       <input type="checkbox" id="0d" value="0d" checked >0 &#176;  &nbsp; &nbsp;&nbsp;
 		       <input type="checkbox" id="90d" value="90d" checked >90 &deg; &nbsp; &nbsp;&nbsp;
 		          </td></tr>
 	    </table></td></tr>   
-        <tr><td><input type="checkbox" id="ar" value="ar"  onchange='setVisible("ar");'>Axial Ratio </td>
-        <td><table id="artab" style="visibility:hidden;">
+        <tr><td><div id="lar"><input type="checkbox" id="ar" value="ar"  onchange='setVisible("ar");'>Axial Ratio</div> </td>
+        <td><table id="artab" style="display:none;">
         <tr><td>
          <input type="checkbox" id="p45" value="p45" checked >0 to +45 &#176; &nbsp; &nbsp;&nbsp;
          <input type="checkbox" id="n45" value="n45" checked >0 to -45 &#176;  &nbsp; &nbsp;&nbsp;</td></tr>
 	    </table></td></tr>    
-        <tr><td><input type="checkbox" id="cpg" value="cpg" checked >CP Gain </td></tr>
-        <tr><td><input type="checkbox" id="blobe" value="blobe" checked >Back-Lobe Level </td></tr>
+        <tr><td><div id="lcpg"><input type="checkbox" id="cpg" value="cpg"  >CP Gain</div> </td></tr>
+        <tr><td><div id="lblobe"><input type="checkbox" id="blobe" value="blobe"  >Back-Lobe Level</div> </td></tr>
+        <tr><td><div id="lod"><input type="checkbox" id="od" value="od"  >Omni Deviation</div> </td></tr>
 </table>
 </td>
-<td>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</td>
+</tr>
+<tr>
+
 <td>
 <table>
  <tr>
 	
 		<td>&nbsp; &nbsp;&nbsp;<input type="button" value="Go" name="go" class="myButtonGo" onclick="Redirect()"/>
-	<!-- &nbsp; &nbsp;&nbsp;<input type="button" value="back" name="go" class="myButtonGo" onclick="back()"/> -->
+	
 		</td>
 		</tr>
 </table>
@@ -90,39 +105,166 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 
 
 <script type="text/javascript">
+var atype=parent.AssetTree.atype;
+var ptype=parent.AssetTree.selectedparenttype;
+$(document).ready( function () {
+
+console.log("atype="+atype+" ptype="+ptype);
+if ((atype=="A") )
+	{
+	  
+	  document.getElementById("lod").style.display="block";
+  	  
+  	  document.getElementById("lar").style.display="none";
+  	  
+  	  document.getElementById("lpp").style.display="block";
+  	  
+  	  document.getElementById("l3db").style.display="none";
+  	  
+  	  document.getElementById("l10db").style.display="none";
+  	  
+  	  document.getElementById("lcpg").style.display="none";
+  	  
+  	  document.getElementById("lblobe").style.display="none";
+	}
+else if ((atype=="E") && (ptype == "L"))
+{
+      
+      document.getElementById("lod").style.display="none";
+	  
+	  document.getElementById("lar").style.display="none";
+	  
+	  document.getElementById("lpp").style.display="block";
+	  
+	  document.getElementById("l3db").style.display="block";
+	  
+	  document.getElementById("l10db").style.display="block";
+	  
+	  document.getElementById("lcpg").style.display="none";
+	  
+	  document.getElementById("lblobe").style.display="none";
+}
+else if ((atype=="E") && (ptype == 'S'))
+{
+  
+      document.getElementById("lod").style.display="none";
+	  
+	  document.getElementById("lar").style.display="block";
+	  
+	  document.getElementById("lpp").style.display="block";
+	  
+	  document.getElementById("l3db").style.display="block";
+	  
+	  document.getElementById("l10db").style.display="block";
+	  
+	  document.getElementById("lcpg").style.display="none";
+	 
+	 document.getElementById("lblobe").style.display="block";
+}
+else if(atype=="CP")
+{
+ 
+  
+  document.getElementById("lod").style.display="none";
+  
+  document.getElementById("lar").style.display="block";
+  
+  document.getElementById("lpp").style.display="block";
+  
+  document.getElementById("l3db").style.display="block";
+  
+  document.getElementById("l10db").style.display="block";
+  
+  document.getElementById("lcpg").style.display="block";
+  
+  document.getElementById("lblobe").style.display="block";
+  
+}
+else if(atype=="DCP")
+{
+ 
+  
+  document.getElementById("lod").style.display="none";
+  
+  document.getElementById("lar").style.display="none";
+  
+  document.getElementById("lpp").style.display="block";
+  
+  document.getElementById("l3db").style.display="block";
+  
+  document.getElementById("l10db").style.display="block";
+  
+  document.getElementById("lcpg").style.display="block";
+  
+  document.getElementById("lblobe").style.display="block";
+}
+else if(atype=="NCP")
+{			        	 
+  
+  document.getElementById("lod").style.display="none";
+  
+  document.getElementById("lar").style.display="block";
+  
+  document.getElementById("lpp").style.display="block";
+  
+  document.getElementById("l3db").style.display="block";
+  
+  document.getElementById("l10db").style.display="block";
+  
+  document.getElementById("lcpg").style.display="none";
+  
+  document.getElementById("lblobe").style.display="block";
+}
+
+
+});
+
 	function setVisible(typ)
 	{
+		// console.log("atype="+atype);
 		if(typ=="p"){
-			if(document.getElementById("polar").checked)
+			if(document.getElementById("pp").checked)
 				{
-				document.getElementById("ptab").style.visibility="visible";
+				document.getElementById("ptab").style.display="block";
+				if(atype!="A" && atype!="CP")
+					{
+					var inputs = document.getElementsByName('lgid');
+				//  inputs = inputs.concat(document.getElementsByTagName('textarea'));
+				  // console.log("len " +inputs.length);
+				  for (i=0; i<inputs.length; i++) {
+				    var input = inputs[i];
+				    var lgid=input.id;
+				    //console.log("id " +input.id);
+				    document.getElementById(lgid).style.visibility="hidden";
+					}
+				}
 				}
 			else
-				document.getElementById("ptab").style.visibility="hidden";
+				document.getElementById("ptab").style.display="none";
 		}
 		if(typ=="ar"){
 			if(document.getElementById("ar").checked)
 				{
-				document.getElementById("artab").style.visibility="visible";
+				document.getElementById("artab").style.display="block";
 				}
 			else
-				document.getElementById("artab").style.visibility="hidden";
+				document.getElementById("artab").style.display="none";
 		}
 		if(typ=="3db"){
 			if(document.getElementById("3db").checked)
 				{
-				document.getElementById("3dbtab").style.visibility="visible";
+				document.getElementById("3dbtab").style.display="block";
 				}
 			else
-				document.getElementById("3dbtab").style.visibility="hidden";
+				document.getElementById("3dbtab").style.display="none";
 			}
 		if(typ=="10db"){
 						if(document.getElementById("10db").checked)
 							{
-							document.getElementById("10dbtab").style.visibility="visible";
+							document.getElementById("10dbtab").style.display="block";
 							}
 						else
-							document.getElementById("10dbtab").style.visibility="hidden";
+							document.getElementById("10dbtab").style.display="none";
 		}
 	}
 	function Redirect(){

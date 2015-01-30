@@ -56,15 +56,13 @@ function fnsetstat(typ,msg)
 		else window.frames['AppBody'].location="blank.htm?oper=blank";
 	}
 	if(typ=="blobe") {
+		window.frames['AppBody'].location="tools.htm?oper=blobe&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype;
 		if(atype=="NCP"){
-			url="/birt-verdant/frameset?__report=BlobWithOutCP.rptdesign&testid="+testid;
-		window.frames['AppBody'].location="/birt-verdant/frameset?__report=BlobWithOutCP.rptdesign&testid="+testid;}
+			window.frames['AppBody'].location="tools.htm?oper=blobe&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype;}
 		else if(AssetTree.selectedparenttype=="C"){
-			url="/birt-verdant/frameset?__report=BlobWithCP.rptdesign&testid="+testid;
-			window.frames['AppBody'].location="/birt-verdant/frameset?__report=BlobWithCP.rptdesign&testid="+testid;}
+			window.frames['AppBody'].location="tools.htm?oper=blobe&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype;}
 		else if(AssetTree.selectedparenttype=="S" && atype=="E" ){
-			url="/birt-verdant/frameset?__report=BlobWithCP.rptdesign&testid="+testid;
-			window.frames['AppBody'].location="/birt-verdant/frameset?__report=BlobWithCP.rptdesign&testid="+testid;}
+			window.frames['AppBody'].location="tools.htm?oper=blobe&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype;}
 		else window.frames['AppBody'].location="blank.htm?oper=blank";
 		AssetTree.monitorstat="Reports";}
 	if(typ=="ar") {
@@ -85,14 +83,9 @@ function fnsetstat(typ,msg)
 		else window.frames['AppBody'].location="blank.htm?oper=blank";
 	}
 	if(typ=="od") {
+		
 		if( AssetTree.atype=="A"){
-		if(AssetTree.selectedparenttype=="L" ){
-			url="/birt-verdant/frameset?__report=LinAzimuthOD.rptdesign&testid="+testid;
-		window.frames['AppBody'].location="/birt-verdant/frameset?__report=LinAzimuthOD.rptdesign&testid="+testid;}
-		else{
-			url="/birt-verdant/frameset?__report=SlantAzimuthOD.rptdesign&testid="+testid
-			window.frames['AppBody'].location="/birt-verdant/frameset?__report=SlantAzimuthOD.rptdesign&testid="+testid;
-		}
+			window.frames['AppBody'].location="tools.htm?oper=od&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype;
 		}
 		else window.frames['AppBody'].location="blank.htm?oper=blank";
 		AssetTree.monitorstat="Reports";}

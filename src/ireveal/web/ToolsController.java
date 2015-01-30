@@ -207,6 +207,32 @@ public class ToolsController implements Controller {
        		//type,prodserialids,maxamp,freq
              return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=PhaseTracking.rptdesign&type="+typ+"&prodserialids="+prodseriallist+"&maxamp="+maxDiff+"&freq="+freq+"&rpth="+rptheader+"&rptf="+rptfooter)); 
 			        }
+			else if(operstr.equals("od")){
+				atype=request.getParameter("atype");
+			     String	ptype=request.getParameter("ptype");
+				if(ptype.equals("L")){					
+				 return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=LinAzimuthOD.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter));}
+				else{
+					 return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=SlantAzimuthOD.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter));
+					
+				}
+			}
+			else if(operstr.equals("blobe")){
+				
+				atype=request.getParameter("atype");
+			     String	ptype=request.getParameter("ptype");
+			     logger.info("*** blobe ** atype "+atype+" ptype "+ptype); 
+				if(atype.equals("NCP")){
+					return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=BlobWithOutCP.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter));
+					}
+				else if(ptype.equals("C")){
+					return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=BlobWithCP.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter));
+					}
+				else if(ptype.equals("S") && atype.equals("E") ){
+					return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=BlobWithCP.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter));
+					}
+			}
+			
 			else if(operstr.contains("blank")){
 				String msg="Please make a Selection from the Asset Tree on the left side";
 				myModel.put("text",msg);
