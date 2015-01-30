@@ -32,7 +32,7 @@ function Redirect(){
        <br> 
         <table>  
          <tr>  
-          <td>Product *  :</td>  
+          <td>Product Title *  :</td>  
           <td><form:input path="Productname"  required="required" />  
           </td>  
          </tr>  
