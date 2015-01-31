@@ -62,28 +62,29 @@ INPUT.hintTextboxActive { color: #000; }
        <input type="checkbox" id="cpdata" value="cpdata" onclick="fnenable('c');"><label id="lblcp">CP Data </label> &nbsp; &nbsp;&nbsp;       
         </div> </td>
        </tr>
-	    <tr><td><c:forEach items="${model.freqlist}" var="freq">			
+	    <tr><td><c:forEach items="${model.freqlist}" var="freq">		
 				
 				<c:if test="${ cnt < 7}">
-					<c:set var="cnt" value="${cnt + 1 }"/>
+					
 					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}
-					 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}' class="hintTextbox" style="width:50;"  value="l-gain"/> 
+					 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}' class="hintTextbox" style="width:50;"  value="l-gain"/>
+					 <c:set var="cnt" value="${cnt + 1 }"/> 
 				</c:if>
 				<c:if test="${ cnt == 6 }">
 				<br>
 				</c:if>
-				<c:if test="${ cnt > 6 && cnt<19}">
-					<c:set var="cnt" value="${cnt + 1 }"/>
+				<c:if test="${ cnt > 6 && cnt<13}">
 					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}
-					 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}' class="hintTextbox" style="width:50;" value="l-gain"/>  
+					 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}' class="hintTextbox" style="width:50;" value="l-gain"/>
+					 <c:set var="cnt" value="${cnt + 1 }"/>  
 				</c:if>
 				<c:if test="${ cnt == 12 }">
 				<br>
 				</c:if>
 				<c:if test="${ cnt > 12}">
-					<c:set var="cnt" value="${cnt + 1 }"/>
-					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}
-					&nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}' class="hintTextbox" style="width:50;" value="l-gain"/>  
+					&nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}
+					&nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}' class="hintTextbox" style="width:50;" value="l-gain"/>
+					<c:set var="cnt" value="${cnt + 1 }"/>  
 				</c:if>
 				
 			</c:forEach></td></tr>
@@ -397,7 +398,7 @@ function fnenable(ctyp){
 		if(freqsel==0)	{
 			for (i==0;i<20;i++){				
 				strfreqs[i]=-1;	
-				lg[0]="0.0001";
+				lg[i]="0.0001";
 							
 			}
 		}

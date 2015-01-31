@@ -1085,7 +1085,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">freq</property>
-                    <property name="paramName">freq1</property>
+                    <property name="paramName">freq2</property>
                     <property name="nativeName">freq</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -1351,7 +1351,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">freq</property>
-                    <property name="paramName">freq1</property>
+                    <property name="paramName">freq3</property>
                     <property name="nativeName">freq</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -1617,7 +1617,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">freq</property>
-                    <property name="paramName">freq1</property>
+                    <property name="paramName">freq4</property>
                     <property name="nativeName">freq</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -1883,7 +1883,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">freq</property>
-                    <property name="paramName">freq1</property>
+                    <property name="paramName">freq5</property>
                     <property name="nativeName">freq</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -2149,7 +2149,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">freq</property>
-                    <property name="paramName">freq1</property>
+                    <property name="paramName">freq6</property>
                     <property name="nativeName">freq</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -2415,7 +2415,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">freq</property>
-                    <property name="paramName">freq1</property>
+                    <property name="paramName">freq7</property>
                     <property name="nativeName">freq</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -2681,7 +2681,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">freq</property>
-                    <property name="paramName">freq1</property>
+                    <property name="paramName">freq8</property>
                     <property name="nativeName">freq</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -2947,7 +2947,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">freq</property>
-                    <property name="paramName">freq1</property>
+                    <property name="paramName">freq9</property>
                     <property name="nativeName">freq</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -3213,7 +3213,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">freq</property>
-                    <property name="paramName">freq1</property>
+                    <property name="paramName">freq10</property>
                     <property name="nativeName">freq</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
