@@ -608,7 +608,7 @@ function recreatewithparents()
         	 
         	 items = {   
         			 createItem: { // The "rename" menu item
-                    label: "Add Test",
+                    label: "Import Test-Set",
                     action: function(response) {
                         var url = '<%=request.getContextPath()%>/testimport.htm?mode=new&PId='+ node.attr('assetId')+'&atype='+ node.attr('atype') ;
                        // alert("url "+url);
@@ -616,7 +616,7 @@ function recreatewithparents()
                               }
                 },
                 newItem: { // The "rename" menu item
-                    label: "Add Amplitude/Phase",
+                    label: "Import Amplitude/Phase",
                     action: function(response) {
                         var url = '<%=request.getContextPath()%>/ampphaseimp.htm?PId='+ node.attr('assetId')+'&atype='+ node.attr('atype') ;
                        // alert("url "+url);

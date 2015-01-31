@@ -347,7 +347,7 @@ function fnenable(ctyp){
 		freqs=fre.split(",");
 		var rptheader='${model.rptheader}';
 		var rptfooter='${model.rptfooter}';
-		var dtype="D";
+		var dtype="S";
 		//var max =document.getElementById("max").value;
 		//var min =document.getElementById("min").value;
 		
