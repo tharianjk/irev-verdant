@@ -398,7 +398,7 @@ function fnenable(ctyp){
 			for (i==0;i<20;i++){				
 				strfreqs[i]=-1;	
 				lg[0]="0.0001";
-				j=j+1;				
+							
 			}
 		}
 		
