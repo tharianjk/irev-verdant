@@ -40,7 +40,7 @@ function Redirect(){
          
          <tr>  
           <td>Product Part No * :</td>  
-          <td><form:input path="version"  />  
+          <td><form:input path="version"  required="required"/>  
           </td>  
          </tr>  
          <tr>  
