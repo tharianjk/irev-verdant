@@ -20,10 +20,37 @@ INPUT.hintTextboxActive { color: #000; }
 
 
 <table>
-<tr><td> 
-<table >
-<tr><td><label><b>---Select Report---</b></label></td></tr>
-	    <tr><td><div id="lpp"><input type="checkbox" id="pp" value="p"  onchange='setVisible("p");' >Polar</div></td>	 
+	<tr><td><table >
+		<tr><td><label><b>---Select Reports---</b></label></td></tr>
+
+        <tr><td><div id="l3db"><input type="checkbox" id="3db" value="3db" onchange='setVisible("3db");'>3db BeamWidth and Beam Squint</div> </td>
+        		<td>
+		        <table id="3dbtab" style="display:none;">
+		         <tr><td>       	  
+			   <input type="checkbox" id="3bm" value="bm" style="display:none;" > &nbsp; &nbsp;&nbsp;
+		       <input type="checkbox" id="30d" value="0d" checked >0 &#176;  &nbsp; &nbsp;&nbsp;
+		       <input type="checkbox" id="390d" value="90d" checked >90 &deg; &nbsp; &nbsp;&nbsp;
+		          </td></tr>
+			    </table></td></tr>
+        <tr><td><div id="l10db"><input type="checkbox" id="10db" value="10db" onchange='setVisible("10db");' >10db BeamWidth and Back-lobe level</div> </td>
+        <td><table id="10dbtab" style="display:none;">
+        <tr><td>       	  
+			   <input type="checkbox" id="bm" value="bm" style="display:none;" > &nbsp; &nbsp;&nbsp;
+		       <input type="checkbox" id="0d" value="0d" checked >0 &#176;  &nbsp; &nbsp;&nbsp;
+		       <input type="checkbox" id="90d" value="90d" checked >90 &deg; &nbsp; &nbsp;&nbsp;
+		          </td></tr>
+	    </table></td></tr>   
+        <tr><td><div id="lar"><input type="checkbox" id="ar" value="ar"  onchange='setVisible("ar");'>Axial Ratio</div> </td>
+        <td><table id="artab" style="display:none;">
+        <tr><td>
+         <input type="checkbox" id="p45" value="p45" checked >0 to +45 &#176; &nbsp; &nbsp;&nbsp;
+         <input type="checkbox" id="n45" value="n45" checked >0 to -45 &#176;  &nbsp; &nbsp;&nbsp;</td></tr>
+	    </table></td></tr>    
+        <tr><td><div id="lcpg"><input type="checkbox" id="cpg" value="cpg"  >CP Gain</div> </td></tr>
+        <tr><td><div id="lblobe"><input type="checkbox" id="blobe" value="blobe"  >Back-Lobe Level</div> </td></tr>
+        <tr><td><div id="lod"><input type="checkbox" id="od" value="od"  >Omni Deviation</div> </td></tr>
+	 
+	 <tr><td><div id="lpp"><input type="checkbox" id="pp" value="p"  onchange='setVisible("p");' >Polar</div></td>	 
 	    <td><table id ='ptab' style="display:none;">
 	    <c:set var="cnt" value="1"/>
 	    <tbody>
@@ -66,33 +93,7 @@ INPUT.hintTextboxActive { color: #000; }
 			</tr>
 			</tbody>
 	    
-	    </table>  </td></tr>
-        <tr><td><div id="l3db"><input type="checkbox" id="3db" value="3db" onchange='setVisible("3db");'>3db BeamWidth and Beam Squint</div> </td>
-        		<td>
-		        <table id="3dbtab" style="display:none;">
-		         <tr><td>       	  
-			   <input type="checkbox" id="3bm" value="bm" style="display:none;" > &nbsp; &nbsp;&nbsp;
-		       <input type="checkbox" id="30d" value="0d" checked >0 &#176;  &nbsp; &nbsp;&nbsp;
-		       <input type="checkbox" id="390d" value="90d" checked >90 &deg; &nbsp; &nbsp;&nbsp;
-		          </td></tr>
-			    </table></td></tr>
-        <tr><td><div id="l10db"><input type="checkbox" id="10db" value="10db" onchange='setVisible("10db");' >10db BeamWidth and Back-lobe level</div> </td>
-        <td><table id="10dbtab" style="display:none;">
-        <tr><td>       	  
-			   <input type="checkbox" id="bm" value="bm" style="display:none;" > &nbsp; &nbsp;&nbsp;
-		       <input type="checkbox" id="0d" value="0d" checked >0 &#176;  &nbsp; &nbsp;&nbsp;
-		       <input type="checkbox" id="90d" value="90d" checked >90 &deg; &nbsp; &nbsp;&nbsp;
-		          </td></tr>
-	    </table></td></tr>   
-        <tr><td><div id="lar"><input type="checkbox" id="ar" value="ar"  onchange='setVisible("ar");'>Axial Ratio</div> </td>
-        <td><table id="artab" style="display:none;">
-        <tr><td>
-         <input type="checkbox" id="p45" value="p45" checked >0 to +45 &#176; &nbsp; &nbsp;&nbsp;
-         <input type="checkbox" id="n45" value="n45" checked >0 to -45 &#176;  &nbsp; &nbsp;&nbsp;</td></tr>
-	    </table></td></tr>    
-        <tr><td><div id="lcpg"><input type="checkbox" id="cpg" value="cpg"  >CP Gain</div> </td></tr>
-        <tr><td><div id="lblobe"><input type="checkbox" id="blobe" value="blobe"  >Back-Lobe Level</div> </td></tr>
-        <tr><td><div id="lod"><input type="checkbox" id="od" value="od"  >Omni Deviation</div> </td></tr>
+	    </table>  </td></tr>		
 </table>
 </td>
 </tr>
