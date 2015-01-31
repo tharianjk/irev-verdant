@@ -827,6 +827,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 			   {
 				   String sqlinsert="";
 				   String sqldelete="";
+				   logger.info(" InsertAmpPhase "+impdata.getFiletype());
 				   try{
 				   if(impdata.getFiletype().equals("A"))
 				  	{
@@ -837,7 +838,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 				  	else if(impdata.getFiletype().equals("P"))
 				  	{
 				  		sqldelete="delete from phasedata where prodserial_id=? and testname=?";
-						   getJdbcTemplate().update(sqldelete,impdata.getProductserialid()); 
+						   getJdbcTemplate().update(sqldelete,impdata.getProductserialid(),impdata.getTestname()); 
 				  		sqlinsert="insert into phasedata (prodserial_id,Frequency,phasevalue,testname) values (?,?,?,?)"; 
 				  	}
 				   
@@ -851,6 +852,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 				   return true;
 				   }catch(Exception e)
 				   {
+					   logger.info("Exception in InsertAmpPhase "+e.getMessage());
 					   return false;
 				   }
 			   }
