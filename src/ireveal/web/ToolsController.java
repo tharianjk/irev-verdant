@@ -236,11 +236,11 @@ public class ToolsController implements Controller {
 				if(atype.equals("NCP")){
 					return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=BlobWithOutCP.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter));
 					}
-				else if(ptype.equals("C")){
+				else if(ptype.equals("C") && !atype.equals("NCP")){
 					return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=BlobWithCP.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter));
 					}
 				else if(ptype.equals("S") && atype.equals("E") ){
-					return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=BlobWithCP.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter));
+					return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=BlobWithOutCP.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter));
 					}
 			}
 			
