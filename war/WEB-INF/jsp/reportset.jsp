@@ -62,28 +62,29 @@ INPUT.hintTextboxActive { color: #000; }
        <input type="checkbox" id="cpdata" value="cpdata" onclick="fnenable('c');"><label id="lblcp">CP Data </label> &nbsp; &nbsp;&nbsp;       
         </div> </td>
        </tr>
-	    <tr><td><c:forEach items="${model.freqlist}" var="freq">			
+	    <tr><td><c:forEach items="${model.freqlist}" var="freq">		
 				
 				<c:if test="${ cnt < 7}">
-					<c:set var="cnt" value="${cnt + 1 }"/>
+					
 					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}
-					 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}' class="hintTextbox" style="width:50;"  value="l-gain"/> 
+					 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}' class="hintTextbox" style="width:50;"  value="l-gain"/>
+					 <c:set var="cnt" value="${cnt + 1 }"/> 
 				</c:if>
 				<c:if test="${ cnt == 6 }">
 				<br>
 				</c:if>
-				<c:if test="${ cnt > 6 && cnt<19}">
-					<c:set var="cnt" value="${cnt + 1 }"/>
+				<c:if test="${ cnt > 6 && cnt<13}">
 					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}
-					 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}' class="hintTextbox" style="width:50;" value="l-gain"/>  
+					 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}' class="hintTextbox" style="width:50;" value="l-gain"/>
+					 <c:set var="cnt" value="${cnt + 1 }"/>  
 				</c:if>
 				<c:if test="${ cnt == 12 }">
 				<br>
 				</c:if>
 				<c:if test="${ cnt > 12}">
-					<c:set var="cnt" value="${cnt + 1 }"/>
-					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}
-					&nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}' class="hintTextbox" style="width:50;" value="l-gain"/>  
+					&nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}
+					&nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}' class="hintTextbox" style="width:50;" value="l-gain"/>
+					<c:set var="cnt" value="${cnt + 1 }"/>  
 				</c:if>
 				
 			</c:forEach></td></tr>
@@ -397,8 +398,8 @@ function fnenable(ctyp){
 		if(freqsel==0)	{
 			for (i==0;i<20;i++){				
 				strfreqs[i]=-1;	
-				lg[0]="0.0001";
-				j=j+1;				
+				lg[i]="0.0001";
+							
 			}
 		}
 		
@@ -482,6 +483,40 @@ function fnenable(ctyp){
 					"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
 	    }
        if(atype=="E" && ptype=="S"){
+    	   
+			if(dtype=='B'){
+			var url="/birt-verdant/frameset?__report=SlantElevationRSHnV.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&blob="+blobe+"&AxR="+axr+"&AxDeg="+AxDeg+"&scale=yes&lg1=0.0001"+
+					"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+
+					"&freq1="+strfreqs[0]+"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
+					"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
+			}
+			else
+				{
+				var url="/birt-verdant/frameset?__report=SlantElevationRSetHporVp.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&blob="+blobe+"&AxR="+axr+"&AxDeg="+AxDeg+"&scale=yes&lg1=0.0001"+
+				"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+
+				"&freq1="+strfreqs[0]+"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
+				"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
+		
+				}
+	    }
+       if(atype=="NCP" && ptype=="C"){
+    	   
+			if(dtype=='B'){
+			var url="/birt-verdant/frameset?__report=SlantElevationRSHnV.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&blob="+blobe+"&AxR="+axr+"&AxDeg="+AxDeg+"&scale=yes&lg1=0.0001"+
+					"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+
+					"&freq1="+strfreqs[0]+"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
+					"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
+			}
+			else
+				{
+				var url="/birt-verdant/frameset?__report=SlantElevationRSetHporVp.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&blob="+blobe+"&AxR="+axr+"&AxDeg="+AxDeg+"&scale=yes&lg1=0.0001"+
+				"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+
+				"&freq1="+strfreqs[0]+"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
+				"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
+		
+				}
+	    }
+       if(atype=="DCP" && ptype=="C"){
     	   
 			if(dtype=='B'){
 			var url="/birt-verdant/frameset?__report=SlantElevationRSHnV.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&blob="+blobe+"&AxR="+axr+"&AxDeg="+AxDeg+"&scale=yes&lg1=0.0001"+
