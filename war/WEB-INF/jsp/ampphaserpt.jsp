@@ -27,7 +27,7 @@
     return;
     } 
     var url="dropdown.htm";
-    url +="?prodid=" +str+"&typ="+seltyp;
+    url +="?prodserid=" +str+"&typ="+seltyp;
     xmlHttp.onreadystatechange = prodChange;
     xmlHttp.open("GET", url, true);
     xmlHttp.send(null);
@@ -51,13 +51,12 @@
 	   
           </td>
           
-          <td width="20%"> &nbsp; &nbsp;&nbsp;Product: *</td>
-       <td >
-			           
+          <td > &nbsp; &nbsp;&nbsp;Product Serial: *</td>
+       <td >			           
 			 <select  id="prodk" onchange="showPS(this.value);">  
 			 <option value='-1'>--Select--</option>              
-			 <c:forEach items='${model.prodlist}' var="prd"> 
-			  <option value='${prd.productid}'>${prd.productname}</option>	     
+			 <c:forEach items='${model.prodserlist}' var="prd"> 
+			  <option value='${prd.productserialid}'>${prd.productserial}</option>	     
 			</c:forEach>
 			</select>     
           </td>
@@ -65,9 +64,20 @@
           <table id="chktbl"></table>
           </td>
           <td>&nbsp; &nbsp;&nbsp;<input type="button" value="Add More" name="add" class="myButtonGo" onclick="Add()"/>
-         &nbsp; &nbsp;&nbsp;<input type="button" value="Go" name="go" class="myButtonGo" onclick="Redirect()"/>		
+         		
 		</td>
-		</tr>
+		
+		<td>
+		Selected :</td>
+				<td><textarea  id="selfiles" readonly="true"   rows="2" cols="50" ></textarea></td>
+				  <td>
+					<input type="button" value="Clear" class="myButton"  name="clearExp" onclick="ClearExp()"/>	
+				</td> 
+	 	   </tr>	
+	 	   <tr><td>
+	 	   &nbsp; &nbsp;&nbsp;<input type="button" value="Go" name="go" class="myButtonGo" onclick="Redirect()"/>
+	 	   </td></tr> 	   
+          
 </table>
 
 <iframe id="AppBody" name="AppBody"  frameborder="1" scrolling="yes" width="98%" height="95%" 
@@ -91,11 +101,22 @@ var typ="";
 					}
 				else
 				prodserids=prodserids+','+element.value;				
-			}			
+			}
+			else{
+				prodserids.replace(element.value, ""); 
+				if(prodserids.length==1)
+					prodserids="";
+			}
+			document.getElementById("selfiles").value=prodserids;
 		});		
 		document.getElementById("prodk").value="-1";
 		document.getElementById("chktbl").innerHTML="";
 	}
+	function ClearExp()
+    {
+    	document.getElementById("selfiles").value='';
+    	prodserids='';
+    }
 	function Redirect(){
 		if(document.getElementById("chktbl").innerHTML !="")
 			 Add();

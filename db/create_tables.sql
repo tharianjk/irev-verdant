@@ -419,6 +419,11 @@ CREATE TABLE IF NOT EXISTS `Verdant`.`phasedata` (
   PRIMARY KEY (prodserial_id,frequency,testname))
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `Verdant`.`scaling` Scaling of polar plot
+-- -----------------------------------------------------
+create table scaling(frequency decimal(20,14),minscale decimal(20,10),maxscale decimal(20,10));
+
 
 -- Create View axialratio_view
 
@@ -438,11 +443,12 @@ VIEW `axialratio_view` AS
             AND (`h`.`Angle` = `v`.`Angle`))));
             
             
-create view vw_ampphase as select distinct a.frequency,a.prodserial_id,a.ampvalue amplitude, 'A' typ
-,p.version productname,a.testname SerialNo from amplitudedata a
-inner join product_serial s on a.prodserial_id=s.Prodserial_id inner join product p on s.Product_id=p.Product_id
-union select distinct a.frequency,a.prodserial_id,a.phasevalue amplitude, 'P' typ,p.version productname,a.testname SerialNo from phasedata a
-inner join product_serial s on a.prodserial_id=s.Prodserial_id inner join product p on s.Product_id=p.Product_id;            
+create view vw_ampphase as select distinct a.frequency,a.prodserial_id,a.ampvalue amplitude, 'A' typ 
+,p.version productname,a.testname SerialNo,testname from amplitudedata a 
+inner join product_serial s on a.prodserial_id=s.Prodserial_id inner join product p on s.Product_id=p.Product_id 
+union select distinct a.frequency,a.prodserial_id,a.phasevalue amplitude, 'P' typ,p.version productname,a.testname SerialNo,testname from phasedata a 
+inner join product_serial s on a.prodserial_id=s.Prodserial_id inner join product p on s.Product_id=p.Product_id; 
+        
 
 alter table FWK_ROLE add constraint fk_role_company foreign key (company_id) references fwk_company(company_id);
 alter table fwk_user_role add constraint FK_ROLE_User foreign key (role_id) references FWK_ROLE(role_id);

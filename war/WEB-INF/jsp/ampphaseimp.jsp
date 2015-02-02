@@ -3,15 +3,12 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
-<head>
-
-<link rel="stylesheet" href="css/jquery-ui.css">
+<head> 
+  <link rel="stylesheet" type="text/css" href="irev-style.css" />
+  <link rel="stylesheet" href="css/jquery-ui.css">
   <script src="js/jquery.js"></script>
   <script src="js/jquery-ui.js"></script>  
-  <script type='text/javascript' src="js/popupmessage.js" ></script>
-    <link rel="stylesheet" href="css/popupmessage.css">
-   
-    <link rel="stylesheet" type="text/css" href="irev-style.css" />
+
 <style>
 #drop{
 	border:2px dashed #bbb;
@@ -82,13 +79,15 @@ progress_clear();
 
 
 
-	<h2>Import Amplitude/Phase Data</h2>
+	<h2>Import Tracking Data</h2>
  
 	<form:form name="form1" id="form1" method="POST" commandName="ImportData" enctype="multipart/form-data">
  
 		<form:errors path="*" cssClass="errorblock" element="div" />
  
 		<br>
+		<table>
+		<tr><td>
 		<table id="tblmain">
 		<tr>
 		<td > Test Name: </td>
@@ -113,7 +112,7 @@ progress_clear();
           
           <td width="50">
           
-           <form:select   path="filetype" required="required" >
+           <form:select id="ttype"  path="filetype" required="required" onchange="typeonchange();">
           <option value="">--Select--</option>                 
    		 <option value="A">Amplitude Data</option>
    		 <option value="P">Phase Data</option>
@@ -135,9 +134,41 @@ progress_clear();
 		
 		
 		</table>
+		</td>
+		
+		<td>
+		<c:if test="${listsize >0}">
+	&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<table id="listtab"  border="1" cellpadding="1" cellspacing="2" style="width: 300px;vertical-align:top;">
+		
+	<thead>
+				<tr>
+				   
+					<th scope="col"> Type </th>
+					 <th scope="col"> TestName </th>					
+					<th scope="col"> Delete  </th>
+					
+				</tr>
+	</thead>
+	<tbody>
+    <c:forEach items="${preventries}" var="prev">
+		<tr>
+			<td> <c:out value="${prev.ttype}"/> </td>
+			<td> <c:out value="${prev.testname}"/> </td>			
+			<td> <a  href="<c:url value="ampphaseimp.htm?PId=${prev.prodserialid}&oper=deltrack&testname=${prev.testname}&ttype=${prev.ttype}"/>" ><img  src ="/irev-verdant/img/delete.jpg"></a>  </td>
+			
+		</tr>
+    </c:forEach>  
+	</tbody>
+	</table> 
+	</c:if>
+		</td>
+		</tr>
+		</table>
 		
 		<form:hidden path="ptype" ></form:hidden>
-		<input type="submit" value="Upload"  class="myButton" onclick="progress_update();form1.submit();"/>
+		
+		<input type="submit" id="more" value="More" name="fmaction" class="myButton"  onclick="progress_update();form1.submit();"/>
+		<input type="submit" id="done" value="Done" name="fmaction" class="myButton" onclick="progress_update();form1.submit();"/>
 		
 		<span><form:errors path="filename" cssClass="error" />
 		</span>
@@ -167,11 +198,25 @@ progress_clear();
 
 $(document).ready( function () {
 	//document.getElementById("strfreq").value='{"jsonfreq":[{"freq":100, "lg":1},{"freq":1000, "lg":2},{"freq":2000, "lg":2}]}';
+	 document.getElementById("more").disabled = true;
+	 document.getElementById("done").disabled = true;
+	 
 	
 	
 } );
 
-
+function typeonchange()
+{
+if(document.getElementById("ttype").value!=""){
+	 document.getElementById("more").disabled = false;
+	 document.getElementById("done").disabled = false;
+}
+else
+	{
+	 document.getElementById("more").disabled = true;
+	 document.getElementById("done").disabled = true;
+	}
+}
 </script>
 
  

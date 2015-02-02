@@ -13,8 +13,13 @@
   </head>
   <body>
   <script>
+  var text='<%=request.getParameter("text")%>';
+  if(text==null || text=="" || text=='null')
+	  {
+	  text='${model.text} ';
+	  }
       $(document).ready( function () {
-    	    treeEditflashMessenger.setText('${model.text} ');
+    	    treeEditflashMessenger.setText(text);
     	} );     
                       
    </script>

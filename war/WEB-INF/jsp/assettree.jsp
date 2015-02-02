@@ -65,7 +65,7 @@ var treemode='<%=request.getParameter("treemode")%>';
     var array_data=[];
     array_data.push(" INTELCON ");
     array_id.push(1);
-      
+    var treeType="";
     $(function () {
     	
     	 $("#jsTreeComponent").jstree("refresh");
@@ -140,7 +140,7 @@ var treemode='<%=request.getParameter("treemode")%>';
        
                 $("#jsTreeComponent").bind("select_node.jstree", function (e, data) {
                 	var node = $.jstree._focused().get_selected();
-                	var treeType=node.attr('treeType')
+                	 treeType=node.attr('treeType')
                 	if(treeType!=1){
                 		parent_node = $.jstree._reference('#jsTreeComponent')._get_parent(node);
                 		selectedparent=parent_node.attr('Assetname');
@@ -162,6 +162,7 @@ var treemode='<%=request.getParameter("treemode")%>';
 	  			        	  parent.document.getElementById("10db").style.display="none";
 	  			        	  parent.document.getElementById("cpg").style.display="none";
 	  			        	  parent.document.getElementById("blobe").style.display="none";
+	  			        	parent.document.getElementById("apt").style.display="none";
     			        	}
     			        else if ((atype=="E") && (selectedparenttype == 'L'))
 			        	{
@@ -172,6 +173,7 @@ var treemode='<%=request.getParameter("treemode")%>';
   			        	  parent.document.getElementById("10db").style.display="block";
   			        	  parent.document.getElementById("cpg").style.display="none";
   			        	 parent.document.getElementById("blobe").style.display="none";
+  			        	parent.document.getElementById("apt").style.display="none";
 			        	}
 						else if ((atype=="E") && (selectedparenttype == 'S'))
 			        	{
@@ -182,6 +184,7 @@ var treemode='<%=request.getParameter("treemode")%>';
   			        	  parent.document.getElementById("10db").style.display="block";
   			        	  parent.document.getElementById("cpg").style.display="none";
   			        	 parent.document.getElementById("blobe").style.display="block";
+  			        	parent.document.getElementById("apt").style.display="none";
 			        	}
     			        else if(atype=="CP")
 			        	{
@@ -193,7 +196,7 @@ var treemode='<%=request.getParameter("treemode")%>';
 			        	  parent.document.getElementById("10db").style.display="block";
 			        	  parent.document.getElementById("cpg").style.display="block";
 			        	  parent.document.getElementById("blobe").style.display="block";
-			        	  
+			        	  parent.document.getElementById("apt").style.display="none";
 			        	}
     			        else if(atype=="DCP")
 			        	{
@@ -205,6 +208,7 @@ var treemode='<%=request.getParameter("treemode")%>';
 			        	  parent.document.getElementById("10db").style.display="block";
 			        	  parent.document.getElementById("cpg").style.display="block";
 			        	  parent.document.getElementById("blobe").style.display="block";
+			        	  parent.document.getElementById("apt").style.display="none";
 			        	}
     			        else if(atype=="NCP")
 			        	{			        	 
@@ -215,6 +219,7 @@ var treemode='<%=request.getParameter("treemode")%>';
 			        	  parent.document.getElementById("10db").style.display="block";
 			        	  parent.document.getElementById("cpg").style.display="none";
 			        	  parent.document.getElementById("blobe").style.display="block";
+			        	  parent.document.getElementById("apt").style.display="none";
 			        	}
     			        }
     			        else
@@ -226,30 +231,30 @@ var treemode='<%=request.getParameter("treemode")%>';
   			        	    parent.document.getElementById("10db").style.display="none";
   			        	    parent.document.getElementById("cpg").style.display="none";
   			        	    parent.document.getElementById("blobe").style.display="none";
+  			        	  parent.document.getElementById("apt").style.display="none";
     			        	}
-                	 if(monitorstat=="monitor"){
-                		// alert("treeType " +monitorstat);
-                		if(treeType==2){
-                			 url = '<%=request.getContextPath()%>/monitor.htm?secid='+ node.attr('assetId')+'&treetype='+selectedtype;
-                      	   parent.frames['AppBody'].location =url;
-                		}
-                		else if(treeType==3)
-                 		 {
-                        	   url = '<%=request.getContextPath()%>/monitor.htm?secid='+ node.attr('assetId')+'&treetype='+selectedtype;
-                        	   parent.frames['AppBody'].location =url;
-                         }
-                     	 else if(treeType==4)
-                 		 {
-                        	   url = '<%=request.getContextPath()%>/monitor.htm?secid='+ node.attr('assetId')+'&treetype='+selectedtype;
-                        	   parent.frames['AppBody'].location =url;
-                         }
-                	 }
+    			        if(treeType==2)
+    			        	{
+    			        	parent.document.getElementById("apt").style.display="block";
+    			        	}
+                	
                 	//alert(" monitorstat "+monitorstat);
                 	 if(monitorstat=="monitor" || monitorstat=="Reports" || monitorstat=="Events"){
                 	 breadcrumbs(data);
                 	 //alert(selectedreport);
                 	 if(treeType==4){
                 	 parent.fnsetstat(selectedreport,"");}
+                	 else if(treeType==2)
+                	 {
+                		 if(selectedreport=="apt")
+                		 parent.fnsetstat(selectedreport,"");
+                		 else{
+                			 parent.frames['AppBody'].location='<%=request.getContextPath()%>/blank.htm?text=Select Tree Node With Data'; 
+                		 }
+                		 
+                	 }
+                	 else
+                		 parent.frames['AppBody'].location='<%=request.getContextPath()%>/blank.htm?text=Select Tree Node With Data';
                 	 //var currenturl=parent.frames['AppBody'].location;
                 	 //parent.frames['AppBody'].location=currenturl;
                 	 }
@@ -259,7 +264,7 @@ var treemode='<%=request.getParameter("treemode")%>';
                          id = $(this).attr("assetId");
                          
                          
-                         var treeType=$(this).attr('treeType')
+                          treeType=$(this).attr('treeType')
                                if(treeType==5)
                             	   {
                             	   if(cnt==0)
@@ -281,7 +286,7 @@ var treemode='<%=request.getParameter("treemode")%>';
                 $("#jsTreeComponent").bind("dblclick.jstree", function (event) {
                 	var node = $(event.target).closest("li");
                 	var data = node.data("jsTreeComponent");
-                	var treeType=node.attr('treeType');
+                	 treeType=node.attr('treeType');
                 	var url ='';
             if(treemode=="edit" ){            //&& treeType!=4 	  
              	 
@@ -545,7 +550,7 @@ function recreatewithparents()
                                 }
                   },
                   newItem: { // The "rename" menu item
-                      label: "Import Amplitude/Phase",
+                      label: "Import Tracking",
                       action: function(response) {
                           var url = '<%=request.getContextPath()%>/ampphaseimp.htm?PId='+ node.attr('assetId')+'&atype='+ node.attr('atype') ;
                          // alert("url "+url);
@@ -556,7 +561,7 @@ function recreatewithparents()
        if(treemode=="edit"){
        
        // alert(" alert " +node.attr('treeType'));
-        var treeType=node.attr('treeType')
+         treeType=node.attr('treeType')
         if(treeType==1)
         	{
         	items = {
@@ -616,7 +621,7 @@ function recreatewithparents()
                               }
                 },
                 newItem: { // The "rename" menu item
-                    label: "Import Amplitude/Phase",
+                    label: "Import Tracking",
                     action: function(response) {
                         var url = '<%=request.getContextPath()%>/ampphaseimp.htm?PId='+ node.attr('assetId')+'&atype='+ node.attr('atype') ;
                        // alert("url "+url);

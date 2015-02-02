@@ -36,61 +36,63 @@ function fnsetstat(typ,msg)
 	var testid=AssetTree.selectedsection;
 	var atype=AssetTree.atype;
 	AssetTree.selectedreport=typ;
+	var treetype=AssetTree.treeType;
 	var url="";
 	if(msg!=null && msg=='msg'){
 		reportflashMessenger.setText('<b>Please make a Selection from the Asset Tree on the left side</b>  ');}
 	if(typ=="Polar") {
 		url="hpolar.htm?oper=hpolar&testid="+testid +"&atype="+atype;
-		window.frames['AppBody'].location="hpolar.htm?oper=hpolar&testid="+testid +"&atype="+atype;
+		window.frames['AppBody'].location="hpolar.htm?oper=hpolar&testid="+testid +"&atype="+atype+"&treetype="+treetype;
 	AssetTree.monitorstat="Reports";}
 	if(typ=="3db") {
 		if( atype!="A"){
-		window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+testid+"&atype="+atype;
+		window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+testid+"&atype="+atype+"&treetype="+treetype;
 		AssetTree.monitorstat="Reports";}
 		else window.frames['AppBody'].location="blank.htm?oper=blank";
 	}
 	if(typ=="10db") {
 		if( atype!="A"){
-		window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+testid+"&atype="+atype;
+		window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+testid+"&atype="+atype+"&treetype="+treetype;
 		AssetTree.monitorstat="Reports";}
 		else window.frames['AppBody'].location="blank.htm?oper=blank";
 	}
 	if(typ=="blobe") {
-		window.frames['AppBody'].location="tools.htm?oper=blobe&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype;
+		window.frames['AppBody'].location="tools.htm?oper=blobe&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype+"&treetype="+treetype;
 		if(atype=="NCP"){
-			window.frames['AppBody'].location="tools.htm?oper=blobe&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype;}
+			window.frames['AppBody'].location="tools.htm?oper=blobe&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype+"&treetype="+treetype;}
 		else if(AssetTree.selectedparenttype=="C"){
-			window.frames['AppBody'].location="tools.htm?oper=blobe&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype;}
+			window.frames['AppBody'].location="tools.htm?oper=blobe&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype+"&treetype="+treetype;}
 		else if(AssetTree.selectedparenttype=="S" && atype=="E" ){
-			window.frames['AppBody'].location="tools.htm?oper=blobe&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype;}
+			window.frames['AppBody'].location="tools.htm?oper=blobe&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype+"&treetype="+treetype;}
 		else window.frames['AppBody'].location="blank.htm?oper=blank";
 		AssetTree.monitorstat="Reports";}
 	if(typ=="ar") {
 		if(AssetTree.selectedparenttype=="C" && atype!="NCP"){
-		window.frames['AppBody'].location="ar.htm?oper=ar&typ="+typ+"&testid="+testid+"&atype="+atype;}
+		window.frames['AppBody'].location="ar.htm?oper=ar&typ="+typ+"&testid="+testid+"&atype="+atype+"&treetype="+treetype;}
 		else if(AssetTree.selectedparenttype=="S" && atype=="E"){
-			window.frames['AppBody'].location="ar.htm?oper=ar&typ="+typ+"&testid="+testid+"&atype="+atype;}
+			window.frames['AppBody'].location="ar.htm?oper=ar&typ="+typ+"&testid="+testid+"&atype="+atype+"&treetype="+treetype;}
 		else window.frames['AppBody'].location="blank.htm?oper=blank";
 		AssetTree.monitorstat="Reports";
 	}
 	if(typ=="rset") {
-		window.frames['AppBody'].location="reportset.htm?oper=rset&typ="+typ+"&testid="+testid+"&atype="+atype+"&ptype="+AssetTree.selectedparenttype;
+		window.frames['AppBody'].location="reportset.htm?oper=rset&typ="+typ+"&testid="+testid+"&atype="+atype+"&ptype="+AssetTree.selectedparenttype+"&treetype="+treetype;
 		AssetTree.monitorstat="Reports";}
 	if(typ=="cpg") {
 		if(AssetTree.selectedparenttype=="C" && atype!="NCP"){
-		window.frames['AppBody'].location="lineargain.htm?oper=cpg&typ="+typ+"&testid="+testid+"&atype="+atype;
+		window.frames['AppBody'].location="lineargain.htm?oper=cpg&typ="+typ+"&testid="+testid+"&atype="+atype+"&treetype="+treetype;
 		AssetTree.monitorstat="Reports";}
 		else window.frames['AppBody'].location="blank.htm?oper=blank";
 	}
 	if(typ=="od") {
 		
 		if( AssetTree.atype=="A"){
-			window.frames['AppBody'].location="tools.htm?oper=od&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype;
+			window.frames['AppBody'].location="tools.htm?oper=od&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype+"&treetype="+treetype;
 		}
 		else window.frames['AppBody'].location="blank.htm?oper=blank";
 		AssetTree.monitorstat="Reports";}
 	if(typ=="apt") {
-		window.frames['AppBody'].location="ampphaserpt.htm?oper=ampphase&typ="+typ+"&testid="+testid+"&atype="+atype;
+		console.log("apt");
+		window.frames['AppBody'].location="ampphaserpt.htm?oper=ampphase&typ="+typ+"&prodid="+testid+"&atype="+atype+"&treetype="+treetype;
 		AssetTree.monitorstat="Reports";}
 	console.log("url "+url);
 }

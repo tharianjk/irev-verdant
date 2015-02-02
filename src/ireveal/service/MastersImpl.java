@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import ireveal.repository.MastersDao;
+import ireveal.domain.AmpPhaseTrack;
 import ireveal.domain.AssetTree;
 import ireveal.domain.Company;
 import ireveal.domain.DataLog;
@@ -12,6 +13,7 @@ import ireveal.domain.Operator;
 import ireveal.domain.Product;
 import ireveal.domain.ProductSerial;
 import ireveal.domain.RoleDsp;
+import ireveal.domain.Scaling;
 import ireveal.domain.TestData;
 import ireveal.domain.TestFiles;
 import ireveal.domain.TestFrequency;
@@ -164,6 +166,27 @@ public ProductSerial getheaderfooter(int testid) {
 @Override
 public ProductSerial getPSheaderfooter(String psids) {
 	return mastersdao.getPSheaderfooter(psids);
+}
+@Override
+public List<ProductSerial> getProdSerialWithAmpphase(int prdid) {
+	return mastersdao.getProdSerialWithAmpphase(prdid);
+}
+@Override
+public List<AmpPhaseTrack> getProdSerTracking(int prodSerid) {
+	return mastersdao.getProdSerTracking(prodSerid);
+}
+@Override
+public boolean deleteTracking(int id, String testname, String typ) {
+	return mastersdao.deleteTracking(id,testname,typ);
+}
+@Override
+public List<Scaling> getScaling() {
+	return mastersdao.getScaling();
+}
+@Override
+public void UpdateScaling(List<Scaling> scalelist) {
+	 mastersdao.UpdateScaling(scalelist);
+	
 }
 
 

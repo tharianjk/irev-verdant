@@ -14,6 +14,7 @@ import java.util.List;
 
 import java.util.Map;
 
+import ireveal.domain.AmpPhaseTrack;
 import ireveal.domain.AssetTree;
 import ireveal.domain.DataLog;
 import ireveal.domain.ImportData;
@@ -21,6 +22,7 @@ import ireveal.domain.Operator;
 import ireveal.domain.Product;
 import ireveal.domain.ProductSerial;
 import ireveal.domain.RoleDsp;
+import ireveal.domain.Scaling;
 import ireveal.domain.TestData;
 import ireveal.domain.TestFiles;
 import ireveal.domain.TestFrequency;
@@ -68,4 +70,9 @@ public interface MastersService {
 		 public String getFreqdatafile(String typ,int testid );
 		 public ProductSerial getheaderfooter(int testid);
 		 public ProductSerial getPSheaderfooter(String psids);
+		 public List<ProductSerial> getProdSerialWithAmpphase(int prdid);
+		 public List<AmpPhaseTrack> getProdSerTracking(int prodSerid);
+		 public boolean deleteTracking(int id,String testname,String typ);
+		 public List<Scaling> getScaling();
+		 public void UpdateScaling(List<Scaling> scalelist);
 } 

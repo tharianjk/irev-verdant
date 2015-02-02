@@ -110,6 +110,13 @@
         <property name="setupManager" ref="setupManager"/>        
         <property name="mastersManager" ref="mastersManager"/>
     </bean>
+    <bean name="/scaling.htm" class="ireveal.web.ScalingController">
+		<property name="sessionForm" value="true"/>
+        <property name="commandName" value="newscaling"/>			        
+        <property name="commandClass" value="ireveal.domain.Scaling"/>
+        <property name="formView" value="scaling"/>        
+        <property name="mastersManager" ref="mastersManager"/>
+    </bean>
 
 	<bean name="/company.htm" class="ireveal.web.CompanyController">
 		<property name="sessionForm" value="true"/>

@@ -1,6 +1,7 @@
 package ireveal.web;
 
 
+import ireveal.domain.AmpPhaseTrack;
 import ireveal.domain.DataLog;
 import ireveal.domain.ProductSerial;
 import ireveal.domain.ImportData;
@@ -30,6 +31,7 @@ public class AmpPhaseImpController extends SimpleFormController{
 	public MastersService mastersservice ;
 	private HttpSession cursess;
 	private int testid=0;
+	private int prdserid=0;
 	public AmpPhaseImpController(){
 		setCommandClass(ImportData.class);
 		setCommandName("ImportData");
@@ -51,7 +53,7 @@ public class AmpPhaseImpController extends SimpleFormController{
 		List<DataLog> datalogList = new ArrayList<DataLog>();
 		err="File Uploaded Successfully";
 		ImportData file = (ImportData)command;
-		
+		prdserid=file.getProductserialid();
 		MultipartFile multipartFile = file.getFilename();
 				
 		String fileName="";
@@ -99,8 +101,16 @@ public class AmpPhaseImpController extends SimpleFormController{
 					}
 				
 		}
-		
+		logger.info("*** Inside AmpPhasecontroller in onsubmit**: btn= "+request.getParameter("fmaction"));
+		if(request.getParameter("fmaction")!=null && request.getParameter("fmaction")!="")
+		{
+			String btn=request.getParameter("fmaction");
+			if(btn.equals("More")){
+				return new ModelAndView(new RedirectView("ampphaseimp.htm?PId="+prdserid));
+			}
+		}
 		 return new ModelAndView("fileuploadresult","fileName",fileName +" " +err);
+		// ampphaseimp.htm?PId=${prev.prodserialid}&oper=deltrack&testname=${prev.testname}&ttype=${prev.type}
 	}
 	@Override
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder)
@@ -115,21 +125,27 @@ public class AmpPhaseImpController extends SimpleFormController{
 	
 	 protected Object formBackingObject(HttpServletRequest request) throws ServletException {
 	    	cursess = request.getSession();
-	    	
-	    	String typ = request.getParameter("type");
-	        String id = request.getParameter("id");
+	    	String oper = request.getParameter("oper");	    	
 	        String PId=request.getParameter("PId");
 	        String atype=request.getParameter("atype");
 	        request.getSession().setAttribute("savestat", null);
 	        logger.info("inside AmpPhaseController"); 
-	      
-	        	logger.info(" atype "+atype);
+	      if(oper!=null && oper!="")
+	      {
+	    	  if(oper.equals("deltrack"))
+	    	  {
+	    		  String testname= request.getParameter("testname");
+	    		  String typ= request.getParameter("ttype");
+	    	  mastersservice.deleteTracking(Integer.parseInt(PId), testname, typ);
+	    	  }
+	      }
 	        	logger.info(" going to create new import");
 	        	request.getSession().setAttribute("id", null);
 	        	cursess.setAttribute("id",null);
 	        	ImportData testdata=new ImportData();
 	        	testdata.setProductserialid(Integer.parseInt(PId));
 	        	testdata.setPtype(atype);
+	        	prdserid=Integer.parseInt(PId);
 	        	return testdata;
 	        
 	              
@@ -137,10 +153,11 @@ public class AmpPhaseImpController extends SimpleFormController{
 	    protected HashMap referenceData(HttpServletRequest request) throws Exception {
 			HashMap referenceData = new HashMap();	
 	        List<ProductSerial> prodserlist = mastersservice.getProdVerSer();        
-	       
-	        referenceData.put("prodserlist", prodserlist);
+	        List<AmpPhaseTrack> tracklist= mastersservice.getProdSerTracking(prdserid);
 	        
-	       // referenceData.put("freqlist",mastersservice.getFreqList(testid));
+	        referenceData.put("prodserlist", prodserlist);
+	        referenceData.put("preventries", tracklist);
+	        referenceData.put("listsize", tracklist.size());
 	 		return referenceData;
 		}
 	
@@ -154,3 +171,4 @@ public class AmpPhaseImpController extends SimpleFormController{
 	  
 
 	}
+

@@ -6,6 +6,12 @@
 <html>
 <head><title>Report Set</title>
 <link rel="stylesheet" type="text/css" href="irev-style.css" />
+		<link rel="stylesheet" href="css/jquery-ui.css">
+		<link rel="stylesheet" href="css/stylePush.css">
+		<script src="js/jquery.js"></script>
+		<script src="js/jquery-ui.js"></script>
+		<script type='text/javascript' src="js/popupmessage.js" ></script>
+        <link rel="stylesheet" href="css/popupmessage.css">
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/hint-textbox.js"></script>
@@ -105,6 +111,7 @@ INPUT.hintTextboxActive { color: #000; }
  <tr>
 	
 		<td>&nbsp; &nbsp;&nbsp;<input type="button" value="Go" name="go" class="myButtonGo" onclick="Redirect()"/>
+		<td>&nbsp; &nbsp;&nbsp;<input type="button" value="Scale" name="go" class="myButton" onclick="scaleclick()"/>
 	
 		</td>
 		</tr>
@@ -115,7 +122,9 @@ INPUT.hintTextboxActive { color: #000; }
 <iframe id="AppBody" name="AppBody"  frameborder="1" scrolling="yes" width="98%" height="95%" 
 marginwidth="0" marginheight="0" align="right" class="AppBody"> 
 </iframe>
-
+<div id="dialog-form-scaling" title="Scaling" style="display:none;overflow:hidden;border:none">
+    <iframe id="scalingdialog" width="500" height="400" style="overflow:hidden;border:none" ></iframe>
+</div>
 </body>
 
 
@@ -548,6 +557,23 @@ function fnenable(ctyp){
 		//window.location =url; 
 		window.frames['AppBody'].location=url;
 		 }
+	
+	
+	
+	function scaleclick()
+	{
+		$("#scalingdialog").attr('src', "scaling.htm");
+			$("#dialog-form-scaling").dialog({
+	            width: 500,
+	            height: 350,
+	            modal: true,overflow: false,
+	            close: function () {
+	                $("#scalingdialog").attr('src', "about:blank");
+	            }
+	        });
+	
+	}
+	
 </script>
 
 </html>

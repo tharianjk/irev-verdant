@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.*;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -70,15 +71,22 @@ public class ToolsController implements Controller {
         String testid="0";
         testid=	request.getParameter("testid");
         String freq=request.getParameter("freq");
+        String treetype=request.getParameter("treetype");
         String rptheader="";
         String rptfooter="";
+        if(treetype==null || treetype=="" || treetype=="null" ||  treetype.equals("undefined")){
+        	treetype="0";
+        }
+        logger.info("*** treetype="+treetype);
         if(testid==null || testid=="" || testid=="null" ||  testid.equals("undefined")){
         	testid="0";
         }
         else{
-        	ProductSerial lstp=mastersservice.getheaderfooter(Integer.parseInt(testid));
+        	if(treetype.equals("4")){
+        		ProductSerial lstp=mastersservice.getheaderfooter(Integer.parseInt(testid));
         	rptheader=lstp.getRptheader();
         	rptfooter=lstp.getRptfooter();
+        	}
         	if(rptheader=="" || rptheader==null ||rptheader=="null")
         		rptheader="No Header";
         	if(rptfooter=="" || rptfooter==null ||rptfooter=="null")
@@ -182,14 +190,25 @@ public class ToolsController implements Controller {
              return new ModelAndView("ar", "model", myModel);   
              
        	    }
-			else if (operstr.contains("ampphase")){
-				
+			else if (operstr.equals("ampphase"))
+			{				
         		logger.info("*** ampphase ** ");
-       
-       		 myModel.put("prodlist",mastersservice.getProductWithAmpphase());
-       		 myModel.put("rptheader",rptheader);
-    		 myModel.put("rptfooter",rptfooter);
+        		String prodid = request.getParameter("prodid");
+        		 List dataList = new ArrayList();
+        		
+        		if(prodid!="" && prodid!=null)
+        			dataList=mastersservice.getProdSerialWithAmpphase(Integer.parseInt(prodid));
+        		logger.info("*** dataList.size() ** "+dataList.size());
+        		if(dataList.size()>0){
+       		 myModel.put("prodserlist",dataList);
+       		// myModel.put("rptheader",rptheader);
+    		// myModel.put("rptfooter",rptfooter);
              return new ModelAndView("ampphaserpt", "model", myModel);   
+        		}
+        		else{
+        			myModel.put("text","Please Select Product from asset tree with Tracking Data uploaded!! ");
+        			 return new ModelAndView("blank", "model", myModel);
+        		}
              
        	    }
 			else if (operstr.contains("viewaptracking")){

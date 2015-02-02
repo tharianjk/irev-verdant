@@ -47,5 +47,19 @@ public class JdbcDataDao implements DataDao {
 	        return prodser;
 	    }
 	} 
+	public static class StringRowMapper implements ParameterizedRowMapper<String>{
+		public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+		    return rs.getString(1);
+		        }}
+	public List<String> getDWTestNames(String prodSerid,String typ){
+		String sql="";
+		logger.info("JdbcDataDao inside getDWTestNames prodSerid "+prodSerid);
+		
+	      sql = "SELECT distinct testname from vw_ampphase where typ=? and prodserial_id=? ";
+	      List<String> strLst=	jdbcTemplate.query(sql, new StringRowMapper(),typ,prodSerid);    
+	  
+		return strLst; 
+	}
+	 
 
 }

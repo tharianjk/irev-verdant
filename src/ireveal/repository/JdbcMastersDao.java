@@ -1,6 +1,7 @@
 package ireveal.repository;
 
 
+import ireveal.domain.AmpPhaseTrack;
 import ireveal.domain.AssetTree;
 import ireveal.domain.DataLog;
 import ireveal.domain.ImportData;
@@ -8,12 +9,14 @@ import ireveal.domain.Operator;
 import ireveal.domain.Product;
 import ireveal.domain.ProductSerial;
 import ireveal.domain.RoleDsp;
+import ireveal.domain.Scaling;
 import ireveal.domain.TestData;
 import ireveal.domain.TestFiles;
 import ireveal.domain.TestFrequency;
 import ireveal.domain.User;
 import ireveal.domain.UserPref;
 import ireveal.repository.JdbcAssetTreeDao.RoleMapper;
+import ireveal.repository.JdbcDataDao.StringRowMapper;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -905,7 +908,24 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 					   
 					    dataList = getJdbcTemplate().query(sql, new ProductMapper());  
 					    return dataList;  
-					   }  
+					   }
+				//Product list for amplitude Phase Tracking report
+					
+				 public List<ProductSerial> getProdSerialWithAmpphase(int prdid) {  
+					 List<ProductSerial> dataList =null;
+					    String sql = " select Prodserial_id , SerialNo from product_serial S where s.Product_id=? and s.prodserial_id in (select prodserial_id from vw_ampphase) ";  
+					   try
+					   {
+						   dataList = getJdbcTemplate().query(sql, new ProdVerSerMapper(),prdid);
+					  
+					   }
+					   catch(Exception e)
+					   {
+					    logger.info("***Exception** "+ e.getMessage() );
+					   }
+					    return dataList;  
+					   } 
+					   
 					    
 				 public String getFreqdatafile(String typ,int testid ){
 					 String sql="";
@@ -967,7 +987,100 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 					   
 					    return getJdbcTemplate().query(sql, new rptheaderfooterMapper()).get(0);  
 					     
-					   } 
+					   }
+				 public List<AmpPhaseTrack> getProdSerTracking(int prodSerid){
+						String sql="";
+						 List<AmpPhaseTrack> strLst=new ArrayList();
+						logger.info("JdbcMastersDao inside getProdSerTracking prodSerid "+prodSerid);
+						try{
+					      sql = "SELECT distinct testname,typ,prodserial_id from vw_ampphase where  prodserial_id=? ";
+					       strLst=	getJdbcTemplate().query(sql, new ProdSerTrackingMapper(),prodSerid); 
+						}
+					  catch(Exception e)
+					  {  logger.info("*** getProdSerTracking Exception** "+ e.getMessage() );}
+						return strLst; 
+					}
+				 private static class ProdSerTrackingMapper implements ParameterizedRowMapper<AmpPhaseTrack> {
+					   
+				       public AmpPhaseTrack mapRow(ResultSet rs, int rowNum) throws SQLException {
+				    	   AmpPhaseTrack prdser = new AmpPhaseTrack();
+				    	   prdser.setTtype(rs.getString("typ").equals("P")?"Phase":"Amplitude");  
+				    	   prdser.setTestname(rs.getString("testname"));
+				    	   prdser.setProdserialid(rs.getInt("prodserial_id"));
+				           return prdser;
+				       }
+
+				   }
+				 public boolean deleteTracking(int id,String testname,String typ) { 
+					   String sql = ""; 
+					   
+						   try{
+							   if(typ.equals("Phase")){
+						   
+				     sql = "delete from phasedata where Prodserial_id=? and testname=?";  }
+							   else{sql = "delete from amplitudedata where Prodserial_id=? and testname=?";}
+				    getJdbcTemplate().update(sql,id,testname);
+				   
+				    return true;
+				    }
+						   catch(Exception e){
+							   logger.info("*** deleteTracking Exception** "+ e.getMessage() );
+							   return false;
+						   }
+				 }
+				 
+				 
+				 
+				 public void UpdateScaling(List<Scaling> scalelist){
+					   try{
+					String sqlinsert=	"INSERT INTO scaling(minscale,maxscale,Frequency)  VALUES   (?,?,?)"; 						  	
+						  	
+				  	String sqlupdate=	"Update scaling set minscale=?,maxscale=? where  Frequency=? " ; 
+				  	for (int i=0;i<scalelist.size();i++){
+				  		int cnt =getJdbcTemplate().queryForInt("select count(*) from scaling where  Frequency=?",scalelist.get(i).getFrequency());
+						if(cnt==0){
+				  		getJdbcTemplate().update(  
+				  				sqlinsert,  
+					 new Object[] { scalelist.get(i).getMinscale(),scalelist.get(i).getMaxscale(),scalelist.get(i).getFrequency() });
+				  		}
+						else{
+							getJdbcTemplate().update(  
+									sqlupdate,  
+									new Object[] { scalelist.get(i).getMinscale(),scalelist.get(i).getMaxscale(),scalelist.get(i).getFrequency() });
+					   }
+				  	}
+				  	}
+					   catch(Exception ep)
+					   {
+						   logger.info("Exception in UpdateScaling "+ep.getMessage());  
+					   }
+					
+				   }
+				 
+				 
+				 public List<Scaling> getScaling(){
+						String sql="";
+						 List<Scaling> strLst=new ArrayList<Scaling>();
+						logger.info("JdbcMastersDao inside getScaling");
+						try{
+					      sql = "SELECT distinct frequency ,minscale,maxscale from scaling ";
+					       strLst=	getJdbcTemplate().query(sql, new ScalingMapper()); 
+						}
+					  catch(Exception e)
+					  {  logger.info("*** getProdSerTracking Exception** "+ e.getMessage() );}
+						return strLst; 
+					}
+				 private static class ScalingMapper implements ParameterizedRowMapper<Scaling> {
+					   
+				       public Scaling mapRow(ResultSet rs, int rowNum) throws SQLException {
+				    	   Scaling prdser = new Scaling();
+				    	   prdser.setFrequency(rs.getDouble("frequency"));  
+				    	   prdser.setMinscale(rs.getDouble("minscale"));
+				    	   prdser.setMaxscale(rs.getDouble("maxscale"));
+				           return prdser;
+				       }
+
+				   }
    
   }
 
