@@ -290,6 +290,10 @@ public class TestImportController extends SimpleFormController{
 	        String PId=request.getParameter("PId");
 	        atype=request.getParameter("atype");
 	        request.setAttribute("savestat", null);
+	        request.setAttribute("err", null);
+	        request.setAttribute("message", null);
+	        cursess.setAttribute("message",null);
+	        cursess.setAttribute("err",null);
 	        request.setAttribute("mode", mode);
         	cursess.setAttribute("mode",mode);
 	        logger.info("inside ProductSerialController"); 
