@@ -38,6 +38,10 @@ function fnsetstat(typ,msg)
 	AssetTree.selectedreport=typ;
 	var treetype=AssetTree.treeType;
 	var url="";
+	if(treetype!=4){
+		window.frames['AppBody'].location="blank.htm?oper=blank";
+	}
+	else{
 	if(msg!=null && msg=='msg'){
 		reportflashMessenger.setText('<b>Please make a Selection from the Asset Tree on the left side</b>  ');}
 	if(typ=="Polar") {
@@ -90,7 +94,8 @@ function fnsetstat(typ,msg)
 		}
 		else window.frames['AppBody'].location="blank.htm?oper=blank";
 		AssetTree.monitorstat="Reports";}
-	if(typ=="apt") {
+}
+	if(typ=="apt" && treetype==4) {
 		console.log("apt");
 		window.frames['AppBody'].location="ampphaserpt.htm?oper=ampphase&typ="+typ+"&prodid="+testid+"&atype="+atype+"&treetype="+treetype;
 		AssetTree.monitorstat="Reports";}

@@ -255,11 +255,11 @@ function fnenable(ctyp){
 	else{
 	if(document.getElementById("hdata").checked){
 		document.getElementById("cpdata").checked=false;
-		document.getElementById("vdata").checked=false;
+		//document.getElementById("vdata").checked=false;
 	}
 	if(document.getElementById("vdata").checked){
 		document.getElementById("cpdata").checked=false;
-		document.getElementById("hdata").checked=false;
+		//document.getElementById("hdata").checked=false;
 	}
 	}
 }
@@ -544,7 +544,7 @@ function fnenable(ctyp){
 	    }
         
 		else if (atype=="CP" && ptype=="C"){
-			var url="/birt-verdant/frameset?__report=CPReportset.rptdesign&testid="+testid+"&type=C&polar="+polar+"&axr="+axr+"&AxDeg="+AxDeg+"&scale=yes&lgain=0.0001"+
+			var url="/birt-viewer/frameset?__report=CPReportset.rptdesign&testid="+testid+"&type=C&polar="+polar+"&axr="+axr+"&AxDeg="+AxDeg+"&scale=yes&lg1=0.0001"+
 			"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+"&cpg="+cpg+"&blobe="+blobe+"&freq1="+strfreqs[0]+
 			"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
 			"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img=no&rpth="+rptheader+"&rptf="+rptfooter;
