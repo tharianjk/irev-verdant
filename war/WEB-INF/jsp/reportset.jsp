@@ -335,9 +335,9 @@ function fnenable(ctyp){
 		 var dbv="no";
 		 var polar="no";
 		 var od="no";
-		 var AxDeg ;
-		 var dbDegv ;
-		 var dbDeg ;
+		 var AxDeg="x" ;
+		 var dbDegv="bm" ;
+		 var dbDeg="bm";
 		var testid=${model.testid};
 		var typ='${model.type}';
 		var strfreqs=[20]; 
