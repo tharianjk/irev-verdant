@@ -44,9 +44,12 @@ public class AmpPhaseImpController extends SimpleFormController{
 		logger.info("*** Inside testcontroller in onsubmit**: ");
         // check if user pressed Done
         
-		 
+		request.setAttribute("err", null);
+        request.setAttribute("message", null);
+        cursess.setAttribute("message",null);
+        cursess.setAttribute("err",null);
 		List<DataLog> datalogList = new ArrayList<DataLog>();
-		
+		err="File Uploaded Successfully";
 		ImportData file = (ImportData)command;
 		
 		MultipartFile multipartFile = file.getFilename();
@@ -68,11 +71,11 @@ public class AmpPhaseImpController extends SimpleFormController{
 	            lnreader = new LineNumberReader(freader);
 	            int rowno=0;
 	            while ((line = lnreader.readLine()) != null) {
-	            	logger.info("line "+line);
+	            	//logger.info("line "+line);
 	            
 	            	if(rowno>0){
 	                fields = line.split(",");
-	                logger.info("fields[0] "+fields[0]);
+	                //logger.info("fields[0] "+fields[0]);
 	                DataLog datalog= new DataLog();
 	                datalog.setFreq(Double.parseDouble(fields[0].toString()));
 	                datalog.setAmplitude(Double.parseDouble(fields[1].toString()));
