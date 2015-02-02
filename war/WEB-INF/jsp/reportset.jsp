@@ -12,7 +12,8 @@
 		<script src="js/jquery-ui.js"></script>
 		<script type='text/javascript' src="js/popupmessage.js" ></script>
         <link rel="stylesheet" href="css/popupmessage.css">
-
+<script src="js/classiepush.js"></script>
+		<script src="js/nav.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/hint-textbox.js"></script>
 
