@@ -212,8 +212,8 @@ public class ToolsController implements Controller {
              
        	    }
 			else if (operstr.contains("viewaptracking")){
-				String maxDiff="";
-				String maxFreq="";
+				String maxDiff="0";
+				String maxFreq="0";
 				String typ = request.getParameter("typ");
 				String prodseriallist = request.getParameter("prodseriallist");
 				
@@ -243,11 +243,11 @@ public class ToolsController implements Controller {
 				{
 					if(track.getLineargain()!=0 && track.getFrequency()!=0){
 					maxDiff="±"+track.getLineargain();
-					freq=track.getFrequency()+"";}
+					maxFreq=track.getFrequency()+"";}
 				}
         		logger.info("*** ampphase ** typ "+typ+" prodseriallist "+var+" maxDiff= "+maxDiff+" freq ="+freq);    
        		//type,prodserialids,maxamp,freq
-             return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=PhaseTracking.rptdesign&type="+typ+"&prodserialids="+var+"&maxamp="+maxDiff+"&freq="+freq+"&rpth="+rptheader+"&rptf="+rptfooter)); 
+             return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=PhaseTracking.rptdesign&type="+typ+"&prodserialids="+var+"&maxamp="+maxDiff+"&freq="+maxFreq+"&rpth="+rptheader+"&rptf="+rptfooter)); 
 			        }
 			else if(operstr.equals("od")){
 				atype=request.getParameter("atype");
