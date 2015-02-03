@@ -81,7 +81,8 @@ public interface MastersDao {
 	 public List<AmpPhaseTrack> getProdSerTracking(int prodSerid);
 	 public boolean deleteTracking(int id,String testname,String typ);
 	 public List<Scaling> getScaling(int testid);
-	 public void UpdateScaling(List<Scaling> scalelist);
+	 public void UpdateScaling(List<Scaling> scalelist,int prodid);
 	 public TestFrequency calcTrack(String testnames,String typ);
 	 public int getProductid(int testid);
+	 public int getPrecision();
 }

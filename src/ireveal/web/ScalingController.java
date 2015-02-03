@@ -70,7 +70,7 @@ public class ScalingController extends SimpleFormController{
 	    		scale.setMaxscale(Double.parseDouble(obj2.get("maxscale").toString()));
 	    		scalelist.add(scale);
 	     }
-	    mastersservice.UpdateScaling(scalelist);
+	    mastersservice.UpdateScaling(scalelist,scalecmd.getProductid());
 	     } catch (JSONException e) {
 	         e.printStackTrace();
 	    }

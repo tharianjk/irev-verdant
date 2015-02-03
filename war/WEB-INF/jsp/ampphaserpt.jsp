@@ -71,11 +71,11 @@
 		Selected :</td>
 				<td><textarea  id="selfiles" readonly="true"   rows="2" cols="40" ></textarea></td>
 				  <td>
-					<input type="button" value="Clear" class="myButton"  name="clearExp" onclick="ClearExp()"/>	
+					<input type="button" value="Clear" class="myButtonGo"  name="clearExp" onclick="ClearExp()"/>	
 				</td> 
 	 	   </tr>	
 	 	   <tr><td>
-	 	   &nbsp; &nbsp;&nbsp;<input type="button" value="Chart" name="go" class="myButtonGo" onclick="Redirect()"/>
+	 	   &nbsp; &nbsp;&nbsp;<input type="button" value="Chart" name="go" class="myButton" onclick="Redirect()"/>
 	 	   </td></tr> 	   
           
 </table>

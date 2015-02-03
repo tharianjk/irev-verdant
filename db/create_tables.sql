@@ -113,7 +113,8 @@ CREATE TABLE IF NOT EXISTS `Verdant`.FWK_COMPANY(
 	COMPANY_ID INTEGER NOT NULL,
 	COMPANYNAME varchar(50) NOT NULL,
 	ADDRESS  VARCHAR(300) NULL,	
-expirydate varchar(100),
+    expirydate varchar(100),
+    nprecision int default 1,
  	PRIMARY KEY (COMPANY_ID));
 -- -----------------------------------------------------
 -- Table `Verdant`.`Product`
@@ -422,7 +423,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Verdant`.`scaling` Scaling of polar plot
 -- -----------------------------------------------------
-create table scaling(frequency decimal(20,14),minscale decimal(20,10),maxscale decimal(20,10));
+create table scaling(frequency decimal(20,14),minscale decimal(20,10),maxscale decimal(20,10),product_id int);
 
 
 -- Create View axialratio_view

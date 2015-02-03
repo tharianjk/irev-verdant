@@ -184,8 +184,8 @@ public List<Scaling> getScaling(int testid) {
 	return mastersdao.getScaling(testid);
 }
 @Override
-public void UpdateScaling(List<Scaling> scalelist) {
-	 mastersdao.UpdateScaling(scalelist);
+public void UpdateScaling(List<Scaling> scalelist,int prodid) {
+	 mastersdao.UpdateScaling(scalelist,prodid);
 	
 }
 @Override
@@ -195,6 +195,10 @@ public TestFrequency calcTrack(String testnames, String typ) {
 @Override
 public int getProductid(int testid) {
 	return mastersdao.getProductid(testid);
+}
+@Override
+public int getPrecision() {
+	return mastersdao.getPrecision();
 }
 
 
