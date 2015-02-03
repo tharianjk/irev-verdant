@@ -95,7 +95,7 @@ function fnsetstat(typ,msg)
 		else window.frames['AppBody'].location="blank.htm?oper=blank";
 		AssetTree.monitorstat="Reports";}
 }
-	if(typ=="apt" && treetype==4) {
+	if(typ=="apt" && treetype==2) {
 		console.log("apt");
 		window.frames['AppBody'].location="ampphaserpt.htm?oper=ampphase&typ="+typ+"&prodid="+testid+"&atype="+atype+"&treetype="+treetype;
 		AssetTree.monitorstat="Reports";}

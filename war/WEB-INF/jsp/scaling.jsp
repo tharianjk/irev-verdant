@@ -24,12 +24,17 @@ function cancelclick()
 
 
 <div id="dialog-form-scaling" title="scaling">
-<form:form method="post" commandName="newscaling">
+<form:form id="form1" method="post" commandName="newscaling">
 <table>
+<tr>
+<td>		
+           <input type="button" id="add" class="mybutton" value ="Add Freq" onclick="Add();" />
+        </td></tr>
 <tr>
 <td>
   <table id="tblData" class="hover order-column cell-border">
 	<thead>
+	
 				<tr>
 					<th scope="col"> Frequency </th>
 					<th scope="col"> Minimum Scale </th>
@@ -41,16 +46,16 @@ function cancelclick()
 	<tbody>
     <c:forEach items="${scalelist}" var="scalelst">
 		<tr>
-			<td><input type="number" value='<c:out value="${scalelst.frequency}"'/> </td>
-			<td><input type="number" value='<c:out value="${scalelst.minscale}"'/> </td>
-			<td><input type="number" value='<c:out value="${scalelst.maxscale}"'/> <br>			
+			<td><input type="text" name="freq" value='<c:out value="${scalelst.frequency}"/>'/> </td>
+			<td><input type="text" name="min" value='<c:out value="${scalelst.minscale}"/>'/> </td>
+			<td><input type="text" name="max" value='<c:out value="${scalelst.maxscale}"/>'/> <br>			
 			<td> </td> 
 			
 		</tr>
     </c:forEach> 
 	</tbody>
 	</table> 
-  <tr> <td> <input type="submit" align="center" class="myButton" value="Save">
+  <tr> <td> <input type="button" align="center" class="myButton" value="Save" onclick="saveclick();">
    	<td> <input type="button" align="center" value="Back" class="myButton" onclick="cancelclick();">  
   </table>
   <form:hidden id="strfreq" path="strjsonfreq"></form:hidden>
@@ -70,7 +75,15 @@ $(document).ready(function(){
          
     });
   
-
+function Add(){
+	$("#tblData tbody").append(
+		"<tr>"+
+		"<td><input type='text'/></td>"+
+		"<td><input type='text'/></td>"+
+		"<td><input type='text'/></td>"+		
+		"</tr>");
+	
+}; 
 function tabledata()
 {
 	var freq;
@@ -80,13 +93,18 @@ function tabledata()
 	var idx=0;
 	 //console.log("tabledata");
 	var table = $("#tblData");
-	table.find('tr').each(function (i, el) {
-		var tdfreq = this.children("td:nth-child(1)");
-		var tdminscale = this.children("td:nth-child(2)");
-		var tdmaxscale = this.children("td:nth-child(3)");
-		freq=tdfreq.children("input[type=text]").val();
-		minscale=tdminscale.children("input[type=text]").val();
-		maxscale=tdmaxscale.children("input[type=text]").val();
+	$('#tblData tr').each(function(){
+	    $(this).find('td').each(function(){
+	    	var name=$(this).children("input[type=text]").name();
+			if(name=="freq")
+	    	freq=$(this).children("input[type=text]").val();
+			if(name=="min")
+			minscale=$(this).children("input[type=text]").val();
+			if(name=="max")
+			maxscale=$(this).children("input[type=text]").val();
+			console.log("freq "+freq+"minscale "+minscale)
+	    })
+		
 		
         if(freq!="" && freq!=null && freq !='null'){
        if(idx==0){
@@ -103,6 +121,11 @@ function tabledata()
 		document.getElementById("strfreq").value=json;
 		console.log(""+json);
 		}
+}
+function saveclick()
+{	
+	tabledata();
+	form1.submit();
 }
 
 

@@ -1067,7 +1067,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 					       strLst=	getJdbcTemplate().query(sql, new ScalingMapper()); 
 						}
 					  catch(Exception e)
-					  {  logger.info("*** getProdSerTracking Exception** "+ e.getMessage() );}
+					  {  logger.info("*** getScaling Exception** "+ e.getMessage() );}
 						return strLst; 
 					}
 				 private static class ScalingMapper implements ParameterizedRowMapper<Scaling> {

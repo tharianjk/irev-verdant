@@ -75,14 +75,7 @@ public class ScalingController extends SimpleFormController{
 	         e.printStackTrace();
 	    }
 	    
-	    ProductSerial lstp=mastersservice.getheaderfooter(testid);
-     	String rptheader=lstp.getRptheader();
-     	String rptfooter=lstp.getRptfooter();
-     	if(rptheader=="" || rptheader==null ||rptheader=="null")
-    		rptheader="No Header";
-    	if(rptfooter=="" || rptfooter==null ||rptfooter=="null")
-    		rptfooter="No Header";
-		return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=CPGain.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter));
+	     return new ModelAndView(new RedirectView("scaling.htm?savestat=saved"));
 		}
 	
 	

@@ -6,16 +6,16 @@
 <html>
 <head><title>Report Set</title>
 <link rel="stylesheet" type="text/css" href="irev-style.css" />
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/hint-textbox.js"></script>
 		<link rel="stylesheet" href="css/jquery-ui.css">
 		<link rel="stylesheet" href="css/stylePush.css">
 		<script src="js/jquery.js"></script>
 		<script src="js/jquery-ui.js"></script>
 		<script type='text/javascript' src="js/popupmessage.js" ></script>
         <link rel="stylesheet" href="css/popupmessage.css">
-<script src="js/classiepush.js"></script>
-		<script src="js/nav.js"></script>
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/hint-textbox.js"></script>
+
 
 <style>
 INPUT.hintTextbox { color: #888; } 
@@ -124,7 +124,7 @@ INPUT.hintTextboxActive { color: #000; }
 marginwidth="0" marginheight="0" align="right" class="AppBody"> 
 </iframe>
 <div id="dialog-form-scaling" title="Scaling" style="display:none;overflow:hidden;border:none">
-    <iframe id="scalingdialog" width="500" height="400" style="overflow:hidden;border:none" ></iframe>
+    <iframe id="scalingdialog" width="500" height="400" style="border:none" ></iframe>
 </div>
 </body>
 
@@ -567,7 +567,7 @@ function fnenable(ctyp){
 			$("#dialog-form-scaling").dialog({
 	            width: 500,
 	            height: 350,
-	            modal: true,overflow: false,
+	            modal: true,overflow: true,
 	            close: function () {
 	                $("#scalingdialog").attr('src', "about:blank");
 	            }
