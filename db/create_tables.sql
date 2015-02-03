@@ -20,7 +20,7 @@ drop procedure if exists calc_MaxDiffAxialRatio;
 drop procedure if exists calc_Slant_Azimuth;
 drop procedure if exists calc_Slant_Elevation;
 drop procedure if exists convert_to_CP;
-
+drop table if exists scaling;
 drop function if exists calc_AxialRatio;
 drop function if exists calc_backlobe;
 drop function if exists calc_cpdata;
@@ -166,14 +166,14 @@ testtype varchar(10));
 -- -----------------------------------------------------
 -- Table `Verdant`.`TestFreq
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS TestFreq(freq_id int AUTO_INCREMENT PRIMARY KEY,Test_id INT,Frequency DECIMAL(20,10),lineargain decimal(20,10));
+CREATE TABLE IF NOT EXISTS TestFreq(freq_id int AUTO_INCREMENT PRIMARY KEY,Test_id INT,Frequency decimal(40,20),lineargain decimal(40,20));
 -- -----------------------------------------------------
 -- Table `Verdant`.`VData`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Verdant`.`VData` (
   `VData_id` INT AUTO_INCREMENT NOT NULL,
   `Test_id` INT NULL,
-   Frequency DECIMAL(20,10),
+   Frequency decimal(40,20),
   `Angle` DECIMAL(12,2) NULL,
   `Amplitude` DECIMAL(12,8) NULL,  
   PRIMARY KEY (`VData_id`))
@@ -186,7 +186,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Verdant`.`HData` (
   `HData_id` INT AUTO_INCREMENT,
   `Test_id` INT NULL,
-  Frequency DECIMAL(20,10),
+  Frequency decimal(40,20),
   `Angle` DECIMAL(12,2) NULL,
   `Amplitude` DECIMAL(12,8) NULL,
   PRIMARY KEY (`HData_id`))
@@ -199,7 +199,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Verdant`.`CPData` (
   `CPData_id` INT  AUTO_INCREMENT,
   `Test_id` INT NULL,
-  Frequency DECIMAL(20,10),
+  Frequency decimal(40,20),
   `Angle` DECIMAL(12,2) NULL,
   `Amplitude` DECIMAL(12,8) NULL,  
   PRIMARY KEY (`CPData_id`))
@@ -212,22 +212,22 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Verdant`.`VCalculated` (
   `VCalculated_Id` INT AUTO_INCREMENT,
   `Test_id` INT NULL,
-  `Frequency` DECIMAL(20,10) NULL,
+  `Frequency` decimal(40,20) NULL,
   `TestDate` DATETIME NULL,
-  `OmniDeviation` DECIMAL(20,10) NULL, -- omni deviation
-  `3Db_BW_BMax` DECIMAL(20,10) NULL, -- 3db Beam width from Beam Max
-  `3Db_BW_0` DECIMAL(20,10) NULL, -- 3db Beam width from 0 degree
-  `3Db_BW_90` DECIMAL(20,10) NULL, -- 3db Beam width from 90 degree
-  `3Db_BS_BMax` DECIMAL(20,10) NULL, -- 3db Beam squint from Beam Max
-  `3Db_BS_0` DECIMAL(20,10) NULL, -- 3db Beam squint from 0 degree
-  `3Db_BS_90` DECIMAL(20,10) NULL, -- 3db Beam squint from 90 degree
-  `10Db_BW_BMax` DECIMAL(20,10) NULL, -- 10db Beam width from Beam Max
-  `10Db_BW_0` DECIMAL(20,10) NULL, -- 10db Beam width from 0 degree
-  `10Db_BW_90` DECIMAL(20,10) NULL, -- 10db Beam width from 90 degree
-  `10Db_BS_BMax` DECIMAL(20,10) NULL, -- 10db Beam squint from Beam Max
-  `10Db_BS_0` DECIMAL(20,10) NULL, -- 10db Beam squint from 0 degree
-  `10Db_BS_90` DECIMAL(20,10) NULL, -- 10db Beam squint from 90 degree
-  `BackLobe` DECIMAL(20,10) NULL, -- Back Lobe level
+  `OmniDeviation` decimal(40,20) NULL, -- omni deviation
+  `3Db_BW_BMax` decimal(40,20) NULL, -- 3db Beam width from Beam Max
+  `3Db_BW_0` decimal(40,20) NULL, -- 3db Beam width from 0 degree
+  `3Db_BW_90` decimal(40,20) NULL, -- 3db Beam width from 90 degree
+  `3Db_BS_BMax` decimal(40,20) NULL, -- 3db Beam squint from Beam Max
+  `3Db_BS_0` decimal(40,20) NULL, -- 3db Beam squint from 0 degree
+  `3Db_BS_90` decimal(40,20) NULL, -- 3db Beam squint from 90 degree
+  `10Db_BW_BMax` decimal(40,20) NULL, -- 10db Beam width from Beam Max
+  `10Db_BW_0` decimal(40,20) NULL, -- 10db Beam width from 0 degree
+  `10Db_BW_90` decimal(40,20) NULL, -- 10db Beam width from 90 degree
+  `10Db_BS_BMax` decimal(40,20) NULL, -- 10db Beam squint from Beam Max
+  `10Db_BS_0` decimal(40,20) NULL, -- 10db Beam squint from 0 degree
+  `10Db_BS_90` decimal(40,20) NULL, -- 10db Beam squint from 90 degree
+  `BackLobe` decimal(40,20) NULL, -- Back Lobe level
     
   PRIMARY KEY (`VCalculated_Id`))
 ENGINE = InnoDB;
@@ -238,22 +238,22 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Verdant`.`HCalculated` (
   `HCalculated_Id` INT AUTO_INCREMENT,
   `Test_id` INT NULL,
-  `Frequency` DECIMAL(20,10) NULL,
+  `Frequency` decimal(40,20) NULL,
   `TestDate` DATETIME NULL,
-  `OmniDeviation` DECIMAL(20,10) NULL, -- omni deviation
-  `3Db_BW_BMax` DECIMAL(20,10) NULL, -- 3db Beam width from Beam Max
-  `3Db_BW_0` DECIMAL(20,10) NULL, -- 3db Beam width from 0 degree
-  `3Db_BW_90` DECIMAL(20,10) NULL, -- 3db Beam width from 90 degree
-  `3Db_BS_BMax` DECIMAL(20,10) NULL, -- 3db Beam squint from Beam Max
-  `3Db_BS_0` DECIMAL(20,10) NULL, -- 3db Beam squint from 0 degree
-  `3Db_BS_90` DECIMAL(20,10) NULL, -- 3db Beam squint from 90 degree
-  `10Db_BW_BMax` DECIMAL(20,10) NULL, -- 10db Beam width from Beam Max
-  `10Db_BW_0` DECIMAL(20,10) NULL, -- 10db Beam width from 0 degree
-  `10Db_BW_90` DECIMAL(20,10) NULL, -- 10db Beam width from 90 degree
-  `10Db_BS_BMax` DECIMAL(20,10) NULL, -- 10db Beam squint from Beam Max
-  `10Db_BS_0` DECIMAL(20,10) NULL, -- 10db Beam squint from 0 degree
-  `10Db_BS_90` DECIMAL(20,10) NULL, -- 10db Beam squint from 90 degree
-  `BackLobe` DECIMAL(20,10) NULL, -- Back Lobe level
+  `OmniDeviation` decimal(40,20) NULL, -- omni deviation
+  `3Db_BW_BMax` decimal(40,20) NULL, -- 3db Beam width from Beam Max
+  `3Db_BW_0` decimal(40,20) NULL, -- 3db Beam width from 0 degree
+  `3Db_BW_90` decimal(40,20) NULL, -- 3db Beam width from 90 degree
+  `3Db_BS_BMax` decimal(40,20) NULL, -- 3db Beam squint from Beam Max
+  `3Db_BS_0` decimal(40,20) NULL, -- 3db Beam squint from 0 degree
+  `3Db_BS_90` decimal(40,20) NULL, -- 3db Beam squint from 90 degree
+  `10Db_BW_BMax` decimal(40,20) NULL, -- 10db Beam width from Beam Max
+  `10Db_BW_0` decimal(40,20) NULL, -- 10db Beam width from 0 degree
+  `10Db_BW_90` decimal(40,20) NULL, -- 10db Beam width from 90 degree
+  `10Db_BS_BMax` decimal(40,20) NULL, -- 10db Beam squint from Beam Max
+  `10Db_BS_0` decimal(40,20) NULL, -- 10db Beam squint from 0 degree
+  `10Db_BS_90` decimal(40,20) NULL, -- 10db Beam squint from 90 degree
+  `BackLobe` decimal(40,20) NULL, -- Back Lobe level
   PRIMARY KEY (`HCalculated_Id`))
 ENGINE = InnoDB;
 
@@ -264,22 +264,22 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Verdant`.`CPCalculated` (
   `CPCalculated_Id` INT AUTO_INCREMENT,
   `Test_id` INT NULL,
-  `Frequency` DECIMAL(20,10) NULL,
+  `Frequency` decimal(40,20) NULL,
   `TestDate` DATETIME NULL,
-  `3Db_BW_BMax` DECIMAL(20,10) NULL, -- 3db Beam width from Beam Max
-  `3Db_BW_0` DECIMAL(20,10) NULL, -- 3db Beam width from 0 degree
-  `3Db_BW_90` DECIMAL(20,10) NULL, -- 3db Beam width from 90 degree
-  `3Db_BS_BMax` DECIMAL(20,10) NULL, -- 3db Beam squint from Beam Max
-  `3Db_BS_0` DECIMAL(20,10) NULL, -- 3db Beam squint from 0 degree
-  `3Db_BS_90` DECIMAL(20,10) NULL, -- 3db Beam squint from 90 degree
-  `10Db_BW_BMax` DECIMAL(20,10) NULL, -- 10db Beam width from Beam Max
-  `10Db_BW_0` DECIMAL(20,10) NULL, -- 10db Beam width from 0 degree
-  `10Db_BW_90` DECIMAL(20,10) NULL, -- 10db Beam width from 90 degree
-  `10Db_BS_BMax` DECIMAL(20,10) NULL, -- 10db Beam squint from Beam Max
-  `10Db_BS_0` DECIMAL(20,10) NULL, -- 10db Beam squint from 0 degree
-  `10Db_BS_90` DECIMAL(20,10) NULL, -- 10db Beam squint from 90 degree
-  `BackLobe` DECIMAL(20,10) NULL, -- Back Lobe level
-  `CPGain` DECIMAL(20,10) NULL, -- CP Gain from linear gain
+  `3Db_BW_BMax` decimal(40,20) NULL, -- 3db Beam width from Beam Max
+  `3Db_BW_0` decimal(40,20) NULL, -- 3db Beam width from 0 degree
+  `3Db_BW_90` decimal(40,20) NULL, -- 3db Beam width from 90 degree
+  `3Db_BS_BMax` decimal(40,20) NULL, -- 3db Beam squint from Beam Max
+  `3Db_BS_0` decimal(40,20) NULL, -- 3db Beam squint from 0 degree
+  `3Db_BS_90` decimal(40,20) NULL, -- 3db Beam squint from 90 degree
+  `10Db_BW_BMax` decimal(40,20) NULL, -- 10db Beam width from Beam Max
+  `10Db_BW_0` decimal(40,20) NULL, -- 10db Beam width from 0 degree
+  `10Db_BW_90` decimal(40,20) NULL, -- 10db Beam width from 90 degree
+  `10Db_BS_BMax` decimal(40,20) NULL, -- 10db Beam squint from Beam Max
+  `10Db_BS_0` decimal(40,20) NULL, -- 10db Beam squint from 0 degree
+  `10Db_BS_90` decimal(40,20) NULL, -- 10db Beam squint from 90 degree
+  `BackLobe` decimal(40,20) NULL, -- Back Lobe level
+  `CPGain` decimal(40,20) NULL, -- CP Gain from linear gain
   PRIMARY KEY (`CPCalculated_Id`))
 ENGINE = InnoDB;
 
@@ -289,15 +289,15 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Verdant`.`ARCalculated` (
   `ARCalculated_Id` INT AUTO_INCREMENT,
   `Test_id` INT NULL,
-  `Frequency` DECIMAL(20,10) NULL,
+  `Frequency` decimal(40,20) NULL,
   `TestDate` DATETIME NULL,
-  `AR_0` DECIMAL(20,10) NULL, -- Axial ratio at 0 degree
-  `AR_P45` DECIMAL(20,10) NULL, -- Axial ratio at +45
-  `AR_M45` DECIMAL(20,10) NULL, -- Axial ratio at -45
-  `MaxAR_P_Ratio` DECIMAL(20,10) NULL, -- Max Axial Ratio from 0 to +45 
-  `MaxAR_P_Angle` DECIMAL(20,10) NULL, -- Angle corresp to Max Axial Ratio from 0 to +45 
-  `MaxAR_M_Ratio` DECIMAL(20,10) NULL, -- Max Axial Ratio from 0 to -45 
-  `MaxAR_M_Angle` DECIMAL(20,10) NULL, -- Angle corresp to Max Axial Ratio from 0 to -45 
+  `AR_0` decimal(40,20) NULL, -- Axial ratio at 0 degree
+  `AR_P45` decimal(40,20) NULL, -- Axial ratio at +45
+  `AR_M45` decimal(40,20) NULL, -- Axial ratio at -45
+  `MaxAR_P_Ratio` decimal(40,20) NULL, -- Max Axial Ratio from 0 to +45 
+  `MaxAR_P_Angle` decimal(40,20) NULL, -- Angle corresp to Max Axial Ratio from 0 to +45 
+  `MaxAR_M_Ratio` decimal(40,20) NULL, -- Max Axial Ratio from 0 to -45 
+  `MaxAR_M_Angle` decimal(40,20) NULL, -- Angle corresp to Max Axial Ratio from 0 to -45 
   PRIMARY KEY (`ARCalculated_Id`))
 ENGINE = InnoDB;
 
@@ -308,7 +308,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS PitchData (
   `pitchData_id` INT  AUTO_INCREMENT,
   `Test_id` INT NULL,
-   Frequency DECIMAL(20,10),
+   Frequency decimal(40,20),
   `Angle` DECIMAL(12,2) NULL,
   `Amplitude` DECIMAL(12,8) NULL,   
   PRIMARY KEY (`pitchData_id`))
@@ -320,7 +320,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS rollData (
   `rollData_id` INT  AUTO_INCREMENT,
   `Test_id` INT NULL,
-  Frequency DECIMAL(20,10),
+  Frequency decimal(40,20),
   `Angle` DECIMAL(12,2) NULL,
   `Amplitude` DECIMAL(12,8) NULL,  
   PRIMARY KEY (`rollData_id`))
@@ -332,7 +332,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS yawData (
   `yawData_id` INT  AUTO_INCREMENT,
   `Test_id` INT NULL,
-  Frequency DECIMAL(20,10),
+  Frequency decimal(40,20),
   `Angle` DECIMAL(12,2) NULL,
   `Amplitude` DECIMAL(12,8) NULL,  
   PRIMARY KEY (`yawData_id`))
@@ -344,14 +344,14 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Verdant`.`PitchCalculated` (
   pitchCalculated_Id INT AUTO_INCREMENT,
   `Test_id` INT NULL,
-  `Frequency` DECIMAL(20,10) NULL,
+  `Frequency` decimal(40,20) NULL,
   `TestDate` DATETIME NULL,
-  `3Db_BW_BMax` DECIMAL(20,10) NULL, -- 3db Beam width from Beam Max
-  `3Db_BW_0` DECIMAL(20,10) NULL, -- 3db Beam width from 0 degree
-  `3Db_BW_90` DECIMAL(20,10) NULL, -- 3db Beam width from 90 degree
-  `10Db_BW_BMax` DECIMAL(20,10) NULL, -- 10db Beam width from Beam Max
-  `10Db_BW_0` DECIMAL(20,10) NULL, -- 10db Beam width from 0 degree
-  `10Db_BW_90` DECIMAL(20,10) NULL, -- 10db Beam width from 90 degree
+  `3Db_BW_BMax` decimal(40,20) NULL, -- 3db Beam width from Beam Max
+  `3Db_BW_0` decimal(40,20) NULL, -- 3db Beam width from 0 degree
+  `3Db_BW_90` decimal(40,20) NULL, -- 3db Beam width from 90 degree
+  `10Db_BW_BMax` decimal(40,20) NULL, -- 10db Beam width from Beam Max
+  `10Db_BW_0` decimal(40,20) NULL, -- 10db Beam width from 0 degree
+  `10Db_BW_90` decimal(40,20) NULL, -- 10db Beam width from 90 degree
 
   PRIMARY KEY (`pitchCalculated_Id`))
 ENGINE = InnoDB;
@@ -362,14 +362,14 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Verdant`.`rollCalculated` (
   rollCalculated_Id INT AUTO_INCREMENT,
   `Test_id` INT NULL,
-  `Frequency` DECIMAL(20,10) NULL,
+  `Frequency` decimal(40,20) NULL,
   `TestDate` DATETIME NULL,
-  `3Db_BW_BMax` DECIMAL(20,10) NULL, -- 3db Beam width from Beam Max
-  `3Db_BW_0` DECIMAL(20,10) NULL, -- 3db Beam width from 0 degree
-  `3Db_BW_90` DECIMAL(20,10) NULL, -- 3db Beam width from 90 degree
-  `10Db_BW_BMax` DECIMAL(20,10) NULL, -- 10db Beam width from Beam Max
-  `10Db_BW_0` DECIMAL(20,10) NULL, -- 10db Beam width from 0 degree
-  `10Db_BW_90` DECIMAL(20,10) NULL, -- 10db Beam width from 90 degree
+  `3Db_BW_BMax` decimal(40,20) NULL, -- 3db Beam width from Beam Max
+  `3Db_BW_0` decimal(40,20) NULL, -- 3db Beam width from 0 degree
+  `3Db_BW_90` decimal(40,20) NULL, -- 3db Beam width from 90 degree
+  `10Db_BW_BMax` decimal(40,20) NULL, -- 10db Beam width from Beam Max
+  `10Db_BW_0` decimal(40,20) NULL, -- 10db Beam width from 0 degree
+  `10Db_BW_90` decimal(40,20) NULL, -- 10db Beam width from 90 degree
       
   PRIMARY KEY (`rollCalculated_Id`))
 ENGINE = InnoDB;
@@ -380,9 +380,9 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Verdant`.`yawCalculated` (
   yawCalculated_Id INT AUTO_INCREMENT,
   `Test_id` INT NULL,
-  `Frequency` DECIMAL(20,10) NULL,
+  `Frequency` decimal(40,20) NULL,
   `TestDate` DATETIME NULL,
-  `OmniDeviation` DECIMAL(20,10) NULL, -- omni deviation
+  `OmniDeviation` decimal(40,20) NULL, -- omni deviation
  
  PRIMARY KEY (`yawCalculated_Id`))
 ENGINE = InnoDB;
@@ -404,7 +404,7 @@ FROM vdata hp inner join testdata t on hp.test_id=t.test_id;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Verdant`.`amplitudedata` (  
   `prodserial_id` INT NULL,
-   `frequency` DECIMAL(20,10),  
+   `frequency` decimal(40,20),  
   `ampvalue` DECIMAL(12,8) NULL,  
   testname varchar(50),
   PRIMARY KEY (prodserial_id,frequency,testname))
@@ -414,7 +414,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Verdant`.`phasedata` (  
   `prodserial_id` INT NULL,
-   `frequency` DECIMAL(20,10),  
+   `frequency` decimal(40,20),  
   `phasevalue` DECIMAL(12,8) NULL,  
   testname varchar(50),
   PRIMARY KEY (prodserial_id,frequency,testname))
@@ -423,7 +423,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Verdant`.`scaling` Scaling of polar plot
 -- -----------------------------------------------------
-create table scaling(frequency decimal(20,14),minscale decimal(20,10),maxscale decimal(20,10),product_id int);
+create table scaling(frequency decimal(20,14),minscale decimal(40,20),maxscale decimal(40,20),product_id int);
 
 
 -- Create View axialratio_view

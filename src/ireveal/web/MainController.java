@@ -103,7 +103,7 @@ public class MainController implements Controller {
 
        	
        	myModel.put("uname", uname);
-      // 	return new ModelAndView("main", "model", myModel);
+
        	
        	List<RoleDsp> rle =mastersservice.getLogUserRole();
 		String compname=rle.get(0).getCompany();

@@ -74,11 +74,11 @@ public class ToolsController implements Controller {
         String treetype=request.getParameter("treetype");
         String rptheader="";
         String rptfooter="";
-        if(treetype==null || treetype=="" || treetype=="null" ||  treetype.equals("undefined")){
+        if(treetype==null || treetype.equals("") || treetype=="null" ||  treetype.equals("undefined")){
         	treetype="0";
         }
         logger.info("*** treetype="+treetype);
-        if(testid==null || testid=="" || testid=="null" ||  testid.equals("undefined")){
+        if(testid==null || testid.equals("") || testid=="null" ||  testid.equals("undefined")){
         	testid="0";
         }
         else{
@@ -87,12 +87,12 @@ public class ToolsController implements Controller {
         	rptheader=lstp.getRptheader();
         	rptfooter=lstp.getRptfooter();
         	}
-        	if(rptheader=="" || rptheader==null ||rptheader=="null")
+        	if(rptheader.equals("") || rptheader==null ||rptheader=="null")
         		rptheader="No Header";
-        	if(rptfooter=="" || rptfooter==null ||rptfooter=="null")
+        	if(rptfooter.equals("") || rptfooter==null ||rptfooter=="null")
         		rptfooter="No Footer";
         }
-        if(freq==null || freq=="" || freq=="null" ||  freq.equals("undefined") ){
+        if(freq==null || freq.equals("") || freq=="null" ||  freq.equals("undefined") ){
         	freq="-1";
         }
         if (operstr == null){
@@ -196,7 +196,7 @@ public class ToolsController implements Controller {
         		String prodid = request.getParameter("prodid");
         		 List dataList = new ArrayList();
         		
-        		if(prodid!="" && prodid!=null)
+        		if(!prodid.equals("") && prodid!=null)
         			dataList=mastersservice.getProdSerialWithAmpphase(Integer.parseInt(prodid));
         		logger.info("*** dataList.size() ** "+dataList.size());
         		if(dataList.size()>0){
@@ -218,7 +218,7 @@ public class ToolsController implements Controller {
 				String prodseriallist = request.getParameter("prodseriallist");
 				
 	        	String var="";
-	        	if(prodseriallist!=null && prodseriallist!=""){
+	        	if(prodseriallist!=null && !prodseriallist.equals("")){
 	        	String tests[]=prodseriallist.split(",");
 	        	for (int i=0;i<tests.length;i++)
 	        	{
@@ -233,9 +233,9 @@ public class ToolsController implements Controller {
 	        	rptheader=lstp.getRptheader();
 	        	rptfooter=lstp.getRptfooter();
 	        	}
-	        	if(rptheader=="" || rptheader==null ||rptheader=="null")
+	        	if(rptheader.equals("") || rptheader==null ||rptheader=="null")
 	        		rptheader="No Header";
-	        	if(rptfooter=="" || rptfooter==null ||rptfooter=="null")
+	        	if(rptfooter.equals("") || rptfooter==null ||rptfooter=="null")
 	        		rptfooter="No Footer";
 				
 				TestFrequency track=mastersservice.calcTrack(var,typ);

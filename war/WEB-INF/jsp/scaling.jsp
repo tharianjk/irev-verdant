@@ -46,9 +46,9 @@ function cancelclick()
 	<tbody>
     <c:forEach items="${scalelist}" var="scalelst">
 		<tr>
-			<td><input type="text" style="width:30" name="freq" value='<c:out value="${scalelst.frequency}"/>'/> </td>
-			<td><input type="text" style="width:30" name="min" value='<c:out value="${scalelst.minscale}"/>'/> </td>
-			<td><input type="text" style="width:30" name="max" value='<c:out value="${scalelst.maxscale}"/>'/> <br>			
+			<td><input type="text" style="width:50" name="freq" value='<c:out value="${scalelst.frequency}"/>'/> </td>
+			<td><input type="text" style="width:50" name="min" value='<c:out value="${scalelst.minscale}"/>'/> </td>
+			<td><input type="text" style="width:50" name="max" value='<c:out value="${scalelst.maxscale}"/>'/> <br>			
 			<td> </td> 
 			
 		</tr>

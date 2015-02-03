@@ -22,6 +22,7 @@ if(session != null && !session.isNew()) {
 var gurl1;
 var gurl2;
 var chartno=0;
+var precision='${model.precision}';
 /*if(document.getElementById) {
 	window.alert = function(txt) {
 		createCustomAlert(txt);

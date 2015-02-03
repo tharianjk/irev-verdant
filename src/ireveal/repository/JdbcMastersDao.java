@@ -432,9 +432,7 @@ if(strmode.equals("new")){
 	  	}	  	
 	   }
 	   catch(Exception e){
-		   if(!strmode.equals("new")){
-			   
-		   }
+		   logger.info("Import Test Exception "+e.getMessage());
 	   }
 	    return testid;	    
 	   }
@@ -982,11 +980,14 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 				   }  
 				 
 				 public ProductSerial getheaderfooter(int testid) {  
-					    
+					    List<ProductSerial> ps=new ArrayList<ProductSerial>();
 					    String sql = "select rptheader,rptfooter from product_serial p inner join testdata t on p.Prodserial_id=t.Prodserial_id "+
 					    		" where t.test_id=?";  
-					   
-					    return getJdbcTemplate().query(sql, new rptheaderfooterMapper(),testid).get(0);  
+					    ps=getJdbcTemplate().query(sql, new rptheaderfooterMapper(),testid);
+					    if(ps!=null)
+					    return ps.get(0);
+					    else
+					    	return null;
 					     
 					   } 
 				 private static class rptheaderfooterMapper implements ParameterizedRowMapper<ProductSerial> {
