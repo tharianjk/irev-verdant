@@ -30,12 +30,12 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
    public boolean insertData(Company company) {  
     
     String sql = "INSERT INTO fwk_company "  
-      + "(company_id,companyname, address) VALUES (?, ?, ?)";     
+      + "(company_id,companyname, address,nprecision) VALUES (?, ?, ?,?)";     
       
     getJdbcTemplate().update(  
       sql,  
       new Object[] { company.getCompanyid(), company.getCompanyname(),  
-    		  company.getCompanyAddress() });  
+    		  company.getCompanyAddress(),company.getNprecision() });  
     return true;
     
    }  
@@ -43,7 +43,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
    public List<Company> getCompanyList() {  
     List companyList = new ArrayList();  
     
-    String sql = "select C.company_id,c.companyName,c.Address from FWK_COMPANY C ";  
+    String sql = "select C.company_id,c.companyName,c.Address,nprecision from FWK_COMPANY C ";  
    
     companyList = getJdbcTemplate().query(sql, new CompanyMapper());  
     return companyList;  
@@ -59,10 +59,10 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
      
    public boolean updateData(Company company) {  
     
-    String sql = "UPDATE fwk_company set companyname = ?,address = ? where company_id = ?";  
+    String sql = "UPDATE fwk_company set companyname = ?,address = ?,nprecision=? where company_id = ?";  
     getJdbcTemplate().update(  
       sql,  
-      new Object[] { company.getCompanyname(), company.getCompanyAddress(),  
+      new Object[] { company.getCompanyname(), company.getCompanyAddress(), company.getNprecision(), 
     		  company.getCompanyid() }); 
     
     
@@ -73,7 +73,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
    public Company getCompany(int id) {  
 	   logger.info("***inside JDBCCompany** ");
 	   List<Company> companyList =null;
-    String sql = "select C.company_id,c.companyName,c.Address from FWK_COMPANY C  where c.company_id=?";  
+    String sql = "select C.company_id,c.companyName,c.Address,nprecision from FWK_COMPANY C  where c.company_id=?";  
    try
    {
     companyList = getJdbcTemplate().query(sql, new CompanyMapper(),id);
@@ -93,37 +93,11 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
            company.setCompanyid(rs.getInt("company_id"));
     	   company.setCompanyname(rs.getString("companyName"));  
     	   company.setCompanyAddress(rs.getString("Address")); 
-    	   
+    	   company.setNprecision(rs.getInt("nprecision"));
            return company;
        }
 
    }
-   
-  /*public class CompanyRowMapper implements RowMapper<Company> {  
-	  
-	  public Company mapRow(ResultSet resultSet, int line) throws SQLException {  
-	   CompanyExtractor CompanyExtractor = new CompanyExtractor();  
-	   return CompanyExtractor.extractData(resultSet);  
-	  }  
-	   
-	 } 
-  public class CompanyExtractor implements ResultSetExtractor<Company> {  
-	  
-	  public Company extractData(ResultSet resultSet) throws SQLException,  
-	    DataAccessException {  
-	     
-		  Company company = new Company();  
-	     
-		  company.setcompanyid(resultSet.getInt(1));  
-	   company.setdisplayname(resultSet.getString(2));  
-	   company.setcompanyname(resultSet.getString(3));  
-	   company.setcompanyAddress(resultSet.getString(4));  
-	    
-	     
-	   return company;  
-	  }  
-	   
-	 }*/
-  }
+    }
 
 

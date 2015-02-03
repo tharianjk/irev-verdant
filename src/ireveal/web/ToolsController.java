@@ -229,8 +229,10 @@ public class ToolsController implements Controller {
 	        	}
 	        	}
 	        	ProductSerial lstp=mastersservice.getPSheaderfooter(var);
+	        	if(lstp!=null){
 	        	rptheader=lstp.getRptheader();
 	        	rptfooter=lstp.getRptfooter();
+	        	}
 	        	if(rptheader=="" || rptheader==null ||rptheader=="null")
 	        		rptheader="No Header";
 	        	if(rptfooter=="" || rptfooter==null ||rptfooter=="null")

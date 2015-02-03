@@ -17,7 +17,13 @@ public class RoleDsp  {
 	private Boolean bln_events;
 	private Boolean bln_tools;
 	private Boolean bln_settings;
-	
+	private int nprecision;
+	public int getNprecision() {
+		return nprecision;
+	}
+	public void setNprecision(int nprecision) {
+		this.nprecision = nprecision;
+	}
 	private String expirydate;
 	
 	public String getExpirydate() {

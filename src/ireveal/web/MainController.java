@@ -37,12 +37,7 @@ public class MainController implements Controller {
 
     protected final Log logger = LogFactory.getLog(getClass());
     public MastersService mastersservice ;
-	
-@Value("${appl.is_url}")
-    private String is_url; // Holds the URL to Integration Server. Picked from application.properties
-@Value("${appl.precision}")
-private String precision; // Holds the precision for value in monitor
-    
+	    
     /**
     * 
     *  Main form controller. Called from spring dispatch serevlet
@@ -113,27 +108,7 @@ private String precision; // Holds the precision for value in monitor
        	List<RoleDsp> rle =mastersservice.getLogUserRole();
 		String compname=rle.get(0).getCompany();
 		int compid=rle.get(0).getCompanyid();
-		
-		String expirydate="";
-		Date dtexpiry=null;
-		if(rle.get(0).getExpirydate()!=null && rle.get(0).getExpirydate()!=""){
-		EncryptDecrypt myEncryptor;
-		try {
-			myEncryptor = new EncryptDecrypt();			
-			expirydate=myEncryptor.decrypt(rle.get(0).getExpirydate());
-			dtexpiry = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(expirydate);
-			logger.info("dtexpiry "+dtexpiry +" curTime " +curTime);
-			if(dtexpiry.compareTo(curTime)<=0){
-				return new ModelAndView("403", "model", myModel);}
-			} catch (Exception e) {
-				logger.info("dtexpiry Exception" + e.getMessage());
-				return new ModelAndView("403", "model", myModel);
-			}
-       }
-		else
-		{
-			return new ModelAndView("403", "model", myModel);
-		}		
+		int nprecision		=rle.get(0).getNprecision();
 		
 		myModel.put("compname", compname);
 		myModel.put("compid", compid);		
@@ -163,9 +138,8 @@ private String precision; // Holds the precision for value in monitor
 		myModel.put("favmenu", favmenu);
 		myModel.put("usrsecid", usrsecid);
 		myModel.put("seltype", seltype);
-		myModel.put("usrsecname", usrsecname);
-		myModel.put("is_url", is_url);
-		myModel.put("precision", precision);
+		myModel.put("usrsecname", usrsecname);		
+		myModel.put("precision", nprecision);
 		
 		logger.info("*** Inside MainCtrl usrsecid**" + usrsecid + "");
 		// Depending on type of client, display either mobile menu or main menu		
