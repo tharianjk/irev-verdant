@@ -188,6 +188,10 @@ public void UpdateScaling(List<Scaling> scalelist) {
 	 mastersdao.UpdateScaling(scalelist);
 	
 }
+@Override
+public TestFrequency calcTrack(String testnames, String typ) {
+	return mastersdao.calcTrack(testnames,typ);
+}
 
 
 }

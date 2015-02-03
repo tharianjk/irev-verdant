@@ -216,7 +216,19 @@ public class ToolsController implements Controller {
 				String maxFreq="";
 				String typ = request.getParameter("typ");
 				String prodseriallist = request.getParameter("prodseriallist");
-				ProductSerial lstp=mastersservice.getPSheaderfooter(prodseriallist);
+				
+	        	String var="";
+	        	if(prodseriallist!=null && prodseriallist!=""){
+	        	String tests[]=prodseriallist.split(",");
+	        	for (int i=0;i<tests.length;i++)
+	        	{
+	        		if(i==0)
+	        		var="'"+tests[0]+"'";
+	        		else
+	        			var=var+",'"+tests[i]+"'";
+	        	}
+	        	}
+	        	ProductSerial lstp=mastersservice.getPSheaderfooter(var);
 	        	rptheader=lstp.getRptheader();
 	        	rptfooter=lstp.getRptfooter();
 	        	if(rptheader=="" || rptheader==null ||rptheader=="null")
@@ -224,18 +236,18 @@ public class ToolsController implements Controller {
 	        	if(rptfooter=="" || rptfooter==null ||rptfooter=="null")
 	        		rptfooter="No Footer";
 				
-				Map<String, Object> resultset=mastersservice.GetAmpPhaseValue(prodseriallist,typ);
-				logger.info("viewaptracking prodseriallist="+prodseriallist);
-				logger.info("Return out value:"+resultset.size());
-				if(resultset!=null && resultset.size()>0 && !resultset.isEmpty() )
+				TestFrequency track=mastersservice.calcTrack(var,typ);
+				logger.info("viewaptracking prodseriallist="+var);
+				
+				if(track!=null )
 				{
-					if(resultset.get("maxDiff")!=null && resultset.get("maxFreq")!=null){
-					maxDiff="±"+resultset.get("maxDiff").toString();
-					freq=resultset.get("maxFreq").toString();}
+					if(track.getLineargain()!=0 && track.getFrequency()!=0){
+					maxDiff="±"+track.getLineargain();
+					freq=track.getFrequency()+"";}
 				}
-        		logger.info("*** ampphase ** typ "+typ+" prodseriallist "+prodseriallist);    
+        		logger.info("*** ampphase ** typ "+typ+" prodseriallist "+var+" maxDiff= "+maxDiff+" freq ="+freq);    
        		//type,prodserialids,maxamp,freq
-             return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=PhaseTracking.rptdesign&type="+typ+"&prodserialids="+prodseriallist+"&maxamp="+maxDiff+"&freq="+freq+"&rpth="+rptheader+"&rptf="+rptfooter)); 
+             return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=PhaseTracking.rptdesign&type="+typ+"&prodserialids="+var+"&maxamp="+maxDiff+"&freq="+freq+"&rpth="+rptheader+"&rptf="+rptfooter)); 
 			        }
 			else if(operstr.equals("od")){
 				atype=request.getParameter("atype");

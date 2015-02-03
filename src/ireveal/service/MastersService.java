@@ -75,4 +75,5 @@ public interface MastersService {
 		 public boolean deleteTracking(int id,String testname,String typ);
 		 public List<Scaling> getScaling();
 		 public void UpdateScaling(List<Scaling> scalelist);
+		 public TestFrequency calcTrack(String testnames,String typ);
 } 

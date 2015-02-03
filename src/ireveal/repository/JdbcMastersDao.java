@@ -897,7 +897,26 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 					if(resultMap!=null && resultMap.size()>0 && !resultMap.isEmpty() )
 					logger.info("Return out value:"+resultMap.get("maxFreq"));
 					return resultMap;
+										
 				}
+				
+				public TestFrequency calcTrack(String testnames,String typ){
+					 
+					String sql=" select  (MAX(amplitude)-MIN(amplitude))/2 diff, frequency from vw_ampphase where testname in("+testnames+") and typ='"+typ+"'" +
+							" group by frequency order by diff desc LIMIT 1";
+					List<TestFrequency> dataList = getJdbcTemplate().query(sql, new trackRowMapper());  
+					    return dataList.get(0); 
+				}
+				
+				public static class trackRowMapper implements ParameterizedRowMapper<TestFrequency>{
+					 public TestFrequency mapRow(ResultSet rs, int rowNum) throws SQLException {
+				    	   TestFrequency testfreq = new TestFrequency();
+				    	   testfreq.setFrequency(rs.getDouble("frequency"));  
+				    	   testfreq.setLineargain(rs.getDouble("diff"));
+				    	 
+				           return testfreq;
+				       }
+			}
 				
 				//Product list for amplitude Phase Tracking report
 				
@@ -982,8 +1001,8 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 				   }
 				 public ProductSerial getPSheaderfooter(String psids) {  
 					    
-					    String sql = "select rptheader,rptfooter from product_serial p "+
-					    		" where Prodserial_id in ("+psids+")";  
+					    String sql = "select distinct rptheader,rptfooter from product_serial p inner join vw_ampphase v on p.Prodserial_id=v.Prodserial_id"+
+					    		" where v.testname in ("+psids+")";  
 					   
 					    return getJdbcTemplate().query(sql, new rptheaderfooterMapper()).get(0);  
 					     
