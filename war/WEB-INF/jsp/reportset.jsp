@@ -98,6 +98,7 @@ INPUT.hintTextboxActive { color: #000; }
 			<tr>
 	       
 	       <td><div id="divimg">&nbsp; &nbsp;&nbsp;<input type="checkbox" id="img" value="img" >Show Aircraft Image</div></td>
+	       <td>&nbsp; &nbsp;&nbsp;<input type="button" value="Scale" id="btnscale" name="scale" style="display:none;" class="myButtonGo" onclick="scaleclick()"/>
 			</tr>
 			</tbody>
 	    
@@ -112,7 +113,7 @@ INPUT.hintTextboxActive { color: #000; }
  <tr>
 	
 		<td>&nbsp; &nbsp;&nbsp;<input type="button" value="Go" name="go" class="myButtonGo" onclick="Redirect()"/>
-		<td>&nbsp; &nbsp;&nbsp;<input type="button" value="Scale" name="go" class="myButton" onclick="scaleclick()"/>
+		
 	
 		</td>
 		</tr>
@@ -304,6 +305,7 @@ function fnenable(ctyp){
 				    document.getElementById(lgid).style.visibility="hidden";
 					}
 				}
+				document.getElementById("btnscale").style.display="block";
 				}
 			else
 				document.getElementById("ptab").style.display="none";
