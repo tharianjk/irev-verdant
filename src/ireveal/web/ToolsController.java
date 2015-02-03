@@ -247,7 +247,7 @@ public class ToolsController implements Controller {
 				}
         		logger.info("*** ampphase ** typ "+typ+" prodseriallist "+var+" maxDiff= "+maxDiff+" freq ="+freq);    
        		//type,prodserialids,maxamp,freq
-             return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=PhaseTracking.rptdesign&type="+typ+"&prodserialids="+prodseriallist+"&maxamp="+maxDiff+"&freq="+freq+"&rpth="+rptheader+"&rptf="+rptfooter)); 
+             return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=PhaseTracking.rptdesign&type="+typ+"&prodserialids="+var+"&maxamp="+maxDiff+"&freq="+freq+"&rpth="+rptheader+"&rptf="+rptfooter)); 
 			        }
 			else if(operstr.equals("od")){
 				atype=request.getParameter("atype");
