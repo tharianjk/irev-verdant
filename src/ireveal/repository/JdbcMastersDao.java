@@ -152,7 +152,7 @@ public List<RoleDsp> getRoleDtls()
  public List<RoleDsp> getLogUserRole(){
      Authentication auth = SecurityContextHolder.getContext().getAuthentication();
      String uname = auth.getName();
-     List<RoleDsp>	roledsp=  getJdbcTemplate().query("select distinct rolename,companyname,r.company_id,r.role_id,r.b_reports,r.b_events,r.b_tools,r.b_settings,c.expirydate from fwk_role r inner join  fwk_user_role ur on r.role_id=ur.role_id " +
+     List<RoleDsp>	roledsp=  getJdbcTemplate().query("select distinct rolename,companyname,nprecision,r.company_id,r.role_id,r.b_reports,r.b_events,r.b_tools,r.b_settings,c.expirydate from fwk_role r inner join  fwk_user_role ur on r.role_id=ur.role_id " +
      "inner join fwk_user u on ur.user_id=u.user_id inner join fwk_company c on r.company_id=c.company_id where r.rolename <> 'ROLE_USER' and u.username ='" +uname +"'", new RoleLogMapper());
  	logger.info("roledsp.size "+ roledsp.size());
  	
@@ -179,7 +179,7 @@ public List<RoleDsp> getRoleDtls()
           role.setCompany(rs.getString("companyname")); 
           role.setCompanyid(rs.getInt("company_id"));
           role.setExpirydate(rs.getString("expirydate"));
-          
+          role.setNprecision(rs.getInt("nprecision"));
          
           try{
           role.setBln_reports((rs.getString("B_REPORTS").equals("true"))?true:false);

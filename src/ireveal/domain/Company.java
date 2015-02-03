@@ -16,10 +16,16 @@ public class Company implements Serializable {
     private String displayname;
     private int nlevel;
     private int defalertid;
-    
+    private int nprecision;
       
 
-    public String toString() {
+    public int getNprecision() {
+		return nprecision;
+	}
+	public void setNprecision(int nprecision) {
+		this.nprecision = nprecision;
+	}
+	public String toString() {
         StringBuffer buffer = new StringBuffer();
         buffer.append("companyName: " +companyname +";");
         buffer.append("companyid: " + companyid);

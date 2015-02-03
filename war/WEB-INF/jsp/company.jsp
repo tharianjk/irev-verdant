@@ -48,6 +48,12 @@
           <td><form:textarea   path="CompanyAddress"  rows="5" cols="70" /></td>
            
          </tr>
+         <tr>  
+          <td>Precision for Report values :</td>  
+          
+          <td><form:input type="number"  path="nprecision" maxlength="2"  /></td>
+           
+         </tr>
          
          <tr> 
           <td><input type="submit" value="Save" class="myButton"/> <span> </span>            
