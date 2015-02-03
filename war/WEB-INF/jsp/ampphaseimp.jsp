@@ -136,11 +136,12 @@ progress_clear();
 		</table>
 		</td>
 		
-		<td>
+		<td align="center"> <b> <u>Imported Data </u></b> 
 		<c:if test="${listsize >0}">
 	&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<table id="listtab"  border="1" cellpadding="1" cellspacing="2" style="width: 300px;vertical-align:top;">
 		
 	<thead>
+				
 				<tr>
 				   
 					<th scope="col"> Type </th>
