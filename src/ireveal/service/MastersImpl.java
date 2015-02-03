@@ -180,8 +180,8 @@ public boolean deleteTracking(int id, String testname, String typ) {
 	return mastersdao.deleteTracking(id,testname,typ);
 }
 @Override
-public List<Scaling> getScaling() {
-	return mastersdao.getScaling();
+public List<Scaling> getScaling(int testid) {
+	return mastersdao.getScaling(testid);
 }
 @Override
 public void UpdateScaling(List<Scaling> scalelist) {
@@ -192,6 +192,11 @@ public void UpdateScaling(List<Scaling> scalelist) {
 public TestFrequency calcTrack(String testnames, String typ) {
 	return mastersdao.calcTrack(testnames,typ);
 }
+@Override
+public int getProductid(int testid) {
+	return mastersdao.getProductid(testid);
+}
+
 
 
 }

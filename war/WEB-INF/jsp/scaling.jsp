@@ -59,6 +59,7 @@ function cancelclick()
    	<td> <input type="button" align="center" value="Back" class="myButton" onclick="cancelclick();">  
   </table>
   <form:hidden id="strfreq" path="strjsonfreq"></form:hidden>
+  <form:hidden id="prodid" path="productid"></form:hidden>
 </form:form>
 </div>
 
@@ -93,24 +94,23 @@ function tabledata()
 	var idx=0;
 	 //console.log("tabledata");
 	var table = $("#tblData");
-	$('#tblData tr').each(function(){
-	    $(this).find('td').each(function(){
-	    	
-	    	freq=$(this).children.find('input[name="freq"]').val();
-			minscale=$(this).children.find('input[name="min"]').val();
-			maxscale=$(this).children.find('input[name="max"]').val();
-			console.log("freq "+freq+"minscale "+minscale)
-	    })
-		
-		
+	
+	table.find('tr').each(function (i, el) {
+        var $tds = $(this).find('td'),
+        freq = $tds.children('input[name="freq"]').val(),
+        minscale = $tds.children('input[name="min"]').val(),
+        maxscale = $tds.children('input[name="max"]').val();
+        console.log("freq "+freq+"minscale "+minscale)
         if(freq!="" && freq!=null && freq !='null'){
-       if(idx==0){
-        json=json+'{"freq":'+freq+', "minscale":'+minscale+',"maxscale":'+maxscale+'}';}
-       else{json=json+',{"freq":'+freq+', "minscale":'+minscale+',"maxscale":'+maxscale+'}';}
-       
-       idx=1;
-        }
+            if(idx==0){
+             json=json+'{"freq":'+freq+', "minscale":'+minscale+',"maxscale":'+maxscale+'}';}
+            else{json=json+',{"freq":'+freq+', "minscale":'+minscale+',"maxscale":'+maxscale+'}';}
+            
+            idx=1;
+             }
     });
+	
+	
 	
 	if(json.length > 15)
 		{

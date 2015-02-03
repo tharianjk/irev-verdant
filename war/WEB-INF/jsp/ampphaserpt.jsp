@@ -69,7 +69,7 @@
 		
 		<td>
 		Selected :</td>
-				<td><textarea  id="selfiles" readonly="true"   rows="2" cols="50" ></textarea></td>
+				<td><textarea  id="selfiles" readonly="true"   rows="2" cols="40" ></textarea></td>
 				  <td>
 					<input type="button" value="Clear" class="myButton"  name="clearExp" onclick="ClearExp()"/>	
 				</td> 

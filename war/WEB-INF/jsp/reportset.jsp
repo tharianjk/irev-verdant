@@ -563,7 +563,7 @@ function fnenable(ctyp){
 	
 	function scaleclick()
 	{
-		$("#scalingdialog").attr('src', "scaling.htm");
+		$("#scalingdialog").attr('src', "scaling.htm?testid=${model.testid}");
 			$("#dialog-form-scaling").dialog({
 	            width: 500,
 	            height: 350,

@@ -1077,7 +1077,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 				   }
 				 
 				 
-				 public List<Scaling> getScaling(){
+				 public List<Scaling> getScaling(int testid){
 						String sql="";
 						 List<Scaling> strLst=new ArrayList<Scaling>();
 						logger.info("JdbcMastersDao inside getScaling");
@@ -1100,6 +1100,17 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 				       }
 
 				   }
+				 public int getProductid(int testid){
+					 int prodid=0;
+					 try{
+					     String sql = "select distinct product_id from product_serial p inner join testdata t on p.Prodserial_id=t.ProdSerial_id "+
+					    		 "	where t.test_id= ? ";
+					      prodid=getJdbcTemplate().queryForInt(sql,testid);
+						}
+					  catch(Exception e)
+					  {  logger.info("*** getScaling Exception** "+ e.getMessage() );}
+					 return prodid;
+				 }
    
   }
 

@@ -73,7 +73,8 @@ public interface MastersService {
 		 public List<ProductSerial> getProdSerialWithAmpphase(int prdid);
 		 public List<AmpPhaseTrack> getProdSerTracking(int prodSerid);
 		 public boolean deleteTracking(int id,String testname,String typ);
-		 public List<Scaling> getScaling();
+		 public List<Scaling> getScaling(int testid);
 		 public void UpdateScaling(List<Scaling> scalelist);
 		 public TestFrequency calcTrack(String testnames,String typ);
+		 public int getProductid(int testid);
 } 

@@ -82,20 +82,24 @@ public class ScalingController extends SimpleFormController{
 	 protected Object formBackingObject(HttpServletRequest request) throws ServletException {
 	    	cursess = request.getSession();
 	    	String oper = request.getParameter("oper");	    	
-	        
+	    	String id = request.getParameter("testid");
+	        if(id!=null && id!=""){
+	        	testid=Integer.parseInt(id);
+	        }
 	        request.getSession().setAttribute("savestat", null);
 	        logger.info("inside ScalingController"); 
 	      
 	        	logger.info(" going to create new Scaling");
 	        	request.getSession().setAttribute("id", null);
 	        	cursess.setAttribute("id",null);
-	        	Scaling scale=new Scaling();	        	
+	        	Scaling scale=new Scaling();
+	        	scale.setProductid(mastersservice.getProductid(testid));
 	        	return scale;
 	    }
 	
 	 protected HashMap referenceData(HttpServletRequest request) throws Exception {
 			HashMap referenceData = new HashMap();	
-			List<Scaling> scalelist=mastersservice.getScaling();
+			List<Scaling> scalelist=mastersservice.getScaling(testid );
 			referenceData.put("scalelist",scalelist);
 	 		return referenceData;
 		}
