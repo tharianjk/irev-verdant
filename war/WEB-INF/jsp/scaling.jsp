@@ -95,9 +95,9 @@ function tabledata()
 	var table = $("#tblData");
 	$('#tblData tr').each(function(){
 	    $(this).find('td').each(function(){
-	    	freq=$(this).children("input[name='freq]").val();
-			minscale=$(this).children("input[name='min]").val();
-			maxscale=$(this).children("input[name='max]").val();
+	    	freq=$(this).children('input[name="freq"]').val();
+			minscale=$(this).children('input[name="min"]').val();
+			maxscale=$(this).children('input[name="max"]').val();
 			console.log("freq "+freq+"minscale "+minscale)
 	    })
 		
