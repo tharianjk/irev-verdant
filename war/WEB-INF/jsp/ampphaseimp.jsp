@@ -79,7 +79,7 @@ progress_clear();
 
 
 
-	<h2>Import Tracking Data</h2>
+	<h2>Amplitude Phase Tracking Data</h2>
  
 	<form:form name="form1" id="form1" method="POST" commandName="ImportData" enctype="multipart/form-data">
  
@@ -90,7 +90,7 @@ progress_clear();
 		<tr><td>
 		<table id="tblmain">
 		<tr>
-		<td > Test Name: </td>
+		<td > Test ID: </td>
        <td width="50"><form:input type="text" path="testname"/>
        </td>
 		<tr>
@@ -136,15 +136,16 @@ progress_clear();
 		</table>
 		</td>
 		
-		<td>
+		<td align="center"> <b> <u>Imported Data </u></b> 
 		<c:if test="${listsize >0}">
 	&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<table id="listtab"  border="1" cellpadding="1" cellspacing="2" style="width: 300px;vertical-align:top;">
 		
 	<thead>
+				
 				<tr>
 				   
 					<th scope="col"> Type </th>
-					 <th scope="col"> TestName </th>					
+					 <th scope="col"> Test-ID </th>					
 					<th scope="col"> Delete  </th>
 					
 				</tr>
@@ -167,8 +168,7 @@ progress_clear();
 		
 		<form:hidden path="ptype" ></form:hidden>
 		
-		<input type="submit" id="more" value="More" name="fmaction" class="myButton"  onclick="progress_update();form1.submit();"/>
-		<input type="submit" id="done" value="Done" name="fmaction" class="myButton" onclick="progress_update();form1.submit();"/>
+		<input type="submit" id="more" value="Import" name="fmaction" class="myButton"  onclick="progress_update();form1.submit();"/>
 		
 		<span><form:errors path="filename" cssClass="error" />
 		</span>
