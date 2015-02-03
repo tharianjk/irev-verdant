@@ -355,6 +355,132 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
+        <scalar-parameter name="lg2" id="2665">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">decimal</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="lg3" id="2666">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">decimal</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="lg4" id="2667">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">decimal</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="lg5" id="2668">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">decimal</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="lg6" id="2669">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">decimal</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="lg7" id="2670">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">decimal</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="lg8" id="2671">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">decimal</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="lg9" id="2672">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">decimal</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="lg10" id="2673">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">decimal</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="VerdantProfile" id="7">
@@ -3949,7 +4075,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">lg</property>
-                    <property name="paramName">lg1</property>
+                    <property name="paramName">lg10</property>
                     <property name="nativeName">lg</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -4215,7 +4341,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">lg</property>
-                    <property name="paramName">lg1</property>
+                    <property name="paramName">lg2</property>
                     <property name="nativeName">lg</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -4481,7 +4607,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">lg</property>
-                    <property name="paramName">lg1</property>
+                    <property name="paramName">lg3</property>
                     <property name="nativeName">lg</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -4747,7 +4873,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">lg</property>
-                    <property name="paramName">lg1</property>
+                    <property name="paramName">lg4</property>
                     <property name="nativeName">lg</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -5013,7 +5139,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">lg</property>
-                    <property name="paramName">lg1</property>
+                    <property name="paramName">lg5</property>
                     <property name="nativeName">lg</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -5279,7 +5405,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">lg</property>
-                    <property name="paramName">lg1</property>
+                    <property name="paramName">lg6</property>
                     <property name="nativeName">lg</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -5545,7 +5671,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">lg</property>
-                    <property name="paramName">lg1</property>
+                    <property name="paramName">lg7</property>
                     <property name="nativeName">lg</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -5811,7 +5937,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">lg</property>
-                    <property name="paramName">lg1</property>
+                    <property name="paramName">lg8</property>
                     <property name="nativeName">lg</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
@@ -6077,7 +6203,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
                 <structure>
                     <property name="name">lg</property>
-                    <property name="paramName">lg1</property>
+                    <property name="paramName">lg9</property>
                     <property name="nativeName">lg</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
