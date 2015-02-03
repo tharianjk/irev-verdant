@@ -1050,22 +1050,22 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 				 
 				 
 				 
-				 public void UpdateScaling(List<Scaling> scalelist){
+				 public void UpdateScaling(List<Scaling> scalelist,int prodid){
 					   try{
-					String sqlinsert=	"INSERT INTO scaling(minscale,maxscale,Frequency)  VALUES   (?,?,?)"; 						  	
+					String sqlinsert=	"INSERT INTO scaling(minscale,maxscale,Frequency,product_id)  VALUES   (?,?,?,?)"; 						  	
 						  	
-				  	String sqlupdate=	"Update scaling set minscale=?,maxscale=? where  Frequency=? " ; 
+				  	String sqlupdate=	"Update scaling set minscale=?,maxscale=? where  Frequency=? and product_id=?" ; 
 				  	for (int i=0;i<scalelist.size();i++){
-				  		int cnt =getJdbcTemplate().queryForInt("select count(*) from scaling where  Frequency=?",scalelist.get(i).getFrequency());
+				  		int cnt =getJdbcTemplate().queryForInt("select count(*) from scaling where  Frequency=? and product_id=?",scalelist.get(i).getFrequency(),prodid);
 						if(cnt==0){
 				  		getJdbcTemplate().update(  
 				  				sqlinsert,  
-					 new Object[] { scalelist.get(i).getMinscale(),scalelist.get(i).getMaxscale(),scalelist.get(i).getFrequency() });
+					 new Object[] { scalelist.get(i).getMinscale(),scalelist.get(i).getMaxscale(),scalelist.get(i).getFrequency(),prodid });
 				  		}
 						else{
 							getJdbcTemplate().update(  
 									sqlupdate,  
-									new Object[] { scalelist.get(i).getMinscale(),scalelist.get(i).getMaxscale(),scalelist.get(i).getFrequency() });
+									new Object[] { scalelist.get(i).getMinscale(),scalelist.get(i).getMaxscale(),scalelist.get(i).getFrequency(),prodid });
 					   }
 				  	}
 				  	}
@@ -1077,13 +1077,13 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 				   }
 				 
 				 
-				 public List<Scaling> getScaling(){
+				 public List<Scaling> getScaling(int testid){
 						String sql="";
 						 List<Scaling> strLst=new ArrayList<Scaling>();
 						logger.info("JdbcMastersDao inside getScaling");
 						try{
-					      sql = "SELECT distinct frequency ,minscale,maxscale from scaling ";
-					       strLst=	getJdbcTemplate().query(sql, new ScalingMapper()); 
+					      sql = "SELECT distinct frequency ,minscale,maxscale from scaling s inner join product_serial p on s.product_id=p.product_id inner join testdata t on p.prodserial_id=t.prodserial_id where t.test_id=?";
+					       strLst=	getJdbcTemplate().query(sql, new ScalingMapper(),testid); 
 						}
 					  catch(Exception e)
 					  {  logger.info("*** getScaling Exception** "+ e.getMessage() );}
@@ -1100,6 +1100,27 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 				       }
 
 				   }
+				 public int getProductid(int testid){
+					 int prodid=0;
+					 try{
+					     String sql = "select distinct product_id from product_serial p inner join testdata t on p.Prodserial_id=t.ProdSerial_id "+
+					    		 "	where t.test_id= ? ";
+					      prodid=getJdbcTemplate().queryForInt(sql,testid);
+						}
+					  catch(Exception e)
+					  {  logger.info("*** getScaling Exception** "+ e.getMessage() );}
+					 return prodid;
+				 }
+				 public int getPrecision(){
+					 int nprecision=1;
+					 try{
+					     String sql = "select nprecision from fwk_company where company_id=1 ";
+					     nprecision=getJdbcTemplate().queryForInt(sql);
+						}
+					  catch(Exception e)
+					  {  logger.info("*** getScaling Exception** "+ e.getMessage() );}
+					 return nprecision;
+				 }
    
   }
 

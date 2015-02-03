@@ -101,15 +101,10 @@ public class AmpPhaseImpController extends SimpleFormController{
 					}
 				
 		}
-		logger.info("*** Inside AmpPhasecontroller in onsubmit**: btn= "+request.getParameter("fmaction"));
-		if(request.getParameter("fmaction")!=null && request.getParameter("fmaction")!="")
-		{
-			String btn=request.getParameter("fmaction");
-			if(btn.equals("More")){
+	//	logger.info("*** Inside AmpPhasecontroller in onsubmit**: btn= "+request.getParameter("fmaction"));
+		
 				return new ModelAndView(new RedirectView("ampphaseimp.htm?PId="+prdserid));
-			}
-		}
-		 return new ModelAndView("fileuploadresult","fileName",fileName +" " +err);
+			
 		// ampphaseimp.htm?PId=${prev.prodserialid}&oper=deltrack&testname=${prev.testname}&ttype=${prev.type}
 	}
 	@Override

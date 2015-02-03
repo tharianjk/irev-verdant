@@ -2,6 +2,13 @@ package ireveal.domain;
 
 public class Scaling {
 private int testid;
+private int productid;
+public int getProductid() {
+	return productid;
+}
+public void setProductid(int productid) {
+	this.productid = productid;
+}
 private double frequency;
 private double maxscale;
 private double minscale;
