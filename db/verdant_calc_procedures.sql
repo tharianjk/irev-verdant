@@ -18,7 +18,7 @@ drop function if exists calc_backlobe;
 drop function if exists calc_cpdata;
 drop function if exists calc_cpgain;
 drop function if exists calc_omni;
-
+drop procedure if exists spGetPolarSummary;
 
 
 # PROCEDURE TO CALCULATE FOR CP,DCP 
@@ -26,7 +26,7 @@ drop function if exists calc_omni;
 DELIMITER $$
 CREATE PROCEDURE `calc_CP`(
 cpTestId INT,
-cpFreq decimal(20,10),
+cpFreq decimal(40,20),
 cpTestDate datetime,
 cpType char(4) -- DCP or CP
 )
@@ -34,16 +34,16 @@ BEGIN
 -- for direct CP and CP with conversion
 
 # Declarations -begin
-DECLARE _3dB_BW_CP_BM,_3dB_BW_CP_0,_3dB_BW_CP_90 decimal(20,10);
-DECLARE _10dB_BW_CP_BM, _10dB_BW_CP_0,_10dB_BW_CP_90 decimal(20,10);
+DECLARE _3dB_BW_CP_BM,_3dB_BW_CP_0,_3dB_BW_CP_90 decimal(40,20);
+DECLARE _10dB_BW_CP_BM, _10dB_BW_CP_0,_10dB_BW_CP_90 decimal(40,20);
 
-DECLARE _3dB_BS_CP_BM,_3dB_BS_CP_0,_3dB_BS_CP_90 decimal(20,10);
-DECLARE _10dB_BS_CP_BM, _10dB_BS_CP_0,_10dB_BS_CP_90 decimal(20,10);
+DECLARE _3dB_BS_CP_BM,_3dB_BS_CP_0,_3dB_BS_CP_90 decimal(40,20);
+DECLARE _10dB_BS_CP_BM, _10dB_BS_CP_0,_10dB_BS_CP_90 decimal(40,20);
 
-DECLARE backlobe_CP decimal(20,10);
+DECLARE backlobe_CP decimal(40,20);
 
-DECLARE axial_0,axial_P45,axial_M45,AR_Maxdiff_P, AR_Maxdiff_M decimal(20,10);
-DECLARE angle_Maxdiff_P, angle_Maxdiff_M decimal(20,10);
+DECLARE axial_0,axial_P45,axial_M45,AR_Maxdiff_P, AR_Maxdiff_M decimal(40,20);
+DECLARE angle_Maxdiff_P, angle_Maxdiff_M decimal(40,20);
 
 DECLARE hDataPresent INT default 0;
 DECLARE vDataPresent INT default 0;
@@ -140,13 +140,13 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `calc_Linear_Azimuth`(
 laTestId INT,
-laFreq decimal(20,10),
+laFreq decimal(40,20),
 laTestDate datetime
 )
 BEGIN
 
 # Declarations -begin
-DECLARE omni_Y decimal(20,10);
+DECLARE omni_Y decimal(40,20);
 
 DECLARE yawDataPresent INT default 0;
 
@@ -174,19 +174,19 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `calc_Linear_Elevation`(
 leTestId INT,
-leFreq decimal(20,10),
+leFreq decimal(40,20),
 leTestDate datetime
 )
 BEGIN
 
 # Declarations -begin
-DECLARE _3dB_BW_P_BM, _3dB_BW_R_BM decimal(20,10);
-DECLARE _3dB_BW_P_0, _3dB_BW_R_0 decimal(20,10);
-DECLARE _3dB_BW_P_90, _3dB_BW_R_90 decimal(20,10);
-DECLARE _10dB_BW_P_BM, _10dB_BW_R_BM decimal(20,10);
-DECLARE _10dB_BW_P_0, _10dB_BW_R_0 decimal(20,10);
-DECLARE _10dB_BW_P_90, _10dB_BW_R_90 decimal(20,10);
-DECLARE dummyBS decimal(20,10);
+DECLARE _3dB_BW_P_BM, _3dB_BW_R_BM decimal(40,20);
+DECLARE _3dB_BW_P_0, _3dB_BW_R_0 decimal(40,20);
+DECLARE _3dB_BW_P_90, _3dB_BW_R_90 decimal(40,20);
+DECLARE _10dB_BW_P_BM, _10dB_BW_R_BM decimal(40,20);
+DECLARE _10dB_BW_P_0, _10dB_BW_R_0 decimal(40,20);
+DECLARE _10dB_BW_P_90, _10dB_BW_R_90 decimal(40,20);
+DECLARE dummyBS decimal(40,20);
 
 DECLARE pitchDataPresent INT default 0;
 DECLARE rollDataPresent INT default 0;
@@ -272,12 +272,12 @@ DELIMITER ;
 
 DELIMITER $$
 CREATE  PROCEDURE `calc_MaxDiffAxialRatio`(
-mdtest_id INT, freq decimal(20,10), P_or_M char(1),
-OUT MaxdiffRatio decimal(20,10), 
-OUT MaxdiffAngle decimal(20,10)
+mdtest_id INT, freq decimal(40,20), P_or_M char(1),
+OUT MaxdiffRatio decimal(40,20), 
+OUT MaxdiffAngle decimal(40,20)
 )
 BEGIN
-Declare i, currAngle, currRatio decimal(20,10);
+Declare i, currAngle, currRatio decimal(40,20);
 
 if P_or_M = 'P' then
 select MAX(axialRatio) 
@@ -323,13 +323,13 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `calc_Slant_Azimuth`(
 saTestId INT,
-saFreq decimal(20,10),
+saFreq decimal(40,20),
 saTestDate datetime
 )
 BEGIN
 # Declarations -begin
-DECLARE omni_HP decimal(20,10);
-DECLARE omni_VP decimal(20,10);
+DECLARE omni_HP decimal(40,20);
+DECLARE omni_VP decimal(40,20);
 
 DECLARE hDataPresent INT default 0;
 DECLARE vDataPresent INT default 0;
@@ -369,28 +369,28 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `calc_Slant_Elevation`(
 seTestId INT,
-seFreq decimal(20,10),
+seFreq decimal(40,20),
 seTestDate datetime
 )
 BEGIN
 -- same for cp without conversion
 
 # Declarations -begin
-DECLARE _3dB_BW_HP_BM, _3dB_BW_VP_BM decimal(20,10);
-DECLARE _3dB_BW_HP_0, _3dB_BW_VP_0 decimal(20,10);
-DECLARE _3dB_BW_HP_90, _3dB_BW_VP_90 decimal(20,10);
-DECLARE _10dB_BW_HP_BM, _10dB_BW_VP_BM decimal(20,10);
-DECLARE _10dB_BW_HP_0, _10dB_BW_VP_0 decimal(20,10);
-DECLARE _10dB_BW_HP_90, _10dB_BW_VP_90 decimal(20,10);
-DECLARE _3dB_BS_HP_BM, _3dB_BS_VP_BM decimal(20,10);
-DECLARE _3dB_BS_HP_0, _3dB_BS_VP_0 decimal(20,10);
-DECLARE _3dB_BS_HP_90, _3dB_BS_VP_90 decimal(20,10);
-DECLARE _10dB_BS_HP_BM, _10dB_BS_VP_BM decimal(20,10);
-DECLARE _10dB_BS_HP_0, _10dB_BS_VP_0 decimal(20,10);
-DECLARE _10dB_BS_HP_90, _10dB_BS_VP_90 decimal(20,10);
-DECLARE backlobe_HP,backlobe_VP decimal(20,10);
-DECLARE axial_0,axial_P45,axial_M45,AR_Maxdiff_P, AR_Maxdiff_M decimal(20,10);
-DECLARE angle_Maxdiff_P, angle_Maxdiff_M decimal(20,10);
+DECLARE _3dB_BW_HP_BM, _3dB_BW_VP_BM decimal(40,20);
+DECLARE _3dB_BW_HP_0, _3dB_BW_VP_0 decimal(40,20);
+DECLARE _3dB_BW_HP_90, _3dB_BW_VP_90 decimal(40,20);
+DECLARE _10dB_BW_HP_BM, _10dB_BW_VP_BM decimal(40,20);
+DECLARE _10dB_BW_HP_0, _10dB_BW_VP_0 decimal(40,20);
+DECLARE _10dB_BW_HP_90, _10dB_BW_VP_90 decimal(40,20);
+DECLARE _3dB_BS_HP_BM, _3dB_BS_VP_BM decimal(40,20);
+DECLARE _3dB_BS_HP_0, _3dB_BS_VP_0 decimal(40,20);
+DECLARE _3dB_BS_HP_90, _3dB_BS_VP_90 decimal(40,20);
+DECLARE _10dB_BS_HP_BM, _10dB_BS_VP_BM decimal(40,20);
+DECLARE _10dB_BS_HP_0, _10dB_BS_VP_0 decimal(40,20);
+DECLARE _10dB_BS_HP_90, _10dB_BS_VP_90 decimal(40,20);
+DECLARE backlobe_HP,backlobe_VP decimal(40,20);
+DECLARE axial_0,axial_P45,axial_M45,AR_Maxdiff_P, AR_Maxdiff_M decimal(40,20);
+DECLARE angle_Maxdiff_P, angle_Maxdiff_M decimal(40,20);
 
 
 DECLARE hDataPresent INT default 0;
@@ -525,11 +525,11 @@ DELIMITER ;
 DELIMITER $$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `calc_XdB_BW_BS`(
-xtest_id INT, freq decimal(20,10), X INT, polType char(2), fromAngle char(2),
-out beam_width decimal(20,10), out beam_squint decimal(20,10)
+xtest_id INT, freq decimal(40,20), X INT, polType char(2), fromAngle char(2),
+out beam_width decimal(40,20), out beam_squint decimal(40,20)
 )
 BEGIN
-declare C,D,E,AminX,i,j decimal(20,10);
+declare C,D,E,AminX,i,j decimal(40,20);
 
 # ************************** HP ******************************
 if polType = 'HP' then
@@ -671,7 +671,7 @@ myPoltype char(2) -- 'L'=linear, 'C'= circular
 )
 BEGIN
 
-declare myfreq decimal(20,10);
+declare myfreq decimal(40,20);
 declare myTestDate datetime;
 DECLARE myTestType char(4);
 
@@ -747,7 +747,7 @@ DELIMITER ;
 DELIMITER $$
 USE `verdant`$$
 CREATE PROCEDURE `convert_to_CP`(
-ctest_id INT, freq decimal(20,10)
+ctest_id INT, freq decimal(40,20)
 )
 BEGIN
 
@@ -773,13 +773,13 @@ DELIMITER ;
 
 DELIMITER $$
 CREATE FUNCTION `calc_AxialRatio`(
-atest_id INT, freq decimal(20,10), degree INT
-) RETURNS decimal(20,10)
+atest_id INT, freq decimal(40,20), degree INT
+) RETURNS decimal(40,20)
 BEGIN
 
 # Axial Ratio =( HP – VP) at degree for freq
 
-DECLARE AR decimal(20,10) default 0;
+DECLARE AR decimal(40,20) default 0;
 
 -- if degree = 0 then 
 -- 	set degree = 360;
@@ -801,16 +801,16 @@ DELIMITER ;
 
 DELIMITER $$
 CREATE FUNCTION `calc_backlobe`(
-bTestId INT, bFreq decimal(20,10), bPolType char(2)
-) RETURNS decimal(20,10)
+bTestId INT, bFreq decimal(40,20), bPolType char(2)
+) RETURNS decimal(40,20)
 BEGIN
 
 # A = Amplitude at 0 degree 
 # B = Amplitude at 180 degree 
 # Back Lobe = A-B
 
-DECLARE backlobe decimal(20,10) default 0;
-DECLARE Amp_0, Amp_180 decimal(20,10);
+DECLARE backlobe decimal(40,20) default 0;
+DECLARE Amp_0, Amp_180 decimal(40,20);
 
 if bPolType = 'HP' then
 	set Amp_0 = (select amplitude 
@@ -848,11 +848,11 @@ DELIMITER ;
 
 DELIMITER $$
 CREATE FUNCTION `calc_cpdata`(
-cTestId INT, freq decimal(20,10), cAngle decimal(20,10)
-) RETURNS decimal(20,10)
+cTestId INT, freq decimal(40,20), cAngle decimal(40,20)
+) RETURNS decimal(40,20)
 BEGIN
 
-declare A,B,C,D,E,cpdata decimal(20,10) default 0;
+declare A,B,C,D,E,cpdata decimal(40,20) default 0;
 
 select amplitude into A from hdata h
  		 where h.test_id = cTestId and h.Frequency = freq and h.angle = cAngle;
@@ -890,10 +890,10 @@ DELIMITER ;
 
 DELIMITER $$
 CREATE FUNCTION `calc_cpgain`(
-testId_c INT, freq decimal(20,10), linearGain decimal(20,10)
-) RETURNS decimal(20,10)
+testId_c INT, freq decimal(40,20), linearGain decimal(40,20)
+) RETURNS decimal(40,20)
 BEGIN
-declare A, B, C, D, E, cpgain decimal(20,10);
+declare A, B, C, D, E, cpgain decimal(40,20);
 
 select amplitude into A 
 from vdata v 
@@ -923,13 +923,13 @@ DELIMITER ;
 
 DELIMITER $$
 CREATE FUNCTION `calc_omni`(
-oTestId INT, freq decimal(20,10), opolType char(2)
-) RETURNS decimal(20,10)
+oTestId INT, freq decimal(40,20), opolType char(2)
+) RETURNS decimal(40,20)
 BEGIN
 
 #omni deviation = (Max - min)/2
 
-DECLARE omni_dev decimal(20,10) default 0;
+DECLARE omni_dev decimal(40,20) default 0;
 
 if opolType = 'HP' then
 	select ifnull((max(Amplitude)-min(Amplitude))/2,0) into omni_dev
@@ -953,9 +953,9 @@ testid INT
 BEGIN
  
 DECLARE v_finished INTEGER DEFAULT 0;
-Declare v_freq decimal(20,10);
-Declare v_lg decimal(20,10);
-Declare v_cpgain decimal(20,10); 
+Declare v_freq decimal(40,20);
+Declare v_lg decimal(40,20);
+Declare v_cpgain decimal(40,20); 
 declare cnt int;
 DECLARE C1 CURSOR FOR select distinct Frequency,lineargain from testfreq where test_id=testid;
  
@@ -991,81 +991,106 @@ DELIMITER ;
 -- Routine DDL
 -- Note: comments before and after the routine body will not be stored by the server
 -- --------------------------------------------------------------------------------
+drop procedure if exists spGetPolarPlot;
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
 DELIMITER $$
--- 
-CREATE  PROCEDURE `spGetPolarPlot`(
+
+CREATE PROCEDURE `spGetPolarPlot`(
 testid INT,
-freq decimal(20,10),
+freq decimal(40,20),
 typ varchar(5), -- H HP,V VP,B HP&VP,P Pitch,R Roll ,Y Yaw
-lg decimal(20,10)
+lg decimal(40,20)
 )
 BEGIN
-DECLARE ampl decimal(20,10) default 0;
-DECLARE vampl decimal(20,10) default 0;
-declare lgampl decimal(20,10) default 0;
+DECLARE ampl decimal(40,20) default 0;
+DECLARE vampl decimal(40,20) default 0;
+declare lgampl decimal(40,20) default 0;
 declare strmaxvalue varchar(50);
 declare strminvalue varchar(50);
 
+declare cnt int ;
+
+select count(*) into cnt from scaling s inner join product_serial ps on s.product_id=ps.product_id inner join testdata t on ps.prodserial_id=t.prodserial_id
+where t.test_id=testid and s.frequency=freq;
+if cnt > 0 then
+select distinct convert(maxscale,char(10)),convert(minscale,char(10)) into strmaxvalue,strminvalue from scaling s inner join product_serial ps on s.product_id=ps.product_id inner join testdata t on ps.prodserial_id=t.prodserial_id
+where t.test_id=testid and s.frequency=freq;
+end if;
+
+
 if lg=0.0001 then
 		if typ='H' then
-		
+if cnt=0 then
         select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
-        
+end if;
         SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 
 		end if;
 		if typ='V' then
+if cnt=0 then
 		select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
-
+end if;
 		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 
 		end if;
 		if typ='C' then
+if cnt=0 then
         select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
+end if;
 		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='B' then
+if cnt=0 then
         select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid ;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid ;
-		
+end if;	
         select test_id,frequency,angle,sum(hamplitude) hamplitude,sum(vamplitude) vamplitude,strmaxvalue,strminvalue 
 		from vw_polardata where Frequency=freq and Test_id=testid group by test_id,frequency,angle,strmaxvalue,strminvalue;
 		end if;
 		if  typ='P' then
+if cnt=0 then
         select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
+end if;
 		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='R' then
+if cnt=0 then
         select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
+end if;
 		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='Y' then 
+if cnt=0 then
         select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
+end if;
 		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
@@ -1074,7 +1099,7 @@ end if;
 		if typ='H' then
 		SELECT HD.Amplitude into ampl FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
-        
+if cnt=0 then
         select convert(round(max(Amplitude),0),char(30)) into strmaxvalue from(
         SELECT HD.Amplitude-ampl+lg Amplitude FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
@@ -1082,14 +1107,14 @@ end if;
         select convert(round(min(Amplitude),0),char(30)) into strminvalue from(
         SELECT HD.Amplitude-ampl+lg Amplitude FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
-
+end if;
 		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='V' then
         SELECT HD.Amplitude into ampl FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
-
+if cnt=0 then
         select convert(round(max(Amplitude),0),char(30)) into strmaxvalue from(
         SELECT HD.Amplitude-ampl+lg Amplitude FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
@@ -1097,7 +1122,7 @@ end if;
         select convert(round(min(Amplitude),0),char(30)) into strminvalue from(
         SELECT HD.Amplitude-ampl+lg Amplitude FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
-
+end if;
 		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
@@ -1107,7 +1132,7 @@ end if;
         -- update testfreq set lineargain =lg where test_id=testid and frequency=freq;
         SELECT HD.Amplitude into ampl FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
-
+if cnt=0 then
         select convert(round(max(Amplitude),0),char(30)) into strmaxvalue from(
         SELECT HD.Amplitude-ampl+lgampl Amplitude FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
@@ -1115,7 +1140,7 @@ end if;
         select convert(round(min(Amplitude),0),char(30)) into strminvalue from(
         SELECT HD.Amplitude-ampl+lgampl Amplitude FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
-
+end if;
         
 		SELECT HD.Angle,HD.Amplitude-ampl+lgampl Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM cpdata HD 
 		where HD.Frequency=testid and HD.Test_id=testid;
@@ -1125,13 +1150,13 @@ end if;
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
         SELECT HD.Amplitude into vampl FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
-
+if cnt=0 then
 		select convert(round(max(Amplitude-ampl+lg),0),char(30)) into strmaxvalue from hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid ;
         
         select convert(round(min(Amplitude-ampl+lg),0),char(30)) into strminvalue from hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid ;
-        
+   end if;     
        /*select convert(round(max(Amplitude),0),char(30)) into strmaxvalue from 
         (SELECT Amplitude -ampl+lg FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid 
@@ -1153,7 +1178,7 @@ end if;
 		if  typ='P' then
 		SELECT HD.Amplitude into ampl FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
-
+if cnt=0 then
         select convert(round(max(Amplitude),0),char(30)) into strmaxvalue from(
         SELECT HD.Amplitude-ampl+lg Amplitude FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
@@ -1161,13 +1186,14 @@ end if;
         select convert(round(min(Amplitude),0),char(30)) into strminvalue from(
         SELECT HD.Amplitude-ampl+lg Amplitude FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
+end if;
 		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='R' then
 		SELECT HD.Amplitude into ampl FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
-
+if cnt=0 then
         select convert(round(max(Amplitude),0),char(30)) into strmaxvalue from(
         SELECT HD.Amplitude-ampl+lg Amplitude FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
@@ -1175,14 +1201,14 @@ end if;
         select convert(round(min(Amplitude),0),char(30)) into strminvalue from(
         SELECT HD.Amplitude-ampl+lg Amplitude FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
-
+end if;
 		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='Y' then
 		SELECT HD.Amplitude into ampl FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
-
+if cnt=0 then
         select convert(round(max(Amplitude),0),char(30)) into strmaxvalue from(
         SELECT HD.Amplitude-ampl+lg Amplitude FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
@@ -1190,7 +1216,7 @@ end if;
         select convert(round(min(Amplitude),0),char(30)) into strminvalue from(
         SELECT HD.Amplitude-ampl+lg Amplitude FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
-
+end if;
 		 SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
@@ -1200,8 +1226,7 @@ end if;
 
 
 END $$
-DELIMITER ;
-
+DELIMITER;
 -- --------------------------------------------------------------------------------
 -- Routine DDL
 -- Note: comments before and after the routine body will not be stored by the server
@@ -1211,8 +1236,8 @@ DELIMITER $$
 CREATE  PROCEDURE `calc_tracking`(
 myProdSerialList varchar(200), -- eg: "1,2,3,4"
 amp_or_phase char(1), -- 'A' = amp, 'P' = phase
-out maxDiff decimal(20,10),
-out maxFreq decimal(20,10)
+out maxDiff decimal(40,20),
+out maxFreq decimal(40,20)
 )
 BEGIN
 
@@ -1237,4 +1262,68 @@ order by diff desc
 LIMIT 1;
 
 end if;
+END $$
+
+
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE  PROCEDURE `spGetPolarSummary`(
+testid INT,
+freq decimal(40,10),
+typ varchar(5) -- H HP,V VP,B HP&VP,P Pitch,R Roll ,Y Yaw
+
+)
+BEGIn
+declare prec int;
+set prec=1;
+select nprecision into prec from fwk_company where company_id=1;
+
+if typ='C' then
+select round(sum(3Db_BW_BMax),prec) 3Db_BW_BMax,round(sum(3Db_BS_BMax),prec) 3Db_BS_BMax,round(sum(10Db_BW_BMax),prec) 10Db_BW_BMax,round(sum(10Db_BS_BMax),prec) 10Db_BS_BMax,round(sum(BackLobe),prec) BackLobe,round(sum(CPGain),prec) CPGain,round(sum(AR_0),prec) AR_0 ,round(sum(OmniDeviation),prec) OmniDeviation from (
+select 3Db_BW_BMax,3Db_BS_BMax,10Db_BW_BMax,10Db_BS_BMax,BackLobe,CPGain,0 AR_0,0 OmniDeviation from cpcalculated where Test_id=testid and Frequency=freq
+union select 0 3Db_BW_BMax,0 3Db_BS_BMax, 0 10Db_BW_BMax,0 10Db_BS_BMax,0 BackLobe, 0 CPGain,AR_0,0 OmniDeviation from arcalculated  where Test_id=testid and Frequency=freq) as tab;
+end if;
+if typ='H' then
+select round(sum(3Db_BW_BMax),prec) 3Db_BW_BMax,round(sum(3Db_BS_BMax),prec) 3Db_BS_BMax,round(sum(10Db_BW_BMax),prec) 10Db_BW_BMax,round(sum(10Db_BS_BMax),prec) 10Db_BS_BMax,round(sum(BackLobe),prec) BackLobe,round(sum(CPGain),prec) CPGain,round(sum(AR_0),prec) AR_0 ,round(sum(OmniDeviation),prec) OmniDeviation from (
+select 3Db_BW_BMax,3Db_BS_BMax,10Db_BW_BMax,10Db_BS_BMax,BackLobe,0 CPGain,0 AR_0, OmniDeviation from hcalculated where Test_id=testid and Frequency=freq
+union select 0 3Db_BW_BMax,0 3Db_BS_BMax, 0 10Db_BW_BMax,0 10Db_BS_BMax,0 BackLobe, 0 CPGain,AR_0,0 OmniDeviation from arcalculated  where Test_id=testid and Frequency=freq) as tab;
+end if;
+if typ='V' then
+select round(sum(3Db_BW_BMax),prec) 3Db_BW_BMax,round(sum(3Db_BS_BMax),prec) 3Db_BS_BMax,round(sum(10Db_BW_BMax),prec) 10Db_BW_BMax,round(sum(10Db_BS_BMax),prec) 10Db_BS_BMax,round(sum(BackLobe),prec) BackLobe,round(sum(CPGain),prec) CPGain,round(sum(AR_0),prec) AR_0 ,round(sum(OmniDeviation),prec) OmniDeviation from (
+select 3Db_BW_BMax,3Db_BS_BMax,10Db_BW_BMax,10Db_BS_BMax,BackLobe,0 CPGain,0 AR_0, OmniDeviation from vcalculated where Test_id=testid and Frequency=freq
+union select 0 3Db_BW_BMax,0 3Db_BS_BMax, 0 10Db_BW_BMax,0 10Db_BS_BMax,0 BackLobe, 0 CPGain,AR_0,0 OmniDeviation from arcalculated  where Test_id=testid and Frequency=freq) as tab;
+end if;
+if typ='P' then
+select round(sum(3Db_BW_BMax),prec) 3Db_BW_BMax,round(sum(3Db_BS_BMax),prec) 3Db_BS_BMax,round(sum(10Db_BW_BMax),prec) 10Db_BW_BMax,round(sum(10Db_BS_BMax),prec) 10Db_BS_BMax,round(sum(BackLobe),prec) BackLobe,round(sum(CPGain),prec) CPGain,round(sum(AR_0),prec) AR_0 ,round(sum(OmniDeviation),prec) OmniDeviation from (
+select 3Db_BW_BMax,0 3Db_BS_BMax,10Db_BW_BMax,0 10Db_BS_BMax,0 BackLobe,0 CPGain,0 AR_0, 0 OmniDeviation from pitchcalculated where Test_id=testid and Frequency=freq
+) as tab;
+end if;
+if typ='R' then
+select round(sum(3Db_BW_BMax),prec) 3Db_BW_BMax,round(sum(3Db_BS_BMax),prec) 3Db_BS_BMax,round(sum(10Db_BW_BMax),prec) 10Db_BW_BMax,round(sum(10Db_BS_BMax),prec) 10Db_BS_BMax,round(sum(BackLobe),prec) BackLobe,round(sum(CPGain),prec) CPGain,round(sum(AR_0),prec) AR_0 ,round(sum(OmniDeviation),prec) OmniDeviation from (
+select 3Db_BW_BMax,0 3Db_BS_BMax,10Db_BW_BMax,0 10Db_BS_BMax,0 BackLobe,0 CPGain,0 AR_0, 0 OmniDeviation from rollcalculated where Test_id=testid and Frequency=freq
+) as tab;
+end if;
+if typ='Y' then
+select round(sum(3Db_BW_BMax),prec) 3Db_BW_BMax,round(sum(3Db_BS_BMax),prec) 3Db_BS_BMax,round(sum(10Db_BW_BMax),prec) 10Db_BW_BMax,round(sum(10Db_BS_BMax),prec) 10Db_BS_BMax,round(sum(BackLobe),prec) BackLobe,round(sum(CPGain),prec) CPGain,round(sum(AR_0),prec) AR_0 ,round(sum(OmniDeviation),prec) OmniDeviation from (
+select 0 3Db_BW_BMax,0 3Db_BS_BMax,0 10Db_BW_BMax,0 10Db_BS_BMax,0 BackLobe,0 CPGain,0 AR_0, OmniDeviation from yawcalculated where Test_id=testid and Frequency=freq
+) as tab;
+end if;
+
+	
+if typ='B' then
+select ptype, round(sum(3Db_BW_BMax),prec) 3Db_BW_BMax,round(sum(3Db_BS_BMax),prec) 3Db_BS_BMax,round(sum(10Db_BW_BMax),prec) 10Db_BW_BMax,round(sum(10Db_BS_BMax),prec) 10Db_BS_BMax,round(sum(BackLobe),prec) BackLobe,round(sum(CPGain),prec) CPGain,round(sum(AR_0),prec) AR_0 ,round(sum(OmniDeviation),prec) OmniDeviation from (
+select 'HP' ptype,3Db_BW_BMax,3Db_BS_BMax,10Db_BW_BMax,10Db_BS_BMax,BackLobe,0 CPGain,0 AR_0, OmniDeviation from hcalculated where Test_id=testid and Frequency=freq
+union select 'HP' ptype,0 3Db_BW_BMax,0 3Db_BS_BMax, 0 10Db_BW_BMax,0 10Db_BS_BMax,0 BackLobe, 0 CPGain,AR_0,0 OmniDeviation from arcalculated  where Test_id=testid and Frequency=freq
+union
+select 'VP' ptype,3Db_BW_BMax,3Db_BS_BMax,10Db_BW_BMax,10Db_BS_BMax,BackLobe,0 CPGain,0 AR_0, OmniDeviation from vcalculated where Test_id=testid and Frequency=freq 
+union select 'VP' ptype,0 3Db_BW_BMax,0 3Db_BS_BMax, 0 10Db_BW_BMax,0 10Db_BS_BMax,0 BackLobe, 0 CPGain,AR_0,0 OmniDeviation from arcalculated  where Test_id=testid and Frequency=freq
+) as tab
+group by ptype;
+end if;	
+        
 END $$
