@@ -51,13 +51,15 @@ function progress_clear() {
 for (var i = 1; i <= progressEnd; i++) document.getElementById('progress'+i).style.backgroundColor = 'transparent';
 progressAt = 0;
 }
-function progress_update() {
+function progress_update( typ) {
 	//console.log("progress_update");
+	if(typ=='M'){
 	tabledata();
 	if(document.getElementById("strfreq").value=="" ||document.getElementById("strfreq").value==null || document.getElementById("strfreq").value=='null'){
 		alert("Frequencies not added");
 		progress_stop();
 		return;
+	}
 	}
 	/*var filename=document.getElementById("filename").value;
 	if(filename==null || filename=="")
@@ -69,7 +71,7 @@ function progress_update() {
 progressAt++;
 if (progressAt > progressEnd) progress_clear();
 else document.getElementById('progress'+progressAt).style.backgroundColor = progressColor;
-progressTimer = setTimeout('progress_update()',progressInterval);
+progressTimer = setTimeout('progress_update("D")',progressInterval);
 }
 function progress_stop() {
 clearTimeout(progressTimer);
@@ -279,8 +281,8 @@ progress_clear();
 		<form:hidden id="strfreq" path="strjsonfreq"></form:hidden>
 		<form:hidden id="originalfilename" path="originalfilename"></form:hidden>
 		<form:hidden path="ptype" ></form:hidden>
-		<input type="submit" id="more" value="Import" name="fmaction" class="myButton" onclick="progress_update();form1.submit();"/>
-		<input type="submit" id="done" value="Calculate" name="fmaction" class="myButton" onclick="progress_update();form1.submit();"/>
+		<input type="submit" id="more" value="Import" name="fmaction" class="myButton" onclick="progress_update('M');form1.submit();"/>
+		<input type="submit" id="done" value="Calculate" name="fmaction" class="myButton" onclick="progress_update('D');form1.submit();"/>
 		<input type="submit" id="save" value="Save" name="fmaction" class="myButton" onclick="form1.submit();" style="visibility:hidden"/>
 		<span><form:errors path="filename" cssClass="error" />
 		</span>
@@ -310,6 +312,33 @@ progress_clear();
 var mode='<%=request.getParameter("mode")%>';
 
 $(document).ready( function () {
+	
+	var savestat='<%=request.getParameter("savestat")%>';
+	var msg='<%=request.getParameter("msg")%>';
+		//alert (parmdelete);
+		console.log("savestat "+savestat);
+		if(savestat!=null && savestat!="" && savestat!=-1 && savestat!="null")
+			{
+			if(savestat==1)
+				{
+		flashMessenger.setText(msg);
+		var url = '<%=request.getContextPath()%>/assettree.htm?treemode=view';     
+        parent.frames['AssetTree'].location = url; 
+        parent.document.getElementById("od").style.display="none";
+  	    parent.document.getElementById("ar").style.display="none";
+  	    parent.document.getElementById("pp").style.display="none";
+  	    parent.document.getElementById("3db").style.display="none";
+  	    parent.document.getElementById("10db").style.display="none";
+  	    parent.document.getElementById("cpg").style.display="none";
+  	    parent.document.getElementById("blobe").style.display="none";
+  	    parent.document.getElementById("apt").style.display="none";
+				}
+			else{
+				errorflashMessenger.setText(msg);
+			}
+			}
+	
+	
 	var testtype = document.getElementById('testtype');
 	var ptype=document.getElementById("ptype").value;
 	var i;
@@ -396,9 +425,10 @@ $(document).ready( function () {
 	 document.getElementById("more").style.visibility="visible";
 	 document.getElementById("done").style.visibility="visible";
 	 document.getElementById("save").style.visibility="hidden";
+	
 	// document.getElementById("cancel").style.visibility="hidden";
 	 document.getElementById("more").disabled = true;
-	 document.getElementById("done").disabled = true;
+	 document.getElementById("done").disabled = false;
 	 }
 	
 } );

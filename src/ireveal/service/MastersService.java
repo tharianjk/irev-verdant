@@ -78,4 +78,5 @@ public interface MastersService {
 		 public TestFrequency calcTrack(String testnames,String typ);
 		 public int getProductid(int testid);
 		 public int getPrecision();
+		 public int CalcProc(String ptype,int testid);
 } 

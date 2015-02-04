@@ -65,7 +65,7 @@ public class TestImportController extends SimpleFormController{
 		String action="More";
 		String strmode="new";
 		String fileName="";
-		
+		int stat=-1;
 		logger.info("*** Inside testcontroller in onsubmit**: btn= "+request.getParameter("fmaction"));
               
 		
@@ -75,6 +75,7 @@ public class TestImportController extends SimpleFormController{
 		 logger.info("*** Inside testcontroller in onsubmit** strmode:"+strmode);
 		 if(strtestid!=null && strtestid!="" && strtestid!="null" && strtestid!="0" && strmode.equals("new")){
 			 strmode="addfile";
+			 testid=Integer.parseInt(strtestid)	;
 		 }
 		 TestData file = (TestData)command;
 		 if(strmode.equals("edit")){
@@ -88,6 +89,21 @@ public class TestImportController extends SimpleFormController{
 		        {
 		        	action="Done";
 		        }
+		 
+		if(action.equals("Done")){
+		 stat=	mastersservice.CalcProc(file.getPtype(),testid);
+		if(stat==0)
+		{
+			err="Failed to calculate";
+			
+		}
+		else
+		{
+			err="Calculation completed successfully";
+		}
+		}
+		
+		else{
 		List<DataLog> datalogList = new ArrayList<DataLog>();
 		List<TestFrequency> freqlist=new ArrayList<TestFrequency>();
 		
@@ -104,9 +120,9 @@ public class TestImportController extends SimpleFormController{
 	    for(int i=0;i<result.length();i++)
 	     {
 	    	TestFrequency testfreq= new TestFrequency();
-	    	logger.info(result.get(i));
+	    	//logger.info(result.get(i));
 	    	JSONObject obj2 = (JSONObject)result.get(i);
-	    	logger.info(obj2.get("freq"));
+	    	//logger.info(obj2.get("freq"));
 	    //	logger.info(obj2.get("lg"));
 	    	if(file.getFrequnit().equals("GHz"))
 	    	{    		  
@@ -124,6 +140,7 @@ public class TestImportController extends SimpleFormController{
 		 
 		logger.info("Inside FileUpload Controller");
 		if(multipartFile!=null){
+			
 			fileName = multipartFile.getOriginalFilename();
 			logger.info("Inside FileUpload Controller fileName" +fileName);
 			try {
@@ -237,7 +254,17 @@ public class TestImportController extends SimpleFormController{
 					logger.info(" datalogList.size "+datalogList.size());
 					if(datalogList.size()>0)
 					{
-				testid=	mastersservice.insertTestData(file,freqlist,datalogList,strmode,action);
+						err=fileName + "Uploaded successfully";
+						stat=	mastersservice.insertTestData(file,freqlist,datalogList,strmode,action);
+				if(stat==0)
+				{
+					err="Failed to Import "+fileName	;
+					stat=0;
+				}
+				else{
+					testid=stat;
+					stat=1;
+				}
 					}
 					request.setAttribute("message", "File Uploaded Successfully");
 					
@@ -248,16 +275,17 @@ public class TestImportController extends SimpleFormController{
 					}
 				 logger.info(" imported testid "+testid);
 		}
-		 }       	
+		 }       
+		 }
 		//
 		request.setAttribute("id", null);
      	cursess.setAttribute("id",null);
      	request.setAttribute("mode", null);
      	cursess.setAttribute("mode",null);
 		if(action.equals("More")){
-		return new ModelAndView(new RedirectView("testimport.htm?id="+testid));}
+		return new ModelAndView(new RedirectView("testimport.htm?id="+testid+"&savestat="+stat+"&msg="+err+"&refresh=refresh"));}
 		//else if (action.equals("Done")) return new ModelAndView("fileuploadresult","fileName"," " +" " +err);
-		else return new ModelAndView(new RedirectView("testimport.htm?id="+testid+"&mode=edit"));
+		else return new ModelAndView(new RedirectView("testimport.htm?id="+testid+"&mode=edit&savestat="+stat+"&msg="+err));
 	}
 	@Override
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder)

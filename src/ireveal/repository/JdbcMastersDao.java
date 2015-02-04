@@ -415,7 +415,7 @@ if(strmode.equals("new")){
 		 new Object[] {testid, dataloglist.get(i).getFreq(), dataloglist.get(i).getAngle()==360.00?0:dataloglist.get(i).getAngle(),dataloglist.get(i).getAmplitude() });
 
 		}
-	  	if(action.equals("Done"))
+	  	/* if(action.equals("Done"))
 	  	{
 	  		//CP -WIth CP Conversion
 	  		//NCP - no cp conversion
@@ -429,15 +429,33 @@ if(strmode.equals("new")){
 	  		//final String funit = "M";
 	  		getJdbcTemplate().update("call Calculate_params (?,?)", testid,ptype);
 	  		
-	  	}	  	
+	  	}	*/  	
 	   }
 	   catch(Exception e){
 		   logger.info("Import Test Exception "+e.getMessage());
+		   return 0;
 	   }
 	    return testid;	    
 	   }
    
-   
+   public int CalcProc(String ptype,int testid)
+   {
+	   
+	   final String ptyp = ptype;//testdata.getPtype();
+ 		logger.info("ptype "+ptype);
+ 		//final String funit = testdata.getFrequnit().equals("MHz")?"M":"G";
+ 		//final String funit = "M";
+ 		try{
+ 		getJdbcTemplate().update("call Calculate_params (?,?)", testid,ptyp);
+ 		return 1;
+ 		}
+ 		catch(Exception e)
+ 		{
+ 			 logger.info("Import Test Exception "+e.getMessage());
+ 			   return 0;
+ 		}
+ 			
+   }
    
    public int InsertProduct(Product prod) {
 	   

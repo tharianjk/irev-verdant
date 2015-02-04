@@ -51,11 +51,7 @@ public class TestFreqController implements Controller{
 		 String strjsonfreq = request.getParameter("strjsonfreq");
 		 String frequnit = request.getParameter("frequnit");
 		testid= Integer.parseInt(id);
-		request.setAttribute("savestat", null);
-        request.setAttribute("err", null);
-        request.setAttribute("message", null);
-        cursess.setAttribute("message",null);
-        cursess.setAttribute("err",null);
+		
 		if(operstr.equals("cpg"))
 		{
 			TestData testdata=mastersservice.getTestData(testid);
