@@ -84,7 +84,7 @@ public class TestImportController extends SimpleFormController{
 		 }
 		 else
 		 {
-			 if (request.getParameter("fmaction").equals("Done"))
+			 if (request.getParameter("fmaction").equals("Calculate"))
 		        {
 		        	action="Done";
 		        }
@@ -256,7 +256,7 @@ public class TestImportController extends SimpleFormController{
      	cursess.setAttribute("mode",null);
 		if(action.equals("More")){
 		return new ModelAndView(new RedirectView("testimport.htm?id="+testid));}
-		else if (action.equals("Done")) return new ModelAndView("fileuploadresult","fileName"," " +" " +err);
+		//else if (action.equals("Done")) return new ModelAndView("fileuploadresult","fileName"," " +" " +err);
 		else return new ModelAndView(new RedirectView("testimport.htm?id="+testid+"&mode=edit"));
 	}
 	@Override
@@ -296,6 +296,7 @@ public class TestImportController extends SimpleFormController{
 	        cursess.setAttribute("err",null);
 	        request.setAttribute("mode", mode);
         	cursess.setAttribute("mode",mode);
+        	testid=0;
 	        logger.info("inside ProductSerialController"); 
 	        if (id == null || id == "" || id.equals("null")){
 	        	logger.info(" atype "+atype);
@@ -327,7 +328,7 @@ public class TestImportController extends SimpleFormController{
 	    }
 	    protected HashMap referenceData(HttpServletRequest request) throws Exception {
 			HashMap referenceData = new HashMap();	
-			
+			  logger.info(" ImportTestController referenceData testis="+testid);
 			String pfreq="";
 			String rfreq="";
 			String yfreq="";

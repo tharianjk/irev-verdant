@@ -93,8 +93,9 @@ progress_clear();
 	<form:form name="form1" id="form1" method="POST" commandName="TestData" enctype="multipart/form-data">
  
 		<form:errors path="*" cssClass="errorblock" element="div" />
- 
-		<br>
+ <table>
+ <tr>
+ <td>
 		<table id="tblmain">
 		<tr><td>Test Center * :</td>  
 		<td><form:input path="testcenter" required="required" /></td>
@@ -105,6 +106,8 @@ progress_clear();
 		<td>Test Configuration * :</td>  
           <td><form:input path="testname" id="testname" required="required" />  
           </td>
+          </tr>
+          <tr>
           <td>Test date *:</td>
 	     <td><form:input id="dttest" path="strtestdate" type="datetime-local" required="required" /> </td>
 		</tr>
@@ -121,6 +124,8 @@ progress_clear();
 			</form:select>
 			   
           </td>
+          </tr>
+          <tr>
           <td>Test Type * :</td> 
           
           <td>          
@@ -130,24 +135,85 @@ progress_clear();
           </tr>
           <tr>
           <td>Test Description :</td>  
-        <td><form:textarea id="testdesc"  path="testdesc"  rows="2" cols="50" /></td>   
-          
+        <td><form:textarea id="testdesc"  path="testdesc"  rows="2" cols="50" /></td>  
+        </tr> 
+          <tr>
 		<td>Test Procedure  :</td> 
-		<td><form:textarea id="testproc"  path="testproc"  rows="2" cols="40" /></td>   
+		<td><form:textarea id="testproc"  path="testproc"  rows="2" cols="50" /></td>   
 		        
 		</tr>
 		<tr>
 		<td>Instruments Used  :</td> 
 		<td><form:textarea   path="instruments"  rows="2" cols="50" /></td>
+		</tr>
+		<tr>
 		<td>Calibration Status  :</td> 
-		<td><form:textarea   path="calibration"  rows="2" cols="40" /></td> 
+		<td><form:textarea   path="calibration"  rows="2" cols="50" /></td> 
 		</tr>
         </table> 
+        </td>
+  <c:if test="${cfreq!='' || vfreq !=''  || hfreq !=''  || cfreq !=''  || pfreq !=''  || rfreq !=''  || yfreq !='' }">
+ <td align="center"> <b> <u>Imported Data </u></b> 
+		<table id="listtab"  border="1" cellpadding="1" cellspacing="2" style="width: 500px;vertical-align:top;">
+		
+	<thead>
+		<tr>
+		<th scope="col"> Imported Type </th>
+		<th scope="col"> Spot Frequencies</th>	
+		</tr>
+	</thead>
+	<tbody>
+	<c:if test="${cfreq!='' && cfreq !=null}">
+	<tr>
+	<td> CP Data </td>
+	<td> ${cfreq}</td>				
+	</tr>
+	</c:if>
+	<c:if test="${hfreq!='' && hfreq !=null}">
+	<tr>
+	<td> HP Data </td>
+	<td> ${hfreq}</td>				
+	</tr>
+	</c:if>
+	<c:if test="${vfreq!='' && vfreq !=null}">
+	<tr>
+	<td> VP Data </td>
+	<td> ${vfreq}</td>				
+	</tr>
+	</c:if>
+	<c:if test="${pfreq!='' && pfreq !=null}">
+	<tr>
+	<td> Pitch Data </td>
+	<td> ${pfreq}</td>				
+	</tr>
+	</c:if>
+	<c:if test="${rfreq!='' && rfreq !=null}">
+	<tr>
+	<td> Roll Data </td>
+	<td> ${rfreq}</td>				
+	</tr>
+	</c:if>
+	<c:if test="${yfreq!='' && yfreq !=null}">
+	<tr>
+	<td> Yaw Data </td>
+	<td> ${yfreq}</td>				
+	</tr>
+	</c:if>
+	
+	 
+	</tbody>
+	</table> 
+	
+	</td>
+	</c:if>
+ </tr>
+ </table>
+ 
          <br> 
          
          
        <table id="tbimport">  
-       <tr><td><input type="button" id="prevfreq" value="Show Previous Entries"  class="myButton" style="display:none;" /></td></tr>
+       
        <tr> 
       
 		<td>File Type * :</td> 
@@ -213,8 +279,8 @@ progress_clear();
 		<form:hidden id="strfreq" path="strjsonfreq"></form:hidden>
 		<form:hidden id="originalfilename" path="originalfilename"></form:hidden>
 		<form:hidden path="ptype" ></form:hidden>
-		<input type="submit" id="more" value="More" name="fmaction" class="myButton" onclick="progress_update();form1.submit();"/>
-		<input type="submit" id="done" value="Done" name="fmaction" class="myButton" onclick="progress_update();form1.submit();"/>
+		<input type="submit" id="more" value="Import" name="fmaction" class="myButton" onclick="progress_update();form1.submit();"/>
+		<input type="submit" id="done" value="Calculate" name="fmaction" class="myButton" onclick="progress_update();form1.submit();"/>
 		<input type="submit" id="save" value="Save" name="fmaction" class="myButton" onclick="form1.submit();" style="visibility:hidden"/>
 		<span><form:errors path="filename" cssClass="error" />
 		</span>
@@ -237,89 +303,7 @@ progress_clear();
 </td></tr></table>
 	
  </div>
-<div id="dialog-prevfreq" title="Imported Files" style="display:none;overflow:hidden">
-  <table>
-  <tr>
-  <td >
-  <c:if test="${pfreq!='' && pfreq !=null}">
-  <table><tr><td width="50">Pitch-Data </td></tr>
-  <tr><td></td><td style="display: inline-block;
-               width: 600em; 
-               overflow: hidden; 
-               word-wrap: break-word;">
-  ${pfreq}
-  </td></tr></table>
-  </c:if>
-  </td>
-  </tr>
-   <tr>
-  <td >
-  <c:if test="${rfreq!='' && rfreq !=null}">
-  <table><tr><td width="50">Roll-Data </td></tr>
-  <tr><td></td><td style="display: inline-block;
-               width: 600em; 
-               overflow: hidden; 
-               word-wrap: break-word;">
-  ${rfreq}
-  </td></tr></table>
-  </c:if>
-  </td>
-  </tr>
-   <tr>
-  <td >
-  <c:if test="${yfreq!='' && yfreq !=null}">
-  <table><tr><td width="50">Yaw-Data </td></tr>
-  <tr><td></td><td style="display: inline-block;
-               width: 600em; 
-               overflow: hidden; 
-               word-wrap: break-word;">
-  ${yfreq}
-  </td></tr></table>
-  </c:if>
-  </td>
-  </tr>
-   <tr>
-  <td >
-  <c:if test="${cfreq!='' && cfreq !=null}">
-  <table><tr><td width="50">CP-Data </td></tr>
-  <tr><td></td><td style="display: inline-block;
-               width: 600em; 
-               overflow: hidden; 
-               word-wrap: break-word;">
-  ${cfreq}
-  </td></tr></table>
-  </c:if>
-  </td>
-  </tr>
-   <tr>
-  <td >
-  <c:if test="${hfreq!='' && hfreq !=null}">
-  <table><tr><td width="50">HP-Data </td></tr>
-  <tr><td></td><td style="display: inline-block;
-               width: 600em; 
-               overflow: hidden; 
-               word-wrap: break-word;">
-  ${hfreq}
-  </td></tr></table>
-  </c:if>
-  </td>
-  </tr>
-   <tr>
-  <td nowrap>
-  <c:if test="${vfreq!='' && vfreq !=null}">
-  <table><tr><td width="50">VP-Data </td></tr>
-  <tr><td></td><td style="display: inline-block;
-               width: 600em; 
-               overflow: hidden; 
-               word-wrap: break-word;">
-  ${vfreq}
-  </td></tr></table>
-  </c:if>
-  </td>
-  </tr>
-   
-  </table>
-</div>
+
 
 
 <script>
@@ -382,7 +366,7 @@ $(document).ready( function () {
 		{
 		 document.getElementById("frequnit").disabled = true;
 		 document.getElementById("testtype").value='${testtype}';
-		 document.getElementById("prevfreq").style.display="block";
+		 
 		 //$("#testtype").trigger( "onchange" );
 		 $("#testtype").val('${testtype}').change();
 		 if(mode=='edit')
@@ -397,7 +381,7 @@ $(document).ready( function () {
 			 }		 
 		}
 	 else{
-		 document.getElementById("prevfreq").style.display="none";
+		 
 		 document.getElementById("more").style.visibility="visible";
 		 document.getElementById("done").style.visibility="visible";
 		 document.getElementById("save").style.visibility="hidden";
@@ -628,18 +612,6 @@ function tabledata()
 		//console.log(""+json);
 		}
 }
-
-
-$( "#prevfreq" ).click(function() {
-	dialog = $( "#dialog-prevfreq" ).dialog({
-	      autoOpen: false,
-	      height: 200,
-	      width: 700,
-	      modal: true,overflow: false
-	      
-	    });  
-dialog.dialog( "open" );
-	});
 
 </script>
 

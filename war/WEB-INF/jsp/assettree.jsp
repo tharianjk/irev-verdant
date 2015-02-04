@@ -538,7 +538,19 @@ function recreatewithparents()
         	treemode="";
         console.log("treeType="+treeType+" treemode="+treemode);
          var items;
-         if (treeType==3 && treemode!="edit"){        	 
+         if ( treemode!="edit"){
+        	 if(treeType==4){
+                 items = {
+                		 editItem: { // The "rename" menu item
+                             label: "Add Files/Frequency.",
+                             action: function(response) {
+                          	   var url = '<%=request.getContextPath()%>/testimport.htm?mode=add&id='+ node.attr('assetId') ;
+                                 parent.frames['AppBody'].location = url;
+                                       }
+                         }
+                 }
+        	 }
+        	 if(treeType==3){
         	 console.log("inside edit");
           	 items = {   
           			 createItem: { // The "rename" menu item
@@ -558,6 +570,7 @@ function recreatewithparents()
                                 }
                   }};
           	 return items;}
+         }
        if(treemode=="edit"){
        
        // alert(" alert " +node.attr('treeType'));
