@@ -7813,7 +7813,7 @@ else&#xD;
 ]]></xml-property>
             <property name="outputFormat">SVG</property>
             <property name="inheritColumns">true</property>
-            <property name="pageBreakAfter">always</property>
+            <property name="pageBreakAfter">auto</property>
             <property name="height">130pt</property>
             <property name="width">212pt</property>
             <property name="dataSet">HnVdataset</property>
@@ -9396,7 +9396,7 @@ else&#xD;
 ]]></xml-property>
             <property name="outputFormat">SVG</property>
             <property name="inheritColumns">true</property>
-            <property name="pageBreakAfter">always</property>
+            <property name="pageBreakAfter">auto</property>
             <property name="height">130pt</property>
             <property name="width">212pt</property>
             <property name="dataSet">HnVdataset2</property>
@@ -11014,7 +11014,7 @@ else&#xD;
 ]]></xml-property>
             <property name="outputFormat">SVG</property>
             <property name="inheritColumns">true</property>
-            <property name="pageBreakAfter">always</property>
+            <property name="pageBreakAfter">auto</property>
             <property name="height">130pt</property>
             <property name="width">212pt</property>
             <property name="dataSet">HnVdataset3</property>
@@ -12632,7 +12632,7 @@ else&#xD;
 ]]></xml-property>
             <property name="outputFormat">SVG</property>
             <property name="inheritColumns">true</property>
-            <property name="pageBreakAfter">always</property>
+            <property name="pageBreakAfter">auto</property>
             <property name="height">130pt</property>
             <property name="width">212pt</property>
             <property name="dataSet">HnVdataset4</property>
@@ -14250,7 +14250,7 @@ else&#xD;
 ]]></xml-property>
             <property name="outputFormat">SVG</property>
             <property name="inheritColumns">true</property>
-            <property name="pageBreakAfter">always</property>
+            <property name="pageBreakAfter">auto</property>
             <property name="height">130pt</property>
             <property name="width">212pt</property>
             <property name="dataSet">HnVdataset5</property>
@@ -15868,7 +15868,7 @@ else&#xD;
 ]]></xml-property>
             <property name="outputFormat">SVG</property>
             <property name="inheritColumns">true</property>
-            <property name="pageBreakAfter">always</property>
+            <property name="pageBreakAfter">auto</property>
             <property name="height">130pt</property>
             <property name="width">212pt</property>
             <property name="dataSet">HnVdataset6</property>
@@ -17486,7 +17486,7 @@ else&#xD;
 ]]></xml-property>
             <property name="outputFormat">SVG</property>
             <property name="inheritColumns">true</property>
-            <property name="pageBreakAfter">always</property>
+            <property name="pageBreakAfter">auto</property>
             <property name="height">130pt</property>
             <property name="width">212pt</property>
             <property name="dataSet">HnVdataset7</property>
@@ -19104,7 +19104,7 @@ else&#xD;
 ]]></xml-property>
             <property name="outputFormat">SVG</property>
             <property name="inheritColumns">true</property>
-            <property name="pageBreakAfter">always</property>
+            <property name="pageBreakAfter">auto</property>
             <property name="height">130pt</property>
             <property name="width">212pt</property>
             <property name="dataSet">HnVdataset8</property>
@@ -20722,7 +20722,7 @@ else&#xD;
 ]]></xml-property>
             <property name="outputFormat">SVG</property>
             <property name="inheritColumns">true</property>
-            <property name="pageBreakAfter">always</property>
+            <property name="pageBreakAfter">auto</property>
             <property name="height">130pt</property>
             <property name="width">212pt</property>
             <property name="dataSet">HnVdataset9</property>
@@ -22340,7 +22340,7 @@ else&#xD;
 ]]></xml-property>
             <property name="outputFormat">SVG</property>
             <property name="inheritColumns">true</property>
-            <property name="pageBreakAfter">always</property>
+            <property name="pageBreakAfter">auto</property>
             <property name="height">130pt</property>
             <property name="width">212pt</property>
             <property name="dataSet">HnVdataset10</property>
