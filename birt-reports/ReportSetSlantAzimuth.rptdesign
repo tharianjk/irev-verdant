@@ -3529,7 +3529,6 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="CPOmniDeviation" id="790">
-            
             <list-property name="computedColumns">
                 <structure>
                     <property name="name">Hide</property>
@@ -3696,7 +3695,2066 @@ group by frequency,t.test_id;]]></xml-property>
     </design:resultSetDefinitions>
   </design:ResultSets>
 </model:DesignValues>]]></xml-property>
-        
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.SPSelectDataSet" name="PolarGrid1" id="496">
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">testid</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName">testid</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">1</property>
+                    <expression name="defaultValue" type="javascript">1</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">freq</property>
+                    <property name="paramName">freq1</property>
+                    <property name="nativeName">freq</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                    <property name="position">2</property>
+                    <expression name="defaultValue" type="javascript">2000</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">typ</property>
+                    <property name="paramName">type</property>
+                    <property name="nativeName">typ</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">3</property>
+                    <expression name="defaultValue" type="javascript">'P'</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">3Db_BW_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">3Db_BS_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">10Db_BW_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">10Db_BS_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">BackLobe</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">CPGain</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">AR_0</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">OmniDeviation</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">3Db_BW_BMax</property>
+                    <property name="nativeName">3Db_BW_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">3Db_BS_BMax</property>
+                    <property name="nativeName">3Db_BS_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">10Db_BW_BMax</property>
+                    <property name="nativeName">10Db_BW_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">10Db_BS_BMax</property>
+                    <property name="nativeName">10Db_BS_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">BackLobe</property>
+                    <property name="nativeName">BackLobe</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">CPGain</property>
+                    <property name="nativeName">CPGain</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">AR_0</property>
+                    <property name="nativeName">AR_0</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">OmniDeviation</property>
+                    <property name="nativeName">OmniDeviation</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[{call spGetPolarSummary(?,?,?)} ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>testid</design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+          <design:precision>10</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>freq</design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          <design:precision>40</design:precision>
+          <design:scale>10</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>typ</design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>5</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.SPSelectDataSet" name="PolarGrid10" id="2227">
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">testid</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName">testid</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">1</property>
+                    <expression name="defaultValue" type="javascript">1</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">freq</property>
+                    <property name="paramName">freq10</property>
+                    <property name="nativeName">freq</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                    <property name="position">2</property>
+                    <expression name="defaultValue" type="javascript">2000</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">typ</property>
+                    <property name="paramName">type</property>
+                    <property name="nativeName">typ</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">3</property>
+                    <expression name="defaultValue" type="javascript">'P'</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">3Db_BW_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">3Db_BS_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">10Db_BW_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">10Db_BS_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">BackLobe</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">CPGain</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">AR_0</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">OmniDeviation</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">3Db_BW_BMax</property>
+                    <property name="nativeName">3Db_BW_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">3Db_BS_BMax</property>
+                    <property name="nativeName">3Db_BS_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">10Db_BW_BMax</property>
+                    <property name="nativeName">10Db_BW_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">10Db_BS_BMax</property>
+                    <property name="nativeName">10Db_BS_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">BackLobe</property>
+                    <property name="nativeName">BackLobe</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">CPGain</property>
+                    <property name="nativeName">CPGain</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">AR_0</property>
+                    <property name="nativeName">AR_0</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">OmniDeviation</property>
+                    <property name="nativeName">OmniDeviation</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[{call spGetPolarSummary(?,?,?)} ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>testid</design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+          <design:precision>10</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>freq</design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          <design:precision>40</design:precision>
+          <design:scale>10</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>typ</design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>5</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.SPSelectDataSet" name="PolarGrid2" id="2119">
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">testid</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName">testid</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">1</property>
+                    <expression name="defaultValue" type="javascript">1</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">freq</property>
+                    <property name="paramName">freq2</property>
+                    <property name="nativeName">freq</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                    <property name="position">2</property>
+                    <expression name="defaultValue" type="javascript">2000</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">typ</property>
+                    <property name="paramName">type</property>
+                    <property name="nativeName">typ</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">3</property>
+                    <expression name="defaultValue" type="javascript">'P'</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">3Db_BW_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">3Db_BS_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">10Db_BW_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">10Db_BS_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">BackLobe</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">CPGain</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">AR_0</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">OmniDeviation</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">3Db_BW_BMax</property>
+                    <property name="nativeName">3Db_BW_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">3Db_BS_BMax</property>
+                    <property name="nativeName">3Db_BS_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">10Db_BW_BMax</property>
+                    <property name="nativeName">10Db_BW_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">10Db_BS_BMax</property>
+                    <property name="nativeName">10Db_BS_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">BackLobe</property>
+                    <property name="nativeName">BackLobe</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">CPGain</property>
+                    <property name="nativeName">CPGain</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">AR_0</property>
+                    <property name="nativeName">AR_0</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">OmniDeviation</property>
+                    <property name="nativeName">OmniDeviation</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[{call spGetPolarSummary(?,?,?)} ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>testid</design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+          <design:precision>10</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>freq</design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          <design:precision>40</design:precision>
+          <design:scale>10</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>typ</design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>5</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.SPSelectDataSet" name="PolarGrid3" id="2120">
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">testid</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName">testid</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">1</property>
+                    <expression name="defaultValue" type="javascript">1</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">freq</property>
+                    <property name="paramName">freq3</property>
+                    <property name="nativeName">freq</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                    <property name="position">2</property>
+                    <expression name="defaultValue" type="javascript">2000</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">typ</property>
+                    <property name="paramName">type</property>
+                    <property name="nativeName">typ</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">3</property>
+                    <expression name="defaultValue" type="javascript">'P'</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">3Db_BW_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">3Db_BS_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">10Db_BW_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">10Db_BS_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">BackLobe</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">CPGain</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">AR_0</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">OmniDeviation</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">3Db_BW_BMax</property>
+                    <property name="nativeName">3Db_BW_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">3Db_BS_BMax</property>
+                    <property name="nativeName">3Db_BS_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">10Db_BW_BMax</property>
+                    <property name="nativeName">10Db_BW_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">10Db_BS_BMax</property>
+                    <property name="nativeName">10Db_BS_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">BackLobe</property>
+                    <property name="nativeName">BackLobe</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">CPGain</property>
+                    <property name="nativeName">CPGain</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">AR_0</property>
+                    <property name="nativeName">AR_0</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">OmniDeviation</property>
+                    <property name="nativeName">OmniDeviation</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[{call spGetPolarSummary(?,?,?)} ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>testid</design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+          <design:precision>10</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>freq</design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          <design:precision>40</design:precision>
+          <design:scale>10</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>typ</design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>5</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.SPSelectDataSet" name="PolarGrid4" id="2121">
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">testid</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName">testid</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">1</property>
+                    <expression name="defaultValue" type="javascript">1</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">freq</property>
+                    <property name="paramName">freq4</property>
+                    <property name="nativeName">freq</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                    <property name="position">2</property>
+                    <expression name="defaultValue" type="javascript">2000</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">typ</property>
+                    <property name="paramName">type</property>
+                    <property name="nativeName">typ</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">3</property>
+                    <expression name="defaultValue" type="javascript">'P'</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">3Db_BW_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">3Db_BS_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">10Db_BW_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">10Db_BS_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">BackLobe</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">CPGain</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">AR_0</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">OmniDeviation</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">3Db_BW_BMax</property>
+                    <property name="nativeName">3Db_BW_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">3Db_BS_BMax</property>
+                    <property name="nativeName">3Db_BS_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">10Db_BW_BMax</property>
+                    <property name="nativeName">10Db_BW_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">10Db_BS_BMax</property>
+                    <property name="nativeName">10Db_BS_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">BackLobe</property>
+                    <property name="nativeName">BackLobe</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">CPGain</property>
+                    <property name="nativeName">CPGain</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">AR_0</property>
+                    <property name="nativeName">AR_0</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">OmniDeviation</property>
+                    <property name="nativeName">OmniDeviation</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[{call spGetPolarSummary(?,?,?)} ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>testid</design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+          <design:precision>10</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>freq</design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          <design:precision>40</design:precision>
+          <design:scale>10</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>typ</design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>5</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.SPSelectDataSet" name="PolarGrid5" id="2122">
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">testid</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName">testid</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">1</property>
+                    <expression name="defaultValue" type="javascript">1</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">freq</property>
+                    <property name="paramName">freq5</property>
+                    <property name="nativeName">freq</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                    <property name="position">2</property>
+                    <expression name="defaultValue" type="javascript">2000</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">typ</property>
+                    <property name="paramName">type</property>
+                    <property name="nativeName">typ</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">3</property>
+                    <expression name="defaultValue" type="javascript">'P'</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">3Db_BW_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">3Db_BS_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">10Db_BW_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">10Db_BS_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">BackLobe</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">CPGain</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">AR_0</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">OmniDeviation</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">3Db_BW_BMax</property>
+                    <property name="nativeName">3Db_BW_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">3Db_BS_BMax</property>
+                    <property name="nativeName">3Db_BS_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">10Db_BW_BMax</property>
+                    <property name="nativeName">10Db_BW_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">10Db_BS_BMax</property>
+                    <property name="nativeName">10Db_BS_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">BackLobe</property>
+                    <property name="nativeName">BackLobe</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">CPGain</property>
+                    <property name="nativeName">CPGain</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">AR_0</property>
+                    <property name="nativeName">AR_0</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">OmniDeviation</property>
+                    <property name="nativeName">OmniDeviation</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[{call spGetPolarSummary(?,?,?)} ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>testid</design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+          <design:precision>10</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>freq</design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          <design:precision>40</design:precision>
+          <design:scale>10</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>typ</design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>5</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.SPSelectDataSet" name="PolarGrid6" id="2223">
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">testid</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName">testid</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">1</property>
+                    <expression name="defaultValue" type="javascript">1</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">freq</property>
+                    <property name="paramName">freq6</property>
+                    <property name="nativeName">freq</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                    <property name="position">2</property>
+                    <expression name="defaultValue" type="javascript">2000</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">typ</property>
+                    <property name="paramName">type</property>
+                    <property name="nativeName">typ</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">3</property>
+                    <expression name="defaultValue" type="javascript">'P'</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">3Db_BW_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">3Db_BS_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">10Db_BW_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">10Db_BS_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">BackLobe</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">CPGain</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">AR_0</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">OmniDeviation</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">3Db_BW_BMax</property>
+                    <property name="nativeName">3Db_BW_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">3Db_BS_BMax</property>
+                    <property name="nativeName">3Db_BS_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">10Db_BW_BMax</property>
+                    <property name="nativeName">10Db_BW_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">10Db_BS_BMax</property>
+                    <property name="nativeName">10Db_BS_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">BackLobe</property>
+                    <property name="nativeName">BackLobe</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">CPGain</property>
+                    <property name="nativeName">CPGain</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">AR_0</property>
+                    <property name="nativeName">AR_0</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">OmniDeviation</property>
+                    <property name="nativeName">OmniDeviation</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[{call spGetPolarSummary(?,?,?)} ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>testid</design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+          <design:precision>10</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>freq</design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          <design:precision>40</design:precision>
+          <design:scale>10</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>typ</design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>5</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.SPSelectDataSet" name="PolarGrid7" id="2224">
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">testid</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName">testid</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">1</property>
+                    <expression name="defaultValue" type="javascript">1</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">freq</property>
+                    <property name="paramName">freq7</property>
+                    <property name="nativeName">freq</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                    <property name="position">2</property>
+                    <expression name="defaultValue" type="javascript">2000</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">typ</property>
+                    <property name="paramName">type</property>
+                    <property name="nativeName">typ</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">3</property>
+                    <expression name="defaultValue" type="javascript">'P'</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">3Db_BW_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">3Db_BS_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">10Db_BW_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">10Db_BS_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">BackLobe</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">CPGain</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">AR_0</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">OmniDeviation</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">3Db_BW_BMax</property>
+                    <property name="nativeName">3Db_BW_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">3Db_BS_BMax</property>
+                    <property name="nativeName">3Db_BS_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">10Db_BW_BMax</property>
+                    <property name="nativeName">10Db_BW_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">10Db_BS_BMax</property>
+                    <property name="nativeName">10Db_BS_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">BackLobe</property>
+                    <property name="nativeName">BackLobe</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">CPGain</property>
+                    <property name="nativeName">CPGain</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">AR_0</property>
+                    <property name="nativeName">AR_0</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">OmniDeviation</property>
+                    <property name="nativeName">OmniDeviation</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[{call spGetPolarSummary(?,?,?)} ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>testid</design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+          <design:precision>10</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>freq</design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          <design:precision>40</design:precision>
+          <design:scale>10</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>typ</design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>5</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.SPSelectDataSet" name="PolarGrid8" id="2225">
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">testid</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName">testid</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">1</property>
+                    <expression name="defaultValue" type="javascript">1</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">freq</property>
+                    <property name="paramName">freq8</property>
+                    <property name="nativeName">freq</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                    <property name="position">2</property>
+                    <expression name="defaultValue" type="javascript">2000</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">typ</property>
+                    <property name="paramName">type</property>
+                    <property name="nativeName">typ</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">3</property>
+                    <expression name="defaultValue" type="javascript">'P'</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">3Db_BW_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">3Db_BS_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">10Db_BW_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">10Db_BS_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">BackLobe</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">CPGain</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">AR_0</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">OmniDeviation</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">3Db_BW_BMax</property>
+                    <property name="nativeName">3Db_BW_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">3Db_BS_BMax</property>
+                    <property name="nativeName">3Db_BS_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">10Db_BW_BMax</property>
+                    <property name="nativeName">10Db_BW_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">10Db_BS_BMax</property>
+                    <property name="nativeName">10Db_BS_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">BackLobe</property>
+                    <property name="nativeName">BackLobe</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">CPGain</property>
+                    <property name="nativeName">CPGain</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">AR_0</property>
+                    <property name="nativeName">AR_0</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">OmniDeviation</property>
+                    <property name="nativeName">OmniDeviation</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[{call spGetPolarSummary(?,?,?)} ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>testid</design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+          <design:precision>10</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>freq</design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          <design:precision>40</design:precision>
+          <design:scale>10</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>typ</design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>5</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.SPSelectDataSet" name="PolarGrid9" id="2226">
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">testid</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName">testid</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">1</property>
+                    <expression name="defaultValue" type="javascript">1</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">freq</property>
+                    <property name="paramName">freq9</property>
+                    <property name="nativeName">freq</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                    <property name="position">2</property>
+                    <expression name="defaultValue" type="javascript">2000</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">typ</property>
+                    <property name="paramName">type</property>
+                    <property name="nativeName">typ</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">3</property>
+                    <expression name="defaultValue" type="javascript">'P'</expression>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">3Db_BW_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">3Db_BS_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">10Db_BW_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">10Db_BS_BMax</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">BackLobe</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">CPGain</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">AR_0</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">OmniDeviation</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">3Db_BW_BMax</property>
+                    <property name="nativeName">3Db_BW_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">3Db_BS_BMax</property>
+                    <property name="nativeName">3Db_BS_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">10Db_BW_BMax</property>
+                    <property name="nativeName">10Db_BW_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">10Db_BS_BMax</property>
+                    <property name="nativeName">10Db_BS_BMax</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">BackLobe</property>
+                    <property name="nativeName">BackLobe</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">CPGain</property>
+                    <property name="nativeName">CPGain</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">AR_0</property>
+                    <property name="nativeName">AR_0</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">OmniDeviation</property>
+                    <property name="nativeName">OmniDeviation</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[{call spGetPolarSummary(?,?,?)} ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>testid</design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+          <design:precision>10</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>freq</design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          <design:precision>40</design:precision>
+          <design:scale>10</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>typ</design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>5</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+</model:DesignValues>]]></xml-property>
         </oda-data-set>
     </data-sets>
     <cubes>
@@ -4160,7 +6218,7 @@ group by frequency,t.test_id;]]></xml-property>
             </row>
             <row id="865">
                 <cell id="866">
-                    <table id="867">                        
+                    <table id="867">
                         <property name="dataSet">CPOmniDeviation</property>
                         <list-property name="boundDataColumns">
                             <structure>
@@ -4207,7 +6265,7 @@ group by frequency,t.test_id;]]></xml-property>
                         <header>
                             <row id="841">
                                 <cell id="842">
-                                    <data id="862">
+                                    <data id="2472">
                                         <property name="fontSize">small</property>
                                         <property name="fontWeight">bold</property>
                                         <property name="resultSetColumn">frequnit</property>
@@ -4232,7 +6290,7 @@ group by frequency,t.test_id;]]></xml-property>
                         <detail>
                             <row id="845">
                                 <cell id="846">
-                                    <data id="861">
+                                    <data id="2473">
                                         <property name="fontSize">small</property>
                                         <property name="textAlign">center</property>
                                         <property name="resultSetColumn">Frequency</property>
@@ -4254,7 +6312,6 @@ group by frequency,t.test_id;]]></xml-property>
                                 </cell>
                             </row>
                         </detail>
-                    
                     </table>
                 </cell>
             </row>
@@ -5819,6 +7876,57 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
+        <grid id="2511">
+            <property name="canShrink">true</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">params["freq1"].value=='-1' || params["polar"].value!='yes'</expression>
+                </structure>
+            </list-property>
+            <column id="2512"/>
+            <row id="2513">
+                <cell id="2514">
+                    <table id="2515">
+                        <property name="dataSet">PolarGrid1</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">OmniDeviation</property>
+                                <text-property name="displayName">OmniDeviation</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <column id="2522"/>
+                        <header>
+                            <row id="2516">
+                                <cell id="2517">
+                                    <label id="2523">
+                                        <property name="fontWeight">bold</property>
+                                        <text-property name="text">Omni Deviation</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="2518">
+                                <cell id="2519">
+                                    <data id="2524">
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">OmniDeviation</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="2520">
+                                <cell id="2521"/>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+        </grid>
         <extended-item extensionName="Crosstab" extensionVersion="3.7.0" id="1494">
             <property name="cube">Data CubeTestGrid</property>
             <property name="columns">
@@ -7351,6 +9459,100 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
+        <grid id="2525">
+            <property name="canShrink">true</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">params["freq2"].value=='-1' || params["polar"].value!='yes'</expression>
+                </structure>
+            </list-property>
+            <column id="2526"/>
+            <row id="2527">
+                <cell id="2528">
+                    <table id="2529">
+                        <property name="dataSet">PolarGrid2</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">OmniDeviation</property>
+                                <text-property name="displayName">OmniDeviation</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <column id="2538"/>
+                        <header>
+                            <row id="2530">
+                                <cell id="2531">
+                                    <label id="2532">
+                                        <property name="fontWeight">bold</property>
+                                        <text-property name="text">Omni Deviation</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="2533">
+                                <cell id="2534">
+                                    <data id="2535">
+                                        <property name="textAlign">center</property>
+                                        <property name="dataSet">PolarGrid2</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">3Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">3Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">BackLobe</property>
+                                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">CPGain</property>
+                                                <expression name="expression" type="javascript">dataSetRow["CPGain"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">AR_0</property>
+                                                <expression name="expression" type="javascript">dataSetRow["AR_0"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">OmniDeviation</property>
+                                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                        </list-property>
+                                        <property name="resultSetColumn">OmniDeviation</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="2536">
+                                <cell id="2537"/>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+        </grid>
         <extended-item extensionName="Crosstab" extensionVersion="3.7.0" id="1557">
             <property name="cube">Data CubeTestGrid</property>
             <property name="columns">
@@ -8875,6 +11077,100 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
+        <grid id="2539">
+            <property name="canShrink">true</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">params["freq3"].value=='-1' || params["polar"].value!='yes'</expression>
+                </structure>
+            </list-property>
+            <column id="2540"/>
+            <row id="2541">
+                <cell id="2542">
+                    <table id="2543">
+                        <property name="dataSet">PolarGrid3</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">OmniDeviation</property>
+                                <text-property name="displayName">OmniDeviation</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <column id="2552"/>
+                        <header>
+                            <row id="2544">
+                                <cell id="2545">
+                                    <label id="2546">
+                                        <property name="fontWeight">bold</property>
+                                        <text-property name="text">Omni Deviation</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="2547">
+                                <cell id="2548">
+                                    <data id="2549">
+                                        <property name="textAlign">center</property>
+                                        <property name="dataSet">PolarGrid3</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">3Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">3Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">BackLobe</property>
+                                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">CPGain</property>
+                                                <expression name="expression" type="javascript">dataSetRow["CPGain"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">AR_0</property>
+                                                <expression name="expression" type="javascript">dataSetRow["AR_0"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">OmniDeviation</property>
+                                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                        </list-property>
+                                        <property name="resultSetColumn">OmniDeviation</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="2550">
+                                <cell id="2551"/>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+        </grid>
         <extended-item extensionName="Crosstab" extensionVersion="3.7.0" id="1620">
             <property name="cube">Data CubeTestGrid</property>
             <property name="columns">
@@ -10399,6 +12695,100 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
+        <grid id="2553">
+            <property name="canShrink">true</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">params["freq4"].value=='-1' || params["polar"].value!='yes'</expression>
+                </structure>
+            </list-property>
+            <column id="2554"/>
+            <row id="2555">
+                <cell id="2556">
+                    <table id="2557">
+                        <property name="dataSet">PolarGrid4</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">OmniDeviation</property>
+                                <text-property name="displayName">OmniDeviation</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <column id="2566"/>
+                        <header>
+                            <row id="2558">
+                                <cell id="2559">
+                                    <label id="2560">
+                                        <property name="fontWeight">bold</property>
+                                        <text-property name="text">Omni Deviation</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="2561">
+                                <cell id="2562">
+                                    <data id="2563">
+                                        <property name="textAlign">center</property>
+                                        <property name="dataSet">PolarGrid4</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">3Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">3Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">BackLobe</property>
+                                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">CPGain</property>
+                                                <expression name="expression" type="javascript">dataSetRow["CPGain"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">AR_0</property>
+                                                <expression name="expression" type="javascript">dataSetRow["AR_0"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">OmniDeviation</property>
+                                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                        </list-property>
+                                        <property name="resultSetColumn">OmniDeviation</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="2564">
+                                <cell id="2565"/>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+        </grid>
         <extended-item extensionName="Crosstab" extensionVersion="3.7.0" id="1683">
             <property name="cube">Data CubeTestGrid</property>
             <property name="columns">
@@ -11923,6 +14313,100 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
+        <grid id="2567">
+            <property name="canShrink">true</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">params["freq5"].value=='-1' || params["polar"].value!='yes'</expression>
+                </structure>
+            </list-property>
+            <column id="2568"/>
+            <row id="2569">
+                <cell id="2570">
+                    <table id="2571">
+                        <property name="dataSet">PolarGrid5</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">OmniDeviation</property>
+                                <text-property name="displayName">OmniDeviation</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <column id="2580"/>
+                        <header>
+                            <row id="2572">
+                                <cell id="2573">
+                                    <label id="2574">
+                                        <property name="fontWeight">bold</property>
+                                        <text-property name="text">Omni Deviation</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="2575">
+                                <cell id="2576">
+                                    <data id="2577">
+                                        <property name="textAlign">center</property>
+                                        <property name="dataSet">PolarGrid5</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">3Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">3Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">BackLobe</property>
+                                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">CPGain</property>
+                                                <expression name="expression" type="javascript">dataSetRow["CPGain"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">AR_0</property>
+                                                <expression name="expression" type="javascript">dataSetRow["AR_0"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">OmniDeviation</property>
+                                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                        </list-property>
+                                        <property name="resultSetColumn">OmniDeviation</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="2578">
+                                <cell id="2579"/>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+        </grid>
         <extended-item extensionName="Crosstab" extensionVersion="3.7.0" id="1746">
             <property name="cube">Data CubeTestGrid</property>
             <property name="columns">
@@ -13447,6 +15931,100 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
+        <grid id="2581">
+            <property name="canShrink">true</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">params["freq6"].value=='-1' || params["polar"].value!='yes'</expression>
+                </structure>
+            </list-property>
+            <column id="2582"/>
+            <row id="2583">
+                <cell id="2584">
+                    <table id="2585">
+                        <property name="dataSet">PolarGrid6</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">OmniDeviation</property>
+                                <text-property name="displayName">OmniDeviation</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <column id="2594"/>
+                        <header>
+                            <row id="2586">
+                                <cell id="2587">
+                                    <label id="2588">
+                                        <property name="fontWeight">bold</property>
+                                        <text-property name="text">Omni Deviation</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="2589">
+                                <cell id="2590">
+                                    <data id="2591">
+                                        <property name="textAlign">center</property>
+                                        <property name="dataSet">PolarGrid6</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">3Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">3Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">BackLobe</property>
+                                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">CPGain</property>
+                                                <expression name="expression" type="javascript">dataSetRow["CPGain"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">AR_0</property>
+                                                <expression name="expression" type="javascript">dataSetRow["AR_0"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">OmniDeviation</property>
+                                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                        </list-property>
+                                        <property name="resultSetColumn">OmniDeviation</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="2592">
+                                <cell id="2593"/>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+        </grid>
         <extended-item extensionName="Crosstab" extensionVersion="3.7.0" id="1809">
             <property name="cube">Data CubeTestGrid</property>
             <property name="columns">
@@ -14971,6 +17549,100 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
+        <grid id="2595">
+            <property name="canShrink">true</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">params["freq7"].value=='-1' || params["polar"].value!='yes'</expression>
+                </structure>
+            </list-property>
+            <column id="2596"/>
+            <row id="2597">
+                <cell id="2598">
+                    <table id="2599">
+                        <property name="dataSet">PolarGrid7</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">OmniDeviation</property>
+                                <text-property name="displayName">OmniDeviation</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <column id="2608"/>
+                        <header>
+                            <row id="2600">
+                                <cell id="2601">
+                                    <label id="2602">
+                                        <property name="fontWeight">bold</property>
+                                        <text-property name="text">Omni Deviation</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="2603">
+                                <cell id="2604">
+                                    <data id="2605">
+                                        <property name="textAlign">center</property>
+                                        <property name="dataSet">PolarGrid7</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">3Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">3Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">BackLobe</property>
+                                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">CPGain</property>
+                                                <expression name="expression" type="javascript">dataSetRow["CPGain"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">AR_0</property>
+                                                <expression name="expression" type="javascript">dataSetRow["AR_0"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">OmniDeviation</property>
+                                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                        </list-property>
+                                        <property name="resultSetColumn">OmniDeviation</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="2606">
+                                <cell id="2607"/>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+        </grid>
         <extended-item extensionName="Crosstab" extensionVersion="3.7.0" id="1872">
             <property name="cube">Data CubeTestGrid</property>
             <property name="columns">
@@ -16495,6 +19167,100 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
+        <grid id="2609">
+            <property name="canShrink">true</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">params["freq8"].value=='-1' || params["polar"].value!='yes'</expression>
+                </structure>
+            </list-property>
+            <column id="2610"/>
+            <row id="2611">
+                <cell id="2612">
+                    <table id="2613">
+                        <property name="dataSet">PolarGrid8</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">OmniDeviation</property>
+                                <text-property name="displayName">OmniDeviation</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <column id="2622"/>
+                        <header>
+                            <row id="2614">
+                                <cell id="2615">
+                                    <label id="2616">
+                                        <property name="fontWeight">bold</property>
+                                        <text-property name="text">Omni Deviation</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="2617">
+                                <cell id="2618">
+                                    <data id="2619">
+                                        <property name="textAlign">center</property>
+                                        <property name="dataSet">PolarGrid8</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">3Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">3Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">BackLobe</property>
+                                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">CPGain</property>
+                                                <expression name="expression" type="javascript">dataSetRow["CPGain"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">AR_0</property>
+                                                <expression name="expression" type="javascript">dataSetRow["AR_0"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">OmniDeviation</property>
+                                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                        </list-property>
+                                        <property name="resultSetColumn">OmniDeviation</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="2620">
+                                <cell id="2621"/>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+        </grid>
         <extended-item extensionName="Crosstab" extensionVersion="3.7.0" id="1935">
             <property name="cube">Data CubeTestGrid</property>
             <property name="columns">
@@ -18019,6 +20785,100 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
+        <grid id="2623">
+            <property name="canShrink">true</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">params["freq9"].value=='-1' || params["polar"].value!='yes'</expression>
+                </structure>
+            </list-property>
+            <column id="2624"/>
+            <row id="2625">
+                <cell id="2626">
+                    <table id="2627">
+                        <property name="dataSet">PolarGrid9</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">OmniDeviation</property>
+                                <text-property name="displayName">OmniDeviation</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <column id="2636"/>
+                        <header>
+                            <row id="2628">
+                                <cell id="2629">
+                                    <label id="2630">
+                                        <property name="fontWeight">bold</property>
+                                        <text-property name="text">Omni Deviation</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="2631">
+                                <cell id="2632">
+                                    <data id="2633">
+                                        <property name="textAlign">center</property>
+                                        <property name="dataSet">PolarGrid9</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">3Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">3Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">BackLobe</property>
+                                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">CPGain</property>
+                                                <expression name="expression" type="javascript">dataSetRow["CPGain"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">AR_0</property>
+                                                <expression name="expression" type="javascript">dataSetRow["AR_0"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">OmniDeviation</property>
+                                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                        </list-property>
+                                        <property name="resultSetColumn">OmniDeviation</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="2634">
+                                <cell id="2635"/>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+        </grid>
         <extended-item extensionName="Crosstab" extensionVersion="3.7.0" id="1998">
             <property name="cube">Data CubeTestGrid</property>
             <property name="columns">
@@ -19543,5 +22403,99 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
+        <grid id="2637">
+            <property name="canShrink">true</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">params["freq10"].value=='-1' || params["polar"].value!='yes'</expression>
+                </structure>
+            </list-property>
+            <column id="2638"/>
+            <row id="2639">
+                <cell id="2640">
+                    <table id="2641">
+                        <property name="dataSet">PolarGrid10</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">OmniDeviation</property>
+                                <text-property name="displayName">OmniDeviation</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <column id="2650"/>
+                        <header>
+                            <row id="2642">
+                                <cell id="2643">
+                                    <label id="2644">
+                                        <property name="fontWeight">bold</property>
+                                        <text-property name="text">Omni Deviation</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="2645">
+                                <cell id="2646">
+                                    <data id="2647">
+                                        <property name="textAlign">center</property>
+                                        <property name="dataSet">PolarGrid10</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">3Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">3Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">BackLobe</property>
+                                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">CPGain</property>
+                                                <expression name="expression" type="javascript">dataSetRow["CPGain"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">AR_0</property>
+                                                <expression name="expression" type="javascript">dataSetRow["AR_0"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">OmniDeviation</property>
+                                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                        </list-property>
+                                        <property name="resultSetColumn">OmniDeviation</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="2648">
+                                <cell id="2649"/>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+        </grid>
     </body>
 </report>
