@@ -86,8 +86,9 @@ public class ToolsController implements Controller {
         else{
         	if(treetype.equals("4")){
         		ProductSerial lstp=mastersservice.getheaderfooter(Integer.parseInt(testid));
+        		if(lstp!=null ){
         	rptheader=lstp.getRptheader();
-        	rptfooter=lstp.getRptfooter();
+        	rptfooter=lstp.getRptfooter();}
         	}
         	if(rptheader.equals("") || rptheader==null ||rptheader=="null")
         		rptheader="No Header";

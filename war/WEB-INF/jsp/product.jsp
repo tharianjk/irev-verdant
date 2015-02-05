@@ -90,7 +90,7 @@ function Redirect(){
  				{
  		flashMessenger.setText('Saved');
  				} 
-   			else if(savestat==0) {errorflashMessenger.setText('Could not save');} 
+   			else if(savestat==0) {errorflashMessenger.setText('Product Name /Part No. already entered, Could not save');} 
    			}
    	var ref='<%=request.getParameter("refresh")%>';
    	   if(ref=="true")

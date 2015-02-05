@@ -260,6 +260,7 @@ public class TestImportController extends SimpleFormController{
 				{
 					err="Failed to Import "+fileName	;
 					stat=0;
+					
 				}
 				else{
 					testid=stat;
@@ -326,7 +327,7 @@ public class TestImportController extends SimpleFormController{
         	cursess.setAttribute("mode",mode);
         	testid=0;
 	        logger.info("inside ProductSerialController"); 
-	        if (id == null || id == "" || id.equals("null")){
+	        if (id == null || id == "" || id.equals("null") || id.equals("0") ){
 	        	logger.info(" atype "+atype);
 	        	logger.info(" going to create new Test Data");
 	        	request.getSession().setAttribute("id", null);

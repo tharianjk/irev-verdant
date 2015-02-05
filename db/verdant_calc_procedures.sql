@@ -988,14 +988,13 @@ END$$
  
 DELIMITER ;
 
-
 -- --------------------------------------------------------------------------------
 -- Routine DDL
 -- Note: comments before and after the routine body will not be stored by the server
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE PROCEDURE `spGetPolarPlot`(
+CREATE  PROCEDURE `spGetPolarPlot`(
 testid INT,
 freq decimal(40,20),
 typ varchar(5), -- H HP,V VP,B HP&VP,P Pitch,R Roll ,Y Yaw
@@ -1059,7 +1058,8 @@ if cnt=0 then
 		where HD.Frequency=freq and HD.Test_id=testid ;
 end if;	
         select test_id,frequency,angle,sum(hamplitude) hamplitude,sum(vamplitude) vamplitude,strmaxvalue,strminvalue 
-		from vw_polardata where Frequency=freq and Test_id=testid group by test_id,frequency,angle,strmaxvalue,strminvalue;
+		from vw_polardata where case frequnit when 'GHz' then Frequency*1000 else Frequency end =freq and Test_id=testid 
+        group by test_id,frequency,angle,strmaxvalue,strminvalue;
 		end if;
 		if  typ='P' then
 if cnt=0 then
@@ -1169,7 +1169,7 @@ if cnt=0 then
 
 
 		select test_id,frequency,angle,sum(hamplitude)-ampl+lg hamplitude,sum(vamplitude)-vampl+lg vamplitude,strmaxvalue,strminvalue 
-		from vw_polardata where Frequency=freq and Test_id=testid group by test_id,frequency,angle,strmaxvalue,strminvalue;
+		from vw_polardata where case frequnit when 'GHz' then Frequency*1000 else Frequency end=freq and Test_id=testid group by test_id,frequency,angle,strmaxvalue,strminvalue;
 		end if;		
 
 		if  typ='P' then

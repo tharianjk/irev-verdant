@@ -74,7 +74,7 @@ INPUT.hintTextboxActive { color: #000; }
 				<c:if test="${ cnt < 7}">
 					
 					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}
-					 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}' class="hintTextbox" style="width:50;"  value="l-gain"/>
+					 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}'  class="hintTextbox" style="width:50;" maxlength="20"  value="l-gain"/>
 					 <c:set var="cnt" value="${cnt + 1 }"/> 
 				</c:if>
 				<c:if test="${ cnt == 6 }">
@@ -82,7 +82,7 @@ INPUT.hintTextboxActive { color: #000; }
 				</c:if>
 				<c:if test="${ cnt > 6 && cnt<13}">
 					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}
-					 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}' class="hintTextbox" style="width:50;" value="l-gain"/>
+					 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}'  class="hintTextbox" style="width:50;" maxlength="20" value="l-gain"/>
 					 <c:set var="cnt" value="${cnt + 1 }"/>  
 				</c:if>
 				<c:if test="${ cnt == 12 }">
@@ -90,7 +90,7 @@ INPUT.hintTextboxActive { color: #000; }
 				</c:if>
 				<c:if test="${ cnt > 12}">
 					&nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}
-					&nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}' class="hintTextbox" style="width:50;" value="l-gain"/>
+					&nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}'  class="hintTextbox" style="width:50;" maxlength="20" value="l-gain"/>
 					<c:set var="cnt" value="${cnt + 1 }"/>  
 				</c:if>
 				
@@ -242,7 +242,28 @@ else if(atype=="NCP")
   
   document.getElementById("lblobe").style.display="block";
 }
-
+$(".hintTextbox").keydown(function (e) {
+	
+	// Only enter the minus sign (-) if the user enters it first
+	 if (e.keyCode == 189 && this.value == "") {
+	        return true;
+	    }
+	
+    // Allow: backspace, delete, tab, escape, enter and .
+    if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+         // Allow: Ctrl+A
+        (e.keyCode == 65 && e.ctrlKey === true) || 
+         // Allow: home, end, left, right
+        (e.keyCode >= 35 && e.keyCode <= 39)) {
+             // let it happen, don't do anything
+             return;
+    }
+    // Ensure that it is a number and stop the keypress
+    if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+    	if(e.keyCode!=189)
+        e.preventDefault();
+    }
+});
 
 });
 
