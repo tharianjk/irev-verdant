@@ -21,7 +21,7 @@ drop function if exists calc_omni;
 drop procedure if exists spGetPolarSummary;
 
 
-# PROCEDURE TO CALCULATE FOR CP,DCP 
+
 
 DELIMITER $$
 CREATE PROCEDURE `calc_CP`(
@@ -135,7 +135,7 @@ end if;
 END$$
 DELIMITER ;
 
-# PROCEDURE TO CALCULATE FOR L-A 
+
 
 DELIMITER $$
 CREATE PROCEDURE `calc_Linear_Azimuth`(
@@ -169,7 +169,7 @@ end if;
 END$$
 DELIMITER ;
 
-# PROCEDURE TO CALCULATE FOR L-E
+
 
 DELIMITER $$
 CREATE PROCEDURE `calc_Linear_Elevation`(
@@ -268,7 +268,7 @@ end if;
 END$$
 DELIMITER ;
 
-# PROCEDURE TO CALCULATE MAX AXIAL RATIO 0-45 AND 0--45
+
 
 DELIMITER $$
 CREATE  PROCEDURE `calc_MaxDiffAxialRatio`(
@@ -318,7 +318,7 @@ end if;
 END$$
 DELIMITER ;
 
-# PROCEDURE TO CALCULATE FOR S-A 
+
 
 DELIMITER $$
 CREATE PROCEDURE `calc_Slant_Azimuth`(
@@ -364,7 +364,7 @@ end if;
 END$$
 DELIMITER ;
 
-# PROCEDURE TO CALCULATE FOR S-E, NCP 
+
 
 DELIMITER $$
 CREATE PROCEDURE `calc_Slant_Elevation`(
@@ -518,7 +518,7 @@ end if;
 END$$
 DELIMITER ;
 
-# PROCEDURE TO CALCULATE 3DB,10DB BW AND BS
+
 
 
 
@@ -659,7 +659,7 @@ END$$
 DELIMITER ;
 
 
-# STARTING PROCEDURE
+
 
 DELIMITER $$
 USE `verdant`$$
@@ -741,7 +741,7 @@ END$$
 
 DELIMITER ;
 
-# PROCEDURE TO CONVERT TO CP DATA FROM HP,VP
+
 
 
 DELIMITER $$
@@ -769,7 +769,7 @@ END$$
 
 DELIMITER ;
 
-# FUNCTION TO CALCULATE AXIAL RATIO
+
 
 DELIMITER $$
 CREATE FUNCTION `calc_AxialRatio`(
@@ -797,7 +797,7 @@ RETURN AR;
 END$$
 DELIMITER ;
 
-# FUNCTION TO CALCULATE BACKLOBE
+
 
 DELIMITER $$
 CREATE FUNCTION `calc_backlobe`(
@@ -844,7 +844,7 @@ RETURN backlobe;
 END$$
 DELIMITER ;
 
-# FUNCTION TO CALCULATE CP DATA FROM HP VP
+
 
 DELIMITER $$
 CREATE FUNCTION `calc_cpdata`(
@@ -886,7 +886,7 @@ RETURN cpdata;
 END$$
 DELIMITER ;
 
-# FUNCTION TO CALCULATE CP GAIN
+
 
 DELIMITER $$
 CREATE FUNCTION `calc_cpgain`(
@@ -919,7 +919,7 @@ RETURN cpgain;
 END$$
 DELIMITER ;
 
-# FUNCTION TO CALCULATE OMNI DEVIATION
+
 
 DELIMITER $$
 CREATE FUNCTION `calc_omni`(
@@ -943,6 +943,7 @@ else -- polType = 'VP'
 end if;
 
 RETURN omni_dev;
+END;
 END$$
 DELIMITER ;
 DELIMITER $$
@@ -982,16 +983,12 @@ END LOOP getlist;
  
 CLOSE C1;
  
+END;
 END$$
  
 DELIMITER ;
 
 
--- --------------------------------------------------------------------------------
--- Routine DDL
--- Note: comments before and after the routine body will not be stored by the server
--- --------------------------------------------------------------------------------
-drop procedure if exists spGetPolarPlot;
 -- --------------------------------------------------------------------------------
 -- Routine DDL
 -- Note: comments before and after the routine body will not be stored by the server
@@ -1263,7 +1260,7 @@ LIMIT 1;
 
 end if;
 END $$
-
+DELIMITER;
 
 
 -- --------------------------------------------------------------------------------
@@ -1327,3 +1324,4 @@ group by ptype;
 end if;	
         
 END $$
+DELIMITER;

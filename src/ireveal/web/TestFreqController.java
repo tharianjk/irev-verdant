@@ -51,7 +51,7 @@ public class TestFreqController implements Controller{
 		 String strjsonfreq = request.getParameter("strjsonfreq");
 		 String frequnit = request.getParameter("frequnit");
 		testid= Integer.parseInt(id);
-		
+		int nprecision=1;
 		if(operstr.equals("cpg"))
 		{
 			TestData testdata=mastersservice.getTestData(testid);
@@ -90,7 +90,7 @@ public class TestFreqController implements Controller{
 	     } catch (JSONException e) {
 	         e.printStackTrace();
 	    }
-	    
+	     nprecision=mastersservice.getPrecision();
 	    ProductSerial lstp=mastersservice.getheaderfooter(testid);
      	String rptheader=lstp.getRptheader();
      	String rptfooter=lstp.getRptfooter();
@@ -98,7 +98,7 @@ public class TestFreqController implements Controller{
     		rptheader="No Header";
     	if(rptfooter=="" || rptfooter==null ||rptfooter=="null")
     		rptfooter="No Header";
-		return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=CPGain.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter));
+		return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=CPGain.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
 		}
 	}
 	

@@ -331,7 +331,7 @@ var path=	location.href;
 	//console.log("strscr "+strscr);
 	var src=strscr.replace(path,"");
 	var src=src.replace("Irev-Verdant/","");
-	var srcnew=src.replace("birt-viewer","/birt-viewer");
+	var srcnew=src.replace("birt-verdant","/birt-verdant");
 	//console.log(srcnew);
 	pagearrsrc.push(srcnew);
 	
