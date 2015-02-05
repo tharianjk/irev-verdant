@@ -500,6 +500,8 @@
             <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
             <property name="odaURL">jdbc:mysql://localhost:3306/verdant</property>
             <property name="odaUser">root</property>
+            <property name="OdaConnProfileName">VerdantProfile</property>
+            <property name="OdaConnProfileStorePath">VerdantProfile</property>
         </oda-data-source>
     </data-sources>
     <data-sets>
