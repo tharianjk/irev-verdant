@@ -178,12 +178,9 @@
         <scalar-parameter name="freq2" id="1131">
             <property name="hidden">true</property>
             <property name="valueType">static</property>
-            <property name="isRequired">false</property>
-            <property name="dataType">decimal</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
             <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="javascript">2000</value>
-            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="concealValue">false</property>
@@ -195,12 +192,9 @@
         <scalar-parameter name="freq3" id="1132">
             <property name="hidden">true</property>
             <property name="valueType">static</property>
-            <property name="isRequired">false</property>
-            <property name="dataType">decimal</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
             <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="javascript">2000</value>
-            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="concealValue">false</property>
@@ -212,12 +206,9 @@
         <scalar-parameter name="freq5" id="1458">
             <property name="hidden">true</property>
             <property name="valueType">static</property>
-            <property name="isRequired">false</property>
-            <property name="dataType">decimal</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
             <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="javascript">2000</value>
-            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="concealValue">false</property>
@@ -229,12 +220,9 @@
         <scalar-parameter name="freq4" id="1457">
             <property name="hidden">true</property>
             <property name="valueType">static</property>
-            <property name="isRequired">false</property>
-            <property name="dataType">decimal</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
             <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="javascript">2000</value>
-            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="concealValue">false</property>
@@ -246,12 +234,9 @@
         <scalar-parameter name="freq6" id="1459">
             <property name="hidden">true</property>
             <property name="valueType">static</property>
-            <property name="isRequired">false</property>
-            <property name="dataType">decimal</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
             <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="javascript">2000</value>
-            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="concealValue">false</property>
@@ -263,12 +248,9 @@
         <scalar-parameter name="freq7" id="1460">
             <property name="hidden">true</property>
             <property name="valueType">static</property>
-            <property name="isRequired">false</property>
-            <property name="dataType">decimal</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
             <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="javascript">2000</value>
-            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="concealValue">false</property>
@@ -280,12 +262,9 @@
         <scalar-parameter name="freq8" id="1461">
             <property name="hidden">true</property>
             <property name="valueType">static</property>
-            <property name="isRequired">false</property>
-            <property name="dataType">decimal</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
             <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="javascript">2000</value>
-            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="concealValue">false</property>
@@ -297,12 +276,9 @@
         <scalar-parameter name="freq9" id="1462">
             <property name="hidden">true</property>
             <property name="valueType">static</property>
-            <property name="isRequired">false</property>
-            <property name="dataType">decimal</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
             <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="javascript">2000</value>
-            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="concealValue">false</property>
@@ -314,12 +290,9 @@
         <scalar-parameter name="freq10" id="1463">
             <property name="hidden">true</property>
             <property name="valueType">static</property>
-            <property name="isRequired">false</property>
-            <property name="dataType">decimal</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
             <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="javascript">2000</value>
-            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="concealValue">false</property>
