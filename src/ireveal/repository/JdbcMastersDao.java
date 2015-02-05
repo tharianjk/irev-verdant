@@ -506,6 +506,10 @@ if(strmode.equals("new")){
 		   String sql = ""; 
 		   
 			   try{
+				   
+				   sql = "delete from scaling where product_id=" + id;  
+				    getJdbcTemplate().update(sql);
+				   
 	     sql = "delete from product where product_id=" + id;  
 	    getJdbcTemplate().update(sql);
 	   

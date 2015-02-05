@@ -240,7 +240,7 @@ progress_clear();
 		<tr>
 		<td width="20%"> Frequency :</td>
        <td>		
-           <input type="number" id="selfreq" name="D1" size="10" ></input>
+           <input type="number" id="selfreq" name="D1" step="any" min="0" maxlength="20" ></input>
         </td>
         <td><form:select path="frequnit" id="frequnit">
         <form:option value="MHz" label="MHz"></form:option>
@@ -430,6 +430,23 @@ $(document).ready( function () {
 	 document.getElementById("more").disabled = true;
 	 document.getElementById("done").disabled = false;
 	 }
+	 
+	 
+	 $("#selfreq").keydown(function (e) {
+	        // Allow: backspace, delete, tab, escape, enter and .
+	        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+	             // Allow: Ctrl+A
+	            (e.keyCode == 65 && e.ctrlKey === true) || 
+	             // Allow: home, end, left, right
+	            (e.keyCode >= 35 && e.keyCode <= 39)) {
+	                 // let it happen, don't do anything
+	                 return;
+	        }
+	        // Ensure that it is a number and stop the keypress
+	        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+	            e.preventDefault();
+	        }
+	    });
 	
 } );
 $('#testtype').on('change', function() {
@@ -562,6 +579,11 @@ function AddNew(){
 	if(freq==null || freq=="")
 	{
 	alert(" Select frequency");
+	return;
+	}
+	if(freq.length > 20)
+	{
+	alert(" Enter valid frequency");
 	return;
 	}
 	$("#tblData tbody").append(

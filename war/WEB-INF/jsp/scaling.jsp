@@ -46,9 +46,9 @@ function cancelclick()
 	<tbody>
     <c:forEach items="${scalelist}" var="scalelst">
 		<tr>
-			<td><input type="text" style="width:50" name="freq" value='<c:out value="${scalelst.frequency}"/>'/> </td>
-			<td><input type="text" style="width:50" name="min" value='<c:out value="${scalelst.minscale}"/>'/> </td>
-			<td><input type="text" style="width:50" name="max" value='<c:out value="${scalelst.maxscale}"/>'/> <br>			
+			<td><input type="number" style="width:50" name="freq" value='<c:out value="${scalelst.frequency}"/>'/> </td>
+			<td><input type="number" style="width:50"  name="min" value='<c:out value="${scalelst.minscale}"/>'/> </td>
+			<td><input type="number" style="width:50"  name="max" value='<c:out value="${scalelst.maxscale}"/>'/> <br>			
 			<td> </td> 
 			
 		</tr>
@@ -56,7 +56,7 @@ function cancelclick()
 	</tbody>
 	</table> 
   <tr> <td> <input type="button" align="center" class="myButton" value="Save" onclick="saveclick();">
-   	<td> <input type="button" align="center" value="Back" class="myButton" onclick="cancelclick();">  
+   	  
   </table>
   <form:hidden id="strfreq" path="strjsonfreq"></form:hidden>
   <form:hidden id="prodid" path="productid"></form:hidden>
@@ -79,9 +79,9 @@ $(document).ready(function(){
 function Add(){
 	$("#tblData tbody").append(
 		"<tr>"+
-		"<td><input type='text'/></td>"+
-		"<td><input type='text'/></td>"+
-		"<td><input type='text'/></td>"+		
+		"<td><input type='number' style='width:50' /></td>"+
+		"<td><input type='number' style='width:50'/></td>"+
+		"<td><input type='number' style='width:50'/></td>"+		
 		"</tr>");
 	
 }; 
@@ -100,20 +100,18 @@ function tabledata()
 		var tdmin = $(this).children("td:nth-child(2)");
 		var tdmax = $(this).children("td:nth-child(3)");
 		
-        freq = tdfreq.children("input[type=text]").val();
-        minscale = tdmin.children("input[type=text]").val();
-        maxscale = tdmax.children("input[type=text]").val();
+        freq = tdfreq.children("input[type=number]").val();
+        minscale = tdmin.children("input[type=number]").val();
+        maxscale = tdmax.children("input[type=number]").val();
         console.log("freq "+freq+"minscale "+minscale)
-        if(freq!="" && freq!=null && freq !='null' && freq !='undefined'){
+        if(freq!="" && freq!=null && freq !='null' && freq !='undefined' && minscale!="" && minscale!=null && minscale !='null' && minscale !='undefined' && maxscale!="" && maxscale!=null && maxscale !='null' && maxscale !='undefined'){
             if(idx==0){
              json=json+'{"freq":'+freq+', "minscale":'+minscale+',"maxscale":'+maxscale+'}';}
             else{json=json+',{"freq":'+freq+', "minscale":'+minscale+',"maxscale":'+maxscale+'}';}
             
             idx=1;
              }
-    });
-	
-	
+    });	
 	
 	if(json.length > 15)
 		{
@@ -125,6 +123,10 @@ function tabledata()
 function saveclick()
 {	
 	tabledata();
+	if(document.getElementById("strfreq").value.length==0){
+		alert("Enter Valid Data");
+		return;
+	}
 	form1.submit();
 }
 

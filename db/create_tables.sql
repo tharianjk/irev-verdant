@@ -391,11 +391,12 @@ ENGINE = InnoDB;
 -- View for Polar Plot
 -- -----------------------------------------------------
 
+
 create view vw_polardata as
-SELECT hp.test_id,case t.frequnit when 'GHz' then hp.frequency/1000 else hp.frequency end frequency ,hp.angle,hp.amplitude hamplitude, 0 vamplitude, 0 camplitude, 0 pamplitude, 0 ramplitude, 0 yamplitude
+SELECT hp.test_id,case t.frequnit when 'GHz' then hp.frequency/1000 else hp.frequency end frequency ,hp.angle,hp.amplitude hamplitude, 0 vamplitude, 0 camplitude, 0 pamplitude, 0 ramplitude, 0 yamplitude,t.frequnit
 FROM hdata hp inner join testdata t on hp.test_id=t.test_id 
 UNION All
-SELECT hp.test_id,case t.frequnit when 'GHz' then hp.frequency/1000 else hp.frequency end frequency,hp.angle,0 hamplitude,hp.amplitude vamplitude, 0 camplitude, 0 pamplitude, 0 ramplitude, 0 yamplitude
+SELECT hp.test_id,case t.frequnit when 'GHz' then hp.frequency/1000 else hp.frequency end frequency,hp.angle,0 hamplitude,hp.amplitude vamplitude, 0 camplitude, 0 pamplitude, 0 ramplitude, 0 yamplitude,t.frequnit
 FROM vdata hp inner join testdata t on hp.test_id=t.test_id;
 
 
@@ -465,12 +466,14 @@ alter table hdata add constraint FK_hdata_test foreign key (Test_id) references 
 alter table FWK_USER_FAVORITE add constraint FK_UseFav_user foreign key (USER_ID) references FWK_USER(USER_ID);
 alter table amplitudedata add constraint fk_amplitudedata foreign key (prodserial_id) references product_serial(prodserial_id);
 alter table phasedata add constraint fk_phasedata foreign key (prodserial_id) references product_serial(prodserial_id);
+alter table scaling add constraint fk_prodscale foreign key (product_id) references product(product_id);
 
 create index testid_freq_angle_hp on hdata(Test_id, Frequency, angle,Amplitude);
 create index testid_freq_angle_vp on vdata(Test_id, Frequency, angle,Amplitude);
 create index testid_freq_angle_cp on cpdata(Test_id, Frequency, angle,Amplitude);
 
 alter table product add constraint uk_prodname unique (productname);
+alter table product add constraint uk_version unique (version);
 
 ALTER TABLE `verdant`.`pitchdata` 
 ADD INDEX `test_freq_angle_ampl_pitch` (`Test_id` ASC, `Frequency` ASC, `Angle` ASC, `Amplitude` ASC);
