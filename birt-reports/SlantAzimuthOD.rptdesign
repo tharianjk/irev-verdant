@@ -322,7 +322,7 @@ group by frequency,t.test_id;]]></xml-property>
                     <property name="backgroundColor">white</property>
                     <property name="borderTopStyle">solid</property>
                     <property name="borderTopWidth">thin</property>
-                    <property name="canShrink">true</property>
+                    <property name="canShrink">false</property>
                     <column id="1267"/>
                     <row id="1268">
                         <cell id="1269">
