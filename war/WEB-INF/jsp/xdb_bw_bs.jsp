@@ -39,12 +39,14 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 	}
 	function Redirect(){
 		//alert("go clicked");
+		var nprecision=1;
 		var deg ;	
 		var testid=${model.testid};
 		var typ='${model.typ}';
 		var atype='${model.atype}';
 		var rptheader='${model.rptheader}';
 		var rptfooter='${model.rptfooter}';
+		nprecision='${model.nprecision}';
 		if(document.getElementById("bm").checked)
 			{deg='bm';}
 		if(document.getElementById("0d").checked)
@@ -64,19 +66,19 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 			var url="";
 			if(typ=='3db' ){
 				if(atype=='P' || atype=='R' ){ //Elevation (pitch or roll)
-		         url="/birt-verdant/frameset?__report=3dbPitchRoll_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype+"&rpth="+rptheader+"&rptf="+rptfooter;}
+		         url="/birt-verdant/frameset?__report=3dbPitchRoll_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision;}
 				else if (atype=='NCP' || atype=="E"){
-					 url="/birt-verdant/frameset?__report=3db_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype+"&rpth="+rptheader+"&rptf="+rptfooter;}
+					 url="/birt-verdant/frameset?__report=3db_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision;}
 				else{
-				 url="/birt-verdant/frameset?__report=3dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype+"&rpth="+rptheader+"&rptf="+rptfooter;}
+				 url="/birt-verdant/frameset?__report=3dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision;}
 			}
 			if(typ=='10db' ){
 				if(atype=='P' || atype=='R'){ //Elevation or (pitch or roll)
-		         url="/birt-verdant/frameset?__report=10dbPitchRoll_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype+"&rpth="+rptheader+"&rptf="+rptfooter;}
+		         url="/birt-verdant/frameset?__report=10dbPitchRoll_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision;}
 				else if (atype=='NCP' || atype=="E"){
-					 url="/birt-verdant/frameset?__report=10db_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype+"&rpth="+rptheader+"&rptf="+rptfooter;}
+					 url="/birt-verdant/frameset?__report=10db_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision;}
 				else{
-				 url="/birt-verdant/frameset?__report=10dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype+"&rpth="+rptheader+"&rptf="+rptfooter;}
+				 url="/birt-verdant/frameset?__report=10dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+atype+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision;}
 			}
 			
 			

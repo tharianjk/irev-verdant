@@ -40,10 +40,12 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 	function Redirect(){
 		//alert("go clicked");
 		var deg ;	
+		var nprecision=1;
 		var testid=${model.testid};
 		var rptheader='${model.rptheader}';
 		var rptfooter='${model.rptfooter}';
 		var typ='${model.typ}';
+		nprecision='${model.nprecision}';
 		if(document.getElementById("p45").checked)
 			{deg='p';}
 		if(document.getElementById("n45").checked)
@@ -51,7 +53,7 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 			if(deg=="" || deg==null){deg='n';}
 		else deg='b';}
 		
-				var url="/birt-verdant/frameset?__report=AxialRation_report.rptdesign&deg="+deg+"&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter;
+				var url="/birt-verdant/frameset?__report=AxialRation_report.rptdesign&deg="+deg+"&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision;
 			
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
 		console.log("url " + url);

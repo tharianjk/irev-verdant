@@ -153,6 +153,7 @@ $(document).ready(function(){
 	function Redirect(){
 		var img="no";
 		//alert("go clicked");
+		var nprecision=1;
 		var scale="yes";
 		var testid="${model.testid}";
 		var strfreqs=[]; 
@@ -160,6 +161,8 @@ $(document).ready(function(){
 		var i=0;
 		var j=0;
 		var fre= '${model.strfreqs}';
+		nprecision='${model.nprecision}';
+		
 		freqs=fre.split(",");
 		var freqsel=0;
 		var freqid =document.getElementById("freqid").value;	
@@ -230,12 +233,12 @@ if(document.getElementById("img").checked)
 	img="yes";
 		
 		var url="/birt-verdant/frameset?__report=PolarGeneric.rptdesign&type="+typ+"&testid="+testid+"&scale="+scale+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&freq1="+strfreqs[0]+
-		"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
+		"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
 		"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9];
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
 		if(typ=="B")
 			var url="/birt-verdant/frameset?__report=PolarHPVP.rptdesign&type="+typ+"&testid="+testid+"&scale="+scale+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&freq1="+strfreqs[0]+
-			"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
+			"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
 			"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9];
 			console.log("url " + url);
 		//window.location =url; 
