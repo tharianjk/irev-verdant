@@ -418,16 +418,25 @@ function fnenable(ctyp){
 					j=j+1;				
 				}
 			
-			
-			if(document.getElementById("cpdata").checked)
+			var chk="N"
+			if(document.getElementById("cpdata").checked){
 				dtype="C";
-			if(document.getElementById("hdata").checked)
+				chk="Y";}
+			if(document.getElementById("hdata").checked){
 				dtype="H";
-			if(document.getElementById("vdata").checked)
+				chk="Y";}
+			if(document.getElementById("vdata").checked){
 				dtype="V";
-			if(document.getElementById("vdata").checked && document.getElementById("hdata").checked)
+				chk="Y";}
+			if(document.getElementById("vdata").checked && document.getElementById("hdata").checked){
 				dtype="B";
-			
+				chk="Y";
+	        }
+			if(chk=="N")
+			{
+				alert ("Polarization type not selected ");
+				return;
+			}
 		}
 		if(freqsel==0)	{
 			for (i==0;i<20;i++){				
@@ -436,6 +445,7 @@ function fnenable(ctyp){
 							
 			}
 		}
+		
 		
 		if(document.getElementById('3db').checked){
 			db="yes";

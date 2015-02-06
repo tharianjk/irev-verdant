@@ -1144,6 +1144,15 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 					  {  logger.info("*** getScaling Exception** "+ e.getMessage() );}
 					 return nprecision;
 				 }
+				 
+				 public int getproductTestscnt(int prodid)
+				 {
+					 int cnt=0;
+					 String sql = "select count(*) from product_serial p inner join testdata t on p.prodserial_id=t.prodserial_id  where product_id=? ";
+				     cnt=getJdbcTemplate().queryForInt(sql,prodid);
+					 
+					 return cnt;
+				 }
    
   }
 

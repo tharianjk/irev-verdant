@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;  
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.web.servlet.view.RedirectView;
-import ireveal.domain.Product;
 
+import ireveal.domain.Product;
 import ireveal.service.MastersService;
   
   
@@ -31,6 +31,7 @@ public class ProductController  extends SimpleFormController{
 	private String viewName = null;
 	public MastersService mastersservice ;	
 	public Product product;	
+	private int intprodid=0;
 	public void setViewName(String viewName) {
 	      this.viewName = viewName;
 	   }
@@ -51,7 +52,7 @@ public class ProductController  extends SimpleFormController{
 	    public ModelAndView onSubmit(Object command)
 	            throws ServletException {
 	    	logger.info("*** in onsubmit** ");
-	    	
+	    	intprodid=0;
 	    	int stat=0;
 	    	String refresh="false";
 	    	String prodid = (String)cursess.getAttribute("prodid");
@@ -86,6 +87,7 @@ public class ProductController  extends SimpleFormController{
 
 	    protected Object formBackingObject(HttpServletRequest request) throws ServletException {
 	    	cursess = request.getSession();
+	    	intprodid=0;
 	        String id = request.getParameter("prodid");
 	        request.getSession().setAttribute("savestat", null);
 	        logger.info("inside ProductController"); 
@@ -100,11 +102,17 @@ public class ProductController  extends SimpleFormController{
 	        	
 	        	return prod;
 	        }else{
+	        	intprodid=Integer.parseInt(id);
 	        	request.getSession().setAttribute("prodid", id);
 	            logger.info(" going to retrieve details of product="+id);
 	        	return mastersservice.getProduct(Integer.parseInt(id));
 	        }       
 	    }
+	    protected HashMap referenceData(HttpServletRequest request) throws Exception {
+			HashMap referenceData = new HashMap();	
+	        referenceData.put("testcnt", mastersservice.getproductTestscnt(intprodid));
+	 		return referenceData;
+		}
 	  
 }  
 

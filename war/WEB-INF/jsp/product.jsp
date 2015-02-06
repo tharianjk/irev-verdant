@@ -82,6 +82,12 @@ function Redirect(){
      
      $(document).ready(function () {
     	 //fntypechange();
+    	var testcnt='${testcnt}';
+    	console.log("testcnt "+testcnt);
+    	if(testcnt!=null && testcnt!="" && testcnt!="0"){
+    		document.getElementById("ptype").disabled=true;
+    	}
+    	else{document.getElementById("ptype").disabled=false;}
     	 var savestat='<%=request.getParameter("savestat")%>';
    		//alert (parmdelete);
    		if(savestat!=null && savestat!="")

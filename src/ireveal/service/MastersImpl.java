@@ -204,6 +204,10 @@ public int getPrecision() {
 public int CalcProc(String ptype, int testid) {
 	return mastersdao.CalcProc(ptype,testid);
 }
+@Override
+public int getproductTestscnt(int prodid) {
+	return mastersdao.getproductTestscnt(prodid);
+}
 
 
 

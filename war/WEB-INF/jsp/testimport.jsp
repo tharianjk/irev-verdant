@@ -552,7 +552,7 @@ function AddNew(){
 	var testname=document.getElementById("testname").value;
 	if(testname==null || testname=="")
 	{
-	alert(" Enter Test Name");
+	alert(" Enter Test Cnfiguration");
 	return;
 	}
 	var testtype=document.getElementById("testtype").value;

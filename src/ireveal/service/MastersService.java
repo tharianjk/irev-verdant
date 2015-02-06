@@ -79,4 +79,5 @@ public interface MastersService {
 		 public int getProductid(int testid);
 		 public int getPrecision();
 		 public int CalcProc(String ptype,int testid);
+		 public int getproductTestscnt(int prodid);
 } 
