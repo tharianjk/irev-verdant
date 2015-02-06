@@ -80,9 +80,9 @@
        <table>
        <tr>
        <td > Max.Amplitude: </td>
-       <td ><input id="max" value="" style="width:50;">
+       <td ><input id="max" value="" class="scale" style="width:50;">
        <td > &nbsp; &nbsp;&nbsp;Min.Amplitude: </td>
-       <td ><input id="min"  value="" style="width:50;"></td>
+       <td ><input id="min"  value="" class="scale" style="width:50;"></td>
         <td><div id="divimg">&nbsp; &nbsp;&nbsp;<input type="checkbox" id="img" value="img" >Show Aircraft Image</div></td>
 		<td>&nbsp; &nbsp;&nbsp;<input type="button" value="Go" name="go" class="myButtonGo" onclick="Redirect()"/>
 	<!-- &nbsp; &nbsp;&nbsp;<input type="button" value="back" name="go" class="myButtonGo" onclick="back()"/> -->
@@ -143,7 +143,33 @@ $(document).ready(function(){
 	    	document.getElementById("cpdata").style.display="none";
 	    	document.getElementById("lblcp").style.display="none";
 	    	}	
-	}});
+	}
+	$(".scale").keydown(function (e) {
+		
+		// Only enter the minus sign (-) if the user enters it first
+		 if (e.keyCode == 189 && this.value == "") {
+		        return true;
+		    }
+		
+	    // Allow: backspace, delete, tab, escape, enter and .
+	    if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+	         // Allow: Ctrl+A
+	        (e.keyCode == 65 && e.ctrlKey === true) || 
+	         // Allow: home, end, left, right
+	        (e.keyCode >= 35 && e.keyCode <= 39)) {
+	             // let it happen, don't do anything
+	             return;
+	    }
+	    // Ensure that it is a number and stop the keypress
+	    if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+	    	if(e.keyCode!=189)
+	        e.preventDefault();
+	    }
+	});
+	
+	
+	
+	});
 
 	function back()
 	{

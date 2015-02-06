@@ -83,25 +83,31 @@ public class ToolsController implements Controller {
         if(testid==null || testid.equals("") || testid=="null" ||  testid.equals("undefined")){
         	testid="0";
         }
-        else{
-        	if(treetype.equals("4")){
+        
+       if (operstr == null){
+         		logger.info("*** error condition. operstr is null !!**");
+         		operstr = "null";
+         		
+             	   myModel.put("now", operstr);
+                 return new ModelAndView("setup", "model", myModel);
+         }else
+         {
+        	if(treetype.equals("4"))
+        	{
         		ProductSerial lstp=mastersservice.getheaderfooter(Integer.parseInt(testid));
-        		if(lstp!=null ){
+        if(lstp!=null ){
         	rptheader=lstp.getRptheader();
         	rptfooter=lstp.getRptfooter();}
-        	}
-        	if(rptheader.equals("") || rptheader==null ||rptheader=="null")
+        	
+        	if(rptheader==null || rptheader.equals("") || rptheader=="null")
         		rptheader="No Header";
-        	if(rptfooter.equals("") || rptfooter==null ||rptfooter=="null")
+        	if(rptfooter==null || rptfooter.equals("") || rptfooter=="null")
         		rptfooter="No Footer";
-        }
+        
         if(freq==null || freq.equals("") || freq=="null" ||  freq.equals("undefined") ){
         	freq="-1";
         }
-        if (operstr == null){
-    		logger.info("*** error condition. operstr is null !!**");
-    		operstr = "null";
-        }else{
+       
         		
 			if (operstr.contains("rset")){
         		logger.info("*** rset ** testid "+testid);
@@ -197,7 +203,37 @@ public class ToolsController implements Controller {
              return new ModelAndView("ar", "model", myModel);   
              
        	    }
-			else if (operstr.equals("ampphase"))
+			
+			else if(operstr.equals("od")){
+				atype=request.getParameter("atype");
+			     ptype=request.getParameter("ptype");
+				if(ptype.equals("L")){					
+				 return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=LinAzimuthOD.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));}
+				else{
+					 return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=SlantAzimuthOD.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
+					
+				}
+			}
+			else if(operstr.equals("blobe")){
+				
+				atype=request.getParameter("atype");
+			     ptype=request.getParameter("ptype");
+			     logger.info("*** blobe ** atype "+atype+" ptype "+ptype); 
+				if(atype.equals("NCP")){
+					return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=BlobWithOutCP.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
+					}
+				else if(ptype.equals("C") && !atype.equals("NCP")){
+					return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=BlobWithCP.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
+					}
+				else if(ptype.equals("S") && atype.equals("E") ){
+					return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=BlobWithOutCP.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
+					}
+			}
+        	}//treetype=4
+			
+        	else if (!treetype.equals("4"))
+        	{
+			if (operstr.equals("ampphase"))
 			{				
         		logger.info("*** ampphase ** ");
         		String prodid = request.getParameter("prodid");
@@ -240,9 +276,9 @@ public class ToolsController implements Controller {
 	        	rptheader=lstp.getRptheader();
 	        	rptfooter=lstp.getRptfooter();
 	        	}
-	        	if(rptheader.equals("") || rptheader==null ||rptheader=="null")
+	        	if(rptheader==null || rptheader.equals("") || rptheader=="null")
 	        		rptheader="No Header";
-	        	if(rptfooter.equals("") || rptfooter==null ||rptfooter=="null")
+	        	if(rptfooter==null || rptfooter.equals("") || rptfooter=="null")
 	        		rptfooter="No Footer";
 				
 				TestFrequency track=mastersservice.calcTrack(var,typ);
@@ -258,43 +294,29 @@ public class ToolsController implements Controller {
        		//type,prodserialids,maxamp,freq
              return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=PhaseTracking.rptdesign&type="+typ+"&prodserialids="+var+"&maxamp="+maxDiff+"&freq="+maxFreq+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision)); 
 			        }
-			else if(operstr.equals("od")){
-				atype=request.getParameter("atype");
-			     ptype=request.getParameter("ptype");
-				if(ptype.equals("L")){					
-				 return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=LinAzimuthOD.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));}
-				else{
-					 return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=SlantAzimuthOD.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
-					
-				}
-			}
-			else if(operstr.equals("blobe")){
-				
-				atype=request.getParameter("atype");
-			     ptype=request.getParameter("ptype");
-			     logger.info("*** blobe ** atype "+atype+" ptype "+ptype); 
-				if(atype.equals("NCP")){
-					return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=BlobWithOutCP.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
-					}
-				else if(ptype.equals("C") && !atype.equals("NCP")){
-					return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=BlobWithCP.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
-					}
-				else if(ptype.equals("S") && atype.equals("E") ){
-					return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=BlobWithOutCP.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
-					}
-			}
+			 else{
+		        	String msg="Please make a Selection from the Asset Tree on the left side";
+					myModel.put("text",msg);
+					 return new ModelAndView("blank", "model", myModel); 
+		        
+		        }
 			
-			else if(operstr.contains("blank")){
+        	}
+         
+			 if(operstr.contains("blank")){
 				String msg="Please make a Selection from the Asset Tree on the left side";
 				myModel.put("text",msg);
 				 return new ModelAndView("blank", "model", myModel);   
 			}
+        
+        
+       
         }
-        logger.info("*** not able to identify tools options!!**");
-        return new ModelAndView("setup", "model", myModel);
-    }
-    
+       return new ModelAndView("setup", "model", myModel);
+       
+    }    
     
     
 }
+
 
