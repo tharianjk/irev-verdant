@@ -171,6 +171,7 @@ var treemode='<%=request.getParameter("treemode")%>';
   			        	  parent.document.getElementById("pp").style.display="block";
   			        	  parent.document.getElementById("3db").style.display="block";
   			        	  parent.document.getElementById("10db").style.display="block";
+  			        	parent.document.getElementById("10db").innerHTML="10dB Beamwidth and Beam squint";
   			        	  parent.document.getElementById("cpg").style.display="none";
   			        	 parent.document.getElementById("blobe").style.display="none";
   			        	parent.document.getElementById("apt").style.display="none";
