@@ -185,8 +185,8 @@
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[SELECT case t.frequnit when 'GHz' then ar.frequency/1000 else ar.frequency end frequency,t.frequnit,
-ar.BackLobe as bh,v.BackLobe as bv FROM hcalculated ar 
-inner join  vcalculated v on v.Frequency=ar.Frequency 
+ar.BackLobe as bh,v.BackLobe as bv FROM hcalculated ar
+inner join  vcalculated v on v.Frequency=ar.Frequency and ar.Test_id=v.Test_id
 inner join testdata t on ar.test_id=t.test_id  where ar.Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
