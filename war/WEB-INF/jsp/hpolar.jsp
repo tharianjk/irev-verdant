@@ -65,7 +65,7 @@
           <tr>
           <td>
           <div id=divlg>
-          Linear Gain   :<input type="text" id="lg" style="width:50;"></div>
+          Linear Gain   :<input type="text" id="lg" class="scale" style="width:50;"></div>
           </td>
           </tr>
           <tr>

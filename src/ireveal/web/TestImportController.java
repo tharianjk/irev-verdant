@@ -140,7 +140,7 @@ public class TestImportController extends SimpleFormController{
 		 
 		logger.info("Inside FileUpload Controller");
 		if(multipartFile!=null){
-			
+			int startrow=0;
 			fileName = multipartFile.getOriginalFilename();
 			logger.info("Inside FileUpload Controller fileName" +fileName);
 			try {
@@ -170,8 +170,15 @@ public class TestImportController extends SimpleFormController{
 			      double selfreq=0;	
 			      ArrayList<Double> freqarr= new ArrayList<Double>();
 			      if (fileExtn.equalsIgnoreCase("xlsx"))
-			      {
-			      XSSFRow freqrow =(XSSFRow) sheet.getRow(1);
+			      {			    	  
+			    	  XSSFRow strow =(XSSFRow) sheet.getRow(0);
+			    	  logger.info("strow,1 " +strow.getCell(1));
+			    	  if(strow.getCell(1) != null && strow.getCell(1).toString().toUpperCase().contains("freq") )
+			    	  {
+			    		  startrow=1; 
+			    	  }
+			      
+			      XSSFRow freqrow =(XSSFRow) sheet.getRow(startrow);
 			      for(int u=1;u<colNum;u++){
 			    	  freqarr.add( Double.parseDouble(freqrow.getCell(u).toString()));
 			      }
@@ -183,7 +190,7 @@ public class TestImportController extends SimpleFormController{
 			    	  colfreq=ClosetFreq( selfreq,freqarr);
 			      for (int i=0; i<rowNum; i++){
 						  //logger.info("introw "+i);  
-						  if(i>1) //header
+						  if(i>startrow) //header
 						  {
 							  XSSFRow row =(XSSFRow) sheet.getRow(i);
 							  String amplitude;							
@@ -212,12 +219,17 @@ public class TestImportController extends SimpleFormController{
 			      {
 			    	  logger.info("inside xls");
 			    	  logger.info("file.getFrequnit() "+file.getFrequnit()); 
-				      HSSFRow freqrow =(HSSFRow) sheet.getRow(1);		
+				      HSSFRow freqrow =(HSSFRow) sheet.getRow(startrow);		
 				      for(int u=1;u<colNum;u++){
 				    	  freqarr.add(Double.parseDouble(freqrow.getCell(u).toString()));
 				    	  //logger.info( u +' '+freqrow.getCell(u).toString()); 
 				      }
 				      logger.info("freqlist.size() "+freqlist.size()); 
+				      XSSFRow strow =(XSSFRow) sheet.getRow(0);
+			    	  if(strow.getCell(1) != null && strow.getCell(1).toString().toUpperCase().contains("freq") )
+			    	  {
+			    		  startrow=1; 
+			    	  }
 				      for(y=0;y<freqlist.size();y++)
 				      {		  
 				    	  double colfreq=0;	
@@ -225,7 +237,7 @@ public class TestImportController extends SimpleFormController{
 				    	  colfreq=ClosetFreq( selfreq,freqarr);
 				    	  
 				      for (int i=0; i<rowNum; i++){				
-							  if(i>1) //header
+							  if(i>startrow) //header
 							  {
 								  HSSFRow row =(HSSFRow) sheet.getRow(i);
 								String amplitude;								
