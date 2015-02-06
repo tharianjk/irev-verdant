@@ -39,10 +39,15 @@ function fnsetstat(typ,msg)
 	AssetTree.selectedreport=typ;
 	var treetype=AssetTree.treeType;
 	var url="";
-	if(treetype!=4){
+	
+	console.log("treetype "+treetype);
+	if(treetype!=2 && treetype!=4) 
+	{		
 		window.frames['AppBody'].location="blank.htm?oper=blank";
 	}
-	else{
+	
+	if(treetype==4){
+		
 	if(msg!=null && msg=='msg'){
 		reportflashMessenger.setText('<b>Please make a Selection from the Asset Tree on the left side</b>  ');}
 	if(typ=="Polar") {
@@ -96,10 +101,13 @@ function fnsetstat(typ,msg)
 		else window.frames['AppBody'].location="blank.htm?oper=blank";
 		AssetTree.monitorstat="Reports";}
 }
-	if(typ=="apt" && treetype==2) {
+	if(typ=="apt" && treetype==2) 
+	{
 		console.log("apt");
 		window.frames['AppBody'].location="ampphaserpt.htm?oper=ampphase&typ="+typ+"&prodid="+testid+"&atype="+atype+"&treetype="+treetype;
-		AssetTree.monitorstat="Reports";}
+		AssetTree.monitorstat="Reports";
+    }
+	
 	console.log("url "+url);
 }
 function fnHomeClick()
@@ -317,26 +325,6 @@ dialog.dialog( "open" );
 </div>
 <script>
 
-//for user pref dynamically adding menu to list
-var attrarr="";
-var attrcnt="single";
-var pagearrsrc=[];
-var pagearr=[];
-$(".menuarray").each(function(index, element) {
-var path=	location.href;
-    path=path.replace("#","");
-    path=path.replace("Irev-Verdant/start.htm","");
-    //console.log("path "+path);
-	var strscr=element.href;
-	//console.log("strscr "+strscr);
-	var src=strscr.replace(path,"");
-	var src=src.replace("Irev-Verdant/","");
-	var srcnew=src.replace("birt-verdant","/birt-verdant");
-	//console.log(srcnew);
-	pagearrsrc.push(srcnew);
-	
-		pagearr.push(element.innerText);
-});
 
 
 		function formSubmit() {

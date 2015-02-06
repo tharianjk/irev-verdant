@@ -249,12 +249,12 @@ var treemode='<%=request.getParameter("treemode")%>';
                 		 if(selectedreport=="apt")
                 		 parent.fnsetstat(selectedreport,"");
                 		 else{
-                			 parent.frames['AppBody'].location='<%=request.getContextPath()%>/blank.htm?text=Select Tree Node With Data'; 
+                			 parent.frames['AppBody'].location='<%=request.getContextPath()%>/blank.htm?oper=blank&text=Select Tree Node With Data'; 
                 		 }
                 		 
                 	 }
                 	 else
-                		 parent.frames['AppBody'].location='<%=request.getContextPath()%>/blank.htm?text=Select Tree Node With Data';
+                		 parent.frames['AppBody'].location='<%=request.getContextPath()%>/blank.htm?oper=blank&text=Select Tree Node With Data';
                 	 //var currenturl=parent.frames['AppBody'].location;
                 	 //parent.frames['AppBody'].location=currenturl;
                 	 }
