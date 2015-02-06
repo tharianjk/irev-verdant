@@ -173,7 +173,7 @@ public class TestImportController extends SimpleFormController{
 			      {			    	  
 			    	  XSSFRow strow =(XSSFRow) sheet.getRow(0);
 			    	  logger.info("strow,1 " +strow.getCell(1));
-			    	  if(strow.getCell(1) != null && strow.getCell(1).toString().toUpperCase().contains("freq") )
+			    	  if(strow.getCell(1) != null && strow.getCell(1).toString().toLowerCase().contains("freq") )
 			    	  {
 			    		  startrow=1; 
 			    	  }
@@ -219,17 +219,23 @@ public class TestImportController extends SimpleFormController{
 			      {
 			    	  logger.info("inside xls");
 			    	  logger.info("file.getFrequnit() "+file.getFrequnit()); 
+			    	  
+			    	  HSSFRow strow =(HSSFRow) sheet.getRow(0);
+				      logger.info("strow,1 " +strow.getCell(1));
+			    	  if(strow.getCell(1) != null && strow.getCell(1).toString().toLowerCase().contains("freq") )
+			    	  {
+			    		  logger.info("strow,1 " +strow.getCell(1));
+			    		  startrow=1; 
+			    	  }
+			    	  
 				      HSSFRow freqrow =(HSSFRow) sheet.getRow(startrow);		
 				      for(int u=1;u<colNum;u++){
 				    	  freqarr.add(Double.parseDouble(freqrow.getCell(u).toString()));
 				    	  //logger.info( u +' '+freqrow.getCell(u).toString()); 
 				      }
 				      logger.info("freqlist.size() "+freqlist.size()); 
-				      XSSFRow strow =(XSSFRow) sheet.getRow(0);
-			    	  if(strow.getCell(1) != null && strow.getCell(1).toString().toUpperCase().contains("freq") )
-			    	  {
-			    		  startrow=1; 
-			    	  }
+				      
+				      
 				      for(y=0;y<freqlist.size();y++)
 				      {		  
 				    	  double colfreq=0;	
