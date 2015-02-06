@@ -48,7 +48,9 @@ function cancelclick()
 		<tr>
 			<td><input type="number" style="width:50" name="freq" value='<c:out value="${scalelst.frequency}"/>'/> </td>
 			<td><input type="number" style="width:50"  name="min" value='<c:out value="${scalelst.minscale}"/>'/> </td>
-			<td><input type="number" style="width:50"  name="max" value='<c:out value="${scalelst.maxscale}"/>'/> <br>			
+			<td><input type="number" style="width:50"  name="max" value='<c:out value="${scalelst.maxscale}"/>'/> </td>						
+			<td> <a id="deleteclick" href='<c:url value="scaling.htm?oper=del&prodid=${scalelst.productid}&freq=${scalelst.frequency}"/>'><img  src ="/irev-verdant/img/delete.jpg" >  </a> </td>
+			
 			<td> </td> 
 			
 		</tr>
@@ -81,10 +83,16 @@ function Add(){
 		"<tr>"+
 		"<td><input type='number' style='width:50' /></td>"+
 		"<td><input type='number' style='width:50'/></td>"+
-		"<td><input type='number' style='width:50'/></td>"+		
+		"<td><input type='number' style='width:50'/></td>"+	
+		"<td> <img src='img/delete.jpg' class='btnDelete'/></td>"+
 		"</tr>");
+	$(".btnDelete").bind("click", Delete);
 	
-}; 
+};
+function Delete(){
+	var par = $(this).parent().parent(); //tr
+	par.remove();
+};
 function tabledata()
 {
 	var freq;

@@ -80,4 +80,6 @@ public interface MastersService {
 		 public int getPrecision();
 		 public int CalcProc(String ptype,int testid);
 		 public int getproductTestscnt(int prodid);
+		 public boolean deletescaling(double freq,int prodid);
+		 public boolean deletescaleProduct(int prodid);
 } 

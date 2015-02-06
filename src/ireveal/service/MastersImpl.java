@@ -208,6 +208,14 @@ public int CalcProc(String ptype, int testid) {
 public int getproductTestscnt(int prodid) {
 	return mastersdao.getproductTestscnt(prodid);
 }
+@Override
+public boolean deletescaling(double freq, int prodid) {
+	return mastersdao.deletescaling(freq,prodid);
+}
+@Override
+public boolean deletescaleProduct(int prodid) {
+	return mastersdao.deletescaleProduct(prodid);
+}
 
 
 

@@ -91,6 +91,11 @@ public class AssetTreeController extends SimpleFormController {
 	        	strType="Test Data";
 	        	saveStat=mastersservice.deleteTestData(intid);
 	        } 
+	        if(inttyp==7)
+	        {
+	        	strType="Scaling";
+	        	saveStat=mastersservice.deletescaleProduct(intid);
+	        } 
 	        if(saveStat==false)
 	        	deletemsg="Could not delete " ;
 	     }

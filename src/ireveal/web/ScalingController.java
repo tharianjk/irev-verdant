@@ -84,7 +84,16 @@ public class ScalingController extends SimpleFormController{
 	    	String oper = request.getParameter("oper");	    	
 	    	String id = request.getParameter("testid");
 	        if(id!=null && id!=""){
-	        	testid=Integer.parseInt(id);
+	        	testid=Integer.parseInt(id);	        	
+	        }
+	        
+	        if(oper!=null && oper.equals("del"))
+	        {
+	        	logger.info("inside ScalingController Delete"); 
+	        	String prodid = request.getParameter("prodid");
+	        	String freq = request.getParameter("freq");
+	        	mastersservice.deletescaling(Double.parseDouble(freq), Integer.parseInt(prodid));
+	        	request.setAttribute("oper", null);
 	        }
 	        request.getSession().setAttribute("savestat", null);
 	        logger.info("inside ScalingController"); 
@@ -120,3 +129,4 @@ public class ScalingController extends SimpleFormController{
 		      return viewName;
 		   }
 	}
+

@@ -618,6 +618,13 @@ function recreatewithparents()
                 	var url = '<%=request.getContextPath()%>/assettree.htm?treemode=edit&stat=delete&id='+ node.attr('assetId')+'&typ='+ treeType+'&assetname='+node.attr('assetName');                    
                     window.location.href = url;                    
                	 }
+            },
+            deleteScale: { // The "delete" menu item
+                label: "Delete Scaling",
+                action: function (obj) {
+                	var url = '<%=request.getContextPath()%>/assettree.htm?treemode=edit&stat=delete&id='+ node.attr('assetId')+'&typ=7&assetname='+node.attr('assetName');                    
+                    window.location.href = url;                    
+               	 }
             }
         };
         }

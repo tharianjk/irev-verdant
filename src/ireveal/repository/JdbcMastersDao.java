@@ -1105,7 +1105,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 						 List<Scaling> strLst=new ArrayList<Scaling>();
 						logger.info("JdbcMastersDao inside getScaling");
 						try{
-					      sql = "SELECT distinct frequency ,minscale,maxscale from scaling s inner join product_serial p on s.product_id=p.product_id inner join testdata t on p.prodserial_id=t.prodserial_id where t.test_id=?";
+					      sql = "SELECT distinct frequency ,minscale,maxscale,p.product_id from scaling s inner join product_serial p on s.product_id=p.product_id inner join testdata t on p.prodserial_id=t.prodserial_id where t.test_id=?";
 					       strLst=	getJdbcTemplate().query(sql, new ScalingMapper(),testid); 
 						}
 					  catch(Exception e)
@@ -1119,6 +1119,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 				    	   prdser.setFrequency(rs.getDouble("frequency"));  
 				    	   prdser.setMinscale(rs.getDouble("minscale"));
 				    	   prdser.setMaxscale(rs.getDouble("maxscale"));
+				    	   prdser.setProductid(rs.getInt("product_id"));
 				           return prdser;
 				       }
 
@@ -1141,7 +1142,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 					     nprecision=getJdbcTemplate().queryForInt(sql);
 						}
 					  catch(Exception e)
-					  {  logger.info("*** getScaling Exception** "+ e.getMessage() );}
+					  {  logger.info("*** getPrecision Exception** "+ e.getMessage() );}
 					 return nprecision;
 				 }
 				 
@@ -1153,6 +1154,32 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 					 
 					 return cnt;
 				 }
+				 
+				 
+				 public boolean deletescaling(double freq,int prodid){
+					String sql="";
+					 try{						  					   
+						 sql = "delete from scaling where Product_id=? and frequency=?";						   
+						 getJdbcTemplate().update(sql,prodid,freq);			   
+						 return true;
+			           }
+					   catch(Exception e){
+						   logger.info("*** deletescaling Exception** "+ e.getMessage() );
+						   return false;
+					   }					 
+				 }
+				 public boolean deletescaleProduct(int prodid){
+						String sql="";
+						 try{						  					   
+							 sql = "delete from scaling where Product_id=? ";						   
+							 getJdbcTemplate().update(sql,prodid);			   
+							 return true;
+				           }
+						   catch(Exception e){
+							   logger.info("*** deletescaleProduct Exception** "+ e.getMessage() );
+							   return false;
+						   }					 
+					 }
    
   }
 
