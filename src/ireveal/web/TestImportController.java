@@ -415,7 +415,7 @@ public class TestImportController extends SimpleFormController{
 	        referenceData.put("vfreq", vfreq);
 	        
 	        
-	       // referenceData.put("freqlist",mastersservice.getFreqList(testid));
+	        referenceData.put("freqlist",mastersservice.getFreqList(testid));
 	 		return referenceData;
 		}
 	

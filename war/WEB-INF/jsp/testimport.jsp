@@ -250,6 +250,9 @@ progress_clear();
         <td>		
            <input type="button" id="lg" class="mybutton" value ="Add Freq" onclick="AddNew();" />
         </td>
+        <td>		
+           <input type="button" id="del" class="mybutton" value ="Delete Freq" onclick="Removefreqs();" />
+        </td>
 	  </tr>
 		</table>
 		
@@ -265,11 +268,9 @@ progress_clear();
 	<tbody>
     <c:forEach items="${freqlist}" var="freqlst">
 		<tr>
-			<td> <c:out value="${freqlst.frequency}"/> <br>
-			
-			
-			<td> </td> <br>
-			<td> <img src='img/delete.jpg' class='btnDelete'/><img src='img/edit.jpg' class='btnEdit'/> </td>
+			<td> <c:out value="${freqlst.frequency}"/> 
+			<td> </td> 
+			<td> <img src='img/delete.jpg' class='btnDelete'/></td>
 		</tr>
     </c:forEach> 
 	</tbody>
@@ -632,6 +633,15 @@ function Delete(){
 	var par = $(this).parent().parent(); //tr
 	par.remove();
 };
+function Deletefreq(){
+var table =document.getElementById("tblData") ;	
+var rowCount=table.rows.length;
+for(var i=rowCount-1;i>0;i--)
+{
+table.deleteRow(i);
+
+}
+}
 
 
 
