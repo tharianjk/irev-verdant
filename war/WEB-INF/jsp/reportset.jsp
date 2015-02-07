@@ -209,25 +209,20 @@ else if(atype=="DCP")
   document.getElementById("l10db").style.display="block";  
   document.getElementById("lcpg").style.display="block";  
   document.getElementById("lblobe").style.display="block";
-  document.getElementById("lbl10db").innerHTML="10dB Beamwidth with Beam Squint";
-  document.getElementById("lbl3db").innerHTML="3dB Beamwidth with Beam Squint";
+  
 }
 else if(atype=="NCP")
 {			        	 
   
-  document.getElementById("lod").style.display="none";
-  
-  document.getElementById("lar").style.display="block";
-  
-  document.getElementById("lpp").style.display="block";
-  
-  document.getElementById("l3db").style.display="block";
-  
-  document.getElementById("l10db").style.display="block";
-  
-  document.getElementById("lcpg").style.display="none";
-  
+  document.getElementById("lod").style.display="none";  
+  document.getElementById("lar").style.display="block";  
+  document.getElementById("lpp").style.display="block";  
+  document.getElementById("l3db").style.display="block";  
+  document.getElementById("l10db").style.display="block";  
+  document.getElementById("lcpg").style.display="none";  
   document.getElementById("lblobe").style.display="block";
+  document.getElementById("lbl10db").innerHTML="10dB Beamwidth with Beam Squint";
+  document.getElementById("lbl3db").innerHTML="3dB Beamwidth with Beam Squint";
 }
 $(".hintTextbox").keydown(function (e) {
 	
