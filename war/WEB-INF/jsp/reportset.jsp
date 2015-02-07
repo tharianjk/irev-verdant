@@ -24,7 +24,8 @@ INPUT.hintTextboxActive { color: #000; }
 
 </head>
 <body>
-
+&nbsp; &nbsp;&nbsp;<button  title="Collapse" name="Collapse" class="myButtonGo" onclick="Collapse();"><img src='img/resize.png'/></button>
+<div id="SelBody"> 
 
 <table>
 	<tr><td><table >
@@ -121,17 +122,35 @@ INPUT.hintTextboxActive { color: #000; }
 </td>
 </tr>
 </table>
+</div>
 <iframe id="AppBody" name="AppBody"  frameborder="1" scrolling="yes" width="98%" height="95%" 
 marginwidth="0" marginheight="0" align="right" class="AppBody"> 
 </iframe>
 <div id="dialog-form-scaling" title="Scaling" style="display:none;overflow:hidden;border:none">
     <iframe id="scalingdialog" width="500" height="400" style="border:none" ></iframe>
 </div>
+
 </body>
 
 
 
 <script type="text/javascript">
+var val="Collapse";
+function Collapse(){
+	console.log("val " +val);
+	if(val=="Collapse"){
+	document.getElementById("SelBody").style.display="none";
+	document.getElementById("SelBody").title="Expand";
+	val="Expand";
+	}
+	else{
+		document.getElementById("SelBody").style.display="block";
+		//document.getElementById("SelBody").value="Collapse";
+		document.getElementById("SelBody").title="Collapse";
+		val="Collapse";
+	}
+}
+
 var atype=parent.AssetTree.atype;
 var ptype=parent.AssetTree.selectedparenttype;
 $(document).ready( function () {
@@ -414,7 +433,11 @@ function fnenable(ctyp){
 				dtype="B";
 				chk="Y";
 	        }
-			if(chk=="N")
+			if(atype=="DCP")
+				{
+				chk="Y";
+				}
+			if(chk=="N" && ptype!="L")
 			{
 				alert ("Polarization type not selected ");
 				return;

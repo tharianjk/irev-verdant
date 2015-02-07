@@ -414,8 +414,17 @@ public class TestImportController extends SimpleFormController{
 	        referenceData.put("hfreq", hfreq);
 	        referenceData.put("vfreq", vfreq);
 	        
+	        List<TestFrequency> freqlist=mastersservice.getFreqList(testid);  
+	        String strfreqs="";
+	       // referenceData.put("freqlist",freqlist);
+	      
+	        for (int i=0;i<freqlist.size();i++){
+    			if(i==0)
+    				{strfreqs=freqlist.get(i).getFrequency()+"";}
+    			else {strfreqs=strfreqs+","+freqlist.get(i).getFrequency();}
+    		}
+	        referenceData.put("strfreqlist",strfreqs);
 	        
-	        referenceData.put("freqlist",mastersservice.getFreqList(testid));
 	 		return referenceData;
 		}
 	

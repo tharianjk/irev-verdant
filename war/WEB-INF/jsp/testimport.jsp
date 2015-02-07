@@ -251,7 +251,8 @@ progress_clear();
            <input type="button" id="lg" class="mybutton" value ="Add Freq" onclick="AddNew();" />
         </td>
         <td>		
-           <input type="button" id="del" class="mybutton" value ="Delete Freq" onclick="Removefreqs();" />
+          <!--  <input type="button" id="del" class="mybutton" value ="Delete Freq" onclick="Removefreqs();" /> -->
+          <input type="checkbox" id="chkdel"  onchange="AddPrev();" />Add Previous Frequency
         </td>
 	  </tr>
 		</table>
@@ -408,6 +409,7 @@ $(document).ready( function () {
 			 document.getElementById("done").style.visibility="hidden";
 			 document.getElementById("save").style.visibility="visible";
 			// document.getElementById("cancel").style.visibility="visible";
+			 document.getElementById("testtype").disabled = true;
 			 }		 
 		}
 	 else{
@@ -430,6 +432,8 @@ $(document).ready( function () {
 	// document.getElementById("cancel").style.visibility="hidden";
 	 document.getElementById("more").disabled = true;
 	 document.getElementById("done").disabled = false;
+	 if(ptype=="L" || testtype=="DCP")
+	 document.getElementById("checkdel").disabled = true;
 	 }
 	 
 	 
@@ -541,6 +545,8 @@ $('#testtype').on('change', function() {
 		    el.value ='CPdata';
 		    ftype.appendChild(el);}
 		
+		
+		
 	});
 
 function fncancel(){
@@ -629,10 +635,41 @@ function Edit(){
 	$(".btnEdit").bind("click", Edit);
 	$(".btnDelete").bind("click", Delete);
 };
+
+function AddPrev(){
+	if(document.getElementById("chkdel").checked){
+		var ftype=document.getElementById("ftype").value;
+		if(ftype==null || ftype=="" || ftype=="-1")
+		{
+		alert(" Select File Type");
+		return;
+		}
+		Deletefreq();
+	var str='${strfreqlist}';
+	console.log("str "+str);
+	var freq=[];
+	freq=str.split(",");
+	for(var i=0;i<freq.length;i++){
+		
+	$("#tblData tbody").append(
+		"<tr>"+
+		"<td><input type='number' value='"+freq[i]+"'/></td>"+		
+		"<td><img src='img/delete.jpg' class='btnDelete'/></td>"+
+		"</tr>");
+		
+		$(".btnDelete").bind("click", Delete);
+	}
+	}
+	else{
+		Deletefreq();
+	}
+};
+
 function Delete(){
 	var par = $(this).parent().parent(); //tr
 	par.remove();
 };
+
 function Deletefreq(){
 var table =document.getElementById("tblData") ;	
 var rowCount=table.rows.length;
