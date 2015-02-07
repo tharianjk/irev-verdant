@@ -30,7 +30,7 @@ INPUT.hintTextboxActive { color: #000; }
 	<tr><td><table >
 		<tr><td><label><b>---Select Reports---</b></label></td></tr>
 
-        <tr><td><div id="l3db"><input type="checkbox" id="3db" value="3db" onchange='setVisible("3db");'>3db BeamWidth and Beam Squint</div> </td>
+        <tr><td><div id="l3db"><input type="checkbox" id="3db" value="3db" onchange='setVisible("3db");'><label id=lbl3db>3db BeamWidth and Beam Squint</label></div> </td>
         		<td>
 		        <table id="3dbtab" style="display:none;">
 		         <tr><td>       	  
@@ -39,7 +39,7 @@ INPUT.hintTextboxActive { color: #000; }
 		       <input type="checkbox" id="390d" value="90d" checked >90 &deg; &nbsp; &nbsp;&nbsp;
 		          </td></tr>
 			    </table></td></tr>
-        <tr><td><div id="l10db"><input type="checkbox" id="10db" value="10db" onchange='setVisible("10db");' >10db BeamWidth and Back-lobe level</div> </td>
+        <tr><td><div id="l10db"><input type="checkbox" id="10db" value="10db" onchange='setVisible("10db");' ><label id=lbl10db>10db BeamWidth and Back-lobe level</label></div> </td>
         <td><table id="10dbtab" style="display:none;">
         <tr><td>       	  
 			   <input type="checkbox" id="bm" value="bm" style="display:none;" > &nbsp; &nbsp;&nbsp;
@@ -159,34 +159,26 @@ else if ((atype=="E") && (ptype == "L"))
       
       document.getElementById("lod").style.display="none";
 	  
-	  document.getElementById("lar").style.display="none";
-	  
-	  document.getElementById("lpp").style.display="block";
-	  
-	  document.getElementById("l3db").style.display="block";
-	  
-	  document.getElementById("l10db").style.display="block";
-	  
-	  document.getElementById("lcpg").style.display="none";
-	  
+	  document.getElementById("lar").style.display="none";	  
+	  document.getElementById("lpp").style.display="block";	  
+	  document.getElementById("l3db").style.display="block";	  
+	  document.getElementById("l10db").style.display="block";	  
+	  document.getElementById("lcpg").style.display="none";	  
 	  document.getElementById("lblobe").style.display="none";
+	  document.getElementById("lbl10db").innerHTML="10dB Beamwidth ";
+ 	  document.getElementById("lbl3db").innerHTML="3dB Beamwidth ";
 }
 else if ((atype=="E") && (ptype == 'S'))
 {
   
-      document.getElementById("lod").style.display="none";
-	  
-	  document.getElementById("lar").style.display="block";
-	  
-	  document.getElementById("lpp").style.display="block";
-	  
-	  document.getElementById("l3db").style.display="block";
-	  
-	  document.getElementById("l10db").style.display="block";
-	  
-	  document.getElementById("lcpg").style.display="none";
-	 
+      document.getElementById("lod").style.display="none";	  
+	  document.getElementById("lar").style.display="block";	  
+	  document.getElementById("lpp").style.display="block";	  
+	  document.getElementById("l3db").style.display="block";	  
+	  document.getElementById("l10db").style.display="block";	  
+	  document.getElementById("lcpg").style.display="none";	 
 	 document.getElementById("lblobe").style.display="block";
+	 
 }
 else if(atype=="CP")
 {
@@ -209,21 +201,16 @@ else if(atype=="CP")
 }
 else if(atype=="DCP")
 {
- 
   
-  document.getElementById("lod").style.display="none";
-  
-  document.getElementById("lar").style.display="none";
-  
-  document.getElementById("lpp").style.display="block";
-  
-  document.getElementById("l3db").style.display="block";
-  
-  document.getElementById("l10db").style.display="block";
-  
-  document.getElementById("lcpg").style.display="block";
-  
+  document.getElementById("lod").style.display="none";  
+  document.getElementById("lar").style.display="none";  
+  document.getElementById("lpp").style.display="block";  
+  document.getElementById("l3db").style.display="block";  
+  document.getElementById("l10db").style.display="block";  
+  document.getElementById("lcpg").style.display="block";  
   document.getElementById("lblobe").style.display="block";
+  document.getElementById("lbl10db").innerHTML="10dB Beamwidth with Beam Squint";
+  document.getElementById("lbl3db").innerHTML="3dB Beamwidth with Beam Squint";
 }
 else if(atype=="NCP")
 {			        	 
