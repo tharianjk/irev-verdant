@@ -252,7 +252,7 @@ progress_clear();
         </td>
         <td>		
           <!--  <input type="button" id="del" class="mybutton" value ="Delete Freq" onclick="Removefreqs();" /> -->
-          <input type="checkbox" id="chkdel"  onchange="AddPrev();" />Add Previous Frequency
+          <input type="checkbox" id="chkdel"  onchange="AddPrev();" />Quick Select Previous Frequencies
         </td>
 	  </tr>
 		</table>
@@ -644,6 +644,7 @@ function AddPrev(){
 		alert(" Select File Type");
 		return;
 		}
+		
 		Deletefreq();
 	var str='${strfreqlist}';
 	console.log("str "+str);
@@ -653,16 +654,18 @@ function AddPrev(){
 		
 	$("#tblData tbody").append(
 		"<tr>"+
-		"<td><input type='number' value='"+freq[i]+"'/></td>"+		
+		"<td>"+freq[i]+"</td>"+				
 		"<td><img src='img/delete.jpg' class='btnDelete'/></td>"+
-		"</tr>");
-		
-		$(".btnDelete").bind("click", Delete);
+	"</tr>");
+$(".btnDelete").bind("click", Delete);
+document.getElementById("more").disabled = false;
+document.getElementById("done").disabled = false;
 	}
 	}
 	else{
 		Deletefreq();
 	}
+	document.getElementById("more").disabled = false;
 };
 
 function Delete(){
@@ -708,7 +711,7 @@ function tabledata()
 		{
 		json=json+']}';
 		document.getElementById("strfreq").value=json;
-		//console.log(""+json);
+		console.log(""+json);
 		}
 }
 
