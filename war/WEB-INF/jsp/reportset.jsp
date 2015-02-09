@@ -413,7 +413,9 @@ function fnenable(ctyp){
 				alert("Frequency not selected");
 				return;
 				}
-			for (i==j;i<20;i++){				
+			var p=0;
+			for (p==j;p<20;p++){
+				console.log("j"+j);
 					strfreqs[j]=-1;	
 					lg[j]="0.0001";
 					j=j+1;				
@@ -574,22 +576,21 @@ function fnenable(ctyp){
 	    }
        if(atype=="DCP" && ptype=="C"){
     	   
-			if(dtype=='B'){
-			var url="/birt-verdant/frameset?__report=CPwithHPnVPRset.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&blob="+blobe+"&AxR="+axr+"&AxDeg="+AxDeg+"&scale=yes"+
-					"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+"&pc="+nprecision+
-					"&lg1="+lg[0]+"&lg2="+lg[1]+"&lg3="+lg[2]+"&lg4="+lg[3]+"&lg5="+lg[4]+"&lg6="+lg[5]+"&lg7="+lg[6]+"&lg8="+lg[7]+"&lg9="+lg[8]+"&lg10="+lg[9]+"&pc="+nprecision+
-					"&freq1="+strfreqs[0]+"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
-					"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
-			}
-			else
-				{
-				var url="/birt-verdant/frameset?__report=CPReportset.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&blob="+blobe+"&AxR="+axr+"&AxDeg="+AxDeg+"&scale=yes&lg1=0.0001"+
-				"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+"&pc="+nprecision+
-				"&lg1="+lg[0]+"&lg2="+lg[1]+"&lg3="+lg[2]+"&lg4="+lg[3]+"&lg5="+lg[4]+"&lg6="+lg[5]+"&lg7="+lg[6]+"&lg8="+lg[7]+"&lg9="+lg[8]+"&lg10="+lg[9]+"&pc="+nprecision+
-				"&freq1="+strfreqs[0]+"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
-				"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
-		
-				}
+    	   if(dtype!="B"){
+   			var url="/birt-verdant/frameset?__report=CPReportset.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&axr="+axr+"&AxDeg="+AxDeg+"&scale=yes"+
+   			"&lg1="+lg[0]+"&lg2="+lg[1]+"&lg3="+lg[2]+"&lg4="+lg[3]+"&lg5="+lg[4]+"&lg6="+lg[5]+"&lg7="+lg[6]+"&lg8="+lg[7]+"&lg9="+lg[8]+"&lg10="+lg[9]+"&pc="+nprecision+
+   			"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+"&cpg="+cpg+"&blobe="+blobe+"&freq1="+strfreqs[0]+
+   			"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
+   			"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img=no&rpth="+rptheader+"&rptf="+rptfooter;
+   			}
+   			else{
+   				var url="/birt-verdant/frameset?__report=CPwithHPnVPRset.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&axr="+axr+"&AxDeg="+AxDeg+"&scale=yes"+
+   				"&lg1="+lg[0]+"&lg2="+lg[1]+"&lg3="+lg[2]+"&lg4="+lg[3]+"&lg5="+lg[4]+"&lg6="+lg[5]+"&lg7="+lg[6]+"&lg8="+lg[7]+"&lg9="+lg[8]+"&lg10="+lg[9]+"&pc="+nprecision+
+   				"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+"&cpg="+cpg+"&blobe="+blobe+"&freq1="+strfreqs[0]+
+   				"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
+   				"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img=no&rpth="+rptheader+"&rptf="+rptfooter;
+   				
+   			}
 	    }
         
 		else if (atype=="CP" && ptype=="C"){
