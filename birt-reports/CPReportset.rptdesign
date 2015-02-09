@@ -1302,6 +1302,11 @@ from cpcalculated where Test_id=?]]></xml-property>
                     <expression name="expression">params["freq10"].value+" "+row["frequnit"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">GridHPVPTYPE</property>
+                    <expression name="expression">params["type"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints">
                 <structure>
@@ -1477,6 +1482,11 @@ from cpcalculated where Test_id=?]]></xml-property>
                     <structure>
                         <property name="position">20</property>
                         <property name="name">frqncy10</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">21</property>
+                        <property name="name">GridHPVPTYPE</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -12877,7 +12887,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -13826,6 +13836,7 @@ else&#xD;
                                 <property name="dataType">decimal</property>
                             </structure>
                         </list-property>
+                        <column id="4585"/>
                         <column id="4066"/>
                         <column id="4067"/>
                         <column id="4068"/>
@@ -13835,6 +13846,7 @@ else&#xD;
                         <column id="4072"/>
                         <header>
                             <row id="4042">
+                                <cell id="4582"/>
                                 <cell id="4043">
                                     <label id="4073">
                                         <property name="fontWeight">bold</property>
@@ -13881,6 +13893,30 @@ else&#xD;
                         </header>
                         <detail>
                             <row id="4050">
+                                <cell id="4583">
+                                    <text-data id="4586">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="dataSet">graphgrid</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">GridHPVPTYPE</property>
+                                                <text-property name="displayName">GridHPVPTYPE</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["GridHPVPTYPE"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <expression name="valueExpr">if(row["GridHPVPTYPE"]=='H')&#13;
+{&#13;
+&#13;
+	row["GridHPVPTYPE"]='HP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='VP'&#13;
+}</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
+                                </cell>
                                 <cell id="4051">
                                     <data id="4074">
                                         <property name="textAlign">center</property>
@@ -13927,6 +13963,7 @@ else&#xD;
                         </detail>
                         <footer>
                             <row id="4058">
+                                <cell id="4584"/>
                                 <cell id="4059"/>
                                 <cell id="4060"/>
                                 <cell id="4061"/>
@@ -14485,7 +14522,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -15434,6 +15471,7 @@ else&#xD;
                                 <property name="dataType">decimal</property>
                             </structure>
                         </list-property>
+                        <column id="4580"/>
                         <column id="4130"/>
                         <column id="4131"/>
                         <column id="4132"/>
@@ -15443,6 +15481,7 @@ else&#xD;
                         <column id="4136"/>
                         <header>
                             <row id="4092">
+                                <cell id="4577"/>
                                 <cell id="4093">
                                     <label id="4094">
                                         <property name="fontWeight">bold</property>
@@ -15489,6 +15528,30 @@ else&#xD;
                         </header>
                         <detail>
                             <row id="4107">
+                                <cell id="4578">
+                                    <text-data id="4581">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="dataSet">graphgrid</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">GridHPVPTYPE</property>
+                                                <text-property name="displayName">GridHPVPTYPE</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["GridHPVPTYPE"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <expression name="valueExpr">if(row["GridHPVPTYPE"]=='H')&#13;
+{&#13;
+&#13;
+	row["GridHPVPTYPE"]='HP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='VP'&#13;
+}</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
+                                </cell>
                                 <cell id="4108">
                                     <data id="4109">
                                         <property name="textAlign">center</property>
@@ -15535,6 +15598,7 @@ else&#xD;
                         </detail>
                         <footer>
                             <row id="4122">
+                                <cell id="4579"/>
                                 <cell id="4123"/>
                                 <cell id="4124"/>
                                 <cell id="4125"/>
@@ -16093,7 +16157,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -17042,6 +17106,7 @@ else&#xD;
                                 <property name="dataType">decimal</property>
                             </structure>
                         </list-property>
+                        <column id="4575"/>
                         <column id="4180"/>
                         <column id="4181"/>
                         <column id="4182"/>
@@ -17051,6 +17116,7 @@ else&#xD;
                         <column id="4186"/>
                         <header>
                             <row id="4142">
+                                <cell id="4572"/>
                                 <cell id="4143">
                                     <label id="4144">
                                         <property name="fontWeight">bold</property>
@@ -17097,6 +17163,30 @@ else&#xD;
                         </header>
                         <detail>
                             <row id="4157">
+                                <cell id="4573">
+                                    <text-data id="4576">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="dataSet">graphgrid</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">GridHPVPTYPE</property>
+                                                <text-property name="displayName">GridHPVPTYPE</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["GridHPVPTYPE"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <expression name="valueExpr">if(row["GridHPVPTYPE"]=='H')&#13;
+{&#13;
+&#13;
+	row["GridHPVPTYPE"]='HP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='VP'&#13;
+}</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
+                                </cell>
                                 <cell id="4158">
                                     <data id="4159">
                                         <property name="textAlign">center</property>
@@ -17143,6 +17233,7 @@ else&#xD;
                         </detail>
                         <footer>
                             <row id="4172">
+                                <cell id="4574"/>
                                 <cell id="4173"/>
                                 <cell id="4174"/>
                                 <cell id="4175"/>
@@ -17701,7 +17792,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -18650,6 +18741,7 @@ else&#xD;
                                 <property name="dataType">decimal</property>
                             </structure>
                         </list-property>
+                        <column id="4570"/>
                         <column id="4230"/>
                         <column id="4231"/>
                         <column id="4232"/>
@@ -18659,6 +18751,7 @@ else&#xD;
                         <column id="4236"/>
                         <header>
                             <row id="4192">
+                                <cell id="4567"/>
                                 <cell id="4193">
                                     <label id="4194">
                                         <property name="fontWeight">bold</property>
@@ -18705,6 +18798,30 @@ else&#xD;
                         </header>
                         <detail>
                             <row id="4207">
+                                <cell id="4568">
+                                    <text-data id="4571">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="dataSet">graphgrid</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">GridHPVPTYPE</property>
+                                                <text-property name="displayName">GridHPVPTYPE</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["GridHPVPTYPE"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <expression name="valueExpr">if(row["GridHPVPTYPE"]=='H')&#13;
+{&#13;
+&#13;
+	row["GridHPVPTYPE"]='HP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='VP'&#13;
+}</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
+                                </cell>
                                 <cell id="4208">
                                     <data id="4209">
                                         <property name="textAlign">center</property>
@@ -18751,6 +18868,7 @@ else&#xD;
                         </detail>
                         <footer>
                             <row id="4222">
+                                <cell id="4569"/>
                                 <cell id="4223"/>
                                 <cell id="4224"/>
                                 <cell id="4225"/>
@@ -19309,7 +19427,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -20258,6 +20376,7 @@ else&#xD;
                                 <property name="dataType">decimal</property>
                             </structure>
                         </list-property>
+                        <column id="4565"/>
                         <column id="4280"/>
                         <column id="4281"/>
                         <column id="4282"/>
@@ -20267,6 +20386,7 @@ else&#xD;
                         <column id="4286"/>
                         <header>
                             <row id="4242">
+                                <cell id="4562"/>
                                 <cell id="4243">
                                     <label id="4244">
                                         <property name="fontWeight">bold</property>
@@ -20313,6 +20433,30 @@ else&#xD;
                         </header>
                         <detail>
                             <row id="4257">
+                                <cell id="4563">
+                                    <text-data id="4566">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="dataSet">graphgrid</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">GridHPVPTYPE</property>
+                                                <text-property name="displayName">GridHPVPTYPE</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["GridHPVPTYPE"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <expression name="valueExpr">if(row["GridHPVPTYPE"]=='H')&#13;
+{&#13;
+&#13;
+	row["GridHPVPTYPE"]='HP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='VP'&#13;
+}</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
+                                </cell>
                                 <cell id="4258">
                                     <data id="4259">
                                         <property name="textAlign">center</property>
@@ -20359,6 +20503,7 @@ else&#xD;
                         </detail>
                         <footer>
                             <row id="4272">
+                                <cell id="4564"/>
                                 <cell id="4273"/>
                                 <cell id="4274"/>
                                 <cell id="4275"/>
@@ -20917,7 +21062,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -21866,6 +22011,7 @@ else&#xD;
                                 <property name="dataType">decimal</property>
                             </structure>
                         </list-property>
+                        <column id="4560"/>
                         <column id="4330"/>
                         <column id="4331"/>
                         <column id="4332"/>
@@ -21875,6 +22021,7 @@ else&#xD;
                         <column id="4336"/>
                         <header>
                             <row id="4292">
+                                <cell id="4557"/>
                                 <cell id="4293">
                                     <label id="4294">
                                         <property name="fontWeight">bold</property>
@@ -21921,6 +22068,30 @@ else&#xD;
                         </header>
                         <detail>
                             <row id="4307">
+                                <cell id="4558">
+                                    <text-data id="4561">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="dataSet">graphgrid</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">GridHPVPTYPE</property>
+                                                <text-property name="displayName">GridHPVPTYPE</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["GridHPVPTYPE"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <expression name="valueExpr">if(row["GridHPVPTYPE"]=='H')&#13;
+{&#13;
+&#13;
+	row["GridHPVPTYPE"]='HP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='VP'&#13;
+}</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
+                                </cell>
                                 <cell id="4308">
                                     <data id="4309">
                                         <property name="textAlign">center</property>
@@ -21967,6 +22138,7 @@ else&#xD;
                         </detail>
                         <footer>
                             <row id="4322">
+                                <cell id="4559"/>
                                 <cell id="4323"/>
                                 <cell id="4324"/>
                                 <cell id="4325"/>
@@ -22525,7 +22697,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -23474,6 +23646,7 @@ else&#xD;
                                 <property name="dataType">decimal</property>
                             </structure>
                         </list-property>
+                        <column id="4555"/>
                         <column id="4380"/>
                         <column id="4381"/>
                         <column id="4382"/>
@@ -23483,6 +23656,7 @@ else&#xD;
                         <column id="4386"/>
                         <header>
                             <row id="4342">
+                                <cell id="4552"/>
                                 <cell id="4343">
                                     <label id="4344">
                                         <property name="fontWeight">bold</property>
@@ -23529,6 +23703,30 @@ else&#xD;
                         </header>
                         <detail>
                             <row id="4357">
+                                <cell id="4553">
+                                    <text-data id="4556">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="dataSet">graphgrid</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">GridHPVPTYPE</property>
+                                                <text-property name="displayName">GridHPVPTYPE</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["GridHPVPTYPE"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <expression name="valueExpr">if(row["GridHPVPTYPE"]=='H')&#13;
+{&#13;
+&#13;
+	row["GridHPVPTYPE"]='HP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='VP'&#13;
+}</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
+                                </cell>
                                 <cell id="4358">
                                     <data id="4359">
                                         <property name="textAlign">center</property>
@@ -23575,6 +23773,7 @@ else&#xD;
                         </detail>
                         <footer>
                             <row id="4372">
+                                <cell id="4554"/>
                                 <cell id="4373"/>
                                 <cell id="4374"/>
                                 <cell id="4375"/>
@@ -24133,7 +24332,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency </Value>
           <Font>
             <Alignment/>
           </Font>
@@ -25082,6 +25281,7 @@ else&#xD;
                                 <property name="dataType">decimal</property>
                             </structure>
                         </list-property>
+                        <column id="4550"/>
                         <column id="4430"/>
                         <column id="4431"/>
                         <column id="4432"/>
@@ -25091,6 +25291,7 @@ else&#xD;
                         <column id="4436"/>
                         <header>
                             <row id="4392">
+                                <cell id="4547"/>
                                 <cell id="4393">
                                     <label id="4394">
                                         <property name="fontWeight">bold</property>
@@ -25137,6 +25338,30 @@ else&#xD;
                         </header>
                         <detail>
                             <row id="4407">
+                                <cell id="4548">
+                                    <text-data id="4551">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="dataSet">graphgrid</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">GridHPVPTYPE</property>
+                                                <text-property name="displayName">GridHPVPTYPE</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["GridHPVPTYPE"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <expression name="valueExpr">if(row["GridHPVPTYPE"]=='H')&#13;
+{&#13;
+&#13;
+	row["GridHPVPTYPE"]='HP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='VP'&#13;
+}</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
+                                </cell>
                                 <cell id="4408">
                                     <data id="4409">
                                         <property name="textAlign">center</property>
@@ -25183,6 +25408,7 @@ else&#xD;
                         </detail>
                         <footer>
                             <row id="4422">
+                                <cell id="4549"/>
                                 <cell id="4423"/>
                                 <cell id="4424"/>
                                 <cell id="4425"/>
@@ -25741,7 +25967,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -26690,6 +26916,7 @@ else&#xD;
                                 <property name="dataType">decimal</property>
                             </structure>
                         </list-property>
+                        <column id="4545"/>
                         <column id="4480"/>
                         <column id="4481"/>
                         <column id="4482"/>
@@ -26699,6 +26926,7 @@ else&#xD;
                         <column id="4486"/>
                         <header>
                             <row id="4442">
+                                <cell id="4542"/>
                                 <cell id="4443">
                                     <label id="4444">
                                         <property name="fontWeight">bold</property>
@@ -26745,6 +26973,30 @@ else&#xD;
                         </header>
                         <detail>
                             <row id="4457">
+                                <cell id="4543">
+                                    <text-data id="4546">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="dataSet">graphgrid</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">GridHPVPTYPE</property>
+                                                <text-property name="displayName">GridHPVPTYPE</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["GridHPVPTYPE"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <expression name="valueExpr">if(row["GridHPVPTYPE"]=='H')&#13;
+{&#13;
+&#13;
+	row["GridHPVPTYPE"]='HP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='VP'&#13;
+}</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
+                                </cell>
                                 <cell id="4458">
                                     <data id="4459">
                                         <property name="textAlign">center</property>
@@ -26791,6 +27043,7 @@ else&#xD;
                         </detail>
                         <footer>
                             <row id="4472">
+                                <cell id="4544"/>
                                 <cell id="4473"/>
                                 <cell id="4474"/>
                                 <cell id="4475"/>
@@ -27349,7 +27602,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -28298,6 +28551,7 @@ else&#xD;
                                 <property name="dataType">decimal</property>
                             </structure>
                         </list-property>
+                        <column id="4540"/>
                         <column id="4530"/>
                         <column id="4531"/>
                         <column id="4532"/>
@@ -28307,6 +28561,7 @@ else&#xD;
                         <column id="4536"/>
                         <header>
                             <row id="4492">
+                                <cell id="4537"/>
                                 <cell id="4493">
                                     <label id="4494">
                                         <property name="fontWeight">bold</property>
@@ -28353,6 +28608,30 @@ else&#xD;
                         </header>
                         <detail>
                             <row id="4507">
+                                <cell id="4538">
+                                    <text-data id="4541">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="dataSet">graphgrid</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">GridHPVPTYPE</property>
+                                                <text-property name="displayName">GridHPVPTYPE</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["GridHPVPTYPE"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <expression name="valueExpr">if(row["GridHPVPTYPE"]=='H')&#13;
+{&#13;
+&#13;
+	row["GridHPVPTYPE"]='HP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='VP'&#13;
+}</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
+                                </cell>
                                 <cell id="4508">
                                     <data id="4509">
                                         <property name="textAlign">center</property>
@@ -28399,6 +28678,7 @@ else&#xD;
                         </detail>
                         <footer>
                             <row id="4522">
+                                <cell id="4539"/>
                                 <cell id="4523"/>
                                 <cell id="4524"/>
                                 <cell id="4525"/>

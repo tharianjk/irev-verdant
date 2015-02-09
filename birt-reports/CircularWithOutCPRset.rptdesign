@@ -14006,7 +14006,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -16078,7 +16078,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -18142,7 +18142,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -20206,7 +20206,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -22270,7 +22270,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -24334,7 +24334,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -26398,7 +26398,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -28462,7 +28462,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -30526,7 +30526,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -32590,7 +32590,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency </Value>
           <Font>
             <Alignment/>
           </Font>

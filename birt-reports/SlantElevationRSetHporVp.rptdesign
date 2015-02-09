@@ -23,7 +23,7 @@
     <property name="imageDPI">96</property>
     <parameters>
         <scalar-parameter name="freq1" id="10">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <text-property name="helpText">Enter the frequency</text-property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
@@ -38,7 +38,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="testid" id="12">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">integer</property>
@@ -52,7 +52,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="type" id="767">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -66,7 +66,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="lg1" id="768">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -80,7 +80,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="img" id="1028">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -92,7 +92,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rpth" id="1124">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -104,7 +104,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rptf" id="1125">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -116,7 +116,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="scale" id="1128">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -128,7 +128,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq2" id="1131">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -142,7 +142,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq3" id="1132">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -156,7 +156,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq5" id="1458">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -170,7 +170,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq4" id="1457">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -184,7 +184,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq6" id="1459">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -198,7 +198,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq7" id="1460">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -212,7 +212,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq8" id="1461">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -226,7 +226,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq9" id="1462">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -240,7 +240,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq10" id="1463">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -254,7 +254,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="polar" id="2061">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -267,7 +267,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="3db" id="2483">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -279,7 +279,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="3dbDeg" id="2484">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -291,7 +291,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="10db" id="3027">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -303,7 +303,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="10dbDeg" id="3028">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -315,7 +315,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="blob" id="3292">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -327,7 +327,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="AxR" id="3469">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -339,7 +339,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="AxDeg" id="3470">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -13796,7 +13796,7 @@ inner join testdata t on ar.test_id=t.test_id  where ar.Test_id=?]]></xml-proper
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -15506,7 +15506,7 @@ row["GridHPVPTYPE"]='VP'&#13;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -17208,7 +17208,7 @@ row["GridHPVPTYPE"]='VP'&#13;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -18910,7 +18910,7 @@ row["GridHPVPTYPE"]='VP'&#13;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -20612,7 +20612,7 @@ row["GridHPVPTYPE"]='VP'&#13;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -22314,7 +22314,7 @@ row["GridHPVPTYPE"]='VP'&#13;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -24016,7 +24016,7 @@ row["GridHPVPTYPE"]='VP'&#13;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -25718,7 +25718,7 @@ row["GridHPVPTYPE"]='VP'&#13;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -27420,7 +27420,7 @@ row["GridHPVPTYPE"]='VP'&#13;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -29122,7 +29122,7 @@ row["GridHPVPTYPE"]='VP'&#13;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>

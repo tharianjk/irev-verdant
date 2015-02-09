@@ -13796,7 +13796,7 @@ inner join testdata t on ar.test_id=t.test_id  where ar.Test_id=?]]></xml-proper
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -15506,7 +15506,7 @@ row["GridHPVPTYPE"]='VP'&#13;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -17208,7 +17208,7 @@ row["GridHPVPTYPE"]='VP'&#13;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -18910,7 +18910,7 @@ row["GridHPVPTYPE"]='VP'&#13;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -20612,7 +20612,7 @@ row["GridHPVPTYPE"]='VP'&#13;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -22314,7 +22314,7 @@ row["GridHPVPTYPE"]='VP'&#13;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -24016,7 +24016,7 @@ row["GridHPVPTYPE"]='VP'&#13;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency </Value>
           <Font>
             <Alignment/>
           </Font>
@@ -25718,7 +25718,7 @@ row["GridHPVPTYPE"]='VP'&#13;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -27420,7 +27420,7 @@ row["GridHPVPTYPE"]='VP'&#13;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -29122,7 +29122,7 @@ row["GridHPVPTYPE"]='VP'&#13;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>

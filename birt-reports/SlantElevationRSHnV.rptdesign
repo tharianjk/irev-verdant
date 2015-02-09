@@ -14006,7 +14006,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -16078,7 +16078,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -18142,7 +18142,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -20206,7 +20206,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -22270,7 +22270,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -22351,6 +22351,7 @@ icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
 function afterDataSetFilled( series, dataSet, icsc )&#xD;
 {&#xD;
 var list = dataSet.getValues();&#xD;
+&#xD;
 numberofpoints = list.length;&#xD;
 if(numberofpoints!=null &amp;&amp; numberofpoints>0)&#xD;
     	{&#xD;
@@ -24334,7 +24335,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -26398,7 +26399,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -28462,7 +28463,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -30526,7 +30527,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
@@ -32590,7 +32591,7 @@ else&#xD;
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
-          <Value>Frequency in MHz</Value>
+          <Value>Frequency</Value>
           <Font>
             <Alignment/>
           </Font>
