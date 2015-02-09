@@ -23,7 +23,7 @@
     <property name="imageDPI">96</property>
     <parameters>
         <scalar-parameter name="freq1" id="10">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <text-property name="helpText">Enter the frequency</text-property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
@@ -38,7 +38,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="testid" id="12">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">integer</property>
@@ -52,7 +52,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="type" id="767">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -66,7 +66,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="lg1" id="768">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -80,7 +80,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="img" id="1028">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -92,7 +92,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rpth" id="1124">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -104,7 +104,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rptf" id="1125">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -116,7 +116,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="scale" id="1128">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -128,7 +128,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq2" id="1131">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -142,7 +142,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq3" id="1132">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -156,7 +156,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq5" id="1458">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -170,7 +170,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq4" id="1457">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -184,7 +184,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq6" id="1459">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -198,7 +198,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq7" id="1460">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -212,7 +212,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq8" id="1461">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -226,7 +226,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq9" id="1462">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -240,7 +240,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq10" id="1463">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -254,7 +254,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="polar" id="2061">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -267,7 +267,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="3db" id="2483">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -279,7 +279,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="3dbDeg" id="2484">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -291,7 +291,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="10db" id="3027">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -303,7 +303,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="10dbDeg" id="3028">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -315,7 +315,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="blob" id="3292">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -327,7 +327,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="AxR" id="3469">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -339,7 +339,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="AxDeg" id="3470">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -433,6 +433,11 @@
                 <structure>
                     <property name="name">frequency10</property>
                     <expression name="expression">params["freq10"].value+" "+row["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">GridHPVPTYPE</property>
+                    <expression name="expression">params["type"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
             </list-property>
@@ -615,6 +620,11 @@
                     <structure>
                         <property name="position">21</property>
                         <property name="name">frequency10</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">22</property>
+                        <property name="name">GridHPVPTYPE</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -14729,6 +14739,7 @@ else&#xD;
                                 <property name="dataType">decimal</property>
                             </structure>
                         </list-property>
+                        <column id="4043"/>
                         <column id="3581"/>
                         <column id="3582"/>
                         <column id="3583"/>
@@ -14737,6 +14748,7 @@ else&#xD;
                         <column id="3586"/>
                         <header>
                             <row id="3560">
+                                <cell id="4040"/>
                                 <cell id="3561">
                                     <label id="3587">
                                         <property name="fontWeight">bold</property>
@@ -14777,6 +14789,29 @@ else&#xD;
                         </header>
                         <detail>
                             <row id="3567">
+                                <cell id="4041">
+                                    <text-data id="4044">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="dataSet">Data SetGrid</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">GridHPVPTYPE</property>
+                                                <text-property name="displayName">GridHPVPTYPE</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["GridHPVPTYPE"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <expression name="valueExpr">if(row["GridHPVPTYPE"]=='H')&#13;
+{&#13;
+	row["GridHPVPTYPE"]='HP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='VP'&#13;
+}</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
+                                </cell>
                                 <cell id="3568">
                                     <data id="3588">
                                         <property name="fontWeight">normal</property>
@@ -14818,6 +14853,7 @@ else&#xD;
                         </detail>
                         <footer>
                             <row id="3574">
+                                <cell id="4042"/>
                                 <cell id="3575"/>
                                 <cell id="3576"/>
                                 <cell id="3577"/>
@@ -16413,6 +16449,7 @@ else&#xD;
                                 <property name="dataType">decimal</property>
                             </structure>
                         </list-property>
+                        <column id="4038"/>
                         <column id="3637"/>
                         <column id="3638"/>
                         <column id="3639"/>
@@ -16421,6 +16458,7 @@ else&#xD;
                         <column id="3642"/>
                         <header>
                             <row id="3604">
+                                <cell id="4035"/>
                                 <cell id="3605">
                                     <label id="3606">
                                         <property name="fontWeight">bold</property>
@@ -16461,6 +16499,29 @@ else&#xD;
                         </header>
                         <detail>
                             <row id="3617">
+                                <cell id="4036">
+                                    <text-data id="4039">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="dataSet">Data SetGrid</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">GridHPVPTYPE</property>
+                                                <text-property name="displayName">GridHPVPTYPE</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["GridHPVPTYPE"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <expression name="valueExpr">if(row["GridHPVPTYPE"]=='H')&#13;
+{&#13;
+	row["GridHPVPTYPE"]='HP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='VP'&#13;
+}</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
+                                </cell>
                                 <cell id="3618">
                                     <data id="3619">
                                         <property name="fontWeight">normal</property>
@@ -16502,6 +16563,7 @@ else&#xD;
                         </detail>
                         <footer>
                             <row id="3630">
+                                <cell id="4037"/>
                                 <cell id="3631"/>
                                 <cell id="3632"/>
                                 <cell id="3633"/>
@@ -18089,6 +18151,7 @@ else&#xD;
                                 <property name="dataType">decimal</property>
                             </structure>
                         </list-property>
+                        <column id="4033"/>
                         <column id="3681"/>
                         <column id="3682"/>
                         <column id="3683"/>
@@ -18097,6 +18160,7 @@ else&#xD;
                         <column id="3686"/>
                         <header>
                             <row id="3648">
+                                <cell id="4030"/>
                                 <cell id="3649">
                                     <label id="3650">
                                         <property name="fontWeight">bold</property>
@@ -18137,6 +18201,29 @@ else&#xD;
                         </header>
                         <detail>
                             <row id="3661">
+                                <cell id="4031">
+                                    <text-data id="4034">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="dataSet">Data SetGrid</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">GridHPVPTYPE</property>
+                                                <text-property name="displayName">GridHPVPTYPE</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["GridHPVPTYPE"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <expression name="valueExpr">if(row["GridHPVPTYPE"]=='H')&#13;
+{&#13;
+	row["GridHPVPTYPE"]='HP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='VP'&#13;
+}</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
+                                </cell>
                                 <cell id="3662">
                                     <data id="3663">
                                         <property name="fontWeight">normal</property>
@@ -18178,6 +18265,7 @@ else&#xD;
                         </detail>
                         <footer>
                             <row id="3674">
+                                <cell id="4032"/>
                                 <cell id="3675"/>
                                 <cell id="3676"/>
                                 <cell id="3677"/>
@@ -19765,6 +19853,7 @@ else&#xD;
                                 <property name="dataType">decimal</property>
                             </structure>
                         </list-property>
+                        <column id="4028"/>
                         <column id="3725"/>
                         <column id="3726"/>
                         <column id="3727"/>
@@ -19773,6 +19862,7 @@ else&#xD;
                         <column id="3730"/>
                         <header>
                             <row id="3692">
+                                <cell id="4025"/>
                                 <cell id="3693">
                                     <label id="3694">
                                         <property name="fontWeight">bold</property>
@@ -19813,6 +19903,29 @@ else&#xD;
                         </header>
                         <detail>
                             <row id="3705">
+                                <cell id="4026">
+                                    <text-data id="4029">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="dataSet">Data SetGrid</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">GridHPVPTYPE</property>
+                                                <text-property name="displayName">GridHPVPTYPE</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["GridHPVPTYPE"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <expression name="valueExpr">if(row["GridHPVPTYPE"]=='H')&#13;
+{&#13;
+	row["GridHPVPTYPE"]='HP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='VP'&#13;
+}</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
+                                </cell>
                                 <cell id="3706">
                                     <data id="3707">
                                         <property name="fontWeight">normal</property>
@@ -19854,6 +19967,7 @@ else&#xD;
                         </detail>
                         <footer>
                             <row id="3718">
+                                <cell id="4027"/>
                                 <cell id="3719"/>
                                 <cell id="3720"/>
                                 <cell id="3721"/>
@@ -21441,6 +21555,7 @@ else&#xD;
                                 <property name="dataType">decimal</property>
                             </structure>
                         </list-property>
+                        <column id="4023"/>
                         <column id="3769"/>
                         <column id="3770"/>
                         <column id="3771"/>
@@ -21449,6 +21564,7 @@ else&#xD;
                         <column id="3774"/>
                         <header>
                             <row id="3736">
+                                <cell id="4020"/>
                                 <cell id="3737">
                                     <label id="3738">
                                         <property name="fontWeight">bold</property>
@@ -21489,6 +21605,29 @@ else&#xD;
                         </header>
                         <detail>
                             <row id="3749">
+                                <cell id="4021">
+                                    <text-data id="4024">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="dataSet">Data SetGrid</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">GridHPVPTYPE</property>
+                                                <text-property name="displayName">GridHPVPTYPE</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["GridHPVPTYPE"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <expression name="valueExpr">if(row["GridHPVPTYPE"]=='H')&#13;
+{&#13;
+	row["GridHPVPTYPE"]='HP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='VP'&#13;
+}</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
+                                </cell>
                                 <cell id="3750">
                                     <data id="3751">
                                         <property name="fontWeight">normal</property>
@@ -21530,6 +21669,7 @@ else&#xD;
                         </detail>
                         <footer>
                             <row id="3762">
+                                <cell id="4022"/>
                                 <cell id="3763"/>
                                 <cell id="3764"/>
                                 <cell id="3765"/>
@@ -23117,6 +23257,7 @@ else&#xD;
                                 <property name="dataType">decimal</property>
                             </structure>
                         </list-property>
+                        <column id="4018"/>
                         <column id="3813"/>
                         <column id="3814"/>
                         <column id="3815"/>
@@ -23125,6 +23266,7 @@ else&#xD;
                         <column id="3818"/>
                         <header>
                             <row id="3780">
+                                <cell id="4015"/>
                                 <cell id="3781">
                                     <label id="3782">
                                         <property name="fontWeight">bold</property>
@@ -23165,6 +23307,29 @@ else&#xD;
                         </header>
                         <detail>
                             <row id="3793">
+                                <cell id="4016">
+                                    <text-data id="4019">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="dataSet">Data SetGrid</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">GridHPVPTYPE</property>
+                                                <text-property name="displayName">GridHPVPTYPE</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["GridHPVPTYPE"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <expression name="valueExpr">if(row["GridHPVPTYPE"]=='H')&#13;
+{&#13;
+	row["GridHPVPTYPE"]='HP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='VP'&#13;
+}</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
+                                </cell>
                                 <cell id="3794">
                                     <data id="3795">
                                         <property name="fontWeight">normal</property>
@@ -23206,6 +23371,7 @@ else&#xD;
                         </detail>
                         <footer>
                             <row id="3806">
+                                <cell id="4017"/>
                                 <cell id="3807"/>
                                 <cell id="3808"/>
                                 <cell id="3809"/>
@@ -24793,6 +24959,7 @@ else&#xD;
                                 <property name="dataType">decimal</property>
                             </structure>
                         </list-property>
+                        <column id="4013"/>
                         <column id="3857"/>
                         <column id="3858"/>
                         <column id="3859"/>
@@ -24801,6 +24968,7 @@ else&#xD;
                         <column id="3862"/>
                         <header>
                             <row id="3824">
+                                <cell id="4010"/>
                                 <cell id="3825">
                                     <label id="3826">
                                         <property name="fontWeight">bold</property>
@@ -24841,6 +25009,29 @@ else&#xD;
                         </header>
                         <detail>
                             <row id="3837">
+                                <cell id="4011">
+                                    <text-data id="4014">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="dataSet">Data SetGrid</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">GridHPVPTYPE</property>
+                                                <text-property name="displayName">GridHPVPTYPE</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["GridHPVPTYPE"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <expression name="valueExpr">if(row["GridHPVPTYPE"]=='H')&#13;
+{&#13;
+	row["GridHPVPTYPE"]='HP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='VP'&#13;
+}</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
+                                </cell>
                                 <cell id="3838">
                                     <data id="3839">
                                         <property name="fontWeight">normal</property>
@@ -24882,6 +25073,7 @@ else&#xD;
                         </detail>
                         <footer>
                             <row id="3850">
+                                <cell id="4012"/>
                                 <cell id="3851"/>
                                 <cell id="3852"/>
                                 <cell id="3853"/>
@@ -26469,6 +26661,7 @@ else&#xD;
                                 <property name="dataType">decimal</property>
                             </structure>
                         </list-property>
+                        <column id="4008"/>
                         <column id="3901"/>
                         <column id="3902"/>
                         <column id="3903"/>
@@ -26477,6 +26670,7 @@ else&#xD;
                         <column id="3906"/>
                         <header>
                             <row id="3868">
+                                <cell id="4005"/>
                                 <cell id="3869">
                                     <label id="3870">
                                         <property name="fontWeight">bold</property>
@@ -26517,6 +26711,29 @@ else&#xD;
                         </header>
                         <detail>
                             <row id="3881">
+                                <cell id="4006">
+                                    <text-data id="4009">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="dataSet">Data SetGrid</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">GridHPVPTYPE</property>
+                                                <text-property name="displayName">GridHPVPTYPE</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["GridHPVPTYPE"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <expression name="valueExpr">if(row["GridHPVPTYPE"]=='H')&#13;
+{&#13;
+	row["GridHPVPTYPE"]='HP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='VP'&#13;
+}</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
+                                </cell>
                                 <cell id="3882">
                                     <data id="3883">
                                         <property name="fontWeight">normal</property>
@@ -26558,6 +26775,7 @@ else&#xD;
                         </detail>
                         <footer>
                             <row id="3894">
+                                <cell id="4007"/>
                                 <cell id="3895"/>
                                 <cell id="3896"/>
                                 <cell id="3897"/>
@@ -28145,6 +28363,7 @@ else&#xD;
                                 <property name="dataType">decimal</property>
                             </structure>
                         </list-property>
+                        <column id="4003"/>
                         <column id="3945"/>
                         <column id="3946"/>
                         <column id="3947"/>
@@ -28153,6 +28372,7 @@ else&#xD;
                         <column id="3950"/>
                         <header>
                             <row id="3912">
+                                <cell id="4000"/>
                                 <cell id="3913">
                                     <label id="3914">
                                         <property name="fontWeight">bold</property>
@@ -28193,6 +28413,29 @@ else&#xD;
                         </header>
                         <detail>
                             <row id="3925">
+                                <cell id="4001">
+                                    <text-data id="4004">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="dataSet">Data SetGrid</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">GridHPVPTYPE</property>
+                                                <text-property name="displayName">GridHPVPTYPE</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["GridHPVPTYPE"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <expression name="valueExpr">if(row["GridHPVPTYPE"]=='H')&#13;
+{&#13;
+	row["GridHPVPTYPE"]='HP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='VP'&#13;
+}</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
+                                </cell>
                                 <cell id="3926">
                                     <data id="3927">
                                         <property name="fontWeight">normal</property>
@@ -28234,6 +28477,7 @@ else&#xD;
                         </detail>
                         <footer>
                             <row id="3938">
+                                <cell id="4002"/>
                                 <cell id="3939"/>
                                 <cell id="3940"/>
                                 <cell id="3941"/>
@@ -29821,6 +30065,7 @@ else&#xD;
                                 <property name="dataType">decimal</property>
                             </structure>
                         </list-property>
+                        <column id="3998"/>
                         <column id="3989"/>
                         <column id="3990"/>
                         <column id="3991"/>
@@ -29829,6 +30074,7 @@ else&#xD;
                         <column id="3994"/>
                         <header>
                             <row id="3956">
+                                <cell id="3995"/>
                                 <cell id="3957">
                                     <label id="3958">
                                         <property name="fontWeight">bold</property>
@@ -29869,6 +30115,29 @@ else&#xD;
                         </header>
                         <detail>
                             <row id="3969">
+                                <cell id="3996">
+                                    <text-data id="3999">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="dataSet">Data SetGrid</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">GridHPVPTYPE</property>
+                                                <text-property name="displayName">GridHPVPTYPE</text-property>
+                                                <expression name="expression" type="javascript">dataSetRow["GridHPVPTYPE"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <expression name="valueExpr">if(row["GridHPVPTYPE"]=='H')&#13;
+{&#13;
+	row["GridHPVPTYPE"]='HP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='VP'&#13;
+}</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
+                                </cell>
                                 <cell id="3970">
                                     <data id="3971">
                                         <property name="fontWeight">normal</property>
@@ -29910,6 +30179,7 @@ else&#xD;
                         </detail>
                         <footer>
                             <row id="3982">
+                                <cell id="3997"/>
                                 <cell id="3983"/>
                                 <cell id="3984"/>
                                 <cell id="3985"/>
