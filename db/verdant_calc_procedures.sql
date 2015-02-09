@@ -943,9 +943,11 @@ else -- polType = 'VP'
 end if;
 
 RETURN omni_dev;
-END;
+
 END$$
 DELIMITER ;
+
+
 DELIMITER $$
  
 CREATE  PROCEDURE `spCalCPGain`(
@@ -983,7 +985,7 @@ END LOOP getlist;
  
 CLOSE C1;
  
-END;
+
 END$$
  
 DELIMITER ;
@@ -1324,4 +1326,3 @@ group by ptype;
 end if;	
         
 END $$
-DELIMITER;
