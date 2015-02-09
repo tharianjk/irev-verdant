@@ -998,7 +998,7 @@ DELIMITER $$
 
 CREATE  PROCEDURE `spGetPolarPlot`(
 testid INT,
-freq decimal(40,20),
+freqparm decimal(40,20),
 typ varchar(5), -- H HP,V VP,B HP&VP,P Pitch,R Roll ,Y Yaw
 lg decimal(40,20)
 )
@@ -1010,6 +1010,15 @@ declare strmaxvalue varchar(50);
 declare strminvalue varchar(50);
 
 declare cnt int ;
+declare unt varchar(10);
+declare freq decimal(40,20);
+select frequnit into unt from testdata where test_id=testid;
+
+set freq=freqparm;
+
+if unt='GHz' then
+set freq=freqparm*1000;
+end if;
 
 select count(*) into cnt from scaling s inner join product_serial ps on s.product_id=ps.product_id inner join testdata t on ps.prodserial_id=t.prodserial_id
 where t.test_id=testid and s.frequency=freq;
@@ -1023,7 +1032,7 @@ if lg=0.0001 then
 		if typ='H' then
 if cnt=0 then
         select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM hdata HD 
-		where HD.Frequency=freq and HD.Test_id=testid;
+		where HD.Frequency= freq and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
@@ -1225,6 +1234,8 @@ end if;
 
 
 END $$
+
+
 DELIMITER;
 -- --------------------------------------------------------------------------------
 -- Routine DDL
@@ -1273,14 +1284,26 @@ DELIMITER $$
 
 CREATE  PROCEDURE `spGetPolarSummary`(
 testid INT,
-freq decimal(40,10),
+freqparm decimal(40,10),
 typ varchar(5) -- H HP,V VP,B HP&VP,P Pitch,R Roll ,Y Yaw
 
 )
 BEGIn
 declare prec int;
+declare freq decimal(40,20);
+declare unt varchar(10);
 set prec=1;
+
 select nprecision into prec from fwk_company where company_id=1;
+select frequnit into unt from testdata where test_id=testid;
+
+set freq=freqparm;
+
+if unt='GHz' then
+set freq=freqparm*1000;
+end if;
+
+
 
 if typ='C' then
 select round(sum(3Db_BW_BMax),prec) 3Db_BW_BMax,round(sum(3Db_BS_BMax),prec) 3Db_BS_BMax,round(sum(10Db_BW_BMax),prec) 10Db_BW_BMax,round(sum(10Db_BS_BMax),prec) 10Db_BS_BMax,round(sum(BackLobe),prec) BackLobe,round(sum(CPGain),prec) CPGain,round(sum(AR_0),prec) AR_0 ,round(sum(OmniDeviation),prec) OmniDeviation from (
@@ -1326,3 +1349,4 @@ group by ptype;
 end if;	
         
 END $$
+
