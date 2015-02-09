@@ -991,7 +991,7 @@ END$$
 DELIMITER ;
 
 
-drop procedure if exists spGetPolarPlot;
+
 -- --------------------------------------------------------------------------------
 -- Routine DDL
 -- Note: comments before and after the routine body will not be stored by the server
@@ -1070,8 +1070,8 @@ if cnt=0 then
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid ;
 end if;	
-        select test_id,case unt when 'GHz' then Frequency/1000 else  Frequency end Frequency,angle,sum(hamplitude) hamplitude,sum(vamplitude) vamplitude,strmaxvalue,strminvalue 
-		from vw_polardata where case frequnit when 'GHz' then Frequency*1000 else Frequency end =freq and Test_id=testid 
+        select test_id, Frequency,angle,sum(hamplitude) hamplitude,sum(vamplitude) vamplitude,strmaxvalue,strminvalue 
+		from vw_polardata where Frequency  =freqparm and Test_id=testid 
         group by test_id,frequency,angle,strmaxvalue,strminvalue;
 		end if;
 		if  typ='P' then
@@ -1181,8 +1181,8 @@ if cnt=0 then
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;*/
 
 
-		select test_id,case unt when 'GHz' then Frequency/1000 else  Frequency end Frequency,angle,sum(hamplitude)-ampl+lg hamplitude,sum(vamplitude)-vampl+lg vamplitude,strmaxvalue,strminvalue 
-		from vw_polardata where case frequnit when 'GHz' then Frequency*1000 else Frequency end=freq and Test_id=testid group by test_id,frequency,angle,strmaxvalue,strminvalue;
+		select test_id, Frequency,angle,sum(hamplitude)-ampl+lg hamplitude,sum(vamplitude)-vampl+lg vamplitude,strmaxvalue,strminvalue 
+		from vw_polardata where Frequency=freqparm and Test_id=testid group by test_id,frequency,angle,strmaxvalue,strminvalue;
 		end if;		
 
 		if  typ='P' then
