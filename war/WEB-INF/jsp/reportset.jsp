@@ -74,24 +74,24 @@ INPUT.hintTextboxActive { color: #000; }
 				
 				<c:if test="${ cnt < 7}">
 					
-					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}
-					 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}'  class="hintTextbox" style="width:50;" maxlength="20"  value="l-gain"/>
+					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequency}" id="${freq.frequency}" class="chkfreq">${freq.frequency}
+					 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequency}'  class="hintTextbox" style="width:50;" maxlength="20"  value="l-gain"/>
 					 <c:set var="cnt" value="${cnt + 1 }"/> 
 				</c:if>
 				<c:if test="${ cnt == 6 }">
 				<br>
 				</c:if>
 				<c:if test="${ cnt > 6 && cnt<13}">
-					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}
-					 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}'  class="hintTextbox" style="width:50;" maxlength="20" value="l-gain"/>
+					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequency}" id="${freq.frequency}" class="chkfreq">${freq.frequency}
+					 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequency}'  class="hintTextbox" style="width:50;" maxlength="20" value="l-gain"/>
 					 <c:set var="cnt" value="${cnt + 1 }"/>  
 				</c:if>
 				<c:if test="${ cnt == 12 }">
 				<br>
 				</c:if>
 				<c:if test="${ cnt > 12}">
-					&nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}
-					&nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}'  class="hintTextbox" style="width:50;" maxlength="20" value="l-gain"/>
+					&nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequency}" id="${freq.frequency}" class="chkfreq">${freq.frequency}
+					&nbsp;<input type="text" name="lgid"  id='lg-${freq.frequency}'  class="hintTextbox" style="width:50;" maxlength="20" value="l-gain"/>
 					<c:set var="cnt" value="${cnt + 1 }"/>  
 				</c:if>
 				
@@ -396,12 +396,13 @@ function fnenable(ctyp){
 		for (i==0;i<freqs.length;i++){
 			if(document.getElementById(freqs[i]).checked){
 				strfreqs[j]=freqs[i];
+				lg[j]="0.0001";
+				if(atype=="A" || atype=="CP")
+				{
 				if(document.getElementById('lg-'+freqs[i]).value!="l-gain" && document.getElementById('lg-'+freqs[i]).value!=null && document.getElementById('lg-'+freqs[i]).value!="")
 					{
 					lg[j]=document.getElementById('lg-'+freqs[i]).value;
-					}
-				else{
-					lg[j]="0.0001";
+					}				
 				}
 				freqsel=1;
 				j=j+1;

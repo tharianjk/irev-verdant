@@ -50,10 +50,10 @@
    		 <c:forEach items="${model.freqlist}" var="freq">
    		  <c:choose>
    		 <c:when test="${freq.frequency eq model.freq}">	
-            <option value=<c:out value="${freq.frequencyid}" /> selected ><c:out value="${freq.frequency}"/></option>
+            <option value=<c:out value="${freq.frequency}" /> selected ><c:out value="${freq.frequency}"/></option>
            </c:when>
 	    <c:otherwise>
-	       <option value=<c:out value="${freq.frequencyid}" /> ><c:out value="${freq.frequency}"/></option>
+	       <option value=<c:out value="${freq.frequency}" /> ><c:out value="${freq.frequency}"/></option>
 	    </c:otherwise>      
 		</c:choose>
     	</c:forEach>
@@ -191,8 +191,9 @@ $(document).ready(function(){
 		
 		freqs=fre.split(",");
 		var freqsel=0;
-		var freqid =document.getElementById("freqid").value;	
-		
+		//var freqid =document.getElementById("freqid").value;
+		var freqid =document.getElementById("freqid").value;
+		console.log(" freqids "+freqid);
 		/*for (i==0;i<freqs.length;i++){
 			if(document.getElementById(freqs[i]).checked){
 			strfreqs[j]=freqs[i];
