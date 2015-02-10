@@ -27,7 +27,7 @@
             <text-property name="helpText">Enter the frequency</text-property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
-            <property name="dataType">string</property>
+            <property name="dataType">decimal</property>
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -41,7 +41,7 @@
             <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
-            <property name="dataType">string</property>
+            <property name="dataType">integer</property>
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -80,7 +80,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="img" id="1028">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -92,7 +92,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rpth" id="1124">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -104,7 +104,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rptf" id="1125">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -116,7 +116,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="scale" id="1128">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -128,7 +128,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq2" id="1131">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -142,7 +142,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq3" id="1132">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -156,7 +156,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq5" id="1458">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -170,7 +170,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq4" id="1457">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -184,7 +184,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq6" id="1459">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -198,7 +198,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq7" id="1460">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -212,7 +212,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq8" id="1461">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -226,7 +226,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq9" id="1462">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -240,11 +240,14 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq10" id="1463">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
-            <property name="isRequired">true</property>
-            <property name="dataType">string</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">decimal</property>
             <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="javascript">2000</value>
+            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="concealValue">false</property>
@@ -254,7 +257,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="polar" id="2061">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -267,7 +270,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="3db" id="2483">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -279,7 +282,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="3dbDeg" id="2484">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -291,7 +294,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="10db" id="3027">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -303,7 +306,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="10dbDeg" id="3028">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -315,7 +318,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="blob" id="3292">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -327,7 +330,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="AxR" id="3469">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -339,7 +342,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="AxDeg" id="3470">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -512,18 +515,7 @@
                     <text-property name="heading">version</text-property>
                 </structure>
             </list-property>
-            <list-property name="parameters">
-                <structure>
-                    <property name="name">testidGrid</property>
-                    <property name="paramName">testid</property>
-                    <property name="nativeName"></property>
-                    <property name="dataType">integer</property>
-                    <property name="nativeDataType">-1</property>
-                    <property name="position">1</property>
-                    <property name="isInput">true</property>
-                    <property name="isOutput">false</property>
-                </structure>
-            </list-property>
+            <list-property name="parameters"/>
             <structure name="cachedMetaData">
                 <list-property name="resultSet">
                     <structure>
@@ -680,7 +672,7 @@
                 <structure>
                     <property name="position">7</property>
                     <property name="name">calibration</property>
-                    <property name="nativeName">calibration</property>
+                    <property name="nativeName">Calibration</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
@@ -708,27 +700,10 @@
             </list-property>
             <xml-property name="queryText"><![CDATA[SELECT distinct TD.testproc,TD.TestDesc,TD.TestDate,TD.frequnit,TD.testcenter,TD.instruments,TD.calibration ,s.SerialNo,p.Productname,p.version
 FROM testdata TD inner join product_serial s on td.ProdSerial_id=S.Prodserial_id 
-inner join product p on s.Product_id=p.Product_id   where TD.Test_id=?]]></xml-property>
+inner join product p on s.Product_id=p.Product_id   where TD.Test_id=1]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
-  <DataSetParameters>
-    <parameter>
-      <design:ParameterDefinition>
-        <design:inOutMode>In</design:inOutMode>
-        <design:attributes>
-          <design:identifier>
-            <design:name></design:name>
-            <design:position>1</design:position>
-          </design:identifier>
-          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
-          <design:precision>0</design:precision>
-          <design:scale>0</design:scale>
-          <design:nullability>Unknown</design:nullability>
-        </design:attributes>
-      </design:ParameterDefinition>
-    </parameter>
-  </DataSetParameters>
   <design:ResultSets derivedMetaData="true">
     <design:resultSetDefinitions>
       <design:resultSetColumns>
@@ -3229,18 +3204,12 @@ from vcalculated where Test_id=?]]></xml-property>
                     <list-property name="arguments">
                         <structure>
                             <property name="name">Expression</property>
-                            <expression name="value">row["Frequency"]</expression>
+                            <expression name="value">row["frequnit"]</expression>
                         </structure>
                     </list-property>
                 </structure>
             </list-property>
             <list-property name="columnHints">
-                <structure>
-                    <property name="columnName">Frequency</property>
-                    <property name="analysis">measure</property>
-                    <text-property name="displayName">frequency</text-property>
-                    <text-property name="heading">frequency</text-property>
-                </structure>
                 <structure>
                     <property name="columnName">frequnit</property>
                     <property name="analysis">dimension</property>
@@ -3296,7 +3265,7 @@ from vcalculated where Test_id=?]]></xml-property>
                 <list-property name="resultSet">
                     <structure>
                         <property name="position">1</property>
-                        <property name="name">Frequency</property>
+                        <property name="name">frequency</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
@@ -3325,31 +3294,27 @@ from vcalculated where Test_id=?]]></xml-property>
             <list-property name="resultSet">
                 <structure>
                     <property name="position">1</property>
-                    <property name="name">Frequency</property>
+                    <property name="name">frequency</property>
                     <property name="nativeName">frequency</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">frequnit</property>
                     <property name="nativeName">frequnit</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
                     <property name="name">bh</property>
                     <property name="nativeName">bh</property>
                     <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">bv</property>
                     <property name="nativeName">bv</property>
                     <property name="dataType">float</property>
-                    <property name="nativeDataType">8</property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[SELECT case t.frequnit when 'GHz' then ar.frequency/1000 else ar.frequency end frequency,t.frequnit,
@@ -3445,7 +3410,7 @@ inner join testdata t on ar.test_id=t.test_id  where ar.Test_id=?]]></xml-proper
                     <list-property name="arguments">
                         <structure>
                             <property name="name">Expression</property>
-                            <expression name="value">row["Frequency"]</expression>
+                            <expression name="value">row["frequnit"]</expression>
                         </structure>
                     </list-property>
                 </structure>
@@ -14102,6 +14067,30 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <expression name="expression" type="javascript">dataSetRow["Hide"]</expression>
                     <property name="dataType">integer</property>
                 </structure>
+                <structure>
+                    <property name="name">frequency</property>
+                    <text-property name="displayName">frequency</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequency"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">bh</property>
+                    <text-property name="displayName">bh</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["bh"]</expression>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="name">bv</property>
+                    <text-property name="displayName">bv</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["bv"]</expression>
+                    <property name="dataType">float</property>
+                </structure>
             </list-property>
             <column id="3268"/>
             <row id="3269">
@@ -14116,88 +14105,58 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
             </row>
             <row id="3272">
                 <cell id="3273">
-                    <table id="3274">
-                        <property name="dataSet">fqBackLobe</property>
-                        <list-property name="boundDataColumns">
-                            <structure>
-                                <property name="name">Frequency</property>
-                                <text-property name="displayName">frequency</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["Frequency"]</expression>
-                                <property name="dataType">decimal</property>
-                            </structure>
-                            <structure>
-                                <property name="name">BackLobe</property>
-                                <text-property name="displayName">bh</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
-                                <property name="dataType">decimal</property>
-                            </structure>
-                            <structure>
-                                <property name="name">BackLobe_4</property>
-                                <text-property name="displayName">bv</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["BackLobe_4"]</expression>
-                                <property name="dataType">decimal</property>
-                            </structure>
-                            <structure>
-                                <property name="name">frequnit</property>
-                                <text-property name="displayName">frequnit</text-property>
-                                <expression name="expression" type="javascript">'Spot Freq.('+dataSetRow["frequnit"]+')'</expression>
-                                <property name="dataType">string</property>
-                                <property name="allowExport">true</property>
-                            </structure>
-                        </list-property>
-                        <column id="3289"/>
-                        <column id="3290"/>
-                        <column id="3291"/>
+                    <table id="4726">
+                        <column id="4739"/>
+                        <column id="4740"/>
+                        <column id="4741"/>
                         <header>
-                            <row id="3275">
-                                <cell id="3276">
-                                    <data id="3277">
-                                        <property name="fontSize">small</property>
-                                        <property name="fontWeight">bold</property>
+                            <row id="4727">
+                                <cell id="4728">
+                                    <data id="4749">
                                         <property name="resultSetColumn">frequnit</property>
                                     </data>
                                 </cell>
-                                <cell id="3278">
-                                    <label id="3279">
-                                        <property name="fontSize">small</property>
-                                        <property name="fontWeight">bold</property>
+                                <cell id="4729">
+                                    <label id="4745">
                                         <text-property name="text">HP</text-property>
                                     </label>
                                 </cell>
-                                <cell id="3280">
-                                    <label id="3281">
-                                        <property name="fontSize">small</property>
-                                        <property name="fontWeight">bold</property>
+                                <cell id="4730">
+                                    <label id="4747">
                                         <text-property name="text">VP</text-property>
                                     </label>
                                 </cell>
                             </row>
                         </header>
                         <detail>
-                            <row id="3282">
-                                <cell id="3283">
-                                    <data id="3284">
-                                        <property name="fontSize">small</property>
+                            <row id="4731">
+                                <cell id="4732">
+                                    <data id="4743">
                                         <property name="textAlign">center</property>
-                                        <property name="resultSetColumn">Frequency</property>
+                                        <property name="resultSetColumn">frequency</property>
                                     </data>
                                 </cell>
-                                <cell id="3285">
-                                    <data id="3286">
-                                        <property name="fontSize">small</property>
+                                <cell id="4733">
+                                    <data id="4746">
                                         <property name="textAlign">center</property>
-                                        <property name="resultSetColumn">BackLobe</property>
+                                        <property name="resultSetColumn">bh</property>
                                     </data>
                                 </cell>
-                                <cell id="3287">
-                                    <data id="3288">
-                                        <property name="fontSize">small</property>
+                                <cell id="4734">
+                                    <data id="4748">
                                         <property name="textAlign">center</property>
-                                        <property name="resultSetColumn">BackLobe_4</property>
+                                        <property name="resultSetColumn">bv</property>
                                     </data>
                                 </cell>
                             </row>
                         </detail>
+                        <footer>
+                            <row id="4735">
+                                <cell id="4736"/>
+                                <cell id="4737"/>
+                                <cell id="4738"/>
+                            </row>
+                        </footer>
                     </table>
                 </cell>
             </row>
