@@ -13915,23 +13915,22 @@ inner join testdata t on ar.test_id=t.test_id  where ar.Test_id=?]]></xml-proper
                                 <property name="dataType">decimal</property>
                             </structure>
                             <structure>
-                                <property name="name">BackLobe</property>
-                                <text-property name="displayName">bh</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
-                                <property name="dataType">decimal</property>
-                            </structure>
-                            <structure>
-                                <property name="name">BackLobe_4</property>
-                                <text-property name="displayName">bv</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["BackLobe_4"]</expression>
-                                <property name="dataType">decimal</property>
-                            </structure>
-                            <structure>
                                 <property name="name">frequnit</property>
                                 <text-property name="displayName">frequnit</text-property>
-                                <expression name="expression" type="javascript">'Spot Freq.('+dataSetRow["frequnit"]+')'</expression>
+                                <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
                                 <property name="dataType">string</property>
-                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">bh</property>
+                                <text-property name="displayName">bh</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["bh"]</expression>
+                                <property name="dataType">float</property>
+                            </structure>
+                            <structure>
+                                <property name="name">bv</property>
+                                <text-property name="displayName">bv</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["bv"]</expression>
+                                <property name="dataType">float</property>
                             </structure>
                         </list-property>
                         <column id="3289"/>
@@ -13975,14 +13974,14 @@ inner join testdata t on ar.test_id=t.test_id  where ar.Test_id=?]]></xml-proper
                                     <data id="3286">
                                         <property name="fontSize">small</property>
                                         <property name="textAlign">center</property>
-                                        <property name="resultSetColumn">BackLobe</property>
+                                        <property name="resultSetColumn">bh</property>
                                     </data>
                                 </cell>
                                 <cell id="3287">
                                     <data id="3288">
                                         <property name="fontSize">small</property>
                                         <property name="textAlign">center</property>
-                                        <property name="resultSetColumn">BackLobe_4</property>
+                                        <property name="resultSetColumn">bv</property>
                                     </data>
                                 </cell>
                             </row>
@@ -17280,6 +17279,49 @@ row["GridHPVPTYPE"]='VP'&#13;
                                 <cell id="3572">
                                     <data id="3596">
                                         <property name="textAlign">center</property>
+                                        <property name="dataSet">PolarGrid1</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">3Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">3Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">BackLobe</property>
+                                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">CPGain</property>
+                                                <expression name="expression" type="javascript">dataSetRow["CPGain"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">AR_0</property>
+                                                <expression name="expression" type="javascript">dataSetRow["AR_0"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">OmniDeviation</property>
+                                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                        </list-property>
                                         <property name="resultSetColumn">BackLobe</property>
                                     </data>
                                 </cell>
@@ -18990,6 +19032,49 @@ row["GridHPVPTYPE"]='VP'&#13;
                                 <cell id="3626">
                                     <data id="3627">
                                         <property name="textAlign">center</property>
+                                        <property name="dataSet">PolarGrid2</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">3Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">3Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">BackLobe</property>
+                                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">CPGain</property>
+                                                <expression name="expression" type="javascript">dataSetRow["CPGain"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">AR_0</property>
+                                                <expression name="expression" type="javascript">dataSetRow["AR_0"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">OmniDeviation</property>
+                                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                        </list-property>
                                         <property name="resultSetColumn">BackLobe</property>
                                     </data>
                                 </cell>
@@ -20692,6 +20777,49 @@ row["GridHPVPTYPE"]='VP'&#13;
                                 <cell id="3670">
                                     <data id="3671">
                                         <property name="textAlign">center</property>
+                                        <property name="dataSet">PolarGrid3</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">3Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">3Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">BackLobe</property>
+                                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">CPGain</property>
+                                                <expression name="expression" type="javascript">dataSetRow["CPGain"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">AR_0</property>
+                                                <expression name="expression" type="javascript">dataSetRow["AR_0"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">OmniDeviation</property>
+                                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                        </list-property>
                                         <property name="resultSetColumn">BackLobe</property>
                                     </data>
                                 </cell>
@@ -22394,6 +22522,49 @@ row["GridHPVPTYPE"]='VP'&#13;
                                 <cell id="3714">
                                     <data id="3715">
                                         <property name="textAlign">center</property>
+                                        <property name="dataSet">PolarGrid4</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">3Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">3Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">BackLobe</property>
+                                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">CPGain</property>
+                                                <expression name="expression" type="javascript">dataSetRow["CPGain"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">AR_0</property>
+                                                <expression name="expression" type="javascript">dataSetRow["AR_0"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">OmniDeviation</property>
+                                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                        </list-property>
                                         <property name="resultSetColumn">BackLobe</property>
                                     </data>
                                 </cell>
@@ -24096,6 +24267,49 @@ row["GridHPVPTYPE"]='VP'&#13;
                                 <cell id="3758">
                                     <data id="3759">
                                         <property name="textAlign">center</property>
+                                        <property name="dataSet">PolarGrid5</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">3Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">3Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">BackLobe</property>
+                                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">CPGain</property>
+                                                <expression name="expression" type="javascript">dataSetRow["CPGain"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">AR_0</property>
+                                                <expression name="expression" type="javascript">dataSetRow["AR_0"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">OmniDeviation</property>
+                                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                        </list-property>
                                         <property name="resultSetColumn">BackLobe</property>
                                     </data>
                                 </cell>
@@ -25798,6 +26012,49 @@ row["GridHPVPTYPE"]='VP'&#13;
                                 <cell id="3802">
                                     <data id="3803">
                                         <property name="textAlign">center</property>
+                                        <property name="dataSet">PolarGrid6</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">3Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">3Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">BackLobe</property>
+                                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">CPGain</property>
+                                                <expression name="expression" type="javascript">dataSetRow["CPGain"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">AR_0</property>
+                                                <expression name="expression" type="javascript">dataSetRow["AR_0"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">OmniDeviation</property>
+                                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                        </list-property>
                                         <property name="resultSetColumn">BackLobe</property>
                                     </data>
                                 </cell>
@@ -27500,6 +27757,49 @@ row["GridHPVPTYPE"]='VP'&#13;
                                 <cell id="3846">
                                     <data id="3847">
                                         <property name="textAlign">center</property>
+                                        <property name="dataSet">PolarGrid7</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">3Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">3Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">BackLobe</property>
+                                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">CPGain</property>
+                                                <expression name="expression" type="javascript">dataSetRow["CPGain"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">AR_0</property>
+                                                <expression name="expression" type="javascript">dataSetRow["AR_0"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">OmniDeviation</property>
+                                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                        </list-property>
                                         <property name="resultSetColumn">BackLobe</property>
                                     </data>
                                 </cell>
@@ -29202,6 +29502,49 @@ row["GridHPVPTYPE"]='VP'&#13;
                                 <cell id="3890">
                                     <data id="3891">
                                         <property name="textAlign">center</property>
+                                        <property name="dataSet">PolarGrid8</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">3Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">3Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">BackLobe</property>
+                                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">CPGain</property>
+                                                <expression name="expression" type="javascript">dataSetRow["CPGain"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">AR_0</property>
+                                                <expression name="expression" type="javascript">dataSetRow["AR_0"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">OmniDeviation</property>
+                                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                        </list-property>
                                         <property name="resultSetColumn">BackLobe</property>
                                     </data>
                                 </cell>
@@ -30904,6 +31247,49 @@ row["GridHPVPTYPE"]='VP'&#13;
                                 <cell id="3934">
                                     <data id="3935">
                                         <property name="textAlign">center</property>
+                                        <property name="dataSet">PolarGrid9</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">3Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">3Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">BackLobe</property>
+                                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">CPGain</property>
+                                                <expression name="expression" type="javascript">dataSetRow["CPGain"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">AR_0</property>
+                                                <expression name="expression" type="javascript">dataSetRow["AR_0"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">OmniDeviation</property>
+                                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                        </list-property>
                                         <property name="resultSetColumn">BackLobe</property>
                                     </data>
                                 </cell>
@@ -32606,6 +32992,49 @@ row["GridHPVPTYPE"]='VP'&#13;
                                 <cell id="3978">
                                     <data id="3979">
                                         <property name="textAlign">center</property>
+                                        <property name="dataSet">PolarGrid10</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">3Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">3Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BW_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">10Db_BS_BMax</property>
+                                                <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">BackLobe</property>
+                                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">CPGain</property>
+                                                <expression name="expression" type="javascript">dataSetRow["CPGain"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">AR_0</property>
+                                                <expression name="expression" type="javascript">dataSetRow["AR_0"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">OmniDeviation</property>
+                                                <expression name="expression" type="javascript">dataSetRow["OmniDeviation"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                        </list-property>
                                         <property name="resultSetColumn">BackLobe</property>
                                     </data>
                                 </cell>
