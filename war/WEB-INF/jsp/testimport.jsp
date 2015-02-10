@@ -95,26 +95,24 @@ progress_clear();
 	<form:form name="form1" id="form1" method="POST" commandName="TestData" enctype="multipart/form-data">
  
 		<form:errors path="*" cssClass="errorblock" element="div" />
+		<table>
+		<tr><td>Test Center * :</td>  
+		<td><form:input path="testcenter" required="required" /></td>
+		<td>Test Configuration * :</td>  
+          <td><form:input path="testname" id="testname" required="required" />  
+          </td>
+         </tr>
+         <tr>
+          <td>Test date *:</td>
+	     <td><form:input id="dttest" path="strtestdate" type="datetime-local" required="required" /> </td>
+		<td>
+		Antenna Type :</td> <td><input type="text" value='${prodtype}' readonly="readonly"/></td></tr>
+		</table>
  <table>
  <tr>
  <td>
 		<table id="tblmain">
-		<tr><td>Test Center * :</td>  
-		<td><form:input path="testcenter" required="required" /></td>
 		
-		</tr>
-		
-		<tr>
-		<td>Test Configuration * :</td>  
-          <td><form:input path="testname" id="testname" required="required" />  
-          </td>
-          </tr>
-          <tr>
-          <td>Test date *:</td>
-	     <td><form:input id="dttest" path="strtestdate" type="datetime-local" required="required" /> </td>
-		</tr>
-		<tr><td>
-		Antenna Type :</td> <td><input type="text" value='${prodtype}' readonly="readonly"/></td></tr>
 		<tr>
 		<td > Product Serial No: </td>
        <td >
@@ -283,9 +281,32 @@ progress_clear();
 		<form:hidden id="strfreq" path="strjsonfreq"></form:hidden>
 		<form:hidden id="originalfilename" path="originalfilename"></form:hidden>
 		<form:hidden path="ptype" ></form:hidden>
-		<input type="submit" id="more" value="Import" name="fmaction" class="myButton" onclick="progress_update('M');form1.submit();"/>
-		<input type="submit" id="done" value="Calculate" name="fmaction" class="myButton" onclick="progress_update('D');form1.submit();"/>
-		<input type="submit" id="save" value="Save" name="fmaction" class="myButton" onclick="form1.submit();" style="visibility:hidden"/>
+		<table>
+		<tr>
+	<td>	<input type="submit" id="more" value="Import" name="fmaction" class="myButton" onclick="progress_update('M');form1.submit();"/></td>
+	<td>	<input type="submit" id="done" value="Calculate" name="fmaction" class="myButton" onclick="progress_update('D');form1.submit();"/></td>
+	<td>	<input type="submit" id="save" value="Save" name="fmaction" class="myButton" onclick="form1.submit();" style="visibility:hidden"/></td>
+		<td>
+		<table align="center" id="progressbar" style="display:none"><tr><td><b>Saving ....</b>
+<div style="font-size:8pt;padding:2px;border:solid black 1px">
+<span id="progress0">&nbsp; &nbsp;</span>
+<span id="progress1">&nbsp; &nbsp;</span>
+<span id="progress2">&nbsp; &nbsp;</span>
+<span id="progress3">&nbsp; &nbsp;</span>
+<span id="progress4">&nbsp; &nbsp;</span>
+<span id="progress5">&nbsp; &nbsp;</span>
+<span id="progress6">&nbsp; &nbsp;</span>
+<span id="progress7">&nbsp; &nbsp;</span>
+<span id="progress8">&nbsp; &nbsp;</span>
+<span id="progress9">&nbsp; &nbsp;</span>
+<span id="progress10">&nbsp; &nbsp;</span>
+</div>
+</td></tr></table>
+		
+		</td>
+		</tr>
+		</table>
+		
 		<span><form:errors path="filename" cssClass="error" />
 		</span>
  

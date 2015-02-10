@@ -5,35 +5,43 @@ import java.io.Serializable;
 public class Company implements Serializable {
 
     private String companyname;
-    public int getDefalertid() {
-		return defalertid;
-	}
-	public void setDefalertid(int defalertid) {
-		this.defalertid = defalertid;
-	}
+   
 	private int companyid;
     private String companyAddress;
     private String displayname;
-    private int nlevel;
-    private int defalertid;
+    
     private int nprecision;
-      
+    private int ndebugFlag;
+    
+    private boolean bdebugflag;
+    private boolean bpurge;
 
-    public int getNprecision() {
+    public boolean getBdebugflag() {
+		return bdebugflag;
+	}
+	public void setBdebugflag(boolean bdebugflag) {
+		this.bdebugflag = bdebugflag;
+	}
+	public boolean getBpurge() {
+		return bpurge;
+	}
+	public void setBpurge(boolean bpurge) {
+		this.bpurge = bpurge;
+	}
+	public int getNdebugFlag() {
+		return ndebugFlag;
+	}
+	public void setNdebugFlag(int ndebugFlag) {
+		this.ndebugFlag = ndebugFlag;
+	}
+	
+	public int getNprecision() {
 		return nprecision;
 	}
 	public void setNprecision(int nprecision) {
 		this.nprecision = nprecision;
 	}
-	public String toString() {
-        StringBuffer buffer = new StringBuffer();
-        buffer.append("companyName: " +companyname +";");
-        buffer.append("companyid: " + companyid);
-        buffer.append("companyAddress: " + companyAddress+";");
-        buffer.append("displayname: " + displayname+";"); 
-        buffer.append("nlevel:"+ nlevel);
-        return buffer.toString();
-    }
+	
 	public String getCompanyname() {
 		return companyname;
 	}
@@ -59,11 +67,5 @@ public class Company implements Serializable {
 		this.displayname = displayname;
 	}
 
-	public int getNlevel() {
-		return nlevel;
-	}
-	public void setNlevel(int nlevel) {
-		this.nlevel = nlevel;
-	}
 	
 }

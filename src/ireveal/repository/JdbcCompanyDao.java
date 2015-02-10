@@ -30,12 +30,12 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
    public boolean insertData(Company company) {  
     
     String sql = "INSERT INTO fwk_company "  
-      + "(company_id,companyname, address,nprecision) VALUES (?, ?, ?,?)";     
+      + "(company_id,companyname, address,nprecision, ndebugFlag) VALUES (?, ?, ?,?,?)";     
       
     getJdbcTemplate().update(  
       sql,  
       new Object[] { company.getCompanyid(), company.getCompanyname(),  
-    		  company.getCompanyAddress(),company.getNprecision() });  
+    		  company.getCompanyAddress(),company.getNprecision(),company.getBdebugflag()==true?1:0 });  
     return true;
     
    }  
@@ -43,7 +43,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
    public List<Company> getCompanyList() {  
     List companyList = new ArrayList();  
     
-    String sql = "select C.company_id,c.companyName,c.Address,nprecision from FWK_COMPANY C ";  
+    String sql = "select C.company_id,c.companyName,c.Address,nprecision,ndebugFlag from FWK_COMPANY C ";  
    
     companyList = getJdbcTemplate().query(sql, new CompanyMapper());  
     return companyList;  
@@ -59,12 +59,14 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
      
    public boolean updateData(Company company) {  
     
-    String sql = "UPDATE fwk_company set companyname = ?,address = ?,nprecision=? where company_id = ?";  
+    String sql = "UPDATE fwk_company set companyname = ?,address = ?,nprecision=?,ndebugFlag=? where company_id = ?";  
     getJdbcTemplate().update(  
       sql,  
-      new Object[] { company.getCompanyname(), company.getCompanyAddress(), company.getNprecision(), 
+      new Object[] { company.getCompanyname(), company.getCompanyAddress(), company.getNprecision(),company.getBdebugflag()==true?1:0 , 
     		  company.getCompanyid() }); 
-    
+    if(company.getBpurge()){
+    	deleteDebug();
+    }
     
     return true;    
    }  
@@ -73,7 +75,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
    public Company getCompany(int id) {  
 	   logger.info("***inside JDBCCompany** ");
 	   List<Company> companyList =null;
-    String sql = "select C.company_id,c.companyName,c.Address,nprecision from FWK_COMPANY C  where c.company_id=?";  
+    String sql = "select C.company_id,c.companyName,c.Address,nprecision,ndebugFlag from FWK_COMPANY C  where c.company_id=?";  
    try
    {
     companyList = getJdbcTemplate().query(sql, new CompanyMapper(),id);
@@ -93,11 +95,19 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
            company.setCompanyid(rs.getInt("company_id"));
     	   company.setCompanyname(rs.getString("companyName"));  
     	   company.setCompanyAddress(rs.getString("Address")); 
-    	   company.setNprecision(rs.getInt("nprecision"));
+    	   company.setNprecision(rs.getInt("nprecision"));    	
+    	   company.setNdebugFlag(rs.getInt("ndebugFlag"));
+    	   company.setBdebugflag(company.getNdebugFlag()==1?true:false);
+    	   company.setBpurge(false);
            return company;
        }
-
    }
-    }
+   public boolean deleteDebug() {  
+	    String sql = "truncate table debug";  
+	    getJdbcTemplate().update(sql);  
+	    return true;
+	   }  
+   
+   }
 
 

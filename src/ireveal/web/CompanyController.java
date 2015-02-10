@@ -3,6 +3,7 @@ package ireveal.web;
 
 import java.awt.color.CMMException;
 import java.io.IOException;
+import java.net.BindException;
 import java.util.ArrayList;  
 import java.util.HashMap;  
 import java.util.List;  
@@ -23,10 +24,11 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.web.servlet.view.RedirectView;
 
 
+
+
 import ireveal.domain.AssetTree;
 import ireveal.domain.Company;  
 import ireveal.domain.User;
-
 import ireveal.service.CompanyService;  
   
   
@@ -62,11 +64,12 @@ public class CompanyController  extends SimpleFormController{
 	   
 	   private HttpSession cursess;
 
-	    public ModelAndView onSubmit(Object command)
-	            throws ServletException {
+	   public ModelAndView onSubmit(Object command)
+	            throws ServletException{
+		   logger.info("*** in onsubmit** ");
 	    	String ComId = (String)cursess.getAttribute("comId");
 	    	Company company = (Company)command;
-	        logger.info("*** in onsubmit** ");
+	        
 	        logger.info(" bean returned companyName = "+company.getCompanyname()+", curruser="+ComId);
 	        if (ComId == null){
 	        	logger.info("*** in onsubmit .. going to create new company** ");
@@ -76,12 +79,13 @@ public class CompanyController  extends SimpleFormController{
 	        	companyService.updateData(company);
 	        }
 	        return new ModelAndView(new RedirectView("company.htm?ComId="+ComId+"&refresh=true&savestat=1"));
+	        
 	    }
 
 	    protected Object formBackingObject(HttpServletRequest request) throws ServletException {
 	        String id = request.getParameter("ComId");
 	        cursess = request.getSession();
-	        
+	        logger.info("***Company formBackingObject ");
 	        if (id == null){
 	        	logger.info(" going to creaate new company");
 	        	request.getSession().setAttribute("comId", null);

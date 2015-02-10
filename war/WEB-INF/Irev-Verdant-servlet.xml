@@ -124,7 +124,7 @@
         <property name="commandClass" value="ireveal.domain.Company"/>
         <property name="formView" value="company"/>        
         <property name="companyManager" ref="companyManager"/>
-        <property name="successView" value="main.htm"/>
+        <property name="successView" value="company.htm"/>
     </bean>
    <bean name="/product.htm" class="ireveal.web.ProductController" >
     <property name="sessionForm" value="true"/>

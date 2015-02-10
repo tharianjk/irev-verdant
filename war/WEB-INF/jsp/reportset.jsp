@@ -127,7 +127,7 @@ INPUT.hintTextboxActive { color: #000; }
 marginwidth="0" marginheight="0" align="right" class="AppBody"> 
 </iframe>
 <div id="dialog-form-scaling" title="Scaling" style="display:none;overflow:hidden;border:none">
-    <iframe id="scalingdialog" width="500" height="400" style="border:none" ></iframe>
+    <iframe id="scalingdialog" width="800" height="400" style="border:none" ></iframe>
 </div>
 
 </body>
@@ -416,7 +416,7 @@ function fnenable(ctyp){
 				}
 			var p=0;
 			for (p==j;p<20;p++){
-				console.log("j"+j);
+				// console.log("j"+j);
 					strfreqs[j]=-1;	
 					lg[j]="0.0001";
 					j=j+1;				
