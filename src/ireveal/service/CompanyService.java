@@ -9,6 +9,7 @@ public interface CompanyService {
  public List<Company> getCompanyList();  
  public boolean deleteData(int id);  
  public Company getDetails(int id);  
- public boolean updateData(Company company);  
+ public boolean updateData(Company company); 
+ 
   
 } 

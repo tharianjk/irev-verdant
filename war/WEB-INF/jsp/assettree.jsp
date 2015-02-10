@@ -150,8 +150,9 @@ var treemode='<%=request.getParameter("treemode")%>';
     					selectedtype=node.attr('treeType');
     					atype=node.attr('atype');
     			        selectedsection=node.attr('assetId');
+    			        if(selectedtype!=1)
     			        selectedparenttype=parent_node.attr('atype');
-    			        console.log(" selectedparenttype ="+selectedparenttype)
+    			        //console.log(" selectedparenttype ="+selectedparenttype)
     			        if(selectedtype==4){
     			        if ((atype=="A") )
     			        	{

@@ -5,7 +5,7 @@ USE `Verdant` ;
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `Verdant` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
 USE `Verdant` ;
-
+DROP procedure IF EXISTS `debug`;
 drop procedure if exists calc_MaxDiffAxialRatio;
 drop procedure if exists calc_XdB_BW_BS;
 drop procedure if exists calculate;
@@ -32,7 +32,7 @@ drop view if exists vw_polardata;
 drop view if exists vw_ampphase;
 
 
-
+drop  table  IF EXISTS debug;
 drop table IF  EXISTS phasedata;
 drop table IF  EXISTS amplitudedata;
 drop table IF  EXISTS PitchData;
@@ -115,6 +115,7 @@ CREATE TABLE IF NOT EXISTS `Verdant`.FWK_COMPANY(
 	ADDRESS  VARCHAR(300) NULL,	
     expirydate varchar(100),
     nprecision int default 1,
+    ndebugFlag INT NULL DEFAULT '0',
  	PRIMARY KEY (COMPANY_ID));
 -- -----------------------------------------------------
 -- Table `Verdant`.`Product`
@@ -386,6 +387,19 @@ CREATE TABLE IF NOT EXISTS `Verdant`.`yawCalculated` (
  
  PRIMARY KEY (`yawCalculated_Id`))
 ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table debug for logging
+-- -----------------------------------------------------
+
+CREATE TABLE `debug` (
+  `line_id` int(11) NOT NULL AUTO_INCREMENT,
+  `proc_id` varchar(100) DEFAULT NULL,
+  `message` text,
+  `msg_type` varchar(5) DEFAULT NULL,
+  `timestamp` datetime DEFAULT NULL,
+  PRIMARY KEY (`line_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 
 -- -----------------------------------------------------
 -- View for Polar Plot

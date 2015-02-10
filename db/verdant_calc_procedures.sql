@@ -19,12 +19,53 @@ drop function if exists calc_cpdata;
 drop function if exists calc_cpgain;
 drop function if exists calc_omni;
 drop procedure if exists spGetPolarSummary;
+DROP procedure IF EXISTS `debug`;
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE `debug`(
+p_proc_id varchar(100), -- procedure name
+p_debug_info text, -- debug msg
+msgtype char(1), -- ‘I’ : INFO, ‘E’ : ERROR, ‘F’ : FATAL
+p_operation char(1) -- 'I' : insert, 'D' : delete, 'V' : View
+)
+BEGIN
+declare m_type varchar(5);
+
+if p_operation = 'I' then  -- insert into debug
+	
+    	select case when msgtype ='E' then 'ERROR' when msgtype ='F' then 'FATAL'
+				when msgtype ='I' then 'INFO' end 
+	into m_type;
+
+		insert into debug (proc_id,message,msg_type,timestamp)
+		values (p_proc_id,p_debug_info,m_type,now());
+        
+elseif p_operation = 'D' then  -- delete all entries
+	
+    delete from debug;
+
+elseif p_operation = 'V' then  -- View all entries
+
+	select timestamp as 'Timestamp', proc_id as 'Procedure Name', msg_type as 'Message Type', message as 'Message'
+    from debug
+    order by line_id desc;
+
+end if;
+
+
+END$$
+
+DELIMITER ;
 
 
 
 
 DELIMITER $$
-CREATE PROCEDURE `calc_CP`(
+
+CREATE  PROCEDURE `calc_CP`(
 cpTestId INT,
 cpFreq decimal(40,20),
 cpTestDate datetime,
@@ -34,6 +75,14 @@ BEGIN
 -- for direct CP and CP with conversion
 
 # Declarations -begin
+
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'calc_CP for C-CP/C-DCP';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+    
 DECLARE _3dB_BW_CP_BM,_3dB_BW_CP_0,_3dB_BW_CP_90 decimal(40,20);
 DECLARE _10dB_BW_CP_BM, _10dB_BW_CP_0,_10dB_BW_CP_90 decimal(40,20);
 
@@ -49,18 +98,78 @@ DECLARE hDataPresent INT default 0;
 DECLARE vDataPresent INT default 0;
 DECLARE cpDataPresent INT default 0;
 
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(l_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Test id : ",cpTestId,",Frequency : ",cpFreq,",Type : ",cpType);
+		call debug(l_proc_id, @details,'I','I');
+	end if;
+    RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+	
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(l_proc_id,'in calc_CP','I','I');
+ end if;
+ 
+ #declarations -end
+
 if cpType = 'CP' then
 	
-    
+    if isDebug > 0 then
+				SET @infoText = "Circular with cp conversion";
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
+ 
     select count(*) into hDataPresent from hdata where test_id = cpTestId and Frequency = cpFreq;
 	select count(*) into vDataPresent from vdata where test_id = cpTestId and Frequency = cpFreq;
 	
     if hDataPresent > 0 and vDataPresent > 0 then
 		-- convert HP,VP to CP data
+        if isDebug > 0 then
+				SET @infoText = "HP and VP data present. Converting to CP data ...";
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
 		call convert_to_CP(cpTestId, cpFreq);
         
-        -- Calculate and store axial ratio
+        if isDebug > 0 then
+				SET @infoText = "Conversion complete";
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
+       
+       -- Calculate and store axial ratio
+        if isDebug > 0 then
+				SET @infoText = "invoking axial ratio calculations ...";
+				call debug(l_proc_id,@infoText,'I','I');
+		end if;
         -- Calculate Axial ratio at 0 degree
+        
 			  select calc_AxialRatio(cpTestId,cpFreq,0) into axial_0;
               
 		   -- Calculate Axial ratio at +45 degree
@@ -69,6 +178,11 @@ if cpType = 'CP' then
               
 		   -- Calculate Axial ratio at  -45 degree
 		      select calc_AxialRatio(cpTestId,cpFreq,-45) into axial_M45;
+          
+		if isDebug > 0 then
+				SET @infoText = "invoking Max axial ratio calculations ...";
+				call debug(l_proc_id,@infoText,'I','I');
+		end if;
            
 		   -- Calculate Max-diff Axial ratio from 0 to +45 : Maximum Axial ratio from 0 to +45 degree
 			  call calc_MaxDiffAxialRatio(cpTestId, cpFreq, 'P', AR_Maxdiff_P, angle_Maxdiff_P);
@@ -84,6 +198,11 @@ if cpType = 'CP' then
 				select cpTestId,cpFreq,cpTestDate,
 				 		axial_0,axial_P45,axial_M45,
                          AR_Maxdiff_P,angle_Maxdiff_P, AR_Maxdiff_M, angle_Maxdiff_M; 
+                         
+				if isDebug > 0 then
+				SET @infoText = "Calculated data saved successfully into arcalculated";
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
      end if;
 
 end if;
@@ -92,7 +211,16 @@ select count(*) into cpDataPresent from cpdata where test_id = cpTestId and Freq
 
 if cpDataPresent > 0 then
 	
+    if isDebug > 0 then
+				SET @infoText = "cp data is present";
+				call debug(l_proc_id,@infoText,'I','I');
+	end if;
     -- calculate 3 db and 10 db BW & BS
+    
+    if isDebug > 0 then
+				SET @infoText = "invoking 3 dB BW and BS calculations ...";
+				call debug(l_proc_id,@infoText,'I','I');
+	end if;
 			 -- Calculate 3dB Beam Width, Beam Squint for hp data for Beam Max and store
 		    call calc_XdB_BW_BS(cpTestId,cpFreq,3,'CP','BM',_3dB_BW_CP_BM,_3dB_BS_CP_BM );
            
@@ -102,7 +230,10 @@ if cpDataPresent > 0 then
 		   -- Calculate 3dB Beam Width, Beam Squint for pitch data for 90 degree
 		    call calc_XdB_BW_BS(cpTestId,cpFreq,3,'CP','90', _3dB_BW_CP_90, _3dB_BS_CP_90);
            
-		        
+		 if isDebug > 0 then
+				SET @infoText = "invoking 10 dB BW and BS calculations ...";
+				call debug(l_proc_id,@infoText,'I','I');
+		end if;       
 		   -- Calculate 10dB Beam Width, Beam Squint for pitch data for Beam Max
 		    call calc_XdB_BW_BS(cpTestId,cpFreq,10,'CP','BM', _10dB_BW_CP_BM, _10dB_BS_CP_BM);
             
@@ -111,7 +242,11 @@ if cpDataPresent > 0 then
             
 		   -- Calculate 10dB Beam Width, Beam Squint for Pitch data for 90 degree
 		     call calc_XdB_BW_BS(cpTestId,cpFreq,10,'CP','90', _10dB_BW_CP_90, _10dB_BS_CP_90);
-            
+           
+           if isDebug > 0 then
+				SET @infoText = "invoking Backlobe calculations ...";
+				call debug(l_proc_id,@infoText,'I','I');
+		end if;
 		  -- Calculate Back Lobe for HP data
 			  select calc_Backlobe(cpTestId,cpFreq,'CP') into backlobe_CP;
 		           
@@ -130,15 +265,19 @@ if cpDataPresent > 0 then
                 _3dB_BS_CP_BM,_3dB_BS_CP_0,_3dB_BS_CP_90,
 				_10dB_BS_CP_BM,_10dB_BS_CP_0,_10dB_BS_CP_90,
                 backlobe_CP;
+                
+		if isDebug > 0 then
+				SET @infoText = "Calculated data saved successfully into cpCalculated";
+				call debug(l_proc_id,@infoText,'I','I');
+		end if;
 
 end if;	
 END$$
+
 DELIMITER ;
 
-
-
 DELIMITER $$
-CREATE PROCEDURE `calc_Linear_Azimuth`(
+CREATE  PROCEDURE `calc_Linear_Azimuth`(
 laTestId INT,
 laFreq decimal(40,20),
 laTestDate datetime
@@ -146,9 +285,57 @@ laTestDate datetime
 BEGIN
 
 # Declarations -begin
+
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'calc_Linear_Azimuth';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+
 DECLARE omni_Y decimal(40,20);
 
 DECLARE yawDataPresent INT default 0;
+
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(l_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Test id : ",laTestId,",Frequency : ",laFreq);
+		call debug(l_proc_id, @details,'I','I');
+        
+	end if;
+	RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(l_proc_id,'in calc_Linear_Azimuth','I','I');
+ end if;
 
 # Declarations -end
 
@@ -156,12 +343,23 @@ select count(*) into yawDataPresent from yawdata where test_id = laTestId and Fr
 	
 if yawDataPresent > 0 then
 		-- calculate omni deviation
+			if isDebug > 0 then
+				SET @infoText = "Yaw data present. Invoking omni deviation calculations";
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
+            
 			select calc_omni(laTestId,laFreq,'Y') into omni_Y;
+            
             
 		-- insert into yawCalculated table
              delete from yawCalculated where Test_id = laTestId and Frequency = laFreq;
 			 insert into yawCalculated(Test_id,Frequency,TestDate,OmniDeviation)
 								select laTestId,laFreq,laTestDate,omni_Y;
+                                
+			if isDebug > 0 then
+				SET @infoText = "Calculated data saved successfully into yawCalculated";
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
 end if;
 
 
@@ -169,10 +367,8 @@ end if;
 END$$
 DELIMITER ;
 
-
-
 DELIMITER $$
-CREATE PROCEDURE `calc_Linear_Elevation`(
+CREATE  PROCEDURE `calc_Linear_Elevation`(
 leTestId INT,
 leFreq decimal(40,20),
 leTestDate datetime
@@ -180,6 +376,13 @@ leTestDate datetime
 BEGIN
 
 # Declarations -begin
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'calc_Linear_Elevation';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+
 DECLARE _3dB_BW_P_BM, _3dB_BW_R_BM decimal(40,20);
 DECLARE _3dB_BW_P_0, _3dB_BW_R_0 decimal(40,20);
 DECLARE _3dB_BW_P_90, _3dB_BW_R_90 decimal(40,20);
@@ -191,6 +394,47 @@ DECLARE dummyBS decimal(40,20);
 DECLARE pitchDataPresent INT default 0;
 DECLARE rollDataPresent INT default 0;
 
+
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(l_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Test id : ",leTestId,",Frequency : ",leFreq);
+		call debug(l_proc_id, @details,'I','I');
+   
+	end if;
+    RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(l_proc_id,'in calc_Linear_Elevation','I','I');
+ end if;
+
 # Declarations -end
 
 select count(*) into pitchDataPresent from pitchdata where test_id = leTestId and Frequency = leFreq;
@@ -198,8 +442,19 @@ select count(*) into rollDataPresent from rolldata where test_id = leTestId and 
 
 -- pitch data calculations	
 if pitchDataPresent > 0 then
+
+			if isDebug > 0 then
+				SET @infoText = "Pitch data present"; 
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
+            
 		-- calculate 3 db and 10 db BW
 			 -- Calculate 3dB Beam Width, Beam Squint for pitch data for Beam Max and store
+             if isDebug > 0 then
+				SET @infoText = "invoking 3 db BW calculations ..."; 
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
+            
 		    call calc_XdB_BW_BS(leTestId,leFreq,3,'P','BM',_3dB_BW_P_BM,dummyBS );
            
 		   -- Calculate 3dB Beam Width, Beam Squint for Pitch data for 0 degree and store
@@ -208,7 +463,11 @@ if pitchDataPresent > 0 then
 		   -- Calculate 3dB Beam Width, Beam Squint for pitch data for 90 degree
 		    call calc_XdB_BW_BS(leTestId,leFreq,3,'P','90', _3dB_BW_P_90, dummyBS);
            
-		        
+		    if isDebug > 0 then
+				SET @infoText = "invoking 10 db BW calculations ..."; 
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
+            
 		   -- Calculate 10dB Beam Width, Beam Squint for pitch data for Beam Max
 		    call calc_XdB_BW_BS(leTestId,leFreq,10,'P','BM', _10dB_BW_P_BM, dummyBS);
             
@@ -228,11 +487,26 @@ if pitchDataPresent > 0 then
 		   select leTestId,leFreq,leTestDate,
 				_3dB_BW_P_BM,_3dB_BW_P_0,_3dB_BW_P_90,
 				_10dB_BW_P_BM,_10dB_BW_P_0,_10dB_BW_P_90;
+                
+		   if isDebug > 0 then
+				SET @infoText = "Calculated data saved successfully into pitchCalculated";
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
 end if;
 
 -- roll data calculations
 if rollDataPresent > 0 then
+			
+			if isDebug > 0 then
+				SET @infoText = "roll data present";
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
 		-- calculate 3 db and 10 db BW
+        
+        if isDebug > 0 then
+				SET @infoText = "invoking 3 dB BW calculations ...";
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
 			 -- Calculate 3dB Beam Width, Beam Squint for roll data for Beam Max and store
 		    call calc_XdB_BW_BS(leTestId,leFreq,3,'R','BM',_3dB_BW_R_BM,dummyBS );
            
@@ -241,7 +515,11 @@ if rollDataPresent > 0 then
            
 		   -- Calculate 3dB Beam Width, Beam Squint for roll data for 90 degree
 		    call calc_XdB_BW_BS(leTestId,leFreq,3,'R','90', _3dB_BW_R_90, dummyBS);
-           
+          
+          if isDebug > 0 then
+				SET @infoText = "invoking 10 dB BW calculations ...";
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
 		        
 		   -- Calculate 10dB Beam Width, Beam Squint for roll data for Beam Max
 		    call calc_XdB_BW_BS(leTestId,leFreq,10,'R','BM', _10dB_BW_R_BM, dummyBS);
@@ -254,7 +532,7 @@ if rollDataPresent > 0 then
             
 		 
             
-		-- insert into pitchCalculated table
+		-- insert into rollCalculated table
              delete from rollCalculated where Test_id = leTestId and Frequency = leFreq;
 			 insert into rollCalculated(Test_id,Frequency,TestDate
 								,3Db_BW_BMax,3Db_BW_0,3Db_BW_90
@@ -262,13 +540,16 @@ if rollDataPresent > 0 then
 		   select leTestId,leFreq,leTestDate,
 				_3dB_BW_R_BM,_3dB_BW_R_0,_3dB_BW_R_90,
 				_10dB_BW_R_BM,_10dB_BW_R_0,_10dB_BW_R_90;
+                
+			if isDebug > 0 then
+				SET @infoText = "Calculated data saved successfully into rollCalculated";
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
 end if;
 
 
 END$$
 DELIMITER ;
-
-
 
 DELIMITER $$
 CREATE  PROCEDURE `calc_MaxDiffAxialRatio`(
@@ -277,7 +558,56 @@ OUT MaxdiffRatio decimal(40,20),
 OUT MaxdiffAngle decimal(40,20)
 )
 BEGIN
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'calc_MaxDiffAxialRatio';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+
 Declare i, currAngle, currRatio decimal(40,20);
+
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(l_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Test id : ",mdtest_id,",Frequency : ",freq,",P_or_M : ",P_or_M);
+		call debug(l_proc_id, @details,'I','I');
+        
+         
+	end if;
+    RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(l_proc_id,'in calc_MaxDiffAxialRatio','I','I');
+ end if;
+
 
 if P_or_M = 'P' then
 select MAX(axialRatio) 
@@ -317,22 +647,67 @@ end if;
 
 END$$
 DELIMITER ;
-
-
-
 DELIMITER $$
-CREATE PROCEDURE `calc_Slant_Azimuth`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `calc_Slant_Azimuth`(
 saTestId INT,
 saFreq decimal(40,20),
 saTestDate datetime
 )
 BEGIN
 # Declarations -begin
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'calc_Slant_Azimuth';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+
 DECLARE omni_HP decimal(40,20);
 DECLARE omni_VP decimal(40,20);
 
 DECLARE hDataPresent INT default 0;
 DECLARE vDataPresent INT default 0;
+
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(l_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Test id : ",saTestId,",Frequency : ",saFreq);
+		call debug(l_proc_id, @details,'I','I');
+        
+	end if;
+    
+          RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(l_proc_id,'in calc_Slant_Azimuth','I','I');
+ end if;
 
 # Declarations -end
 
@@ -342,15 +717,31 @@ select count(*) into vDataPresent from vdata where test_id = saTestId and Freque
 	
 if hDataPresent > 0 then
 		-- calculate omni deviation
+        if isDebug > 0 then
+				SET @infoText = "HP data present. Invoking omni deviation calculations";
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
+            
 			select calc_omni(saTestId,saFreq,'HP') into omni_HP;
             
 		-- insert into hCalculated table
              delete from hcalculated where Test_id = saTestId and Frequency = saFreq;
 			 insert into hcalculated(Test_id,Frequency,TestDate,OmniDeviation)
 								select saTestId,saFreq,saTestDate,omni_HP;
+                                
+		if isDebug > 0 then
+				SET @infoText = "Calculated data saved successfully into hcalculated";
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
 end if;
 
 if vDataPresent > 0 then
+
+			 if isDebug > 0 then
+				SET @infoText = "VP data present. Invoking omni deviation calculations";
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
+            
 		-- calculate omni deviation
 			select calc_omni(saTestId,saFreq,'VP') into omni_VP;
             
@@ -358,16 +749,19 @@ if vDataPresent > 0 then
              delete from vcalculated where Test_id = saTestId and Frequency = saFreq;
 			 insert into vcalculated(Test_id,Frequency,TestDate,OmniDeviation)
 								select saTestId,saFreq,saTestDate,omni_VP;
+                                
+			if isDebug > 0 then
+				SET @infoText = "Calculated data saved successfully into vcalculated";
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
 end if;
 
 
 END$$
 DELIMITER ;
 
-
-
 DELIMITER $$
-CREATE PROCEDURE `calc_Slant_Elevation`(
+CREATE  PROCEDURE `calc_Slant_Elevation`(
 seTestId INT,
 seFreq decimal(40,20),
 seTestDate datetime
@@ -376,6 +770,13 @@ BEGIN
 -- same for cp without conversion
 
 # Declarations -begin
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'calc_Slant_Elevation for S-E/C-NCP';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+    
 DECLARE _3dB_BW_HP_BM, _3dB_BW_VP_BM decimal(40,20);
 DECLARE _3dB_BW_HP_0, _3dB_BW_VP_0 decimal(40,20);
 DECLARE _3dB_BW_HP_90, _3dB_BW_VP_90 decimal(40,20);
@@ -396,6 +797,50 @@ DECLARE angle_Maxdiff_P, angle_Maxdiff_M decimal(40,20);
 DECLARE hDataPresent INT default 0;
 DECLARE vDataPresent INT default 0;
 
+
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+ 
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(l_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Test id : ",seTestId,",Frequency : ",seFreq);
+		call debug(l_proc_id, @details,'I','I');
+           
+         
+	end if;
+    RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(l_proc_id,'in calc_Slant_Elevation','I','I');
+ end if;
+
+
 # Declarations -end
 
 select count(*) into hDataPresent from hdata where test_id = seTestId and Frequency = seFreq;
@@ -403,6 +848,16 @@ select count(*) into vDataPresent from vdata where test_id = seTestId and Freque
 
 -- h data calculations	
 if hDataPresent > 0 then
+			
+            if isDebug > 0 then
+				SET @infoText = "HP data present"; 
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
+            
+             if isDebug > 0 then
+				SET @infoText = "invoking 3 db BW and BS calculations ..."; 
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
 		-- calculate 3 db and 10 db BW & BS
 			 -- Calculate 3dB Beam Width, Beam Squint for hp data for Beam Max and store
 		    call calc_XdB_BW_BS(seTestId,seFreq,3,'HP','BM',_3dB_BW_HP_BM,_3dB_BS_HP_BM );
@@ -413,7 +868,10 @@ if hDataPresent > 0 then
 		   -- Calculate 3dB Beam Width, Beam Squint for pitch data for 90 degree
 		    call calc_XdB_BW_BS(seTestId,seFreq,3,'HP','90', _3dB_BW_HP_90, _3dB_BS_HP_90);
            
-		        
+			 if isDebug > 0 then
+				SET @infoText = "invoking 10 db BW and BS calculations ..."; 
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
 		   -- Calculate 10dB Beam Width, Beam Squint for pitch data for Beam Max
 		    call calc_XdB_BW_BS(seTestId,seFreq,10,'HP','BM', _10dB_BW_HP_BM, _10dB_BS_HP_BM);
             
@@ -423,6 +881,10 @@ if hDataPresent > 0 then
 		   -- Calculate 10dB Beam Width, Beam Squint for Pitch data for 90 degree
 		     call calc_XdB_BW_BS(seTestId,seFreq,10,'HP','90', _10dB_BW_HP_90, _10dB_BS_HP_90);
             
+		 if isDebug > 0 then
+				SET @infoText = "invoking Backlobe calculations ..."; 
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
 		  -- Calculate Back Lobe for HP data
 			  select calc_Backlobe(seTestId,seFreq,'HP') into backlobe_HP;
 		   
@@ -442,11 +904,25 @@ if hDataPresent > 0 then
                 _3dB_BS_HP_BM,_3dB_BS_HP_0,_3dB_BS_HP_90,
 				_10dB_BS_HP_BM,_10dB_BS_HP_0,_10dB_BS_HP_90,
                 backlobe_HP;
+                
+		 if isDebug > 0 then
+				SET @infoText = "Calculated data saved successfully into hcalculated";
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
 end if;
 
 -- v data calculations	
 if vDataPresent > 0 then
+		 if isDebug > 0 then
+				SET @infoText = "VP data present"; 
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
 		-- calculate 3 db and 10 db BW & BS
+        
+        if isDebug > 0 then
+				SET @infoText = "invoking 3dB BW and BS calculations ..."; 
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
 			 -- Calculate 3dB Beam Width, Beam Squint for hp data for Beam Max and store
 		    call calc_XdB_BW_BS(seTestId,seFreq,3,'VP','BM',_3dB_BW_VP_BM,_3dB_BS_VP_BM );
            
@@ -456,7 +932,11 @@ if vDataPresent > 0 then
 		   -- Calculate 3dB Beam Width, Beam Squint for pitch data for 90 degree
 		    call calc_XdB_BW_BS(seTestId,seFreq,3,'VP','90', _3dB_BW_VP_90, _3dB_BS_VP_90);
            
-		        
+		     
+            if isDebug > 0 then
+				SET @infoText = "invoking 10dB BW and BS calculations ..."; 
+				call debug(l_proc_id,@infoText,'I','I');
+			end if; 
 		   -- Calculate 10dB Beam Width, Beam Squint for pitch data for Beam Max
 		    call calc_XdB_BW_BS(seTestId,seFreq,10,'VP','BM', _10dB_BW_VP_BM, _10dB_BS_VP_BM);
             
@@ -466,12 +946,16 @@ if vDataPresent > 0 then
 		   -- Calculate 10dB Beam Width, Beam Squint for Pitch data for 90 degree
 		     call calc_XdB_BW_BS(seTestId,seFreq,10,'VP','90', _10dB_BW_VP_90, _10dB_BS_VP_90);
             
-		  -- Calculate Back Lobe for HP data
+		  if isDebug > 0 then
+				SET @infoText = "invoking backlobe calculations ..."; 
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
+          -- Calculate Back Lobe for HP data
 			  select calc_Backlobe(seTestId,seFreq,'VP') into backlobe_VP;
 		   
          
             
-		-- insert into pitchCalculated table
+		-- insert into vcalculated table
              delete from vcalculated where Test_id =seTestId and Frequency = seFreq;
 			 insert into vcalculated(Test_id,Frequency,TestDate
 								,3Db_BW_BMax,3Db_BW_0,3Db_BW_90
@@ -485,6 +969,11 @@ if vDataPresent > 0 then
                 _3dB_BS_VP_BM,_3dB_BS_VP_0,_3dB_BS_VP_90,
 				_10dB_BS_VP_BM,_10dB_BS_VP_0,_10dB_BS_VP_90,
                 backlobe_VP;
+                
+		  if isDebug > 0 then
+				SET @infoText = "Calculated data saved successfully into vcalculated";
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
 end if;
 
 -- axial ratio calculations
@@ -514,22 +1003,151 @@ if hDataPresent > 0 and vDataPresent > 0 then
 				 		axial_0,axial_P45,axial_M45,
                          AR_Maxdiff_P,angle_Maxdiff_P, AR_Maxdiff_M, angle_Maxdiff_M; 
         
+        
+        if isDebug > 0 then
+				SET @infoText = "Calculated data saved successfully into arcalculated";
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
 end if;
 END$$
 DELIMITER ;
 
-
-
-
-
 DELIMITER $$
+CREATE  PROCEDURE `calc_tracking`(
+myProdSerialList varchar(200), -- eg: "1,2,3,4"
+amp_or_phase char(1), -- 'A' = amp, 'P' = phase
+out maxDiff decimal(40,20),
+out maxFreq decimal(40,20)
+)
+BEGIN
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'calc_tracking';
 
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(l_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Product serial list : ",myProdSerialList,",A/P : ",amp_or_phase);
+		call debug(l_proc_id, @details,'I','I');
+        
+         
+	end if;
+    RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(l_proc_id,'in calc_tracking','I','I');
+ end if;
+
+
+if amp_or_phase = 'A' then
+
+select  (MAX(ampvalue)-MIN(ampvalue))/2 diff, frequency 
+into maxDiff,maxFreq
+from amplitudedata
+where find_in_set(prodserial_id, myProdSerialList) >0
+group by frequency
+order by diff desc
+LIMIT 1;
+
+else
+
+select  (MAX(phasevalue)-MIN(phasevalue))/2 diff, frequency 
+into maxDiff,maxFreq
+from phasedata
+where find_in_set(prodserial_id, myProdSerialList) >0
+group by frequency
+order by diff desc
+LIMIT 1;
+
+end if;
+END$$
+DELIMITER ;
+DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `calc_XdB_BW_BS`(
 xtest_id INT, freq decimal(40,20), X INT, polType char(2), fromAngle char(2),
 out beam_width decimal(40,20), out beam_squint decimal(40,20)
 )
 BEGIN
+
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'calc_XdB_BW_BS';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+
 declare C,D,E,AminX,i,j decimal(40,20);
+
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(l_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Test id : ",xtest_id,",Frequency : ",freq,",X : ",X,", Type : ",polType,", fromAngle : ",fromAngle);
+		call debug(l_proc_id, @details,'I','I');
+        
+	end if;
+    RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(l_proc_id,'in calc_XdB_BW_BS','I','I');
+ end if;
+
+
 
 # ************************** HP ******************************
 if polType = 'HP' then
@@ -655,21 +1273,21 @@ set beam_width = C+E;
 set beam_squint = (C-E)/2;
 
 END$$
-
 DELIMITER ;
 
-
-
-
 DELIMITER $$
-USE `verdant`$$
-
-CREATE PROCEDURE `Calculate_params`(
+CREATE  PROCEDURE `Calculate_params`(
 myTestId INT,
 -- myFreqUnit char(1), -- 'M' = MHz, 'G' = GHz
 myPoltype char(2) -- 'L'=linear, 'C'= circular
 )
 BEGIN
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'Calculate_params';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
 
 declare myfreq decimal(40,20);
 declare myTestDate datetime;
@@ -686,11 +1304,70 @@ DECLARE done INT DEFAULT 0;
 
  #declare handle 
   DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+  
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(l_proc_id, @full_error,'F','I');
+        SET @infoText = CONCAT("Test Id : ", myTestId, ", Polarization Type : ",myPolType,", Test Type : ", myTestType);
+		call debug(l_proc_id,@infoText,'I','I');
+        
+        
+	end if;
+    
+    -- rollback all calculations
+    delete from hcalculated where test_id = myTestId;
+    delete from vcalculated where test_id = myTestId;
+    delete from arcalculated where test_id = myTestId;
+    delete from cpcalculated where test_id = myTestId;
+    delete from pitchcalculated where test_id = myTestId;
+    delete from rollcalculated where test_id = myTestId;
+    delete from yawcalculated where test_id = myTestId;
+    
+    -- raise exception
+	RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(l_proc_id,'Debug logging is ON. Calculations begin ...','I','I');
+ end if;
+
+
 # Declarations -end
 
 select TestDate,testType into myTestDate,myTestType 
 from testdata where test_id = myTestId;
 
+if isDebug > 0 then
+	SET @infoText = CONCAT("Test Id : ", myTestId, ", Polarization Type : ",myPolType,", Test Type : ", myTestType);
+	call debug(l_proc_id,@infoText,'I','I');
+ end if;
+ 
 #open cursor
   OPEN cur;
   
@@ -699,6 +1376,10 @@ from testdata where test_id = myTestId;
   
  FETCH cur INTO myfreq; -- ,mylinear_Gain;
 IF done = 1 THEN
+	if isDebug > 0 then
+		SET @infoText = "Done looping through spot frequencies";
+		call debug(l_proc_id,@infoText,'I','I');
+	end if;
 LEAVE the_loop;
 END IF;
    
@@ -712,44 +1393,115 @@ END IF;
 #calculations - begin
 -- Linear Azimuth
   IF ( myPolType = 'L' and myTestType = 'A') THEN
-call calc_Linear_Azimuth(myTestId,myfreq,myTestDate);
+	if isDebug > 0 then
+		SET @infoText = CONCAT("invoking Linear-Azimuth calculations for frequency : ",myfreq);
+		call debug(l_proc_id,@infoText,'I','I');
+	end if;
+	call calc_Linear_Azimuth(myTestId,myfreq,myTestDate);
 -- Linear Elevation
   elseif ( myPolType = 'L' and myTestType = 'E') THEN
-call calc_Linear_Elevation(myTestId,myfreq,myTestDate);
+	if isDebug > 0 then
+		SET @infoText = CONCAT("invoking Linear-Elevation calculations for frequency : ",myfreq);
+		call debug(l_proc_id,@infoText,'I','I');
+	end if;
+	call calc_Linear_Elevation(myTestId,myfreq,myTestDate);
 -- Slant Azimuth
   elseif ( myPolType = 'S' and myTestType = 'A') THEN
-call calc_Slant_Azimuth(myTestId,myfreq,myTestDate);
+	if isDebug > 0 then
+		SET @infoText = CONCAT("invoking Slant-Azimuth calculations for frequency : ",myfreq);
+		call debug(l_proc_id,@infoText,'I','I');
+	end if;
+	call calc_Slant_Azimuth(myTestId,myfreq,myTestDate);
 -- Slant Elevation
   elseif ( myPolType = 'S' and myTestType = 'E') THEN
-call calc_Slant_Elevation(myTestId,myfreq,myTestDate);
+	if isDebug > 0 then
+		SET @infoText = CONCAT("invoking Slant-Elevation calculations for frequency : ",myfreq);
+		call debug(l_proc_id,@infoText,'I','I');
+	end if;
+	call calc_Slant_Elevation(myTestId,myfreq,myTestDate);
 -- Circular - No conversion
   elseif ( myPolType = 'C' and myTestType = 'NCP') THEN
--- reports of NCP and Slant-Elevation are the same
-call calc_Slant_Elevation(myTestId,myfreq,myTestDate);
--- Circular - CP with conversion / Direct-CP
+	if isDebug > 0 then
+		SET @infoText = CONCAT("invoking Circular-NCP calculations for frequency : ",myfreq);
+		call debug(l_proc_id,@infoText,'I','I');
+	end if;
+	-- reports of NCP and Slant-Elevation are the same
+	call calc_Slant_Elevation(myTestId,myfreq,myTestDate);
+  -- Circular - CP with conversion / Direct-CP
   else -- Polarization_type = 'C' and testType = 'DCP'/'CP'
-call calc_CP(myTestId,myfreq,myTestDate,myTestType);
-           END IF;
+	if isDebug > 0 then
+		SET @infoText = CONCAT("invoking Circular-CP/DCP calculations for frequency : ",myfreq);
+		call debug(l_proc_id,@infoText,'I','I');
+	end if;
+	call calc_CP(myTestId,myfreq,myTestDate,myTestType);
+ END IF;
   #Calculations - end
     
     END LOOP the_loop;
  
   CLOSE cur;
     
-
+if isDebug > 0 then
+	call debug(l_proc_id,'Calculations end','I','I');
+ end if;
+ 
 END$$
-
 DELIMITER ;
 
-
-
-
 DELIMITER $$
-USE `verdant`$$
-CREATE PROCEDURE `convert_to_CP`(
+CREATE  PROCEDURE `convert_to_CP`(
 ctest_id INT, freq decimal(40,20)
 )
 BEGIN
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'convert_to_CP';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(l_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Test Id : ", ctest_id, ", Frequency : ",freq);
+		call debug(l_proc_id,@details,'I','I');
+        
+	end if;
+    
+         RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(l_proc_id,'in convert_to_CP','I','I');
+ end if;
+
+
 
 -- delete existing data for that freq
 delete from cpdata 
@@ -766,194 +1518,19 @@ where test_id = ctest_id and frequency = freq;
 
 
 END$$
-
 DELIMITER ;
 
-
-
 DELIMITER $$
-CREATE FUNCTION `calc_AxialRatio`(
-atest_id INT, freq decimal(40,20), degree INT
-) RETURNS decimal(40,20)
-BEGIN
-
-# Axial Ratio =( HP – VP) at degree for freq
-
-DECLARE AR decimal(40,20) default 0;
-
--- if degree = 0 then 
--- 	set degree = 360;
---  else
-if degree = -45 then
-	set degree = 315;
-end if;
-
-select axialRatio 
-into AR
-from axialratio_view
- where test_id = atest_id and Frequency = freq and angle = degree;
- 
-RETURN AR;
-END$$
-DELIMITER ;
-
-
-
-DELIMITER $$
-CREATE FUNCTION `calc_backlobe`(
-bTestId INT, bFreq decimal(40,20), bPolType char(2)
-) RETURNS decimal(40,20)
-BEGIN
-
-# A = Amplitude at 0 degree 
-# B = Amplitude at 180 degree 
-# Back Lobe = A-B
-
-DECLARE backlobe decimal(40,20) default 0;
-DECLARE Amp_0, Amp_180 decimal(40,20);
-
-if bPolType = 'HP' then
-	set Amp_0 = (select amplitude 
-				from hdata 
-				where test_id = bTestId and Frequency = bFreq and angle = 0);
-	set Amp_180 =(select amplitude 
-					from hdata 
-					where test_id = bTestId and Frequency = bFreq and angle = 180);
-	 
-elseif bPolType = 'VP' then
-	set Amp_0 = (select amplitude 
-				from vdata 
-				where test_id = bTestId and Frequency = bFreq and angle = 0);
-	set Amp_180 =(select amplitude 
-					from vdata 
-					where test_id = bTestId and Frequency = bFreq and angle = 180);
-else -- polType = 'CP' then
-	set Amp_0 = (select amplitude 
-				from cpdata 
-				where test_id = bTestId and Frequency = bFreq and angle = 0);
-	set Amp_180 =(select amplitude 
-					from cpdata 
-					where test_id = bTestId and Frequency = bFreq and angle = 180);
-
-end if;
-
-set backlobe = Amp_0 - Amp_180;
-
-RETURN backlobe;
-
-END$$
-DELIMITER ;
-
-
-
-DELIMITER $$
-CREATE FUNCTION `calc_cpdata`(
-cTestId INT, freq decimal(40,20), cAngle decimal(40,20)
-) RETURNS decimal(40,20)
-BEGIN
-
-declare A,B,C,D,E,cpdata decimal(40,20) default 0;
-
-select amplitude into A from hdata h
- 		 where h.test_id = cTestId and h.Frequency = freq and h.angle = cAngle;
--- select A;
- select amplitude into B from vdata v
- 		 where v.test_id = cTestId and v.Frequency = freq and v.angle = cAngle; 
--- select B;
-if A > B then
-	set C = A - B;
-else 
-	set C = B - A;
-end if;
-
--- select C;
-
-set D = EXP(C/20);
--- select D;
-
-set E = 20 * LOG((D+1)/(1.414*D));
--- select E;
-
-if A > B then
-	set cpdata = A+E;
-else 
-	set cpdata = B+E;
-end if;
-
--- select cpdata;    
-    
-RETURN cpdata;
-END$$
-DELIMITER ;
-
-
-
-DELIMITER $$
-CREATE FUNCTION `calc_cpgain`(
-testId_c INT, freq decimal(40,20), linearGain decimal(40,20)
-) RETURNS decimal(40,20)
-BEGIN
-declare A, B, C, D, E, cpgain decimal(40,20);
-
-select amplitude into A 
-from vdata v 
-where v.test_id = testId_c and v.Frequency = freq and v.angle = 0; 
-
-select amplitude into B 
-from hdata h 
-where h.test_id = testId_c and h.Frequency = freq and h.angle = 0;
-
-if A > B then 
-	set C = A-B;
-else 
-	set C = B-A;
-end if;
-
-set D = EXP(C/20);
-
-set E = 20 * LOG((D+1)/(1.414*D));
-
-set cpgain = linearGain+E;
-
-RETURN cpgain;
-END$$
-DELIMITER ;
-
-
-
-DELIMITER $$
-CREATE FUNCTION `calc_omni`(
-oTestId INT, freq decimal(40,20), opolType char(2)
-) RETURNS decimal(40,20)
-BEGIN
-
-#omni deviation = (Max - min)/2
-
-DECLARE omni_dev decimal(40,20) default 0;
-
-if opolType = 'HP' then
-	select ifnull((max(Amplitude)-min(Amplitude))/2,0) into omni_dev
-	from hdata where test_id = oTestId and Frequency = freq;
-elseif opolType = 'Y' then
-	select ifnull((max(Amplitude)-min(Amplitude))/2,0) into omni_dev
-	from yawData where test_id = oTestId and Frequency = freq;
-else -- polType = 'VP'
-	select ifnull((max(Amplitude)-min(Amplitude))/2,0) into omni_dev
-	from vdata where test_id = oTestId and Frequency = freq;
-end if;
-
-RETURN omni_dev;
-
-END$$
-DELIMITER ;
-
-
-DELIMITER $$
- 
 CREATE  PROCEDURE `spCalCPGain`(
 testid INT
 )
 BEGIN
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'spCalCPGain';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
  
 DECLARE v_finished INTEGER DEFAULT 0;
 Declare v_freq decimal(40,20);
@@ -965,6 +1542,48 @@ DECLARE C1 CURSOR FOR select distinct Frequency,lineargain from testfreq where t
 -- declare NOT FOUND handler
 DECLARE CONTINUE HANDLER
         FOR NOT FOUND SET v_finished = 1;
+        
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(l_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Test id : ", testid);
+		call debug(l_proc_id, @details,'I','I');
+        
+         
+	end if;
+    RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(l_proc_id,'in spCalCPGain','I','I');
+ end if;
+
  
 OPEN C1;
  
@@ -985,18 +1604,12 @@ END LOOP getlist;
  
 CLOSE C1;
  
-
 END$$
- 
 DELIMITER ;
 
 
-
--- --------------------------------------------------------------------------------
--- Routine DDL
--- Note: comments before and after the routine body will not be stored by the server
--- --------------------------------------------------------------------------------
 DELIMITER $$
+
 
 CREATE  PROCEDURE `spGetPolarPlot`(
 testid INT,
@@ -1005,6 +1618,13 @@ typ varchar(5), -- H HP,V VP,B HP&VP,P Pitch,R Roll ,Y Yaw
 lg decimal(40,20)
 )
 BEGIN
+
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'spGetPolarPlot';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
 DECLARE ampl decimal(40,20) default 0;
 DECLARE vampl decimal(40,20) default 0;
 declare lgampl decimal(40,20) default 0;
@@ -1014,6 +1634,51 @@ declare strminvalue varchar(50);
 declare cnt int ;
 declare unt varchar(10);
 declare freq decimal(40,20);
+
+
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(l_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Test id : ", testid, ", Frequency : ",freq, ", typ : ",typ,",linear gain : ",lg);
+		call debug(l_proc_id, @details,'I','I');
+        
+         RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+	end if;
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(l_proc_id,'in spGetPolarPlot','I','I');
+ end if;
+
+
+
+
 select frequnit into unt from testdata where test_id=testid;
 
 set freq=freqparm;
@@ -1238,51 +1903,9 @@ end if;
 END $$
 
 
-
-DELIMITER;
--- --------------------------------------------------------------------------------
--- Routine DDL
--- Note: comments before and after the routine body will not be stored by the server
--- --------------------------------------------------------------------------------
-DELIMITER $$
-
-CREATE  PROCEDURE `calc_tracking`(
-myProdSerialList varchar(200), -- eg: "1,2,3,4"
-amp_or_phase char(1), -- 'A' = amp, 'P' = phase
-out maxDiff decimal(40,20),
-out maxFreq decimal(40,20)
-)
-BEGIN
-
-if amp_or_phase = 'A' then
-
-select  (MAX(ampvalue)-MIN(ampvalue))/2 diff, frequency 
-into maxDiff,maxFreq
-from amplitudedata
-where find_in_set(prodserial_id, myProdSerialList) >0
-group by frequency
-order by diff desc
-LIMIT 1;
-
-else
-
-select  (MAX(phasevalue)-MIN(phasevalue))/2 diff, frequency 
-into maxDiff,maxFreq
-from phasedata
-where find_in_set(prodserial_id, myProdSerialList) >0
-group by frequency
-order by diff desc
-LIMIT 1;
-
-end if;
-END $$
-DELIMITER;
+DELIMITER ;
 
 
--- --------------------------------------------------------------------------------
--- Routine DDL
--- Note: comments before and after the routine body will not be stored by the server
--- --------------------------------------------------------------------------------
 DELIMITER $$
 
 CREATE  PROCEDURE `spGetPolarSummary`(
@@ -1292,9 +1915,56 @@ typ varchar(5) -- H HP,V VP,B HP&VP,P Pitch,R Roll ,Y Yaw
 
 )
 BEGIn
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'spGetPolarSummary';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+
 declare prec int;
-declare freq decimal(40,20);
 declare unt varchar(10);
+declare freq decimal(40,20);
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(l_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Test id : ", testid, ", Frequency : ",freq, ", typ : ",typ);
+		call debug(l_proc_id, @details,'I','I');
+        
+     
+	end if;
+        RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(l_proc_id,'in spGetPolarSummary','I','I');
+ end if;
+
 set prec=1;
 
 select nprecision into prec from fwk_company where company_id=1;
@@ -1305,8 +1975,6 @@ set freq=freqparm;
 if unt='GHz' then
 set freq=freqparm*1000;
 end if;
-
-
 
 if typ='C' then
 select round(sum(3Db_BW_BMax),prec) 3Db_BW_BMax,round(sum(3Db_BS_BMax),prec) 3Db_BS_BMax,round(sum(10Db_BW_BMax),prec) 10Db_BW_BMax,round(sum(10Db_BS_BMax),prec) 10Db_BS_BMax,round(sum(BackLobe),prec) BackLobe,round(sum(CPGain),prec) CPGain,round(sum(AR_0),prec) AR_0 ,round(sum(OmniDeviation),prec) OmniDeviation from (
@@ -1352,4 +2020,6 @@ group by ptype;
 end if;	
         
 END $$
+
+DELIMITER ;
 

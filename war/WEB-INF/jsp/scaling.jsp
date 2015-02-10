@@ -28,7 +28,7 @@ function cancelclick()
 <table>
 <tr>
 <td>		
-           <input type="button" id="add" class="mybutton" value ="Add Freq" onclick="Add();" />
+           <input type="button" id="add" class="mybutton" value ="New" onclick="Add();" />
         </td></tr>
 <tr>
 <td>
@@ -36,7 +36,7 @@ function cancelclick()
 	<thead>
 	
 				<tr>
-					<th scope="col"> Frequency </th>
+					<th scope="col"> Frequency(Mhz) </th>
 					<th scope="col"> Minimum Scale </th>
 					<th scope="col"> Maximum Scale </th>
 					<th scope="col"> </th>
@@ -46,9 +46,9 @@ function cancelclick()
 	<tbody>
     <c:forEach items="${scalelist}" var="scalelst">
 		<tr>
-			<td><input type="number" style="width:50" name="freq" value='<c:out value="${scalelst.frequency}"/>'/> </td>
-			<td><input type="number" style="width:50"  name="min" value='<c:out value="${scalelst.minscale}"/>'/> </td>
-			<td><input type="number" style="width:50"  name="max" value='<c:out value="${scalelst.maxscale}"/>'/> </td>						
+			<td><input type="number" style="width:100" name="freq" value='<c:out value="${scalelst.frequency}"/>'/> </td>
+			<td><input type="number" style="width:100"  name="min" value='<c:out value="${scalelst.minscale}"/>'/> </td>
+			<td><input type="number" style="width:100"  name="max" value='<c:out value="${scalelst.maxscale}"/>'/> </td>						
 			<td> <a id="deleteclick" href='<c:url value="scaling.htm?oper=del&prodid=${scalelst.productid}&freq=${scalelst.frequency}"/>'><img  src ="/irev-verdant/img/delete.jpg" >  </a> </td>
 			
 			<td> </td> 
@@ -81,9 +81,9 @@ $(document).ready(function(){
 function Add(){
 	$("#tblData tbody").append(
 		"<tr>"+
-		"<td><input type='number' style='width:50' /></td>"+
-		"<td><input type='number' style='width:50'/></td>"+
-		"<td><input type='number' style='width:50'/></td>"+	
+		"<td><input type='number' style='width:100' /></td>"+
+		"<td><input type='number' style='width:100'/></td>"+
+		"<td><input type='number' style='width:100'/></td>"+	
 		"<td> <img src='img/delete.jpg' class='btnDelete'/></td>"+
 		"</tr>");
 	$(".btnDelete").bind("click", Delete);

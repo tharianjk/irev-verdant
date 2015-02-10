@@ -12,6 +12,6 @@ public interface CompanyDao {
     public boolean updateData(Company company);  
     public boolean deleteData(int id);  
     public Company getCompany(int id);
-   
+    
     
 }
