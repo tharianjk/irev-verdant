@@ -2023,3 +2023,184 @@ END $$
 
 DELIMITER ;
 
+-- -------------------FUNCTIONS ----------------------------------------
+
+
+DELIMITER $$
+CREATE FUNCTION `calc_AxialRatio`(
+atest_id INT, freq decimal(40,20), degree INT
+) RETURNS decimal(40,20)
+BEGIN
+
+# Axial Ratio =( HP – VP) at degree for freq
+
+DECLARE AR decimal(40,20) default 0;
+
+-- if degree = 0 then 
+-- 	set degree = 360;
+--  else
+if degree = -45 then
+	set degree = 315;
+end if;
+
+select axialRatio 
+into AR
+from axialratio_view
+ where test_id = atest_id and Frequency = freq and angle = degree;
+ 
+RETURN AR;
+END$$
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE FUNCTION `calc_backlobe`(
+bTestId INT, bFreq decimal(40,20), bPolType char(2)
+) RETURNS decimal(40,20)
+BEGIN
+
+# A = Amplitude at 0 degree 
+# B = Amplitude at 180 degree 
+# Back Lobe = A-B
+
+DECLARE backlobe decimal(40,20) default 0;
+DECLARE Amp_0, Amp_180 decimal(40,20);
+
+if bPolType = 'HP' then
+	set Amp_0 = (select amplitude 
+				from hdata 
+				where test_id = bTestId and Frequency = bFreq and angle = 0);
+	set Amp_180 =(select amplitude 
+					from hdata 
+					where test_id = bTestId and Frequency = bFreq and angle = 180);
+	 
+elseif bPolType = 'VP' then
+	set Amp_0 = (select amplitude 
+				from vdata 
+				where test_id = bTestId and Frequency = bFreq and angle = 0);
+	set Amp_180 =(select amplitude 
+					from vdata 
+					where test_id = bTestId and Frequency = bFreq and angle = 180);
+else -- polType = 'CP' then
+	set Amp_0 = (select amplitude 
+				from cpdata 
+				where test_id = bTestId and Frequency = bFreq and angle = 0);
+	set Amp_180 =(select amplitude 
+					from cpdata 
+					where test_id = bTestId and Frequency = bFreq and angle = 180);
+
+end if;
+
+set backlobe = Amp_0 - Amp_180;
+
+RETURN backlobe;
+
+END$$
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE FUNCTION `calc_cpdata`(
+cTestId INT, freq decimal(40,20), cAngle decimal(40,20)
+) RETURNS decimal(40,20)
+BEGIN
+
+declare A,B,C,D,E,cpdata decimal(40,20) default 0;
+
+select amplitude into A from hdata h
+ 		 where h.test_id = cTestId and h.Frequency = freq and h.angle = cAngle;
+-- select A;
+ select amplitude into B from vdata v
+ 		 where v.test_id = cTestId and v.Frequency = freq and v.angle = cAngle; 
+-- select B;
+if A > B then
+	set C = A - B;
+else 
+	set C = B - A;
+end if;
+
+-- select C;
+
+set D = EXP(C/20);
+-- select D;
+
+set E = 20 * LOG((D+1)/(1.414*D));
+-- select E;
+
+if A > B then
+	set cpdata = A+E;
+else 
+	set cpdata = B+E;
+end if;
+
+-- select cpdata;    
+    
+RETURN cpdata;
+END$$
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE FUNCTION `calc_cpgain`(
+testId_c INT, freq decimal(40,20), linearGain decimal(40,20)
+) RETURNS decimal(40,20)
+BEGIN
+declare A, B, C, D, E, cpgain decimal(40,20);
+
+select amplitude into A 
+from vdata v 
+where v.test_id = testId_c and v.Frequency = freq and v.angle = 0; 
+
+select amplitude into B 
+from hdata h 
+where h.test_id = testId_c and h.Frequency = freq and h.angle = 0;
+
+if A > B then 
+	set C = A-B;
+else 
+	set C = B-A;
+end if;
+
+set D = EXP(C/20);
+
+set E = 20 * LOG((D+1)/(1.414*D));
+
+set cpgain = linearGain+E;
+
+RETURN cpgain;
+END$$
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE FUNCTION `calc_omni`(
+oTestId INT, freq decimal(40,20), opolType char(2)
+) RETURNS decimal(40,20)
+BEGIN
+
+#omni deviation = (Max - min)/2
+
+DECLARE omni_dev decimal(40,20) default 0;
+
+if opolType = 'HP' then
+	select ifnull((max(Amplitude)-min(Amplitude))/2,0) into omni_dev
+	from hdata where test_id = oTestId and Frequency = freq;
+elseif opolType = 'Y' then
+	select ifnull((max(Amplitude)-min(Amplitude))/2,0) into omni_dev
+	from yawData where test_id = oTestId and Frequency = freq;
+else -- polType = 'VP'
+	select ifnull((max(Amplitude)-min(Amplitude))/2,0) into omni_dev
+	from vdata where test_id = oTestId and Frequency = freq;
+end if;
+
+RETURN omni_dev;
+
+END$$
+DELIMITER ;
+
+
+
