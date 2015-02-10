@@ -6702,7 +6702,7 @@ group by frequency,t.test_id;]]></xml-property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">medium</property>
                         <property name="textAlign">center</property>
-                        <text-property name="text">Omni Deviation</text-property>
+                        <text-property name="text">Omni Deviation(dB)</text-property>
                     </label>
                 </cell>
             </row>

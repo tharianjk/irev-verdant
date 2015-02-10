@@ -89,7 +89,7 @@
             <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
-            <property name="dataType">integer</property>
+            <property name="dataType">string</property>
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -446,6 +446,20 @@
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="pc" id="2707">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
             <property name="controlType">text-box</property>
             <structure name="format">
                 <property name="category">Unformatted</property>
@@ -3628,11 +3642,21 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
             <list-property name="parameters">
                 <structure>
                     <property name="name">param_1</property>
-                    <property name="paramName">testid</property>
+                    <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
                     <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -3652,7 +3676,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <structure>
                         <property name="position">3</property>
                         <property name="name">OmniDeviation</property>
-                        <property name="dataType">decimal</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
@@ -3681,11 +3705,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <property name="position">3</property>
                     <property name="name">OmniDeviation</property>
                     <property name="nativeName">OmniDeviation</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[SELECT case t.frequnit when 'GHz' then frequency/1000 else frequency end frequency,t.frequnit,OmniDeviation FROM yawcalculated ar 
+            <xml-property name="queryText"><![CDATA[SELECT case t.frequnit when 'GHz' then frequency/1000 else frequency end frequency,t.frequnit,round(OmniDeviation,?) as OmniDeviation  FROM yawcalculated ar 
 inner join testdata t on ar.test_id=t.test_id  where ar.Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
@@ -3698,6 +3722,21 @@ inner join testdata t on ar.test_id=t.test_id  where ar.Test_id=?]]></xml-proper
           <design:identifier>
             <design:name></design:name>
             <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
           </design:identifier>
           <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
           <design:precision>0</design:precision>
@@ -6219,6 +6258,419 @@ inner join testdata t on ar.test_id=t.test_id  where ar.Test_id=?]]></xml-proper
             </list-property>
             <text-property name="text">Omni Deviation</text-property>
         </label>
+        <extended-item extensionName="Crosstab" extensionVersion="3.7.0" id="2651">
+            <property name="cube">Data CubeTestGrid</property>
+            <property name="columns">
+                <extended-item extensionName="CrosstabView" id="2652">
+                    <property name="views">
+                        <extended-item extensionName="DimensionView" id="2653">
+                            <property name="dimension">Group11</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View20" id="2654">
+                                    <property name="level">Group11/testproc</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="2655">
+                                            <property name="content">
+                                                <data name="testproc2" id="2656">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">testproc</property>
+                                                </data>
+                                            </property>
+                                            <property name="borderTopStyle">solid</property>
+                                            <property name="borderTopWidth">thin</property>
+                                            <property name="borderLeftStyle">solid</property>
+                                            <property name="borderLeftWidth">thin</property>
+                                            <property name="borderBottomStyle">solid</property>
+                                            <property name="borderBottomWidth">thin</property>
+                                            <property name="borderRightStyle">solid</property>
+                                            <property name="borderRightWidth">thin</property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="DimensionView" id="2657">
+                            <property name="dimension">Group1</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View82" id="2658">
+                                    <property name="level">Group1/TestDesc</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="2659">
+                                            <property name="content">
+                                                <data name="TestDesc12" id="2660">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">TestDesc</property>
+                                                </data>
+                                            </property>
+                                            <property name="borderTopStyle">solid</property>
+                                            <property name="borderTopWidth">thin</property>
+                                            <property name="borderLeftStyle">solid</property>
+                                            <property name="borderLeftWidth">thin</property>
+                                            <property name="borderBottomStyle">solid</property>
+                                            <property name="borderBottomWidth">thin</property>
+                                            <property name="borderRightStyle">solid</property>
+                                            <property name="borderRightWidth">thin</property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="DimensionView" id="2661">
+                            <property name="dimension">Group5</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View92" id="2662">
+                                    <property name="level">Group5/instruments</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="2663">
+                                            <property name="content">
+                                                <data name="instruments12" id="2664">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">instruments</property>
+                                                </data>
+                                            </property>
+                                            <property name="borderTopStyle">solid</property>
+                                            <property name="borderTopWidth">thin</property>
+                                            <property name="borderLeftStyle">solid</property>
+                                            <property name="borderLeftWidth">thin</property>
+                                            <property name="borderBottomStyle">solid</property>
+                                            <property name="borderBottomWidth">thin</property>
+                                            <property name="borderRightStyle">solid</property>
+                                            <property name="borderRightWidth">thin</property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="DimensionView" id="2665">
+                            <property name="dimension">Group4</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View102" id="2666">
+                                    <property name="level">Group4/calibration</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="2667">
+                                            <property name="content">
+                                                <data name="calibration12" id="2668">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">calibration</property>
+                                                </data>
+                                            </property>
+                                            <property name="borderTopStyle">solid</property>
+                                            <property name="borderTopWidth">thin</property>
+                                            <property name="borderLeftStyle">solid</property>
+                                            <property name="borderLeftWidth">thin</property>
+                                            <property name="borderBottomStyle">solid</property>
+                                            <property name="borderBottomWidth">thin</property>
+                                            <property name="borderRightStyle">solid</property>
+                                            <property name="borderRightWidth">thin</property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="DimensionView" id="2669">
+                            <property name="dimension">Group6</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View112" id="2670">
+                                    <property name="level">Group6/testcenter</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="2671">
+                                            <property name="content">
+                                                <data name="testcenter12" id="2672">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">testcenter</property>
+                                                </data>
+                                            </property>
+                                            <property name="borderTopStyle">solid</property>
+                                            <property name="borderTopWidth">thin</property>
+                                            <property name="borderLeftStyle">solid</property>
+                                            <property name="borderLeftWidth">thin</property>
+                                            <property name="borderBottomStyle">solid</property>
+                                            <property name="borderBottomWidth">thin</property>
+                                            <property name="borderRightStyle">solid</property>
+                                            <property name="borderRightWidth">thin</property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="DimensionView" id="2673">
+                            <property name="dimension">Group7</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View122" id="2674">
+                                    <property name="level">Group7/Productname</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="2675">
+                                            <property name="content">
+                                                <data name="Productname2" id="2676">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">Productname</property>
+                                                </data>
+                                            </property>
+                                            <property name="borderTopStyle">solid</property>
+                                            <property name="borderTopWidth">thin</property>
+                                            <property name="borderLeftStyle">solid</property>
+                                            <property name="borderLeftWidth">thin</property>
+                                            <property name="borderBottomStyle">solid</property>
+                                            <property name="borderBottomWidth">thin</property>
+                                            <property name="borderRightStyle">solid</property>
+                                            <property name="borderRightWidth">thin</property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="DimensionView" id="2677">
+                            <property name="dimension">Group9</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View132" id="2678">
+                                    <property name="level">Group9/version</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="2679">
+                                            <property name="content">
+                                                <data name="version2" id="2680">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">version</property>
+                                                </data>
+                                            </property>
+                                            <property name="borderTopStyle">solid</property>
+                                            <property name="borderTopWidth">thin</property>
+                                            <property name="borderLeftStyle">solid</property>
+                                            <property name="borderLeftWidth">thin</property>
+                                            <property name="borderBottomStyle">solid</property>
+                                            <property name="borderBottomWidth">thin</property>
+                                            <property name="borderRightStyle">solid</property>
+                                            <property name="borderRightWidth">thin</property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="DimensionView" id="2681">
+                            <property name="dimension">Group8</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View142" id="2682">
+                                    <property name="level">Group8/SerialNo</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="2683">
+                                            <property name="content">
+                                                <data name="SerialNo2" id="2684">
+                                                    <property name="fontSize">12px</property>
+                                                    <property name="textAlign">left</property>
+                                                    <property name="resultSetColumn">SerialNo</property>
+                                                </data>
+                                            </property>
+                                            <property name="borderTopStyle">solid</property>
+                                            <property name="borderTopWidth">thin</property>
+                                            <property name="borderLeftStyle">solid</property>
+                                            <property name="borderLeftWidth">thin</property>
+                                            <property name="borderBottomStyle">solid</property>
+                                            <property name="borderBottomWidth">thin</property>
+                                            <property name="borderRightStyle">solid</property>
+                                            <property name="borderRightWidth">thin</property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                    </property>
+                </extended-item>
+            </property>
+            <property name="header">
+                <extended-item extensionName="CrosstabCell" id="2689">
+                    <property name="content">
+                        <label id="2690">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Test Procedure</text-property>
+                        </label>
+                    </property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">thin</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">thin</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">thin</property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="2691">
+                    <property name="content">
+                        <label id="2692">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Test Description</text-property>
+                        </label>
+                    </property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">thin</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">thin</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">thin</property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="2693">
+                    <property name="content">
+                        <label id="2694">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Instruments Used</text-property>
+                        </label>
+                    </property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">thin</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">thin</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">thin</property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="2695">
+                    <property name="content">
+                        <label id="2696">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Calibration Status</text-property>
+                        </label>
+                    </property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">thin</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">thin</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">thin</property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="2697">
+                    <property name="content">
+                        <label id="2698">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Test Center</text-property>
+                        </label>
+                    </property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">thin</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">thin</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">thin</property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="2699">
+                    <property name="content">
+                        <label id="2700">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Product Title</text-property>
+                        </label>
+                    </property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">thin</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">thin</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">thin</property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="2701">
+                    <property name="content">
+                        <label id="2702">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Product Part No.</text-property>
+                        </label>
+                    </property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">thin</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">thin</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">thin</property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="2705">
+                    <property name="content">
+                        <label id="2706">
+                            <property name="fontSize">12px</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Serial No.</text-property>
+                        </label>
+                    </property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">thin</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">thin</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">thin</property>
+                </extended-item>
+            </property>
+            <property name="pageBreakBefore">auto</property>
+            <property name="canShrink">true</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">params["omni"].value!='yes'</expression>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">TestDesc</property>
+                    <expression name="expression">dimension["Group1"]["TestDesc"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">instruments</property>
+                    <expression name="expression">dimension["Group5"]["instruments"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">calibration</property>
+                    <expression name="expression">dimension["Group4"]["calibration"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">testcenter</property>
+                    <expression name="expression">dimension["Group6"]["testcenter"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Productname</property>
+                    <expression name="expression">dimension["Group7"]["Productname"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">version</property>
+                    <expression name="expression">dimension["Group9"]["version"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">SerialNo</property>
+                    <expression name="expression">dimension["Group8"]["SerialNo"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">testproc</property>
+                    <expression name="expression">dimension["Group11"]["testproc"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+        </extended-item>
         <grid id="861">
             <property name="canShrink">true</property>
             <property name="width">7.9375in</property>
