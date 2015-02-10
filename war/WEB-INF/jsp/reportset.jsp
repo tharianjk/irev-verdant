@@ -416,7 +416,7 @@ function fnenable(ctyp){
 				}
 			var p=0;
 			for (p==j;p<20;p++){
-				console.log("j"+j);
+				// console.log("j"+j);
 					strfreqs[j]=-1;	
 					lg[j]="0.0001";
 					j=j+1;				

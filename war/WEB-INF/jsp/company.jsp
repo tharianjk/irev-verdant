@@ -39,13 +39,16 @@
        
          </tr>  
          <tr>  
-         <td>Precision for Report values :</td>  
+         <td>Decimal places in reports :</td>  
           
           <td><form:input type="number"  path="nprecision" maxlength="2"  /></td>
+          
           </tr>
-         <tr> 
-             <td> <form:checkbox path="bdebugflag" />Logging </td>
-              <td>&nbsp; &nbsp;&nbsp; <form:checkbox path="bpurge" />Purge Log data </td>
+         
+         <tr>
+           
+             <td> <br><form:checkbox path="bdebugflag" />Log on </td>
+              <td> <br><form:checkbox path="bpurge" />Purge Log data </td>
              </tr>
           
           <tr>

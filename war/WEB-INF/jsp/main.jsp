@@ -239,8 +239,7 @@ dialog.dialog( "open" );
 		<c:if test="${model.blnsettings eq 'true'}">
 		<li><a href="#"><b>Settings</b></a>
 				<ul>
-					<li><a href="#">System</a><ul>											
-					</ul></li>
+					
 					<li><a href="edittree.htm?treemode=edit" onclick="fnsetstat('Settings');" TARGET="AppBody">Asset-Tree</a></li>		
 					<li><a href="setup.htm?oper=user" onclick="fnsetstat('Settings');" TARGET="AppBody">Manage Users</a></li>
 					<li><a href="setup.htm?oper=role" onclick="fnsetstat('Settings');" TARGET="AppBody">Manage Roles</a></li>						
