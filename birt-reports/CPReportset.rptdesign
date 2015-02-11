@@ -363,9 +363,12 @@
         <scalar-parameter name="lg2" id="2665">
             <property name="hidden">true</property>
             <property name="valueType">static</property>
-            <property name="isRequired">true</property>
+            <property name="isRequired">false</property>
             <property name="dataType">decimal</property>
             <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="javascript">.0001</value>
+            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="concealValue">false</property>
@@ -4588,7 +4591,7 @@ from cpcalculated where Test_id=?]]></xml-property>
                 </structure>
                 <structure>
                     <property name="name">lg</property>
-                    <property name="paramName">lg1</property>
+                    <property name="paramName">lg2</property>
                     <property name="nativeName">lg</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">3</property>
