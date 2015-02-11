@@ -208,9 +208,9 @@ public class ToolsController implements Controller {
 				atype=request.getParameter("atype");
 			     ptype=request.getParameter("ptype");
 				if(ptype.equals("L")){					
-				 return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=LinAzimuthOD.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));}
+				 return new ModelAndView(new RedirectView("/birt-viewer/frameset?__report=LinAzimuthOD.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));}
 				else{
-					 return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=SlantAzimuthOD.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
+					 return new ModelAndView(new RedirectView("/birt-viewer/frameset?__report=SlantAzimuthOD.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
 					
 				}
 			}
@@ -220,13 +220,13 @@ public class ToolsController implements Controller {
 			     ptype=request.getParameter("ptype");
 			     logger.info("*** blobe ** atype "+atype+" ptype "+ptype); 
 				if(atype.equals("NCP")){
-					return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=BlobWithOutCP.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
+					return new ModelAndView(new RedirectView("/birt-viewer/frameset?__report=BlobWithOutCP.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
 					}
 				else if(ptype.equals("C") && !atype.equals("NCP")){
-					return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=BlobWithCP.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
+					return new ModelAndView(new RedirectView("/birt-viewer/frameset?__report=BlobWithCP.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
 					}
 				else if(ptype.equals("S") && atype.equals("E") ){
-					return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=BlobWithOutCP.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
+					return new ModelAndView(new RedirectView("/birt-viewer/frameset?__report=BlobWithOutCP.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
 					}
 			}
         	}//treetype=4
@@ -292,7 +292,7 @@ public class ToolsController implements Controller {
 				}
         		logger.info("*** ampphase ** typ "+typ+" prodseriallist "+var+" maxDiff= "+maxDiff+" freq ="+freq);    
        		//type,prodserialids,maxamp,freq
-             return new ModelAndView(new RedirectView("/birt-verdant/frameset?__report=PhaseTracking.rptdesign&type="+typ+"&prodserialids="+var+"&maxamp="+maxDiff+"&freq="+maxFreq+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision)); 
+             return new ModelAndView(new RedirectView("/birt-viewer/frameset?__report=PhaseTracking.rptdesign&type="+typ+"&prodserialids="+var+"&maxamp="+maxDiff+"&freq="+maxFreq+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision)); 
 			        }
 			 else{
 		        	String msg="Please make a Selection from the Asset Tree on the left side";

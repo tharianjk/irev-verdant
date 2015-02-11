@@ -1746,28 +1746,38 @@ CLOSE C1;
 END$$
 DELIMITER ;
 
+
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetPolarPlot`(
+
+CREATE  PROCEDURE `spGetPolarPlot`(
 testid INT,
-freq decimal(40,20),
+freqparm decimal(40,20),
 typ varchar(5), -- H HP,V VP,B HP&VP,P Pitch,R Roll ,Y Yaw
 lg decimal(40,20)
 )
 BEGIN
+
 
 # 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
 	declare l_proc_id varchar(100) default 'spGetPolarPlot';
 
 # 2. declare variable to store debug flag
     declare isDebug INT default 0;
-
 DECLARE ampl decimal(40,20) default 0;
 DECLARE vampl decimal(40,20) default 0;
 declare lgampl decimal(40,20) default 0;
 declare strmaxvalue varchar(50);
 declare strminvalue varchar(50);
-
+declare prec int ;
 declare cnt int ;
+declare unt varchar(10);
+declare freq decimal(40,20);
+
 
 # 3. declare continue/exit handlers for logging SQL exceptions/errors :
 -- write handlers for specific known error codes which are likely to occur here    
@@ -1809,6 +1819,17 @@ if isDebug > 0 then
 	call debug(l_proc_id,'in spGetPolarPlot','I','I');
  end if;
 
+
+select nprecision into prec from fwk_company;
+
+select frequnit into unt from testdata where test_id=testid;
+
+set freq=freqparm;
+
+if unt='GHz' then
+set freq=freqparm*1000;
+end if;
+
 select count(*) into cnt from scaling s inner join product_serial ps on s.product_id=ps.product_id inner join testdata t on ps.prodserial_id=t.prodserial_id
 where t.test_id=testid and s.frequency=freq;
 if cnt > 0 then
@@ -1821,11 +1842,11 @@ if lg=0.0001 then
 		if typ='H' then
 if cnt=0 then
         select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM hdata HD 
-		where HD.Frequency=freq and HD.Test_id=testid;
+		where HD.Frequency= freq and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-        SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM hdata HD 
+        SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 
 		end if;
@@ -1836,7 +1857,7 @@ if cnt=0 then
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM vdata HD 
+		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency/1000,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 
 		end if;
@@ -1847,7 +1868,7 @@ if cnt=0 then
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM cpdata HD 
+		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency/1000,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='B' then
@@ -1857,8 +1878,9 @@ if cnt=0 then
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid ;
 end if;	
-        select test_id,frequency,angle,sum(hamplitude) hamplitude,sum(vamplitude) vamplitude,strmaxvalue,strminvalue 
-		from vw_polardata where Frequency=freq and Test_id=testid group by test_id,frequency,angle,strmaxvalue,strminvalue;
+        select test_id, concat(round(Frequency,prec),unt) frequency,angle,sum(hamplitude) hamplitude,sum(vamplitude) vamplitude,strmaxvalue,strminvalue 
+		from vw_polardata where Frequency  =freqparm and Test_id=testid 
+        group by test_id,frequency,angle,strmaxvalue,strminvalue;
 		end if;
 		if  typ='P' then
 if cnt=0 then
@@ -1867,7 +1889,7 @@ if cnt=0 then
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM pitchdata HD 
+		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency/1000,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='R' then
@@ -1877,7 +1899,7 @@ if cnt=0 then
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM rolldata HD 
+		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(HD.Frequency/1000,unt) else  concat(HD.Frequency,unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='Y' then 
@@ -1887,7 +1909,7 @@ if cnt=0 then
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM yawdata HD 
+		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then HD.Frequency/1000 else  HD.Frequency end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 end if;
@@ -1904,7 +1926,7 @@ if cnt=0 then
         SELECT HD.Amplitude-ampl+lg Amplitude FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
-		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM hdata HD 
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then HD.Frequency/1000 else  HD.Frequency end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='V' then
@@ -1919,7 +1941,7 @@ if cnt=0 then
         SELECT HD.Amplitude-ampl+lg Amplitude FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
-		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM vdata HD 
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency/1000,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
         if typ='C' then
@@ -1938,7 +1960,7 @@ if cnt=0 then
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
         
-		SELECT HD.Angle,HD.Amplitude-ampl+lgampl Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM cpdata HD 
+		SELECT HD.Angle,HD.Amplitude-ampl+lgampl Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency/1000,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM cpdata HD 
 		where HD.Frequency=testid and HD.Test_id=testid;
 		end if;
 		if typ='B' then
@@ -1967,8 +1989,8 @@ if cnt=0 then
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;*/
 
 
-		select test_id,frequency,angle,sum(hamplitude)-ampl+lg hamplitude,sum(vamplitude)-vampl+lg vamplitude,strmaxvalue,strminvalue 
-		from vw_polardata where Frequency=freq and Test_id=testid group by test_id,frequency,angle,strmaxvalue,strminvalue;
+		select test_id, concat(round(Frequency,prec),unt) Frequency,angle,sum(hamplitude)-ampl+lg hamplitude,sum(vamplitude)-vampl+lg vamplitude,strmaxvalue,strminvalue 
+		from vw_polardata where Frequency=freqparm and Test_id=testid group by test_id,frequency,angle,strmaxvalue,strminvalue;
 		end if;		
 
 		if  typ='P' then
@@ -1983,7 +2005,7 @@ if cnt=0 then
         SELECT HD.Amplitude-ampl+lg Amplitude FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
-		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM pitchdata HD 
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency/1000,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='R' then
@@ -1998,7 +2020,7 @@ if cnt=0 then
         SELECT HD.Amplitude-ampl+lg Amplitude FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
-		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM rolldata HD 
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency/1000,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='Y' then
@@ -2013,7 +2035,7 @@ if cnt=0 then
         SELECT HD.Amplitude-ampl+lg Amplitude FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
-		 SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM yawdata HD 
+		 SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency/1000,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 
@@ -2021,17 +2043,23 @@ end if;
 
 
 
-END$$
+END $$
+
 DELIMITER ;
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
 DELIMITER $$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetPolarSummary`(
 testid INT,
-freq decimal(40,10),
+freqparm decimal(40,10),
 typ varchar(5) -- H HP,V VP,B HP&VP,P Pitch,R Roll ,Y Yaw
 
 )
 BEGIn
-
 # 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
 	declare l_proc_id varchar(100) default 'spGetPolarSummary';
 
@@ -2039,7 +2067,8 @@ BEGIn
     declare isDebug INT default 0;
 
 declare prec int;
-
+declare unt varchar(10);
+declare freq decimal(40,20);
 # 3. declare continue/exit handlers for logging SQL exceptions/errors :
 -- write handlers for specific known error codes which are likely to occur here    
 -- eg : DECLARE CONTINUE HANDLER FOR 1062
@@ -2082,7 +2111,15 @@ if isDebug > 0 then
  end if;
 
 set prec=1;
+
 select nprecision into prec from fwk_company where company_id=1;
+select frequnit into unt from testdata where test_id=testid;
+
+set freq=freqparm;
+
+if unt='GHz' then
+set freq=freqparm*1000;
+end if;
 
 if typ='C' then
 select round(sum(3Db_BW_BMax),prec) 3Db_BW_BMax,round(sum(3Db_BS_BMax),prec) 3Db_BS_BMax,round(sum(10Db_BW_BMax),prec) 10Db_BW_BMax,round(sum(10Db_BS_BMax),prec) 10Db_BS_BMax,round(sum(BackLobe),prec) BackLobe,round(sum(CPGain),prec) CPGain,round(sum(AR_0),prec) AR_0 ,round(sum(OmniDeviation),prec) OmniDeviation from (
@@ -2128,7 +2165,9 @@ group by ptype;
 end if;	
         
 END$$
-DELIMITER ;
+DELIMITER;
+
+
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` FUNCTION `calc_AxialRatio`(
 atest_id INT, freq decimal(40,20), degree INT
