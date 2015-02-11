@@ -24,48 +24,7 @@ DROP procedure IF EXISTS `debug`;
 
 
 DELIMITER $$
-
-CREATE PROCEDURE `debug`(
-p_proc_id varchar(100), -- procedure name
-p_debug_info text, -- debug msg
-msgtype char(1), -- ‘I’ : INFO, ‘E’ : ERROR, ‘F’ : FATAL
-p_operation char(1) -- 'I' : insert, 'D' : delete, 'V' : View
-)
-BEGIN
-declare m_type varchar(5);
-
-if p_operation = 'I' then  -- insert into debug
-	
-    	select case when msgtype ='E' then 'ERROR' when msgtype ='F' then 'FATAL'
-				when msgtype ='I' then 'INFO' end 
-	into m_type;
-
-		insert into debug (proc_id,message,msg_type,timestamp)
-		values (p_proc_id,p_debug_info,m_type,now());
-        
-elseif p_operation = 'D' then  -- delete all entries
-	
-    delete from debug;
-
-elseif p_operation = 'V' then  -- View all entries
-
-	select timestamp as 'Timestamp', proc_id as 'Procedure Name', msg_type as 'Message Type', message as 'Message'
-    from debug
-    order by line_id desc;
-
-end if;
-
-
-END$$
-
-DELIMITER ;
-
-
-
-
-DELIMITER $$
-
-CREATE  PROCEDURE `calc_CP`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `calc_CP`(
 cpTestId INT,
 cpFreq decimal(40,20),
 cpTestDate datetime,
@@ -82,6 +41,28 @@ BEGIN
 
 # 2. declare variable to store debug flag
     declare isDebug INT default 0;
+
+# change to include HP VP calculations for CP with conversion - begin
+
+DECLARE _3dB_BW_HP_BM,_3dB_BW_HP_0,_3dB_BW_HP_90 decimal(40,20);
+DECLARE _10dB_BW_HP_BM, _10dB_BW_HP_0,_10dB_BW_HP_90 decimal(40,20);
+
+DECLARE _3dB_BS_HP_BM,_3dB_BS_HP_0,_3dB_BS_HP_90 decimal(40,20);
+DECLARE _10dB_BS_HP_BM, _10dB_BS_HP_0,_10dB_BS_HP_90 decimal(40,20);
+
+DECLARE backlobe_HP decimal(40,20);
+
+DECLARE _3dB_BW_VP_BM,_3dB_BW_VP_0,_3dB_BW_VP_90 decimal(40,20);
+DECLARE _10dB_BW_VP_BM, _10dB_BW_VP_0,_10dB_BW_VP_90 decimal(40,20);
+
+DECLARE _3dB_BS_VP_BM,_3dB_BS_VP_0,_3dB_BS_VP_90 decimal(40,20);
+DECLARE _10dB_BS_VP_BM, _10dB_BS_VP_0,_10dB_BS_VP_90 decimal(40,20);
+
+DECLARE backlobe_VP decimal(40,20);
+
+# change to include HP VP calculations for CP with conversion - end
+
+
     
 DECLARE _3dB_BW_CP_BM,_3dB_BW_CP_0,_3dB_BW_CP_90 decimal(40,20);
 DECLARE _10dB_BW_CP_BM, _10dB_BW_CP_0,_10dB_BW_CP_90 decimal(40,20);
@@ -150,6 +131,139 @@ if cpType = 'CP' then
     select count(*) into hDataPresent from hdata where test_id = cpTestId and Frequency = cpFreq;
 	select count(*) into vDataPresent from vdata where test_id = cpTestId and Frequency = cpFreq;
 	
+    # change to include HP and VP calculations for CP with conversion - begin
+    if hDataPresent > 0 then
+	
+    if isDebug > 0 then
+				SET @infoText = "hp data is present";
+				call debug(l_proc_id,@infoText,'I','I');
+	end if;
+    -- calculate 3 db and 10 db BW & BS
+    
+    if isDebug > 0 then
+				SET @infoText = "invoking 3 dB BW and BS calculations for HP data...";
+				call debug(l_proc_id,@infoText,'I','I');
+	end if;
+			 -- Calculate 3dB Beam Width, Beam Squint for hp data for Beam Max and store
+		    call calc_XdB_BW_BS(cpTestId,cpFreq,3,'HP','BM',_3dB_BW_HP_BM,_3dB_BS_HP_BM );
+           
+		   -- Calculate 3dB Beam Width, Beam Squint for hp data for 0 degree and store
+		   call calc_XdB_BW_BS(cpTestId,cpFreq,3,'HP','0',_3dB_BW_HP_0,_3dB_BS_HP_0 );
+           
+		   -- Calculate 3dB Beam Width, Beam Squint for pitch data for 90 degree
+		    call calc_XdB_BW_BS(cpTestId,cpFreq,3,'HP','90', _3dB_BW_HP_90, _3dB_BS_HP_90);
+           
+		 if isDebug > 0 then
+				SET @infoText = "invoking 10 dB BW and BS calculations for HP data...";
+				call debug(l_proc_id,@infoText,'I','I');
+		end if;       
+		   -- Calculate 10dB Beam Width, Beam Squint for pitch data for Beam Max
+		    call calc_XdB_BW_BS(cpTestId,cpFreq,10,'HP','BM', _10dB_BW_HP_BM, _10dB_BS_HP_BM);
+            
+		   -- Calculate 10dB Beam Width, Beam Squint for pitch data for 0 degree
+		    call calc_XdB_BW_BS(cpTestId,cpFreq,10,'HP','0', _10dB_BW_HP_0, _10dB_BS_HP_0);
+            
+		   -- Calculate 10dB Beam Width, Beam Squint for Pitch data for 90 degree
+		     call calc_XdB_BW_BS(cpTestId,cpFreq,10,'HP','90', _10dB_BW_HP_90, _10dB_BS_HP_90);
+           
+           if isDebug > 0 then
+				SET @infoText = "invoking Backlobe calculations ...";
+				call debug(l_proc_id,@infoText,'I','I');
+		end if;
+		  -- Calculate Back Lobe for HP data
+			  select calc_Backlobe(cpTestId,cpFreq,'HP') into backlobe_HP;
+		           
+            
+		-- insert into pitchCalculated table
+             delete from hcalculated where Test_id =cpTestId and Frequency = cpFreq;
+			 insert into hcalculated(Test_id,Frequency,TestDate
+								,3Db_BW_BMax,3Db_BW_0,3Db_BW_90
+                                ,10Db_BW_BMax,10Db_BW_0,10Db_BW_90
+                                ,3Db_BS_BMax,3Db_BS_0,3Db_BS_90
+                                ,10Db_BS_BMax,10Db_BS_0,10Db_BS_90
+                                ,BackLobe)
+		   select cpTestId,cpFreq,cpTestDate,
+				_3dB_BW_HP_BM,_3dB_BW_HP_0,_3dB_BW_HP_90,
+				_10dB_BW_HP_BM,_10dB_BW_HP_0,_10dB_BW_HP_90,
+                _3dB_BS_HP_BM,_3dB_BS_HP_0,_3dB_BS_HP_90,
+				_10dB_BS_HP_BM,_10dB_BS_HP_0,_10dB_BS_HP_90,
+                backlobe_HP;
+                
+		if isDebug > 0 then
+				SET @infoText = "Calculated data saved successfully into hCalculated";
+				call debug(l_proc_id,@infoText,'I','I');
+		end if;
+
+	end if;
+    
+    
+	if vDataPresent > 0 then
+	
+    if isDebug > 0 then
+				SET @infoText = "vp data is present";
+				call debug(l_proc_id,@infoText,'I','I');
+	end if;
+    -- calculate 3 db and 10 db BW & BS
+    
+    if isDebug > 0 then
+				SET @infoText = "invoking 3 dB BW and BS calculations for VP data...";
+				call debug(l_proc_id,@infoText,'I','I');
+	end if;
+			 -- Calculate 3dB Beam Width, Beam Squint for hp data for Beam Max and store
+		    call calc_XdB_BW_BS(cpTestId,cpFreq,3,'VP','BM',_3dB_BW_VP_BM,_3dB_BS_VP_BM );
+           
+		   -- Calculate 3dB Beam Width, Beam Squint for hp data for 0 degree and store
+		   call calc_XdB_BW_BS(cpTestId,cpFreq,3,'VP','0',_3dB_BW_VP_0,_3dB_BS_VP_0 );
+           
+		   -- Calculate 3dB Beam Width, Beam Squint for pitch data for 90 degree
+		    call calc_XdB_BW_BS(cpTestId,cpFreq,3,'VP','90', _3dB_BW_VP_90, _3dB_BS_VP_90);
+           
+		 if isDebug > 0 then
+				SET @infoText = "invoking 10 dB BW and BS calculations for VP data...";
+				call debug(l_proc_id,@infoText,'I','I');
+		end if;       
+		   -- Calculate 10dB Beam Width, Beam Squint for pitch data for Beam Max
+		    call calc_XdB_BW_BS(cpTestId,cpFreq,10,'VP','BM', _10dB_BW_VP_BM, _10dB_BS_VP_BM);
+            
+		   -- Calculate 10dB Beam Width, Beam Squint for pitch data for 0 degree
+		    call calc_XdB_BW_BS(cpTestId,cpFreq,10,'VP','0', _10dB_BW_VP_0, _10dB_BS_VP_0);
+            
+		   -- Calculate 10dB Beam Width, Beam Squint for Pitch data for 90 degree
+		     call calc_XdB_BW_BS(cpTestId,cpFreq,10,'VP','90', _10dB_BW_VP_90, _10dB_BS_VP_90);
+           
+           if isDebug > 0 then
+				SET @infoText = "invoking Backlobe calculations ...";
+				call debug(l_proc_id,@infoText,'I','I');
+		end if;
+		  -- Calculate Back Lobe for HP data
+			  select calc_Backlobe(cpTestId,cpFreq,'VP') into backlobe_VP;
+		           
+            
+		-- insert into pitchCalculated table
+             delete from vcalculated where Test_id =cpTestId and Frequency = cpFreq;
+			 insert into vcalculated(Test_id,Frequency,TestDate
+								,3Db_BW_BMax,3Db_BW_0,3Db_BW_90
+                                ,10Db_BW_BMax,10Db_BW_0,10Db_BW_90
+                                ,3Db_BS_BMax,3Db_BS_0,3Db_BS_90
+                                ,10Db_BS_BMax,10Db_BS_0,10Db_BS_90
+                                ,BackLobe)
+		   select cpTestId,cpFreq,cpTestDate,
+				_3dB_BW_VP_BM,_3dB_BW_VP_0,_3dB_BW_VP_90,
+				_10dB_BW_VP_BM,_10dB_BW_VP_0,_10dB_BW_VP_90,
+                _3dB_BS_VP_BM,_3dB_BS_VP_0,_3dB_BS_VP_90,
+				_10dB_BS_VP_BM,_10dB_BS_VP_0,_10dB_BS_VP_90,
+                backlobe_VP;
+                
+		if isDebug > 0 then
+				SET @infoText = "Calculated data saved successfully into vCalculated";
+				call debug(l_proc_id,@infoText,'I','I');
+		end if;
+
+	end if;
+    # change to include HP and VP calculations for CP with conversion - end
+    
+    
+    
     if hDataPresent > 0 and vDataPresent > 0 then
 		-- convert HP,VP to CP data
         if isDebug > 0 then
@@ -273,11 +387,9 @@ if cpDataPresent > 0 then
 
 end if;	
 END$$
-
 DELIMITER ;
-
 DELIMITER $$
-CREATE  PROCEDURE `calc_Linear_Azimuth`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `calc_Linear_Azimuth`(
 laTestId INT,
 laFreq decimal(40,20),
 laTestDate datetime
@@ -366,9 +478,8 @@ end if;
 
 END$$
 DELIMITER ;
-
 DELIMITER $$
-CREATE  PROCEDURE `calc_Linear_Elevation`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `calc_Linear_Elevation`(
 leTestId INT,
 leFreq decimal(40,20),
 leTestDate datetime
@@ -550,9 +661,8 @@ end if;
 
 END$$
 DELIMITER ;
-
 DELIMITER $$
-CREATE  PROCEDURE `calc_MaxDiffAxialRatio`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `calc_MaxDiffAxialRatio`(
 mdtest_id INT, freq decimal(40,20), P_or_M char(1),
 OUT MaxdiffRatio decimal(40,20), 
 OUT MaxdiffAngle decimal(40,20)
@@ -759,9 +869,8 @@ end if;
 
 END$$
 DELIMITER ;
-
 DELIMITER $$
-CREATE  PROCEDURE `calc_Slant_Elevation`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `calc_Slant_Elevation`(
 seTestId INT,
 seFreq decimal(40,20),
 seTestDate datetime
@@ -1011,9 +1120,8 @@ if hDataPresent > 0 and vDataPresent > 0 then
 end if;
 END$$
 DELIMITER ;
-
 DELIMITER $$
-CREATE  PROCEDURE `calc_tracking`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `calc_tracking`(
 myProdSerialList varchar(200), -- eg: "1,2,3,4"
 amp_or_phase char(1), -- 'A' = amp, 'P' = phase
 out maxDiff decimal(40,20),
@@ -1274,9 +1382,8 @@ set beam_squint = (C-E)/2;
 
 END$$
 DELIMITER ;
-
 DELIMITER $$
-CREATE  PROCEDURE `Calculate_params`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Calculate_params`(
 myTestId INT,
 -- myFreqUnit char(1), -- 'M' = MHz, 'G' = GHz
 myPoltype char(2) -- 'L'=linear, 'C'= circular
@@ -1447,9 +1554,8 @@ if isDebug > 0 then
  
 END$$
 DELIMITER ;
-
 DELIMITER $$
-CREATE  PROCEDURE `convert_to_CP`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `convert_to_CP`(
 ctest_id INT, freq decimal(40,20)
 )
 BEGIN
@@ -1519,9 +1625,42 @@ where test_id = ctest_id and frequency = freq;
 
 END$$
 DELIMITER ;
-
 DELIMITER $$
-CREATE  PROCEDURE `spCalCPGain`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `debug`(
+p_proc_id varchar(100), -- procedure name
+p_debug_info text, -- debug msg
+msgtype char(1), -- ‘I’ : INFO, ‘E’ : ERROR, ‘F’ : FATAL
+p_operation char(1) -- 'I' : insert, 'D' : delete, 'V' : View
+)
+BEGIN
+declare m_type varchar(5);
+
+if p_operation = 'I' then  -- insert into debug
+	
+    	select case when msgtype ='E' then 'ERROR' when msgtype ='F' then 'FATAL'
+				when msgtype ='I' then 'INFO' end 
+	into m_type;
+
+		insert into debug (proc_id,message,msg_type,timestamp)
+		values (p_proc_id,p_debug_info,m_type,now());
+        
+elseif p_operation = 'D' then  -- delete all entries
+	
+    delete from debug;
+
+elseif p_operation = 'V' then  -- View all entries
+
+	select timestamp as 'Timestamp', proc_id as 'Procedure Name', msg_type as 'Message Type', message as 'Message'
+    from debug
+    order by line_id desc;
+
+end if;
+
+
+END$$
+DELIMITER ;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spCalCPGain`(
 testid INT
 )
 BEGIN
@@ -1607,24 +1746,21 @@ CLOSE C1;
 END$$
 DELIMITER ;
 
-
 DELIMITER $$
-
-
-CREATE  PROCEDURE `spGetPolarPlot`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetPolarPlot`(
 testid INT,
-freqparm decimal(40,20),
+freq decimal(40,20),
 typ varchar(5), -- H HP,V VP,B HP&VP,P Pitch,R Roll ,Y Yaw
 lg decimal(40,20)
 )
 BEGIN
-
 
 # 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
 	declare l_proc_id varchar(100) default 'spGetPolarPlot';
 
 # 2. declare variable to store debug flag
     declare isDebug INT default 0;
+
 DECLARE ampl decimal(40,20) default 0;
 DECLARE vampl decimal(40,20) default 0;
 declare lgampl decimal(40,20) default 0;
@@ -1632,9 +1768,6 @@ declare strmaxvalue varchar(50);
 declare strminvalue varchar(50);
 
 declare cnt int ;
-declare unt varchar(10);
-declare freq decimal(40,20);
-
 
 # 3. declare continue/exit handlers for logging SQL exceptions/errors :
 -- write handlers for specific known error codes which are likely to occur here    
@@ -1676,17 +1809,6 @@ if isDebug > 0 then
 	call debug(l_proc_id,'in spGetPolarPlot','I','I');
  end if;
 
-
-
-
-select frequnit into unt from testdata where test_id=testid;
-
-set freq=freqparm;
-
-if unt='GHz' then
-set freq=freqparm*1000;
-end if;
-
 select count(*) into cnt from scaling s inner join product_serial ps on s.product_id=ps.product_id inner join testdata t on ps.prodserial_id=t.prodserial_id
 where t.test_id=testid and s.frequency=freq;
 if cnt > 0 then
@@ -1699,11 +1821,11 @@ if lg=0.0001 then
 		if typ='H' then
 if cnt=0 then
         select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM hdata HD 
-		where HD.Frequency= freq and HD.Test_id=testid;
+		where HD.Frequency=freq and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-        SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then HD.Frequency/1000 else  HD.Frequency end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM hdata HD 
+        SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 
 		end if;
@@ -1714,7 +1836,7 @@ if cnt=0 then
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then HD.Frequency/1000 else  HD.Frequency end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM vdata HD 
+		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 
 		end if;
@@ -1725,7 +1847,7 @@ if cnt=0 then
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then HD.Frequency/1000 else  HD.Frequency end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM cpdata HD 
+		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='B' then
@@ -1735,9 +1857,8 @@ if cnt=0 then
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid ;
 end if;	
-        select test_id, Frequency,angle,sum(hamplitude) hamplitude,sum(vamplitude) vamplitude,strmaxvalue,strminvalue 
-		from vw_polardata where Frequency  =freqparm and Test_id=testid 
-        group by test_id,frequency,angle,strmaxvalue,strminvalue;
+        select test_id,frequency,angle,sum(hamplitude) hamplitude,sum(vamplitude) vamplitude,strmaxvalue,strminvalue 
+		from vw_polardata where Frequency=freq and Test_id=testid group by test_id,frequency,angle,strmaxvalue,strminvalue;
 		end if;
 		if  typ='P' then
 if cnt=0 then
@@ -1746,7 +1867,7 @@ if cnt=0 then
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then HD.Frequency/1000 else  HD.Frequency end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM pitchdata HD 
+		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='R' then
@@ -1756,7 +1877,7 @@ if cnt=0 then
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then HD.Frequency/1000 else  HD.Frequency end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM rolldata HD 
+		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='Y' then 
@@ -1766,7 +1887,7 @@ if cnt=0 then
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then HD.Frequency/1000 else  HD.Frequency end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM yawdata HD 
+		SELECT HD.Angle,HD.Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 end if;
@@ -1783,7 +1904,7 @@ if cnt=0 then
         SELECT HD.Amplitude-ampl+lg Amplitude FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
-		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then HD.Frequency/1000 else  HD.Frequency end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM hdata HD 
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='V' then
@@ -1798,7 +1919,7 @@ if cnt=0 then
         SELECT HD.Amplitude-ampl+lg Amplitude FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
-		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then HD.Frequency/1000 else  HD.Frequency end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM vdata HD 
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
         if typ='C' then
@@ -1817,7 +1938,7 @@ if cnt=0 then
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
         
-		SELECT HD.Angle,HD.Amplitude-ampl+lgampl Amplitude,case unt when 'GHz' then HD.Frequency/1000 else  HD.Frequency end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM cpdata HD 
+		SELECT HD.Angle,HD.Amplitude-ampl+lgampl Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM cpdata HD 
 		where HD.Frequency=testid and HD.Test_id=testid;
 		end if;
 		if typ='B' then
@@ -1846,8 +1967,8 @@ if cnt=0 then
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;*/
 
 
-		select test_id, Frequency,angle,sum(hamplitude)-ampl+lg hamplitude,sum(vamplitude)-vampl+lg vamplitude,strmaxvalue,strminvalue 
-		from vw_polardata where Frequency=freqparm and Test_id=testid group by test_id,frequency,angle,strmaxvalue,strminvalue;
+		select test_id,frequency,angle,sum(hamplitude)-ampl+lg hamplitude,sum(vamplitude)-vampl+lg vamplitude,strmaxvalue,strminvalue 
+		from vw_polardata where Frequency=freq and Test_id=testid group by test_id,frequency,angle,strmaxvalue,strminvalue;
 		end if;		
 
 		if  typ='P' then
@@ -1862,7 +1983,7 @@ if cnt=0 then
         SELECT HD.Amplitude-ampl+lg Amplitude FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
-		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then HD.Frequency/1000 else  HD.Frequency end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM pitchdata HD 
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='R' then
@@ -1877,7 +1998,7 @@ if cnt=0 then
         SELECT HD.Amplitude-ampl+lg Amplitude FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
-		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then HD.Frequency/1000 else  HD.Frequency end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM rolldata HD 
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='Y' then
@@ -1892,7 +2013,7 @@ if cnt=0 then
         SELECT HD.Amplitude-ampl+lg Amplitude FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
-		 SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then HD.Frequency/1000 else  HD.Frequency end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM yawdata HD 
+		 SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,HD.Frequency,HD.Test_id,strmaxvalue,strminvalue FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 
@@ -1900,21 +2021,17 @@ end if;
 
 
 
-END $$
-
-
+END$$
 DELIMITER ;
-
-
 DELIMITER $$
-
-CREATE  PROCEDURE `spGetPolarSummary`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetPolarSummary`(
 testid INT,
-freqparm decimal(40,10),
+freq decimal(40,10),
 typ varchar(5) -- H HP,V VP,B HP&VP,P Pitch,R Roll ,Y Yaw
 
 )
 BEGIn
+
 # 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
 	declare l_proc_id varchar(100) default 'spGetPolarSummary';
 
@@ -1922,8 +2039,7 @@ BEGIn
     declare isDebug INT default 0;
 
 declare prec int;
-declare unt varchar(10);
-declare freq decimal(40,20);
+
 # 3. declare continue/exit handlers for logging SQL exceptions/errors :
 -- write handlers for specific known error codes which are likely to occur here    
 -- eg : DECLARE CONTINUE HANDLER FOR 1062
@@ -1966,15 +2082,7 @@ if isDebug > 0 then
  end if;
 
 set prec=1;
-
 select nprecision into prec from fwk_company where company_id=1;
-select frequnit into unt from testdata where test_id=testid;
-
-set freq=freqparm;
-
-if unt='GHz' then
-set freq=freqparm*1000;
-end if;
 
 if typ='C' then
 select round(sum(3Db_BW_BMax),prec) 3Db_BW_BMax,round(sum(3Db_BS_BMax),prec) 3Db_BS_BMax,round(sum(10Db_BW_BMax),prec) 10Db_BW_BMax,round(sum(10Db_BS_BMax),prec) 10Db_BS_BMax,round(sum(BackLobe),prec) BackLobe,round(sum(CPGain),prec) CPGain,round(sum(AR_0),prec) AR_0 ,round(sum(OmniDeviation),prec) OmniDeviation from (
@@ -2019,15 +2127,10 @@ union select 'VP' ptype,0 3Db_BW_BMax,0 3Db_BS_BMax, 0 10Db_BW_BMax,0 10Db_BS_BM
 group by ptype;
 end if;	
         
-END $$
-
+END$$
 DELIMITER ;
-
--- -------------------FUNCTIONS ----------------------------------------
-
-
 DELIMITER $$
-CREATE FUNCTION `calc_AxialRatio`(
+CREATE DEFINER=`root`@`localhost` FUNCTION `calc_AxialRatio`(
 atest_id INT, freq decimal(40,20), degree INT
 ) RETURNS decimal(40,20)
 BEGIN
@@ -2051,11 +2154,8 @@ from axialratio_view
 RETURN AR;
 END$$
 DELIMITER ;
-
-
-
 DELIMITER $$
-CREATE FUNCTION `calc_backlobe`(
+CREATE DEFINER=`root`@`localhost` FUNCTION `calc_backlobe`(
 bTestId INT, bFreq decimal(40,20), bPolType char(2)
 ) RETURNS decimal(40,20)
 BEGIN
@@ -2098,11 +2198,8 @@ RETURN backlobe;
 
 END$$
 DELIMITER ;
-
-
-
 DELIMITER $$
-CREATE FUNCTION `calc_cpdata`(
+CREATE DEFINER=`root`@`localhost` FUNCTION `calc_cpdata`(
 cTestId INT, freq decimal(40,20), cAngle decimal(40,20)
 ) RETURNS decimal(40,20)
 BEGIN
@@ -2140,11 +2237,8 @@ end if;
 RETURN cpdata;
 END$$
 DELIMITER ;
-
-
-
 DELIMITER $$
-CREATE FUNCTION `calc_cpgain`(
+CREATE DEFINER=`root`@`localhost` FUNCTION `calc_cpgain`(
 testId_c INT, freq decimal(40,20), linearGain decimal(40,20)
 ) RETURNS decimal(40,20)
 BEGIN
@@ -2173,11 +2267,8 @@ set cpgain = linearGain+E;
 RETURN cpgain;
 END$$
 DELIMITER ;
-
-
-
 DELIMITER $$
-CREATE FUNCTION `calc_omni`(
+CREATE DEFINER=`root`@`localhost` FUNCTION `calc_omni`(
 oTestId INT, freq decimal(40,20), opolType char(2)
 ) RETURNS decimal(40,20)
 BEGIN
@@ -2198,9 +2289,6 @@ else -- polType = 'VP'
 end if;
 
 RETURN omni_dev;
-
 END$$
 DELIMITER ;
-
-
 
