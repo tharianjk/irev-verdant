@@ -1754,7 +1754,15 @@ DELIMITER ;
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE  PROCEDURE `spGetPolarPlot`(
+drop procedure if exists spGetPolarPlot;
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetPolarPlot`(
 testid INT,
 freqparm decimal(40,20),
 typ varchar(5), -- H HP,V VP,B HP&VP,P Pitch,R Roll ,Y Yaw
@@ -1857,7 +1865,7 @@ if cnt=0 then
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency/1000,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM vdata HD 
+		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 
 		end if;
@@ -1868,7 +1876,7 @@ if cnt=0 then
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency/1000,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM cpdata HD 
+		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='B' then
@@ -1889,7 +1897,7 @@ if cnt=0 then
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency/1000,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM pitchdata HD 
+		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='R' then
@@ -1899,7 +1907,7 @@ if cnt=0 then
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(HD.Frequency/1000,unt) else  concat(HD.Frequency,unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM rolldata HD 
+		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='Y' then 
@@ -1909,7 +1917,7 @@ if cnt=0 then
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then HD.Frequency/1000 else  HD.Frequency end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM yawdata HD 
+		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 end if;
@@ -1926,7 +1934,7 @@ if cnt=0 then
         SELECT HD.Amplitude-ampl+lg Amplitude FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
-		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then HD.Frequency/1000 else  HD.Frequency end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM hdata HD 
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='V' then
@@ -1941,7 +1949,7 @@ if cnt=0 then
         SELECT HD.Amplitude-ampl+lg Amplitude FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
-		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency/1000,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM vdata HD 
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
         if typ='C' then
@@ -1960,7 +1968,7 @@ if cnt=0 then
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
         
-		SELECT HD.Angle,HD.Amplitude-ampl+lgampl Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency/1000,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM cpdata HD 
+		SELECT HD.Angle,HD.Amplitude-ampl+lgampl Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM cpdata HD 
 		where HD.Frequency=testid and HD.Test_id=testid;
 		end if;
 		if typ='B' then
@@ -2005,7 +2013,7 @@ if cnt=0 then
         SELECT HD.Amplitude-ampl+lg Amplitude FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
-		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency/1000,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM pitchdata HD 
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='R' then
@@ -2020,7 +2028,7 @@ if cnt=0 then
         SELECT HD.Amplitude-ampl+lg Amplitude FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
-		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency/1000,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM rolldata HD 
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='Y' then
@@ -2035,7 +2043,7 @@ if cnt=0 then
         SELECT HD.Amplitude-ampl+lg Amplitude FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
-		 SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency/1000,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM yawdata HD 
+		 SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 
@@ -2043,8 +2051,7 @@ end if;
 
 
 
-END $$
-
+END$$
 DELIMITER ;
 
 -- --------------------------------------------------------------------------------
