@@ -420,7 +420,7 @@ $(document).ready( function () {
 			 }		 
 		}
 	 else{
-		 
+		 document.getElementById("checkdel").disabled = true;
 		 document.getElementById("more").style.visibility="visible";
 		 document.getElementById("done").style.visibility="visible";
 		 document.getElementById("save").style.visibility="hidden";
