@@ -9397,8 +9397,10 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
             </page-header>
             <page-footer>
                 <grid id="1266">
-                    <property name="borderTopStyle">solid</property>
-                    <property name="borderTopWidth">thin</property>
+                    <property name="borderBottomStyle">none</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
                     <property name="canShrink">false</property>
                     <column id="1267"/>
                     <row id="1268">
@@ -16542,7 +16544,7 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 &#xD;
 icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
- 			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+ 			icsc.getChartInstance().getBlock().getBounds().setHeight(450);&#xD;
 }&#xD;
 &#xD;
 /**&#xD;
@@ -18614,7 +18616,7 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 &#xD;
 icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
- 			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+ 			icsc.getChartInstance().getBlock().getBounds().setHeight(450);&#xD;
 }&#xD;
 &#xD;
 /**&#xD;
@@ -20678,7 +20680,7 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 &#xD;
 icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
- 			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+ 			icsc.getChartInstance().getBlock().getBounds().setHeight(450);&#xD;
 }&#xD;
 &#xD;
 /**&#xD;
@@ -22742,7 +22744,7 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 &#xD;
 icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
- 			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+ 			icsc.getChartInstance().getBlock().getBounds().setHeight(450);&#xD;
 }&#xD;
 &#xD;
 /**&#xD;
@@ -24807,7 +24809,7 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 &#xD;
 icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
- 			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+ 			icsc.getChartInstance().getBlock().getBounds().setHeight(450);&#xD;
 }&#xD;
 &#xD;
 /**&#xD;
@@ -26871,7 +26873,7 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 &#xD;
 icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
- 			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+ 			icsc.getChartInstance().getBlock().getBounds().setHeight(450);&#xD;
 }&#xD;
 &#xD;
 /**&#xD;
@@ -28935,7 +28937,7 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 &#xD;
 icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
- 			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+ 			icsc.getChartInstance().getBlock().getBounds().setHeight(450);&#xD;
 }&#xD;
 &#xD;
 /**&#xD;
@@ -30999,7 +31001,7 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 &#xD;
 icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
- 			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+ 			icsc.getChartInstance().getBlock().getBounds().setHeight(450);&#xD;
 }&#xD;
 &#xD;
 /**&#xD;
@@ -33063,7 +33065,7 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 &#xD;
 icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
- 			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+ 			icsc.getChartInstance().getBlock().getBounds().setHeight(450);&#xD;
 }&#xD;
 &#xD;
 /**&#xD;
@@ -35127,7 +35129,7 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 &#xD;
 icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
- 			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+ 			icsc.getChartInstance().getBlock().getBounds().setHeight(450);&#xD;
 }&#xD;
 &#xD;
 /**&#xD;

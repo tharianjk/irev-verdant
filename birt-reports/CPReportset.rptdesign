@@ -23,7 +23,7 @@
     <property name="imageDPI">96</property>
     <parameters>
         <scalar-parameter name="testid" id="1017">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -37,7 +37,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq1" id="1006">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -51,7 +51,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq2" id="1182">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -64,7 +64,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq3" id="1262">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -78,7 +78,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq4" id="1264">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -92,7 +92,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq5" id="1265">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -106,7 +106,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="AxDeg" id="1434">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -118,7 +118,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="10dbDeg" id="1529">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -130,7 +130,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="3dbDeg" id="1631">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -142,7 +142,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="axr" id="1838">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -154,7 +154,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="3db" id="1839">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -166,7 +166,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="10db" id="1840">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -178,7 +178,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="blobe" id="1841">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -190,7 +190,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="cpg" id="1842">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -202,7 +202,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="polar" id="1843">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -214,7 +214,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq6" id="1844">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -228,7 +228,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq7" id="1847">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -242,7 +242,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq8" id="1848">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -256,7 +256,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq9" id="1849">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -270,7 +270,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="freq10" id="1850">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -284,7 +284,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="img" id="2327">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -296,7 +296,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rpth" id="2381">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -308,7 +308,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rptf" id="2382">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -320,7 +320,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="lg1" id="2654">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">decimal</property>
             <property name="distinct">true</property>
@@ -332,7 +332,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="type" id="2655">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -344,7 +344,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="scale" id="2664">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -356,7 +356,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="lg2" id="2665">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -370,7 +370,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="lg3" id="2666">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -384,7 +384,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="lg4" id="2667">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -398,7 +398,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="lg5" id="2668">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -412,7 +412,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="lg6" id="2669">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -426,7 +426,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="lg7" id="2670">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -440,7 +440,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="lg8" id="2671">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -454,7 +454,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="lg9" id="2672">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -468,7 +468,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="lg10" id="2673">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">decimal</property>
@@ -482,7 +482,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="pc" id="4873">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">integer</property>
@@ -9564,8 +9564,8 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
-            <property name="leftMargin">0in</property>
-            <property name="rightMargin">0in</property>
+            <property name="leftMargin">0.20833333333333334in</property>
+            <property name="rightMargin">0.23958333333333334in</property>
             <page-header>
                 <text-data id="2383">
                     <property name="style">NewStyle</property>
@@ -9582,8 +9582,10 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
             <page-footer>
                 <grid id="2384">
                     <property name="backgroundColor">white</property>
-                    <property name="borderTopStyle">solid</property>
-                    <property name="borderTopWidth">thin</property>
+                    <property name="borderBottomStyle">none</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
                     <property name="canShrink">false</property>
                     <column id="2385"/>
                     <row id="2386">
@@ -15373,7 +15375,7 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 &#xD;
 			icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
- 			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+ 			icsc.getChartInstance().getBlock().getBounds().setHeight(450);&#xD;
 }&#xD;
 &#xD;
 &#xD;
@@ -16130,6 +16132,7 @@ else&#xD;
         </extended-item>
         <grid id="3951">
             <property name="canShrink">true</property>
+            <property name="width">9.3125in</property>
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
@@ -16140,6 +16143,7 @@ else&#xD;
             <row id="3953">
                 <cell id="3954">
                     <table id="4041">
+                        <property name="width">9.239583333333334in</property>
                         <property name="dataSet">PolarGrid1</property>
                         <list-property name="boundDataColumns">
                             <structure>
@@ -16192,7 +16196,9 @@ else&#xD;
                         <column id="4069"/>
                         <column id="4070"/>
                         <column id="4071"/>
-                        <column id="4072"/>
+                        <column id="4072">
+                            <property name="width">0.6458333333333334in</property>
+                        </column>
                         <header>
                             <row id="4042">
                                 <cell id="4582"/>
@@ -16310,18 +16316,6 @@ row["GridHPVPTYPE"]='VP'&#13;
                                 </cell>
                             </row>
                         </detail>
-                        <footer>
-                            <row id="4058">
-                                <cell id="4584"/>
-                                <cell id="4059"/>
-                                <cell id="4060"/>
-                                <cell id="4061"/>
-                                <cell id="4062"/>
-                                <cell id="4063"/>
-                                <cell id="4064"/>
-                                <cell id="4065"/>
-                            </row>
-                        </footer>
                     </table>
                 </cell>
             </row>
@@ -17008,7 +17002,7 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 &#xD;
 			icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
- 			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+ 			icsc.getChartInstance().getBlock().getBounds().setHeight(450);&#xD;
 }&#xD;
 &#xD;
 &#xD;
@@ -18643,7 +18637,7 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 &#xD;
 			icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
- 			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+ 			icsc.getChartInstance().getBlock().getBounds().setHeight(450);&#xD;
 }&#xD;
 &#xD;
 &#xD;
@@ -20278,7 +20272,7 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 &#xD;
 			icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
- 			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+ 			icsc.getChartInstance().getBlock().getBounds().setHeight(450);&#xD;
 }&#xD;
 &#xD;
 &#xD;
@@ -21911,9 +21905,8 @@ function beforeGeneration( chart, icsc )&#xD;
 			//series.setWebLabelMax(-47);&#xD;
 			}&#xD;
 &#xD;
-&#xD;
-			icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
- 			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
+ 			icsc.getChartInstance().getBlock().getBounds().setHeight(450);&#xD;
 }&#xD;
 &#xD;
 &#xD;
@@ -23548,7 +23541,7 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 &#xD;
 			icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
- 			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+ 			icsc.getChartInstance().getBlock().getBounds().setHeight(450);&#xD;
 }&#xD;
 &#xD;
 &#xD;
@@ -25181,9 +25174,8 @@ function beforeGeneration( chart, icsc )&#xD;
 			//series.setWebLabelMax(-47);&#xD;
 			}&#xD;
 &#xD;
-&#xD;
-			icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
- 			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
+ 			icsc.getChartInstance().getBlock().getBounds().setHeight(450);&#xD;
 }&#xD;
 &#xD;
 &#xD;
@@ -26818,7 +26810,7 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 &#xD;
 			icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
- 			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+ 			icsc.getChartInstance().getBlock().getBounds().setHeight(450);&#xD;
 }&#xD;
 &#xD;
 &#xD;
@@ -28453,7 +28445,7 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 &#xD;
 			icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
- 			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+ 			icsc.getChartInstance().getBlock().getBounds().setHeight(450);&#xD;
 }&#xD;
 &#xD;
 &#xD;
@@ -30088,7 +30080,7 @@ function beforeGeneration( chart, icsc )&#xD;
 &#xD;
 &#xD;
 			icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
- 			icsc.getChartInstance().getBlock().getBounds().setHeight(500);&#xD;
+ 			icsc.getChartInstance().getBlock().getBounds().setHeight(450);&#xD;
 }&#xD;
 &#xD;
 &#xD;
