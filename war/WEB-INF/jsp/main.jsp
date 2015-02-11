@@ -77,7 +77,9 @@ function fnsetstat(typ,msg)
 		else window.frames['AppBody'].location="blank.htm?oper=blank";
 		AssetTree.monitorstat="Reports";}
 	if(typ=="ar") {
-		if(AssetTree.selectedparenttype=="C" && atype!="NCP"){
+		
+		if(AssetTree.selectedparenttype=="C"){
+			console.log("ar");
 		window.frames['AppBody'].location="ar.htm?oper=ar&typ="+typ+"&testid="+testid+"&atype="+atype+"&treetype="+treetype;}
 		else if(AssetTree.selectedparenttype=="S" && atype=="E"){
 			window.frames['AppBody'].location="ar.htm?oper=ar&typ="+typ+"&testid="+testid+"&atype="+atype+"&treetype="+treetype;}

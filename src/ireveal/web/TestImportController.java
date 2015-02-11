@@ -193,8 +193,16 @@ public class TestImportController extends SimpleFormController{
 						  if(i>startrow) //header
 						  {
 							  XSSFRow row =(XSSFRow) sheet.getRow(i);
-							  String amplitude;							
+							  String amplitude;		
+							  
+							  
 							if(row.getCell(0) != null ){
+								int dup=0;
+								String ang=row.getCell(0).toString();
+								  if(Double.parseDouble(ang)==0.1 && i !=startrow){
+									  dup=1;  
+								  }
+								if(dup==0){
 								for(int u=1;u<colNum;u++){
 									if(Double.parseDouble(freqrow.getCell(u).toString())==colfreq){
 										DataLog datalog= new DataLog();
@@ -208,6 +216,7 @@ public class TestImportController extends SimpleFormController{
 								datalogList.add(datalog);
 								break;
 								}									
+								}
 								}
 							}							
 					      }						  		
@@ -246,8 +255,15 @@ public class TestImportController extends SimpleFormController{
 							  if(i>startrow) //header
 							  {
 								  HSSFRow row =(HSSFRow) sheet.getRow(i);
+								  String ang=row.getCell(0).toString();
+								  int dup=0;
+								  
 								String amplitude;								
-								if(row.getCell(0) != null ){									
+								if(row.getCell(0) != null ){
+									if(Double.parseDouble(ang)==0.1 && i !=startrow){
+										dup=1;  
+									  }
+									if(dup==0){
 									for(int u=1;u<colNum;u++){										 
 										if(Double.parseDouble(freqrow.getCell(u).toString())==colfreq){
 											DataLog datalog= new DataLog();
@@ -262,7 +278,8 @@ public class TestImportController extends SimpleFormController{
 									break;
 									}										
 									}
-								}	
+								}
+								}
 						      }	
 						  }
 				      }

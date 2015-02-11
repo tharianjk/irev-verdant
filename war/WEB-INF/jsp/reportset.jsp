@@ -72,7 +72,10 @@ INPUT.hintTextboxActive { color: #000; }
        </tr>
 	    <tr><td><c:forEach items="${model.freqlist}" var="freq">		
 				
-				<c:if test="${ cnt < 7}">
+				 <input type="checkbox" name="chkid" value="${freq.frequency}" id="${freq.frequency}" class="chkfreq">${freq.frequency}
+					 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequency}'  class="hintTextbox" style="width:50;" maxlength="20"  value="l-gain"/>
+				
+			<!-- 	<c:if test="${ cnt < 7}">
 					
 					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequency}" id="${freq.frequency}" class="chkfreq">${freq.frequency}
 					 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequency}'  class="hintTextbox" style="width:50;" maxlength="20"  value="l-gain"/>
@@ -93,7 +96,7 @@ INPUT.hintTextboxActive { color: #000; }
 					&nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequency}" id="${freq.frequency}" class="chkfreq">${freq.frequency}
 					&nbsp;<input type="text" name="lgid"  id='lg-${freq.frequency}'  class="hintTextbox" style="width:50;" maxlength="20" value="l-gain"/>
 					<c:set var="cnt" value="${cnt + 1 }"/>  
-				</c:if>
+				</c:if> -->
 				
 			</c:forEach></td></tr>
 			<tr>
@@ -324,7 +327,7 @@ function fnenable(ctyp){
 				    var input = inputs[i];
 				    var lgid=input.id;
 				    //console.log("id " +input.id);
-				    document.getElementById(lgid).style.visibility="hidden";
+				    document.getElementById(lgid).style.display="none";
 					}
 				}
 				document.getElementById("btnscale").style.display="block";

@@ -311,21 +311,7 @@ progress_clear();
 		</span>
  
 	</form:form>
-	<table align="center" id="progressbar" style="display:none"><tr><td><b>Saving ....</b>
-<div style="font-size:8pt;padding:2px;border:solid black 1px">
-<span id="progress0">&nbsp; &nbsp;</span>
-<span id="progress1">&nbsp; &nbsp;</span>
-<span id="progress2">&nbsp; &nbsp;</span>
-<span id="progress3">&nbsp; &nbsp;</span>
-<span id="progress4">&nbsp; &nbsp;</span>
-<span id="progress5">&nbsp; &nbsp;</span>
-<span id="progress6">&nbsp; &nbsp;</span>
-<span id="progress7">&nbsp; &nbsp;</span>
-<span id="progress8">&nbsp; &nbsp;</span>
-<span id="progress9">&nbsp; &nbsp;</span>
-<span id="progress10">&nbsp; &nbsp;</span>
-</div>
-</td></tr></table>
+	
 	
  </div>
 
@@ -434,7 +420,7 @@ $(document).ready( function () {
 			 }		 
 		}
 	 else{
-		 
+		 document.getElementById("checkdel").disabled = true;
 		 document.getElementById("more").style.visibility="visible";
 		 document.getElementById("done").style.visibility="visible";
 		 document.getElementById("save").style.visibility="hidden";
