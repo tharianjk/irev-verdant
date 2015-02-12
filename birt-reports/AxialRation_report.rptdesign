@@ -9,7 +9,7 @@
     <property name="imageDPI">96</property>
     <parameters>
         <scalar-parameter name="testid" id="762">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -22,7 +22,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="deg" id="772">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -34,7 +34,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rpth" id="938">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -46,7 +46,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rptf" id="939">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -697,16 +697,18 @@
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
-            <property name="leftMargin">0.11458333333333333in</property>
-            <property name="rightMargin">0.020833333333333332in</property>
+            <property name="leftMargin">0.1875in</property>
+            <property name="rightMargin">0.1875in</property>
             <page-header>
                 <text-data id="1126">
                     <property name="style">NewStyle</property>
                     <property name="fontFamily">sans-serif</property>
                     <property name="fontSize">12pt</property>
                     <property name="fontWeight">bold</property>
-                    <property name="borderBottomStyle">solid</property>
-                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderBottomStyle">none</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
                     <property name="textAlign">center</property>
                     <expression name="valueExpr">params["rpth"].value</expression>
                     <property name="contentType">html</property>
@@ -715,8 +717,10 @@
             <page-footer>
                 <grid id="1266">
                     <property name="backgroundColor">white</property>
-                    <property name="borderTopStyle">solid</property>
-                    <property name="borderTopWidth">thin</property>
+                    <property name="borderBottomStyle">none</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
                     <property name="canShrink">false</property>
                     <column id="1267"/>
                     <row id="1268">
@@ -1303,7 +1307,7 @@
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">row["Hide"]&lt;1 || params["deg"].value=="b"</expression>
+                    <expression name="valueExpr" type="javascript">row["Hide"]&lt;1 || params["deg"].value=="b" || params["deg"].value=="x"</expression>
                 </structure>
             </list-property>
             <list-property name="boundDataColumns">
@@ -1745,6 +1749,280 @@
                                         <row id="912">
                                             <cell id="913"/>
                                             <cell id="914"/>
+                                        </row>
+                                    </footer>
+                                </table>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+            </row>
+        </grid>
+        <grid id="1281">
+            <property name="canShrink">true</property>
+            <property name="dataSet">fq</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Hide"]&lt;1 || params["deg"].value!="x"</expression>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Hide</property>
+                    <text-property name="displayName">Hide</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Hide"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <column id="1282"/>
+            <column id="1283"/>
+            <column id="1284"/>
+            <column id="1285"/>
+            <row id="1286">
+                <cell id="1287">
+                    <grid id="1291">
+                        <property name="style">border</property>
+                        <expression name="bookmark" type="javascript">"BMHP"</expression>
+                        <column id="1292"/>
+                        <row id="1293">
+                            <cell id="1294">
+                                <label id="1295">
+                                    <property name="fontSize">10pt</property>
+                                    <property name="fontWeight">bold</property>
+                                    <property name="textAlign">center</property>
+                                    <text-property name="text">S.Fq</text-property>
+                                </label>
+                            </cell>
+                        </row>
+                        <row id="1296">
+                            <cell id="1297">
+                                <table id="1298">
+                                    <property name="dataSet">fq</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">Frequency</property>
+                                            <text-property name="displayName">frequency</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["Frequency"]</expression>
+                                            <property name="dataType">decimal</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">frequnit</property>
+                                            <text-property name="displayName">frequnit</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                    <column id="1307">
+                                        <property name="style">border</property>
+                                    </column>
+                                    <header>
+                                        <row id="1299">
+                                            <cell id="1300">
+                                                <data id="1301">
+                                                    <property name="resultSetColumn">frequnit</property>
+                                                </data>
+                                            </cell>
+                                        </row>
+                                    </header>
+                                    <detail>
+                                        <row id="1302">
+                                            <cell id="1303">
+                                                <data id="1304">
+                                                    <property name="fontSize">small</property>
+                                                    <property name="textAlign">center</property>
+                                                    <property name="resultSetColumn">Frequency</property>
+                                                </data>
+                                            </cell>
+                                        </row>
+                                    </detail>
+                                    <footer>
+                                        <row id="1305">
+                                            <cell id="1306"/>
+                                        </row>
+                                    </footer>
+                                </table>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+                <cell id="1288">
+                    <grid id="1308">
+                        <property name="style">border</property>
+                        <property name="canShrink">true</property>
+                        <column id="1309"/>
+                        <row id="1310">
+                            <cell id="1311">
+                                <label id="1312">
+                                    <property name="fontSize">10pt</property>
+                                    <property name="fontWeight">bold</property>
+                                    <property name="textAlign">center</property>
+                                    <text-property name="text">On axis (0) </text-property>
+                                </label>
+                            </cell>
+                        </row>
+                        <row id="1313">
+                            <cell id="1314">
+                                <table id="1315">
+                                    <property name="dataSet">on0axis</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">AR_0</property>
+                                            <text-property name="displayName">AR_0</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["AR_0"]</expression>
+                                            <property name="dataType">decimal</property>
+                                        </structure>
+                                    </list-property>
+                                    <column id="1324">
+                                        <property name="style">border</property>
+                                    </column>
+                                    <header>
+                                        <row id="1316">
+                                            <cell id="1317">
+                                                <label id="1318">
+                                                    <property name="fontSize">small</property>
+                                                    <text-property name="text">Axial Ratio</text-property>
+                                                </label>
+                                            </cell>
+                                        </row>
+                                    </header>
+                                    <detail>
+                                        <row id="1319">
+                                            <cell id="1320">
+                                                <data id="1321">
+                                                    <property name="fontSize">small</property>
+                                                    <property name="textAlign">center</property>
+                                                    <property name="resultSetColumn">AR_0</property>
+                                                </data>
+                                            </cell>
+                                        </row>
+                                    </detail>
+                                    <footer>
+                                        <row id="1322">
+                                            <cell id="1323"/>
+                                        </row>
+                                    </footer>
+                                </table>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+                <cell id="1289">
+                    <grid id="1325">
+                        <property name="style">border</property>
+                        <property name="canShrink">true</property>
+                        <column id="1326"/>
+                        <row id="1327">
+                            <cell id="1328">
+                                <label id="1329">
+                                    <property name="fontSize">10pt</property>
+                                    <property name="fontWeight">bold</property>
+                                    <property name="textAlign">center</property>
+                                    <text-property name="text">Off axis (+45)</text-property>
+                                </label>
+                            </cell>
+                        </row>
+                        <row id="1330">
+                            <cell id="1331">
+                                <table id="1332">
+                                    <property name="dataSet">offaxis+45</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">AR_P45</property>
+                                            <text-property name="displayName">AR_P45</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["AR_P45"]</expression>
+                                            <property name="dataType">decimal</property>
+                                        </structure>
+                                    </list-property>
+                                    <column id="1341">
+                                        <property name="style">border</property>
+                                    </column>
+                                    <header>
+                                        <row id="1333">
+                                            <cell id="1334">
+                                                <label id="1335">
+                                                    <property name="fontSize">small</property>
+                                                    <text-property name="text">Axial Ratio</text-property>
+                                                </label>
+                                            </cell>
+                                        </row>
+                                    </header>
+                                    <detail>
+                                        <row id="1336">
+                                            <cell id="1337">
+                                                <data id="1338">
+                                                    <property name="fontSize">small</property>
+                                                    <property name="textAlign">center</property>
+                                                    <property name="resultSetColumn">AR_P45</property>
+                                                </data>
+                                            </cell>
+                                        </row>
+                                    </detail>
+                                    <footer>
+                                        <row id="1339">
+                                            <cell id="1340"/>
+                                        </row>
+                                    </footer>
+                                </table>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+                <cell id="1290">
+                    <grid id="1342">
+                        <property name="style">border</property>
+                        <property name="canShrink">true</property>
+                        <column id="1343"/>
+                        <row id="1344">
+                            <cell id="1345">
+                                <label id="1346">
+                                    <property name="fontSize">10pt</property>
+                                    <property name="fontWeight">bold</property>
+                                    <property name="textAlign">center</property>
+                                    <text-property name="text">Off axis (-45)</text-property>
+                                </label>
+                            </cell>
+                        </row>
+                        <row id="1347">
+                            <cell id="1348">
+                                <table id="1349">
+                                    <property name="style">border</property>
+                                    <property name="dataSet">offaxis-45</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">AR_M45</property>
+                                            <text-property name="displayName">AR_M45</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["AR_M45"]</expression>
+                                            <property name="dataType">decimal</property>
+                                        </structure>
+                                    </list-property>
+                                    <column id="1358">
+                                        <property name="style">border</property>
+                                    </column>
+                                    <header>
+                                        <row id="1350">
+                                            <cell id="1351">
+                                                <label id="1352">
+                                                    <property name="fontSize">small</property>
+                                                    <text-property name="text">Axial Ratio</text-property>
+                                                </label>
+                                            </cell>
+                                        </row>
+                                    </header>
+                                    <detail>
+                                        <row id="1353">
+                                            <cell id="1354">
+                                                <data id="1355">
+                                                    <property name="fontSize">small</property>
+                                                    <property name="textAlign">center</property>
+                                                    <property name="resultSetColumn">AR_M45</property>
+                                                </data>
+                                            </cell>
+                                        </row>
+                                    </detail>
+                                    <footer>
+                                        <row id="1356">
+                                            <cell id="1357"/>
                                         </row>
                                     </footer>
                                 </table>

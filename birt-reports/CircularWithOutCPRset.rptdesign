@@ -512,7 +512,18 @@
                     <text-property name="heading">version</text-property>
                 </structure>
             </list-property>
-            <list-property name="parameters"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">param_1</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
             <structure name="cachedMetaData">
                 <list-property name="resultSet">
                     <structure>
@@ -697,10 +708,27 @@
             </list-property>
             <xml-property name="queryText"><![CDATA[SELECT distinct TD.testproc,TD.TestDesc,TD.TestDate,TD.frequnit,TD.testcenter,TD.instruments,TD.calibration ,s.SerialNo,p.Productname,p.version
 FROM testdata TD inner join product_serial s on td.ProdSerial_id=S.Prodserial_id 
-inner join product p on s.Product_id=p.Product_id   where TD.Test_id=1]]></xml-property>
+inner join product p on s.Product_id=p.Product_id   where TD.Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
   <design:ResultSets derivedMetaData="true">
     <design:resultSetDefinitions>
       <design:resultSetColumns>
@@ -3208,6 +3236,12 @@ from vcalculated where Test_id=?]]></xml-property>
             </list-property>
             <list-property name="columnHints">
                 <structure>
+                    <property name="columnName">frequency</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">frequency</text-property>
+                    <text-property name="heading">frequency</text-property>
+                </structure>
+                <structure>
                     <property name="columnName">frequnit</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">frequnit</text-property>
@@ -3294,30 +3328,34 @@ from vcalculated where Test_id=?]]></xml-property>
                     <property name="name">frequency</property>
                     <property name="nativeName">frequency</property>
                     <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">frequnit</property>
                     <property name="nativeName">frequnit</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
                     <property name="name">bh</property>
                     <property name="nativeName">bh</property>
                     <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">bv</property>
                     <property name="nativeName">bv</property>
                     <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[SELECT case t.frequnit when 'GHz' then ar.frequency/1000 else ar.frequency end frequency,t.frequnit,
-round(ar.BackLobe,?) as bh,round(v.BackLobe,?) as bv FROM hcalculated ar
-inner join  vcalculated v on v.Frequency=ar.Frequency and ar.Test_id=v.Test_id
-inner join testdata t on ar.test_id=t.test_id  where ar.Test_id=?]]></xml-property>
+            <xml-property name="queryText"><![CDATA[SELECT case t.frequnit when 'GHz' then f.frequency/1000 else f.frequency end frequency,t.frequnit,
+round(h.BackLobe,?) as bh,round(v.BackLobe,?) as bv FROM testdata t inner join testfreq f on t.test_id=f.test_id
+left join  vcalculated v on f.Frequency=v.Frequency and t.Test_id=v.Test_id
+left join hcalculated h on t.test_id=h.test_id and f.Frequency=h.Frequency where t.Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -9385,8 +9423,10 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <property name="fontFamily">sans-serif</property>
                     <property name="fontSize">12pt</property>
                     <property name="fontWeight">bold</property>
-                    <property name="borderBottomStyle">solid</property>
-                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderBottomStyle">none</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
                     <property name="textAlign">center</property>
                     <expression name="valueExpr">params["rpth"].value</expression>
                     <property name="contentType">html</property>
@@ -10599,9 +10639,6 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                                     <column id="829">
                                         <property name="style">BorderStyle</property>
                                     </column>
-                                    <column id="830">
-                                        <property name="style">BorderStyle</property>
-                                    </column>
                                     <column id="831">
                                         <property name="style">BorderStyle</property>
                                     </column>
@@ -10666,86 +10703,6 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                                                             <footer>
                                                                 <row id="2492">
                                                                     <cell id="2493"/>
-                                                                </row>
-                                                            </footer>
-                                                        </table>
-                                                    </cell>
-                                                </row>
-                                            </grid>
-                                        </cell>
-                                        <cell id="852">
-                                            <grid id="853">
-                                                <column id="854"/>
-                                                <row id="855">
-                                                    <cell id="856">
-                                                        <label id="857">
-                                                            <property name="fontSize">medium</property>
-                                                            <property name="fontWeight">bold</property>
-                                                            <property name="textAlign">center</property>
-                                                            <text-property name="text">Beam Max</text-property>
-                                                        </label>
-                                                    </cell>
-                                                </row>
-                                                <row id="858">
-                                                    <cell id="859">
-                                                        <table id="2495">
-                                                            <property name="dataSet">3Db_BW_BMax</property>
-                                                            <list-property name="boundDataColumns">
-                                                                <structure>
-                                                                    <property name="name">Frequency</property>
-                                                                    <text-property name="displayName">bwmax</text-property>
-                                                                    <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
-                                                                    <property name="dataType">decimal</property>
-                                                                    <property name="allowExport">true</property>
-                                                                </structure>
-                                                                <structure>
-                                                                    <property name="name">3Db_BW_BMax</property>
-                                                                    <text-property name="displayName">3Db_Bs_BMax</text-property>
-                                                                    <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
-                                                                    <property name="dataType">decimal</property>
-                                                                    <property name="allowExport">true</property>
-                                                                </structure>
-                                                            </list-property>
-                                                            <column id="2509"/>
-                                                            <column id="2510"/>
-                                                            <header>
-                                                                <row id="2496">
-                                                                    <cell id="2497">
-                                                                        <label id="2498">
-                                                                            <property name="fontSize">small</property>
-                                                                            <text-property name="text">BW(dg) </text-property>
-                                                                        </label>
-                                                                    </cell>
-                                                                    <cell id="2499">
-                                                                        <label id="2500">
-                                                                            <property name="fontSize">small</property>
-                                                                            <text-property name="text">BS(dB)</text-property>
-                                                                        </label>
-                                                                    </cell>
-                                                                </row>
-                                                            </header>
-                                                            <detail>
-                                                                <row id="2501">
-                                                                    <cell id="2502">
-                                                                        <data id="2503">
-                                                                            <property name="fontSize">small</property>
-                                                                            <property name="textAlign">center</property>
-                                                                            <property name="resultSetColumn">Frequency</property>
-                                                                        </data>
-                                                                    </cell>
-                                                                    <cell id="2504">
-                                                                        <data id="2505">
-                                                                            <property name="fontSize">small</property>
-                                                                            <property name="textAlign">center</property>
-                                                                            <property name="resultSetColumn">3Db_BW_BMax</property>
-                                                                        </data>
-                                                                    </cell>
-                                                                </row>
-                                                            </detail>
-                                                            <footer>
-                                                                <row id="2506">
-                                                                    <cell id="2507"/>
-                                                                    <cell id="2508"/>
                                                                 </row>
                                                             </footer>
                                                         </table>
@@ -10953,9 +10910,6 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                         <row id="930">
                             <cell id="931">
                                 <grid id="932">
-                                    <column id="933">
-                                        <property name="style">BorderStyle</property>
-                                    </column>
                                     <column id="934">
                                         <property name="style">BorderStyle</property>
                                     </column>
@@ -10963,91 +10917,6 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                                         <property name="style">BorderStyle</property>
                                     </column>
                                     <row id="936">
-                                        <cell id="937">
-                                            <grid id="938">
-                                                <column id="939"/>
-                                                <row id="940">
-                                                    <cell id="941">
-                                                        <label id="942">
-                                                            <property name="fontSize">medium</property>
-                                                            <property name="fontWeight">bold</property>
-                                                            <property name="textAlign">center</property>
-                                                            <text-property name="text">Beam Max</text-property>
-                                                        </label>
-                                                    </cell>
-                                                </row>
-                                                <row id="943">
-                                                    <cell id="944">
-                                                        <table id="2543">
-                                                            <property name="dataSet">beammaxvp</property>
-                                                            <list-property name="boundDataColumns">
-                                                                <structure>
-                                                                    <property name="name">3Db_BW_BMax</property>
-                                                                    <text-property name="displayName">3Db_BW_BMax</text-property>
-                                                                    <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
-                                                                    <property name="dataType">decimal</property>
-                                                                    <property name="allowExport">true</property>
-                                                                </structure>
-                                                                <structure>
-                                                                    <property name="name">3Db_BS_BMax</property>
-                                                                    <text-property name="displayName">3Db_BS_BMax</text-property>
-                                                                    <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
-                                                                    <property name="dataType">decimal</property>
-                                                                </structure>
-                                                                <structure>
-                                                                    <property name="name">Column Binding</property>
-                                                                    <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
-                                                                    <property name="dataType">string</property>
-                                                                    <property name="allowExport">true</property>
-                                                                </structure>
-                                                            </list-property>
-                                                            <column id="2557"/>
-                                                            <column id="2558"/>
-                                                            <header>
-                                                                <row id="2544">
-                                                                    <cell id="2545">
-                                                                        <label id="2546">
-                                                                            <property name="fontSize">small</property>
-                                                                            <text-property name="text">BW(dg) </text-property>
-                                                                        </label>
-                                                                    </cell>
-                                                                    <cell id="2547">
-                                                                        <label id="2548">
-                                                                            <property name="fontSize">small</property>
-                                                                            <text-property name="text">BS (dB)</text-property>
-                                                                        </label>
-                                                                    </cell>
-                                                                </row>
-                                                            </header>
-                                                            <detail>
-                                                                <row id="2549">
-                                                                    <cell id="2550">
-                                                                        <data id="2551">
-                                                                            <property name="fontSize">small</property>
-                                                                            <property name="textAlign">center</property>
-                                                                            <property name="resultSetColumn">Column Binding</property>
-                                                                        </data>
-                                                                    </cell>
-                                                                    <cell id="2552">
-                                                                        <data id="2553">
-                                                                            <property name="fontSize">small</property>
-                                                                            <property name="textAlign">center</property>
-                                                                            <property name="resultSetColumn">3Db_BW_BMax</property>
-                                                                        </data>
-                                                                    </cell>
-                                                                </row>
-                                                            </detail>
-                                                            <footer>
-                                                                <row id="2554">
-                                                                    <cell id="2555"/>
-                                                                    <cell id="2556"/>
-                                                                </row>
-                                                            </footer>
-                                                        </table>
-                                                    </cell>
-                                                </row>
-                                            </grid>
-                                        </cell>
                                         <cell id="961">
                                             <property name="colSpan">2</property>
                                             <property name="rowSpan">1</property>
@@ -12983,9 +12852,6 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                                     <column id="3042">
                                         <property name="style">BorderStyle</property>
                                     </column>
-                                    <column id="3043">
-                                        <property name="style">BorderStyle</property>
-                                    </column>
                                     <column id="3044">
                                         <property name="style">BorderStyle</property>
                                     </column>
@@ -13050,96 +12916,6 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                                                             <footer>
                                                                 <row id="849">
                                                                     <cell id="850"/>
-                                                                </row>
-                                                            </footer>
-                                                        </table>
-                                                    </cell>
-                                                </row>
-                                            </grid>
-                                        </cell>
-                                        <cell id="3055">
-                                            <grid id="3056">
-                                                <column id="3057"/>
-                                                <row id="3058">
-                                                    <cell id="3059">
-                                                        <label id="3060">
-                                                            <property name="fontSize">medium</property>
-                                                            <property name="fontWeight">bold</property>
-                                                            <property name="textAlign">center</property>
-                                                            <text-property name="text">Beam Max</text-property>
-                                                        </label>
-                                                    </cell>
-                                                </row>
-                                                <row id="3061">
-                                                    <cell id="3062">
-                                                        <table id="860">
-                                                            <property name="dataSet">10Db_BW_BMax</property>
-                                                            <list-property name="boundDataColumns">
-                                                                <structure>
-                                                                    <property name="name">10Db_BW_BMax</property>
-                                                                    <text-property name="displayName">10Db_BW_BMax</text-property>
-                                                                    <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
-                                                                    <property name="dataType">decimal</property>
-                                                                </structure>
-                                                                <structure>
-                                                                    <property name="name">10Db_BS_BMax</property>
-                                                                    <text-property name="displayName">10Db_BS_BMax</text-property>
-                                                                    <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
-                                                                    <property name="dataType">decimal</property>
-                                                                </structure>
-                                                                <structure>
-                                                                    <property name="name">Column Binding</property>
-                                                                    <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
-                                                                    <property name="dataType">string</property>
-                                                                    <property name="allowExport">true</property>
-                                                                </structure>
-                                                                <structure>
-                                                                    <property name="name">Column Binding_1</property>
-                                                                    <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
-                                                                    <property name="dataType">string</property>
-                                                                    <property name="allowExport">true</property>
-                                                                </structure>
-                                                            </list-property>
-                                                            <column id="874"/>
-                                                            <column id="875"/>
-                                                            <header>
-                                                                <row id="861">
-                                                                    <cell id="862">
-                                                                        <label id="863">
-                                                                            <property name="fontSize">small</property>
-                                                                            <text-property name="text">BW(dg) </text-property>
-                                                                        </label>
-                                                                    </cell>
-                                                                    <cell id="864">
-                                                                        <label id="865">
-                                                                            <property name="fontSize">small</property>
-                                                                            <text-property name="text">BS(dB)</text-property>
-                                                                        </label>
-                                                                    </cell>
-                                                                </row>
-                                                            </header>
-                                                            <detail>
-                                                                <row id="866">
-                                                                    <cell id="867">
-                                                                        <data id="868">
-                                                                            <property name="fontSize">small</property>
-                                                                            <property name="textAlign">center</property>
-                                                                            <property name="resultSetColumn">Column Binding</property>
-                                                                        </data>
-                                                                    </cell>
-                                                                    <cell id="869">
-                                                                        <data id="870">
-                                                                            <property name="fontSize">small</property>
-                                                                            <property name="textAlign">center</property>
-                                                                            <property name="resultSetColumn">Column Binding_1</property>
-                                                                        </data>
-                                                                    </cell>
-                                                                </row>
-                                                            </detail>
-                                                            <footer>
-                                                                <row id="871">
-                                                                    <cell id="872"/>
-                                                                    <cell id="873"/>
                                                                 </row>
                                                             </footer>
                                                         </table>
@@ -13347,9 +13123,6 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                         <row id="3084">
                             <cell id="3085">
                                 <grid id="3086">
-                                    <column id="3087">
-                                        <property name="style">BorderStyle</property>
-                                    </column>
                                     <column id="3088">
                                         <property name="style">BorderStyle</property>
                                     </column>
@@ -13357,96 +13130,6 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                                         <property name="style">BorderStyle</property>
                                     </column>
                                     <row id="3090">
-                                        <cell id="3091">
-                                            <grid id="3092">
-                                                <column id="3093"/>
-                                                <row id="3094">
-                                                    <cell id="3095">
-                                                        <label id="3096">
-                                                            <property name="fontSize">medium</property>
-                                                            <property name="fontWeight">bold</property>
-                                                            <property name="textAlign">center</property>
-                                                            <text-property name="text">Beam Max</text-property>
-                                                        </label>
-                                                    </cell>
-                                                </row>
-                                                <row id="3097">
-                                                    <cell id="3098">
-                                                        <table id="945">
-                                                            <property name="dataSet">10dbbeammaxvp</property>
-                                                            <list-property name="boundDataColumns">
-                                                                <structure>
-                                                                    <property name="name">10Db_BW_BMax</property>
-                                                                    <text-property name="displayName">10Db_BW_BMax</text-property>
-                                                                    <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
-                                                                    <property name="dataType">decimal</property>
-                                                                </structure>
-                                                                <structure>
-                                                                    <property name="name">10Db_BS_BMax</property>
-                                                                    <text-property name="displayName">10Db_BS_BMax</text-property>
-                                                                    <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
-                                                                    <property name="dataType">decimal</property>
-                                                                </structure>
-                                                                <structure>
-                                                                    <property name="name">Column Binding</property>
-                                                                    <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
-                                                                    <property name="dataType">string</property>
-                                                                    <property name="allowExport">true</property>
-                                                                </structure>
-                                                                <structure>
-                                                                    <property name="name">Column Binding_1</property>
-                                                                    <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
-                                                                    <property name="dataType">string</property>
-                                                                    <property name="allowExport">true</property>
-                                                                </structure>
-                                                            </list-property>
-                                                            <column id="959"/>
-                                                            <column id="960"/>
-                                                            <header>
-                                                                <row id="946">
-                                                                    <cell id="947">
-                                                                        <label id="948">
-                                                                            <property name="fontSize">small</property>
-                                                                            <text-property name="text">BW(dg) </text-property>
-                                                                        </label>
-                                                                    </cell>
-                                                                    <cell id="949">
-                                                                        <label id="950">
-                                                                            <property name="fontSize">small</property>
-                                                                            <text-property name="text">BS (dB)</text-property>
-                                                                        </label>
-                                                                    </cell>
-                                                                </row>
-                                                            </header>
-                                                            <detail>
-                                                                <row id="951">
-                                                                    <cell id="952">
-                                                                        <data id="953">
-                                                                            <property name="fontSize">small</property>
-                                                                            <property name="textAlign">center</property>
-                                                                            <property name="resultSetColumn">Column Binding</property>
-                                                                        </data>
-                                                                    </cell>
-                                                                    <cell id="954">
-                                                                        <data id="955">
-                                                                            <property name="fontSize">small</property>
-                                                                            <property name="textAlign">center</property>
-                                                                            <property name="resultSetColumn">Column Binding_1</property>
-                                                                        </data>
-                                                                    </cell>
-                                                                </row>
-                                                            </detail>
-                                                            <footer>
-                                                                <row id="956">
-                                                                    <cell id="957"/>
-                                                                    <cell id="958"/>
-                                                                </row>
-                                                            </footer>
-                                                        </table>
-                                                    </cell>
-                                                </row>
-                                            </grid>
-                                        </cell>
                                         <cell id="3099">
                                             <property name="colSpan">2</property>
                                             <property name="rowSpan">1</property>

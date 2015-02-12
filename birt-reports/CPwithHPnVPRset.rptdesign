@@ -9787,8 +9787,10 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <property name="fontFamily">sans-serif</property>
                     <property name="fontSize">12pt</property>
                     <property name="fontWeight">bold</property>
-                    <property name="borderBottomStyle">solid</property>
-                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderBottomStyle">none</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
                     <property name="textAlign">center</property>
                     <expression name="valueExpr">params["rpth"].value</expression>
                     <property name="contentType">html</property>
@@ -10237,9 +10239,6 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                         <column id="1743">
                             <property name="style">Border</property>
                         </column>
-                        <column id="1744">
-                            <property name="style">Border</property>
-                        </column>
                         <column id="1745">
                             <property name="style">Border</property>
                         </column>
@@ -10304,86 +10303,6 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                                                 <footer>
                                                     <row id="1763">
                                                         <cell id="1764"/>
-                                                    </row>
-                                                </footer>
-                                            </table>
-                                        </cell>
-                                    </row>
-                                </grid>
-                            </cell>
-                            <cell id="1766">
-                                <grid id="1767">
-                                    <column id="1768"/>
-                                    <row id="1769">
-                                        <cell id="1770">
-                                            <label id="1771">
-                                                <property name="fontSize">medium</property>
-                                                <property name="fontWeight">bold</property>
-                                                <property name="textAlign">center</property>
-                                                <text-property name="text">Beam Max.</text-property>
-                                            </label>
-                                        </cell>
-                                    </row>
-                                    <row id="1772">
-                                        <cell id="1773">
-                                            <table id="1774">
-                                                <property name="dataSet">3Db_BW_BMax</property>
-                                                <list-property name="boundDataColumns">
-                                                    <structure>
-                                                        <property name="name">Frequency</property>
-                                                        <text-property name="displayName">bwmax</text-property>
-                                                        <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
-                                                        <property name="dataType">decimal</property>
-                                                        <property name="allowExport">true</property>
-                                                    </structure>
-                                                    <structure>
-                                                        <property name="name">3Db_BW_BMax</property>
-                                                        <text-property name="displayName">3Db_Bs_BMax</text-property>
-                                                        <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
-                                                        <property name="dataType">decimal</property>
-                                                        <property name="allowExport">true</property>
-                                                    </structure>
-                                                </list-property>
-                                                <column id="1788"/>
-                                                <column id="1789"/>
-                                                <header>
-                                                    <row id="1775">
-                                                        <cell id="1776">
-                                                            <label id="1777">
-                                                                <property name="fontSize">small</property>
-                                                                <text-property name="text">BW (deg.)</text-property>
-                                                            </label>
-                                                        </cell>
-                                                        <cell id="1778">
-                                                            <label id="1779">
-                                                                <property name="fontSize">small</property>
-                                                                <text-property name="text">BSq (dB)</text-property>
-                                                            </label>
-                                                        </cell>
-                                                    </row>
-                                                </header>
-                                                <detail>
-                                                    <row id="1780">
-                                                        <cell id="1781">
-                                                            <data id="1782">
-                                                                <property name="fontSize">small</property>
-                                                                <property name="textAlign">center</property>
-                                                                <property name="resultSetColumn">Frequency</property>
-                                                            </data>
-                                                        </cell>
-                                                        <cell id="1783">
-                                                            <data id="1784">
-                                                                <property name="fontSize">small</property>
-                                                                <property name="textAlign">center</property>
-                                                                <property name="resultSetColumn">3Db_BW_BMax</property>
-                                                            </data>
-                                                        </cell>
-                                                    </row>
-                                                </detail>
-                                                <footer>
-                                                    <row id="1785">
-                                                        <cell id="1786"/>
-                                                        <cell id="1787"/>
                                                     </row>
                                                 </footer>
                                             </table>
@@ -11489,9 +11408,6 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                         <column id="1532">
                             <property name="style">Border</property>
                         </column>
-                        <column id="1533">
-                            <property name="style">Border</property>
-                        </column>
                         <column id="1534">
                             <property name="style">Border</property>
                         </column>
@@ -11556,96 +11472,6 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                                                 <footer>
                                                     <row id="1552">
                                                         <cell id="1553"/>
-                                                    </row>
-                                                </footer>
-                                            </table>
-                                        </cell>
-                                    </row>
-                                </grid>
-                            </cell>
-                            <cell id="1555">
-                                <grid id="1556">
-                                    <column id="1557"/>
-                                    <row id="1558">
-                                        <cell id="1559">
-                                            <label id="1560">
-                                                <property name="fontSize">medium</property>
-                                                <property name="fontWeight">bold</property>
-                                                <property name="textAlign">center</property>
-                                                <text-property name="text">Beam Max.</text-property>
-                                            </label>
-                                        </cell>
-                                    </row>
-                                    <row id="1561">
-                                        <cell id="1562">
-                                            <table id="1563">
-                                                <property name="dataSet">10Db_BW_BMax</property>
-                                                <list-property name="boundDataColumns">
-                                                    <structure>
-                                                        <property name="name">10Db_BW_BMax</property>
-                                                        <text-property name="displayName">10Db_BW_BMax</text-property>
-                                                        <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
-                                                        <property name="dataType">decimal</property>
-                                                    </structure>
-                                                    <structure>
-                                                        <property name="name">10Db_BS_BMax</property>
-                                                        <text-property name="displayName">10Db_BS_BMax</text-property>
-                                                        <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
-                                                        <property name="dataType">decimal</property>
-                                                    </structure>
-                                                    <structure>
-                                                        <property name="name">Column Binding</property>
-                                                        <expression name="expression" type="javascript">dataSetRow["10Db_BW_BMax"]</expression>
-                                                        <property name="dataType">string</property>
-                                                        <property name="allowExport">true</property>
-                                                    </structure>
-                                                    <structure>
-                                                        <property name="name">Column Binding_1</property>
-                                                        <expression name="expression" type="javascript">dataSetRow["10Db_BS_BMax"]</expression>
-                                                        <property name="dataType">string</property>
-                                                        <property name="allowExport">true</property>
-                                                    </structure>
-                                                </list-property>
-                                                <column id="1577"/>
-                                                <column id="1578"/>
-                                                <header>
-                                                    <row id="1564">
-                                                        <cell id="1565">
-                                                            <label id="1566">
-                                                                <property name="fontSize">small</property>
-                                                                <text-property name="text"> BW (deg.)</text-property>
-                                                            </label>
-                                                        </cell>
-                                                        <cell id="1567">
-                                                            <label id="1568">
-                                                                <property name="fontSize">small</property>
-                                                                <text-property name="text">BSq (dB)</text-property>
-                                                            </label>
-                                                        </cell>
-                                                    </row>
-                                                </header>
-                                                <detail>
-                                                    <row id="1569">
-                                                        <cell id="1570">
-                                                            <data id="1571">
-                                                                <property name="fontSize">small</property>
-                                                                <property name="textAlign">center</property>
-                                                                <property name="resultSetColumn">Column Binding</property>
-                                                            </data>
-                                                        </cell>
-                                                        <cell id="1572">
-                                                            <data id="1573">
-                                                                <property name="fontSize">small</property>
-                                                                <property name="textAlign">center</property>
-                                                                <property name="resultSetColumn">Column Binding_1</property>
-                                                            </data>
-                                                        </cell>
-                                                    </row>
-                                                </detail>
-                                                <footer>
-                                                    <row id="1574">
-                                                        <cell id="1575"/>
-                                                        <cell id="1576"/>
                                                     </row>
                                                 </footer>
                                             </table>

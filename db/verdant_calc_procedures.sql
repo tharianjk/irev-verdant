@@ -1213,7 +1213,7 @@ BEGIN
 # 2. declare variable to store debug flag
     declare isDebug INT default 0;
 
-declare C,D,E,AminX,i,j decimal(40,20);
+declare C,D,E,AminX,i,j,sum_right,sum_left decimal(40,20);
 
 # 3. declare continue/exit handlers for logging SQL exceptions/errors :
 -- write handlers for specific known error codes which are likely to occur here    
@@ -1272,14 +1272,14 @@ end if;
 
 if fromAngle = 'BM' then
 SET @s = CONCAT('select MAX(amplitude) into @A from ', @tab, ' where test_id = ',xtest_id,' and Frequency = ',freq);  
-        -- select @s;
+       --  select @s;
         
 PREPARE stmt1 FROM @s; 
 EXECUTE stmt1; 
 DEALLOCATE PREPARE stmt1;
         
         SET @s = CONCAT('select MAX(angle) into @B from ', @tab, ' where test_id = ',xtest_id,' and Frequency = ',freq,' and amplitude = ',@A);  
-        -- select @s;
+       --  select @s;
         
 PREPARE stmt1 FROM @s; 
 EXECUTE stmt1; 
@@ -1306,18 +1306,22 @@ end if;
 -- A-X to the right
 set AminX = @A-X;
   
-   -- select @A as 'A';
-   -- select AminX as 'A-X';
-  
+    -- select @A as 'A';
+    -- select AminX as 'A-X';
+	-- select @B;
+    
     set i = @B+0.1;
+   
+   set sum_right =0.1;
    
     loop_right : while i <> @B do
         if i = 360 then 
-set i = 0;
+			set i = 0;
             if i = @B then
-leave loop_right;
-end if;
-end if;
+				-- select 'reached back';
+				leave loop_right;
+			end if;
+		end if;
         
 SET @s = CONCAT('select amplitude into @temp from ', @tab, 
 ' where test_id = ',xtest_id,' and Frequency = ',freq,
@@ -1329,28 +1333,32 @@ DEALLOCATE PREPARE stmt1;
         
         
         if @temp <= AminX then
--- select @temp as 'temp';
--- select i as 'to_right';
+           -- select @temp as 'temp';
+           -- select i as 'to_right';
 leave loop_right;
 end if;
         -- incr loop variable
        	set i=i+0.1;
+        set sum_right = sum_right+0.1;
         
 end while;
     
     if i <> @B then
-set C= i;
-end if;
+		-- set C= i;
+        set C = sum_right;
+        -- select C as 'C';
+	end if;
     
     set j = @B-0.1;
+   set sum_left = 0.1;
    
     loop_left : while j <> @B do
         if j=-0.1 then
-set j=359.9;
+			set j=359.9;
             if j = @B then
-leave loop_left;
-end if;
-end if;
+				leave loop_left;
+			end if;
+		end if;
         
         SET @s = CONCAT('select amplitude into @temp from ', @tab, 
 ' where test_id = ',xtest_id,' and Frequency = ',freq,
@@ -1361,24 +1369,32 @@ EXECUTE stmt1;
 DEALLOCATE PREPARE stmt1;
         
         if @temp <= AminX then
--- select @temp as 'temp_left';
--- select j as 'to_left';
-leave loop_left;
-end if;
+			-- select @temp as 'temp_left';
+			-- select j as 'to_left';
+			leave loop_left;
+		end if;
         -- decr loop variable
         set j=j-0.1;
+        set sum_left = sum_left+0.1;
 end while;
     
     
     if j <> @B then
-set D= j;
-end if;
+		-- set D= j;
+        set E = sum_left;
+    --     select D as 'D';
+	end if;
     
     
     
-set E = 360-D;
+-- set E = 360-D;
+-- select E as 'E';
 set beam_width = C+E;
+
+-- select beam_width as 'BW';
 set beam_squint = (C-E)/2;
+
+-- select sum_right+sum_left 'is this it?'; 
 
 END$$
 DELIMITER ;

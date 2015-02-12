@@ -3687,12 +3687,14 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <property name="nativeDataType">3</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select distinct (case t.frequnit when 'GHz' then frequency/1000 else frequency end) frequency,frequnit,round(sum(Homni),?) Homni,round(sum(Vomni),?) Vomni from ( 
+            <xml-property name="queryText"><![CDATA[select frequency,frequnit,case Homni when 0 then null else Homni end Homni,case Vomni when 0 then null else Vomni end Vomni from (
+select distinct (case t.frequnit when 'GHz' then frequency/1000 else frequency end) frequency,frequnit,
+round(sum(Homni),?) Homni,round(sum(Vomni),?) Vomni from (
 select frequency,OmniDeviation Homni,0 Vomni,test_id from hcalculated  
-union select frequency,0 Homni,OmniDeviation Vomni,test_id from vcalculated ) as tab 
-inner join testdata t on tab.test_id=t.test_id 
+union select frequency,0 Homni,OmniDeviation Vomni,test_id from vcalculated ) as tab
+inner join testdata t on tab.test_id=t.test_id
 where t.test_id=?
-group by frequency,t.test_id;]]></xml-property>
+group by frequency,t.test_id) as t;]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
