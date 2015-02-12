@@ -23,7 +23,7 @@
  
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
-		<property name="maxUploadSize" value="20000000" /> 
+		
 		</bean>
  
 	<bean name="/testimport.htm" class="ireveal.web.TestImportController">
@@ -63,7 +63,9 @@
             </list>
         </property>
 	</bean>
-	
+	<bean name="/hpolarmultiple.htm" class="ireveal.web.ToolsController">        
+         <property name="mastersManager" ref="mastersManager"/>
+    </bean>
 	
 	<bean name="/403.htm" class="ireveal.web.MainController">
     </bean>
@@ -86,8 +88,7 @@
     <bean name="/event.htm" class="ireveal.web.EventController">
     </bean>
 
-	<bean name="/tools.htm" class="ireveal.web.ToolsController">
-        
+	<bean name="/tools.htm" class="ireveal.web.ToolsController">        
          <property name="mastersManager" ref="mastersManager"/>
     </bean>
     <bean name="/blank.htm" class="ireveal.web.ToolsController">        

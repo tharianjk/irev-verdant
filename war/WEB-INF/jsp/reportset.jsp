@@ -248,7 +248,8 @@ else if(atype=="NCP")
   document.getElementById("lbl10db").innerHTML="10dB Beamwidth with Beam Squint";
   document.getElementById("lbl3db").innerHTML="3dB Beamwidth with Beam Squint";
 }
-$(".hintTextbox").keydown(function (e) {
+$(".hintTextbox").keydown(function (e) 
+		{
 	
 	// Only enter the minus sign (-) if the user enters it first
 	 if (e.keyCode == 189 && this.value == "") {
