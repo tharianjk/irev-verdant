@@ -85,22 +85,23 @@ progress_clear();
 
 
 
-<div id="appbody">
+<div id="appbody" style="width:1000px;">
 
 
-    <div id="pageHdr">
+    <div id="pageHdr" style="width:1000px;">
 	<h2>Test Details</h2>
 	</div>
  
-	<form:form name="form1" id="form1" method="POST" commandName="TestData" enctype="multipart/form-data">
+	<form:form name="form1" id="form1" method="POST"  commandName="TestData" enctype="multipart/form-data">
  
 		<form:errors path="*" cssClass="errorblock" element="div" />
 		<table>
-		<tr><td>Test Center * :</td>  
-		<td><form:input path="testcenter" required="required" /></td>
+		<tr>
 		<td>Test Configuration * :</td>  
           <td><form:input path="testname" id="testname" required="required" />  
           </td>
+          <td>Test Center * :</td>  
+		<td><form:input path="testcenter" required="required" /></td>
          </tr>
          <tr>
           <td>Test date *:</td>

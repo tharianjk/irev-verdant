@@ -54,6 +54,10 @@ function fnsetstat(typ,msg)
 		url="hpolar.htm?oper=hpolar&testid="+testid +"&atype="+atype;
 		window.frames['AppBody'].location="hpolar.htm?oper=hpolar&testid="+testid +"&atype="+atype+"&treetype="+treetype;
 	AssetTree.monitorstat="Reports";}
+	if(typ=="pm") {
+		url="hpolarmultiple.htm?oper=polarmultiple&testid="+testid +"&atype="+atype;
+		window.frames['AppBody'].location="hpolarmultiple.htm?oper=polarmultiple&testid="+testid +"&atype="+atype+"&treetype="+treetype;
+	AssetTree.monitorstat="Reports";}
 	if(typ=="3db") {
 		if( atype!="A"){
 		window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+testid+"&atype="+atype+"&treetype="+treetype;
@@ -235,8 +239,11 @@ dialog.dialog( "open" );
 				<li id="cpg" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('cpg');">CP Gain</a> </li>
 				<li id="apt" ><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('apt');">Amplitude & Phase Tracking</a> </li>
 			</ul>
+			</li>
+		<li><a href="#">Analyze</a><ul>
+			    <li id="pm" style="display:none;"><a rel="Polar Multiple" class="menuarray" TARGET="AppBody" onclick="fnsetstat('pm');">Polar Plot(Multiple)</a> </li>
+	   </ul></li>
 		
-		</li>
 		</c:if>
 		<c:if test="${model.blnsettings eq 'true'}">
 		<li><a href="#"><b>Settings</b></a>
@@ -248,6 +255,7 @@ dialog.dialog( "open" );
 				</ul>
 		</li>
 		</c:if>
+		
 	</ul>
 </nav>
 </div>

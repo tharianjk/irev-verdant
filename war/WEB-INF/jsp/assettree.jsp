@@ -154,6 +154,7 @@ var treemode='<%=request.getParameter("treemode")%>';
     			        selectedparenttype=parent_node.attr('atype');
     			        //console.log(" selectedparenttype ="+selectedparenttype)
     			        if(selectedtype==4){
+    			        	parent.document.getElementById("pm").style.display="block";
     			        if ((atype=="A") )
     			        	{
     			        	  parent.document.getElementById("od").style.display="block";
@@ -234,7 +235,8 @@ var treemode='<%=request.getParameter("treemode")%>';
   			        	    parent.document.getElementById("10db").style.display="none";
   			        	    parent.document.getElementById("cpg").style.display="none";
   			        	    parent.document.getElementById("blobe").style.display="none";
-  			        	  parent.document.getElementById("apt").style.display="none";
+  			        	    parent.document.getElementById("apt").style.display="none";
+  			        	    parent.document.getElementById("pm").style.display="none";
     			        	}
     			        if(treeType==2)
     			        	{
