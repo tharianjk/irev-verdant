@@ -35,7 +35,7 @@ INPUT.hintTextboxActive { color: #000; }
         		<td>
 		        <table id="3dbtab" style="display:none;">
 		         <tr><td>       	  
-			   <input type="checkbox" id="3bm" value="bm" style="display:none;" > &nbsp; &nbsp;&nbsp;
+			   <input type="checkbox" id="3bm" value="bm" checked >Beam Max &nbsp; &nbsp;&nbsp;
 		       <input type="checkbox" id="30d" value="0d" checked >0 &#176;  &nbsp; &nbsp;&nbsp;
 		       <input type="checkbox" id="390d" value="90d" checked >90 &deg; &nbsp; &nbsp;&nbsp;
 		          </td></tr>
@@ -43,7 +43,7 @@ INPUT.hintTextboxActive { color: #000; }
         <tr><td><div id="l10db"><input type="checkbox" id="10db" value="10db" onchange='setVisible("10db");' ><label id=lbl10db>10db BeamWidth and Back-lobe level</label></div> </td>
         <td><table id="10dbtab" style="display:none;">
         <tr><td>       	  
-			   <input type="checkbox" id="bm" value="bm" style="display:none;" > &nbsp; &nbsp;&nbsp;
+			   <input type="checkbox" id="bm" value="bm" checked >Beam Max &nbsp; &nbsp;&nbsp;
 		       <input type="checkbox" id="0d" value="0d" checked >0 &#176;  &nbsp; &nbsp;&nbsp;
 		       <input type="checkbox" id="90d" value="90d" checked >90 &deg; &nbsp; &nbsp;&nbsp;
 		          </td></tr>
@@ -455,8 +455,7 @@ function fnenable(ctyp){
 		if(freqsel==0)	{
 			for (i==0;i<20;i++){				
 				strfreqs[i]=-1;	
-				lg[i]="0.0001";
-							
+				lg[i]="0.0001";							
 			}
 		}
 		
@@ -469,7 +468,18 @@ function fnenable(ctyp){
 			else if(document.getElementById('30d').checked)
 				dbDeg='0d';
 			else if(document.getElementById('390d').checked)
-				dbDeg='90d';			
+				dbDeg='90d';	
+			if(document.getElementById('3bm').checked)
+				{
+				if(dbDeg=='0d90d')
+					dbDeg=a;				
+				else if(dbDeg=='0d')
+					dbDeg='bm0d';
+				else if(dbDeg=='90d')
+					dbDeg='bm90d';
+				else
+					dbDeg='bm';
+				}			
 		}
 		if(document.getElementById('10db').checked){
 			dbv="yes";
@@ -479,7 +489,20 @@ function fnenable(ctyp){
 			else if(document.getElementById('0d').checked)
 				dbDegv='0d';
 			else if(document.getElementById('90d').checked)
-				dbDegv='90d';			
+				dbDegv='90d';
+			
+			if(document.getElementById('bm').checked)
+			{
+			if(dbDegv=='0d90d')
+				dbDegv=a;				
+			else if(dbDegv=='0d')
+				dbDegv='bm0d';
+			else if(dbDegv=='90d')
+				dbDegv='bm90d';
+			else
+				dbDegv='bm';
+			}
+			
 		}
 		if(document.getElementById('ar').checked){
 			axr="yes";
@@ -574,7 +597,7 @@ function fnenable(ctyp){
 			}
 			else
 				{
-				var url="/birt-verdant/frameset?__report=SlantElevationRSetHporVp.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&blob="+blobe+"&AxR="+axr+"&AxDeg="+AxDeg+"&scale=yes&lg1=0.0001"+
+				var url="/birt-verdant/frameset?__report=CircularWithoutCPRsetHporVp.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&blob="+blobe+"&AxR="+axr+"&AxDeg="+AxDeg+"&scale=yes&lg1=0.0001"+
 				"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+
 				"&freq1="+strfreqs[0]+"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
 				"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
