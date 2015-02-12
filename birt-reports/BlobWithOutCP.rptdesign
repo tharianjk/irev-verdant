@@ -12,7 +12,7 @@
             <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
-            <property name="dataType">string</property>
+            <property name="dataType">integer</property>
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -40,6 +40,19 @@
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="pc" id="1281">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
             <property name="controlType">text-box</property>
             <structure name="format">
                 <property name="category">Unformatted</property>
@@ -100,13 +113,13 @@
                     <text-property name="heading">frequnit</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">BackLobe</property>
+                    <property name="columnName">bh</property>
                     <property name="analysis">measure</property>
                     <text-property name="displayName">bh</text-property>
                     <text-property name="heading">bh</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">BackLobe_4</property>
+                    <property name="columnName">bv</property>
                     <property name="analysis">measure</property>
                     <text-property name="displayName">bv</text-property>
                     <text-property name="heading">bv</text-property>
@@ -115,11 +128,31 @@
             <list-property name="parameters">
                 <structure>
                     <property name="name">param_1</property>
-                    <property name="paramName">testid</property>
+                    <property name="paramName">pc</property>
                     <property name="nativeName"></property>
-                    <property name="dataType">string</property>
+                    <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
                     <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_3</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -138,13 +171,13 @@
                     </structure>
                     <structure>
                         <property name="position">3</property>
-                        <property name="name">BackLobe</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">bh</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
-                        <property name="name">BackLobe_4</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">bv</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">5</property>
@@ -171,23 +204,23 @@
                 </structure>
                 <structure>
                     <property name="position">3</property>
-                    <property name="name">BackLobe</property>
-                    <property name="nativeName">BackLobe</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">bh</property>
+                    <property name="nativeName">bh</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
-                    <property name="name">BackLobe_4</property>
-                    <property name="nativeName">BackLobe</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">bv</property>
+                    <property name="nativeName">bv</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[SELECT case t.frequnit when 'GHz' then ar.frequency/1000 else ar.frequency end frequency,t.frequnit,
-ar.BackLobe as bh,v.BackLobe as bv FROM hcalculated ar
-inner join  vcalculated v on v.Frequency=ar.Frequency and ar.Test_id=v.Test_id
-inner join testdata t on ar.test_id=t.test_id  where ar.Test_id=?]]></xml-property>
+            <xml-property name="queryText"><![CDATA[SELECT case t.frequnit when 'GHz' then f.frequency/1000 else f.frequency end frequency,t.frequnit,
+round(h.BackLobe,?) as bh,round(v.BackLobe,?) as bv FROM testdata t inner join testfreq f on t.test_id=f.test_id
+left join  vcalculated v on f.Frequency=v.Frequency and t.Test_id=v.Test_id
+left join hcalculated h on t.test_id=h.test_id and f.Frequency=h.Frequency where t.Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -199,6 +232,36 @@ inner join testdata t on ar.test_id=t.test_id  where ar.Test_id=?]]></xml-proper
           <design:identifier>
             <design:name></design:name>
             <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>3</design:position>
           </design:identifier>
           <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
           <design:precision>0</design:precision>
