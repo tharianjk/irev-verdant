@@ -39,7 +39,7 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 	}
 	function Redirect(){
 		//alert("go clicked");
-		var deg ;	
+		var deg='x' ;	
 		var nprecision=1;
 		var testid=${model.testid};
 		var rptheader='${model.rptheader}';
@@ -50,8 +50,9 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 			{deg='p';}
 		if(document.getElementById("n45").checked)
 		{
-			if(deg=="" || deg==null){deg='n';}
-		else deg='b';}
+			if(deg=="" || deg==null){deg='n';}			
+		else deg='b';
+			}
 		
 				var url="/birt-verdant/frameset?__report=AxialRation_report.rptdesign&deg="+deg+"&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision;
 			

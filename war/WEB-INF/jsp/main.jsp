@@ -240,9 +240,7 @@ dialog.dialog( "open" );
 				<li id="apt" ><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('apt');">Amplitude & Phase Tracking</a> </li>
 			</ul>
 			</li>
-		<li><a href="#">Analyze</a><ul>
-			    <li id="pm" style="display:none;"><a rel="Polar Multiple" class="menuarray" TARGET="AppBody" onclick="fnsetstat('pm');">Polar Plot(Multiple)</a> </li>
-	   </ul></li>
+		
 		
 		</c:if>
 		<c:if test="${model.blnsettings eq 'true'}">

@@ -376,8 +376,8 @@ function fnenable(ctyp){
 		 var polar="no";
 		 var od="no";
 		 var AxDeg="x" ;
-		 var dbDegv="bm" ;
-		 var dbDeg="bm";
+		 var dbDegv="0d90d" ;
+		 var dbDeg="0d90d";
 		var testid=${model.testid};
 		var typ='${model.type}';
 		var strfreqs=[20]; 
@@ -472,7 +472,7 @@ function fnenable(ctyp){
 			if(document.getElementById('3bm').checked)
 				{
 				if(dbDeg=='0d90d')
-					dbDeg=a;				
+					dbDeg='0d90d';	// a			
 				else if(dbDeg=='0d')
 					dbDeg='bm0d';
 				else if(dbDeg=='90d')
@@ -494,7 +494,7 @@ function fnenable(ctyp){
 			if(document.getElementById('bm').checked)
 			{
 			if(dbDegv=='0d90d')
-				dbDegv=a;				
+				dbDegv='0d90d';	//a			
 			else if(dbDegv=='0d')
 				dbDegv='bm0d';
 			else if(dbDegv=='90d')

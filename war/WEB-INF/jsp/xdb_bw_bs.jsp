@@ -56,7 +56,7 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 		if(document.getElementById("90d").checked)
 		{
 			if(deg=="" || deg==null) deg='90d';
-		else if (deg=='bm0d') deg='a';
+		else if (deg=='bm0d') deg='0d90d';
 		else if (deg=='0d') deg='0d90d';
 		else deg='bm90d';
 		}
