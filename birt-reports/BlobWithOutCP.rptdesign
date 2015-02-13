@@ -9,7 +9,7 @@
     <property name="imageDPI">96</property>
     <parameters>
         <scalar-parameter name="testid" id="632">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">integer</property>
@@ -22,7 +22,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rpth" id="1124">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -34,7 +34,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rptf" id="1125">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -683,23 +683,22 @@ left join hcalculated h on t.test_id=h.test_id and f.Frequency=h.Frequency where
                                 <property name="dataType">decimal</property>
                             </structure>
                             <structure>
-                                <property name="name">BackLobe</property>
-                                <text-property name="displayName">bh</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["BackLobe"]</expression>
-                                <property name="dataType">decimal</property>
-                            </structure>
-                            <structure>
-                                <property name="name">BackLobe_4</property>
-                                <text-property name="displayName">bv</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["BackLobe_4"]</expression>
-                                <property name="dataType">decimal</property>
-                            </structure>
-                            <structure>
                                 <property name="name">frequnit</property>
                                 <text-property name="displayName">frequnit</text-property>
-                                <expression name="expression" type="javascript">'Spot Freq.('+dataSetRow["frequnit"]+')'</expression>
+                                <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
                                 <property name="dataType">string</property>
-                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">bh</property>
+                                <text-property name="displayName">bh</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["bh"]</expression>
+                                <property name="dataType">float</property>
+                            </structure>
+                            <structure>
+                                <property name="name">bv</property>
+                                <text-property name="displayName">bv</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["bv"]</expression>
+                                <property name="dataType">float</property>
                             </structure>
                         </list-property>
                         <column id="853">
@@ -749,14 +748,14 @@ left join hcalculated h on t.test_id=h.test_id and f.Frequency=h.Frequency where
                                     <data id="859">
                                         <property name="fontSize">small</property>
                                         <property name="textAlign">center</property>
-                                        <property name="resultSetColumn">BackLobe</property>
+                                        <property name="resultSetColumn">bh</property>
                                     </data>
                                 </cell>
                                 <cell id="848">
                                     <data id="861">
                                         <property name="fontSize">small</property>
                                         <property name="textAlign">center</property>
-                                        <property name="resultSetColumn">BackLobe_4</property>
+                                        <property name="resultSetColumn">bv</property>
                                     </data>
                                 </cell>
                             </row>
