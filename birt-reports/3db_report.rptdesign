@@ -23,14 +23,11 @@
     <property name="imageDPI">96</property>
     <parameters>
         <scalar-parameter name="testid" id="814">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="constant">1</value>
-            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="concealValue">false</property>
@@ -40,13 +37,10 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="deg" id="815">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="constant">a</value>
-            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="controlType">text-box</property>
@@ -55,13 +49,10 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rpth" id="1124">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="constant">NO</value>
-            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="controlType">text-box</property>
@@ -70,13 +61,10 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rptf" id="1125">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="constant">NP</value>
-            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="controlType">text-box</property>
@@ -85,13 +73,11 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="pc" id="1284">
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="constant">1</value>
-            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="controlType">text-box</property>
@@ -2236,9 +2222,6 @@ from vcalculated where Test_id=?]]></xml-property>
                                     <column id="829">
                                         <property name="style">brder</property>
                                     </column>
-                                    <column id="830">
-                                        <property name="style">brder</property>
-                                    </column>
                                     <column id="831">
                                         <property name="style">brder</property>
                                     </column>
@@ -2303,86 +2286,6 @@ from vcalculated where Test_id=?]]></xml-property>
                                                             <footer>
                                                                 <row id="849">
                                                                     <cell id="850"/>
-                                                                </row>
-                                                            </footer>
-                                                        </table>
-                                                    </cell>
-                                                </row>
-                                            </grid>
-                                        </cell>
-                                        <cell id="852">
-                                            <grid id="853">
-                                                <column id="854"/>
-                                                <row id="855">
-                                                    <cell id="856">
-                                                        <label id="857">
-                                                            <property name="fontSize">medium</property>
-                                                            <property name="fontWeight">bold</property>
-                                                            <property name="textAlign">center</property>
-                                                            <text-property name="text">Beam Max</text-property>
-                                                        </label>
-                                                    </cell>
-                                                </row>
-                                                <row id="858">
-                                                    <cell id="859">
-                                                        <table id="860">
-                                                            <property name="dataSet">3Db_BW_BMax</property>
-                                                            <list-property name="boundDataColumns">
-                                                                <structure>
-                                                                    <property name="name">Frequency</property>
-                                                                    <text-property name="displayName">bwmax</text-property>
-                                                                    <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
-                                                                    <property name="dataType">decimal</property>
-                                                                    <property name="allowExport">true</property>
-                                                                </structure>
-                                                                <structure>
-                                                                    <property name="name">3Db_BW_BMax</property>
-                                                                    <text-property name="displayName">3Db_Bs_BMax</text-property>
-                                                                    <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
-                                                                    <property name="dataType">decimal</property>
-                                                                    <property name="allowExport">true</property>
-                                                                </structure>
-                                                            </list-property>
-                                                            <column id="874"/>
-                                                            <column id="875"/>
-                                                            <header>
-                                                                <row id="861">
-                                                                    <cell id="862">
-                                                                        <label id="863">
-                                                                            <property name="fontSize">small</property>
-                                                                            <text-property name="text">BW(dg) </text-property>
-                                                                        </label>
-                                                                    </cell>
-                                                                    <cell id="864">
-                                                                        <label id="865">
-                                                                            <property name="fontSize">small</property>
-                                                                            <text-property name="text">BS(dB)</text-property>
-                                                                        </label>
-                                                                    </cell>
-                                                                </row>
-                                                            </header>
-                                                            <detail>
-                                                                <row id="866">
-                                                                    <cell id="867">
-                                                                        <data id="868">
-                                                                            <property name="fontSize">small</property>
-                                                                            <property name="textAlign">center</property>
-                                                                            <property name="resultSetColumn">Frequency</property>
-                                                                        </data>
-                                                                    </cell>
-                                                                    <cell id="869">
-                                                                        <data id="870">
-                                                                            <property name="fontSize">small</property>
-                                                                            <property name="textAlign">center</property>
-                                                                            <property name="resultSetColumn">3Db_BW_BMax</property>
-                                                                        </data>
-                                                                    </cell>
-                                                                </row>
-                                                            </detail>
-                                                            <footer>
-                                                                <row id="871">
-                                                                    <cell id="872"/>
-                                                                    <cell id="873"/>
                                                                 </row>
                                                             </footer>
                                                         </table>
@@ -2590,9 +2493,6 @@ from vcalculated where Test_id=?]]></xml-property>
                         <row id="930">
                             <cell id="931">
                                 <grid id="932">
-                                    <column id="933">
-                                        <property name="style">brder</property>
-                                    </column>
                                     <column id="934">
                                         <property name="style">brder</property>
                                     </column>
@@ -2600,91 +2500,6 @@ from vcalculated where Test_id=?]]></xml-property>
                                         <property name="style">brder</property>
                                     </column>
                                     <row id="936">
-                                        <cell id="937">
-                                            <grid id="938">
-                                                <column id="939"/>
-                                                <row id="940">
-                                                    <cell id="941">
-                                                        <label id="942">
-                                                            <property name="fontSize">medium</property>
-                                                            <property name="fontWeight">bold</property>
-                                                            <property name="textAlign">center</property>
-                                                            <text-property name="text">Beam Max</text-property>
-                                                        </label>
-                                                    </cell>
-                                                </row>
-                                                <row id="943">
-                                                    <cell id="944">
-                                                        <table id="945">
-                                                            <property name="dataSet">beammaxvp</property>
-                                                            <list-property name="boundDataColumns">
-                                                                <structure>
-                                                                    <property name="name">3Db_BW_BMax</property>
-                                                                    <text-property name="displayName">3Db_BW_BMax</text-property>
-                                                                    <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
-                                                                    <property name="dataType">decimal</property>
-                                                                    <property name="allowExport">true</property>
-                                                                </structure>
-                                                                <structure>
-                                                                    <property name="name">3Db_BS_BMax</property>
-                                                                    <text-property name="displayName">3Db_BS_BMax</text-property>
-                                                                    <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
-                                                                    <property name="dataType">decimal</property>
-                                                                </structure>
-                                                                <structure>
-                                                                    <property name="name">Column Binding</property>
-                                                                    <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
-                                                                    <property name="dataType">string</property>
-                                                                    <property name="allowExport">true</property>
-                                                                </structure>
-                                                            </list-property>
-                                                            <column id="959"/>
-                                                            <column id="960"/>
-                                                            <header>
-                                                                <row id="946">
-                                                                    <cell id="947">
-                                                                        <label id="948">
-                                                                            <property name="fontSize">small</property>
-                                                                            <text-property name="text">BW(dg) </text-property>
-                                                                        </label>
-                                                                    </cell>
-                                                                    <cell id="949">
-                                                                        <label id="950">
-                                                                            <property name="fontSize">small</property>
-                                                                            <text-property name="text">BS (dB)</text-property>
-                                                                        </label>
-                                                                    </cell>
-                                                                </row>
-                                                            </header>
-                                                            <detail>
-                                                                <row id="951">
-                                                                    <cell id="952">
-                                                                        <data id="953">
-                                                                            <property name="fontSize">small</property>
-                                                                            <property name="textAlign">center</property>
-                                                                            <property name="resultSetColumn">Column Binding</property>
-                                                                        </data>
-                                                                    </cell>
-                                                                    <cell id="954">
-                                                                        <data id="955">
-                                                                            <property name="fontSize">small</property>
-                                                                            <property name="textAlign">center</property>
-                                                                            <property name="resultSetColumn">3Db_BW_BMax</property>
-                                                                        </data>
-                                                                    </cell>
-                                                                </row>
-                                                            </detail>
-                                                            <footer>
-                                                                <row id="956">
-                                                                    <cell id="957"/>
-                                                                    <cell id="958"/>
-                                                                </row>
-                                                            </footer>
-                                                        </table>
-                                                    </cell>
-                                                </row>
-                                            </grid>
-                                        </cell>
                                         <cell id="961">
                                             <property name="colSpan">2</property>
                                             <property name="rowSpan">1</property>
