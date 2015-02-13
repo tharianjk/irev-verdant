@@ -9,7 +9,7 @@
     <property name="imageDPI">96</property>
     <parameters>
         <scalar-parameter name="testid" id="632">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -22,7 +22,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rpth" id="2381">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -34,8 +34,21 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rptf" id="2382">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="pc" id="2384">
+            <property name="hidden">false</property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
@@ -115,11 +128,31 @@
             <list-property name="parameters">
                 <structure>
                     <property name="name">param_1</property>
-                    <property name="paramName">testid</property>
+                    <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
                     <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_3</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -184,7 +217,7 @@
                     <property name="nativeDataType">3</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select distinct (case t.frequnit when 'GHz' then frequency/1000 else frequency end) frequency,frequnit,sum(Homni) Homni,sum(Vomni) Vomni from ( 
+            <xml-property name="queryText"><![CDATA[select distinct (case t.frequnit when 'GHz' then frequency/1000 else frequency end) frequency,frequnit,round(sum(Homni),?) Homni,round(sum(Vomni),?) Vomni from ( 
 select frequency,OmniDeviation Homni,0 Vomni,test_id from hcalculated  
 union select frequency,0 Homni,OmniDeviation Vomni,test_id from vcalculated ) as tab 
 inner join testdata t on tab.test_id=t.test_id 
@@ -201,6 +234,36 @@ group by frequency,t.test_id;]]></xml-property>
           <design:identifier>
             <design:name></design:name>
             <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>3</design:position>
           </design:identifier>
           <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
           <design:precision>0</design:precision>
@@ -310,8 +373,10 @@ group by frequency,t.test_id;]]></xml-property>
                     <property name="fontFamily">sans-serif</property>
                     <property name="fontSize">12pt</property>
                     <property name="fontWeight">bold</property>
-                    <property name="borderBottomStyle">solid</property>
-                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderBottomStyle">none</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
                     <property name="textAlign">center</property>
                     <expression name="valueExpr">params["rpth"].value</expression>
                     <property name="contentType">html</property>
@@ -320,8 +385,10 @@ group by frequency,t.test_id;]]></xml-property>
             <page-footer>
                 <grid id="1266">
                     <property name="backgroundColor">white</property>
-                    <property name="borderTopStyle">solid</property>
-                    <property name="borderTopWidth">thin</property>
+                    <property name="borderBottomStyle">none</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
                     <property name="canShrink">false</property>
                     <column id="1267"/>
                     <row id="1268">

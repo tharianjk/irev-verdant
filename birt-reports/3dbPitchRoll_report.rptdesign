@@ -9,7 +9,7 @@
     <property name="imageDPI">96</property>
     <parameters>
         <scalar-parameter name="testid" id="632">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -22,7 +22,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="deg" id="633">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -34,7 +34,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="type" id="747">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -46,7 +46,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rpth" id="1281">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -58,9 +58,21 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rptf" id="1282">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="pc" id="1283">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">integer</property>
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -108,11 +120,21 @@
             <list-property name="parameters">
                 <structure>
                     <property name="name">param_1</property>
-                    <property name="paramName">testid</property>
+                    <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
                     <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -122,7 +144,7 @@
                     <structure>
                         <property name="position">1</property>
                         <property name="name">3Db_BW_BMax</property>
-                        <property name="dataType">decimal</property>
+                        <property name="dataType">float</property>
                     </structure>
                 </list-property>
             </structure>
@@ -132,11 +154,11 @@
                     <property name="position">1</property>
                     <property name="name">3Db_BW_BMax</property>
                     <property name="nativeName">3Db_BW_BMax</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[SELECT 3Db_BW_BMax FROM pitchcalculated where Test_id=?]]></xml-property>
+            <xml-property name="queryText"><![CDATA[SELECT round(3Db_BW_BMax,?) 3Db_BW_BMax FROM pitchcalculated where Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -148,6 +170,21 @@
           <design:identifier>
             <design:name></design:name>
             <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
           </design:identifier>
           <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
           <design:precision>0</design:precision>
@@ -336,11 +373,21 @@
             <list-property name="parameters">
                 <structure>
                     <property name="name">param_1</property>
-                    <property name="paramName">testid</property>
+                    <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
                     <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -350,7 +397,7 @@
                     <structure>
                         <property name="position">1</property>
                         <property name="name">3Db_BW_0</property>
-                        <property name="dataType">decimal</property>
+                        <property name="dataType">float</property>
                     </structure>
                 </list-property>
             </structure>
@@ -360,11 +407,11 @@
                     <property name="position">1</property>
                     <property name="name">3Db_BW_0</property>
                     <property name="nativeName">3Db_BW_0</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select 3Db_BW_0 from pitchcalculated where Test_id=?]]></xml-property>
+            <xml-property name="queryText"><![CDATA[select round(3Db_BW_0,?) 3Db_BW_0 from pitchcalculated where Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -376,6 +423,21 @@
           <design:identifier>
             <design:name></design:name>
             <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
           </design:identifier>
           <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
           <design:precision>0</design:precision>
@@ -448,11 +510,21 @@
             <list-property name="parameters">
                 <structure>
                     <property name="name">param_1</property>
-                    <property name="paramName">testid</property>
+                    <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
                     <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -462,7 +534,7 @@
                     <structure>
                         <property name="position">1</property>
                         <property name="name">3Db_BW_90</property>
-                        <property name="dataType">decimal</property>
+                        <property name="dataType">float</property>
                     </structure>
                 </list-property>
             </structure>
@@ -472,11 +544,11 @@
                     <property name="position">1</property>
                     <property name="name">3Db_BW_90</property>
                     <property name="nativeName">3Db_BW_90</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select 3Db_BW_90
+            <xml-property name="queryText"><![CDATA[select round(3Db_BW_90,?) 3Db_BW_90
 from pitchcalculated where Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
@@ -489,6 +561,21 @@ from pitchcalculated where Test_id=?]]></xml-property>
           <design:identifier>
             <design:name></design:name>
             <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
           </design:identifier>
           <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
           <design:precision>0</design:precision>
@@ -561,11 +648,21 @@ from pitchcalculated where Test_id=?]]></xml-property>
             <list-property name="parameters">
                 <structure>
                     <property name="name">param_1</property>
-                    <property name="paramName">testid</property>
+                    <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
                     <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -575,7 +672,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                     <structure>
                         <property name="position">1</property>
                         <property name="name">3Db_BW_BMax</property>
-                        <property name="dataType">decimal</property>
+                        <property name="dataType">float</property>
                     </structure>
                 </list-property>
             </structure>
@@ -585,11 +682,11 @@ from pitchcalculated where Test_id=?]]></xml-property>
                     <property name="position">1</property>
                     <property name="name">3Db_BW_BMax</property>
                     <property name="nativeName">3Db_BW_BMax</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[SELECT 3Db_BW_BMax FROM rollcalculated where Test_id=?]]></xml-property>
+            <xml-property name="queryText"><![CDATA[SELECT round(3Db_BW_BMax,?) 3Db_BW_BMax FROM rollcalculated where Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -601,6 +698,21 @@ from pitchcalculated where Test_id=?]]></xml-property>
           <design:identifier>
             <design:name></design:name>
             <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
           </design:identifier>
           <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
           <design:precision>0</design:precision>
@@ -624,11 +736,21 @@ from pitchcalculated where Test_id=?]]></xml-property>
             <list-property name="parameters">
                 <structure>
                     <property name="name">param_1</property>
-                    <property name="paramName">testid</property>
+                    <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
                     <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -638,7 +760,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                     <structure>
                         <property name="position">1</property>
                         <property name="name">3Db_BW_0</property>
-                        <property name="dataType">decimal</property>
+                        <property name="dataType">float</property>
                     </structure>
                 </list-property>
             </structure>
@@ -648,11 +770,11 @@ from pitchcalculated where Test_id=?]]></xml-property>
                     <property name="position">1</property>
                     <property name="name">3Db_BW_0</property>
                     <property name="nativeName">3Db_BW_0</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[SELECT 3Db_BW_0 FROM rollcalculated where Test_id=?]]></xml-property>
+            <xml-property name="queryText"><![CDATA[SELECT round(3Db_BW_0,?) 3Db_BW_0 FROM rollcalculated where Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -664,6 +786,21 @@ from pitchcalculated where Test_id=?]]></xml-property>
           <design:identifier>
             <design:name></design:name>
             <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
           </design:identifier>
           <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
           <design:precision>0</design:precision>
@@ -715,11 +852,21 @@ from pitchcalculated where Test_id=?]]></xml-property>
             <list-property name="parameters">
                 <structure>
                     <property name="name">param_1</property>
-                    <property name="paramName">testid</property>
+                    <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
                     <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -729,7 +876,7 @@ from pitchcalculated where Test_id=?]]></xml-property>
                     <structure>
                         <property name="position">1</property>
                         <property name="name">3Db_BW_90</property>
-                        <property name="dataType">decimal</property>
+                        <property name="dataType">float</property>
                     </structure>
                 </list-property>
             </structure>
@@ -739,11 +886,11 @@ from pitchcalculated where Test_id=?]]></xml-property>
                     <property name="position">1</property>
                     <property name="name">3Db_BW_90</property>
                     <property name="nativeName">3Db_BW_90</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[SELECT 3Db_BW_90 FROM rollcalculated where Test_id=?]]></xml-property>
+            <xml-property name="queryText"><![CDATA[SELECT round(3Db_BW_90,?) 3Db_BW_90 FROM rollcalculated where Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -755,6 +902,21 @@ from pitchcalculated where Test_id=?]]></xml-property>
           <design:identifier>
             <design:name></design:name>
             <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
           </design:identifier>
           <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
           <design:precision>0</design:precision>
@@ -1077,8 +1239,10 @@ from pitchcalculated where Test_id=?]]></xml-property>
                     <property name="fontFamily">sans-serif</property>
                     <property name="fontSize">12pt</property>
                     <property name="fontWeight">bold</property>
-                    <property name="borderBottomStyle">solid</property>
-                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderBottomStyle">none</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
                     <property name="textAlign">center</property>
                     <expression name="valueExpr">params["rpth"].value</expression>
                     <property name="contentType">html</property>
@@ -1087,8 +1251,10 @@ from pitchcalculated where Test_id=?]]></xml-property>
             <page-footer>
                 <grid id="1266">
                     <property name="backgroundColor">white</property>
-                    <property name="borderTopStyle">solid</property>
-                    <property name="borderTopWidth">thin</property>
+                    <property name="borderBottomStyle">none</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
                     <property name="canShrink">false</property>
                     <column id="1267"/>
                     <row id="1268">

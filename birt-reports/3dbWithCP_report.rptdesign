@@ -9,7 +9,7 @@
     <property name="imageDPI">96</property>
     <parameters>
         <scalar-parameter name="testid" id="632">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -22,7 +22,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="deg" id="633">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -34,7 +34,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rpth" id="1281">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -46,8 +46,20 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rptf" id="1282">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
             <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="pc" id="1289">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
@@ -102,11 +114,31 @@
             <list-property name="parameters">
                 <structure>
                     <property name="name">param_1</property>
-                    <property name="paramName">testid</property>
+                    <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
                     <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_3</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -116,33 +148,33 @@
                     <structure>
                         <property name="position">1</property>
                         <property name="name">3Db_BW_BMax</property>
-                        <property name="dataType">decimal</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">2</property>
                         <property name="name">3Db_BS_BMax</property>
-                        <property name="dataType">decimal</property>
+                        <property name="dataType">float</property>
                     </structure>
                 </list-property>
             </structure>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
-                    <property name="position">2</property>
+                    <property name="position">1</property>
                     <property name="name">3Db_BW_BMax</property>
                     <property name="nativeName">3Db_BW_BMax</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">3Db_BS_BMax</property>
                     <property name="nativeName">3Db_BS_BMax</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[SELECT 3Db_BW_BMax,3Db_BS_BMax FROM cpcalculated where Test_id=?]]></xml-property>
+            <xml-property name="queryText"><![CDATA[SELECT round(3Db_BW_BMax,?) 3Db_BW_BMax,round(3Db_BS_BMax,?) 3Db_BS_BMax FROM cpcalculated where Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -154,6 +186,36 @@
           <design:identifier>
             <design:name></design:name>
             <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>3</design:position>
           </design:identifier>
           <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
           <design:precision>0</design:precision>
@@ -338,11 +400,31 @@
             <list-property name="parameters">
                 <structure>
                     <property name="name">param_1</property>
-                    <property name="paramName">testid</property>
+                    <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
                     <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_3</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -352,12 +434,12 @@
                     <structure>
                         <property name="position">1</property>
                         <property name="name">3Db_BW_0</property>
-                        <property name="dataType">decimal</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">2</property>
                         <property name="name">3Db_BS_0</property>
-                        <property name="dataType">decimal</property>
+                        <property name="dataType">float</property>
                     </structure>
                 </list-property>
             </structure>
@@ -367,18 +449,18 @@
                     <property name="position">1</property>
                     <property name="name">3Db_BW_0</property>
                     <property name="nativeName">3Db_BW_0</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">3Db_BS_0</property>
                     <property name="nativeName">3Db_BS_0</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select 3Db_BW_0,3Db_BS_0 from cpcalculated where Test_id=?]]></xml-property>
+            <xml-property name="queryText"><![CDATA[select round(3Db_BW_0,?) 3Db_BW_0,round(3Db_BS_0,?) 3Db_BS_0 from cpcalculated where Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -390,6 +472,36 @@
           <design:identifier>
             <design:name></design:name>
             <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>3</design:position>
           </design:identifier>
           <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
           <design:precision>0</design:precision>
@@ -468,11 +580,31 @@
             <list-property name="parameters">
                 <structure>
                     <property name="name">param_1</property>
-                    <property name="paramName">testid</property>
+                    <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
                     <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_3</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -482,12 +614,12 @@
                     <structure>
                         <property name="position">1</property>
                         <property name="name">3Db_BW_90</property>
-                        <property name="dataType">decimal</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">2</property>
                         <property name="name">3Db_BS_90</property>
-                        <property name="dataType">decimal</property>
+                        <property name="dataType">float</property>
                     </structure>
                 </list-property>
             </structure>
@@ -497,18 +629,18 @@
                     <property name="position">1</property>
                     <property name="name">3Db_BW_90</property>
                     <property name="nativeName">3Db_BW_90</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">3Db_BS_90</property>
                     <property name="nativeName">3Db_BS_90</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select 3Db_BW_90,3Db_BS_90
+            <xml-property name="queryText"><![CDATA[select round(3Db_BW_90,?) 3Db_BW_90,round(3Db_BS_90,?) 3Db_BS_90
 from cpcalculated where Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
@@ -521,6 +653,36 @@ from cpcalculated where Test_id=?]]></xml-property>
           <design:identifier>
             <design:name></design:name>
             <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>3</design:position>
           </design:identifier>
           <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
           <design:precision>0</design:precision>
@@ -665,15 +827,17 @@ from cpcalculated where Test_id=?]]></xml-property>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
-            <property name="rightMargin">0in</property>
+            <property name="rightMargin">0.23958333333333334in</property>
             <page-header>
                 <text-data id="1126">
                     <property name="style">NewStyle</property>
                     <property name="fontFamily">sans-serif</property>
                     <property name="fontSize">12pt</property>
                     <property name="fontWeight">bold</property>
-                    <property name="borderBottomStyle">solid</property>
-                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderBottomStyle">none</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
                     <property name="textAlign">center</property>
                     <expression name="valueExpr">params["rpth"].value</expression>
                     <property name="contentType">html</property>
@@ -682,8 +846,10 @@ from cpcalculated where Test_id=?]]></xml-property>
             <page-footer>
                 <grid id="1266">
                     <property name="backgroundColor">white</property>
-                    <property name="borderTopStyle">solid</property>
-                    <property name="borderTopWidth">thin</property>
+                    <property name="borderBottomStyle">none</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
                     <property name="canShrink">false</property>
                     <column id="1267"/>
                     <row id="1268">
@@ -1183,9 +1349,6 @@ from cpcalculated where Test_id=?]]></xml-property>
                         <column id="648">
                             <property name="style">border</property>
                         </column>
-                        <column id="649">
-                            <property name="style">border</property>
-                        </column>
                         <column id="650">
                             <property name="style">border</property>
                         </column>
@@ -1250,86 +1413,6 @@ from cpcalculated where Test_id=?]]></xml-property>
                                                 <footer>
                                                     <row id="668">
                                                         <cell id="669"/>
-                                                    </row>
-                                                </footer>
-                                            </table>
-                                        </cell>
-                                    </row>
-                                </grid>
-                            </cell>
-                            <cell id="671">
-                                <grid id="672">
-                                    <column id="673"/>
-                                    <row id="674">
-                                        <cell id="675">
-                                            <label id="676">
-                                                <property name="fontSize">medium</property>
-                                                <property name="fontWeight">bold</property>
-                                                <property name="textAlign">center</property>
-                                                <text-property name="text">Beam Max.</text-property>
-                                            </label>
-                                        </cell>
-                                    </row>
-                                    <row id="677">
-                                        <cell id="678">
-                                            <table id="679">
-                                                <property name="dataSet">3Db_BW_BMax</property>
-                                                <list-property name="boundDataColumns">
-                                                    <structure>
-                                                        <property name="name">Frequency</property>
-                                                        <text-property name="displayName">bwmax</text-property>
-                                                        <expression name="expression" type="javascript">dataSetRow["3Db_BW_BMax"]</expression>
-                                                        <property name="dataType">decimal</property>
-                                                        <property name="allowExport">true</property>
-                                                    </structure>
-                                                    <structure>
-                                                        <property name="name">3Db_BW_BMax</property>
-                                                        <text-property name="displayName">3Db_Bs_BMax</text-property>
-                                                        <expression name="expression" type="javascript">dataSetRow["3Db_BS_BMax"]</expression>
-                                                        <property name="dataType">decimal</property>
-                                                        <property name="allowExport">true</property>
-                                                    </structure>
-                                                </list-property>
-                                                <column id="693"/>
-                                                <column id="694"/>
-                                                <header>
-                                                    <row id="680">
-                                                        <cell id="681">
-                                                            <label id="682">
-                                                                <property name="fontSize">small</property>
-                                                                <text-property name="text">3dB BW (deg.)</text-property>
-                                                            </label>
-                                                        </cell>
-                                                        <cell id="683">
-                                                            <label id="684">
-                                                                <property name="fontSize">small</property>
-                                                                <text-property name="text">BSq (dB)</text-property>
-                                                            </label>
-                                                        </cell>
-                                                    </row>
-                                                </header>
-                                                <detail>
-                                                    <row id="685">
-                                                        <cell id="686">
-                                                            <data id="687">
-                                                                <property name="fontSize">small</property>
-                                                                <property name="textAlign">center</property>
-                                                                <property name="resultSetColumn">Frequency</property>
-                                                            </data>
-                                                        </cell>
-                                                        <cell id="688">
-                                                            <data id="689">
-                                                                <property name="fontSize">small</property>
-                                                                <property name="textAlign">center</property>
-                                                                <property name="resultSetColumn">3Db_BW_BMax</property>
-                                                            </data>
-                                                        </cell>
-                                                    </row>
-                                                </detail>
-                                                <footer>
-                                                    <row id="690">
-                                                        <cell id="691"/>
-                                                        <cell id="692"/>
                                                     </row>
                                                 </footer>
                                             </table>
