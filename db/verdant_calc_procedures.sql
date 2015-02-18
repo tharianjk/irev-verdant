@@ -2355,7 +2355,14 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spPolarMultiple`(strfreq varchar(100),strlg varchar(100),testid int,usr Varchar(20),typ varchar(2)) BEGIN declare cnt int; declare rint int; set cnt=0; delete from temppolar where user=usr; create table if not exists t1 (id integer ,freq decimal(20,10),lg decimal (20,10)); 
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spPolarMultiple`(strfreq varchar(100),strlg varchar(100),testid int,usr Varchar(20),typ varchar(2))
+BEGIN declare cnt int; declare rint int; set cnt=0; delete from temppolar where user=usr; create table if not exists t1 (id integer ,freq decimal(20,10),lg decimal (20,10)); 
 truncate table t1; 
 
 if typ='H' then 
@@ -2382,6 +2389,7 @@ end if;
        
 SET @String      = strfreq; 
 SET @Occurrences = LENGTH(@String) - LENGTH(REPLACE(@String, ',', '')); 
+-- insert into testdebug values ('1');
         myloop: WHILE (@Occurrences > 0)        
  DO              SET @myValue = SUBSTRING_INDEX(@String, ',', 1); 
             IF (@myValue != '') THEN  
@@ -2390,13 +2398,18 @@ SET @Occurrences = LENGTH(@String) - LENGTH(REPLACE(@String, ',', ''));
      ELSE              
    LEAVE myloop;      
         END IF;    
-         SET @Occurrences = LENGTH(@String) - LENGTH(REPLACE(@String, ',', ''));      
+         SET @Occurrences = LENGTH(@String) - LENGTH(REPLACE(@String, ',', '')); 
+-- insert into testdebug values ('2');     
        IF (@occurrences = 0) THEN      
             LEAVE myloop;           
    END IF;            
  SET @String = SUBSTRING(@String,LENGTH(SUBSTRING_INDEX(@String, ',', 1))+2);      
-   END WHILE;  -- lg
- set cnt=0; SET @String      = strlg;   
+   END WHILE;  
+
+
+-- lg
+ set cnt=0; 
+SET @String      = strlg;   
       SET @Occurrences = LENGTH(@String) - LENGTH(REPLACE(@String, ',', ''));   
       myloop: WHILE (@Occurrences > 0)     
     DO        
@@ -2414,18 +2427,44 @@ SET @Occurrences = LENGTH(@String) - LENGTH(REPLACE(@String, ',', ''));
   SET @String = SUBSTRING(@String,LENGTH(SUBSTRING_INDEX(@String, ',', 1))+2);   
       END WHILE; 
  select count(*) into @cnt from t1; 
- 
+
+if @cnt=0 then
+insert into t1(id,freq,lg) values(1,convert(strfreq,decimal),convert(strlg,decimal));
+set @cnt=1;
+ end if;
 set rint=0; 
-myloop: WHILE (rint<=@cnt)      
-   DO 
-  
+myloop: WHILE (rint<@cnt)      
+   DO  
 
 select freq into @freq from t1 where id=rint; 
-SET @sql1 = CONCAT('insert into temppolar(user,test_id,angle,amp',rint+1,',freq',rint+1,')'); 
-set @sql2= CONCAT('SELECT ''',usr,''', HD.Test_id,HD.Angle,HD.Amplitude,HD.Frequency FROM ',@tab,' HD where HD.Frequency=',@freq,' and HD.Test_id=',testid);  set @s=CONCAT(@sql1,@sql2);  set rint=rint+1;        PREPARE stmt1 FROM @s;  EXECUTE stmt1;  DEALLOCATE PREPARE stmt1;  set rint=rint+1;          
+ SET @sql1 = CONCAT('insert into temppolar(user,test_id,angle,amp',rint+1,',freq',rint+1,')');
+ -- SET @sql1 = CONCAT('insert into temppolar(user,test_id,angle,amp',rint+1,',frequency)'); 
+set @sql2= CONCAT('SELECT ''',usr,''', HD.Test_id,HD.Angle,HD.Amplitude,HD.Frequency FROM ',@tab,' HD where HD.Frequency=',@freq,' and HD.Test_id=',testid);  
+set @s=CONCAT(@sql1,@sql2);  
+        
+PREPARE stmt1 FROM @s;  
+EXECUTE stmt1;  
+DEALLOCATE PREPARE stmt1;  
+  set rint=rint+1;    
 END WHILE;        
     drop table t1; 
-select test_id,angle,sum(amp1) amp1,sum(freq1) freq1,sum(amp2) amp2,sum(freq2) freq2,sum(amp3) amp3,sum(freq3) freq3,sum(amp4) amp4,sum(freq4) freq4,sum(amp5) amp5,sum(freq5) freq5 ,sum(amp6) amp6,sum(freq6) freq6,sum(amp7) amp7,sum(freq7) freq7,sum(amp8) amp8,sum(freq8) freq8,sum(amp9) amp9,sum(freq9) freq9,sum(amp10),sum(freq10) freq10 ,sum(amp11) amp11,sum(freq11) freq11,sum(amp12) amp12,sum(freq12) freq12,sum(amp13) amp13,sum(freq13) freq13,sum(amp14) amp14,sum(freq14) freq14,sum(amp15) amp15,sum(freq15) freq15, sum(amp16) amp16,sum(freq16) freq16,sum(amp17) amp17,sum(freq17) freq17,sum(amp18) amp18,sum(freq18) freq18,sum(amp19) amp19,sum(freq19) freq19,sum(amp20) amp20,sum(freq20) freq20
- from temppolar group by test_id,angle;       
-END$$
 
+ select test_id TestId,Angle,sum(amp1) Amplitude1,sum(freq1) frequency1,sum(amp2) Amplitude2,sum(freq2) frequency2,
+sum(amp3) Amplitude3,sum(freq3) frequency3,sum(amp4) Amplitude4,sum(freq4) frequency4,
+sum(amp5) Amplitude5,sum(freq5) frequency5 ,sum(amp6) Amplitude6,sum(freq6) frequency6,sum(amp7) Amplitude7,
+sum(freq7) frequency7,sum(amp8) Amplitude8,sum(freq8) frequency8,sum(amp9) Amplitude9,sum(freq9) frequency9,
+sum(amp10) Amplitude10,sum(freq10) frequency10 ,sum(amp11) Amplitude11,sum(freq11) frequency11,sum(amp12) Amplitude12,
+sum(freq12) frequency12,sum(amp13) Amplitude13,sum(freq13) frequency13,sum(amp14) Amplitude14,sum(freq14) frequency4,
+sum(amp15) Amplitude15,sum(freq15) frequency15, sum(amp16) Amplitude16,sum(freq16) frequency16,sum(amp17) Amplitude17,
+sum(freq17) frequency17,sum(amp18) Amplitude18,sum(freq18) frequency18,sum(amp19) Amplitude19,sum(freq19) frequency19,
+sum(amp20) Amplitude20,sum(freq20) frequency20
+ from temppolar group by test_id,angle;  
+
+ /* select test_id TestId,Angle,sum(amp1) Amplitude1, frequency,sum(amp2) Amplitude2,
+sum(amp3) Amplitude3,sum(amp4) Amplitude4,sum(amp5) Amplitude5 ,sum(amp6) Amplitude6,sum(amp7) Amplitude7,
+sum(amp8) Amplitude8,sum(amp9) Amplitude9,sum(amp10) Amplitude10 ,sum(amp11) Amplitude11,sum(amp12) Amplitude12,
+sum(amp13) Amplitude13,sum(amp14) Amplitude14,sum(amp15) Amplitude15, sum(amp16) Amplitude16,sum(amp17) Amplitude17,
+sum(amp18) Amplitude18,sum(amp19) Amplitude19,sum(amp20) Amplitude20
+ from temppolar group by test_id,angle,frequency  
+order by test_id,frequency,angle;   */ 
+END$$

@@ -51,18 +51,20 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 			{deg='bm';}
 		if(document.getElementById("0d").checked)
 		{if(deg=="" || deg==null){deg='0d';}
-		else deg='bm0d';}
+		//else deg='bm0d';
+		else deg='0d90d';
+		}
 		
 		if(document.getElementById("90d").checked)
 		{
-			if(deg=="" || deg==null) deg='90d';
-		else if (deg=='bm0d') deg='0d90d';
-		else if (deg=='0d') deg='0d90d';
-		else deg='bm90d';
+			
+		if(deg=="" || deg==null) deg='90d';
+		else deg='0d90d';
+		//else if (deg=='bm0d') deg='0d90d';
+		//else if (deg=='0d') deg='0d90d';
+		//else deg='bm90d';
 		}
-		if(!document.getElementById("0d").checked && !document.getElementById("90d").checked)
-			{deg="bm";}
-			//3dbWithCP_report.rptdesign
+		
 			var url="";
 			if(typ=='3db' ){
 				if(atype=='P' || atype=='R' ){ //Elevation (pitch or roll)

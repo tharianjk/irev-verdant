@@ -134,7 +134,8 @@ public class TestImportController extends SimpleFormController{
 	    	freqlist.add(testfreq);
 	     }
 	     } catch (JSONException e) {
-	         e.printStackTrace();
+	    	 logger.info(" JSONException "+e.getMessage());
+	    	 err=e.getMessage();
 	    }
 	
 		 
@@ -362,7 +363,8 @@ public class TestImportController extends SimpleFormController{
 	        request.setAttribute("mode", mode);
         	cursess.setAttribute("mode",mode);
         	testid=0;
-	        logger.info("inside ProductSerialController"); 
+	        logger.info("inside TestImportController"); 
+	        try{
 	        if (id == null || id == "" || id.equals("null") || id.equals("0") ){
 	        	logger.info(" atype "+atype);
 	        	logger.info(" going to create new Test Data");
@@ -375,7 +377,7 @@ public class TestImportController extends SimpleFormController{
 	        	testdata.setPtype(atype);
 	        	return testdata;
 	        }else{
-	        	  logger.info("inside fileuploadcontroller id:" +id);
+	        	  logger.info("inside TestImportController id:" +id);
 	        	request.getSession().setAttribute("id", id);
 	        	cursess.setAttribute("id",id);
 	        	request.getSession().setAttribute("mode", mode);
@@ -389,6 +391,12 @@ public class TestImportController extends SimpleFormController{
 	            atype=testdata.getPtype();
 	        	return testdata;
 	        	}
+	        }
+	        catch(Exception e)
+	        {
+	        	logger.info(" ImportTestController Exception "+e.getMessage());
+	        	return new TestData();
+	        }
 	              
 	    }
 	    protected HashMap referenceData(HttpServletRequest request) throws Exception {

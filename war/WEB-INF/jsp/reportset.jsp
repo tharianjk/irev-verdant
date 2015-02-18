@@ -462,6 +462,7 @@ function fnenable(ctyp){
 		
 		if(document.getElementById('3db').checked){
 			db="yes";
+			dbDeg="";
 			if(document.getElementById('30d').checked && document.getElementById('390d').checked){
 				dbDeg='0d90d';
 			}
@@ -471,18 +472,22 @@ function fnenable(ctyp){
 				dbDeg='90d';	
 			if(document.getElementById('3bm').checked)
 				{
-				if(dbDeg=='0d90d')
+				/*if(dbDeg=='0d90d')
 					dbDeg='0d90d';	// a			
 				else if(dbDeg=='0d')
 					dbDeg='bm0d';
 				else if(dbDeg=='90d')
 					dbDeg='bm90d';
-				else
-					dbDeg='bm';
+				else*/
+					
+					if(dbDeg!="" && dbDeg!=null)
+						dbDeg=='0d90d';
+					else dbDeg='bm';
 				}			
 		}
 		if(document.getElementById('10db').checked){
 			dbv="yes";
+			dbDegv="";
 			if(document.getElementById('0d').checked && document.getElementById('90d').checked){
 				dbDegv='0d90d';
 			}
@@ -493,14 +498,17 @@ function fnenable(ctyp){
 			
 			if(document.getElementById('bm').checked)
 			{
-			if(dbDegv=='0d90d')
+		/*	if(dbDegv=='0d90d')
 				dbDegv='0d90d';	//a			
 			else if(dbDegv=='0d')
 				dbDegv='bm0d';
 			else if(dbDegv=='90d')
 				dbDegv='bm90d';
 			else
-				dbDegv='bm';
+				dbDegv='bm';*/
+				if(dbDegv!="" && dbDegv!=null)
+					dbDegv=='0d90d';
+				else dbDegv='bm';
 			}
 			
 		}
