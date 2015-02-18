@@ -1799,7 +1799,7 @@ function beforeDrawBlock( block, icsc )&#xD;
 title=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;showimage&quot;);&#xD;
 if(title==&quot;no&quot;)&#xD;
 {&#xD;
-block.setBackground(null)&#xD;
+//block.setBackground(null)&#xD;
 }&#xD;
 else&#xD;
 {}&#xD;
