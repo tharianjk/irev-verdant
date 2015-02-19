@@ -57,8 +57,8 @@
 	    
 	    <tbody><tr><td>
 	    <c:forEach items="${model.freqlist}" var="freq">			
-				<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}
-				 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequencyid}'  class="hintTextbox" style="width:50;" maxlength="20"  value="l-gain"/>
+				<input type="checkbox" name="chkid" value="${freq.frequency}" id="${freq.frequency}" class="chkfreq">${freq.frequency}
+				 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequency}'  class="hintTextbox" style="width:50;" maxlength="20"  value="l-gain"/>
 			</c:forEach></td></tr></tbody>	    
 	    </table> 
           
@@ -201,7 +201,7 @@ function fnonchange(){
 		nprecision='${model.nprecision}';
 		
 		freqs=fre.split(",");
-		var freqsel=0;
+		var selfreq=0;
 		//var freqid =document.getElementById("freqid").value;
 		var freqid =document.getElementById("freqid").value;
 		console.log(" freqids "+freqid);
@@ -257,12 +257,14 @@ function fnonchange(){
 		{typ="C";}
 if(document.getElementById("img").checked)
 	img="yes";
-		
+
+console.log("typ  "+document.getElementById("freqtype").value);
 		//multiple
-		if(document.getElementById("freqtype").value=="M"){
+if(document.getElementById("freqtype").value=="M"){
 			for (i==0;i<freqs.length;i++){
+				
 				if(document.getElementById(freqs[i]).checked){
-					
+					console.log(freqs[i]);
 					if(j==0){
 						selfreq=freqs[i];}
 					else{selfreq=selfreq+','+freqs[i];}
@@ -277,14 +279,14 @@ if(document.getElementById("img").checked)
 					if(j==0){
 						sellg=lg[j];}
 					else{sellg=sellg+','+lg[j];}
-					freqsel=1;
+					
 					j=j+1;
 					}	
 				}
-				console.log(strfreqs[0]);
-				if(freqsel==0)
+				
+				if(selfreq==0)
 					{
-					alert("Frequency not selected");
+					alert("Frequencies not selected");
 					return;
 					}
 				var url="/birt-viewer/frameset?__report=PolarMultiple.rptdesign&typ="+dtype+"&testid="+testid+"&strlg="+sellg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&strfreq="+selfreq+"&usr=admin";
