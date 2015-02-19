@@ -12,37 +12,20 @@
 		<script src="js/jquery-ui.js"></script>
 </head>
 <body>
-<table >
+<table>
+<tr>
+<td>
+ <select id="freqid"  onchange="fnonchange();">          
+         <option value="S">Single Frequency Plot</option>   
+          <option value="M">Multiple Frequency Plot</option>
+</select>
+</td>
+</tr>
+</table>
+
+<table id="stab">
  <tr>
-		<td >Frequency : <table id ='ptab' style="display:none;">
-	    <c:set var="cnt" value="1"/>
-	    <tbody><tr><td>
-	    
-	    
-	    <c:forEach items="${model.freqlist}" var="freq">			
-				
-				<c:if test="${ cnt < 7}">
-					<c:set var="cnt" value="${cnt + 1 }"/>
-					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency} 
-				</c:if>
-				<c:if test="${ cnt == 6 }">
-				<br>
-				</c:if>
-				<c:if test="${ cnt > 6 && cnt<19}">
-					<c:set var="cnt" value="${cnt + 1 }"/>
-					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}  
-				</c:if>
-				<c:if test="${ cnt == 12 }">
-				<br>
-				</c:if>
-				<c:if test="${ cnt > 12}">
-					<c:set var="cnt" value="${cnt + 1 }"/>
-					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}  
-				</c:if>
-				
-			</c:forEach></td></tr></tbody>
-	    
-	    </table>  			           
+		<td >Frequency : </td> 			           
 	
        <td >
        <select id="freqid" >          
