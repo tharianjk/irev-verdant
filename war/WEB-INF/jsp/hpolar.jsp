@@ -198,9 +198,8 @@ function fnonchange(){
 		var i=0;
 		var j=0;
 		var fre= '${model.strfreqs}';
-		nprecision='${model.nprecision}';
+		nprecision='${model.nprecision}';	
 		
-		freqs=fre.split(",");
 		var selfreq=0;
 		//var freqid =document.getElementById("freqid").value;
 		var freqid =document.getElementById("freqid").value;
@@ -261,8 +260,9 @@ if(document.getElementById("img").checked)
 console.log("typ  "+document.getElementById("freqtype").value);
 		//multiple
 if(document.getElementById("freqtype").value=="M"){
+	freqs=fre.split(",");
 			for (i==0;i<freqs.length;i++){
-				
+				console.log(freqs[i]);
 				if(document.getElementById(freqs[i]).checked){
 					console.log(freqs[i]);
 					if(j==0){
