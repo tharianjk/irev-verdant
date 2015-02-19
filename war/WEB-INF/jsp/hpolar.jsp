@@ -93,14 +93,17 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 var typ="${model.atype}";
 var rptheader='${model.rptheader}';
 var rptfooter='${model.rptfooter}';
+var ptype =parent.AssetTree.selectedparenttype;
+var atype=parent.AssetTree.atype;
 function fnenable(ctyp){
 	console.log("checked");
+	if(document.getElementById("freqtype").value=="S"){
 	if(ctyp=='c'){
 	if(document.getElementById("cpdata").checked){
 		document.getElementById("hdata").checked=false;
 		document.getElementById("vdata").checked=false;
 	}
-}
+    }
 	else{
 	if(document.getElementById("hdata").checked){
 		document.getElementById("cpdata").checked=false;
@@ -108,6 +111,25 @@ function fnenable(ctyp){
 	if(document.getElementById("vdata").checked){
 		document.getElementById("cpdata").checked=false;
 	}
+	}
+	}
+	else{
+		if(ctyp=='c'){
+			if(document.getElementById("cpdata").checked){
+				document.getElementById("hdata").checked=false;
+				document.getElementById("vdata").checked=false;
+			}
+		    }
+			else{
+			if(document.getElementById("hdata").checked){
+				document.getElementById("cpdata").checked=false;
+				document.getElementById("vdata").checked=false;
+			}
+			if(document.getElementById("vdata").checked){
+				document.getElementById("cpdata").checked=false;
+				document.getElementById("hdata").checked=false;
+			}
+			}
 	}
 }
 
@@ -194,6 +216,7 @@ function fnonchange(){
 		var testid="${model.testid}";
 		var strfreqs=[]; 
 		var freqs=[];
+		var lgs=[];
 		var multfreqs="";
 		var i=0;
 		var j=0;
@@ -261,25 +284,29 @@ console.log("typ  "+document.getElementById("freqtype").value);
 		//multiple
 if(document.getElementById("freqtype").value=="M"){
 	freqs=fre.split(",");
-			for (i==0;i<freqs.length;i++){
-				console.log(freqs[i]);
-				if(document.getElementById(freqs[i]).checked){
-					console.log(freqs[i]);
+	
+	i=0;
+	j=0;
+			for (i==0;i<freqs.length;i++){				
+				if(document.getElementById(freqs[i]).checked){					
 					if(j==0){
 						selfreq=freqs[i];}
 					else{selfreq=selfreq+','+freqs[i];}
-					lg[j]="0.0001";
+					
+					lgs[j]=0.0001;
+					
 					if(atype=="A" || atype=="CP")
-					{
-					if(document.getElementById('lg-'+freqs[i]).value!="l-gain" && document.getElementById('lg-'+freqs[i]).value!=null && document.getElementById('lg-'+freqs[i]).value!="")
-						{
-						lg[j]=document.getElementById('lg-'+freqs[i]).value;
+					{			
+						console.log("lg "+lgs[j]);
+					if(document.getElementById('lg-'+freqs[i]).value !="l-gain" && document.getElementById('lg-'+freqs[i]).value!=null && document.getElementById('lg-'+freqs[i]).value!="" && document.getElementById('lg-'+freqs[i]).value!="undefined")
+						{						
+						lgs[j]=document.getElementById('lg-'+freqs[i]).value;
 						}				
 					}
 					if(j==0){
-						sellg=lg[j];}
-					else{sellg=sellg+','+lg[j];}
-					
+						sellg=lgs[j];}
+					else{sellg=sellg+','+lgs[j];}
+					console.log("sellg "+sellg);
 					j=j+1;
 					}	
 				}
@@ -289,7 +316,7 @@ if(document.getElementById("freqtype").value=="M"){
 					alert("Frequencies not selected");
 					return;
 					}
-				var url="/birt-viewer/frameset?__report=PolarMultiple.rptdesign&typ="+dtype+"&testid="+testid+"&strlg="+sellg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&strfreq="+selfreq+"&usr=admin";
+				var url="/birt-verdant/frameset?__report=PolarMultiple.rptdesign&typ="+typ+"&testid="+testid+"&strlg="+sellg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&strfreq="+selfreq+"&usr=admin";
 		}
 		//single
 		else{
@@ -299,18 +326,19 @@ if(document.getElementById("freqtype").value=="M"){
 			return;
 			}  
 			
-		var url="/birt-viewer/frameset?__report=PolarGeneric.rptdesign&type="+typ+"&testid="+testid+"&scale="+scale+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&freq1="+strfreqs[0]+
+		var url="/birt-verdant/frameset?__report=PolarGeneric.rptdesign&type="+typ+"&testid="+testid+"&scale="+scale+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&freq1="+strfreqs[0]+
 		"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
 		"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9];
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
 		if(typ=="B")
-			var url="/birt-viewer/frameset?__report=PolarHPVP.rptdesign&type="+typ+"&testid="+testid+"&scale="+scale+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&freq1="+strfreqs[0]+
+			var url="/birt-verdant/frameset?__report=PolarHPVP.rptdesign&type="+typ+"&testid="+testid+"&scale="+scale+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&freq1="+strfreqs[0]+
 			"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
 			"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9];
 			console.log("url " + url);
-		//window.location =url; 
-		window.frames['AppBody'].location=url;
+		//window.location =url; 		
 		 }
+		console.log(url);
+window.frames['AppBody'].location=url;
 	}
 </script>
 </body>

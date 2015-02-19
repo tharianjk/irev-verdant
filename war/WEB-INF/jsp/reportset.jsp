@@ -545,12 +545,12 @@ function fnenable(ctyp){
 		
 		if(typ=="P"){
 			if (img=="yes"){  // we have a different rptdesign file with aircraft bkgnd imag to be used when image is selected 
-				var url="/birt-viewer/frameset?__report=ReportSetPitch_Img.rptdesign&testid="+testid+"&type=P&polar="+polar+"&scale=yes&lgain=0.0001"+
+				var url="/birt-verdant/frameset?__report=ReportSetPitch_Img.rptdesign&testid="+testid+"&type=P&polar="+polar+"&scale=yes&lgain=0.0001"+
 						"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+"&freq1="+strfreqs[0]+
 						"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
 						"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
 			}else{
-				var url="/birt-viewer/frameset?__report=ReportSetPitch.rptdesign&testid="+testid+"&type=P&polar="+polar+"&scale=yes&lgain=0.0001"+
+				var url="/birt-verdant/frameset?__report=ReportSetPitch.rptdesign&testid="+testid+"&type=P&polar="+polar+"&scale=yes&lgain=0.0001"+
 						"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+"&freq1="+strfreqs[0]+
 						"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
 						"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
@@ -558,12 +558,12 @@ function fnenable(ctyp){
 		}
 		if(typ=="R"){
 			if (img=="yes"){
-				var url="/birt-viewer/frameset?__report=ReportSetRoll_Img.rptdesign&testid="+testid+"&type=R&polar="+polar+"&scale=yes&lgain=0.0001"+
+				var url="/birt-verdant/frameset?__report=ReportSetRoll_Img.rptdesign&testid="+testid+"&type=R&polar="+polar+"&scale=yes&lgain=0.0001"+
 					"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+"&freq1="+strfreqs[0]+
 					"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
 					"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
 			}else{
-				var url="/birt-viewer/frameset?__report=ReportSetRoll.rptdesign&testid="+testid+"&type=R&polar="+polar+"&scale=yes&lgain=0.0001"+
+				var url="/birt-verdant/frameset?__report=ReportSetRoll.rptdesign&testid="+testid+"&type=R&polar="+polar+"&scale=yes&lgain=0.0001"+
 					"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+"&freq1="+strfreqs[0]+
 					"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
 					"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
@@ -571,12 +571,12 @@ function fnenable(ctyp){
 		}
         if(typ=="Y"){
 			if (img=="yes"){
-				var url="/birt-viewer/frameset?__report=ReportSetYaw_Img.rptdesign&testid="+testid+"&type=Y&polar="+polar+"&scale=yes&omni="+od+"&lg1="+lg[0]+
+				var url="/birt-verdant/frameset?__report=ReportSetYaw_Img.rptdesign&testid="+testid+"&type=Y&polar="+polar+"&scale=yes&omni="+od+"&lg1="+lg[0]+
 					"&lg2="+lg[1]+"&lg3="+lg[2]+"&lg4="+lg[3]+"&lg5="+lg[4]+"&lg6="+lg[5]+"&lg7="+lg[6]+"&lg8="+lg[7]+"&lg9="+lg[8]+"&lg10="+lg[9]+
 					"&freq1="+strfreqs[0]+"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
 					"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
 			}else{
-				var url="/birt-viewer/frameset?__report=ReportSetYaw.rptdesign&testid="+testid+"&type=Y&polar="+polar+"&scale=yes&omni="+od+"&lg1="+lg[0]+
+				var url="/birt-verdant/frameset?__report=ReportSetYaw.rptdesign&testid="+testid+"&type=Y&polar="+polar+"&scale=yes&omni="+od+"&lg1="+lg[0]+
 					"&lg2="+lg[1]+"&lg3="+lg[2]+"&lg4="+lg[3]+"&lg5="+lg[4]+"&lg6="+lg[5]+"&lg7="+lg[6]+"&lg8="+lg[7]+"&lg9="+lg[8]+"&lg10="+lg[9]+
 					"&freq1="+strfreqs[0]+"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
 					"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
@@ -584,13 +584,13 @@ function fnenable(ctyp){
 		}
        if(atype=="A" && ptype=="S"){
     	   if(dtype=='B'){
-			var url="/birt-viewer/frameset?__report=RSetSlantAzimuthHpnVP.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&scale=yes&omni="+od+
+			var url="/birt-verdant/frameset?__report=RSetSlantAzimuthHpnVP.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&scale=yes&omni="+od+
 					"&lg1="+lg[0]+"&lg2="+lg[1]+"&lg3="+lg[2]+"&lg4="+lg[3]+"&lg5="+lg[4]+"&lg6="+lg[5]+"&lg7="+lg[6]+"&lg8="+lg[7]+"&lg9="+lg[8]+"&lg10="+lg[9]+
 					"&freq1="+strfreqs[0]+"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
 					"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
 	    }
     	   else{
-    		   var url="/birt-viewer/frameset?__report=ReportSetSlantAzimuth.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&scale=yes&omni="+od+
+    		   var url="/birt-verdant/frameset?__report=ReportSetSlantAzimuth.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&scale=yes&omni="+od+
 				"&lg1="+lg[0]+"&lg2="+lg[1]+"&lg3="+lg[2]+"&lg4="+lg[3]+"&lg5="+lg[4]+"&lg6="+lg[5]+"&lg7="+lg[6]+"&lg8="+lg[7]+"&lg9="+lg[8]+"&lg10="+lg[9]+
 				"&freq1="+strfreqs[0]+"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
 				"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
@@ -599,14 +599,14 @@ function fnenable(ctyp){
        if(atype=="E" && ptype=="S"){
     	   
 			if(dtype=='B'){
-			var url="/birt-viewer/frameset?__report=SlantElevationRSHnV.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&blob="+blobe+"&AxR="+axr+"&AxDeg="+AxDeg+"&scale=yes&lg1=0.0001"+
+			var url="/birt-verdant/frameset?__report=SlantElevationRSHnV.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&blob="+blobe+"&AxR="+axr+"&AxDeg="+AxDeg+"&scale=yes&lg1=0.0001"+
 					"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+
 					"&freq1="+strfreqs[0]+"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
 					"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
 			}
 			else
 				{
-				var url="/birt-viewer/frameset?__report=SlantElevationRSetHporVp.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&blob="+blobe+"&AxR="+axr+"&AxDeg="+AxDeg+"&scale=yes&lg1=0.0001"+
+				var url="/birt-verdant/frameset?__report=SlantElevationRSetHporVp.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&blob="+blobe+"&AxR="+axr+"&AxDeg="+AxDeg+"&scale=yes&lg1=0.0001"+
 				"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+
 				"&freq1="+strfreqs[0]+"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
 				"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
@@ -616,14 +616,14 @@ function fnenable(ctyp){
        if(atype=="NCP" && ptype=="C"){
     	   
 			if(dtype=='B'){
-			var url="/birt-viewer/frameset?__report=CircularWithOutCPRset.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&blob="+blobe+"&AxR="+axr+"&AxDeg="+AxDeg+"&scale=yes&lg1=0.0001"+
+			var url="/birt-verdant/frameset?__report=CircularWithOutCPRset.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&blob="+blobe+"&AxR="+axr+"&AxDeg="+AxDeg+"&scale=yes&lg1=0.0001"+
 					"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+
 					"&freq1="+strfreqs[0]+"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
 					"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
 			}
 			else
 				{
-				var url="/birt-viewer/frameset?__report=CircularWithoutCPRsetHporVp.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&blob="+blobe+"&AxR="+axr+"&AxDeg="+AxDeg+"&scale=yes&lg1=0.0001"+
+				var url="/birt-verdant/frameset?__report=CircularWithoutCPRsetHporVp.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&blob="+blobe+"&AxR="+axr+"&AxDeg="+AxDeg+"&scale=yes&lg1=0.0001"+
 				"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+
 				"&freq1="+strfreqs[0]+"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
 				"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter;
@@ -633,14 +633,14 @@ function fnenable(ctyp){
        if(atype=="DCP" && ptype=="C"){
     	   
     	   if(dtype!="B"){
-   			var url="/birt-viewer/frameset?__report=CPReportset.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&axr="+axr+"&AxDeg="+AxDeg+"&scale=yes"+
+   			var url="/birt-verdant/frameset?__report=CPReportset.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&axr="+axr+"&AxDeg="+AxDeg+"&scale=yes"+
    			"&lg1="+lg[0]+"&lg2="+lg[1]+"&lg3="+lg[2]+"&lg4="+lg[3]+"&lg5="+lg[4]+"&lg6="+lg[5]+"&lg7="+lg[6]+"&lg8="+lg[7]+"&lg9="+lg[8]+"&lg10="+lg[9]+"&pc="+nprecision+
    			"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+"&cpg="+cpg+"&blobe="+blobe+"&freq1="+strfreqs[0]+
    			"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
    			"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img=no&rpth="+rptheader+"&rptf="+rptfooter;
    			}
    			else{
-   				var url="/birt-viewer/frameset?__report=CPwithHPnVPRset.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&axr="+axr+"&AxDeg="+AxDeg+"&scale=yes"+
+   				var url="/birt-verdant/frameset?__report=CPwithHPnVPRset.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&axr="+axr+"&AxDeg="+AxDeg+"&scale=yes"+
    				"&lg1="+lg[0]+"&lg2="+lg[1]+"&lg3="+lg[2]+"&lg4="+lg[3]+"&lg5="+lg[4]+"&lg6="+lg[5]+"&lg7="+lg[6]+"&lg8="+lg[7]+"&lg9="+lg[8]+"&lg10="+lg[9]+"&pc="+nprecision+
    				"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+"&cpg="+cpg+"&blobe="+blobe+"&freq1="+strfreqs[0]+
    				"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
@@ -651,14 +651,14 @@ function fnenable(ctyp){
         
 		else if (atype=="CP" && ptype=="C"){
 			if(dtype!="B"){
-			var url="/birt-viewer/frameset?__report=CPReportset.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&axr="+axr+"&AxDeg="+AxDeg+"&scale=yes"+
+			var url="/birt-verdant/frameset?__report=CPReportset.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&axr="+axr+"&AxDeg="+AxDeg+"&scale=yes"+
 			"&lg1="+lg[0]+"&lg2="+lg[1]+"&lg3="+lg[2]+"&lg4="+lg[3]+"&lg5="+lg[4]+"&lg6="+lg[5]+"&lg7="+lg[6]+"&lg8="+lg[7]+"&lg9="+lg[8]+"&lg10="+lg[9]+"&pc="+nprecision+
 			"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+"&cpg="+cpg+"&blobe="+blobe+"&freq1="+strfreqs[0]+
 			"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
 			"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&img=no&rpth="+rptheader+"&rptf="+rptfooter;
 			}
 			else{
-				var url="/birt-viewer/frameset?__report=CPwithHPnVPRset.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&axr="+axr+"&AxDeg="+AxDeg+"&scale=yes"+
+				var url="/birt-verdant/frameset?__report=CPwithHPnVPRset.rptdesign&testid="+testid+"&type="+dtype+"&polar="+polar+"&axr="+axr+"&AxDeg="+AxDeg+"&scale=yes"+
 				"&lg1="+lg[0]+"&lg2="+lg[1]+"&lg3="+lg[2]+"&lg4="+lg[3]+"&lg5="+lg[4]+"&lg6="+lg[5]+"&lg7="+lg[6]+"&lg8="+lg[7]+"&lg9="+lg[8]+"&lg10="+lg[9]+"&pc="+nprecision+
 				"&3db="+db+"&3dbDeg="+dbDeg+"&10db="+dbv+"&10dbDeg="+dbDegv+"&cpg="+cpg+"&blobe="+blobe+"&freq1="+strfreqs[0]+
 				"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+
