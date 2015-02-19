@@ -12,37 +12,20 @@
 		<script src="js/jquery-ui.js"></script>
 </head>
 <body>
-<table >
+<table>
+<tr>
+<td>
+ <select id="freqtype"  onchange="fnonchange();">          
+         <option value="S">Single Frequency Plot</option>   
+          <option value="M">Multiple Frequency Plot</option>
+</select>
+</td>
+</tr>
+</table>
+
+<table id="stab">
  <tr>
-		<td >Frequency : <table id ='ptab' style="display:none;">
-	    <c:set var="cnt" value="1"/>
-	    <tbody><tr><td>
-	    
-	    
-	    <c:forEach items="${model.freqlist}" var="freq">			
-				
-				<c:if test="${ cnt < 7}">
-					<c:set var="cnt" value="${cnt + 1 }"/>
-					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency} 
-				</c:if>
-				<c:if test="${ cnt == 6 }">
-				<br>
-				</c:if>
-				<c:if test="${ cnt > 6 && cnt<19}">
-					<c:set var="cnt" value="${cnt + 1 }"/>
-					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}  
-				</c:if>
-				<c:if test="${ cnt == 12 }">
-				<br>
-				</c:if>
-				<c:if test="${ cnt > 12}">
-					<c:set var="cnt" value="${cnt + 1 }"/>
-					 &nbsp; &nbsp;&nbsp;<input type="checkbox" name="chkid" value="${freq.frequencyid}" id="${freq.frequencyid}" class="chkfreq">${freq.frequency}  
-				</c:if>
-				
-			</c:forEach></td></tr></tbody>
-	    
-	    </table>  			           
+		<td >Frequency : </td> 			           
 	
        <td >
        <select id="freqid" >          
@@ -68,6 +51,18 @@
           Linear Gain   :<input type="text" id="lg" class="scale" style="width:50;"></div>
           </td>
           </tr>
+          </table>
+          
+          <table id ='mtab' style="display:none;" >
+	    
+	    <tbody><tr><td>
+	    <c:forEach items="${model.freqlist}" var="freq">			
+				<input type="checkbox" name="chkid" value="${freq.frequency}" id="${freq.frequency}" class="chkfreq">${freq.frequency}
+				 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequency}'  class="hintTextbox" style="width:50;" maxlength="20"  value="l-gain"/>
+			</c:forEach></td></tr></tbody>	    
+	    </table> 
+          
+          <table>
           <tr>
           <td>
           <div id="cp">          
@@ -171,6 +166,21 @@ $(document).ready(function(){
 	
 	});
 
+function fnonchange(){
+	if(document.getElementById("freqtype").value=="M")
+		{
+		document.getElementById("stab").style.display="none";
+		document.getElementById("mtab").style.display="block";
+		}
+	else
+	{
+		document.getElementById("stab").style.display="block";
+		document.getElementById("mtab").style.display="none";
+		}
+		
+	
+}
+
 	function back()
 	{
 		 window.location="/irev-verdant/start.htm";
@@ -184,34 +194,22 @@ $(document).ready(function(){
 		var testid="${model.testid}";
 		var strfreqs=[]; 
 		var freqs=[];
+		var multfreqs="";
 		var i=0;
 		var j=0;
 		var fre= '${model.strfreqs}';
-		nprecision='${model.nprecision}';
+		nprecision='${model.nprecision}';	
 		
-		freqs=fre.split(",");
-		var freqsel=0;
+		var selfreq=0;
 		//var freqid =document.getElementById("freqid").value;
 		var freqid =document.getElementById("freqid").value;
 		console.log(" freqids "+freqid);
-		/*for (i==0;i<freqs.length;i++){
-			if(document.getElementById(freqs[i]).checked){
-			strfreqs[j]=freqs[i];
-			freqsel=1;
-			}
-			else 
-				{strfreqs[j]=-1;}
-				j=j+1;
-		}*/
+		
 		for (i==1;i<20;i++){
 			strfreqs[i]=-1;
 		}
 		console.log(strfreqs[0]);
-		if(document.getElementById("freqid").value==-1)
-			{
-			alert("Frequency not selected");
-			return;
-			}
+		
 		strfreqs[0]=freqid;
 		var max =document.getElementById("max").value;
 		var min =document.getElementById("min").value;
@@ -258,19 +256,62 @@ $(document).ready(function(){
 		{typ="C";}
 if(document.getElementById("img").checked)
 	img="yes";
-		
-		var url="/birt-verdant/frameset?__report=PolarGeneric.rptdesign&type="+typ+"&testid="+testid+"&scale="+scale+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&freq1="+strfreqs[0]+
+
+console.log("typ  "+document.getElementById("freqtype").value);
+		//multiple
+if(document.getElementById("freqtype").value=="M"){
+	freqs=fre.split(",");
+			for (i==0;i<freqs.length;i++){
+				console.log(freqs[i]);
+				if(document.getElementById(freqs[i]).checked){
+					console.log(freqs[i]);
+					if(j==0){
+						selfreq=freqs[i];}
+					else{selfreq=selfreq+','+freqs[i];}
+					lg[j]="0.0001";
+					if(atype=="A" || atype=="CP")
+					{
+					if(document.getElementById('lg-'+freqs[i]).value!="l-gain" && document.getElementById('lg-'+freqs[i]).value!=null && document.getElementById('lg-'+freqs[i]).value!="")
+						{
+						lg[j]=document.getElementById('lg-'+freqs[i]).value;
+						}				
+					}
+					if(j==0){
+						sellg=lg[j];}
+					else{sellg=sellg+','+lg[j];}
+					
+					j=j+1;
+					}	
+				}
+				
+				if(selfreq==0)
+					{
+					alert("Frequencies not selected");
+					return;
+					}
+				var url="/birt-viewer/frameset?__report=PolarMultiple.rptdesign&typ="+dtype+"&testid="+testid+"&strlg="+sellg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&strfreq="+selfreq+"&usr=admin";
+		}
+		//single
+		else{
+			if(document.getElementById("freqid").value==-1)
+			{
+			alert("Frequency not selected");
+			return;
+			}  
+			
+		var url="/birt-viewer/frameset?__report=PolarGeneric.rptdesign&type="+typ+"&testid="+testid+"&scale="+scale+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&freq1="+strfreqs[0]+
 		"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
 		"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9];
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
 		if(typ=="B")
-			var url="/birt-verdant/frameset?__report=PolarHPVP.rptdesign&type="+typ+"&testid="+testid+"&scale="+scale+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&freq1="+strfreqs[0]+
+			var url="/birt-viewer/frameset?__report=PolarHPVP.rptdesign&type="+typ+"&testid="+testid+"&scale="+scale+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&freq1="+strfreqs[0]+
 			"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
 			"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9];
 			console.log("url " + url);
 		//window.location =url; 
 		window.frames['AppBody'].location=url;
 		 }
+	}
 </script>
 </body>
 </html>

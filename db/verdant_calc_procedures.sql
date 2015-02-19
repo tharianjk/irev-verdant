@@ -1771,7 +1771,6 @@ DELIMITER ;
 DELIMITER $$
 
 drop procedure if exists spGetPolarPlot;
-
 -- --------------------------------------------------------------------------------
 -- Routine DDL
 -- Note: comments before and after the routine body will not be stored by the server
@@ -1865,39 +1864,39 @@ end if;
 if lg=0.0001 then
 		if typ='H' then
 if cnt=0 then
-        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM hdata HD 
+        select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM hdata HD 
 		where HD.Frequency= freq and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-        SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM hdata HD 
+        SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 
-		end if;
-		if typ='V' then
+end if;
+if typ='V' then
 if cnt=0 then
-		select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM vdata HD 
+		select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM vdata HD 
+		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 
 		end if;
 		if typ='C' then
 if cnt=0 then
-        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM cpdata HD 
+        select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM cpdata HD 
+		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='B' then
 if cnt=0 then
-        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM hdata HD 
+        select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid ;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid ;
@@ -1908,32 +1907,32 @@ end if;
 		end if;
 		if  typ='P' then
 if cnt=0 then
-        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM pitchdata HD 
+        select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM pitchdata HD 
+		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='R' then
 if cnt=0 then
-        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM rolldata HD 
+        select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM rolldata HD 
+		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='Y' then 
 if cnt=0 then
-        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue FROM yawdata HD 
+        select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 end if;
-		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM yawdata HD 
+		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 end if;
@@ -1942,7 +1941,7 @@ end if;
 		SELECT HD.Amplitude into ampl FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
 if cnt=0 then
-        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue from(
+        select convert(floor(max(Amplitude)),char(30)) into strmaxvalue from(
         SELECT HD.Amplitude-ampl+lg Amplitude FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 
@@ -1950,14 +1949,14 @@ if cnt=0 then
         SELECT HD.Amplitude-ampl+lg Amplitude FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
-		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM hdata HD 
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='V' then
         SELECT HD.Amplitude into ampl FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
 if cnt=0 then
-        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue from(
+        select convert(floor(max(Amplitude)),char(30)) into strmaxvalue from(
         SELECT HD.Amplitude-ampl+lg Amplitude FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 
@@ -1965,7 +1964,7 @@ if cnt=0 then
         SELECT HD.Amplitude-ampl+lg Amplitude FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
-		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM vdata HD 
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
         if typ='C' then
@@ -1975,7 +1974,7 @@ end if;
         SELECT HD.Amplitude into ampl FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
 if cnt=0 then
-        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue from(
+        select convert(floor(max(Amplitude)),char(30)) into strmaxvalue from(
         SELECT HD.Amplitude-ampl+lgampl Amplitude FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 
@@ -1984,7 +1983,7 @@ if cnt=0 then
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
         
-		SELECT HD.Angle,HD.Amplitude-ampl+lgampl Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM cpdata HD 
+		SELECT HD.Angle,HD.Amplitude-ampl+lgampl Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM cpdata HD 
 		where HD.Frequency=testid and HD.Test_id=testid;
 		end if;
 		if typ='B' then
@@ -1999,7 +1998,7 @@ if cnt=0 then
         select convert(round(min(Amplitude-ampl+lg),0),char(30)) into strminvalue from hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid ;
    end if;     
-       /*select convert(round(max(Amplitude),0),char(30)) into strmaxvalue from 
+       /*select convert(floor(max(Amplitude)),char(30)) into strmaxvalue from 
         (SELECT Amplitude -ampl+lg FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid 
         union
@@ -2021,7 +2020,7 @@ if cnt=0 then
 		SELECT HD.Amplitude into ampl FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
 if cnt=0 then
-        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue from(
+        select convert(floor(max(Amplitude)),char(30)) into strmaxvalue from(
         SELECT HD.Amplitude-ampl+lg Amplitude FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 
@@ -2029,14 +2028,14 @@ if cnt=0 then
         SELECT HD.Amplitude-ampl+lg Amplitude FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
-		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM pitchdata HD 
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='R' then
 		SELECT HD.Amplitude into ampl FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
 if cnt=0 then
-        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue from(
+        select convert(floor(max(Amplitude)),char(30)) into strmaxvalue from(
         SELECT HD.Amplitude-ampl+lg Amplitude FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 
@@ -2044,14 +2043,14 @@ if cnt=0 then
         SELECT HD.Amplitude-ampl+lg Amplitude FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
-		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM rolldata HD 
+		SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 		if typ='Y' then
 		SELECT HD.Amplitude into ampl FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
 if cnt=0 then
-        select convert(round(max(Amplitude),0),char(30)) into strmaxvalue from(
+        select convert(floor(max(Amplitude)),char(30)) into strmaxvalue from(
         SELECT HD.Amplitude-ampl+lg Amplitude FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 
@@ -2059,7 +2058,7 @@ if cnt=0 then
         SELECT HD.Amplitude-ampl+lg Amplitude FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 end if;
-		 SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(round(HD.Frequency/1000,prec),unt) else  concat(round(HD.Frequency,prec),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM yawdata HD 
+		 SELECT HD.Angle,HD.Amplitude-ampl+lg Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Test_id,strmaxvalue,strminvalue FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		end if;
 

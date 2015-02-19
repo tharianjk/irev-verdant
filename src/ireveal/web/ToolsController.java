@@ -155,8 +155,8 @@ public class ToolsController implements Controller {
         		List<TestFrequency> freqlist=this.mastersservice.getFreqList(Integer.parseInt(testid));
         		for (int i=0;i<freqlist.size();i++){
         			if(i==0)
-        				{strfreqs=freqlist.get(i).getFrequencyid()+"";}
-        			else {strfreqs=strfreqs+","+freqlist.get(i).getFrequencyid();}
+        				{strfreqs=freqlist.get(i).getFrequency()+"";}
+        			else {strfreqs=strfreqs+","+freqlist.get(i).getFrequency();}
         		}
         		logger.info("*** strfreqs ** "+strfreqs);
         		 //myModel.put("freqlist", this.mastersservice.getFreqList(Integer.parseInt(testid)));
