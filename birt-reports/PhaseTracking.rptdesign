@@ -1077,29 +1077,38 @@ mychart.setHeight("5");
                     <property name="fontFamily">sans-serif</property>
                     <property name="fontSize">12pt</property>
                     <property name="fontWeight">bold</property>
-                    <property name="borderBottomStyle">solid</property>
-                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderBottomStyle">none</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
                     <property name="textAlign">center</property>
                     <expression name="valueExpr">params["rpth"].value</expression>
                     <property name="contentType">html</property>
                 </text-data>
             </page-header>
             <page-footer>
-                <grid id="1266">
-                    <property name="backgroundColor">white</property>
-                    <property name="borderTopStyle">solid</property>
-                    <property name="borderTopWidth">thin</property>
+                <grid id="5389">
+                    <property name="borderBottomStyle">none</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
                     <property name="canShrink">false</property>
-                    <column id="1267"/>
-                    <row id="1268">
-                        <cell id="1269">
-                            <grid id="1272">
-                                <property name="backgroundColor">white</property>
-                                <column id="1273"/>
-                                <column id="1274"/>
-                                <row id="1275">
-                                    <cell id="1276">
-                                        <text id="1278">
+                    <column id="5390"/>
+                    <row id="5391">
+                        <cell id="5392">
+                            <grid id="5393">
+                                <column id="5394">
+                                    <property name="width">1.9in</property>
+                                </column>
+                                <column id="5395">
+                                    <property name="width">4.3in</property>
+                                </column>
+                                <column id="5396">
+                                    <property name="width">1.9in</property>
+                                </column>
+                                <row id="5397">
+                                    <cell id="5398">
+                                        <text id="5399">
                                             <property name="width">6cm</property>
                                             <property name="contentType">html</property>
                                             <text-property name="content"><![CDATA[<html>
@@ -1117,7 +1126,7 @@ mychart.setHeight("5");
 <td>
 <div class="outer">
 
-<img src="\img\Verdantlogo.png" height="50px" width="200px" align="baseline" name="myimage">
+<img src="\img\Verdantlogo.png" height="50px" width="175px" align="baseline" name="myimage">
 
 </div>
 </td>
@@ -1127,25 +1136,26 @@ mychart.setHeight("5");
 </html>]]></text-property>
                                         </text>
                                     </cell>
-                                    <cell id="1277">
-                                        <text-data id="1279">
+                                    <cell id="5400">
+                                        <property name="textAlign">center</property>
+                                        <text-data id="5401">
                                             <property name="fontWeight">normal</property>
                                             <expression name="valueExpr">params["rptf"].value</expression>
                                             <property name="contentType">html</property>
                                         </text-data>
+                                        <text-data id="5402">
+                                            <property name="textAlign">center</property>
+                                            <expression name="valueExpr">"Verdant Telemetry and Antenna Systems Pvt. Ltd., Cochin, India"</expression>
+                                            <property name="contentType">html</property>
+                                        </text-data>
                                     </cell>
+                                    <cell id="5403"/>
                                 </row>
                             </grid>
                         </cell>
                     </row>
-                    <row id="1270">
-                        <cell id="1271">
-                            <text-data id="1280">
-                                <property name="textAlign">center</property>
-                                <expression name="valueExpr">"Verdant Telemetry and Antenna Systems Pvt. Ltd., Cochin, India"</expression>
-                                <property name="contentType">html</property>
-                            </text-data>
-                        </cell>
+                    <row id="5404">
+                        <cell id="5405"/>
                     </row>
                 </grid>
             </page-footer>
@@ -1624,7 +1634,7 @@ if( series.getSeriesIdentifier() == &quot;Series 1&quot; )
     <Type>Linear</Type>
     <Title>
       <Caption>
-        <Value>FREQUENCY (GHz)</Value>
+        <Value>FREQUENCY</Value>
         <Font>
           <Size>14.0</Size>
           <Bold>true</Bold>
@@ -1663,7 +1673,7 @@ if( series.getSeriesIdentifier() == &quot;Series 1&quot; )
       <Type>Linear</Type>
       <Title>
         <Caption>
-          <Value>AMPLITUDE (db)</Value>
+          <Value>AMPLITUDE</Value>
           <Font>
             <Size>14.0</Size>
             <Bold>true</Bold>
