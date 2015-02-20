@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.4.1.v201408290142 Build &lt;4.4.1.v20140916-1320></property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.3.2.v20140211-1400 Build &lt;4.3.2.v20140218-1056></property>
     <text-property name="title">Slant-Azimuth</text-property>
     <list-property name="propertyBindings">
         <structure>
@@ -6955,13 +6955,13 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                                 <cell id="5415">
                                     <label id="5430">
                                         <property name="fontWeight">normal</property>
-                                        <text-property name="text">Homni</text-property>
+                                        <text-property name="text">HP</text-property>
                                     </label>
                                 </cell>
                                 <cell id="5416">
                                     <label id="5432">
                                         <property name="fontWeight">normal</property>
-                                        <text-property name="text">Vomni</text-property>
+                                        <text-property name="text">VP</text-property>
                                     </label>
                                 </cell>
                             </row>

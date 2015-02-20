@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.4.1.v201408290142 Build &lt;4.4.1.v20140916-1320></property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.3.2.v20140211-1400 Build &lt;4.3.2.v20140218-1056></property>
     <text-property name="title">Slant-Azimuth</text-property>
     <list-property name="propertyBindings">
         <structure>
@@ -6735,6 +6735,12 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                                 <expression name="expression" type="javascript">dataSetRow["Vomni"]</expression>
                                 <property name="dataType">decimal</property>
                             </structure>
+                            <structure>
+                                <property name="name">frequnit</property>
+                                <text-property name="displayName">frequnit</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
                         </list-property>
                         <column id="4898"/>
                         <column id="4899"/>
@@ -6742,9 +6748,9 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                         <header>
                             <row id="4886">
                                 <cell id="4887">
-                                    <label id="4901">
-                                        <text-property name="text">frequency</text-property>
-                                    </label>
+                                    <data id="4918">
+                                        <property name="resultSetColumn">frequnit</property>
+                                    </data>
                                 </cell>
                                 <cell id="4888">
                                     <label id="4903">
