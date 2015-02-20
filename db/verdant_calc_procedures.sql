@@ -1864,7 +1864,7 @@ end if;
 if lg=0.0001 then
 		if typ='H' then
 if cnt=0 then
-        select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM hdata HD 
+        select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM hdata HD 
 		where HD.Frequency= freq and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
@@ -1875,7 +1875,7 @@ end if;
 end if;
 if typ='V' then
 if cnt=0 then
-		select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM vdata HD 
+		select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
@@ -1886,7 +1886,7 @@ end if;
 		end if;
 		if typ='C' then
 if cnt=0 then
-        select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM cpdata HD 
+        select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
@@ -1896,7 +1896,7 @@ end if;
 		end if;
 		if typ='B' then
 if cnt=0 then
-        select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM hdata HD 
+        select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid ;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid ;
@@ -1907,7 +1907,7 @@ end if;
 		end if;
 		if  typ='P' then
 if cnt=0 then
-        select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM pitchdata HD 
+        select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pitchdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
@@ -1917,7 +1917,7 @@ end if;
 		end if;
 		if typ='R' then
 if cnt=0 then
-        select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM rolldata HD 
+        select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM rolldata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
@@ -1927,7 +1927,7 @@ end if;
 		end if;
 		if typ='Y' then 
 if cnt=0 then
-        select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM yawdata HD 
+        select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM yawdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid;
@@ -1941,7 +1941,7 @@ end if;
 		SELECT HD.Amplitude into ampl FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
 if cnt=0 then
-        select convert(floor(max(Amplitude)),char(30)) into strmaxvalue from(
+        select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue from(
         SELECT HD.Amplitude-ampl+lg Amplitude FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 
@@ -1956,7 +1956,7 @@ end if;
         SELECT HD.Amplitude into ampl FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
 if cnt=0 then
-        select convert(floor(max(Amplitude)),char(30)) into strmaxvalue from(
+        select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue from(
         SELECT HD.Amplitude-ampl+lg Amplitude FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 
@@ -1974,7 +1974,7 @@ end if;
         SELECT HD.Amplitude into ampl FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
 if cnt=0 then
-        select convert(floor(max(Amplitude)),char(30)) into strmaxvalue from(
+        select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue from(
         SELECT HD.Amplitude-ampl+lgampl Amplitude FROM cpdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;
 
@@ -1992,7 +1992,7 @@ end if;
         SELECT HD.Amplitude into vampl FROM vdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid and angle=0;
 if cnt=0 then
-		select convert(round(max(Amplitude-ampl+lg),0),char(30)) into strmaxvalue from hdata HD 
+		select convert(round(max(Amplitude-ampl+lg),0)+1,char(30)) into strmaxvalue from hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid ;
         
         select convert(round(min(Amplitude-ampl+lg),0),char(30)) into strminvalue from hdata HD 
@@ -2438,7 +2438,7 @@ end if;
 if typ='H' then 
 set @tab= 'hdata';
 if @acnt = 0 then
-       select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM hdata HD 
+       select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM hdata HD 
 		where HD.Frequency in (select  freq from t1) and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM hdata HD 
 		where HD.Frequency in (select  freq from t1) and HD.Test_id=testid;
@@ -2448,7 +2448,7 @@ end if;
   if typ='V' then 
 set @tab= 'vdata';
 if @acnt = 0 then
-       select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM vdata HD 
+       select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM vdata HD 
 		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM vdata HD 
 		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
@@ -2457,7 +2457,7 @@ end if;
   if typ='C' then 
 set @tab= 'cpdata';
 if @acnt = 0 then
-       select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM cpdata HD 
+       select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM cpdata HD 
 		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM cpdata HD 
 		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
@@ -2466,7 +2466,7 @@ end if;
   if typ='P' then 
 set @tab= 'pitchdata';
 if @acnt = 0 then
-       select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM pitchdata HD 
+       select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pitchdata HD 
 		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pitchdata HD 
 		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
@@ -2475,7 +2475,7 @@ end if;
  if typ='R' then 
 set @tab= 'rolldata'; 
 if @acnt = 0 then
-       select convert(floor(max(distinct Amplitude)),char(30)) into strmaxvalue FROM rolldata HD 
+       select convert(floor(max(distinct Amplitude))+1,char(30)) into strmaxvalue FROM rolldata HD 
 		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
 		select convert(round(min(distinct Amplitude),0),char(30)) into strminvalue FROM rolldata HD 
 		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
@@ -2484,7 +2484,7 @@ end if;
  if typ='Y' then 
 set @tab= 'yawdata'; 
 if @acnt = 0 then
-       select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM yawdata HD 
+       select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM yawdata HD 
 		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM yawdata HD 
 		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
