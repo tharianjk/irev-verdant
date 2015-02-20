@@ -1901,7 +1901,7 @@ if cnt=0 then
 		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM hdata HD 
 		where HD.Frequency=freq and HD.Test_id=testid ;
 end if;	
-        select test_id, concat(round(Frequency,prec),unt) frequency,angle,sum(hamplitude) hamplitude,sum(vamplitude) vamplitude,strmaxvalue,strminvalue 
+        select test_id, concat(RPAD(round(Frequency,prec),10,' '),unt) frequency,angle,sum(hamplitude) hamplitude,sum(vamplitude) vamplitude,strmaxvalue,strminvalue 
 		from vw_polardata where Frequency  =freqparm and Test_id=testid 
         group by test_id,frequency,angle,strmaxvalue,strminvalue;
 		end if;
@@ -2012,7 +2012,7 @@ if cnt=0 then
 		where HD.Frequency=freq and HD.Test_id=testid) as tab;*/
 
 
-		select test_id, concat(round(Frequency,prec),unt) Frequency,angle,sum(hamplitude)-ampl+lg hamplitude,sum(vamplitude)-vampl+lg vamplitude,strmaxvalue,strminvalue 
+		select test_id, concat(RPAD(round(Frequency,prec),10,' '),unt) frequency,angle,sum(hamplitude)-ampl+lg hamplitude,sum(vamplitude)-vampl+lg vamplitude,strmaxvalue,strminvalue 
 		from vw_polardata where Frequency=freqparm and Test_id=testid group by test_id,frequency,angle,strmaxvalue,strminvalue;
 		end if;		
 
@@ -2358,41 +2358,35 @@ DELIMITER $$
 -- Routine DDL
 -- Note: comments before and after the routine body will not be stored by the server
 -- --------------------------------------------------------------------------------
+drop procedure if exists spPolarMultiple;
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spPolarMultiple`(strfreq varchar(100),strlg varchar(100),testid int,usr Varchar(20),typ varchar(2))
-BEGIN declare cnt int; declare rint int; set cnt=0; delete from temppolar where user=usr; create table if not exists t1 (id integer ,freq decimal(20,10),lg decimal (20,10)); 
+CREATE  PROCEDURE `spPolarMultiple`(strfreq varchar(100),strlg varchar(100),testid int,usr Varchar(20),typ varchar(2))
+BEGIN 
+declare cnt int; 
+declare rint int; 
+
+declare strmaxvalue varchar(50);
+declare strminvalue varchar(50);
+declare prec int ;
+set cnt=0; 
+delete from temppolar where user=usr; 
+create table if not exists t1 (id integer ,freq decimal(20,10),lg decimal (20,10)); 
+
 truncate table t1; 
-
-if typ='H' then 
-set @tab= 'hdata';
-end if;
-  if typ='V' then 
-set @tab= 'vdata';
-end if;
-  if typ='C' then 
-set @tab= 'cpdata';
-end if;
-  if typ='P' then 
-set @tab= 'pitchdata';
-end if; 
- if typ='R' then 
-set @tab= 'rolldata'; 
-end if;
- if typ='Y' then 
-set @tab= 'yawdata'; 
-end if;
-  
-
-
+select frequnit into @unt from testdata where test_id=testid;
        
-SET @String      = strfreq; 
+SET @String = strfreq; 
 SET @Occurrences = LENGTH(@String) - LENGTH(REPLACE(@String, ',', '')); 
 -- insert into testdebug values ('1');
         myloop: WHILE (@Occurrences > 0)        
  DO              SET @myValue = SUBSTRING_INDEX(@String, ',', 1); 
             IF (@myValue != '') THEN  
-           insert into t1(id,freq) values(cnt,convert(@myValue,decimal));   
+           insert into t1(id,freq) values(cnt,case @unt when 'GHz' then convert(@myValue,decimal)*1000 else convert(@myValue,decimal) end );   
           set cnt=cnt+1;        
      ELSE              
    LEAVE myloop;      
@@ -2428,16 +2422,82 @@ SET @String      = strlg;
  select count(*) into @cnt from t1; 
 
 if @cnt=0 then
-insert into t1(id,freq,lg) values(1,convert(strfreq,decimal),convert(strlg,decimal));
+insert into t1(id,freq,lg) values(1,case @unt when 'GHz' then convert(strfreq,decimal)*1000 else convert(strfreq,decimal) end,convert(strlg,decimal));
 set @cnt=1;
  end if;
 set rint=0; 
+set @acnt=0;
+
+select count(*) into @acnt from scaling s inner join product_serial ps on s.product_id=ps.product_id inner join testdata t on ps.prodserial_id=t.prodserial_id
+where t.test_id=testid and s.frequency in (select  freq from t1);
+if @acnt > 0 then
+select distinct convert(floor(max(maxscale)),char(30)) ,convert(round(min(minscale),0),char(30))  into strmaxvalue,strminvalue from scaling s inner join product_serial ps on s.product_id=ps.product_id inner join testdata t on ps.prodserial_id=t.prodserial_id
+where t.test_id=testid and s.frequency in (select  freq from t1);
+end if;
+
+if typ='H' then 
+set @tab= 'hdata';
+if @acnt = 0 then
+       select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM hdata HD 
+		where HD.Frequency in (select  freq from t1) and HD.Test_id=testid;
+		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM hdata HD 
+		where HD.Frequency in (select  freq from t1) and HD.Test_id=testid;
+end if;
+
+end if;
+  if typ='V' then 
+set @tab= 'vdata';
+if @acnt = 0 then
+       select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM vdata HD 
+		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
+		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM vdata HD 
+		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
+end if;
+end if;
+  if typ='C' then 
+set @tab= 'cpdata';
+if @acnt = 0 then
+       select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM cpdata HD 
+		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
+		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM cpdata HD 
+		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
+end if;
+end if;
+  if typ='P' then 
+set @tab= 'pitchdata';
+if @acnt = 0 then
+       select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM pitchdata HD 
+		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
+		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pitchdata HD 
+		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
+end if;
+end if; 
+ if typ='R' then 
+set @tab= 'rolldata'; 
+if @acnt = 0 then
+       select convert(floor(max(distinct Amplitude)),char(30)) into strmaxvalue FROM rolldata HD 
+		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
+		select convert(round(min(distinct Amplitude),0),char(30)) into strminvalue FROM rolldata HD 
+		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
+end if;
+end if;
+ if typ='Y' then 
+set @tab= 'yawdata'; 
+if @acnt = 0 then
+       select convert(floor(max(Amplitude)),char(30)) into strmaxvalue FROM yawdata HD 
+		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
+		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM yawdata HD 
+		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
+end if;
+end if;
+
+
 myloop: WHILE (rint<@cnt)      
    DO  
 
 select freq into @freq from t1 where id=rint; 
- SET @sql1 = CONCAT('insert into temppolar(user,test_id,angle,amp',rint+1,',freq',rint+1,')');
- -- SET @sql1 = CONCAT('insert into temppolar(user,test_id,angle,amp',rint+1,',frequency)'); 
+ -- SET @sql1 = CONCAT('insert into temppolar(user,test_id,angle,amp',rint+1,',freq',rint+1,')');
+SET @sql1 = CONCAT('insert into temppolar(user,test_id,angle,amp',rint+1,',frequency)'); 
 set @sql2= CONCAT('SELECT ''',usr,''', HD.Test_id,HD.Angle,HD.Amplitude,HD.Frequency FROM ',@tab,' HD where HD.Frequency=',@freq,' and HD.Test_id=',testid);  
 set @s=CONCAT(@sql1,@sql2);  
         
@@ -2447,8 +2507,8 @@ DEALLOCATE PREPARE stmt1;
   set rint=rint+1;    
 END WHILE;        
     drop table t1; 
-
- select test_id TestId,Angle,sum(amp1) Amplitude1,sum(freq1) frequency1,sum(amp2) Amplitude2,sum(freq2) frequency2,
+ 
+ /* select test_id TestId,Angle,sum(amp1) Amplitude1,sum(freq1) frequency1,sum(amp2) Amplitude2,sum(freq2) frequency2,
 sum(amp3) Amplitude3,sum(freq3) frequency3,sum(amp4) Amplitude4,sum(freq4) frequency4,
 sum(amp5) Amplitude5,sum(freq5) frequency5 ,sum(amp6) Amplitude6,sum(freq6) frequency6,sum(amp7) Amplitude7,
 sum(freq7) frequency7,sum(amp8) Amplitude8,sum(freq8) frequency8,sum(amp9) Amplitude9,sum(freq9) frequency9,
@@ -2457,13 +2517,13 @@ sum(freq12) frequency12,sum(amp13) Amplitude13,sum(freq13) frequency13,sum(amp14
 sum(amp15) Amplitude15,sum(freq15) frequency15, sum(amp16) Amplitude16,sum(freq16) frequency16,sum(amp17) Amplitude17,
 sum(freq17) frequency17,sum(amp18) Amplitude18,sum(freq18) frequency18,sum(amp19) Amplitude19,sum(freq19) frequency19,
 sum(amp20) Amplitude20,sum(freq20) frequency20
- from temppolar group by test_id,angle;  
+ from temppolar group by test_id,angle;  */
 
- /* select test_id TestId,Angle,sum(amp1) Amplitude1, frequency,sum(amp2) Amplitude2,
+  select test_id TestId,Angle,sum(amp1) Amplitude1, frequency,sum(amp2) Amplitude2,
 sum(amp3) Amplitude3,sum(amp4) Amplitude4,sum(amp5) Amplitude5 ,sum(amp6) Amplitude6,sum(amp7) Amplitude7,
 sum(amp8) Amplitude8,sum(amp9) Amplitude9,sum(amp10) Amplitude10 ,sum(amp11) Amplitude11,sum(amp12) Amplitude12,
 sum(amp13) Amplitude13,sum(amp14) Amplitude14,sum(amp15) Amplitude15, sum(amp16) Amplitude16,sum(amp17) Amplitude17,
-sum(amp18) Amplitude18,sum(amp19) Amplitude19,sum(amp20) Amplitude20
- from temppolar group by test_id,angle,frequency  
-order by test_id,frequency,angle;   */ 
+sum(amp18) Amplitude18,sum(amp19) Amplitude19,sum(amp20) Amplitude20,strmaxvalue,strminvalue,@unt frequnit
+ from temppolar where user=usr group by test_id,angle,frequency  ,strmaxvalue,strminvalue, frequnit
+order by test_id,frequency,angle;  
 END$$
