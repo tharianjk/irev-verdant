@@ -43,10 +43,7 @@ function RedirectCancel(){
 </div>
 <form:form method="post" commandName="newRole">
   <table bgcolor="f8f8ff" border="1" cellspacing="1" cellpadding="2">
-  	<tr> <th> Property </th>
-  		<th> Current Value </th>
-  		<th> New Value </th>
-    <tr>
+  	<tr>
 		<td> RoleName :</td>
 		<td>	<form:input id="rolename" path="rolename"/>    </td>
 	</tr>
@@ -67,7 +64,7 @@ function RedirectCancel(){
 		<tr>
 		<td> <form:checkbox path="bln_tools" value="${map.RoleDsp.bln_tools}"/>Report Set</td>
 		</tr>
-			<tr>
+			
 		</table>
 		</td>
 		

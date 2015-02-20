@@ -58,7 +58,7 @@
 	    <tbody><tr><td>
 	    <c:forEach items="${model.freqlist}" var="freq">			
 				<input type="checkbox" name="chkid" value="${freq.frequency}" id="${freq.frequency}" class="chkfreq">${freq.frequency}
-				 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequency}'  class="hintTextbox" style="width:50;" maxlength="20"  value="l-gain"/>
+				 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequency}'  class="hintTextbox" style="width:50;display:none;" maxlength="20"  value="l-gain"/>
 			</c:forEach></td></tr></tbody>	    
 	    </table> 
           
@@ -149,6 +149,7 @@ $(document).ready(function(){
 		    document.getElementById("divlg").style.display="block";	
 		else
 			document.getElementById("divlg").style.display="none";
+	
 	
 	
 	if(lgtype=="DCP" || parent.AssetTree.selectedparenttype=="L")
@@ -316,7 +317,7 @@ if(document.getElementById("freqtype").value=="M"){
 					alert("Frequencies not selected");
 					return;
 					}
-				var url="/birt-verdant/frameset?__report=PolarMultiple.rptdesign&typ="+typ+"&testid="+testid+"&strlg="+sellg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&strfreq="+selfreq+"&usr=admin";
+				var url="/birt-verdant/frameset?__report=PolarMultiple.rptdesign&typ="+typ+"&testid="+testid+"&strlg="+sellg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&strfreq="+selfreq+"&usr=admin&scale=yes";
 		}
 		//single
 		else{

@@ -35,17 +35,19 @@ INPUT.hintTextboxActive { color: #000; }
         		<td>
 		        <table id="3dbtab" style="display:none;">
 		         <tr><td>       	  
-			   <input type="checkbox" id="3bm" value="bm" checked >Beam Max &nbsp; &nbsp;&nbsp;
-		       <input type="checkbox" id="30d" value="0d" checked >0 &#176;  &nbsp; &nbsp;&nbsp;
-		       <input type="checkbox" id="390d" value="90d" checked >90 &deg; &nbsp; &nbsp;&nbsp;
+			   <input type="radio" id="3bm" value="bm" name="opt3db" >Beam Max &nbsp; &nbsp;&nbsp;
+		       <input type="radio" id="30d" value="0d" name="opt3db" >0 &#176;  &nbsp; &nbsp;&nbsp;
+		       <input type="radio" id="390d" value="90d" name="opt3db" >90 &deg; &nbsp; &nbsp;&nbsp;
+		       <input type="radio" id="3all" value="0d90d" name="opt3db" checked >All &nbsp; &nbsp;&nbsp;
 		          </td></tr>
 			    </table></td></tr>
         <tr><td><div id="l10db"><input type="checkbox" id="10db" value="10db" onchange='setVisible("10db");' ><label id=lbl10db>10db BeamWidth and Back-lobe level</label></div> </td>
         <td><table id="10dbtab" style="display:none;">
         <tr><td>       	  
-			   <input type="checkbox" id="bm" value="bm" checked >Beam Max &nbsp; &nbsp;&nbsp;
-		       <input type="checkbox" id="0d" value="0d" checked >0 &#176;  &nbsp; &nbsp;&nbsp;
-		       <input type="checkbox" id="90d" value="90d" checked >90 &deg; &nbsp; &nbsp;&nbsp;
+			   <input type="radio" id="bm" value="bm" name="optdb" >Beam Max &nbsp; &nbsp;&nbsp;
+		       <input type="radio" id="0d" value="0d" name="optdb" >0 &#176;  &nbsp; &nbsp;&nbsp;
+		       <input type="radio" id="90d" value="90d" name="optdb" >90 &deg; &nbsp; &nbsp;&nbsp;
+		       <input type="radio" id="all" value="0d90d" name="optdb" checked >All &nbsp; &nbsp;&nbsp;
 		          </td></tr>
 	    </table></td></tr>   
         <tr><td><div id="lar"><input type="checkbox" id="ar" value="ar"  onchange='setVisible("ar");'>Axial Ratio</div> </td>
@@ -463,53 +465,37 @@ function fnenable(ctyp){
 		if(document.getElementById('3db').checked){
 			db="yes";
 			dbDeg="";
-			if(document.getElementById('30d').checked && document.getElementById('390d').checked){
+			/*if(document.getElementById('30d').checked && document.getElementById('390d').checked){
+				dbDeg='0d90d';
+			}*/
+			if(document.getElementById('3all').checked){
 				dbDeg='0d90d';
 			}
 			else if(document.getElementById('30d').checked)
 				dbDeg='0d';
 			else if(document.getElementById('390d').checked)
 				dbDeg='90d';	
-			if(document.getElementById('3bm').checked)
+			else if(document.getElementById('3bm').checked)
 				{
-				/*if(dbDeg=='0d90d')
-					dbDeg='0d90d';	// a			
-				else if(dbDeg=='0d')
-					dbDeg='bm0d';
-				else if(dbDeg=='90d')
-					dbDeg='bm90d';
-				else*/
-					
-					if(dbDeg!="" && dbDeg!=null)
-						dbDeg=='0d90d';
-					else dbDeg='bm';
-				}			
+					 dbDeg='bm';
+				}
+			
+			
 		}
 		if(document.getElementById('10db').checked){
 			dbv="yes";
 			dbDegv="";
-			if(document.getElementById('0d').checked && document.getElementById('90d').checked){
+			if(document.getElementById('all').checked){
 				dbDegv='0d90d';
 			}
 			else if(document.getElementById('0d').checked)
 				dbDegv='0d';
 			else if(document.getElementById('90d').checked)
-				dbDegv='90d';
-			
-			if(document.getElementById('bm').checked)
-			{
-		/*	if(dbDegv=='0d90d')
-				dbDegv='0d90d';	//a			
-			else if(dbDegv=='0d')
-				dbDegv='bm0d';
-			else if(dbDegv=='90d')
-				dbDegv='bm90d';
-			else
-				dbDegv='bm';*/
-				if(dbDegv!="" && dbDegv!=null)
-					dbDegv=='0d90d';
-				else dbDegv='bm';
-			}
+				dbDegv='90d';	
+			else if(document.getElementById('bm').checked)
+				{
+					 dbDegv='bm';
+				}
 			
 		}
 		if(document.getElementById('ar').checked){
