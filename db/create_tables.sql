@@ -5,6 +5,7 @@ USE `Verdant` ;
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `Verdant` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
 USE `Verdant` ;
+
 DROP procedure IF EXISTS `debug`;
 drop procedure if exists calc_MaxDiffAxialRatio;
 drop procedure if exists calc_XdB_BW_BS;
@@ -31,7 +32,7 @@ drop view if exists axialratio_view;
 drop view if exists vw_polardata;
 drop view if exists vw_ampphase;
 
-
+drop view if exists temppolar;
 drop  table  IF EXISTS debug;
 drop table IF  EXISTS phasedata;
 drop table IF  EXISTS amplitudedata;
@@ -440,6 +441,53 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 create table scaling(frequency decimal(20,14),minscale decimal(40,20),maxscale decimal(40,20),product_id int);
 
+-- multiple frequency Polar report
+CREATE TABLE temppolar (
+  user varchar(20) DEFAULT NULL,
+  Test_id int(11) DEFAULT NULL,
+  Angle decimal(20,10) DEFAULT NULL,
+  freq1 decimal(20,10) DEFAULT NULL,
+  freq2 decimal(20,10) DEFAULT NULL,
+  freq3 decimal(20,10) DEFAULT NULL,
+  freq4 decimal(20,10) DEFAULT NULL,
+  freq5 decimal(20,10) DEFAULT NULL,
+  freq6 decimal(20,10) DEFAULT NULL,
+  freq7 decimal(20,10) DEFAULT NULL,
+  freq8 decimal(20,10) DEFAULT NULL,
+  freq9 decimal(20,10) DEFAULT NULL,
+  freq10 decimal(20,10) DEFAULT NULL,
+  freq11 decimal(20,10) DEFAULT NULL,
+  freq12 decimal(20,10) DEFAULT NULL,
+  freq13 decimal(20,10) DEFAULT NULL,
+  freq14 decimal(20,10) DEFAULT NULL,
+  freq15 decimal(20,10) DEFAULT NULL,
+  freq16 decimal(20,10) DEFAULT NULL,
+  freq17 decimal(20,10) DEFAULT NULL,
+  freq18 decimal(20,10) DEFAULT NULL,
+  freq19 decimal(20,10) DEFAULT NULL,
+  freq20 decimal(20,10) DEFAULT NULL,
+  amp1 decimal(20,10) DEFAULT NULL,
+  amp2 decimal(20,10) DEFAULT NULL,
+  amp3 decimal(20,10) DEFAULT NULL,
+  amp4 decimal(20,10) DEFAULT NULL,
+  amp5 decimal(20,10) DEFAULT NULL,
+  amp6 decimal(20,10) DEFAULT NULL,
+  amp7 decimal(20,10) DEFAULT NULL,
+  amp8 decimal(20,10) DEFAULT NULL,
+  amp9 decimal(20,10) DEFAULT NULL,
+  amp10 decimal(20,10) DEFAULT NULL,
+  amp11 decimal(20,10) DEFAULT NULL,
+  amp12 decimal(20,10) DEFAULT NULL,
+  amp13 decimal(20,10) DEFAULT NULL,
+  amp14 decimal(20,10) DEFAULT NULL,
+  amp15 decimal(20,10) DEFAULT NULL,
+  amp16 decimal(20,10) DEFAULT NULL,
+  amp17 decimal(20,10) DEFAULT NULL,
+  amp18 decimal(20,10) DEFAULT NULL,
+  amp19 decimal(20,10) DEFAULT NULL,
+  amp20 decimal(20,10) DEFAULT NULL,
+  frequency decimal(40,20) DEFAULT NULL
+) ;
 
 -- Create View axialratio_view
 
