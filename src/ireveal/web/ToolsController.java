@@ -1,5 +1,7 @@
 package ireveal.web;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.mvc.Controller;
 import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.servlet.ModelAndView;
@@ -59,8 +61,10 @@ public class ToolsController implements Controller {
     */
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ParseException {
-    	
-        logger.info("*** Inside Tools controller "+request.getParameter("oper"));
+    	  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	      String uname = auth.getName();
+	      
+        logger.info("*** Inside Tools controller "+request.getParameter("oper")+ " unam "+uname);
         Calendar cal = Calendar.getInstance();
      	Date curTime = cal.getTime();
      	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -169,41 +173,11 @@ public class ToolsController implements Controller {
         		 myModel.put("rptheader",rptheader);
         		 myModel.put("rptfooter",rptfooter);
         		 myModel.put("nprecision",nprecision);
+        		 myModel.put("uname",uname);
                 return new ModelAndView("hpolar", "model", myModel);        	
         	}
 			//polar multiple
-			else if (operstr.contains("polarmultiple")){
-        		logger.info("*** polarmultiple ** testid "+testid);
-        		TestData pd=mastersservice.getTestData(Integer.parseInt(testid));
-        		ptype=pd.getPtype();
-        		if(atype.equals("E") && ptype.equals("L") )
-        		{
-        			atype=mastersservice.getType(Integer.parseInt(testid));
-        		}
-        		if(atype.equals("A") && ptype.equals("L"))
-        		{
-        			atype="Y";
-        		}
-        		String strfreqs="";
-        		List<TestFrequency> freqlist=this.mastersservice.getFreqList(Integer.parseInt(testid));
-        		for (int i=0;i<freqlist.size();i++){
-        			if(i==0)
-        				{strfreqs=freqlist.get(i).getFrequencyid()+"";}
-        			else {strfreqs=strfreqs+","+freqlist.get(i).getFrequencyid();}
-        		}
-        		logger.info("*** strfreqs ** "+strfreqs);
-        		 //myModel.put("freqlist", this.mastersservice.getFreqList(Integer.parseInt(testid)));
-        		 
-        		 myModel.put("strfreqs",strfreqs);
-        		 myModel.put("freqlist", freqlist);
-        		 myModel.put("testid",testid);
-        		 myModel.put("freq",freq);
-        		 myModel.put("atype",atype);
-        		 myModel.put("rptheader",rptheader);
-        		 myModel.put("rptfooter",rptfooter);
-        		 myModel.put("nprecision",nprecision);
-                return new ModelAndView("hpolarmultiple", "model", myModel);        	
-        	}
+			
 			else if (operstr.contains("db")){
 				TestData pd=mastersservice.getTestData(Integer.parseInt(testid));
         		ptype=pd.getPtype();
