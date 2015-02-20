@@ -43,6 +43,7 @@ public class AmpPhaseImpController extends SimpleFormController{
 		throws Exception {
 		String action="More";
 		String strmode="new";
+		int stat=0;  // 0 = success, 1 = error
 		logger.info("*** Inside testcontroller in onsubmit**: ");
         // check if user pressed Done
         
@@ -83,27 +84,21 @@ public class AmpPhaseImpController extends SimpleFormController{
 	                datalog.setAmplitude(Double.parseDouble(fields[1].toString()));
 	                datalogList.add(datalog);}
 	            	rowno=rowno+1;
-	            }
-				
-				
-			        
+	            }						        
 			      	logger.info(" datalogList.size "+datalogList.size());
 					if(datalogList.size()>0)
 					{
 				mastersservice.InsertAmpPhase(datalogList, file);
 					}
-					request.setAttribute("message", "File Uploaded Successfully");
-					
-					} catch (Exception ex) {
-						err="File Upload Failed due to " + ex;
+					request.setAttribute("message", "File Uploaded Successfully");					
+			} catch (Exception ex) {
+						stat = 1;
+						err="File Upload Failed!! Reason: " + ex;
 						request.setAttribute("message", "File Upload Failed due to " + ex);
 						logger.info("Inside FileUpload Controller Exception " + ex.getMessage());
-					}
-				
+			}			
 		}
-	//	logger.info("*** Inside AmpPhasecontroller in onsubmit**: btn= "+request.getParameter("fmaction"));
-		
-				return new ModelAndView(new RedirectView("ampphaseimp.htm?PId="+prdserid));
+		return new ModelAndView(new RedirectView("ampphaseimp.htm?PId="+prdserid+"&savestat="+stat+"&msg="+err));
 			
 		// ampphaseimp.htm?PId=${prev.prodserialid}&oper=deltrack&testname=${prev.testname}&ttype=${prev.type}
 	}

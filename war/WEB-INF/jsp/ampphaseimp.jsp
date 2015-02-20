@@ -8,7 +8,8 @@
   <link rel="stylesheet" href="css/jquery-ui.css">
   <script src="js/jquery.js"></script>
   <script src="js/jquery-ui.js"></script>  
-
+  <script type='text/javascript' src="js/popupmessage.js" ></script>
+  <link rel="stylesheet" href="css/popupmessage.css">
 <style>
 #drop{
 	border:2px dashed #bbb;
@@ -76,9 +77,6 @@ progress_clear();
 
 
 <div id="appbody">
-
-
-
 	<h2>Amplitude Phase Tracking Data</h2>
  
 	<form:form name="form1" id="form1" method="POST" commandName="ImportData" enctype="multipart/form-data">
@@ -197,12 +195,17 @@ progress_clear();
 <script>
 
 $(document).ready( function () {
+	var savestat='<%=request.getParameter("savestat")%>';
+	var msg='<%=request.getParameter("msg")%>';
 	//document.getElementById("strfreq").value='{"jsonfreq":[{"freq":100, "lg":1},{"freq":1000, "lg":2},{"freq":2000, "lg":2}]}';
-	 document.getElementById("more").disabled = true;
-	 document.getElementById("done").disabled = true;
-	 
-	
-	
+//	 document.getElementById("more").disabled = true;
+//	 document.getElementById("done").disabled = true;
+	 console.log("savestat "+savestat);
+		if(savestat!=null && savestat!="" && savestat!=-1 && savestat!="null"){
+			if(savestat==1){
+				errorflashMessenger.setText(msg);
+			}
+		}
 } );
 
 function typeonchange()
