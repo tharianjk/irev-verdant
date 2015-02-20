@@ -160,7 +160,7 @@ progress_clear();
 	<thead>
 		<tr>
 		<th scope="col"> Imported Type </th>
-		<th scope="col"> Spot Frequencies</th>	
+		<th scope="col"> Spot Frequencies (MHz)</th>	
 		</tr>
 	</thead>
 	<tbody>
