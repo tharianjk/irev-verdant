@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
     <property name="createdBy">Eclipse BIRT Designer Version 4.3.2.v20140211-1400 Build &lt;4.3.2.v20140218-1056></property>
-    <text-property name="title">Circular-with CP conversion</text-property>
+    <text-property name="title">CP Conversion</text-property>
     <list-property name="userProperties">
         <structure>
             <property name="name">Data CubeTestGrid.graphgrid.x</property>
@@ -16140,9 +16140,13 @@ if(label.getOutline().isVisible()==true)&#xD;
 &#13;
 	row["GridHPVPTYPE"]='HP'&#13;
 }&#13;
-else&#13;
+else if(row["GridHPVPTYPE"]=='V')&#13;
 {&#13;
 row["GridHPVPTYPE"]='VP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='CP'&#13;
 }</expression>
                                         <property name="contentType">html</property>
                                     </text-data>
@@ -17795,9 +17799,13 @@ function beforeDrawAxisLabel( axis, label, icsc )
 &#13;
 	row["GridHPVPTYPE"]='HP'&#13;
 }&#13;
-else&#13;
+else if(row["GridHPVPTYPE"]=='V')&#13;
 {&#13;
 row["GridHPVPTYPE"]='VP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='CP'&#13;
 }</expression>
                                         <property name="contentType">html</property>
                                     </text-data>
@@ -19462,9 +19470,13 @@ function beforeDrawAxisLabel( axis, label, icsc )
 &#13;
 	row["GridHPVPTYPE"]='HP'&#13;
 }&#13;
-else&#13;
+else if(row["GridHPVPTYPE"]=='V')&#13;
 {&#13;
 row["GridHPVPTYPE"]='VP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='CP'&#13;
 }</expression>
                                         <property name="contentType">html</property>
                                     </text-data>
@@ -21129,9 +21141,13 @@ if(label.getOutline().isVisible()==true)&#xD;
 &#13;
 	row["GridHPVPTYPE"]='HP'&#13;
 }&#13;
-else&#13;
+else if(row["GridHPVPTYPE"]=='V')&#13;
 {&#13;
 row["GridHPVPTYPE"]='VP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='CP'&#13;
 }</expression>
                                         <property name="contentType">html</property>
                                     </text-data>
@@ -22795,9 +22811,13 @@ function beforeDrawAxisLabel( axis, label, icsc )
 &#13;
 	row["GridHPVPTYPE"]='HP'&#13;
 }&#13;
-else&#13;
+else if(row["GridHPVPTYPE"]=='V')&#13;
 {&#13;
 row["GridHPVPTYPE"]='VP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='CP'&#13;
 }</expression>
                                         <property name="contentType">html</property>
                                     </text-data>
@@ -24462,9 +24482,13 @@ function beforeDrawAxisLabel( axis, label, icsc )
 &#13;
 	row["GridHPVPTYPE"]='HP'&#13;
 }&#13;
-else&#13;
+else if(row["GridHPVPTYPE"]=='V')&#13;
 {&#13;
 row["GridHPVPTYPE"]='VP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='CP'&#13;
 }</expression>
                                         <property name="contentType">html</property>
                                     </text-data>
@@ -26128,9 +26152,13 @@ function beforeDrawAxisLabel( axis, label, icsc )
 &#13;
 	row["GridHPVPTYPE"]='HP'&#13;
 }&#13;
-else&#13;
+else if(row["GridHPVPTYPE"]=='V')&#13;
 {&#13;
 row["GridHPVPTYPE"]='VP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='CP'&#13;
 }</expression>
                                         <property name="contentType">html</property>
                                     </text-data>
@@ -27794,9 +27822,13 @@ if(label.getOutline().isVisible()==true)&#xD;
 &#13;
 	row["GridHPVPTYPE"]='HP'&#13;
 }&#13;
-else&#13;
+else if(row["GridHPVPTYPE"]=='V')&#13;
 {&#13;
 row["GridHPVPTYPE"]='VP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='CP'&#13;
 }</expression>
                                         <property name="contentType">html</property>
                                     </text-data>
@@ -29461,9 +29493,13 @@ function beforeDrawAxisLabel( axis, label, icsc )
 &#13;
 	row["GridHPVPTYPE"]='HP'&#13;
 }&#13;
-else&#13;
+else if(row["GridHPVPTYPE"]=='V')&#13;
 {&#13;
 row["GridHPVPTYPE"]='VP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='CP'&#13;
 }</expression>
                                         <property name="contentType">html</property>
                                     </text-data>
@@ -31128,9 +31164,13 @@ function beforeDrawAxisLabel( axis, label, icsc )
 &#13;
 	row["GridHPVPTYPE"]='HP'&#13;
 }&#13;
-else&#13;
+else if(row["GridHPVPTYPE"]=='V')&#13;
 {&#13;
 row["GridHPVPTYPE"]='VP'&#13;
+}&#13;
+else&#13;
+{&#13;
+row["GridHPVPTYPE"]='CP'&#13;
 }</expression>
                                         <property name="contentType">html</property>
                                     </text-data>
