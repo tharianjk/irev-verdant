@@ -224,6 +224,7 @@ function fnonchange(){
 		var fre= '${model.strfreqs}';
 		nprecision='${model.nprecision}';	
 		var uname='${model.uname}';
+		var frequnit='${model.frequnit}';
 		var selfreq=0;
 		//var freqid =document.getElementById("freqid").value;
 		var freqid =document.getElementById("freqid").value;
@@ -324,7 +325,7 @@ if(document.getElementById("freqtype").value=="M"){
 					"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9];
 				}
 				else
-				var url="/birt-verdant/frameset?__report=PolarMultiple.rptdesign&typ="+typ+"&testid="+testid+"&strlg="+sellg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&strfreq="+selfreq+"&usr="+uname+"&scale="+scale+"&max="+max+"&min="+min;
+				var url="/birt-verdant/frameset?__report=PolarMultiple.rptdesign&typ="+typ+"&testid="+testid+"&strlg="+sellg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&strfreq="+selfreq+"&usr="+uname+"&scale="+scale+"&max="+max+"&min="+min+"&frequnit="+frequnit;
 		}
 		//single
 		else{

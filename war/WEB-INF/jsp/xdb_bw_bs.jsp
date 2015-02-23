@@ -12,10 +12,11 @@
  <tr>
 		
        <td>
-       	  
-	   <input type="checkbox" id="bm" value="bm" checked >Beam Max &nbsp; &nbsp;&nbsp;
-       <input type="checkbox" id="0d" value="0d" checked >0 &#176;  &nbsp; &nbsp;&nbsp;
-       <input type="checkbox" id="90d" value="90d" checked >90 &deg; &nbsp; &nbsp;&nbsp;
+       	   <input type="radio" id="bm" value="bm" name="optdb" >Beam Max &nbsp; &nbsp;&nbsp;
+		       <input type="radio" id="0d" value="0d" name="optdb" >0 &#176;  &nbsp; &nbsp;&nbsp;
+		       <input type="radio" id="90d" value="90d" name="optdb" >90 &deg; &nbsp; &nbsp;&nbsp;
+		       <input type="radio" id="all" value="0d90d" name="optdb" checked >All &nbsp; &nbsp;&nbsp;
+	  
           </td>
 		<td>&nbsp; &nbsp;&nbsp;<input type="button" value="Go" name="go" class="myButtonGo" onclick="Redirect()"/>
 		<!-- &nbsp; &nbsp;&nbsp;<input type="button" value="back" name="go" class="myButtonGo" onclick="back()"/> -->
@@ -47,24 +48,18 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 		var rptheader='${model.rptheader}';
 		var rptfooter='${model.rptfooter}';
 		nprecision='${model.nprecision}';
-		if(document.getElementById("bm").checked)
-			{deg='bm';}
-		if(document.getElementById("0d").checked)
-		{if(deg=="" || deg==null){deg='0d';}
-		//else deg='bm0d';
-		else deg='0d90d';
-		}
 		
-		if(document.getElementById("90d").checked)
-		{
-			
-		if(deg=="" || deg==null) deg='90d';
-		else deg='0d90d';
-		//else if (deg=='bm0d') deg='0d90d';
-		//else if (deg=='0d') deg='0d90d';
-		//else deg='bm90d';
+		if(document.getElementById('all').checked){
+			deg='0d90d';
 		}
-		
+		else if(document.getElementById('0d').checked)
+			deg='0d';
+		else if(document.getElementById('90d').checked)
+			deg='90d';	
+		else if(document.getElementById('bm').checked)
+			{
+			deg='bm';
+			}
 			var url="";
 			if(typ=='3db' ){
 				if(atype=='P' || atype=='R' ){ //Elevation (pitch or roll)

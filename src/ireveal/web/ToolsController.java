@@ -144,8 +144,10 @@ public class ToolsController implements Controller {
                 return new ModelAndView("reportset", "model", myModel);        	
         	}
 			else if (operstr.contains("hpolar")){
+				String frequnit="MHz";
         		logger.info("*** hpolar ** testid "+testid);
         		TestData pd=mastersservice.getTestData(Integer.parseInt(testid));
+        		frequnit=pd.getFrequnit();
         		ptype=pd.getPtype();
         		if(atype.equals("E") && ptype.equals("L") )
         		{
@@ -174,6 +176,7 @@ public class ToolsController implements Controller {
         		 myModel.put("rptfooter",rptfooter);
         		 myModel.put("nprecision",nprecision);
         		 myModel.put("uname",uname);
+        		 myModel.put("frequnit",frequnit);
                 return new ModelAndView("hpolar", "model", myModel);        	
         	}
 			//polar multiple

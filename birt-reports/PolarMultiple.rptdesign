@@ -157,6 +157,17 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
+        <scalar-parameter name="frequnit" id="1747">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="VerdantProfile" id="7">
@@ -1801,7 +1812,7 @@ else&#13;
                 </structure>
                 <structure>
                     <property name="name">Frequency</property>
-                    <expression name="expression" type="javascript">params["strfreq"].value</expression>
+                    <expression name="expression" type="javascript">params["strfreq"].value+" " +params["frequnit"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -2196,12 +2207,9 @@ var arr=[];&#xD;
 arr=getParameterValue(&quot;strfreq&quot;).split(',');&#xD;
 var ilen= BirtStr.charLength(arr[0] ) ;&#xD;
 &#xD;
-var funit=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;funit&quot;);&#xD;
-if(ilen&lt;=3)&#xD;
-funit=BirtStr.concat(&quot;          &quot;,funit);&#xD;
-else&#xD;
-funit=BirtStr.concat(&quot;    &quot;,funit);&#xD;
+//var funit=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;funit&quot;);&#xD;
 &#xD;
+ var funit=getParameterValue(&quot;frequnit&quot;);&#xD;
  if(lerh.getLabel().getCaption().getValue()==&quot;Series 1&quot;){&#xD;
  lerh.getLabel().getCaption().setValue(BirtStr.concat(arr[0],funit));}&#xD;
  else if(lerh.getLabel().getCaption().getValue()==&quot;Series 2&quot;)&#xD;
