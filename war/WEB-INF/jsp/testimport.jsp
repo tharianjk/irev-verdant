@@ -230,10 +230,29 @@ progress_clear();
 		<div id="imp">
 		<p><input type="file" name="filename" id="filename" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" title=" click here to select Data file"/></p>
 		</div>
-		</td>
-		
-		
+		</td>		
 		</table>
+		
+		<table>
+		<tr>
+		<td>
+          <input type="checkbox" id="chkrange"  onchange="enablerange();" />Enable Range
+        </td>        
+        </tr>
+        <tr>
+        <td>
+        <div id ="rangediv" style="display:none;">
+        Start Freq.
+        &nbsp; &nbsp;<input type="number" id="startfreq" />
+        &nbsp; &nbsp;Range
+        &nbsp; &nbsp;<input type="number" id="freqrange" />
+        &nbsp; &nbsp;Last Freq.
+        &nbsp; &nbsp;<input type="number" id="lastfreq"  />
+        &nbsp; &nbsp;<input type="button" id="btnrange" onclick="uprange();" value="Populate" class="mybuttongo" />
+        </div>
+        </td>
+		</table>
+		
 		<table id="tbimport1">
 		
 		<tr>
@@ -567,7 +586,7 @@ function AddNew(){
 	var testname=document.getElementById("testname").value;
 	if(testname==null || testname=="")
 	{
-	alert(" Enter Test Cnfiguration");
+	alert(" Enter Test Configuration");
 	return;
 	}
 	var testtype=document.getElementById("testtype").value;
@@ -723,6 +742,80 @@ function tabledata()
 		}
 }
 
+
+function enablerange()
+{
+	if(document.getElementById("chkrange").checked)
+	document.getElementById("rangediv").style.display="block";
+	else
+		document.getElementById("rangediv").style.display="none";
+}
+
+function uprange()
+{
+	console.log("inside uprange");
+	var testname=document.getElementById("testname").value;
+	if(testname==null || testname=="")
+	{
+	alert(" Enter Test Configuration");
+	return;
+	}
+	var testtype=document.getElementById("testtype").value;
+	if(testtype==null || testtype=="" || testtype=="-1")
+	{
+	alert(" Select Test Type");
+	return;
+	}
+	var ftype=document.getElementById("ftype").value;
+	if(ftype==null || ftype=="" || ftype=="-1")
+	{
+	alert(" Select File Type");
+	return;
+	}
+	var filename=document.getElementById("filename").value;
+	if(filename==null || filename=="")
+		{
+	alert("Please Select file to import");
+	return;
+		}
+	
+	if(document.getElementById("startfreq").value==null || document.getElementById("startfreq").value=="")
+	{
+alert("Enter Starting frequency");
+return;
+	}
+	
+	if(document.getElementById("freqrange").value==null || document.getElementById("freqrange").value=="")
+		{
+	alert("Enter Range");
+	return;
+		}
+	
+	if(document.getElementById("lastfreq").value==null || document.getElementById("lastfreq").value=="")
+	{
+alert("Enter Last frequency");
+return;
+	}
+var rng=parseInt(document.getElementById("freqrange").value);
+var rstart=parseInt(document.getElementById("startfreq").value);
+var rlast=parseInt(document.getElementById("lastfreq").value);
+
+var ai=rstart;
+console.log("rlast "+rlast +" rng ="+rng);
+
+while (ai < rlast){
+	//console.log("ai "+ai);
+	$("#tblData tbody").append(
+			"<tr>"+
+			"<td>"+ai+"</td>"+				
+			"<td><img src='img/delete.jpg' class='btnDelete'/></td>"+
+		"</tr>");
+	$(".btnDelete").bind("click", Delete);
+	
+	ai= ai + rng;
+	//console.log("ai "+ai);
+}
+}
 </script>
 
  
