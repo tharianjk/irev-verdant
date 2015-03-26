@@ -21,6 +21,7 @@ drop function if exists calc_omni;
 drop procedure if exists spGetPolarSummary;
 DROP procedure IF EXISTS `debug`;
 drop procedure if exists spPolarMultiple;
+drop procedure if exists sanity_check;
 
 
 DELIMITER $$
@@ -1512,7 +1513,7 @@ END IF;
 -- if myFreqUnit = 'G' then
 -- set myfreq = myfreq*1000;
 -- end if;
-        
+        call sanity_check(myTestId,myFreq,myPolType,myTestType);
 #calculations - begin
 -- Linear Azimuth
   IF ( myPolType = 'L' and myTestType = 'A') THEN
@@ -1570,6 +1571,171 @@ if isDebug > 0 then
  
 END$$
 DELIMITER ;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sanity_check`(
+sanId INT,
+sanFreq decimal(40,20),
+sanPoltype char(2),
+sanTestType char(2)
+)
+BEGIN
+
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'sanity_check';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	SET @infoText = CONCAT("Sanity checking for frequency : ",sanFreq);
+		call debug(l_proc_id,@infoText,'I','I');
+ end if;
+ 
+ 
+ IF ( sanPoltype = 'L' and sanTestType = 'A') THEN
+	if isDebug > 0 then
+		SET @infoText = CONCAT("Linear-Azimuth sanity checks ...");
+		call debug(l_proc_id,@infoText,'I','I');
+	end if;
+	
+    
+    select count(*) into @countyawdata from yawdata where test_id = sanId and Frequency = sanFreq;
+	if @countyawdata > 0  then
+		-- yaw data is present
+        select count(angle) into @anglecnt from yawdata where test_id = sanId and Frequency = sanFreq;
+        if(@anglecnt < 3600) then-- not all angles imported
+			 SIGNAL SQLSTATE '88888'
+			 set MESSAGE_TEXT = 'Yaw data does not have all angular values';
+        end if;
+        
+        select count(angle) into @anglerr from yawdata where test_id = sanId and Frequency = sanFreq 
+        and (angle > 360 or angle < 0) ; 
+        if(@anglerr < 0) then-- not all angles imported
+			 SIGNAL SQLSTATE '88888'
+			 set MESSAGE_TEXT = 'Invalid angle values. Calculation cannot proceed';
+        end if;
+        
+    end if;
+
+    
+-- Linear Elevation
+  elseif ( sanPoltype = 'L' and sanTestType = 'E') THEN
+		
+        if isDebug > 0 then
+			SET @infoText = CONCAT("Linear-Elevation sanity checks ...");
+			call debug(l_proc_id,@infoText,'I','I');
+		end if;
+		
+		
+		select count(*) into @countrolldata from rolldata where test_id = sanId and Frequency = sanFreq;
+		if @countrolldata > 0  then
+			-- roll data is present
+			select count(angle) into @anglecnt from rolldata where test_id = sanId and Frequency = sanFreq;
+			if(@anglecnt < 3600) then-- not all angles imported
+				 SIGNAL SQLSTATE '88888'
+				 set MESSAGE_TEXT = 'Roll data does not have all angular values';
+			end if;
+            
+            select count(angle) into @anglerr from rolldata where test_id = sanId and Frequency = sanFreq 
+			and (angle > 360 or angle < 0) ; 
+			if(@anglerr < 0) then-- not all angles imported
+				 SIGNAL SQLSTATE '88888'
+				 set MESSAGE_TEXT = 'Invalid angle values. Calculation cannot proceed';
+			end if;
+            
+		end if;
+        
+        select count(*) into @countpitchdata from pitchdata where test_id = sanId and Frequency = sanFreq;
+		if @countpitchdata > 0  then
+			-- roll data is present
+			select count(angle) into @anglecnt from pitchdata where test_id = sanId and Frequency = sanFreq;
+			if(@anglecnt < 3600) then-- not all angles imported
+				 SIGNAL SQLSTATE '88888'
+				 set MESSAGE_TEXT = 'Pitch data does not have all angular values';
+			end if;
+            
+             select count(angle) into @anglerr from pitchdata where test_id = sanId and Frequency = sanFreq 
+			and (angle > 360 or angle < 0) ; 
+			if(@anglerr < 0) then-- not all angles imported
+				 SIGNAL SQLSTATE '88888'
+				 set MESSAGE_TEXT = 'Invalid angle values. Calculation cannot proceed';
+			end if;
+            
+		end if;
+        
+-- for all other cases
+  else -- if ( myPolType = 'S' and (myTestType = 'A' or myTestType = 'E')) THEN
+	
+		 if isDebug > 0 then
+			SET @infoText = CONCAT("Slant/Circular sanity checks ...");
+			call debug(l_proc_id,@infoText,'I','I');
+		end if;
+		
+		
+		select count(*) into @counthdata from hdata where test_id = sanId and Frequency = sanFreq;
+		if @counthdata > 0  then
+			-- roll data is present
+			select count(angle) into @anglecnt from hdata where test_id = sanId and Frequency = sanFreq;
+			if(@anglecnt < 3600) then-- not all angles imported
+				 SIGNAL SQLSTATE '88888'
+				 set MESSAGE_TEXT = 'HP data does not have all angular values';
+			end if;
+            
+            
+            select count(angle) into @anglerr from hdata where test_id = sanId and Frequency = sanFreq 
+			and (angle > 360 or angle < 0) ; 
+			if(@anglerr < 0) then-- not all angles imported
+				 SIGNAL SQLSTATE '88888'
+				 set MESSAGE_TEXT = 'Invalid angle values. Calculation cannot proceed';
+			end if;
+            
+		end if;
+        
+        select count(*) into @countvdata from vdata where test_id = sanId and Frequency = sanFreq;
+		if @countvdata > 0  then
+			-- roll data is present
+			select count(angle) into @anglecnt from vdata where test_id = sanId and Frequency = sanFreq;
+			if(@anglecnt < 3600) then-- not all angles imported
+				 SIGNAL SQLSTATE '88888'
+				 set MESSAGE_TEXT = 'VP data does not have all angular values';
+			end if;
+            
+            select count(angle) into @anglerr from vdata where test_id = sanId and Frequency = sanFreq 
+			and (angle > 360 or angle < 0) ; 
+			if(@anglerr < 0) then-- not all angles imported
+				 SIGNAL SQLSTATE '88888'
+				 set MESSAGE_TEXT = 'Invalid angle values. Calculation cannot proceed';
+			end if;
+            
+		end if;
+        
+        select count(*) into @countcpdata from cpdata where test_id = sanId and Frequency = sanFreq;
+		if @countcpdata > 0  then
+			-- roll data is present
+			select count(angle) into @anglecnt from cpdata where test_id = sanId and Frequency = sanFreq;
+			if(@anglecnt < 3600) then-- not all angles imported
+				 SIGNAL SQLSTATE '88888'
+				 set MESSAGE_TEXT = 'CP data does not have all angular values';
+			end if;
+            
+            select count(angle) into @anglerr from cpdata where test_id = sanId and Frequency = sanFreq 
+			and (angle > 360 or angle < 0) ; 
+			if(@anglerr < 0) then-- not all angles imported
+				 SIGNAL SQLSTATE '88888'
+				 set MESSAGE_TEXT = 'Invalid angle values. Calculation cannot proceed';
+			end if;
+            
+		end if;
+
+ END IF;
+ 
+End$$
+DELIMITER ;
+
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `convert_to_CP`(
 ctest_id INT, freq decimal(40,20)
