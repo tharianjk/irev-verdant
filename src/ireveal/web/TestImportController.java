@@ -200,7 +200,7 @@ public class TestImportController extends SimpleFormController{
 							if(row.getCell(0) != null ){
 								int dup=0;
 								String ang=row.getCell(0).toString();
-								  if(Double.parseDouble(ang)==0.1 && i !=startrow){
+								  if(Double.parseDouble(ang)==0.1 && i >startrow+2){
 									  dup=1;  
 								  }
 								if(dup==0){
@@ -261,7 +261,7 @@ public class TestImportController extends SimpleFormController{
 								  
 								String amplitude;								
 								if(row.getCell(0) != null ){
-									if(Double.parseDouble(ang)==0.1 && i !=startrow){
+									if(Double.parseDouble(ang)==0.1 && i >startrow+2){
 										dup=1;  
 									  }
 									if(dup==0){
