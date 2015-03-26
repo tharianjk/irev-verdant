@@ -1733,6 +1733,11 @@ if isDebug > 0 then
 
  END IF;
  
+ if isDebug > 0 then
+	SET @infoText = CONCAT("Sanity checks complete");
+		call debug(l_proc_id,@infoText,'I','I');
+ end if;
+ 
 End$$
 DELIMITER ;
 
