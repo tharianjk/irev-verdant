@@ -47,7 +47,7 @@
          
          <tr>
            
-             <td> <br><form:checkbox path="bdebugflag" />Log on </td>
+             <td> <br><form:checkbox path="bdebugflag" />Logging on </td>
               <td> <br><form:checkbox path="bpurge" />Purge Log data </td>
              </tr>
           

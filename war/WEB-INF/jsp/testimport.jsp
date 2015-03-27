@@ -815,6 +815,8 @@ while (ai < rlast){
 	ai= ai + rng;
 	//console.log("ai "+ai);
 }
+document.getElementById("more").disabled = false;
+document.getElementById("done").disabled = false;
 }
 </script>
 

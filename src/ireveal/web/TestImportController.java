@@ -61,7 +61,7 @@ public class TestImportController extends SimpleFormController{
 	@Override
 	protected ModelAndView onSubmit(HttpServletRequest request,
 		HttpServletResponse response, Object command, BindException errors)
-		throws Exception {
+		throws Exception,MyOwnException {
 		String action="More";
 		String strmode="new";
 		String fileName="";
@@ -78,6 +78,8 @@ public class TestImportController extends SimpleFormController{
 			 testid=Integer.parseInt(strtestid)	;
 		 }
 		 TestData file = (TestData)command;
+		 testtype=file.getTesttype();
+         atype=file.getPtype();
 		 if(strmode.equals("edit")){
 			 logger.info("*** Inside testcontroller in onsubmit**: update");
 			 action="Save";
@@ -200,6 +202,13 @@ public class TestImportController extends SimpleFormController{
 							if(row.getCell(0) != null ){
 								int dup=0;
 								String ang=row.getCell(0).toString();
+								if(y==0){
+									
+								if(Double.parseDouble(ang)>360.0){
+									logger.info("TestImportController Invalid angle in file");									
+									 throw new MyOwnException("Invalid angle in file");
+								}
+								}
 								  if(Double.parseDouble(ang)==0.1 && i >startrow+2){
 									  dup=1;  
 								  }
@@ -257,8 +266,14 @@ public class TestImportController extends SimpleFormController{
 							  {
 								  HSSFRow row =(HSSFRow) sheet.getRow(i);
 								  String ang=row.getCell(0).toString();
-								  int dup=0;
-								  
+								  if(y==0){
+									
+										if(Double.parseDouble(ang)>360.0){
+											logger.info("TestImportController Invalid angle in file");											
+											 throw new MyOwnException("Invalid angle in file");
+										}
+										}
+								int dup=0;								 
 								String amplitude;								
 								if(row.getCell(0) != null ){
 									if(Double.parseDouble(ang)==0.1 && i >startrow+2){
@@ -307,7 +322,7 @@ public class TestImportController extends SimpleFormController{
 					
 					} catch (Exception ex) {
 						stat=0;
-						err="File Upload Failed  " ;
+						err="File Upload Failed due to " + ex.getMessage() ;
 						request.setAttribute("message", "File Upload Failed due to " + ex.getMessage());
 						logger.info("Inside FileUpload Controller Exception " + ex.getMessage());
 					}
@@ -321,7 +336,7 @@ public class TestImportController extends SimpleFormController{
      	request.setAttribute("mode", null);
      	cursess.setAttribute("mode",null);
 		if(action.equals("More")){
-		return new ModelAndView(new RedirectView("testimport.htm?id="+testid+"&savestat="+stat+"&msg="+err+"&refresh=refresh"));}
+		return new ModelAndView(new RedirectView("testimport.htm?id="+testid+"&atype="+atype+"&savestat="+stat+"&msg="+err+"&refresh=refresh"));}
 		//else if (action.equals("Done")) return new ModelAndView("fileuploadresult","fileName"," " +" " +err);
 		else return new ModelAndView(new RedirectView("testimport.htm?id="+testid+"&mode=edit&savestat="+stat+"&msg="+err));
 	}
@@ -477,4 +492,9 @@ public class TestImportController extends SimpleFormController{
 		   
 	   }
 
+	}
+class MyOwnException extends Exception {
+	   public MyOwnException(String msg){
+	      super(msg);
+	   }
 	}

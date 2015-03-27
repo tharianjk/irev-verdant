@@ -175,6 +175,10 @@ dialog.dialog( "open" );
  
  function modPswd() {
         var valid = true;
+        newpswd = $( "#pswd1" ),
+    	cfmpswd = $( "#pswd2" ),
+    	allFields = $( [] ).add( newpswd ).add( cfmpswd )
+    	tips = $( ".validateTips" );
 		console.log('new pswd = '+newpswd.val()+',cfm pswd = '+cfmpswd.val());
 		valid = valid && checkLength(newpswd, "Password", 3, 9);
 		if (newpswd.val() != cfmpswd.val()){
