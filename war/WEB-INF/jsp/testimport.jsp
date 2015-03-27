@@ -82,7 +82,17 @@ progress_clear();
 //$('#myTable tr:last').after('<tr>...</tr><tr>...</tr>');
 
 </script>
-
+<div id="dialogtip"  style="display:none;-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border: 1px solid;">
+<table>
+<tr>
+<td></td>
+<td align="right"><button id="closetip" onclick="closetipclick();"> <img  src ="/irev-verdant/img/closetip.png"></button></td></tr>
+<tr><td></td><td style="font-size:11;font-style:italic;font-color:#FFBF00;">(1) The importing file can either be xlxs or xls,<br>(2)The first row can be the header or the frequencies,<br>(3) The angle can start from 0 degree or 0.1 degree 
+</td></tr></table>
+</div>
 
 
 <div id="appbody" style="width:1000px;">
@@ -227,9 +237,13 @@ progress_clear();
 	
 		<tr>
 		<td>
+		
 		<div id="imp">
-		<p><input type="file" name="filename" id="filename" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" title=" click here to select Data file"/></p>
+		
+		<p><button id="helptip" title="file data" onclick="helpclick();"> <img  src ="/irev-verdant/img/helpicon.jpg"></button>
+		<input type="file" name="filename" id="filename" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" title=" click here to select Data file"/></p>
 		</div>
+		
 		</td>		
 		</table>
 		
@@ -817,6 +831,29 @@ while (ai < rlast){
 }
 document.getElementById("more").disabled = false;
 document.getElementById("done").disabled = false;
+}
+
+
+function helpclick(){
+	dialogtip = $( "#dialogtip" ).dialog({
+	      autoOpen: true,
+	      height: 200,
+	      width: 200,
+	      modal: false,
+	      position: { my: 'right top', at: 'right top' },
+	      open: function () {
+	          $(this).closest(".ui-dialog").next(".ui-widget-overlay").addClass("modalOverlayPrivate");
+	          $(".ui-dialog-titlebar").hide();
+	      },
+	      beforeClose: function() {
+	          $(this).closest(".ui-dialog").next(".ui-widget-overlay").removeClass("modalOverlayPrivate");
+	      }
+	    });  
+	dialogtip.dialog( "open" );
+}
+function closetipclick()
+{
+	dialogtip.dialog( "close" );		
 }
 </script>
 
