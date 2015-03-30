@@ -1,6 +1,5 @@
 package ireveal.web;
 
-
 import ireveal.domain.DataLog;
 import ireveal.domain.ProductSerial;
 import ireveal.domain.TestData;
