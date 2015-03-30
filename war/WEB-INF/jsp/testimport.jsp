@@ -405,7 +405,8 @@ $(document).ready( function () {
 				$( "#errmsg" ).dialog({
 						height: 100,
 						width: 400,
-						overflow: true,
+						overflow: false,
+						resizable: true,
 						modal: false,
 						 open: function () {
 		                        $(this).parents(".ui-dialog:first").find(".ui-dialog-titlebar").addClass("ui-state-error");
