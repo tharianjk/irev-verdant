@@ -187,7 +187,7 @@ dialog.dialog( "open" );
 			valid = false;
 		}
 		if ( valid ) {
-			var urls = '/ireveal-base/MWAPI/updatepswd/'+$("#pswd2" ).val();
+			var urls = '/irev-verdant/MWAPI/updatepswd/'+$("#pswd2" ).val();
 			$.ajax({
 				type: "GET",
 				url: urls,
