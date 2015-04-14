@@ -377,7 +377,7 @@ progress_clear();
 <script>
 var mode='<%=request.getParameter("mode")%>';
 
-$(document).ready( function () {
+$(document).ready( function () {	 
 	
 	var savestat='<%=request.getParameter("savestat")%>';
 	var msg='<%=request.getParameter("msg")%>';
@@ -729,9 +729,17 @@ function AddPrev(){
 		if(ftype==null || ftype=="" || ftype=="-1")
 		{
 		alert(" Select File Type");
+		document.getElementById("chkdel").checked=false;
 		return;
 		}
-		
+		var filename=document.getElementById("filename").value;
+		if(filename==null || filename=="")
+			{
+			
+		alert("Please Select file to import");
+		document.getElementById("chkdel").checked=false;
+		return;
+			}
 		Deletefreq();
 	var str='${strfreqlist}';
 	console.log("str "+str);
@@ -863,7 +871,7 @@ var rlast=parseInt(document.getElementById("lastfreq").value);
 var ai=rstart;
 console.log("rlast "+rlast +" rng ="+rng);
 
-while (ai < rlast){
+while (ai <= rlast){
 	//console.log("ai "+ai);
 	$("#tblData tbody").append(
 			"<tr>"+
