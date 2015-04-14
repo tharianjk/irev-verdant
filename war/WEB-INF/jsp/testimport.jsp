@@ -13,6 +13,24 @@
    
     <link rel="stylesheet" type="text/css" href="irev-style.css" />
 <style>
+#errmsg1
+{
+       width: 400px;
+       border: 1px solid #D8D8D8;
+       padding: 5px;
+       border-radius: 5px;
+       font-family: Arial;
+       font-size: 11px;
+       text-transform: uppercase;
+       background-color: rgb(255, 249, 242);
+       color: rgb(211, 0, 0);
+       text-align: center;
+       background-image: url('img/error.png');
+       background-repeat: no-repeat;
+		background-position: 10px center;
+		position : absolute;
+		bottom : 20px;
+}
 #drop{
 	border:2px dashed #bbb;
 	-moz-border-radius:5px;
@@ -82,7 +100,22 @@ progress_clear();
 //$('#myTable tr:last').after('<tr>...</tr><tr>...</tr>');
 
 </script>
-
+<div id="errmsg" title="Error" style="display:none;"></div>
+<div id="dialogtip"  style="display:none;-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border: 1px solid;">
+<table>
+<tr>
+<td></td>
+<td align="right"><button id="closetip" onclick="closetipclick();"> <img  src ="/irev-verdant/img/closetip.png"></button></td></tr>
+<tr><td></td><td style="font-size:11;font-style:italic;font-color:#FFBF00;">(1) File can be either in xlxs or xls format;
+(2) The first row can be Header (text) or frequencies (numbers);
+(3) The angle values have to be in range of (0 - 359.9) or (0.1 - 360);
+(4) If angle value of 0.1 is duplicated, only first row is selected;
+(5) Other angle values cannot be duplicated ;
+</td></tr></table>
+</div>
 
 
 <div id="appbody" style="width:1000px;">
@@ -227,16 +260,20 @@ progress_clear();
 	
 		<tr>
 		<td>
+		
 		<div id="imp">
-		<p><input type="file" name="filename" id="filename" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" title=" click here to select Data file"/></p>
+		
+		<p><button id="helptip" title="file data" onclick="helpclick();"> <img  src ="/irev-verdant/img/helpicon.jpg"></button>
+		<input type="file" name="filename" id="filename" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" title=" click here to select Data file"/></p>
 		</div>
+		
 		</td>		
 		</table>
 		
-		<table>
+		<table id="tabrange">
 		<tr>
 		<td>
-          <input type="checkbox" id="chkrange"  onchange="enablerange();" />Enable Range
+          <input type="checkbox" id="chkrange"  onchange="enablerange();" />Frequency Range
         </td>        
         </tr>
         <tr>
@@ -244,9 +281,9 @@ progress_clear();
         <div id ="rangediv" style="display:none;">
         Start Freq.
         &nbsp; &nbsp;<input type="number" id="startfreq" />
-        &nbsp; &nbsp;Range
+        &nbsp; &nbsp;Increment By
         &nbsp; &nbsp;<input type="number" id="freqrange" />
-        &nbsp; &nbsp;Last Freq.
+        &nbsp; &nbsp;End Freq.
         &nbsp; &nbsp;<input type="number" id="lastfreq"  />
         &nbsp; &nbsp;<input type="button" id="btnrange" onclick="uprange();" value="Populate" class="mybuttongo" />
         </div>
@@ -363,7 +400,28 @@ $(document).ready( function () {
   	    parent.document.getElementById("apt").style.display="none";
 				}
 			else{
-				errorflashMessenger.setText(msg);
+				document.getElementById('errmsg').innerHTML=msg;
+				 
+				$( "#errmsg" ).dialog({
+						height: 100,
+						width: 400,
+						overflow: false,
+						resizable: true,
+						modal: false,
+						 open: function () {
+		                        $(this).parents(".ui-dialog:first").find(".ui-dialog-titlebar").addClass("ui-state-error");
+		                    },
+						close: function() {
+							 dialog.dialog( "close" );
+					      }
+						});
+				//errorflashMessenger.setText(msg);
+				/*if(document.getElementById) {					
+					window.alert = function(msg) {						
+						createCustomError(msg);
+					}
+					alert(msg);
+				}*/
 			}
 			}
 	
@@ -437,6 +495,7 @@ $(document).ready( function () {
 			 document.getElementById("save").style.visibility="visible";
 			// document.getElementById("cancel").style.visibility="visible";
 			 document.getElementById("testtype").disabled = true;
+			 document.getElementById("tabrange").style.visibility="hidden";
 			 }		 
 		}
 	 else{
@@ -447,6 +506,7 @@ $(document).ready( function () {
 		// document.getElementById("cancel").style.visibility="hidden";
 		 document.getElementById("more").disabled = true;
 		 document.getElementById("done").disabled = true;
+		 document.getElementById("tabrange").style.visibility="visible";
 		 
 	 }
 	 
@@ -815,6 +875,31 @@ while (ai < rlast){
 	ai= ai + rng;
 	//console.log("ai "+ai);
 }
+document.getElementById("more").disabled = false;
+document.getElementById("done").disabled = false;
+}
+
+
+function helpclick(){
+	dialogtip = $( "#dialogtip" ).dialog({
+	      autoOpen: true,
+	      height: 200,
+	      width: 200,
+	      modal: false,
+	      position: { my: 'right top', at: 'right top' },
+	      open: function () {
+	          $(this).closest(".ui-dialog").next(".ui-widget-overlay").addClass("modalOverlayPrivate");
+	          $(".ui-dialog-titlebar").hide();
+	      },
+	      beforeClose: function() {
+	          $(this).closest(".ui-dialog").next(".ui-widget-overlay").removeClass("modalOverlayPrivate");
+	      }
+	    });  
+	dialogtip.dialog( "open" );
+}
+function closetipclick()
+{
+	dialogtip.dialog( "close" );		
 }
 </script>
 

@@ -21,6 +21,10 @@
     <url-pattern>*.htm</url-pattern>
   </servlet-mapping>
 
+<servlet-mapping>
+    <servlet-name>Irev-Verdant</servlet-name>
+    <url-pattern>/MWAPI/*</url-pattern>
+  </servlet-mapping>
   
   <welcome-file-list>
     <welcome-file>
