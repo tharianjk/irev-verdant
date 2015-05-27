@@ -2466,7 +2466,7 @@ end if;
 set D = EXP(C/20);
 -- select D;
 
-set E = 20 * LOG((D+1)/(1.414*D));
+set E = 20 * LOG10((D+1)/(1.414*D));
 -- select E;
 
 if A > B then
@@ -2503,7 +2503,7 @@ end if;
 
 set D = EXP(C/20);
 
-set E = 20 * LOG((D+1)/(1.414*D));
+set E = 20 * LOG10((D+1)/(1.414*D));
 
 set cpgain = linearGain+E;
 
