@@ -153,8 +153,8 @@ public class GetJSON extends HttpServlet {
              jSONObject.put("attr", jsonAttr);
              jsonAttr = null;
              
-             logger.info("treeval "+treeval.get(0).getAssetid()+" "+treeval.get(0).getTreelevel());
-         JSONArray jsonRtnarray=fillTree(treeval.get(0).getAssetid(),treeval.get(0).getTreelevel());
+             logger.info("treeval "+treeval.get(0).getAssetid()+" "+treeval.get(0).getTreelevel()+" atype="+treeval.get(0).getAtype());
+         JSONArray jsonRtnarray=fillTree(treeval.get(0).getAssetid(),treeval.get(0).getTreelevel(),treeval.get(0).getAtype());
          if(jsonRtnarray!=null)    
          jSONObject.put("children", jsonRtnarray);
               
@@ -174,13 +174,15 @@ public class GetJSON extends HttpServlet {
             out.close();
         }
     }
-	   private JSONArray fillTree(int parentId,int nlevel) throws JSONException
+	   private JSONArray fillTree(int parentId,int nlevel,String atype) throws JSONException
 	   {
 		   JSONArray jsonChildarray = new JSONArray();	
+		   int blnptype=1;
 		   for(int i=1; i< treeval.size();){			  
-			   
-			   if(parentId==treeval.get(i).getAssetparentid() && nlevel==treeval.get(i).getNlevel())
+			  
+			   if(parentId==treeval.get(i).getAssetparentid() && nlevel==treeval.get(i).getNlevel() )
 			   {
+				   
 				  // logger.info("*** fillTree " + Integer.toString(parentId));
 				       JSONObject child = new JSONObject();
                        child.put("data",treeval.get(i).getAssetname());
@@ -202,11 +204,12 @@ public class GetJSON extends HttpServlet {
                        
                       
 	                  // logger.info("*** fillTree " + treeval.get(i).getAssetname());
-	                   if(treeval.get(i).getTreelevel()!= 5) //meters
+	                   if(treeval.get(i).getTreelevel()!= 5 && !atype.equals("V")) //meters
 	                   {
-	                   JSONArray rtnArray= fillTree(treeval.get(i).getAssetid(),treeval.get(i).getTreelevel());
+	                	   //logger.info("atype="+atype);
+	                   JSONArray rtnArray= fillTree(treeval.get(i).getAssetid(),treeval.get(i).getTreelevel(),treeval.get(i).getAtype());
 	                   
-	                  // logger.info("*** fillTree i=" + Integer.toString(rtnArray.length()) + " rtnArray " + rtnArray);
+	                   //logger.info("*** fillTree i=" + Integer.toString(rtnArray.length()) + " rtnArray " + rtnArray);
 	                   if(rtnArray.length()!=0)
 	                	   child.put("children", rtnArray);
 	                   }
@@ -218,7 +221,7 @@ public class GetJSON extends HttpServlet {
 	                  // logger.info("*** fillTree i=" + Integer.toString(i) + " jsonChildarray " + jsonChildarray);
 			   }  	
 			   
-			  
+			   
 			   
 		   i++;
 		   }

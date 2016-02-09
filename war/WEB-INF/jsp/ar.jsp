@@ -54,7 +54,7 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 		else deg='b';
 			}
 		
-				var url="/birt-verdant/frameset?__report=AxialRation_report.rptdesign&deg="+deg+"&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision;
+				var url="/birt-viewer/frameset?__report=verdant/AxialRation_report.rptdesign&deg="+deg+"&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision;
 			
 			//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
 		console.log("url " + url);

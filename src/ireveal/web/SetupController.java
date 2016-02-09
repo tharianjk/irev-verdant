@@ -118,6 +118,14 @@ public class SetupController implements Controller {
         		myModel.put("roles", this.setupManager.getRoles()); 
         		return new ModelAndView("rolelist", "model", myModel);
             }
+        	else if (operstr.contains("pvserial")){
+        		logger.info("*** PVSerial settings**");
+        		String testid = request.getParameter("testid");
+        		myModel.put("pvserial", this.mastersservice.getPVSerialList(Integer.parseInt(testid))); 
+        		myModel.put("stat", stat );
+        		return new ModelAndView("pvseriallist", "model", myModel);
+        		
+        	}
         	
                 return new ModelAndView("setup", "model", myModel);
              
@@ -127,6 +135,6 @@ public class SetupController implements Controller {
         this.setupManager = Mngr;
     }
     
-    
+   
    
 }

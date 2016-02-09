@@ -1,0 +1,33 @@
+drop table if exists pv_testdata;
+
+drop table if exists pv_prodserial;
+
+CREATE TABLE pv_testdata (
+  Test_id int(11) NOT NULL AUTO_INCREMENT,
+  TestName varchar(50) DEFAULT NULL,
+  TestDesc varchar(100) DEFAULT NULL,
+  Product_id int(11) ,
+  TestDate datetime DEFAULT NULL,
+  frequnit varchar(5) DEFAULT 'MHz',
+  testcenter varchar(100) DEFAULT NULL,
+  instruments varchar(100) DEFAULT NULL,
+  Calibration varchar(100) DEFAULT NULL,
+  testproc varchar(100) DEFAULT NULL,
+  testtype varchar(10) DEFAULT NULL,
+  rptheader varchar(200) DEFAULT NULL,
+  rptfooter varchar(200) DEFAULT NULL,
+  PRIMARY KEY (Test_id)
+) ;
+
+
+alter table pv_testdata add  foreign key (Product_id) references product(Product_id);
+
+
+CREATE TABLE pv_prodserial (
+  Prodserial_id int(11) NOT NULL AUTO_INCREMENT,
+  test_id int(11) DEFAULT NULL,
+  SerialNo varchar(45) DEFAULT NULL, 
+  PRIMARY KEY (Prodserial_id),
+  KEY test_id_idx (test_id),
+  CONSTRAINT test_id FOREIGN KEY (test_id) REFERENCES pv_testdata (test_id) 
+) ;
