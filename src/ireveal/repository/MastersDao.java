@@ -89,4 +89,5 @@ public interface MastersDao {
 	 public int getproductTestscnt(int prodid);
 	 public boolean deletescaling(double freq,int prodid);
 	 public boolean deletescaleProduct(int prodid);
+	 public boolean IsAdminUser();
 }

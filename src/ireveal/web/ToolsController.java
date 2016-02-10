@@ -64,6 +64,8 @@ public class ToolsController implements Controller {
     	  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	      String uname = auth.getName();
 	      
+	    //  boolean isadmin=mastersservice.IsAdminUser();
+	      
         logger.info("*** Inside Tools controller "+request.getParameter("oper")+ " unam "+uname);
         Calendar cal = Calendar.getInstance();
      	Date curTime = cal.getTime();

@@ -216,6 +216,10 @@ public boolean deletescaling(double freq, int prodid) {
 public boolean deletescaleProduct(int prodid) {
 	return mastersdao.deletescaleProduct(prodid);
 }
+@Override
+public boolean IsAdminUser() {
+	return mastersdao.IsAdminUser();
+}
 
 
 

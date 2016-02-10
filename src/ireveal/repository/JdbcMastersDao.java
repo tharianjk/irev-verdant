@@ -71,7 +71,7 @@ import org.springframework.transaction.annotation.Transactional;
 	   }
 	  @Override
 	  public List<UserPref> getUserFav() {
-	  	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	  	  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	      String uname = auth.getName();
 	      String sql="select FAVOPERATION from FWK_USER U INNER JOIN FWK_USER_FAVORITE UF ON U.USER_ID=UF.USER_ID  "+
 	      " where username='"+uname+"'";
@@ -1180,6 +1180,16 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 							   return false;
 						   }					 
 					 }
+	public boolean IsAdminUser(){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String uname = auth.getName();
+		String sql="select count(*) from fwk_user_role r inner join fwk_user u on r.user_id=u.user_id where u.username=? and r.role_id=1 ";
+		int cnt= getJdbcTemplate().queryForInt(sql,uname);	
+		if(cnt==0)
+			return false;
+		else
+		    return true;
+	}
    
   }
 
