@@ -6,6 +6,8 @@ import ireveal.domain.AssetTree;
 import ireveal.domain.DataLog;
 import ireveal.domain.ImportData;
 import ireveal.domain.Operator;
+import ireveal.domain.PVSerialData;
+import ireveal.domain.PVTest;
 import ireveal.domain.Product;
 import ireveal.domain.ProductSerial;
 import ireveal.domain.RoleDsp;
@@ -29,6 +31,7 @@ import java.util.List;
 import java.util.ArrayList;  
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +51,6 @@ import org.springframework.transaction.annotation.Transactional;
     
   public class JdbcMastersDao extends JdbcDaoSupport implements MastersDao {
 	  int compid=1; 
-	  @Override
 	  public List<AssetTree> getAssetTreeList() {
 		  List<RoleDsp> rle =getRoleDtls();
 	         compid=rle.get(0).getCompanyid();
@@ -69,7 +71,6 @@ import org.springframework.transaction.annotation.Transactional;
 	           return assettree;
 	       }
 	   }
-	  @Override
 	  public List<UserPref> getUserFav() {
 	  	  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	      String uname = auth.getName();
@@ -85,7 +86,6 @@ import org.springframework.transaction.annotation.Transactional;
 	      }
 	  }
  //************************User List**********************
-	  @Override
 	  public List<User> getUserList() {
 		  List<RoleDsp> rle =getRoleDtls();
 	      compid=rle.get(0).getCompanyid();
@@ -882,7 +882,6 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 			   @Autowired
 				private JdbcTemplate jdbcTemplate;
 
-				@Override
 				public Map<String, Object> GetAmpPhaseValue(String prodserids,String typ) {
 					
 										
@@ -903,7 +902,6 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 					final String amporphase=typ;
 					Map<String, Object> resultMap = getJdbcTemplate().call(new CallableStatementCreator() {
 
-								@Override
 								public CallableStatement createCallableStatement(Connection connection) throws SQLException {
 
 									CallableStatement callableStatement = connection.prepareCall(procedureCall);
@@ -1191,6 +1189,159 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 		    return true;
 	}
    
+  // PV Test Functions 
+				 
+  
+				 public int InsertPVtest(PVTest pvtest) {
+					 logger.info("Inside InsertPVtest");
+					   int primaryKey;
+					   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					   final String  sql = "INSERT INTO pv_testdata(TestName,Product_id,rptheader,rptfooter,TestDesc,TestDate,testcenter,instruments,calibration,testproc) VALUES  (?,?,?,?,?,?,?,?,?,?)";    
+						  
+						     KeyHolder keyHolder = new GeneratedKeyHolder();
+						    
+						     final String testname = pvtest.getTestname();
+						     final int prodid = pvtest.getProductid();	    
+						     final String rptheader = pvtest.getRptheader();
+						     final String rptfooter = pvtest.getRptfooter();
+						     final String testdesc = pvtest.getTestdesc();
+						     final String testdate=sdf.format(pvtest.getDttestdate());						    
+						     final String testcenter=pvtest.getTestcenter();
+						     final String instruments=pvtest.getInstruments();
+						     final String calibration=pvtest.getCalibration();
+						     final String testproc=pvtest.getTestproc();
+						  	getJdbcTemplate().update(
+						  	    new PreparedStatementCreator() {
+						  	        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+						  	            PreparedStatement ps =
+						  	                connection.prepareStatement(sql, new String[] {"TEST_ID"}); 
+						  	            ps.setString(1, testname);	
+						  	            ps.setInt(2, prodid);
+						  	          ps.setString(3, rptheader);
+						  	        ps.setString(4, rptfooter);						  	      
+					  	            ps.setString(5, testdesc);					  	             	           
+					  	            ps.setString(6, testdate);					  	           
+					  	            ps.setString(7, testcenter);
+					  	            ps.setString(8, instruments);
+					  	            ps.setString(9, calibration);
+					  	            ps.setString(10, testproc);
+					  	            
+						  	            return ps;
+						  	        }
+						  	    },
+						  	    keyHolder);
+						  	primaryKey= keyHolder.getKey().intValue();
+						  	logger.info(" PVTest record inserted. Key = "+primaryKey); 	       
+						    return primaryKey;	 	
+					   
+					   }
+					   
+					   
+
+				   public List<PVTest> getPVTestList() {  
+					    List dataList = new ArrayList();  
+					   
+					    String sql = "select test_id, S.Product_id ,productname,TestName,rptheader,rptfooter,TestDesc,TestDate,testcenter,instruments,calibration,testproc from PV_TESTDATA S inner join product p on s.Product_id=p.Product_id";  
+					   
+					    dataList = getJdbcTemplate().query(sql, new PVTestMapper());  
+					    return dataList;  
+					   }  
+					    
+					   @Transactional
+					   public boolean deletePVTest(int id) { 
+						   String sql = ""; 
+						   
+							   try{
+					     sql = "delete from pv_testdata where test_id=" + id;  
+					    getJdbcTemplate().update(sql);
+					   
+					    return true;
+					    }
+							   catch(Exception e)
+							   {
+								   logger.info("PVTest Delete error " +e.getMessage()); 
+								   return false;
+							   }
+						   
+					   }
+					    
+					     
+					   public boolean UpdatePVTest(PVTest pvtest) {  
+						   try{
+					    String sql = "UPDATE PV_TESTDATA set TestName=?,Product_id=?,rptheader=?,rptfooter=?,TestDesc=?,TestDate=?,testcenter=?,instruments=?,calibration=?,testproc=? where test_id = ?";  
+					    getJdbcTemplate().update(  
+					      sql,  
+					      new Object[] { pvtest.getTestname(), pvtest.getProductid(),  pvtest.getRptheader(),pvtest.getRptfooter(),pvtest.getTestdesc(),pvtest.getDttestdate(),pvtest.getTestcenter(),pvtest.getInstruments(),pvtest.getCalibration(),pvtest.getTestproc() ,  pvtest.getTestid() }); 
+					    
+					   
+					    return true;    
+					    }
+					    catch(Exception e ){
+							   logger.info("PVTest Update error " +e.getMessage()); 
+							   return false;
+						   }
+					   }  
+					    
+					   
+			public PVTest getPVTest(int id) {  
+						   logger.info("***inside prduct** ");
+						   List<PVTest> dataList =null;
+						   String sql = "select test_id, S.Product_id ,productname,TestName,rptheader,rptfooter,TestDesc,TestDate,testcenter,instruments,calibration,testproc from PV_TESTDATA S inner join product p on s.Product_id=p.Product_id";  
+					try
+					   {
+						   dataList = getJdbcTemplate().query(sql, new PVTestMapper());
+					  
+					   }
+					   catch(Exception e)
+					   {
+					    logger.info("***Exception** "+ e.getMessage() );
+					   }
+					    return dataList.get(0);  
+					   }  
+					   
+					   
+			private static class PVTestMapper implements ParameterizedRowMapper<PVTest> {
+						   
+					       public PVTest mapRow(ResultSet rs, int rowNum) throws SQLException {
+					    	   PVTest pvtest = new PVTest(); 
+					    	   pvtest.setProductname(rs.getString("productname"));  
+					    	   pvtest.setProductid(rs.getInt("Product_id")); 	 
+					    	   pvtest.setRptheader(rs.getString("rptheader"));
+					    	   pvtest.setRptfooter(rs.getString("rptfooter"));
+					    	   pvtest.setTestid(rs.getInt("Test_id"));  
+					    	   pvtest.setTestname(rs.getString("testName"));  
+					    	   pvtest.setTestdesc(rs.getString("testdesc")); 				    	     	  
+					    	   pvtest.setDttestdate(rs.getTimestamp("testdate"));					    	   
+					    	   pvtest.setTestcenter(rs.getString("testcenter")); 
+					    	   pvtest.setInstruments(rs.getString("instruments")); 
+					    	   pvtest.setCalibration(rs.getString("calibration")); 
+					    	   pvtest.setTestproc(rs.getString("testproc")); 
+					           return pvtest;
+					       }
+
+					   }
+
+  
+			public List<PVSerialData> getPVSerialList(int testid) {  
+			    List dataList = new ArrayList();  
+			   
+			    String sql = "select SerialNo,Prodserial_id,test_id  from pv_prodserial S where test_id=?";  
+			   
+			    dataList = getJdbcTemplate().query(sql, new PVTestMapper(),testid);  
+			    return dataList;  
+			   }  
+			
+			private static class PVSerialMapper implements ParameterizedRowMapper<PVSerialData> {
+				   
+			       public PVSerialData mapRow(ResultSet rs, int rowNum) throws SQLException {
+			    	   PVSerialData product = new PVSerialData(); 
+			    	   product.setProductserial(rs.getString("SerialNo"));  
+			    	   product.setProductserialid(rs.getInt("Prodserial_id")); 	
+			    	   product.setTestid(rs.getInt("test_id")); 	
+			           return product;
+			       }
+
+			   }
   }
 
 

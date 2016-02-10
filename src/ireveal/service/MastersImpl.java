@@ -10,6 +10,8 @@ import ireveal.domain.Company;
 import ireveal.domain.DataLog;
 import ireveal.domain.ImportData;
 import ireveal.domain.Operator;
+import ireveal.domain.PVSerialData;
+import ireveal.domain.PVTest;
 import ireveal.domain.Product;
 import ireveal.domain.ProductSerial;
 import ireveal.domain.RoleDsp;
@@ -217,8 +219,33 @@ public boolean deletescaleProduct(int prodid) {
 	return mastersdao.deletescaleProduct(prodid);
 }
 @Override
+<<<<<<< HEAD
 public boolean IsAdminUser() {
 	return mastersdao.IsAdminUser();
+=======
+public int InsertPVtest(PVTest pvtest) {
+	return mastersdao.InsertPVtest( pvtest);
+}
+@Override
+public boolean UpdatePVTest(PVTest pvtest) {
+	return mastersdao.UpdatePVTest( pvtest);
+}
+@Override
+public boolean deletePVTest(int id) {
+	return mastersdao.deletePVTest( id);
+}
+@Override
+public List<PVTest> getPVTestList() {
+	return mastersdao.getPVTestList();
+}
+@Override
+public PVTest getPVTest(int id) {
+	return mastersdao.getPVTest( id);
+}
+@Override
+public List<PVSerialData> getPVSerialList(int testid) {
+	return mastersdao.getPVSerialList(testid);
+>>>>>>> c7fcb9d8d192b65faee94861b5f86e05791b5912
 }
 
 

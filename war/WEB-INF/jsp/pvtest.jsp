@@ -15,59 +15,70 @@
     </head>  
     <body> 
     <script type="text/javascript">
-	
-function Redirect(){
-	//alert("redirect");
-	window.location = "setup.htm?oper=product";
-	
-	 }
+
 </script>
            
     <div id="pageHdr">
-	<h2><fmt:message key="Product.heading"/> </h2>
-	</div>      
+	<h2><fmt:message key="Test.heading"/></h2>
+</div>      
        
       <div>  
-       <form:form method="post" align ="left" commandName="newProduct" > 
-       <br> 
+       <form:form method="post" align ="left" commandName="PVTest" >  
         <table>  
-         <tr>  
-          <td>Product Title *  :</td>  
-          <td><form:input path="Productname"  required="required" />  
-          </td>  
-         </tr>  
-         <tr> 
          
-         <tr>  
-          <td>Product Part No * :</td>  
-          <td><form:input path="version"  required="required"/>  
-          </td>  
-         </tr>  
-         <tr>  
-          <td>Type * :</td> 
+		<tr>
+		<td>Test Configuration * :</td>  
+          <td><form:input path="testname" id="testname" required="required" />  
+          </td>
+          <td>Test Center * :</td>  
+		<td><form:input path="testcenter" required="required" /></td>
+         </tr>
+         <tr>
+          <td>Test date *:</td>
+	     <td><form:input id="dttest" path="strtestdate" type="datetime-local" required="required" /> </td>
+		<td>
+		Antenna Type :</td> <td><input type="text" value='${prodtype}' readonly="readonly"/></td>
+		</tr>
+		
           
-          <td width="50">
-          
-           <form:select id="ptype"  path="ptype" required="required" >
-          <option value="">--Select--</option>                 
-   		 <form:option value="C" label="Circular"></form:option>
-   		 <form:option value="L" label="Linear"></form:option>  
-   		 <form:option value="S" label="Slant"></form:option>   
-   		 <form:option value="V" label="VT-JK S10 L ATP-2 REV 00"></form:option> 
-		</form:select>              
-          </td> 
-          
-          <td>
-       	  
-	  <!--  <form:checkbox id="bwithcp"  path="bwithcp" style="visibility:hidden;"  /><label id="lbl1" style="visibility:hidden;" >With CP conversion</label></td>--> 
-         </tr> 
-        <!--  <tr>  
-          <td>Image File Name :</td>  
-          <td><form:input path="imagefilename"   />  
-          </td>  
-         </tr>  -->
-         <tr> 
-        
+         <tr>
+		<td width="20%"> Product : </td>
+       <td width="50">
+			           
+			 <form:select id="productk"   path="productid" required="required" >  
+			 <option value="">--Select--</option>              
+			 <c:forEach items="${prodlist}" var="prd"> 
+			  <form:option label="${prd.productname}"   value="${prd.productid}"/>	     
+			</c:forEach>
+			</form:select>     
+          </td>
+		
+		</tr>
+		<tr>
+          <td>Test Description :</td>  
+        <td><form:textarea id="testdesc"  path="testdesc"  rows="2" cols="50" /></td>  
+        </tr> 
+          <tr>
+		<td>Test Procedure  :</td> 
+		<td><form:textarea id="testproc"  path="testproc"  rows="2" cols="50" /></td>   
+		        
+		</tr>
+		<tr>
+		<td>Instruments Used  :</td> 
+		<td><form:textarea   path="instruments"  rows="2" cols="50" /></td>
+		</tr>
+		<tr>
+		<td>Calibration Status  :</td> 
+		<td><form:textarea   path="calibration"  rows="2" cols="50" /></td> 
+		</tr>
+        <tr>
+		<td>Report Header  :</td> 
+		<td><form:textarea   path="rptheader"  rows="2" cols="50" /></td>
+		</tr>
+        <tr>
+		<td>Report Footer  :</td> 
+		<td><form:textarea   path="rptfooter"  rows="2" cols="40" /></td> 
+		</tr>
           
           <tr>
           <td> </td>  
@@ -75,20 +86,12 @@ function Redirect(){
           </td>  
          </tr>  
         </table>  
-        <form:hidden  path="productid"  />               
+                     
        </form:form>  
       </div>  
      
-      <script>
-     
+       <script>
      $(document).ready(function () {
-    	 //fntypechange();
-    	var testcnt='${testcnt}';
-    	console.log("testcnt "+testcnt);
-    	if(testcnt!=null && testcnt!="" && testcnt!="0"){
-    		document.getElementById("ptype").disabled=true;
-    	}
-    	else{document.getElementById("ptype").disabled=false;}
     	 var savestat='<%=request.getParameter("savestat")%>';
    		//alert (parmdelete);
    		if(savestat!=null && savestat!="")
@@ -96,8 +99,7 @@ function Redirect(){
    			if(savestat==1)
  				{
  		flashMessenger.setText('Saved');
- 				} 
-   			else if(savestat==0) {errorflashMessenger.setText('Product Name /Part No. already entered, Could not save');} 
+ 				}               
    			}
    	var ref='<%=request.getParameter("refresh")%>';
    	   if(ref=="true")

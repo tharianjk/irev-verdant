@@ -19,6 +19,8 @@ import ireveal.domain.AssetTree;
 import ireveal.domain.DataLog;
 import ireveal.domain.ImportData;
 import ireveal.domain.Operator;
+import ireveal.domain.PVSerialData;
+import ireveal.domain.PVTest;
 import ireveal.domain.Product;
 import ireveal.domain.ProductSerial;
 import ireveal.domain.RoleDsp;
@@ -82,5 +84,15 @@ public interface MastersService {
 		 public int getproductTestscnt(int prodid);
 		 public boolean deletescaling(double freq,int prodid);
 		 public boolean deletescaleProduct(int prodid);
+
 		 public boolean IsAdminUser();
+
+		 // PVTest
+		 public int InsertPVtest(PVTest pvtest);
+		 public boolean UpdatePVTest(PVTest pvtest);
+		 public boolean deletePVTest(int id);
+		 public List<PVTest> getPVTestList();
+		 public PVTest getPVTest(int id);
+		 public List<PVSerialData> getPVSerialList(int testid);
+
 } 

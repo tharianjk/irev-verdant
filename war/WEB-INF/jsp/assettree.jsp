@@ -601,6 +601,26 @@ function recreatewithparents()
           };
         	}
         else if(treeType==2){
+        	if(atype=="V"){
+        		items = {
+              		  createItem: { // The "rename" menu item
+                            label: "Create Test",                      
+                            action: function(response) {
+                                var url = '<%=request.getContextPath()%>/pvtest.htm?PId='+ node.attr('assetId') +'&PName='+node.attr('assetName')+'&Nlevel='+ node.attr('nlevel');
+                                //alert("url "+ url);
+                                parent.frames['AppBody'].location = url;
+                                      }
+                        },
+                        editItem: { // The "rename" menu item
+                            label: "Edit Product",                      
+                            action: function(response) {
+                            	var url = '<%=request.getContextPath()%>/product.htm?prodid='+ node.attr('assetId')+'&Nlevel='+ node.attr('nlevel');
+                                parent.frames['AppBody'].location = url;
+                                      }
+                        }
+        	}
+        	}
+        	else{	
          items = {
         		  createItem: { // The "rename" menu item
                       label: "Create Product Serial",                      
@@ -633,9 +653,37 @@ function recreatewithparents()
             }
         };
         }
-              
+        }    
          else if (treeType==3){        	 
-        	 
+        	 if(atype=="V"){
+         		items = {
+               		  createItem: { // The "rename" menu item
+                             label: "New Serial",                      
+                             action: function(response) {
+                                 var url = '<%=request.getContextPath()%>/pvserialimport.htm?PId='+ node.attr('assetId') +'&PName='+node.attr('assetName')+'&Nlevel='+ node.attr('nlevel');
+                                 //alert("url "+ url);
+                                 parent.frames['AppBody'].location = url;
+                                       }
+                         },
+                         editItem: { // The "rename" menu item
+                             label: "Edit Serial",                      
+                             action: function(response) {
+                                 var url = '<%=request.getContextPath()%>/setup.htm?oper=pvserial&testid='+ node.attr('assetId') +'&PName='+node.attr('assetName')+'&Nlevel='+ node.attr('nlevel');
+                                 //alert("url "+ url);
+                                 parent.frames['AppBody'].location = url;
+                                       }
+                         },
+                         edittItem: { // The "rename" menu item
+                             label: "Edit Test",                      
+                             action: function(response) {
+                                 var url = '<%=request.getContextPath()%>/pvtest.htm?testid='+ node.attr('assetId') ;
+                                 //alert("url "+ url);
+                                 parent.frames['AppBody'].location = url;
+                                       }
+                         }
+         	}
+         	}
+         	else{
         	 items = {   
         			 createItem: { // The "rename" menu item
                     label: "Import Test-Set",
@@ -669,7 +717,7 @@ function recreatewithparents()
                     }
                 }
             };
-             
+         } 
        }
          else if(treeType==4){
              items = {
