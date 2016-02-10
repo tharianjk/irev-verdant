@@ -1,6 +1,8 @@
 package ireveal.web;
 
 import ireveal.domain.DataLog;
+import ireveal.domain.PVSerialData;
+import ireveal.domain.PVTest;
 import ireveal.domain.ProductSerial;
 import ireveal.domain.TestData;
 import ireveal.domain.TestFrequency;
@@ -49,12 +51,13 @@ public class PVSerialImportController extends SimpleFormController{
 	String err="File Uploaded Successfully";
 	public MastersService mastersservice ;
 	private HttpSession cursess;
+	private int serialid=0;
 	private int testid=0;
 	String testtype="";
 	String atype="";
 	public PVSerialImportController(){
-		setCommandClass(TestData.class);
-		setCommandName("TestData");
+		setCommandClass(PVSerialData.class);
+		setCommandName("PVSerialData");
 	}
  
 	@Override
@@ -65,24 +68,25 @@ public class PVSerialImportController extends SimpleFormController{
 		String strmode="new";
 		String fileName="";
 		int stat=-1;
-		logger.info("*** Inside testcontroller in onsubmit**: btn= "+request.getParameter("fmaction"));
+		logger.info("*** Inside PVSerialcontroller in onsubmit**: btn= "+request.getParameter("fmaction"));
               
 		
-		 String strtestid = (String)cursess.getAttribute("id");
+		 String strserialid = (String)cursess.getAttribute("id");
 		 strmode= (String)cursess.getAttribute("mode");
 		 if(strmode==null)strmode="new";
-		 logger.info("*** Inside testcontroller in onsubmit** strmode:"+strmode);
-		 if(strtestid!=null && strtestid!="" && strtestid!="null" && strtestid!="0" && strmode.equals("new")){
+		 logger.info("*** Inside PVSerialcontroller in onsubmit** strmode:"+strmode);
+		 if(strserialid!=null && strserialid!="" && strserialid!="null" && strserialid!="0" && strmode.equals("new")){
 			 strmode="addfile";
-			 testid=Integer.parseInt(strtestid)	;
+			 serialid=Integer.parseInt(strserialid)	;
 		 }
-		 TestData file = (TestData)command;
+		 PVSerialData file = (PVSerialData)command;
 		 testtype=file.getTesttype();
          atype=file.getPtype();
+         testid=file.getTestid();
 		 if(strmode.equals("edit")){
-			 logger.info("*** Inside testcontroller in onsubmit**: update");
+			 logger.info("*** Inside PVSerialcontroller in onsubmit**: update");
 			 action="Save";
-			 mastersservice.updateTestData(file);
+			 //mastersservice.updatePVSerialData(file);
 		 }
 		 else
 		 {
@@ -92,7 +96,7 @@ public class PVSerialImportController extends SimpleFormController{
 		        }
 		 
 		if(action.equals("Done")){
-		 stat=	mastersservice.CalcProc(file.getPtype(),testid);
+		 stat=	mastersservice.CalcProc(file.getPtype(),serialid);
 		if(stat==0)
 		{
 			err="Failed to calculate";
@@ -108,9 +112,6 @@ public class PVSerialImportController extends SimpleFormController{
 		List<DataLog> datalogList = new ArrayList<DataLog>();
 		List<TestFrequency> freqlist=new ArrayList<TestFrequency>();
 		
-		Date dtfrom = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(file.getStrtestdate().replace("T", " "));
-    	
-		file.setDttestdate(dtfrom);
 		int logid=100000;
 		
 		MultipartFile multipartFile = file.getFilename();
@@ -305,7 +306,7 @@ public class PVSerialImportController extends SimpleFormController{
 					if(datalogList.size()>0)
 					{
 						err=fileName + "Uploaded successfully";
-						stat=	mastersservice.insertTestData(file,freqlist,datalogList,strmode,action);
+						stat=	mastersservice.insertPVSerialData(file,freqlist,datalogList,strmode,action);
 				if(stat==0)
 				{
 					err="Failed to Import "+fileName	;
@@ -313,7 +314,7 @@ public class PVSerialImportController extends SimpleFormController{
 					
 				}
 				else{
-					testid=stat;
+					serialid=stat;
 					stat=1;
 				}
 					}
@@ -325,7 +326,7 @@ public class PVSerialImportController extends SimpleFormController{
 						request.setAttribute("message", "File Upload Failed due to " + ex.getMessage());
 						logger.info("Inside FileUpload Controller Exception " + ex.getMessage());
 					}
-				 logger.info(" imported testid "+testid);
+				 logger.info(" imported serialid "+serialid);
 		}
 		 }       
 		 }
@@ -335,9 +336,9 @@ public class PVSerialImportController extends SimpleFormController{
      	request.setAttribute("mode", null);
      	cursess.setAttribute("mode",null);
 		if(action.equals("More")){
-		return new ModelAndView(new RedirectView("testimport.htm?id="+testid+"&atype="+atype+"&savestat="+stat+"&msg="+err+"&refresh=refresh"));}
+		return new ModelAndView(new RedirectView("pvserialimport.htm?id="+serialid+"&PId="+testid+"&atype="+atype+"&savestat="+stat+"&msg="+err+"&refresh=refresh"));}
 		//else if (action.equals("Done")) return new ModelAndView("fileuploadresult","fileName"," " +" " +err);
-		else return new ModelAndView(new RedirectView("testimport.htm?id="+testid+"&mode=edit&savestat="+stat+"&msg="+err));
+		else return new ModelAndView(new RedirectView("pvserialimport.htm?id="+serialid+"&PId="+testid+"&mode=edit&savestat="+stat+"&msg="+err));
 	}
 	@Override
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder)
@@ -361,13 +362,10 @@ public class PVSerialImportController extends SimpleFormController{
 	
 	 protected Object formBackingObject(HttpServletRequest request) throws ServletException {
 	    	cursess = request.getSession();
-	    	Calendar cal = Calendar.getInstance();
-         	Date curTime = cal.getTime();
-         	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-         	SimpleDateFormat sdftime = new SimpleDateFormat("HH:mm");
+	    	
 	    	String mode = request.getParameter("mode");
 	        String id = request.getParameter("id");
-	        String PId=request.getParameter("PId");
+	        String strtestid=request.getParameter("PId");
 	        atype=request.getParameter("atype");
 	        request.setAttribute("savestat", null);
 	        request.setAttribute("err", null);
@@ -376,19 +374,21 @@ public class PVSerialImportController extends SimpleFormController{
 	        cursess.setAttribute("err",null);
 	        request.setAttribute("mode", mode);
         	cursess.setAttribute("mode",mode);
-        	testid=0;
-	        logger.info("inside TestImportController"); 
+        	serialid=0;
+        	testid=Integer.parseInt(strtestid);
+	        logger.info("inside PVSerialImportController"); 
 	        try{
 	        if (id == null || id == "" || id.equals("null") || id.equals("0") ){
 	        	logger.info(" atype "+atype);
-	        	logger.info(" going to create new Test Data");
+	        	logger.info(" going to create new pv serial Data");
 	        	request.getSession().setAttribute("id", null);
 	        	cursess.setAttribute("id",null);
-	        	TestData testdata=new TestData();
-	        	testdata.setProductserialid(Integer.parseInt(PId));
-	        	testdata.setStrtestdate(sdf.format(curTime)+"T"+sdftime.format(curTime));
-	        	testdata.setTestcenter("Verdant");
+	        	PVSerialData testdata=new PVSerialData();	        	        	
 	        	testdata.setPtype(atype);
+	        	testdata.setTestid(testid);
+	        	PVTest test=mastersservice.getPVTest(testid);
+	        	testdata.setTestname(test.getTestname());
+	        	testdata.setFrequnit(test.getFrequnit());
 	        	return testdata;
 	        }else{
 	        	  logger.info("inside TestImportController id:" +id);
@@ -397,10 +397,9 @@ public class PVSerialImportController extends SimpleFormController{
 	        	request.getSession().setAttribute("mode", mode);
 	        	cursess.setAttribute("mode",mode);
 	            logger.info(" going to retrieve details of testdata="+id);
-	            testid=Integer.parseInt(id);
-	            TestData testdata=mastersservice.getTestData(Integer.parseInt(id));
-	            String strdate=sdf.format(testdata.getDttestdate())+"T"+sdftime.format(testdata.getDttestdate());	           
-	            testdata.setStrtestdate(strdate);
+	            serialid=Integer.parseInt(id);
+	            PVSerialData testdata=mastersservice.getPVSerialData(Integer.parseInt(id));
+	            
 	            testtype=testdata.getTesttype();
 	            atype=testdata.getPtype();
 	        	return testdata;
@@ -409,54 +408,40 @@ public class PVSerialImportController extends SimpleFormController{
 	        catch(Exception e)
 	        {
 	        	logger.info(" ImportTestController Exception "+e.getMessage());
-	        	return new TestData();
+	        	return new PVSerialData();
 	        }
 	              
 	    }
 	    protected HashMap referenceData(HttpServletRequest request) throws Exception {
 			HashMap referenceData = new HashMap();	
-			  logger.info(" ImportTestController referenceData testis="+testid);
-			String pfreq="";
-			String rfreq="";
-			String yfreq="";
-			String cfreq="";
-			String hfreq="";
-			String vfreq="";
+			  logger.info(" PVSerialImportController referenceData serialid="+serialid);
+			String hefreq="";
+			String vefreq="";
+			String hafreq="";
+			String vafreq="";
+			String hgfreq="";
+			String vgfreq="";
 	        List<ProductSerial> prodserlist = mastersservice.getProdVerSer();        
-	       String prodtype="";
-	       if(atype.equals("C"))prodtype="Circular";
-	        else if(atype.equals("L"))prodtype="Linear";
-	        else prodtype="Slant";
-	       
-	       
-	       if(testtype.equals("E") && atype.equals("L")){
-	    	   pfreq=mastersservice.getFreqdatafile("P",testid);
-	    	   rfreq=mastersservice.getFreqdatafile("R",testid);}
-	       if(testtype.equals("A") && atype.equals("L"))
-	    	   yfreq=mastersservice.getFreqdatafile("Y",testid);
-	       
-	       if(testtype.equals("DCP") && atype.equals("C")){
-	    	   cfreq=mastersservice.getFreqdatafile("C",testid);}
-	       else {
-	    	   hfreq=mastersservice.getFreqdatafile("H",testid);
-	    	   vfreq=mastersservice.getFreqdatafile("V",testid);}
-	      
-	       
-	       
+	        String prodtype="";
+	    	hefreq=mastersservice.getPVFreqdatafile("H",serialid,"E");
+	    	vefreq=mastersservice.getPVFreqdatafile("V",serialid,"E"); 
+	    	hafreq=mastersservice.getPVFreqdatafile("H",serialid,"A");
+	    	vafreq=mastersservice.getPVFreqdatafile("V",serialid,"A"); 
+	    	hgfreq=mastersservice.getPVFreqdatafile("H",serialid,"G");
+	    	vgfreq=mastersservice.getPVFreqdatafile("V",serialid,"G"); 
 	        referenceData.put("prodserlist", prodserlist);
-	        referenceData.put("prodtype", prodtype);
-	        referenceData.put("testtype", testtype);
+	        referenceData.put("prodtype", prodtype);       
 	       
-	        referenceData.put("pfreq", pfreq);
-	        referenceData.put("rfreq", rfreq);
-	        referenceData.put("yfreq", yfreq);
-	        referenceData.put("cfreq", cfreq);
-	        referenceData.put("hfreq", hfreq);
-	        referenceData.put("vfreq", vfreq);
+	        referenceData.put("hefreq", hefreq);
+	        referenceData.put("vefreq", vefreq);
+	        referenceData.put("hafreq", hafreq);
+	        referenceData.put("vafreq", vafreq);
+	        referenceData.put("hgfreq", hgfreq);
+	        referenceData.put("vgfreq", vgfreq); 
 	        
-	        List<TestFrequency> freqlist=mastersservice.getFreqList(testid);  
+	        List<TestFrequency> freqlist=mastersservice.getPVFreqList(testid);  
 	        String strfreqs="";
-	       // referenceData.put("freqlist",freqlist);
+	      
 	      
 	        for (int i=0;i<freqlist.size();i++){
     			if(i==0)

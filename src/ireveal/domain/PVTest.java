@@ -17,6 +17,22 @@ private Date dttestdate;
 private String strtestdate;
 private String testname;
 private String testdesc;
+private String frequnit;
+private String testtype;
+
+
+public String getTesttype() {
+	return testtype;
+}
+public void setTesttype(String testtype) {
+	this.testtype = testtype;
+}
+public String getFrequnit() {
+	return frequnit;
+}
+public void setFrequnit(String frequnit) {
+	this.frequnit = frequnit;
+}
 public int getProductid() {
 	return productid;
 }

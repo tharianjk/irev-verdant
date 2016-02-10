@@ -100,6 +100,9 @@ progress_clear();
 //$('#myTable tr:last').after('<tr>...</tr><tr>...</tr>');
 
 </script>
+<div id="validate" title="Check Duplicate Serial" style="display:none;">
+				<p> Serial No Entered for this Test
+</div>
 <div id="errmsg" title="Error" style="display:none;"></div>
 <div id="dialogtip"  style="display:none;-moz-border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -130,7 +133,7 @@ progress_clear();
 		<form:errors path="*" cssClass="errorblock" element="div" />
 		<table>
 		<tr>
-		<td>Test Configuration * :</td>  
+		<td>Test Configuration  :</td>  
           <td><form:input path="testname" id="testname"  readonly="readonly"/>  
           </td>
          </tr>
@@ -143,12 +146,8 @@ progress_clear();
 		<tr>
 		<td > Product Serial No: </td>
        <td >
-			           
-			 <form:select id="psl" path="productserialid" required="required" disabled = "true"> 			              
-			 <c:forEach items="${prodserlist}" var="prdser"> 
-			  <form:option label="${prdser.productserial}"   value="${prdser.productserialid}"/>	     
-			</c:forEach>
-			</form:select>
+			<form:input type="number" path="productserial"  min="1" max="50" maxlength="2" />          
+			
 			   
           </td>
           </tr>
@@ -156,8 +155,11 @@ progress_clear();
           <td>Test Type * :</td> 
           
           <td>          
-           <form:select id="testtype"  path="testtype"  required="required" >           		 
-		</form:select>              
+           <form:select id="testtype"  path="testtype"   >
+           <form:option value="A" label="Azimuth"></form:option>
+   		   <form:option value="E" label="Elevation"></form:option>
+   		   <form:option value="G" label="Gain Measurement"></form:option>        		 
+		   </form:select>              
           </td> 
           </tr>
          
@@ -174,40 +176,40 @@ progress_clear();
 		</tr>
 	</thead>
 	<tbody>
-	<c:if test="${cfreq!='' && cfreq !=null}">
+	<c:if test="${hefreq!='' && hefreq !=null}">
 	<tr>
-	<td> CP Data </td>
-	<td> ${cfreq}</td>				
+	<td> HP Elevation </td>
+	<td> ${hefreq}</td>				
 	</tr>
 	</c:if>
-	<c:if test="${hfreq!='' && hfreq !=null}">
+	<c:if test="${hafreq!='' && hafreq !=null}">
 	<tr>
-	<td> HP Data </td>
-	<td> ${hfreq}</td>				
+	<td> HP Azimuth </td>
+	<td> ${hafreq}</td>				
 	</tr>
 	</c:if>
-	<c:if test="${vfreq!='' && vfreq !=null}">
+	<c:if test="${vefreq!='' && vefreq !=null}">
 	<tr>
-	<td> VP Data </td>
-	<td> ${vfreq}</td>				
+	<td> VP Elevation </td>
+	<td> ${vefreq}</td>				
 	</tr>
 	</c:if>
-	<c:if test="${pfreq!='' && pfreq !=null}">
+	<c:if test="${vafreq!='' && vafreq !=null}">
 	<tr>
-	<td> Pitch Data </td>
-	<td> ${pfreq}</td>				
+	<td> VP Azimuth </td>
+	<td> ${vafreq}</td>				
 	</tr>
 	</c:if>
-	<c:if test="${rfreq!='' && rfreq !=null}">
+	<c:if test="${hgfreq!='' && hgfreq !=null}">
 	<tr>
-	<td> Roll Data </td>
-	<td> ${rfreq}</td>				
+	<td> HP Gain Measurement</td>
+	<td> ${hgfreq}</td>				
 	</tr>
 	</c:if>
-	<c:if test="${yfreq!='' && yfreq !=null}">
+	<c:if test="${vgfreq!='' && vgfreq !=null}">
 	<tr>
-	<td> Yaw Data </td>
-	<td> ${yfreq}</td>				
+	<td> VP Gain Measurement </td>
+	<td> ${vgfreq}</td>				
 	</tr>
 	</c:if>
 	
@@ -230,7 +232,11 @@ progress_clear();
 		<td>File Type * :</td> 
           
           <td width="50">
-           <form:select id="ftype" name="D1" path="filetype"  ></form:select>
+           <form:select id="ftype" name="D1" path="filetype"  >
+           <form:option value="H" label="HP Data "></form:option>
+   		   <form:option value="V" label="VP Data"></form:option>
+   		  
+           </form:select>
          
 		</td>
 		</tr>
@@ -311,7 +317,7 @@ progress_clear();
 	
 	
 	
-	    <form:hidden id="testid" path="testid"></form:hidden>
+	    <form:hidden id="serialid" path="productserialid"></form:hidden>
 		<form:hidden id="strfreq" path="strjsonfreq"></form:hidden>
 		<form:hidden id="originalfilename" path="originalfilename"></form:hidden>
 		<form:hidden path="ptype" ></form:hidden>
@@ -406,59 +412,15 @@ $(document).ready( function () {
 	var testtype = document.getElementById('testtype');
 	var ptype=document.getElementById("ptype").value;
 	var i;
-	testtype.innerHTML="";
-	document.getElementById('psl').disabled = true;
-	if( ptype=="L" || ptype=="S" ) {	
-		var el = document.createElement("option");
-		el.textContent = "--Select--";
-		el.value = "-1";
-		testtype.appendChild(el);
-	    el = document.createElement("option");
-	    el.textContent = 'Azimuth';
-	    el.value ='A';
-	    testtype.appendChild(el);
-	    el = document.createElement("option");
-	    el.textContent = 'Elevation';
-	    el.value ='E';
-	    testtype.appendChild(el);  }
-	else 	
-	{	 
-		var el = document.createElement("option");
-		el.textContent = "--Select--";
-		el.value = "-1";
-		testtype.appendChild(el);
-	    el = document.createElement("option");
-	    el.textContent = 'With CP Conversion';
-	    el.value ='CP';
-	    testtype.appendChild(el);
-	    el = document.createElement("option");
-	    el.textContent = 'Without CP Conversion';
-	    el.value ='NCP';
-	    testtype.appendChild(el); 
-	    el = document.createElement("option");
-	    el.textContent = 'Direct CP';
-	    el.value ='DCP';
-	    testtype.appendChild(el); }
 	
-	//document.getElementById("strfreq").value='{"jsonfreq":[{"freq":100, "lg":1},{"freq":1000, "lg":2},{"freq":2000, "lg":2}]}';
-	/*if(document.getElementById("ptype").value=="C")
-		{
-		document.getElementById("A").style.visibility="hidden";
-		document.getElementById("E").style.visibility="hidden";
-		}
-	else
-		{
-		document.getElementById("NCP").style.visibility="hidden";
-		document.getElementById("DCP").style.visibility="hidden";
-		document.getElementById("CP").style.visibility="hidden";
-		}*/
 	
-	var testid=document.getElementById("testid").value;
-	 console.log("testid "+testid);
-	 if(testid!="" && testid!=null && testid !='null' && testid!=0)
+	var serialid=document.getElementById("serialid").value;
+	 console.log("serialid "+serialid);
+	 document.getElementById("frequnit").disabled = true;
+	 if(serialid!="" && serialid!=null && serialid !='null' && serialid!=0)
 		{
-		 document.getElementById("frequnit").disabled = true;
-		 document.getElementById("testtype").value='${testtype}';
+		
+		// document.getElementById("testtype").value='${testtype}';
 		 
 		 //$("#testtype").trigger( "onchange" );
 		 $("#testtype").val('${testtype}').change();
@@ -487,7 +449,7 @@ $(document).ready( function () {
 		 
 	 }
 	 
-	 if( testid!="" && testid!=null && testid !='null' && testid!=0 && mode!='edit'){
+	 if( serialid!="" && serialid!=null && serialid !='null' && serialid!=0 && mode!='edit'){
 	 $('#tblmain').find('input, textarea, button, select,checkbox').attr('disabled',true);
 	 document.getElementById("more").style.visibility="visible";
 	 document.getElementById("done").style.visibility="visible";
@@ -521,96 +483,7 @@ $(document).ready( function () {
 $('#testtype').on('change', function() {
 	  var sel= this.value ; // or $(this).val()
 	  var ftype = document.getElementById('ftype');
-	  var ptype=document.getElementById("ptype").value;
-	  ftype.innerHTML="";
-		
-		if(sel=="A" && ptype=="L") {	   
-		    var el = document.createElement("option");
-		    el.textContent = 'Yaw Data';
-		    el.value ='yaw';		    
-		    ftype.appendChild(el);}
-		if(sel=="A" && ptype=="S") {
-			 var el = document.createElement("option");
-			el.textContent = "--Select--";
-			el.value = "-1";
-			ftype.appendChild(el);
-		    el = document.createElement("option");
-		    el.textContent = 'VP Data';
-		    el.value ='Vdata';
-		    ftype.appendChild(el);
-		    el = document.createElement("option");
-		    el.textContent = 'HP Data';
-		    el.value ='Hdata';
-		    ftype.appendChild(el);    
-		}
-		if(sel=="E" && ptype=="S") {
-			 var el = document.createElement("option");
-				el.textContent = "--Select--";
-				el.value = "-1";
-				ftype.appendChild(el);
-			    el = document.createElement("option");
-			    el.textContent = 'VP Data';
-			    el.value ='Vdata';
-			    ftype.appendChild(el);
-			    el = document.createElement("option");
-			    el.textContent = 'HP Data';
-			    el.value ='Hdata';
-			    ftype.appendChild(el);    
-			}
-		
-		if(sel=="E" && ptype=="L") {
-			 var el = document.createElement("option");
-			el.textContent = "--Select--";
-			el.value = "-1";
-			ftype.appendChild(el);
-		    el = document.createElement("option");
-		    el.textContent = 'Pitch Data';
-		    el.value ='pitch';
-		    ftype.appendChild(el);
-		    el = document.createElement("option");
-		    el.textContent = 'Roll Data';
-		    el.value ='roll';
-		    ftype.appendChild(el);    
-		}
-		if(sel=="CP" && ptype=="C") {
-			 var el = document.createElement("option");
-			el.textContent = "--Select--";
-			el.value = "-1";
-			ftype.appendChild(el);	  
-		    el = document.createElement("option");
-		    el.textContent = 'VP Data';
-		    el.value ='Vdata';
-		    ftype.appendChild(el);
-		    el = document.createElement("option");
-		    el.textContent = 'HP Data';
-		    el.value ='Hdata';
-		    ftype.appendChild(el);
-		        
-		}
-		if(sel=="NCP" && ptype=="C") {
-			 var el = document.createElement("option");
-			el.textContent = "--Select--";
-			el.value = "-1";
-			ftype.appendChild(el);	  
-		     el = document.createElement("option");
-		    el.textContent = 'VP Data';
-		    el.value ='Vdata';
-		    ftype.appendChild(el);
-		    el = document.createElement("option");
-		    el.textContent = 'HP Data';
-		    el.value ='Hdata';
-		    ftype.appendChild(el);
-		    ftype.appendChild(el);    
-		}
-		if(sel=="DCP" && ptype=="C") {
-			   
-		    var el = document.createElement("option");
-		    el.textContent = 'CP Data';
-		    el.value ='CPdata';
-		    ftype.appendChild(el);}
-		
-		
-		
+	  		
 	});
 
 function fncancel(){
@@ -620,12 +493,6 @@ function fncancel(){
 
 function AddNew(){
 	
-	var testname=document.getElementById("testname").value;
-	if(testname==null || testname=="")
-	{
-	alert(" Enter Test Configuration");
-	return;
-	}
 	var testtype=document.getElementById("testtype").value;
 	if(testtype==null || testtype=="" || testtype=="-1")
 	{
@@ -886,6 +753,41 @@ function closetipclick()
 {
 	dialogtip.dialog( "close" );		
 }
+
+
+function fnCheck()
+{
+   var pat='<%=request.getContextPath()%>';
+   //alert("username="+$("#uname").val());
+		var urls = pat+'/MWAPI/checkserialno/'+testid+'/'+$( "#serialno" ).val();
+					$.ajax({
+						type: "GET",
+						url: urls,
+						error: function(XMLHttpRequest, textStatus, errorThrown)  {
+									alert("An error has occurred making the request: " + errorThrown)
+								},
+						success : function(response) {
+		                parent.IREV_DEBUG && console.log("Success-serial: "+ response);
+						if(response=='1')
+						{
+				        document.getElementById("save").disabled = true;
+						$( "#validate" ).dialog({
+						height: 200,
+						width: 300,
+						modal: true				
+						});	
+						}
+						else
+						{
+						document.getElementById("save").disabled = false;
+						}
+						}			
+					});
+
+   
+}
+
+
 </script>
 
  

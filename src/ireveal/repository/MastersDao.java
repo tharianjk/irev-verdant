@@ -102,5 +102,11 @@ public interface MastersDao {
 	 public PVTest getPVTest(int id);
 	 
 	 public List<PVSerialData> getPVSerialList(int testid);
+	 
+	 // PV Serial
+	 public int insertPVSerialData(PVSerialData testdata,List<TestFrequency> testfreqlist,List<DataLog> dataloglist,String strmode,String testtype );
+	 public PVSerialData getPVSerialData(int serialid);
+	 public String getPVFreqdatafile(String typ,int serialid,String testtype );
+	 public List<TestFrequency> getPVFreqList(int testid);
 
 }

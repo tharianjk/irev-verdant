@@ -48,7 +48,28 @@ public class MWAPIDao extends JdbcDaoSupport {
        		return "1";
        	}
        }
-    
+       /**
+        * 
+        * Validate user 
+        *
+        * @param  
+        * @return 
+        */
+        public String CheckSerialNo(String testid,String serialno){
+        	logger.info("Going to CheckSeialNo testid= : "+testid);
+        	try{
+        	int cnt =getJdbcTemplate().queryForInt("select count(*) from pv_prodserial where SerialNo='" +serialno+"' and test_id="+testid);
+        	if(cnt==0){
+        	return "0";}
+        	else{
+        		return "1";}
+        	}
+        	catch(Exception e)
+        	{
+        		return "1";
+        	}
+        }
+       
        
      /**
       * 

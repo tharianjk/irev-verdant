@@ -40,7 +40,7 @@
 		Antenna Type :</td> <td><input type="text" value='${prodtype}' readonly="readonly"/></td>
 		</tr>
 		
-          
+		 
          <tr>
 		<td width="20%"> Product : </td>
        <td width="50">
@@ -52,7 +52,12 @@
 			</c:forEach>
 			</form:select>     
           </td>
-		
+		<td><form:select path="testtype" id="testtype">
+        <form:option value="M" label="Gain measurement"></form:option>
+   		 <form:option value="T" label="Gain tracking"></form:option>  
+   		  <form:option value="C" label="Combination"></form:option> 
+		</form:select> 
+        </td>
 		</tr>
 		<tr>
           <td>Test Description :</td>  

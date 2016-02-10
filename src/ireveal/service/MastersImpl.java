@@ -219,10 +219,10 @@ public boolean deletescaleProduct(int prodid) {
 	return mastersdao.deletescaleProduct(prodid);
 }
 @Override
-<<<<<<< HEAD
+
 public boolean IsAdminUser() {
 	return mastersdao.IsAdminUser();
-=======
+}
 public int InsertPVtest(PVTest pvtest) {
 	return mastersdao.InsertPVtest( pvtest);
 }
@@ -245,7 +245,25 @@ public PVTest getPVTest(int id) {
 @Override
 public List<PVSerialData> getPVSerialList(int testid) {
 	return mastersdao.getPVSerialList(testid);
->>>>>>> c7fcb9d8d192b65faee94861b5f86e05791b5912
+
+}
+@Override
+public int insertPVSerialData(PVSerialData testdata,
+		List<TestFrequency> testfreqlist, List<DataLog> dataloglist,
+		String strmode, String testtype) {
+	return mastersdao.insertPVSerialData( testdata,testfreqlist,dataloglist, strmode,  testtype);
+}
+@Override
+public PVSerialData getPVSerialData(int serialid) {
+	return mastersdao.getPVSerialData(serialid);
+}
+@Override
+public String getPVFreqdatafile(String typ, int serialid, String testtype) {
+	return mastersdao.getPVFreqdatafile(typ,serialid,testtype);
+}
+@Override
+public List<TestFrequency> getPVFreqList(int testid) {
+	return mastersdao.getPVFreqList(testid);
 }
 
 
