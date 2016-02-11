@@ -73,7 +73,11 @@ public class MWAPIController {
 			return "Success";
 	}
 		
-    
+	@RequestMapping(value = "/checkserialno/{testid}/{serialid}",  method = RequestMethod.GET)
+	@ResponseBody
+		public String checkserialno(@PathVariable String testid,@PathVariable String serialid){			
+		return metertagmngr.CheckSerialNo(testid,serialid);
+	}
 
 }
     

@@ -3,6 +3,8 @@ import ireveal.domain.AmpPhaseTrack;
 import ireveal.domain.AssetTree;
 import ireveal.domain.DataLog;
 import ireveal.domain.ImportData;
+import ireveal.domain.PVSerialData;
+import ireveal.domain.PVTest;
 import ireveal.domain.Product;
 import ireveal.domain.ProductSerial;
 import ireveal.domain.RoleDsp;
@@ -89,4 +91,22 @@ public interface MastersDao {
 	 public int getproductTestscnt(int prodid);
 	 public boolean deletescaling(double freq,int prodid);
 	 public boolean deletescaleProduct(int prodid);
+
+	 public boolean IsAdminUser();
+
+	 // PVTest
+	 public int InsertPVtest(PVTest pvtest);
+	 public boolean UpdatePVTest(PVTest pvtest);
+	 public boolean deletePVTest(int id);
+	 public List<PVTest> getPVTestList();
+	 public PVTest getPVTest(int id);
+	 
+	 public List<PVSerialData> getPVSerialList(int testid);
+	 
+	 // PV Serial
+	 public int insertPVSerialData(PVSerialData testdata,List<TestFrequency> testfreqlist,List<DataLog> dataloglist,String strmode,String testtype );
+	 public PVSerialData getPVSerialData(int serialid);
+	 public String getPVFreqdatafile(String typ,int serialid,String datatype );
+	 public List<TestFrequency> getPVFreqList(int testid);
+
 }

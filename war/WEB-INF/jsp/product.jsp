@@ -52,7 +52,8 @@ function Redirect(){
           <option value="">--Select--</option>                 
    		 <form:option value="C" label="Circular"></form:option>
    		 <form:option value="L" label="Linear"></form:option>  
-   		 <form:option value="S" label="Slant"></form:option>    
+   		 <form:option value="S" label="Slant"></form:option>   
+   		 <form:option value="V" label="VT-JK S10 L ATP-2 REV 00"></form:option> 
 		</form:select>              
           </td> 
           

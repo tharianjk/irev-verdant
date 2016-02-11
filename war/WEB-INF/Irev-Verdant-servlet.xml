@@ -25,12 +25,27 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
 		
 		</bean>
- 
+ <bean name="/pvserialimport.htm" class="ireveal.web.PVSerialImportController">
+		<property name="formView" value="pvserialimport" />
+		 <property name="commandClass" value="ireveal.domain.PVSerialData"/>
+		  <property name="commandName" value="PVSerialData"/>
+		<property name="successView" value="fileuploadresult" />
+        <property name="mastersManager" ref="mastersManager"/>
+		
+	</bean>
 	<bean name="/testimport.htm" class="ireveal.web.TestImportController">
 		<property name="formView" value="testimport" />
 		 <property name="commandClass" value="ireveal.domain.TestData"/>
 		  <property name="commandName" value="TestData"/>
 		<property name="successView" value="fileuploadresult" />
+        <property name="mastersManager" ref="mastersManager"/>
+		
+	</bean>
+	<bean name="/pvtest.htm" class="ireveal.web.PVTestController">
+		<property name="formView" value="pvtest" />
+		 <property name="commandClass" value="ireveal.domain.PVTest"/>
+		  <property name="commandName" value="PVTest"/>
+		<property name="successView" value="pvtest" />
         <property name="mastersManager" ref="mastersManager"/>
 		
 	</bean>
