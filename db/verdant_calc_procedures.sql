@@ -1214,7 +1214,8 @@ BEGIN
 # 2. declare variable to store debug flag
     declare isDebug INT default 0;
 
-declare C,D,E,AminX,i,j,sum_right,sum_left decimal(40,20);
+declare C,D,E,AminX,i,j,sum_right,sum_left,E_bs,C_bs,B_bs decimal(40,20);
+declare lef,righ decimal(40,20);
 
 # 3. declare continue/exit handlers for logging SQL exceptions/errors :
 -- write handlers for specific known error codes which are likely to occur here    
@@ -1345,7 +1346,8 @@ end if;
 end while;
     
     if i <> @B then
-		-- set C= i;
+		 -- set lef= i;
+         set C_bs = i;
         set C = sum_right;
         -- select C as 'C';
 	end if;
@@ -1381,9 +1383,9 @@ end while;
     
     
     if j <> @B then
-		-- set D= j;
+		 -- set righ= j;
+         set E_bs = j;
         set E = sum_left;
-    --     select D as 'D';
 	end if;
     
     
@@ -1393,9 +1395,31 @@ end while;
 set beam_width = C+E;
 
 -- select beam_width as 'BW';
-set beam_squint = (C-E)/2;
 
--- select sum_right+sum_left 'is this it?'; 
+
+-- Beamsquint calculation
+
+if fromAngle = 'BM' then-- for BM 
+	if E_bs > 180 and C_bs > 180 then -- both in 4th quad
+		set E_bs = 360 - E_bs;
+		set C_bs = 360 - C_bs;
+		set beam_squint = (-C_bs-E_bs)/2;
+
+	elseif E_bs < 90 and C_bs < 90 then -- both in 1st quad
+		set beam_squint = (C_bs+E_bs)/2;
+
+	else -- C_bs and E_bs are in 1st and 4th quad respectively
+		set E_bs = 360 - E_bs;
+		set beam_squint = (C_bs-E_bs)/2;
+	end if;
+else -- for 0,90,270
+	set beam_squint = (C-E)/2;
+end if;
+
+
+ -- select beam_squint as 'BS';
+
+
 
 END$$
 DELIMITER ;
