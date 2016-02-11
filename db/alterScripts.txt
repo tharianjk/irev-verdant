@@ -1,4 +1,4 @@
-
+drop table if exists pv_GainSTDHorn;
 drop table if exists pv_testfreq;
 drop table if exists pv_vdata;
 drop table if exists pv_hdata;
@@ -165,6 +165,15 @@ CREATE TABLE pv_arcalculated (
   KEY FK_arcalculated_pv (Prodserial_id),
   CONSTRAINT FK_arcalculated_pv FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
 ) ;
+create table pv_GainSTDHorn(
+gsh_id int(11) NOT NULL AUTO_INCREMENT,
+test_id int(11) not null,
+Frequency decimal(40,20) not null,
+stdhorn decimal(40,20) not null default 0,
+PRIMARY KEY (gsh_id),
+  KEY FK_GSH_test_id_pv (test_id),
+  CONSTRAINT FK_GSH_test_id_pv FOREIGN KEY (test_id) REFERENCES pv_testdata (test_id)
+);
 
 alter table product add prodmodel varchar(100);
 alter table pv_testdata add inst_slno varchar(100);

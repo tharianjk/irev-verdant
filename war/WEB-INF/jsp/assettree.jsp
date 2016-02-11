@@ -292,6 +292,7 @@ var treemode='<%=request.getParameter("treemode")%>';
                 	var node = $(event.target).closest("li");
                 	var data = node.data("jsTreeComponent");
                 	 treeType=node.attr('treeType');
+                	 atype=node.attr('AType');
                 	var url ='';
             if(treemode=="edit" ){            //&& treeType!=4 	  
              	 
@@ -301,10 +302,14 @@ var treemode='<%=request.getParameter("treemode")%>';
              	 }
              	 else if(treeType==2)
          		 {
+             		 
                 	   url = '<%=request.getContextPath()%>/product.htm?prodid='+ node.attr('assetId')+'&Nlevel='+ node.attr('nlevel');
                  }
              	 else if(treeType==3)
          		 {
+             		if(atype=="V")
+             			url = '<%=request.getContextPath()%>/pvtest.htm?testid='+ node.attr('assetId')+'&Nlevel='+ node.attr('nlevel');
+             		 else
                 	   url = '<%=request.getContextPath()%>/productserial.htm?prodserid='+ node.attr('assetId')+'&Nlevel='+ node.attr('nlevel');
                  }
              	else if(treeType==4)
@@ -681,9 +686,59 @@ function recreatewithparents()
                                  parent.frames['AppBody'].location = url;
                                        }
                          }
+                         ,
+                         edittgain: { // The "rename" menu item
+                             label: "Gain of STD Horn",                      
+                             action: function(response) {
+                                 var url = '<%=request.getContextPath()%>/gainstdhorn.htm?oper=gainstd&testid='+ node.attr('assetId') ;
+                                 //alert("url "+ url);
+                                 parent.frames['AppBody'].location = url;
+                                       }
+                         }
+                         
          	}
          	}
          	else{
+         		if(atype=="V"){
+              		items = {
+                    		  createItem: { // The "rename" menu item
+                                  label: "New Serial",                      
+                                  action: function(response) {
+                                      var url = '<%=request.getContextPath()%>/pvserialimport.htm?PId='+ node.attr('assetId') +'&PName='+node.attr('assetName')+'&Nlevel='+ node.attr('nlevel');
+                                      //alert("url "+ url);
+                                      parent.frames['AppBody'].location = url;
+                                            }
+                              },
+                              editItem: { // The "rename" menu item
+                                  label: "Edit Serial",                      
+                                  action: function(response) {
+                                      var url = '<%=request.getContextPath()%>/setup.htm?oper=pvserial&testid='+ node.attr('assetId') +'&PName='+node.attr('assetName')+'&Nlevel='+ node.attr('nlevel');
+                                      //alert("url "+ url);
+                                      parent.frames['AppBody'].location = url;
+                                            }
+                              },
+                              edittItem: { // The "rename" menu item
+                                  label: "Edit Test",                      
+                                  action: function(response) {
+                                      var url = '<%=request.getContextPath()%>/pvtest.htm?testid='+ node.attr('assetId') ;
+                                      //alert("url "+ url);
+                                      parent.frames['AppBody'].location = url;
+                                            }
+                              }
+                              ,
+                              edittgain: { // The "rename" menu item
+                                  label: "Gain of STD Horn",                      
+                                  action: function(response) {
+                                      var url = '<%=request.getContextPath()%>/gainstdhorn.htm?oper=gainstd&testid='+ node.attr('assetId') ;
+                                      console.log("url "+ url);
+                                      parent.frames['AppBody'].location = url;
+                                            }
+                              }
+                              
+              	}
+                 }else{
+         		
+         		
         	 items = {   
         			 createItem: { // The "rename" menu item
                     label: "Import Test-Set",
@@ -718,6 +773,7 @@ function recreatewithparents()
                 }
             };
          } 
+         	}
        }
          else if(treeType==4){
              items = {

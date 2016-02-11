@@ -54,9 +54,9 @@
           </td>
           <td width="20%"> Test Type : </td>
 		<td><form:select path="testtype" id="testtype">
-        <form:option value="M" label="Gain measurement"></form:option>
-   		 <form:option value="T" label="Gain tracking"></form:option>  
-   		  <form:option value="C" label="Combination"></form:option> 
+        <form:option value="GM" label="Gain measurement"></form:option>
+   		 <form:option value="GT" label="Gain tracking"></form:option>  
+   		  <form:option value="CO" label="Combination"></form:option> 
 		</form:select> 
         </td>
         <td><form:select path="frequnit" id="frequnit">
