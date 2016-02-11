@@ -17,8 +17,15 @@ private String filetype;
 private String frequnit;
 private String ptype;
 private String testtype;
+private String datatype;
 
+public String getDatatype() {
+	return datatype;
+}
 
+public void setDatatype(String datatype) {
+	this.datatype = datatype;
+}
 
 public String getTesttype() {
 	return testtype;

@@ -258,8 +258,8 @@ public PVSerialData getPVSerialData(int serialid) {
 	return mastersdao.getPVSerialData(serialid);
 }
 @Override
-public String getPVFreqdatafile(String typ, int serialid, String testtype) {
-	return mastersdao.getPVFreqdatafile(typ,serialid,testtype);
+public String getPVFreqdatafile(String typ, int serialid, String datatype) {
+	return mastersdao.getPVFreqdatafile(typ,serialid,datatype);
 }
 @Override
 public List<TestFrequency> getPVFreqList(int testid) {

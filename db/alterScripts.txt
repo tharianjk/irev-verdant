@@ -1,12 +1,13 @@
-drop table if exists pv_testdata;
-drop table if exists pv_prodserial;
+
 drop table if exists pv_testfreq;
 drop table if exists pv_vdata;
-drop table if exists pv_hdata
-drop table if exists pv_vcalculated
-drop table if exists pv_hcalculated
-drop table if exists pv_cpcalculated
-drop table if exists pv_arcalculated
+drop table if exists pv_hdata;
+drop table if exists pv_vcalculated;
+drop table if exists pv_hcalculated;
+drop table if exists pv_cpcalculated;
+drop table if exists pv_arcalculated;
+drop table if exists pv_prodserial;
+drop table if exists pv_testdata;
 
 
 CREATE TABLE pv_testdata (
@@ -55,9 +56,9 @@ CREATE TABLE pv_vdata (
   Frequency decimal(40,20) DEFAULT NULL,
   Angle decimal(12,2) DEFAULT NULL,
   Amplitude decimal(12,8) DEFAULT NULL,
-  testtype varchar(2) ,
+  datatype varchar(2) ,
   PRIMARY KEY (VData_id),
-  KEY Prodserialid_freq_angle_vp (Prodserial_id,Frequency,Angle,Amplitude,testtype),
+  KEY Prodserialid_freq_angle_vp (Prodserial_id,Frequency,Angle,Amplitude,datatype),
   CONSTRAINT FK_pvvdata_test FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
 ) ;
 CREATE TABLE pv_hdata (
@@ -66,16 +67,16 @@ CREATE TABLE pv_hdata (
   Frequency decimal(40,20) DEFAULT NULL,
   Angle decimal(12,2) DEFAULT NULL,
   Amplitude decimal(12,8) DEFAULT NULL,
-  testtype varchar(2) not null,
+  datatype varchar(2) not null,
   PRIMARY KEY (HData_id),
-  KEY Prodserialid_freq_angle_hp (Prodserial_id,Frequency,Angle,Amplitude,testtype),
+  KEY Prodserialid_freq_angle_hp (Prodserial_id,Frequency,Angle,Amplitude,datatype),
   CONSTRAINT FK_pvhdata_test FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
 ) ;
 
 CREATE TABLE pv_hcalculated (
   HCalculated_Id int(11) NOT NULL AUTO_INCREMENT,
   Prodserial_id int(11) DEFAULT NULL,
-  testtype varchar(2) not null ,
+  datatype varchar(2) not null ,
   Frequency decimal(40,20) DEFAULT NULL,
   TestDate datetime DEFAULT NULL,
   OmniDeviation decimal(40,20) DEFAULT NULL,
@@ -100,7 +101,7 @@ CREATE TABLE pv_hcalculated (
 CREATE TABLE pv_vcalculated (
   VCalculated_Id int(11) NOT NULL AUTO_INCREMENT,
   Prodserial_id int(11) DEFAULT NULL,
-  testtype varchar(2) not null ,
+  datatype varchar(2) not null ,
   Frequency decimal(40,20) DEFAULT NULL,
   TestDate datetime DEFAULT NULL,
   OmniDeviation decimal(40,20) DEFAULT NULL,
@@ -126,7 +127,7 @@ CREATE TABLE pv_vcalculated (
 CREATE TABLE pv_cpcalculated (
   CPCalculated_Id int(11) NOT NULL AUTO_INCREMENT,
   Prodserial_id int(11) DEFAULT NULL,
-  testtype varchar(2) not null ,
+  datatype varchar(2) not null ,
   Frequency decimal(40,20) DEFAULT NULL,
   TestDate datetime DEFAULT NULL,
   3Db_BW_BMax decimal(40,20) DEFAULT NULL,
@@ -150,7 +151,7 @@ CREATE TABLE pv_cpcalculated (
 CREATE TABLE pv_arcalculated (
   ARCalculated_Id int(11) NOT NULL AUTO_INCREMENT,
   Prodserial_id int(11) DEFAULT NULL,
-  testtype varchar(2) not null ,
+  datatype varchar(2) not null ,
   Frequency decimal(40,20) DEFAULT NULL,
   TestDate datetime DEFAULT NULL,
   AR_0 decimal(40,20) DEFAULT NULL,
@@ -165,4 +166,6 @@ CREATE TABLE pv_arcalculated (
   CONSTRAINT FK_arcalculated_pv FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
 ) ;
 
+alter table product add prodmodel varchar(100);
+alter table pv_testdata add inst_slno varchar(100);
 

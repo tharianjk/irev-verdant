@@ -16,8 +16,8 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 
+import ireveal.domain.PVSerialData;
 import ireveal.service.SetupManager;
-
 import ireveal.service.MastersService; 
 
 
@@ -121,8 +121,11 @@ public class SetupController implements Controller {
         	else if (operstr.contains("pvserial")){
         		logger.info("*** PVSerial settings**");
         		String testid = request.getParameter("testid");
-        		myModel.put("pvserial", this.mastersservice.getPVSerialList(Integer.parseInt(testid))); 
+        		List<PVSerialData> pvserial=this.mastersservice.getPVSerialList(Integer.parseInt(testid));
+        		myModel.put("pvserial", pvserial); 
         		myModel.put("stat", stat );
+        		myModel.put("testid", testid );
+        		myModel.put("testname", pvserial.get(0).getTestname() );
         		return new ModelAndView("pvseriallist", "model", myModel);
         		
         	}

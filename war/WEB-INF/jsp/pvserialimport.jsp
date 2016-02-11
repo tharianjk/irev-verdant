@@ -155,7 +155,7 @@ progress_clear();
           <td>Test Type * :</td> 
           
           <td>          
-           <form:select id="testtype"  path="testtype"   >
+           <form:select id="datatype"  path="datatype"   >
            <form:option value="A" label="Azimuth"></form:option>
    		   <form:option value="E" label="Elevation"></form:option>
    		   <form:option value="G" label="Gain Measurement"></form:option>        		 
@@ -320,7 +320,8 @@ progress_clear();
 	    <form:hidden id="serialid" path="productserialid"></form:hidden>
 		<form:hidden id="strfreq" path="strjsonfreq"></form:hidden>
 		<form:hidden id="originalfilename" path="originalfilename"></form:hidden>
-		<form:hidden path="ptype" ></form:hidden>
+		<form:hidden path="ptype" id="ptype"></form:hidden>
+		<form:hidden path="testtype" id="testtype"></form:hidden>
 		<table>
 		<tr>
 	<td>	<input type="submit" id="more" value="Import" name="fmaction" class="myButton" onclick="progress_update('M');form1.submit();"/></td>
@@ -409,8 +410,8 @@ $(document).ready( function () {
 			}
 	
 	
-	var testtype = document.getElementById('testtype');
-	var ptype=document.getElementById("ptype").value;
+	var datatype = document.getElementById('datatype');
+	//var ptype=document.getElementById("ptype").value;
 	var i;
 	
 	
@@ -420,10 +421,7 @@ $(document).ready( function () {
 	 if(serialid!="" && serialid!=null && serialid !='null' && serialid!=0)
 		{
 		
-		// document.getElementById("testtype").value='${testtype}';
-		 
-		 //$("#testtype").trigger( "onchange" );
-		 $("#testtype").val('${testtype}').change();
+		 $("#datatype").val('${datatype}').change();
 		 if(mode=='edit')
 			 {
 			 document.getElementById("tbimport").style.visibility="hidden";
@@ -433,12 +431,12 @@ $(document).ready( function () {
 			 document.getElementById("done").style.visibility="hidden";
 			 document.getElementById("save").style.visibility="visible";
 			// document.getElementById("cancel").style.visibility="visible";
-			 document.getElementById("testtype").disabled = true;
+			 document.getElementById("datatype").disabled = true;
 			 document.getElementById("tabrange").style.visibility="hidden";
 			 }		 
 		}
 	 else{
-		 document.getElementById("chkdel").disabled = true;
+		 //document.getElementById("chkdel").disabled = true;
 		 document.getElementById("more").style.visibility="visible";
 		 document.getElementById("done").style.visibility="visible";
 		 document.getElementById("save").style.visibility="hidden";
@@ -458,8 +456,7 @@ $(document).ready( function () {
 	// document.getElementById("cancel").style.visibility="hidden";
 	 document.getElementById("more").disabled = true;
 	 document.getElementById("done").disabled = false;
-	 if(ptype=="L" || testtype=="DCP")
-	 document.getElementById("checkdel").disabled = true;
+	
 	 }
 	 
 	 
@@ -480,7 +477,7 @@ $(document).ready( function () {
 	    });
 	
 } );
-$('#testtype').on('change', function() {
+$('#datatype').on('change', function() {
 	  var sel= this.value ; // or $(this).val()
 	  var ftype = document.getElementById('ftype');
 	  		
@@ -493,8 +490,8 @@ function fncancel(){
 
 function AddNew(){
 	
-	var testtype=document.getElementById("testtype").value;
-	if(testtype==null || testtype=="" || testtype=="-1")
+	var datatype=document.getElementById("datatype").value;
+	if(datatype==null || datatype=="" || datatype=="-1")
 	{
 	alert(" Select Test Type");
 	return;
@@ -666,14 +663,9 @@ function enablerange()
 function uprange()
 {
 	console.log("inside uprange");
-	var testname=document.getElementById("testname").value;
-	if(testname==null || testname=="")
-	{
-	alert(" Enter Test Configuration");
-	return;
-	}
-	var testtype=document.getElementById("testtype").value;
-	if(testtype==null || testtype=="" || testtype=="-1")
+	
+	var datatype=document.getElementById("datatype").value;
+	if(datatype==null || datatype=="" || datatype=="-1")
 	{
 	alert(" Select Test Type");
 	return;

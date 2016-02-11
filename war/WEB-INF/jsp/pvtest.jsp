@@ -52,12 +52,18 @@
 			</c:forEach>
 			</form:select>     
           </td>
+          <td width="20%"> Test Type : </td>
 		<td><form:select path="testtype" id="testtype">
         <form:option value="M" label="Gain measurement"></form:option>
    		 <form:option value="T" label="Gain tracking"></form:option>  
    		  <form:option value="C" label="Combination"></form:option> 
 		</form:select> 
         </td>
+        <td><form:select path="frequnit" id="frequnit">
+        <form:option value="MHz" label="MHz"></form:option>
+   		 <form:option value="GHz" label="GHz"></form:option>  
+   		 
+		</form:select> 
 		</tr>
 		<tr>
           <td>Test Description :</td>  

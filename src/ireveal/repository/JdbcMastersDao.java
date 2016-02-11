@@ -1331,7 +1331,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 			
 @Transactional
    public int insertPVSerialData(PVSerialData testdata,List<TestFrequency> testfreqlist,List<DataLog> dataloglist,String strmode,String action ){
-	  String testtype=testdata.getTesttype();
+	  String datatype=testdata.getDatatype();
 	   int serialid=0;
 	   logger.info(" strmode "+strmode);
 	   try{
@@ -1380,22 +1380,22 @@ if(strmode.equals("new")){
 				if(testdata.getFiletype().equals("V"))
 				{
 					logger.info(" PVSerialData 4");
-					sqlcnt="select count(*) from pv_Vdata where Prodserial_id=? and frequency=? and testtype=?";
-					sqldelete="delete from pv_Vdata where Prodserial_id=? and frequency=? and testtype=?";
+					sqlcnt="select count(*) from pv_Vdata where Prodserial_id=? and frequency=? and datatype=?";
+					sqldelete="delete from pv_Vdata where Prodserial_id=? and frequency=? and datatype=?";
 				}
 				if(testdata.getFiletype().equals("H"))
 				{
 					logger.info(" PVSerialData 5");
-					sqlcnt="select count(*) from pv_hdata where Prodserial_id=? and frequency=? and testtype=?";
-					sqldelete="delete from pv_hdata where Prodserial_id=? and frequency=? and testtype=?";
+					sqlcnt="select count(*) from pv_hdata where Prodserial_id=? and frequency=? and datatype=?";
+					sqldelete="delete from pv_hdata where Prodserial_id=? and frequency=? and datatype=?";
 				}
-				logger.info(" PVSerialData 6 freq"+testfreqlist.get(i).getFrequency()+" testtype="+testtype);
+				logger.info(" PVSerialData 6 freq"+testfreqlist.get(i).getFrequency()+" datatype="+datatype);
 				//logger.info("sqlcnt="+sqlcnt);
-			int cntfreq=getJdbcTemplate().queryForObject(sqlcnt,Integer.class,serialid,testfreqlist.get(i).getFrequency(),testtype);
+			int cntfreq=getJdbcTemplate().queryForObject(sqlcnt,Integer.class,serialid,testfreqlist.get(i).getFrequency(),datatype);
 			logger.info(" PVSerialData 7");
 			if(cntfreq >0)
 			{
-				getJdbcTemplate().update(sqldelete,serialid,testfreqlist.get(i).getFrequency(),testtype);
+				getJdbcTemplate().update(sqldelete,serialid,testfreqlist.get(i).getFrequency(),datatype);
 			}
 		 }
 		
@@ -1406,17 +1406,17 @@ if(strmode.equals("new")){
 	  	logger.info(" PVSerialData 8");
 	  	if(testdata.getFiletype().equals("V"))
 	  	{
-	  		sqltest="insert into pv_Vdata (Prodserial_id,Frequency,Angle,Amplitude,testtype) values (?,?,?,?,?)"; 
+	  		sqltest="insert into pv_Vdata (Prodserial_id,Frequency,Angle,Amplitude,datatype) values (?,?,?,?,?)"; 
 	  	}
 	  	else if(testdata.getFiletype().equals("H"))
 	  	{
-	  		sqltest="insert into pv_Hdata (Prodserial_id,Frequency,Angle,Amplitude,testtype) values (?,?,?,?,?)"; 
+	  		sqltest="insert into pv_Hdata (Prodserial_id,Frequency,Angle,Amplitude,datatype) values (?,?,?,?,?)"; 
 	  	}
 	  	for (int i=0;i<dataloglist.size();i++){	
 	  		
 		getJdbcTemplate().update(  
 				sqltest,  
-		 new Object[] {serialid, dataloglist.get(i).getFreq(), dataloglist.get(i).getAngle()==360.00?0:dataloglist.get(i).getAngle(),dataloglist.get(i).getAmplitude(),testtype });
+		 new Object[] {serialid, dataloglist.get(i).getFreq(), dataloglist.get(i).getAngle()==360.00?0:dataloglist.get(i).getAngle(),dataloglist.get(i).getAmplitude(),datatype });
 
 		}
 	  	/* if(action.equals("Done"))
@@ -1474,15 +1474,15 @@ private static class PVSerialMapper implements ParameterizedRowMapper<PVSerialDa
 
    }
   
-public String getPVFreqdatafile(String typ,int serialid,String testtype ){
+public String getPVFreqdatafile(String typ,int serialid,String datatype ){
 	 String sql="";
 	 String strfreqs="";
 	 if(typ.equals("H"))
-		 sql="select distinct frequency from pv_hdata where prodserial_id=? and testtype=?";
+		 sql="select distinct frequency from pv_hdata where prodserial_id=? and datatype=?";
 	 else if(typ.equals("V"))
-		 sql="select distinct frequency from pv_vdata where prodserial_id=? and testtype=?";
+		 sql="select distinct frequency from pv_vdata where prodserial_id=? and datatype=?";
 		 
-	 List<TestFrequency> freqlist=getJdbcTemplate().query(sql, new FreqdatafileMapper(),serialid,testtype);  
+	 List<TestFrequency> freqlist=getJdbcTemplate().query(sql, new FreqdatafileMapper(),serialid,datatype);  
 		for (int i=0;i<freqlist.size();i++){
 			if(i==0)
 				{strfreqs=freqlist.get(i).getFrequency()+"";}

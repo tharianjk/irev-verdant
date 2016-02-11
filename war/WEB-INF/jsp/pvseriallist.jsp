@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="css/popupmessage.css">
   </head>
   <body>
-  <h3> Roles List </h3>
-  <form action="pvserialimport.htm" method="GET">
+  <h3 id="head3"> Serial List </h3>
+  <form action="pvserialimport.htm?pid=${model.testid}" method="GET">
 			<input type="submit" name="newpvserial"  class="myButton" value="NEW" />
 		</form>
  <div id="dialogdelete" title="Delete Status" style="display:none;" >"${model.msg}" </div>
@@ -35,12 +35,12 @@
 		<tr>
 		    <td> <c:out value="${Loop.index+1}" />
 		    
-			<td> <a href="<c:url value="pvserialimport.htm?id=${pvserial.productserialid}"/>"> <c:out value="${pvserial.productserial}"/> </a>  <br>
+			<td> <a href="<c:url value="pvserialimport.htm?pid=${pvserial.testid}&id=${pvserial.productserialid}"/>"> <c:out value="${pvserial.productserial}"/> </a>  <br>
 			<td> <a id="deleteclick" href='<c:url value="setup.htm?oper=deleterle&pvserialid=${pvserial.productserialid}&role=${pvserial.productserial}"/>' class="confirm"><img  src ="/irev-verdant/img/delete.jpg" >  </a> </td>
 		</tr>
     </c:forEach>
    		<tr> <td>
-		<form action="pvserialimport.htm" method="GET">
+		<form action="pvserialimport.htm?pid=${model.testid}" method="GET">
 			<input type="submit" name="newpvserial" id="newpvserial" class="myButton" value="NEW" />
 		</form>
 		</tr> 
@@ -49,6 +49,7 @@
 	
 	<script>
 $(document).ready(function() {
+	document.getElementById("head3").innerHTML='${model.testname}  Serial List';
      var eventFired = function ( type ) {
         $(".confirm").confirm();
     } 
