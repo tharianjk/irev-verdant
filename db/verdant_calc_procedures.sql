@@ -1600,7 +1600,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sanity_check`(
 sanId INT,
 sanFreq decimal(40,20),
 sanPoltype char(2),
-sanTestType char(2)
+sanTestType char(3)
 )
 BEGIN
 
