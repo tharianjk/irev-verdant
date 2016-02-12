@@ -28,6 +28,7 @@ CREATE TABLE pv_testdata (
 ) ;
 
 
+
 alter table pv_testdata add  foreign key (Product_id) references product(Product_id);
 
 
@@ -169,3 +170,87 @@ CREATE TABLE pv_arcalculated (
 alter table product add prodmodel varchar(100);
 alter table pv_testdata add inst_slno varchar(100);
 
+CREATE TABLE pv_gt_intermediate (
+  GTIntermediate_Id int(11) NOT NULL AUTO_INCREMENT,
+  Prodserial_id int(11) DEFAULT NULL,
+  Frequency decimal(40,20) DEFAULT NULL,
+  TestDate datetime DEFAULT NULL,
+  HP_0 decimal(40,20) DEFAULT NULL,
+  VP_0 decimal(40,20) DEFAULT NULL,
+  CP_0 decimal(40,20) DEFAULT NULL,
+  HP_P45 decimal(40,20) DEFAULT NULL,
+  VP_P45 decimal(40,20) DEFAULT NULL,
+  CP_P45 decimal(40,20) DEFAULT NULL,
+  HP_M45 decimal(40,20) DEFAULT NULL,
+  VP_M45 decimal(40,20) DEFAULT NULL,
+  CP_M45 decimal(40,20) DEFAULT NULL,
+  PRIMARY KEY (GTIntermediate_Id),
+  KEY FK_GTIntermediate_pv (Prodserial_id),
+  CONSTRAINT FK_GTIntermediate_pv FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
+) ;
+
+ALTER TABLE pv_gt_intermediate 
+ADD COLUMN Test_id INT(11) NULL 
+ADD INDEX FK_GTIntermediate_pv1 (Test_id ASC);
+
+ALTER TABLE pv_gt_intermediate 
+ADD CONSTRAINT FK_GTIntermediate_pv1 FOREIGN KEY (Test_id) REFERENCES pv_testdata (Test_id);
+
+CREATE TABLE pv_gt_calculated(
+  GTcalculated_Id int(11) NOT NULL AUTO_INCREMENT,
+  Test_id int(11) DEFAULT NULL,
+  Frequency decimal(40,20) DEFAULT NULL,
+  TestDate datetime DEFAULT NULL,
+  MAX_CP decimal(40,20) DEFAULT NULL,
+  MIN_CP decimal(40,20) DEFAULT NULL,
+  Window decimal(40,20) DEFAULT NULL,
+  PRIMARY KEY (GTcalculated_Id),
+  KEY FK_GTCalculated_pv (Test_id),
+  CONSTRAINT FK_GTCalculated_pv FOREIGN KEY (Test_id) REFERENCES pv_testdata (Test_id)
+) ;
+  
+ALTER TABLE pv_gt_calculated 
+CHANGE COLUMN MAX_CP MAX_CP_0 DECIMAL(40,20) NULL DEFAULT NULL ,
+CHANGE COLUMN MIN_CP MIN_CP_0 DECIMAL(40,20) NULL DEFAULT NULL ,
+CHANGE COLUMN Window Window_0 DECIMAL(40,20) NULL DEFAULT NULL ,
+ADD COLUMN MAX_CP_P45 DECIMAL(40,20) NULL,
+ADD COLUMN MIN_CP_P45 DECIMAL(40,20) NULL,
+ADD COLUMN Window_P45 DECIMAL(40,20) NULL,
+ADD COLUMN MAX_CP_M45 DECIMAL(40,20) NULL,
+ADD COLUMN MIN_CP_M45 DECIMAL(40,20) NULL,
+ADD COLUMN Window_M45 DECIMAL(40,20) NULL;
+
+CREATE TABLE pv_hcalculated (
+  HCalculated_Id int(11) NOT NULL AUTO_INCREMENT,
+  Prodserial_id int(11) DEFAULT NULL,
+  datatype varchar(2) not null ,
+  Frequency decimal(40,20) DEFAULT NULL,
+  TestDate datetime DEFAULT NULL,
+  OmniDeviation decimal(40,20) DEFAULT NULL,
+  3Db_BW_BMax decimal(40,20) DEFAULT NULL,
+  3Db_BW_0 decimal(40,20) DEFAULT NULL,
+  3Db_BW_90 decimal(40,20) DEFAULT NULL,
+  3Db_BS_BMax decimal(40,20) DEFAULT NULL,
+  3Db_BS_0 decimal(40,20) DEFAULT NULL,
+  3Db_BS_90 decimal(40,20) DEFAULT NULL,
+  10Db_BW_BMax decimal(40,20) DEFAULT NULL,
+  10Db_BW_0 decimal(40,20) DEFAULT NULL,
+  10Db_BW_90 decimal(40,20) DEFAULT NULL,
+  10Db_BS_BMax decimal(40,20) DEFAULT NULL,
+  10Db_BS_0 decimal(40,20) DEFAULT NULL,
+  10Db_BS_90 decimal(40,20) DEFAULT NULL,
+  BackLobe decimal(40,20) DEFAULT NULL,
+  PRIMARY KEY (HCalculated_Id),
+  KEY FK_hpcalculated_pv (Prodserial_id),
+  CONSTRAINT FK_hpcalculated_pv FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
+) ;
+
+CREATE TABLE pv_radata (
+  raData_id int(11) NOT NULL AUTO_INCREMENT,
+  Prodserial_id int(11) DEFAULT NULL,
+  Frequency decimal(40,20) DEFAULT NULL,
+  RecvdAmp decimal(12,8) DEFAULT NULL,
+  PRIMARY KEY (raData_id),
+  KEY Prodserialid_freq_ra (Prodserial_id,Frequency),
+  CONSTRAINT FK_pvradata FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
+) ;
