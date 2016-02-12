@@ -8,6 +8,7 @@ import ireveal.domain.AmpPhaseTrack;
 import ireveal.domain.AssetTree;
 import ireveal.domain.Company;
 import ireveal.domain.DataLog;
+import ireveal.domain.GainSTDHorn;
 import ireveal.domain.ImportData;
 import ireveal.domain.Operator;
 import ireveal.domain.PVSerialData;
@@ -264,6 +265,14 @@ public String getPVFreqdatafile(String typ, int serialid, String datatype) {
 @Override
 public List<TestFrequency> getPVFreqList(int testid) {
 	return mastersdao.getPVFreqList(testid);
+}
+@Override
+public void UpdateGainSTD(List<GainSTDHorn> scalelist, int testid) {
+	 mastersdao.UpdateGainSTD(scalelist,testid) ;	
+}
+@Override
+public List<GainSTDHorn> getGainSTD(int testid) {
+	return mastersdao.getGainSTD(testid);
 }
 
 

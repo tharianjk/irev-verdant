@@ -22,9 +22,12 @@
     
  
 	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
-		
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >		
 		</bean>
+		
+	<bean name="/gainstdhorn.htm" class="ireveal.web.GainSTDHornController">
+        <property name="mastersManager" ref="mastersManager"/>		
+	</bean>	
  <bean name="/pvserialimport.htm" class="ireveal.web.PVSerialImportController">
 		<property name="formView" value="pvserialimport" />
 		 <property name="commandClass" value="ireveal.domain.PVSerialData"/>

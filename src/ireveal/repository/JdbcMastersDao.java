@@ -4,6 +4,7 @@ package ireveal.repository;
 import ireveal.domain.AmpPhaseTrack;
 import ireveal.domain.AssetTree;
 import ireveal.domain.DataLog;
+import ireveal.domain.GainSTDHorn;
 import ireveal.domain.ImportData;
 import ireveal.domain.Operator;
 import ireveal.domain.PVSerialData;
@@ -1507,7 +1508,67 @@ catch(Exception e)
 }
  return dataList;  
 } 
+
+//Gain od STD Horn
+
+
+
+public void UpdateGainSTD(List<GainSTDHorn> scalelist,int testid){
+	   try{
+	String sqlinsert=	"INSERT INTO pv_GainSTDHorn(stdhorn,Frequency,test_id)  VALUES   (?,?,?)"; 						  	
+		  	
+ 	String sqlupdate=	"Update pv_GainSTDHorn set stdhorn=? where  Frequency=? and test_id=?" ; 
+ 	for (int i=0;i<scalelist.size();i++){
+ 		int cnt =getJdbcTemplate().queryForInt("select count(*) from pv_GainSTDHorn where  Frequency=? and test_id=?",scalelist.get(i).getFrequency(),testid);
+		if(cnt==0){
+ 		getJdbcTemplate().update(  
+ 				sqlinsert,  
+	 new Object[] { scalelist.get(i).getStdhorn(),scalelist.get(i).getFrequency(),testid });
+ 		}
+		else{
+			getJdbcTemplate().update(  
+					sqlupdate,  
+					new Object[] { scalelist.get(i).getStdhorn(),scalelist.get(i).getFrequency(),testid });
+	   }
+ 	}
+ 	}
+	   catch(Exception ep)
+	   {
+		   logger.info("Exception in UpdateSTDHorn "+ep.getMessage());  
+	   }
+	
   }
+
+
+public List<GainSTDHorn> getGainSTD(int testid){
+		String sql="";
+		 List<GainSTDHorn> strLst=new ArrayList<GainSTDHorn>();
+		logger.info("JdbcMastersDao inside getGainSTD testid="+testid);
+		try{
+	      sql = "SELECT distinct frequency ,stdhorn,test_id from pv_GainSTDHorn s  where s.test_id=?";
+	       strLst=	getJdbcTemplate().query(sql, new GainSTDMapper(),testid); 
+		}
+	  catch(Exception e)
+	  {  logger.info("*** getStdhorn Exception** "+ e.getMessage() );}
+		return strLst; 
+	}
+private static class GainSTDMapper implements ParameterizedRowMapper<GainSTDHorn> {
+	   
+      public GainSTDHorn mapRow(ResultSet rs, int rowNum) throws SQLException {
+    	  GainSTDHorn prdser = new GainSTDHorn();
+   	   prdser.setFrequency(rs.getDouble("frequency"));  
+   	   prdser.setStdhorn(rs.getDouble("stdhorn"));
+   	   prdser.setTestid(rs.getInt("test_id"));
+   	   //prdser.setMaxscale(rs.getDouble("maxscale"));
+   	   //prdser.setProductid(rs.getInt("product_id"));
+          return prdser;
+      }
+
+  }
+
+  
+  
+}
 
 
 

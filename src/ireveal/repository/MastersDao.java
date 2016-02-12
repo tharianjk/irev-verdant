@@ -2,6 +2,7 @@ package ireveal.repository;
 import ireveal.domain.AmpPhaseTrack;
 import ireveal.domain.AssetTree;
 import ireveal.domain.DataLog;
+import ireveal.domain.GainSTDHorn;
 import ireveal.domain.ImportData;
 import ireveal.domain.PVSerialData;
 import ireveal.domain.PVTest;
@@ -108,5 +109,6 @@ public interface MastersDao {
 	 public PVSerialData getPVSerialData(int serialid);
 	 public String getPVFreqdatafile(String typ,int serialid,String datatype );
 	 public List<TestFrequency> getPVFreqList(int testid);
-
+	 public void UpdateGainSTD(List<GainSTDHorn> scalelist,int testid);
+	 public List<GainSTDHorn> getGainSTD(int testid);
 }
