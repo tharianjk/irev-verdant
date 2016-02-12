@@ -70,7 +70,7 @@ public class PVSerialImportController extends SimpleFormController{
 		int stat=-1;
 		logger.info("*** Inside PVSerialcontroller in onsubmit**: btn= "+request.getParameter("fmaction"));
               
-		
+		 List<TestFrequency> rastdlist= new ArrayList<TestFrequency>();
 		 String strserialid = (String)cursess.getAttribute("id");
 		 strmode= (String)cursess.getAttribute("mode");
 		 if(strmode==null)strmode="new";
@@ -83,6 +83,95 @@ public class PVSerialImportController extends SimpleFormController{
 		 testtype=file.getTesttype();
          atype=file.getPtype();
          testid=file.getTestid();
+         String filetype=file.getFiletype();
+         if(filetype.equals("M")){
+        	 logger.info("*** Inside PVSerialcontroller in onsubmit**: Gain Measurement");
+         
+        	 MultipartFile multipartFile = file.getFilename();
+        	
+     		if(multipartFile!=null){
+     			fileName = multipartFile.getOriginalFilename();
+     			logger.info("Inside PVSerialcontroller Controller fileName" +fileName);
+     			try {
+     				// Read excel file 
+     			      InputStream inp = multipartFile.getInputStream() ;
+     			      String fileExtn = GetFileExtension(fileName);
+     			      Workbook wb_xssf; //Declare XSSF WorkBook
+     			      Workbook wb_hssf; //Declare HSSF WorkBook
+     			      Sheet sheet = null; // sheet can be used as common for XSSF and HSSF 	WorkBook
+     			      if (fileExtn.equalsIgnoreCase("xlsx"))
+     			      {
+     			    	   wb_xssf=  WorkbookFactory.create(inp);
+     				      // wb_xssf = new XSSFWorkbook();
+     				       logger.info("xlsx="+wb_xssf.getSheetName(0));
+     				      sheet = wb_xssf.getSheetAt(0);
+     			      }
+     			      if (fileExtn.equalsIgnoreCase("xls"))
+     			      {
+     				  POIFSFileSystem fs = new POIFSFileSystem(inp);
+     			    	  wb_hssf = new HSSFWorkbook(fs);
+     			    	  logger.info("xls="+wb_hssf.getSheetName(0));
+     			    	  sheet = wb_hssf.getSheetAt(0);
+     			      }
+     			      int rowNum = sheet.getLastRowNum()+1;
+     			      int colNum = sheet.getRow(0).getLastCellNum();
+     			      
+     				
+     			      for (int i=0; i<rowNum; i++){
+     						  logger.info("introw "+i);  
+     						  if(i>0) //header
+     						  {
+     							  XSSFRow row =(XSSFRow) sheet.getRow(i);
+     							  logger.info("insider introw "+i); 
+     						   logger.info("Inside RA Std Horn import Controller rows.hasNext() " +row.getCell(0).toString());
+     							TestFrequency rastd= new TestFrequency();
+     							
+     							String sreading;
+     							
+     							if(row.getCell(0) != null && row.getCell(0).toString() != "" ){
+     								sreading=row.getCell(1).toString();
+     								if (row.getCell(0).getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
+     								{
+     									rastd.setFrequency(row.getCell(0).getNumericCellValue());
+     								}
+     								else
+     									rastd.setFrequency(Double.parseDouble(sreading));	
+     							
+     								
+     								logger.info("Inside productlog Controller sreading " +sreading);
+     								if (row.getCell(1).getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
+     								{
+     									rastd.setLineargain(row.getCell(1).getNumericCellValue());
+     								}
+     								else
+     									rastd.setLineargain(Double.parseDouble(sreading));
+     							}
+     							rastdlist.add(rastd);
+     							
+     					      }
+     						  		
+     					  }
+     				      
+     				  inp.close();
+     			
+     				 
+     					logger.info(" rastdList.size "+rastdlist.size());
+     					request.setAttribute("message", "File Uploaded Successfully");
+     					
+     					} catch (Exception ex) {
+     						err="File Upload Failed due to " + ex;
+     						request.setAttribute("message", "File Upload Failed due to " + ex);
+     						logger.info("Inside FileUpload Controller Exception " + ex.getMessage());
+     					}
+     		serialid=	mastersservice.insertRASTDHorn(file,rastdlist,strmode);
+         
+         
+         
+         
+ //**********************************************************
+         }
+         else
+         {
 		 if(strmode.equals("edit")){
 			 logger.info("*** Inside PVSerialcontroller in onsubmit**: update");
 			 action="Save";
@@ -114,7 +203,7 @@ public class PVSerialImportController extends SimpleFormController{
 		
 		int logid=100000;
 		
-		MultipartFile multipartFile = file.getFilename();
+		multipartFile = file.getFilename();
 		
 	    JSONObject obj1 = new JSONObject(file.getStrjsonfreq());
 	     try {
@@ -307,16 +396,16 @@ public class PVSerialImportController extends SimpleFormController{
 					{
 						err=fileName + "Uploaded successfully";
 						stat=	mastersservice.insertPVSerialData(file,freqlist,datalogList,strmode,action);
-				if(stat==0)
-				{
-					err="Failed to Import "+fileName	;
-					stat=0;
-					
-				}
-				else{
-					serialid=stat;
-					stat=1;
-				}
+						if(stat==0)
+						{
+							err="Failed to Import "+fileName	;
+							stat=0;
+							
+						}
+						else{
+							serialid=stat;
+							stat=1;
+						}
 					}
 					request.setAttribute("message", "File Uploaded Successfully");
 					
@@ -330,6 +419,8 @@ public class PVSerialImportController extends SimpleFormController{
 		}
 		 }       
 		 }
+         }
+         }
 		//
 		request.setAttribute("id", null);
      	cursess.setAttribute("id",null);
@@ -419,16 +510,21 @@ public class PVSerialImportController extends SimpleFormController{
 			String vefreq="";
 			String hafreq="";
 			String vafreq="";
-			String hgfreq="";
-			String vgfreq="";
+			String hmfreq="";
+			String vmfreq="";
+			String htfreq="";
+			String vtfreq="";
 	        List<ProductSerial> prodserlist = mastersservice.getProdVerSer();        
 	        String prodtype="";
 	    	hefreq=mastersservice.getPVFreqdatafile("H",serialid,"E");
 	    	vefreq=mastersservice.getPVFreqdatafile("V",serialid,"E"); 
 	    	hafreq=mastersservice.getPVFreqdatafile("H",serialid,"A");
 	    	vafreq=mastersservice.getPVFreqdatafile("V",serialid,"A"); 
-	    	hgfreq=mastersservice.getPVFreqdatafile("H",serialid,"G");
-	    	vgfreq=mastersservice.getPVFreqdatafile("V",serialid,"G"); 
+	    	hmfreq=mastersservice.getPVFreqdatafile("H",serialid,"M");
+	    	vmfreq=mastersservice.getPVFreqdatafile("V",serialid,"M");
+	    	vtfreq=mastersservice.getPVFreqdatafile("V",serialid,"T");
+	    	htfreq=mastersservice.getPVFreqdatafile("H",serialid,"T");
+	    	
 	        referenceData.put("prodserlist", prodserlist);
 	        referenceData.put("prodtype", prodtype);       
 	       
@@ -436,8 +532,10 @@ public class PVSerialImportController extends SimpleFormController{
 	        referenceData.put("vefreq", vefreq);
 	        referenceData.put("hafreq", hafreq);
 	        referenceData.put("vafreq", vafreq);
-	        referenceData.put("hgfreq", hgfreq);
-	        referenceData.put("vgfreq", vgfreq); 
+	        referenceData.put("hmfreq", hmfreq);
+	        referenceData.put("vmfreq", vmfreq);
+	        referenceData.put("htfreq", htfreq);
+	        referenceData.put("vtfreq", vtfreq);
 	        
 	        List<TestFrequency> freqlist=mastersservice.getPVFreqList(testid);  
 	        String strfreqs="";

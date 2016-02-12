@@ -274,6 +274,11 @@ public void UpdateGainSTD(List<GainSTDHorn> scalelist, int testid) {
 public List<GainSTDHorn> getGainSTD(int testid) {
 	return mastersdao.getGainSTD(testid);
 }
+@Override
+public int insertRASTDHorn(PVSerialData testdata,
+		List<TestFrequency> rastdlist, String strmode) {
+	return mastersdao.insertRASTDHorn(testdata,rastdlist,strmode);
+}
 
 
 

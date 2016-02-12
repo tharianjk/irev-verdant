@@ -14,12 +14,12 @@ import ireveal.domain.ProductSerial;
 import ireveal.domain.RoleDsp;
 import ireveal.domain.Scaling;
 import ireveal.domain.TestData;
-import ireveal.domain.TestFiles;
+
 import ireveal.domain.TestFrequency;
 import ireveal.domain.User;
 import ireveal.domain.UserPref;
 import ireveal.repository.JdbcAssetTreeDao.RoleMapper;
-import ireveal.repository.JdbcDataDao.StringRowMapper;
+
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -1566,7 +1566,57 @@ private static class GainSTDMapper implements ParameterizedRowMapper<GainSTDHorn
 
   }
 
-  
+public int insertRASTDHorn(PVSerialData testdata,List<TestFrequency> rastdlist,String strmode) {
+	
+		   int serialid=0;
+		   logger.info(" strmode "+strmode);
+		   try{
+		   
+	if(strmode.equals("new")){
+		   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	   final String  sql = "INSERT INTO pv_prodserial(SerialNo,test_id) VALUES  (?,?)";    
+		     KeyHolder keyHolder = new GeneratedKeyHolder();				    
+		     final String serial = testdata.getProductserial();					     				    
+		     final int testid=testdata.getTestid();
+		  	getJdbcTemplate().update(
+		  	    new PreparedStatementCreator() {
+		  	        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+		  	            PreparedStatement ps =
+		  	                connection.prepareStatement(sql, new String[] {"PRODSERIAL_ID"});
+		  	           
+		  	            ps.setString(1, serial);   
+		  	            ps.setInt(2, testid);
+		  	            return ps;
+		  	        }
+		  	    },
+		  	    keyHolder);
+		  	serialid= keyHolder.getKey().intValue();
+		  	logger.info(" PVSerialData record inserted. Key = "+serialid); 
+	
+	
+	}
+	serialid=testdata.getProductserialid();
+	try{
+    
+	 String sqlsavetags = "INSERT INTO pv_radata (Prodserial_id,Frequency,RecvdAmp) VALUES (?,?,?)";
+	for(int i=0;i<rastdlist.size();i++)
+	{
+		
+	    getJdbcTemplate().update(sqlsavetags, serialid, rastdlist.get(i).getFrequency(), rastdlist.get(i).getLineargain());
+	    
+	    
+	}
+	}
+	catch(Exception e){
+		
+	}
+		   }
+catch(Exception e){
+		
+	}
+	return serialid;
+
+}
   
 }
 

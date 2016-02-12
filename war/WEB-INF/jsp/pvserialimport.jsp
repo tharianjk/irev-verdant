@@ -71,12 +71,15 @@ progressAt = 0;
 }
 function progress_update( typ) {
 	//console.log("progress_update");
+	ftype=document.getElementById('ftype').value;
+	if(ftype!="M"){
 	if(typ=='M'){
 	tabledata();
 	if(document.getElementById("strfreq").value=="" ||document.getElementById("strfreq").value==null || document.getElementById("strfreq").value=='null'){
 		alert("Frequencies not added");
 		progress_stop();
 		return;
+	}
 	}
 	}
 	/*var filename=document.getElementById("filename").value;
@@ -158,14 +161,15 @@ progress_clear();
            <form:select id="datatype"  path="datatype"   >
            <form:option value="A" label="Azimuth"></form:option>
    		   <form:option value="E" label="Elevation"></form:option>
-   		   <form:option value="G" label="Gain Measurement"></form:option>        		 
+   		   <form:option value="T" label="Gain Tracking"></form:option> 
+   		   <form:option value="M" label="Gain Measurement"></form:option>        		 
 		   </form:select>              
           </td> 
           </tr>
          
         </table> 
         </td>
-  <c:if test="${cfreq!='' || vfreq !=''  || hfreq !=''  || cfreq !=''  || pfreq !=''  || rfreq !=''  || yfreq !='' }">
+  <c:if test="${hefreq!='' || vefreq !=''  || hafreq !=''  || vafreq !=''  || hmfreq !=''  || htfreq !=''  || vtfreq !='' }">
  <td align="center"> <b> <u>Imported Data </u></b> 
 		<table id="listtab"  border="1" cellpadding="1" cellspacing="2" style="width: 500px;vertical-align:top;">
 		
@@ -200,16 +204,28 @@ progress_clear();
 	<td> ${vafreq}</td>				
 	</tr>
 	</c:if>
-	<c:if test="${hgfreq!='' && hgfreq !=null}">
+	<c:if test="${htfreq!='' && htfreq !=null}">
 	<tr>
-	<td> HP Gain Measurement</td>
-	<td> ${hgfreq}</td>				
+	<td> HP Gain Tracking</td>
+	<td> ${htfreq}</td>				
 	</tr>
 	</c:if>
-	<c:if test="${vgfreq!='' && vgfreq !=null}">
+	<c:if test="${vtfreq!='' && vtfreq !=null}">
+	<tr>
+	<td> VP Gain Tracking </td>
+	<td> ${vtfreq}</td>				
+	</tr>
+	</c:if>
+	<c:if test="${hmfreq!='' && hmfreq !=null}">
+	<tr>
+	<td> HP Gain Measurement</td>
+	<td> ${hmfreq}</td>				
+	</tr>
+	</c:if>
+	<c:if test="${vmfreq!='' && vmfreq !=null}">
 	<tr>
 	<td> VP Gain Measurement </td>
-	<td> ${vgfreq}</td>				
+	<td> ${vmfreq}</td>				
 	</tr>
 	</c:if>
 	
@@ -235,7 +251,7 @@ progress_clear();
            <form:select id="ftype" name="D1" path="filetype"  >
            <form:option value="H" label="HP Data "></form:option>
    		   <form:option value="V" label="VP Data"></form:option>
-   		  
+   		   <form:option value="M" label="Gain Measurement"></form:option>
            </form:select>
          
 		</td>
@@ -482,6 +498,10 @@ $('#datatype').on('change', function() {
 	  var ftype = document.getElementById('ftype');
 	  		
 	});
+$('#ftype').on('change', function() {
+	document.getElementById("save").disabled = false;
+	  		
+	});
 
 function fncancel(){
 	//alert("redirect");
@@ -508,7 +528,7 @@ function AddNew(){
 	alert("Please Select file to import");
 	return;
 		}
-
+if(ftype!="M"){
 	var freq=document.getElementById("selfreq").value;	
 	document.getElementById("selfreq").value="";
 	if(freq==null || freq=="")
@@ -521,6 +541,7 @@ function AddNew(){
 	alert(" Enter valid frequency");
 	return;
 	}
+}
 	$("#tblData tbody").append(
 		"<tr>"+
 		"<td>"+freq+"</td>"+		

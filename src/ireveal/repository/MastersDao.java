@@ -111,4 +111,5 @@ public interface MastersDao {
 	 public List<TestFrequency> getPVFreqList(int testid);
 	 public void UpdateGainSTD(List<GainSTDHorn> scalelist,int testid);
 	 public List<GainSTDHorn> getGainSTD(int testid);
+	 public int insertRASTDHorn(PVSerialData testdata,List<TestFrequency> rastdlist,String strmode) ;
 }

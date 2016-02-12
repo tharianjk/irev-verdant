@@ -1,3 +1,5 @@
+alter table product add prodmodel varchar(100);
+
 drop table if exists pv_GainSTDHorn;
 drop table if exists pv_testfreq;
 drop table if exists pv_vdata;
@@ -6,9 +8,12 @@ drop table if exists pv_vcalculated;
 drop table if exists pv_hcalculated;
 drop table if exists pv_cpcalculated;
 drop table if exists pv_arcalculated;
+drop table if exists pv_gt_intermediate;
+drop table if exists pv_gt_calculated;
+drop table if exists pv_radata;
+drop table if exists pv_gmcalculated;
 drop table if exists pv_prodserial;
 drop table if exists pv_testdata;
-
 
 CREATE TABLE pv_testdata (
   Test_id int(11) NOT NULL AUTO_INCREMENT,
@@ -24,6 +29,7 @@ CREATE TABLE pv_testdata (
   testtype varchar(10) DEFAULT NULL,
   rptheader varchar(200) DEFAULT NULL,
   rptfooter varchar(200) DEFAULT NULL,
+  inst_slno varchar(100),
   PRIMARY KEY (Test_id)
 ) ;
 
@@ -58,6 +64,7 @@ CREATE TABLE pv_vdata (
   Angle decimal(12,2) DEFAULT NULL,
   Amplitude decimal(12,8) DEFAULT NULL,
   datatype varchar(2) ,
+
   PRIMARY KEY (VData_id),
   KEY Prodserialid_freq_angle_vp (Prodserial_id,Frequency,Angle,Amplitude,datatype),
   CONSTRAINT FK_pvvdata_test FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
@@ -176,12 +183,13 @@ PRIMARY KEY (gsh_id),
   CONSTRAINT FK_GSH_test_id_pv FOREIGN KEY (test_id) REFERENCES pv_testdata (test_id)
 );
 
-alter table product add prodmodel varchar(100);
-alter table pv_testdata add inst_slno varchar(100);
+
+
 
 CREATE TABLE pv_gt_intermediate (
   GTIntermediate_Id int(11) NOT NULL AUTO_INCREMENT,
   Prodserial_id int(11) DEFAULT NULL,
+  Test_id INT(11) NULL ,
   Frequency decimal(40,20) DEFAULT NULL,
   TestDate datetime DEFAULT NULL,
   HP_0 decimal(40,20) DEFAULT NULL,
@@ -198,9 +206,6 @@ CREATE TABLE pv_gt_intermediate (
   CONSTRAINT FK_GTIntermediate_pv FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
 ) ;
 
-ALTER TABLE pv_gt_intermediate 
-ADD COLUMN Test_id INT(11) NULL 
-ADD INDEX FK_GTIntermediate_pv1 (Test_id ASC);
 
 ALTER TABLE pv_gt_intermediate 
 ADD CONSTRAINT FK_GTIntermediate_pv1 FOREIGN KEY (Test_id) REFERENCES pv_testdata (Test_id);
