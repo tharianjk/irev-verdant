@@ -229,37 +229,34 @@ ADD COLUMN MAX_CP_M45 DECIMAL(40,20) NULL,
 ADD COLUMN MIN_CP_M45 DECIMAL(40,20) NULL,
 ADD COLUMN Window_M45 DECIMAL(40,20) NULL;
 
-CREATE TABLE pv_hcalculated (
-  HCalculated_Id int(11) NOT NULL AUTO_INCREMENT,
-  Prodserial_id int(11) DEFAULT NULL,
-  datatype varchar(2) not null ,
-  Frequency decimal(40,20) DEFAULT NULL,
-  TestDate datetime DEFAULT NULL,
-  OmniDeviation decimal(40,20) DEFAULT NULL,
-  3Db_BW_BMax decimal(40,20) DEFAULT NULL,
-  3Db_BW_0 decimal(40,20) DEFAULT NULL,
-  3Db_BW_90 decimal(40,20) DEFAULT NULL,
-  3Db_BS_BMax decimal(40,20) DEFAULT NULL,
-  3Db_BS_0 decimal(40,20) DEFAULT NULL,
-  3Db_BS_90 decimal(40,20) DEFAULT NULL,
-  10Db_BW_BMax decimal(40,20) DEFAULT NULL,
-  10Db_BW_0 decimal(40,20) DEFAULT NULL,
-  10Db_BW_90 decimal(40,20) DEFAULT NULL,
-  10Db_BS_BMax decimal(40,20) DEFAULT NULL,
-  10Db_BS_0 decimal(40,20) DEFAULT NULL,
-  10Db_BS_90 decimal(40,20) DEFAULT NULL,
-  BackLobe decimal(40,20) DEFAULT NULL,
-  PRIMARY KEY (HCalculated_Id),
-  KEY FK_hpcalculated_pv (Prodserial_id),
-  CONSTRAINT FK_hpcalculated_pv FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
-) ;
-
 CREATE TABLE pv_radata (
   raData_id int(11) NOT NULL AUTO_INCREMENT,
   Prodserial_id int(11) DEFAULT NULL,
   Frequency decimal(40,20) DEFAULT NULL,
-  RecvdAmp decimal(12,8) DEFAULT NULL,
+  RecvdAmp decimal(40,20) DEFAULT NULL,
   PRIMARY KEY (raData_id),
   KEY Prodserialid_freq_ra (Prodserial_id,Frequency),
   CONSTRAINT FK_pvradata FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
+) ;
+
+CREATE TABLE pv_gmcalculated (
+  GMCalculated_Id int(11) NOT NULL AUTO_INCREMENT,
+  Prodserial_id int(11) DEFAULT NULL,
+  Test_id int(11) DEFAULT NULL,
+  Frequency decimal(40,20) DEFAULT NULL,
+  TestDate datetime DEFAULT NULL,
+  gm_A decimal(40,20) DEFAULT NULL,
+  gm_B decimal(40,20) DEFAULT NULL,
+  gm_C decimal(40,20) DEFAULT NULL,
+  gm_D decimal(40,20) DEFAULT NULL,
+  gm_Gv decimal(40,20) DEFAULT NULL,
+  gm_X decimal(40,20) DEFAULT NULL,
+  gm_Y decimal(40,20) DEFAULT NULL,
+  gm_GF decimal(40,20) DEFAULT NULL,
+  gm_CPGAIN decimal(40,20) DEFAULT NULL,
+  PRIMARY KEY (GMCalculated_Id),
+  KEY FK_gmcalculated_pv (Prodserial_id),
+  KEY FK_gmCalculated_pv1 (Test_id),
+  CONSTRAINT FK_gmcalculated_pv FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id),
+  CONSTRAINT FK_gmCalculated_pv1 FOREIGN KEY (Test_id) REFERENCES pv_testdata (Test_id)
 ) ;
