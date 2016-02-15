@@ -22,7 +22,9 @@ drop procedure if exists spGetPolarSummary;
 DROP procedure IF EXISTS `debug`;
 drop procedure if exists spPolarMultiple;
 drop procedure if exists sanity_check;
-
+drop procedure if exists pv_calc_AxialRatio;
+drop procedure if exists pv_calc_Gain_Measurement;
+drop procedure if exists pv_Calculate_params;
 
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `calc_CP`(
