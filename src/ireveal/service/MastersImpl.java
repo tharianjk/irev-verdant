@@ -279,6 +279,10 @@ public int insertRASTDHorn(PVSerialData testdata,
 		List<TestFrequency> rastdlist, String strmode) {
 	return mastersdao.insertRASTDHorn(testdata,rastdlist,strmode);
 }
+@Override
+public String getPVFreqdataGM(int serialid) {
+	return mastersdao.getPVFreqdataGM(serialid);
+}
 
 
 

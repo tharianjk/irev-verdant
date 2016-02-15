@@ -2,6 +2,7 @@ package ireveal.web;
 
 
 import ireveal.domain.GainSTDHorn;
+import ireveal.domain.PVTest;
 import ireveal.domain.ProductSerial;
 import ireveal.domain.TestData;
 import ireveal.domain.TestFrequency;
@@ -55,7 +56,8 @@ public class GainSTDHornController implements Controller{
 		logger.info("inside GainSTDHornController operstr="+operstr);
 		if(operstr.equals("gainstd"))
 		{
-			TestData testdata=mastersservice.getTestData(testid);
+			logger.info("inside GainSTDHornController testid="+testid);
+			PVTest testdata=mastersservice.getPVTest(testid);
 			frequnit=testdata.getFrequnit();
 			
 			 myModel.put("testid",testid);
@@ -91,7 +93,7 @@ public class GainSTDHornController implements Controller{
 	     } catch (JSONException e) {
 	         e.printStackTrace();
 	    }
-	     TestData testdata=mastersservice.getTestData(testid);
+	     PVTest testdata=mastersservice.getPVTest(testid);
 	     myModel.put("testid",testid);
 		 myModel.put("testname",testdata.getTestname());
 		 myModel.put("freqlist",mastersservice.getGainSTD(testid));

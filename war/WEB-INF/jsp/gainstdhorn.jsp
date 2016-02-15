@@ -23,14 +23,14 @@
 
 
 <div id="appbody">
-	<h2>Linear Gain</h2>
+	<h2>Gain STD Horn</h2>
  
 	<form:form name="form1" id="form1" method="get"  >	
  
 		<br>
 		<table id="tblmain">
 		<tr><td>Test * :</td>  
-		<td><input type="text" value="${model.testname}" /></td></tr>
+		<td><input type="text" value="${model.testname}" readonly="readonly"/></td></tr>
 		</table>		
 		
 	<table id="tblData" class="hover order-column cell-border">
@@ -47,7 +47,7 @@
     <c:forEach items="${model.freqlist}" var="freqlst">
 		<tr>
 			<td> <c:out value="${freqlst.frequency}"/> <br>
-			<td> <input type='text' id='txtlg' value='<c:out value="${freqlst.stdhoen}"/>'/> <br>
+			<td> <input type='text' id='txtlg' value='<c:out value="${freqlst.stdhorn}"/>'/> <br>
 			
 			<td> </td> 
 			<td> </td>
@@ -112,9 +112,11 @@ function tabledata()
 		console.log("save: True");
 		
 		tabledata();
+		if(json!="" && json!=null && json !='undefined' && json!='null'){
 		var url="gainstdhorn.htm?oper=save&testid="+testid+"&frequnit="+frequnit+"&strjsonfreq="+json;
 		console.log("url "+url);
 		window.location = url;
+		}
 	});
  $("#cancel").click(function(e){
 		console.log("cancel: True");

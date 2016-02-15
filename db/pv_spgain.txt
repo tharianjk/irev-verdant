@@ -1,0 +1,23 @@
+CREATE TABLE pv_spgain (
+   Frequency int,
+spgain varchar(20)
+  
+);
+insert into pv_spgain(Frequency,spgain) values (1,'≥ -17.5');
+insert into pv_spgain(Frequency,spgain) values (2,'≥ -3.5');
+insert into pv_spgain(Frequency,spgain) values (3,'≥ -0.5');
+insert into pv_spgain(Frequency,spgain) values (4,'≥ -0.5');
+insert into pv_spgain(Frequency,spgain) values (5,'≥ -0.5');
+insert into pv_spgain(Frequency,spgain) values (6,'≥ -0.5');
+insert into pv_spgain(Frequency,spgain) values (7,'≥ -0.5');
+insert into pv_spgain(Frequency,spgain) values (8,'≥ -0.5');
+insert into pv_spgain(Frequency,spgain) values (9,'≥ -0.5');
+insert into pv_spgain(Frequency,spgain) values (10,'≥ -0.5');
+insert into pv_spgain(Frequency,spgain) values (11,'≥ -0.5');
+insert into pv_spgain(Frequency,spgain) values (12,'≥ -0.5');
+insert into pv_spgain(Frequency,spgain) values (13,'≥ -0.5');
+insert into pv_spgain(Frequency,spgain) values (14,'≥ -0.5');
+insert into pv_spgain(Frequency,spgain) values (15,'≥ -0.5');
+insert into pv_spgain(Frequency,spgain) values (16,'≥ -0.5');
+insert into pv_spgain(Frequency,spgain) values (17,'≥ -0.5');
+insert into pv_spgain(Frequency,spgain) values (18,'≥ -0.5');
