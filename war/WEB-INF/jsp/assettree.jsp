@@ -149,6 +149,8 @@ var treemode='<%=request.getParameter("treemode")%>';
     					selectedname=node.attr('Assetname');
     					selectedtype=node.attr('treeType');
     					atype=node.attr('atype');
+    					var pvtype=node.attr('pvtype');
+    					console.log("pvtype="+pvtype);
     			        selectedsection=node.attr('assetId');
     			        if(selectedtype!=1)
     			        selectedparenttype=parent_node.attr('atype');
@@ -157,6 +159,9 @@ var treemode='<%=request.getParameter("treemode")%>';
     			        	//parent.document.getElementById("pm").style.display="block";
     			        if ((atype=="A") )
     			        	{
+    			        	  parent.document.getElementById("rset").style.display="block";
+    			        	  parent.document.getElementById("vreports").style.display="none";
+    			        	  parent.document.getElementById("reports").style.display="block";
     			        	  parent.document.getElementById("od").style.display="block";
 	  			        	  parent.document.getElementById("ar").style.display="none";
 	  			        	  parent.document.getElementById("pp").style.display="block";
@@ -168,6 +173,9 @@ var treemode='<%=request.getParameter("treemode")%>';
     			        	}
     			        else if ((atype=="E") && (selectedparenttype == 'L'))
 			        	{
+    			          parent.document.getElementById("rset").style.display="block";
+  			        	  parent.document.getElementById("vreports").style.display="none";
+  			        	  parent.document.getElementById("reports").style.display="block";
 			        	  parent.document.getElementById("od").style.display="none";
   			        	  parent.document.getElementById("ar").style.display="none";
   			        	  parent.document.getElementById("pp").style.display="block";
@@ -181,6 +189,9 @@ var treemode='<%=request.getParameter("treemode")%>';
 			        	}
 						else if ((atype=="E") && (selectedparenttype == 'S'))
 			        	{
+						  parent.document.getElementById("rset").style.display="block";
+  			        	  parent.document.getElementById("vreports").style.display="none";
+  			        	  parent.document.getElementById("reports").style.display="block";
 			        	  parent.document.getElementById("od").style.display="none";
   			        	  parent.document.getElementById("ar").style.display="block";
   			        	  parent.document.getElementById("pp").style.display="block";
@@ -192,7 +203,9 @@ var treemode='<%=request.getParameter("treemode")%>';
 			        	}
     			        else if(atype=="CP")
 			        	{
-			        	 
+    			          parent.document.getElementById("rset").style.display="block";
+  			        	  parent.document.getElementById("vreports").style.display="none";
+  			        	  parent.document.getElementById("reports").style.display="block";
 			        	  parent.document.getElementById("od").style.display="none";
 			        	  parent.document.getElementById("ar").style.display="block";
 			        	  parent.document.getElementById("pp").style.display="block";
@@ -204,7 +217,9 @@ var treemode='<%=request.getParameter("treemode")%>';
 			        	}
     			        else if(atype=="DCP")
 			        	{
-			        	 
+    			          parent.document.getElementById("rset").style.display="block";
+  			        	  parent.document.getElementById("vreports").style.display="none";
+  			        	  parent.document.getElementById("reports").style.display="block";
 			        	  parent.document.getElementById("od").style.display="none";
 			        	  parent.document.getElementById("ar").style.display="none";
 			        	  parent.document.getElementById("pp").style.display="block";
@@ -215,7 +230,10 @@ var treemode='<%=request.getParameter("treemode")%>';
 			        	  parent.document.getElementById("apt").style.display="none";
 			        	}
     			        else if(atype=="NCP")
-			        	{			        	 
+			        	{	
+    			          parent.document.getElementById("rset").style.display="block";
+  			        	  parent.document.getElementById("vreports").style.display="none";
+  			        	  parent.document.getElementById("reports").style.display="block";
 			        	  parent.document.getElementById("od").style.display="none";
 			        	  parent.document.getElementById("ar").style.display="block";
 			        	  parent.document.getElementById("pp").style.display="block";
@@ -228,6 +246,8 @@ var treemode='<%=request.getParameter("treemode")%>';
     			        }
     			        else
     			        	{
+    			        	console.log("atype ="+atype);
+    			        	if(atype!='V'){
     			        	parent.document.getElementById("od").style.display="none";
   			        	    parent.document.getElementById("ar").style.display="none";
   			        	    parent.document.getElementById("pp").style.display="none";
@@ -236,7 +256,41 @@ var treemode='<%=request.getParameter("treemode")%>';
   			        	    parent.document.getElementById("cpg").style.display="none";
   			        	    parent.document.getElementById("blobe").style.display="none";
   			        	    parent.document.getElementById("apt").style.display="none";
-  			        	  //  parent.document.getElementById("pm").style.display="none";
+  			        	    parent.document.getElementById("rset").style.display="block";
+			        	    parent.document.getElementById("vreports").style.display="none";
+			        	    parent.document.getElementById("reports").style.display="block";
+    			        	}
+    			        	else{
+    			        		if(pvtype=="GM"){
+    			        			parent.document.getElementById("rset").style.display="none";
+		  			        	    parent.document.getElementById("vreports").style.display="block";
+		  			        	    parent.document.getElementById("reports").style.display="none";
+		  			        	    parent.document.getElementById("gmreports").style.display="block";
+		  			        	    parent.document.getElementById("gtreports").style.display="none";
+		  			        	    parent.document.getElementById("coreports").style.display="none";		  			        	    
+    			        		}
+    			        		else if(pvtype=="GT"){
+    			        			parent.document.getElementById("rset").style.display="none";
+		  			        	    parent.document.getElementById("vreports").style.display="block";
+		  			        	    parent.document.getElementById("reports").style.display="none";
+		  			        	    parent.document.getElementById("gmreports").style.display="none";
+		  			        	    parent.document.getElementById("gtreports").style.display="block";
+		  			        	    parent.document.getElementById("coreports").style.display="none";
+    			        		}
+    			        		else if(pvtype=="CO"){
+    			        			parent.document.getElementById("rset").style.display="none";
+		  			        	    parent.document.getElementById("vreports").style.display="block";
+		  			        	    parent.document.getElementById("reports").style.display="none";
+		  			        	    parent.document.getElementById("gmreports").style.display="none";
+		  			        	    parent.document.getElementById("gtreports").style.display="none";
+		  			        	    parent.document.getElementById("coreports").style.display="block";
+    			        		}
+    			        		else{
+		    			        	parent.document.getElementById("rset").style.display="none";
+		  			        	    parent.document.getElementById("vreports").style.display="block";
+		  			        	    parent.document.getElementById("reports").style.display="none";
+    			        		}
+    			        	}
     			        	}
     			        if(treeType==2)
     			        	{
@@ -560,8 +614,10 @@ function recreatewithparents()
                          }
                  }
         	 }
-        	 if(treeType==3){
+        	 if(treeType==3)
+        	 {
         	 console.log("inside edit");
+        	 if(atype!="V"){
           	 items = {   
           			 createItem: { // The "rename" menu item
                       label: "Import Test-Set",
@@ -579,7 +635,49 @@ function recreatewithparents()
                           parent.frames['AppBody'].location = url;
                                 }
                   }};
-          	 return items;}
+        	 }
+        	 else{
+          		items = {
+                		  createItem: { // The "rename" menu item
+                              label: "New Serial",                      
+                              action: function(response) {
+                                  var url = '<%=request.getContextPath()%>/pvserialimport.htm?PId='+ node.attr('assetId') +'&PName='+node.attr('assetName')+'&Nlevel='+ node.attr('nlevel');
+                                  //alert("url "+ url);
+                                  parent.frames['AppBody'].location = url;
+                                        }
+                          },
+                          editItem: { // The "rename" menu item
+                              label: "Edit Serial",                      
+                              action: function(response) {
+                                  var url = '<%=request.getContextPath()%>/setup.htm?oper=pvserial&testid='+ node.attr('assetId') +'&PName='+node.attr('assetName')+'&Nlevel='+ node.attr('nlevel');
+                                  //alert("url "+ url);
+                                  parent.frames['AppBody'].location = url;
+                                        }
+                          },
+                          edittItem: { // The "rename" menu item
+                              label: "Edit Test",                      
+                              action: function(response) {
+                                  var url = '<%=request.getContextPath()%>/pvtest.htm?testid='+ node.attr('assetId') ;
+                                  //alert("url "+ url);
+                                  parent.frames['AppBody'].location = url;
+                                        }
+                          }
+                          ,
+                          edittgain: { // The "rename" menu item
+                              label: "Gain of STD Horn",                      
+                              action: function(response) {
+                                  var url = '<%=request.getContextPath()%>/gainstdhorn.htm?oper=gainstd&testid='+ node.attr('assetId') ;
+                                  //alert("url "+ url);
+                                  parent.frames['AppBody'].location = url;
+                                        }
+                          }
+                          
+          	}
+          	}
+          	 return items;
+          	 
+        	 
+        	 }
          }
        if(treemode=="edit"){
        

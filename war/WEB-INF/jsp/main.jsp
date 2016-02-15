@@ -228,10 +228,10 @@ dialog.dialog( "open" );
  <nav>
 	<ul>
 	<c:if test="${model.blntools eq 'true'}">
-	<li><a rel="reportset" class="menuarray" TARGET="AppBody" onclick="fnsetstat('rset');"><b>Report Set</b></a></li>
+	<li><a rel="reportset" id="rset" class="menuarray" TARGET="AppBody" onclick="fnsetstat('rset');"><b>Report Set</b></a></li>
 	</c:if>
 	<c:if test="${model.blnreports eq 'true'}">
-		<li><a href="#"><b>Reports</b></a>
+		<li id="reports"><a href="#"><b>Reports</b></a>
 		
 			<ul>
 			    <li id="od" style="display:none;"><a rel="Omini Devation" class="menuarray" TARGET="AppBody" onclick="fnsetstat('od');">Omni Devation</a> </li>
@@ -244,7 +244,31 @@ dialog.dialog( "open" );
 				<li id="apt" ><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('apt');">Amplitude & Phase Tracking</a> </li>
 			</ul>
 			</li>
+		<li id="vreports" title="VT-JK S10 L ATP-2 REV 00" style="display:none"><a href="#"><b> Reports</b></a>
 		
+			<ul id="gmreports">
+			    <li><a rel="Gain Measurement" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">Gain Measurement</a> </li>
+				
+			</ul>
+			<ul id="gtreports">
+			    <li><a rel="Gain Measurement" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">Gain Tracking</a> </li>
+			</ul>
+			<ul id="coreports">
+			<li><a rel="three_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">3dB beamwidth – azimuth</a> </li>
+			<li><a rel="three_a" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">3dB beamwidth -  elevation</a> </li>
+			<li><a rel="ten_a" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">10dB beamwidth – azimuth</a> </li>
+			<li><a rel="ten_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">10 dB beamwidth - elevation</a> </li>
+			<li><a rel="a_bs_bl" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">Azimuth Beam Squint and Backlobe level</a> </li>
+			<li><a rel="e_bs_bl" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">Elevation Beam Squint and Backlobe level</a> </li>
+			<li><a rel="axial_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">Axial Ratio Measurement Elevation Bore sight</a> </li>
+			<li><a rel="axial_ep" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">Axial Ratio Measurement Elevation +45 DEG</a> </li>
+			<li><a rel="axial_en" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">Axial Ratio Measurement Elevation -45 DEG</a> </li>
+			<li><a rel="polar_a" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">Polar Plot – Azimuth</a> </li>
+			<li><a rel="polar_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">Polar Plot – Elevation</a> </li>
+		
+			</ul>
+		
+		</li>
 		
 		</c:if>
 		<c:if test="${model.blnsettings eq 'true'}">

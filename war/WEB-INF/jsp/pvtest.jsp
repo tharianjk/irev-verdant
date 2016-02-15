@@ -59,9 +59,9 @@
    		  <form:option value="CO" label="Combination"></form:option> 
 		</form:select> 
         </td>
-        <td><form:select path="frequnit" id="frequnit">
-        <form:option value="MHz" label="MHz"></form:option>
+        <td><form:select path="frequnit" id="frequnit">        
    		 <form:option value="GHz" label="GHz"></form:option>  
+   		 <form:option value="MHz" label="MHz"></form:option>
    		 
 		</form:select> 
 		</tr>

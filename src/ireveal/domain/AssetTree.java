@@ -12,8 +12,15 @@ public class AssetTree implements Serializable {
     private String assettype;
     private int companyid;
     private String atype;
+    private String pvtype;
 
-    public String getAtype() {
+    public String getPvtype() {
+		return pvtype;
+	}
+	public void setPvtype(String pvtype) {
+		this.pvtype = pvtype;
+	}
+	public String getAtype() {
 		return atype;
 	}
 	public void setAtype(String atype) {
