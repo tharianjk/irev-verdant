@@ -773,8 +773,8 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 			   }		
 			   
 			   public TestData getTestData(int id) {  
-				   logger.info("***inside testdata** ");
-				   List<TestData> dataList =null;
+				   logger.info("***inside testdata** id="+id);
+				   List<TestData> dataList =new ArrayList<TestData>();
 			    String sql = "select Test_id,TestName,testdesc,T.ProdSerial_id,TestDate,SerialNo,Productname,Version,frequnit,ptype,testcenter,instruments,calibration,testproc,testtype from testdata t inner join product_serial s on t.Prodserial_id=S.Prodserial_id "+
 			    		" inner join product p on s.Product_id=p.Product_id  where TEST_id =" + id;  
 			   try
@@ -1290,10 +1290,10 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 			public PVTest getPVTest(int id) {  
 						   logger.info("***inside prduct** ");
 						   List<PVTest> dataList =null;
-						   String sql = "select test_id, S.Product_id ,productname,TestName,rptheader,rptfooter,TestDesc,TestDate,testcenter,instruments,calibration,testproc,frequnit,testtype from PV_TESTDATA S inner join product p on s.Product_id=p.Product_id";  
+						   String sql = "select test_id, S.Product_id ,productname,TestName,rptheader,rptfooter,TestDesc,TestDate,testcenter,instruments,calibration,testproc,frequnit,testtype from PV_TESTDATA S inner join product p on s.Product_id=p.Product_id where S.test_id=?";  
 					try
 					   {
-						   dataList = getJdbcTemplate().query(sql, new PVTestMapper());
+						   dataList = getJdbcTemplate().query(sql, new PVTestMapper(),id);
 					  
 					   }
 					   catch(Exception e)
@@ -1491,7 +1491,20 @@ public String getPVFreqdatafile(String typ,int serialid,String datatype ){
 		}
 		return strfreqs;
 }
-  
+public String getPVFreqdataGM(int serialid){
+	 String sql="";
+	 String strfreqs="";
+	
+		 sql="select distinct frequency from pv_radata where prodserial_id=? ";
+		 
+	 List<TestFrequency> freqlist=getJdbcTemplate().query(sql, new FreqdatafileMapper(),serialid);  
+		for (int i=0;i<freqlist.size();i++){
+			if(i==0)
+				{strfreqs=freqlist.get(i).getFrequency()+"";}
+			else {strfreqs=strfreqs+", "+freqlist.get(i).getFrequency();}
+		}
+		return strfreqs;
+} 
 public List<TestFrequency> getPVFreqList(int testid){
 	   
 	   logger.info("***inside getPVFreqList** ");
@@ -1545,8 +1558,9 @@ public List<GainSTDHorn> getGainSTD(int testid){
 		 List<GainSTDHorn> strLst=new ArrayList<GainSTDHorn>();
 		logger.info("JdbcMastersDao inside getGainSTD testid="+testid);
 		try{
-	      sql = "SELECT distinct frequency ,stdhorn,test_id from pv_GainSTDHorn s  where s.test_id=?";
-	       strLst=	getJdbcTemplate().query(sql, new GainSTDMapper(),testid); 
+	      sql = "SELECT distinct frequency ,stdhorn,test_id from pv_GainSTDHorn s  where s.test_id=? "+
+		" union SELECT distinct frequency ,0.0001 stdhorn,test_id from pv_testfreq s  where s.test_id=? and frequency not in (select frequency from pv_GainSTDHorn where test_id=?) ";
+	       strLst=	getJdbcTemplate().query(sql, new GainSTDMapper(),testid,testid,testid); 
 		}
 	  catch(Exception e)
 	  {  logger.info("*** getStdhorn Exception** "+ e.getMessage() );}
@@ -1570,7 +1584,7 @@ public int insertRASTDHorn(PVSerialData testdata,List<TestFrequency> rastdlist,S
 	
 		   int serialid=0;
 		   logger.info(" strmode "+strmode);
-		   try{
+try{
 		   
 	if(strmode.equals("new")){
 		   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -1593,9 +1607,11 @@ public int insertRASTDHorn(PVSerialData testdata,List<TestFrequency> rastdlist,S
 		  	serialid= keyHolder.getKey().intValue();
 		  	logger.info(" PVSerialData record inserted. Key = "+serialid); 
 	
-	
+		  	testdata.setProductserialid(serialid);
 	}
+	else{
 	serialid=testdata.getProductserialid();
+	}
 	try{
     
 	 String sqlsavetags = "INSERT INTO pv_radata (Prodserial_id,Frequency,RecvdAmp) VALUES (?,?,?)";

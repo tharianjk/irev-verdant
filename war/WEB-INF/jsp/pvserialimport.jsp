@@ -72,7 +72,7 @@ progressAt = 0;
 function progress_update( typ) {
 	//console.log("progress_update");
 	ftype=document.getElementById('ftype').value;
-	if(ftype!="M"){
+	
 	if(typ=='M'){
 	tabledata();
 	if(document.getElementById("strfreq").value=="" ||document.getElementById("strfreq").value==null || document.getElementById("strfreq").value=='null'){
@@ -81,7 +81,7 @@ function progress_update( typ) {
 		return;
 	}
 	}
-	}
+	
 	/*var filename=document.getElementById("filename").value;
 	if(filename==null || filename=="")
 		{
@@ -149,7 +149,7 @@ progress_clear();
 		<tr>
 		<td > Product Serial No: </td>
        <td >
-			<form:input type="number" path="productserial"  min="1" max="50" maxlength="2" />          
+			<form:input type="number" path="productserial" id="serialno"  min="1" max="50" maxlength="2" onchange="fnCheck();"/>          
 			
 			   
           </td>
@@ -169,7 +169,7 @@ progress_clear();
          
         </table> 
         </td>
-  <c:if test="${hefreq!='' || vefreq !=''  || hafreq !=''  || vafreq !=''  || hmfreq !=''  || htfreq !=''  || vtfreq !='' }">
+  <c:if test="${hefreq!='' || vefreq !=''  || hafreq !=''  || vafreq !=''  || gmfreq !=''  || htfreq !=''  || vtfreq !='' }">
  <td align="center"> <b> <u>Imported Data </u></b> 
 		<table id="listtab"  border="1" cellpadding="1" cellspacing="2" style="width: 500px;vertical-align:top;">
 		
@@ -216,16 +216,10 @@ progress_clear();
 	<td> ${vtfreq}</td>				
 	</tr>
 	</c:if>
-	<c:if test="${hmfreq!='' && hmfreq !=null}">
+	<c:if test="${gmfreq!='' && gmfreq !=null}">
 	<tr>
-	<td> HP Gain Measurement</td>
-	<td> ${hmfreq}</td>				
-	</tr>
-	</c:if>
-	<c:if test="${vmfreq!='' && vmfreq !=null}">
-	<tr>
-	<td> VP Gain Measurement </td>
-	<td> ${vmfreq}</td>				
+	<td> Gain Measurement</td>
+	<td> ${gmfreq}</td>				
 	</tr>
 	</c:if>
 	
@@ -376,7 +370,8 @@ progress_clear();
 
 <script>
 var mode='<%=request.getParameter("mode")%>';
-
+var testid='${testid}';
+var check=1;
 $(document).ready( function () {	 
 	
 	var savestat='<%=request.getParameter("savestat")%>';
@@ -495,13 +490,10 @@ $(document).ready( function () {
 } );
 $('#datatype').on('change', function() {
 	  var sel= this.value ; // or $(this).val()
-	  var ftype = document.getElementById('ftype');
+	  var ftype = document.getElementById('ftype').value;
 	  		
 	});
-$('#ftype').on('change', function() {
-	document.getElementById("save").disabled = false;
-	  		
-	});
+
 
 function fncancel(){
 	//alert("redirect");
@@ -528,7 +520,7 @@ function AddNew(){
 	alert("Please Select file to import");
 	return;
 		}
-if(ftype!="M"){
+
 	var freq=document.getElementById("selfreq").value;	
 	document.getElementById("selfreq").value="";
 	if(freq==null || freq=="")
@@ -541,7 +533,7 @@ if(ftype!="M"){
 	alert(" Enter valid frequency");
 	return;
 	}
-}
+
 	$("#tblData tbody").append(
 		"<tr>"+
 		"<td>"+freq+"</td>"+		
@@ -780,10 +772,11 @@ function fnCheck()
 									alert("An error has occurred making the request: " + errorThrown)
 								},
 						success : function(response) {
-		                parent.IREV_DEBUG && console.log("Success-serial: "+ response);
+		                console.log("Success-serial: "+ response);
 						if(response=='1')
 						{
 				        document.getElementById("save").disabled = true;
+				       
 						$( "#validate" ).dialog({
 						height: 200,
 						width: 300,
@@ -792,6 +785,7 @@ function fnCheck()
 						}
 						else
 						{
+						
 						document.getElementById("save").disabled = false;
 						}
 						}			

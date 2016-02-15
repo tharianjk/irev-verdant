@@ -56,9 +56,9 @@ public class MWAPIDao extends JdbcDaoSupport {
         * @return 
         */
         public String CheckSerialNo(String testid,String serialno){
-        	logger.info("Going to CheckSeialNo testid= : "+testid);
+        	logger.info("Going to CheckSeialNo testid= : "+testid+" serialno="+serialno);
         	try{
-        	int cnt =getJdbcTemplate().queryForInt("select count(*) from pv_prodserial where SerialNo='" +serialno+"' and test_id="+testid);
+        	int cnt =getJdbcTemplate().queryForObject("select count(*) from pv_prodserial where SerialNo='" +serialno+"' and test_id="+testid,Integer.class);
         	if(cnt==0){
         	return "0";}
         	else{

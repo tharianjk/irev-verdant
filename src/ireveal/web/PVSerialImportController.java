@@ -84,12 +84,35 @@ public class PVSerialImportController extends SimpleFormController{
          atype=file.getPtype();
          testid=file.getTestid();
          String filetype=file.getFiletype();
+         MultipartFile multipartFile = file.getFilename();
+         logger.info("*** Inside PVSerialcontroller in onsubmit** filetype:"+filetype);
          if(filetype.equals("M")){
+        	 List<TestFrequency> freqlist=new ArrayList<TestFrequency>();
         	 logger.info("*** Inside PVSerialcontroller in onsubmit**: Gain Measurement");
-         
-        	 MultipartFile multipartFile = file.getFilename();
+        	 JSONObject obj1 = new JSONObject(file.getStrjsonfreq());
+		     try {
+		      JSONArray result = obj1.getJSONArray("jsonfreq");
+		    for(int i=0;i<result.length();i++)
+		     {
+		    	TestFrequency testfreq= new TestFrequency();		    	
+		    	JSONObject obj2 = (JSONObject)result.get(i);		    	
+		    	if(file.getFrequnit().equals("GHz"))
+		    	{    		  
+		    	testfreq.setFrequency(Double.parseDouble(obj2.get("freq").toString())*1000);
+		    	}
+		    	else
+		    		{testfreq.setFrequency(Double.parseDouble(obj2.get("freq").toString()));}
+		    //	testfreq.setLineargain(Double.parseDouble(obj2.get("lg").toString()));
+		    	freqlist.add(testfreq);
+		     }
+		     } catch (JSONException e) {
+		    	 logger.info(" JSONException "+e.getMessage());
+		    	 err=e.getMessage();
+		    }
         	
-     		if(multipartFile!=null){
+        	
+     		if(multipartFile!=null)
+     		{
      			fileName = multipartFile.getOriginalFilename();
      			logger.info("Inside PVSerialcontroller Controller fileName" +fileName);
      			try {
@@ -119,36 +142,52 @@ public class PVSerialImportController extends SimpleFormController{
      				
      			      for (int i=0; i<rowNum; i++){
      						  logger.info("introw "+i);  
+     						 XSSFRow row =(XSSFRow) sheet.getRow(i);
+     						  int freqfound=0;
      						  if(i>0) //header
      						  {
-     							  XSSFRow row =(XSSFRow) sheet.getRow(i);
-     							  logger.info("insider introw "+i); 
-     						   logger.info("Inside RA Std Horn import Controller rows.hasNext() " +row.getCell(0).toString());
-     							TestFrequency rastd= new TestFrequency();
      							
-     							String sreading;
+     							for (int p=0;p<freqlist.size();p++){
+     								
+     								String freq=freqlist.get(p).getFrequency()+"";
+     								logger.info("freq "+freq+" row.getCell(0).toString()="+row.getCell(0).toString());
+     								if(freq.equals(row.getCell(0).toString())){
+     									freqfound=1;
+     								}
+     							}
+								  
+								if(freqfound==1){
+								logger.info("insider introw "+i); 
+								logger.info("Inside RA Std Horn import Controller rows.hasNext() " +row.getCell(0).toString());
+								TestFrequency rastd= new TestFrequency();
+								
+								String sreading;
      							
      							if(row.getCell(0) != null && row.getCell(0).toString() != "" ){
-     								sreading=row.getCell(1).toString();
+     								
      								if (row.getCell(0).getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
      								{
      									rastd.setFrequency(row.getCell(0).getNumericCellValue());
      								}
      								else
-     									rastd.setFrequency(Double.parseDouble(sreading));	
+     									rastd.setFrequency(Double.parseDouble(row.getCell(0).toString()));	
      							
+     								if(row.getCell(1) != null && row.getCell(1).toString() != "" ){
+     									sreading=row.getCell(1).toString();
      								
-     								logger.info("Inside productlog Controller sreading " +sreading);
+     								logger.info("Inside serialimport Controller sreading " +sreading);
      								if (row.getCell(1).getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
      								{
      									rastd.setLineargain(row.getCell(1).getNumericCellValue());
      								}
      								else
      									rastd.setLineargain(Double.parseDouble(sreading));
+     								}
      							}
      							rastdlist.add(rastd);
      							
      					      }
+     						  }
      						  		
      					  }
      				      
@@ -169,207 +208,142 @@ public class PVSerialImportController extends SimpleFormController{
          
          
  //**********************************************************
+	 }
          }
-         else
-         {
-		 if(strmode.equals("edit")){
-			 logger.info("*** Inside PVSerialcontroller in onsubmit**: update");
-			 action="Save";
-			 //mastersservice.updatePVSerialData(file);
-		 }
-		 else
-		 {
-			 if (request.getParameter("fmaction").equals("Calculate"))
-		        {
-		        	action="Done";
-		        }
-		 
-		if(action.equals("Done")){
-		 stat=	mastersservice.CalcProc(file.getPtype(),serialid);
-		if(stat==0)
-		{
-			err="Failed to calculate";
+	 else
+	 {
+	        	 logger.info("*** Inside PVSerialcontroller in onsubmit**filetype: filetype"); 
+			 if(strmode.equals("edit")){
+				 logger.info("*** Inside PVSerialcontroller in onsubmit**: update");
+				 action="Save";
+				 //mastersservice.updatePVSerialData(file);
+			 }
+			 else
+			 {
+				 if (request.getParameter("fmaction").equals("Calculate"))
+			        {
+			        	action="Done";
+			        }
+			 
+			if(action.equals("Done")){
+			 stat=	mastersservice.CalcProc(file.getPtype(),serialid);
+			if(stat==0)
+			{
+				err="Failed to calculate";
+				
+			}
+			else
+			{
+				err="Calculation completed successfully";
+			}
+			}
 			
-		}
-		else
-		{
-			err="Calculation completed successfully";
-		}
-		}
+			else{
+			List<DataLog> datalogList = new ArrayList<DataLog>();
+			List<TestFrequency> freqlist=new ArrayList<TestFrequency>();
+			
+			int logid=100000;
+			
+			multipartFile = file.getFilename();
+			
+		    JSONObject obj1 = new JSONObject(file.getStrjsonfreq());
+		     try {
+		      JSONArray result = obj1.getJSONArray("jsonfreq");
+		    for(int i=0;i<result.length();i++)
+		     {
+		    	TestFrequency testfreq= new TestFrequency();
+		    	//logger.info(result.get(i));
+		    	JSONObject obj2 = (JSONObject)result.get(i);
+		    	//logger.info(obj2.get("freq"));
+		    //	logger.info(obj2.get("lg"));
+		    	if(file.getFrequnit().equals("GHz"))
+		    	{    		  
+		    	testfreq.setFrequency(Double.parseDouble(obj2.get("freq").toString())*1000);
+		    	}
+		    	else
+		    		{testfreq.setFrequency(Double.parseDouble(obj2.get("freq").toString()));}
+		    //	testfreq.setLineargain(Double.parseDouble(obj2.get("lg").toString()));
+		    	freqlist.add(testfreq);
+		     }
+		     } catch (JSONException e) {
+		    	 logger.info(" JSONException "+e.getMessage());
+		    	 err=e.getMessage();
+		    }
 		
-		else{
-		List<DataLog> datalogList = new ArrayList<DataLog>();
-		List<TestFrequency> freqlist=new ArrayList<TestFrequency>();
-		
-		int logid=100000;
-		
-		multipartFile = file.getFilename();
-		
-	    JSONObject obj1 = new JSONObject(file.getStrjsonfreq());
-	     try {
-	      JSONArray result = obj1.getJSONArray("jsonfreq");
-	    for(int i=0;i<result.length();i++)
-	     {
-	    	TestFrequency testfreq= new TestFrequency();
-	    	//logger.info(result.get(i));
-	    	JSONObject obj2 = (JSONObject)result.get(i);
-	    	//logger.info(obj2.get("freq"));
-	    //	logger.info(obj2.get("lg"));
-	    	if(file.getFrequnit().equals("GHz"))
-	    	{    		  
-	    	testfreq.setFrequency(Double.parseDouble(obj2.get("freq").toString())*1000);
-	    	}
-	    	else
-	    		{testfreq.setFrequency(Double.parseDouble(obj2.get("freq").toString()));}
-	    //	testfreq.setLineargain(Double.parseDouble(obj2.get("lg").toString()));
-	    	freqlist.add(testfreq);
-	     }
-	     } catch (JSONException e) {
-	    	 logger.info(" JSONException "+e.getMessage());
-	    	 err=e.getMessage();
-	    }
-	
-		 
-		logger.info("Inside FileUpload Controller");
-		if(multipartFile!=null){
-			int startrow=0;
-			fileName = multipartFile.getOriginalFilename();
-			logger.info("Inside FileUpload Controller fileName" +fileName);
-			try {
-				// Read excel file 
-			      InputStream inp = multipartFile.getInputStream() ;
-			      String fileExtn = GetFileExtension(fileName);
-			      Workbook wb_xssf; //Declare XSSF WorkBook
-			      Workbook wb_hssf; //Declare HSSF WorkBook
-			      Sheet sheet = null; // sheet can be used as common for XSSF and HSSF 	WorkBook
-			      if (fileExtn.equalsIgnoreCase("xlsx"))
-			      {
-			    	  wb_xssf=  WorkbookFactory.create(inp);
-				      sheet = wb_xssf.getSheetAt(0);
-			      }
-			      if (fileExtn.equalsIgnoreCase("xls"))
-			      {
-				  POIFSFileSystem fs = new POIFSFileSystem(inp);
-			    	  wb_hssf = new HSSFWorkbook(fs);
-			    	  //logger.info("xls="+wb_hssf.getSheetName(0));
-			    	  sheet = wb_hssf.getSheetAt(0);
-			      }
-			      int rowNum = sheet.getLastRowNum()+1;
-			      int colNum = sheet.getRow(0).getLastCellNum();
-			      logger.info("rowNum,colNum " +rowNum +' '+colNum);
-			     
-			      int y=0;
-			      double selfreq=0;	
-			      ArrayList<Double> freqarr= new ArrayList<Double>();
-			      if (fileExtn.equalsIgnoreCase("xlsx"))
-			      {			    	  
-			    	  XSSFRow strow =(XSSFRow) sheet.getRow(0);
-			    	  logger.info("strow,1 " +strow.getCell(1));
-			    	  if(strow.getCell(1) != null && strow.getCell(1).toString().toLowerCase().contains("freq") )
-			    	  {
-			    		  startrow=1; 
-			    	  }
-			      
-			      XSSFRow freqrow =(XSSFRow) sheet.getRow(startrow);
-			      for(int u=1;u<colNum;u++){
-			    	  freqarr.add( Double.parseDouble(freqrow.getCell(u).toString()));
-			      }
-			      
-			      for(y=0;y<freqlist.size();y++)
-			      {
-			    	  double colfreq=0;	
-			    	  selfreq=freqlist.get(y).getFrequency();
-			    	  colfreq=ClosetFreq( selfreq,freqarr);
-			      for (int i=0; i<rowNum; i++){
-						  //logger.info("introw "+i);  
-						  if(i>startrow) //header
-						  {
-							  XSSFRow row =(XSSFRow) sheet.getRow(i);
-							  String amplitude;		
-							  
-							  
-							if(row.getCell(0) != null ){
-								int dup=0;
-								String ang=row.getCell(0).toString();
-								if(y==0){
-									
-								if(Double.parseDouble(ang)>360.0){
-									logger.info("TestImportController Invalid angle in file");									
-									 throw new ImportException("Invalid angle in file");
-								}
-								}
-								  if(Double.parseDouble(ang)==0.1 && i >startrow+2){
-									  dup=1;  
-								  }
-								if(dup==0){
-								for(int u=1;u<colNum;u++){
-									if(Double.parseDouble(freqrow.getCell(u).toString())==colfreq){
-										DataLog datalog= new DataLog();
-								datalog.setFreq(selfreq);
-								//logger.info("Inside FileUpload Controller Freq " +selfreq);
-								datalog.setAngle(Double.parseDouble(row.getCell(0).toString()));
-								//logger.info("Inside FileUpload Controller Angle " +row.getCell(0));
-								amplitude=row.getCell(u).toString();
-								datalog.setAmplitude(Double.parseDouble(amplitude));
-								//logger.info("Inside FileUpload Controller sreading " +row.getCell(u));
-								datalogList.add(datalog);
-								break;
-								}									
-								}
-								}
-							}							
-					      }						  		
-					  }
-			      }
-			      }
-			      //xls
-			      else
-			      {
-			    	  logger.info("inside xls");
-			    	  logger.info("file.getFrequnit() "+file.getFrequnit()); 
-			    	  
-			    	  HSSFRow strow =(HSSFRow) sheet.getRow(0);
-				      logger.info("strow,1 " +strow.getCell(1));
-			    	  if(strow.getCell(1) != null && strow.getCell(1).toString().toLowerCase().contains("freq") )
-			    	  {
-			    		  logger.info("strow,1 " +strow.getCell(1));
-			    		  startrow=1; 
-			    	  }
-			    	  
-				      HSSFRow freqrow =(HSSFRow) sheet.getRow(startrow);		
-				      for(int u=1;u<colNum;u++){
-				    	  freqarr.add(Double.parseDouble(freqrow.getCell(u).toString()));
-				    	  //logger.info( u +' '+freqrow.getCell(u).toString()); 
+			 
+			logger.info("Inside FileUpload Controller");
+			if(multipartFile!=null){
+				int startrow=0;
+				fileName = multipartFile.getOriginalFilename();
+				logger.info("Inside FileUpload Controller fileName" +fileName);
+				try {
+					// Read excel file 
+				      InputStream inp = multipartFile.getInputStream() ;
+				      String fileExtn = GetFileExtension(fileName);
+				      Workbook wb_xssf; //Declare XSSF WorkBook
+				      Workbook wb_hssf; //Declare HSSF WorkBook
+				      Sheet sheet = null; // sheet can be used as common for XSSF and HSSF 	WorkBook
+				      if (fileExtn.equalsIgnoreCase("xlsx"))
+				      {
+				    	  wb_xssf=  WorkbookFactory.create(inp);
+					      sheet = wb_xssf.getSheetAt(0);
 				      }
-				      logger.info("freqlist.size() "+freqlist.size()); 
+				      if (fileExtn.equalsIgnoreCase("xls"))
+				      {
+					  POIFSFileSystem fs = new POIFSFileSystem(inp);
+				    	  wb_hssf = new HSSFWorkbook(fs);
+				    	  //logger.info("xls="+wb_hssf.getSheetName(0));
+				    	  sheet = wb_hssf.getSheetAt(0);
+				      }
+				      int rowNum = sheet.getLastRowNum()+1;
+				      int colNum = sheet.getRow(0).getLastCellNum();
+				      logger.info("rowNum,colNum " +rowNum +' '+colNum);
+				     
+				      int y=0;
+				      double selfreq=0;	
+				      ArrayList<Double> freqarr= new ArrayList<Double>();
+				      if (fileExtn.equalsIgnoreCase("xlsx"))
+				      {			    	  
+				    	  XSSFRow strow =(XSSFRow) sheet.getRow(0);
+				    	  logger.info("strow,1 " +strow.getCell(1));
+				    	  if(strow.getCell(1) != null && strow.getCell(1).toString().toLowerCase().contains("freq") )
+				    	  {
+				    		  startrow=1; 
+				    	  }
 				      
+				      XSSFRow freqrow =(XSSFRow) sheet.getRow(startrow);
+				      for(int u=1;u<colNum;u++){
+				    	  freqarr.add( Double.parseDouble(freqrow.getCell(u).toString()));
+				      }
 				      
 				      for(y=0;y<freqlist.size();y++)
-				      {		  
+				      {
 				    	  double colfreq=0;	
 				    	  selfreq=freqlist.get(y).getFrequency();
 				    	  colfreq=ClosetFreq( selfreq,freqarr);
-				    	  
-				      for (int i=0; i<rowNum; i++){				
+				      for (int i=0; i<rowNum; i++){
+							  //logger.info("introw "+i);  
 							  if(i>startrow) //header
 							  {
-								  HSSFRow row =(HSSFRow) sheet.getRow(i);
-								  String ang=row.getCell(0).toString();
-								  if(y==0){
-									
-										if(Double.parseDouble(ang)>360.0){
-											logger.info("TestImportController Invalid angle in file");											
-											 throw new ImportException("Invalid angle in file");
-										}
-										}
-								int dup=0;								 
-								String amplitude;								
+								  XSSFRow row =(XSSFRow) sheet.getRow(i);
+								  String amplitude;		
+								  
+								  
 								if(row.getCell(0) != null ){
-									if(Double.parseDouble(ang)==0.1 && i >startrow+2){
-										dup=1;  
+									int dup=0;
+									String ang=row.getCell(0).toString();
+									if(y==0){
+										
+									if(Double.parseDouble(ang)>360.0){
+										logger.info("TestImportController Invalid angle in file");									
+										 throw new ImportException("Invalid angle in file");
+									}
+									}
+									  if(Double.parseDouble(ang)==0.1 && i >startrow+2){
+										  dup=1;  
 									  }
 									if(dup==0){
-									for(int u=1;u<colNum;u++){										 
+									for(int u=1;u<colNum;u++){
 										if(Double.parseDouble(freqrow.getCell(u).toString())==colfreq){
 											DataLog datalog= new DataLog();
 									datalog.setFreq(selfreq);
@@ -378,49 +352,116 @@ public class PVSerialImportController extends SimpleFormController{
 									//logger.info("Inside FileUpload Controller Angle " +row.getCell(0));
 									amplitude=row.getCell(u).toString();
 									datalog.setAmplitude(Double.parseDouble(amplitude));
-									// logger.info("Inside FileUpload Controller sreading " +row.getCell(u));
+									//logger.info("Inside FileUpload Controller sreading " +row.getCell(u));
 									datalogList.add(datalog);
 									break;
-									}										
+									}									
 									}
-								}
-								}
-						      }	
+									}
+								}							
+						      }						  		
 						  }
 				      }
 				      }
-				  inp.close();		
-				 
-					logger.info(" datalogList.size "+datalogList.size());
-					if(datalogList.size()>0)
-					{
-						err=fileName + "Uploaded successfully";
-						stat=	mastersservice.insertPVSerialData(file,freqlist,datalogList,strmode,action);
-						if(stat==0)
+				      //xls
+				      else
+				      {
+				    	  logger.info("inside xls");
+				    	  logger.info("file.getFrequnit() "+file.getFrequnit()); 
+				    	  
+				    	  HSSFRow strow =(HSSFRow) sheet.getRow(0);
+					      logger.info("strow,1 " +strow.getCell(1));
+				    	  if(strow.getCell(1) != null && strow.getCell(1).toString().toLowerCase().contains("freq") )
+				    	  {
+				    		  logger.info("strow,1 " +strow.getCell(1));
+				    		  startrow=1; 
+				    	  }
+				    	  
+					      HSSFRow freqrow =(HSSFRow) sheet.getRow(startrow);		
+					      for(int u=1;u<colNum;u++){
+					    	  freqarr.add(Double.parseDouble(freqrow.getCell(u).toString()));
+					    	  //logger.info( u +' '+freqrow.getCell(u).toString()); 
+					      }
+					      logger.info("freqlist.size() "+freqlist.size()); 
+					      
+					      
+					      for(y=0;y<freqlist.size();y++)
+					      {		  
+					    	  double colfreq=0;	
+					    	  selfreq=freqlist.get(y).getFrequency();
+					    	  colfreq=ClosetFreq( selfreq,freqarr);
+					    	  
+					      for (int i=0; i<rowNum; i++){				
+								  if(i>startrow) //header
+								  {
+									  HSSFRow row =(HSSFRow) sheet.getRow(i);
+									  String ang=row.getCell(0).toString();
+									  if(y==0){
+										
+											if(Double.parseDouble(ang)>360.0){
+												logger.info("TestImportController Invalid angle in file");											
+												 throw new ImportException("Invalid angle in file");
+											}
+											}
+									int dup=0;								 
+									String amplitude;								
+									if(row.getCell(0) != null ){
+										if(Double.parseDouble(ang)==0.1 && i >startrow+2){
+											dup=1;  
+										  }
+										if(dup==0){
+										for(int u=1;u<colNum;u++){										 
+											if(Double.parseDouble(freqrow.getCell(u).toString())==colfreq){
+												DataLog datalog= new DataLog();
+										datalog.setFreq(selfreq);
+										//logger.info("Inside FileUpload Controller Freq " +selfreq);
+										datalog.setAngle(Double.parseDouble(row.getCell(0).toString()));
+										//logger.info("Inside FileUpload Controller Angle " +row.getCell(0));
+										amplitude=row.getCell(u).toString();
+										datalog.setAmplitude(Double.parseDouble(amplitude));
+										// logger.info("Inside FileUpload Controller sreading " +row.getCell(u));
+										datalogList.add(datalog);
+										break;
+										}										
+										}
+									}
+									}
+							      }	
+							  }
+					      }
+					      }
+					  inp.close();		
+					 
+						logger.info(" datalogList.size "+datalogList.size());
+						if(datalogList.size()>0)
 						{
-							err="Failed to Import "+fileName	;
+							err=fileName + "Uploaded successfully";
+							stat=	mastersservice.insertPVSerialData(file,freqlist,datalogList,strmode,action);
+							if(stat==0)
+							{
+								err="Failed to Import "+fileName	;
+								stat=0;
+								
+							}
+							else{
+								serialid=stat;
+								stat=1;
+							}
+						}
+						request.setAttribute("message", "File Uploaded Successfully");
+						
+						} catch (Exception ex) {
 							stat=0;
-							
+							err="File Upload Failed due to " + ex.getMessage() ;
+							request.setAttribute("message", "File Upload Failed due to " + ex.getMessage());
+							logger.info("Inside FileUpload Controller Exception " + ex.getMessage());
 						}
-						else{
-							serialid=stat;
-							stat=1;
-						}
-					}
-					request.setAttribute("message", "File Uploaded Successfully");
-					
-					} catch (Exception ex) {
-						stat=0;
-						err="File Upload Failed due to " + ex.getMessage() ;
-						request.setAttribute("message", "File Upload Failed due to " + ex.getMessage());
-						logger.info("Inside FileUpload Controller Exception " + ex.getMessage());
-					}
-				 logger.info(" imported serialid "+serialid);
-		}
-		 }       
-		 }
+					 logger.info(" imported serialid "+serialid);
+			}
+			 }       
+			 }
          }
-         }
+         
 		//
 		request.setAttribute("id", null);
      	cursess.setAttribute("id",null);
@@ -467,7 +508,7 @@ public class PVSerialImportController extends SimpleFormController{
         	cursess.setAttribute("mode",mode);
         	serialid=0;
         	testid=Integer.parseInt(strtestid);
-	        logger.info("inside PVSerialImportController"); 
+	        logger.info("inside PVSerialImportController testid"+testid); 
 	        try{
 	        if (id == null || id == "" || id.equals("null") || id.equals("0") ){
 	        	logger.info(" atype "+atype);
@@ -510,8 +551,7 @@ public class PVSerialImportController extends SimpleFormController{
 			String vefreq="";
 			String hafreq="";
 			String vafreq="";
-			String hmfreq="";
-			String vmfreq="";
+			String gmfreq="";			
 			String htfreq="";
 			String vtfreq="";
 	        List<ProductSerial> prodserlist = mastersservice.getProdVerSer();        
@@ -520,8 +560,8 @@ public class PVSerialImportController extends SimpleFormController{
 	    	vefreq=mastersservice.getPVFreqdatafile("V",serialid,"E"); 
 	    	hafreq=mastersservice.getPVFreqdatafile("H",serialid,"A");
 	    	vafreq=mastersservice.getPVFreqdatafile("V",serialid,"A"); 
-	    	hmfreq=mastersservice.getPVFreqdatafile("H",serialid,"M");
-	    	vmfreq=mastersservice.getPVFreqdatafile("V",serialid,"M");
+	    	gmfreq=mastersservice.getPVFreqdataGM(serialid);
+	    	//vmfreq=mastersservice.getPVFreqdatafile("V",serialid,"M");
 	    	vtfreq=mastersservice.getPVFreqdatafile("V",serialid,"T");
 	    	htfreq=mastersservice.getPVFreqdatafile("H",serialid,"T");
 	    	
@@ -532,10 +572,10 @@ public class PVSerialImportController extends SimpleFormController{
 	        referenceData.put("vefreq", vefreq);
 	        referenceData.put("hafreq", hafreq);
 	        referenceData.put("vafreq", vafreq);
-	        referenceData.put("hmfreq", hmfreq);
-	        referenceData.put("vmfreq", vmfreq);
+	        referenceData.put("gmfreq", gmfreq);	       
 	        referenceData.put("htfreq", htfreq);
 	        referenceData.put("vtfreq", vtfreq);
+	        referenceData.put("testid", testid);
 	        
 	        List<TestFrequency> freqlist=mastersservice.getPVFreqList(testid);  
 	        String strfreqs="";
