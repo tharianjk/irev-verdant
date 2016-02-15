@@ -4,6 +4,7 @@ drop table if exists pv_GainSTDHorn;
 drop table if exists pv_testfreq;
 drop table if exists pv_vdata;
 drop table if exists pv_hdata;
+drop table if exists pv_cpdata;
 drop table if exists pv_vcalculated;
 drop table if exists pv_hcalculated;
 drop table if exists pv_cpcalculated;
@@ -264,4 +265,18 @@ CREATE TABLE pv_gmcalculated (
   KEY FK_gmCalculated_pv1 (Test_id),
   CONSTRAINT FK_gmcalculated_pv FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id),
   CONSTRAINT FK_gmCalculated_pv1 FOREIGN KEY (Test_id) REFERENCES pv_testdata (Test_id)
+) ;
+CREATE TABLE pv_cpdata (
+  CPData_id int(11) NOT NULL AUTO_INCREMENT,
+  Prodserial_id int(11) DEFAULT NULL,
+  Test_id int(11) DEFAULT NULL,
+  Frequency decimal(40,20) DEFAULT NULL,
+  Angle decimal(12,2) DEFAULT NULL,
+  Amplitude decimal(12,8) DEFAULT NULL,
+  datatype varchar(2) not null,
+  PRIMARY KEY (CPData_id),
+  KEY Prodserialid_freq_angle_cp (Prodserial_id,Frequency,Angle,Amplitude,datatype),
+  KEY FK_cpdata_pv1 (Test_id),
+  CONSTRAINT FK_pvcpdata_test FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id),
+   CONSTRAINT FK_pvcpdata_test_pv1 FOREIGN KEY (Test_id) REFERENCES pv_testdata (Test_id)
 ) ;
