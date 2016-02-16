@@ -130,6 +130,37 @@ function fnsetstat(typ,msg)
 			window.frames['AppBody'].location=url;
 			AssetTree.monitorstat="Reports";
 	    }
+		else if(typ=="pv_polar_e" ) 
+		{			
+			url="tools.htm?oper=pvpolar&typ=E&testid="+testid+"&atype="+AssetTree.atype+"&treetype="+treetype;
+			window.frames['AppBody'].location=url;
+			AssetTree.monitorstat="Reports";
+	    }
+		else if(typ=="three_a" ) 
+		{			
+			url="tools.htm?oper=threedb&typ=A&testid="+testid+"&atype="+AssetTree.atype+"&treetype="+treetype;
+			window.frames['AppBody'].location=url;
+			AssetTree.monitorstat="Reports";
+	    }
+		else if(typ=="three_e" ) 
+		{			
+			url="tools.htm?oper=threedb&typ=E&testid="+testid+"&atype="+AssetTree.atype+"&treetype="+treetype;
+			window.frames['AppBody'].location=url;
+			AssetTree.monitorstat="Reports";
+	    }
+		else if(typ=="ten_a" ) 
+		{			
+			url="tools.htm?oper=tendb&typ=A&testid="+testid+"&atype="+AssetTree.atype+"&treetype="+treetype;
+			window.frames['AppBody'].location=url;
+			AssetTree.monitorstat="Reports";
+	    }
+		else if(typ=="ten_e" ) 
+		{			
+			url="tools.htm?oper=tendb&typ=E&testid="+testid+"&atype="+AssetTree.atype+"&treetype="+treetype;
+			window.frames['AppBody'].location=url;
+			AssetTree.monitorstat="Reports";
+	    }
+		
 	}
 	
 	

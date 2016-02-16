@@ -280,6 +280,20 @@ public class ToolsController implements Controller {
         		        		 myModel.put("seriallist", mastersservice.getPVSerialList(Integer.parseInt(testid)));
         		                return new ModelAndView("pvpolar", "model", myModel);        	
         		        	}
+        					 else if (operstr.equals("threedb") || operstr.equals("tendb") ){
+        							     			        		
+        							String typ = request.getParameter("typ");
+        			        		logger.info("*** db ** testid= "+testid +" atype= "+atype);
+        			        		myModel.put("atype",atype);
+        			       		    myModel.put("testid",testid);
+        			       		    myModel.put("typ",typ);
+        			       		    myModel.put("rptheader",rptheader);
+        			    		    myModel.put("rptfooter",rptfooter);
+        			    		    myModel.put("nprecision",nprecision);
+        			    		    myModel.put("seriallist", mastersservice.getPVSerialList(Integer.parseInt(testid)));
+        			    		    myModel.put("oper",operstr);
+        			               return new ModelAndView("pvreports", "model", myModel);        	
+        			       	}
         					
         				}
 			if (operstr.equals("ampphase"))

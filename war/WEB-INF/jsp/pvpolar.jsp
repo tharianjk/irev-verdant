@@ -209,7 +209,7 @@ $(document).ready(function(){
 					if(j==0){
 						selfreq=freqs[i];}
 					else{selfreq=selfreq+','+freqs[i];}
-					
+					strfreqs[j]=freqs[i];
 					j=j+1;
 					}	
 				}
@@ -223,7 +223,7 @@ $(document).ready(function(){
 				{
 					var url="/birt-viewer/frameset?__report=verdant/PolarGeneric.rptdesign&type="+typ+"&testid="+testid+"&serialid="+serialid+"&datatype="+datatype+"&scale="+scale+"&max="+max+"&min="+min+"&rpth="+rptheader+"&rptf="+rptfooter+"&freq1="+selfreq+
 					"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
-					"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9];
+					"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&freq11="+strfreqs[10]+"&freq12="+strfreqs[11]+"&freq13="+strfreqs[12]+"&freq14="+strfreqs[13]+"&freq15="+strfreqs[14]+"&freq16="+strfreqs[15]+"&freq17="+strfreqs[16]+"&freq18="+strfreqs[17];
 				}
 				else
 				var url="/birt-viewer/frameset?__report=verdant/PolarMultiple.rptdesign&typ="+typ+"&testid="+testid+"&strlg="+sellg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&strfreq="+selfreq+"&usr="+uname+"&scale="+scale+"&max="+max+"&min="+min+"&frequnit="+frequnit;
@@ -236,7 +236,7 @@ $(document).ready(function(){
 		if(typ=="B")
 			var url="/birt-viewer/frameset?__report=verdant/PolarHPVP.rptdesign&type="+typ+"&testid="+testid+"&scale="+scale+"&max="+max+"&min="+min+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&freq1="+strfreqs[0]+
 			"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
-			"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9];
+			"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&freq11="+strfreqs[10]+"&freq12="+strfreqs[11]+"&freq13="+strfreqs[12]+"&freq14="+strfreqs[13]+"&freq15="+strfreqs[14]+"&freq16="+strfreqs[15]+"&freq17="+strfreqs[16]+"&freq18="+strfreqs[17];
 			console.log("url " + url);
 		//window.location =url; 		
 		 }
