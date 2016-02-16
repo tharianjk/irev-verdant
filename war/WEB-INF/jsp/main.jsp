@@ -40,79 +40,98 @@ function fnsetstat(typ,msg)
 	var treetype=AssetTree.treeType;
 	var url="";
 	
-	console.log("treetype "+treetype);
-	if(treetype!=2 && treetype!=4) 
-	{		
-		window.frames['AppBody'].location="blank.htm?oper=blank";
-	}
+	console.log("treetype "+treetype+" atype="+atype+" typ="+typ);
 	
-	if(treetype==4){
-		
-	if(msg!=null && msg=='msg'){
-		reportflashMessenger.setText('<b>Please make a Selection from the Asset Tree on the left side</b>  ');}
-	if(typ=="Polar") {
-		url="hpolar.htm?oper=hpolar&testid="+testid +"&atype="+atype;
-		window.frames['AppBody'].location="hpolar.htm?oper=hpolar&testid="+testid +"&atype="+atype+"&treetype="+treetype;
-	AssetTree.monitorstat="Reports";}
-	if(typ=="pm") {
-		url="hpolarmultiple.htm?oper=polarmultiple&testid="+testid +"&atype="+atype;
-		window.frames['AppBody'].location="hpolarmultiple.htm?oper=polarmultiple&testid="+testid +"&atype="+atype+"&treetype="+treetype;
-	AssetTree.monitorstat="Reports";}
-	if(typ=="3db") {
-		if( atype!="A"){
-		window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+testid+"&atype="+atype+"&treetype="+treetype;
-		AssetTree.monitorstat="Reports";}
-		else window.frames['AppBody'].location="blank.htm?oper=blank";
+	if(atype!="V"){
+		if(treetype!=2 && treetype!=4) 
+		{		
+			window.frames['AppBody'].location="blank.htm?oper=blank";
+		}	
 	}
-	if(typ=="10db") {
-		if( atype!="A"){
-		window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+testid+"&atype="+atype+"&treetype="+treetype;
-		AssetTree.monitorstat="Reports";}
-		else window.frames['AppBody'].location="blank.htm?oper=blank";
-	}
-	if(typ=="blobe") {
-		window.frames['AppBody'].location="tools.htm?oper=blobe&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype+"&treetype="+treetype;
-		if(atype=="NCP"){
-			window.frames['AppBody'].location="tools.htm?oper=blobe&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype+"&treetype="+treetype;}
-		else if(AssetTree.selectedparenttype=="C"){
-			window.frames['AppBody'].location="tools.htm?oper=blobe&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype+"&treetype="+treetype;}
-		else if(AssetTree.selectedparenttype=="S" && atype=="E" ){
-			window.frames['AppBody'].location="tools.htm?oper=blobe&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype+"&treetype="+treetype;}
-		else window.frames['AppBody'].location="blank.htm?oper=blank";
-		AssetTree.monitorstat="Reports";}
-	if(typ=="ar") {
-		
-		if(AssetTree.selectedparenttype=="C"){
-			console.log("ar");
-		window.frames['AppBody'].location="ar.htm?oper=ar&typ="+typ+"&testid="+testid+"&atype="+atype+"&treetype="+treetype;}
-		else if(AssetTree.selectedparenttype=="S" && atype=="E"){
-			window.frames['AppBody'].location="ar.htm?oper=ar&typ="+typ+"&testid="+testid+"&atype="+atype+"&treetype="+treetype;}
-		else window.frames['AppBody'].location="blank.htm?oper=blank";
-		AssetTree.monitorstat="Reports";
-	}
-	if(typ=="rset") {
-		window.frames['AppBody'].location="reportset.htm?oper=rset&typ="+typ+"&testid="+testid+"&atype="+atype+"&ptype="+AssetTree.selectedparenttype+"&treetype="+treetype;
-		AssetTree.monitorstat="Reports";}
-	if(typ=="cpg") {
-		if(AssetTree.selectedparenttype=="C" && atype!="NCP"){
-		window.frames['AppBody'].location="lineargain.htm?oper=cpg&typ="+typ+"&testid="+testid+"&atype="+atype+"&treetype="+treetype;
-		AssetTree.monitorstat="Reports";}
-		else window.frames['AppBody'].location="blank.htm?oper=blank";
-	}
-	if(typ=="od") {
-		
-		if( AssetTree.atype=="A"){
-			window.frames['AppBody'].location="tools.htm?oper=od&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype+"&treetype="+treetype;
+	else{
+		if(treetype!=3) 
+		{		
+			window.frames['AppBody'].location="blank.htm?oper=blank";
 		}
-		else window.frames['AppBody'].location="blank.htm?oper=blank";
+	}
+	if(treetype==4)
+	{
+			
+		if(msg!=null && msg=='msg'){
+			reportflashMessenger.setText('<b>Please make a Selection from the Asset Tree on the left side</b>  ');}
+		if(typ=="Polar") {
+			url="hpolar.htm?oper=hpolar&testid="+testid +"&atype="+atype;
+			window.frames['AppBody'].location="hpolar.htm?oper=hpolar&testid="+testid +"&atype="+atype+"&treetype="+treetype;
 		AssetTree.monitorstat="Reports";}
-}
+		if(typ=="pm") {
+			url="hpolarmultiple.htm?oper=polarmultiple&testid="+testid +"&atype="+atype;
+			window.frames['AppBody'].location="hpolarmultiple.htm?oper=polarmultiple&testid="+testid +"&atype="+atype+"&treetype="+treetype;
+		AssetTree.monitorstat="Reports";}
+		if(typ=="3db") {
+			if( atype!="A"){
+			window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+testid+"&atype="+atype+"&treetype="+treetype;
+			AssetTree.monitorstat="Reports";}
+			else window.frames['AppBody'].location="blank.htm?oper=blank";
+		}
+		if(typ=="10db") {
+			if( atype!="A"){
+			window.frames['AppBody'].location="xdb_bw_bs.htm?oper=db&typ="+typ+"&testid="+testid+"&atype="+atype+"&treetype="+treetype;
+			AssetTree.monitorstat="Reports";}
+			else window.frames['AppBody'].location="blank.htm?oper=blank";
+		}
+		if(typ=="blobe") {
+			window.frames['AppBody'].location="tools.htm?oper=blobe&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype+"&treetype="+treetype;
+			if(atype=="NCP"){
+				window.frames['AppBody'].location="tools.htm?oper=blobe&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype+"&treetype="+treetype;}
+			else if(AssetTree.selectedparenttype=="C"){
+				window.frames['AppBody'].location="tools.htm?oper=blobe&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype+"&treetype="+treetype;}
+			else if(AssetTree.selectedparenttype=="S" && atype=="E" ){
+				window.frames['AppBody'].location="tools.htm?oper=blobe&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype+"&treetype="+treetype;}
+			else window.frames['AppBody'].location="blank.htm?oper=blank";
+			AssetTree.monitorstat="Reports";}
+		if(typ=="ar") {
+			
+			if(AssetTree.selectedparenttype=="C"){
+				console.log("ar");
+			window.frames['AppBody'].location="ar.htm?oper=ar&typ="+typ+"&testid="+testid+"&atype="+atype+"&treetype="+treetype;}
+			else if(AssetTree.selectedparenttype=="S" && atype=="E"){
+				window.frames['AppBody'].location="ar.htm?oper=ar&typ="+typ+"&testid="+testid+"&atype="+atype+"&treetype="+treetype;}
+			else window.frames['AppBody'].location="blank.htm?oper=blank";
+			AssetTree.monitorstat="Reports";
+		}
+		if(typ=="rset") {
+			window.frames['AppBody'].location="reportset.htm?oper=rset&typ="+typ+"&testid="+testid+"&atype="+atype+"&ptype="+AssetTree.selectedparenttype+"&treetype="+treetype;
+			AssetTree.monitorstat="Reports";}
+		if(typ=="cpg") {
+			if(AssetTree.selectedparenttype=="C" && atype!="NCP"){
+			window.frames['AppBody'].location="lineargain.htm?oper=cpg&typ="+typ+"&testid="+testid+"&atype="+atype+"&treetype="+treetype;
+			AssetTree.monitorstat="Reports";}
+			else window.frames['AppBody'].location="blank.htm?oper=blank";
+		}
+		if(typ=="od") {
+			
+			if( AssetTree.atype=="A"){
+				window.frames['AppBody'].location="tools.htm?oper=od&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype+"&treetype="+treetype;
+			}
+			else window.frames['AppBody'].location="blank.htm?oper=blank";
+			AssetTree.monitorstat="Reports";}
+  }
 	if(typ=="apt" && treetype==2) 
 	{
 		console.log("apt");
 		window.frames['AppBody'].location="ampphaserpt.htm?oper=ampphase&typ="+typ+"&prodid="+testid+"&atype="+atype+"&treetype="+treetype;
 		AssetTree.monitorstat="Reports";
     }
+	if(treetype==3){
+		console.log(typ);
+		if(typ=="pv_polar_a" ) 
+		{			
+			url="tools.htm?oper=pvpolar&typ=A&testid="+testid+"&atype="+AssetTree.atype+"&treetype="+treetype;
+			window.frames['AppBody'].location=url;
+			AssetTree.monitorstat="Reports";
+	    }
+	}
+	
 	
 	console.log("url "+url);
 }
@@ -251,20 +270,20 @@ dialog.dialog( "open" );
 				
 			</ul>
 			<ul id="gtreports">
-			    <li><a rel="Gain Measurement" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">Gain Tracking</a> </li>
+			    <li><a rel="Gain Measurement" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gt');">Gain Tracking</a> </li>
 			</ul>
 			<ul id="coreports">
-			<li><a rel="three_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">3dB beamwidth – azimuth</a> </li>
-			<li><a rel="three_a" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">3dB beamwidth -  elevation</a> </li>
-			<li><a rel="ten_a" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">10dB beamwidth – azimuth</a> </li>
-			<li><a rel="ten_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">10 dB beamwidth - elevation</a> </li>
-			<li><a rel="a_bs_bl" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">Azimuth Beam Squint and Backlobe level</a> </li>
-			<li><a rel="e_bs_bl" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">Elevation Beam Squint and Backlobe level</a> </li>
-			<li><a rel="axial_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">Axial Ratio Measurement Elevation Bore sight</a> </li>
-			<li><a rel="axial_ep" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">Axial Ratio Measurement Elevation +45 DEG</a> </li>
-			<li><a rel="axial_en" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">Axial Ratio Measurement Elevation -45 DEG</a> </li>
-			<li><a rel="polar_a" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">Polar Plot – Azimuth</a> </li>
-			<li><a rel="polar_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">Polar Plot – Elevation</a> </li>
+			<li><a rel="three_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('three_e');">3dB beamwidth Azimuth</a> </li>
+			<li><a rel="three_a" class="menuarray" TARGET="AppBody" onclick="fnsetstat('three_a');">3dB beamwidth Elevation</a> </li>
+			<li><a rel="ten_a" class="menuarray" TARGET="AppBody" onclick="fnsetstat('ten_a');">10dB beamwidth Azimuth</a> </li>
+			<li><a rel="ten_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('ten_e');">10 dB beamwidth Elevation</a> </li>
+			<li><a rel="a_bs_bl" class="menuarray" TARGET="AppBody" onclick="fnsetstat('a_bs_bl');">Azimuth Beam Squint and Backlobe level</a> </li>
+			<li><a rel="e_bs_bl" class="menuarray" TARGET="AppBody" onclick="fnsetstat('e_bs_bl');">Elevation Beam Squint and Backlobe level</a> </li>
+			<li><a rel="axial_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('axial_e');">Axial Ratio Measurement Elevation Bore sight</a> </li>
+			<li><a rel="axial_ep" class="menuarray" TARGET="AppBody" onclick="fnsetstat('axial_ep');">Axial Ratio Measurement Elevation +45 DEG</a> </li>
+			<li><a rel="axial_en" class="menuarray" TARGET="AppBody" onclick="fnsetstat('axial_en');">Axial Ratio Measurement Elevation -45 DEG</a> </li>
+			<li><a rel="polar_a" class="menuarray" TARGET="AppBody" onclick="fnsetstat('pv_polar_a');">Polar Plot Azimuth</a> </li>
+			<li><a rel="polar_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('pv_polar_e');">Polar Plot Elevation</a> </li>
 		
 			</ul>
 		

@@ -84,7 +84,12 @@
 	<bean name="/hpolarmultiple.htm" class="ireveal.web.ToolsController">        
          <property name="mastersManager" ref="mastersManager"/>
     </bean>
-	
+	<bean name="/pvpolar.htm" class="ireveal.web.ToolsController">        
+         <property name="mastersManager" ref="mastersManager"/>
+    </bean>
+    <bean name="/pvreports.htm" class="ireveal.web.ToolsController">        
+         <property name="mastersManager" ref="mastersManager"/>
+    </bean>
 	<bean name="/403.htm" class="ireveal.web.MainController">
     </bean>
     

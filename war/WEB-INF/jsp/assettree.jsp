@@ -161,7 +161,7 @@ var treemode='<%=request.getParameter("treemode")%>';
     			        	{
     			        	  parent.document.getElementById("rset").style.display="block";
     			        	  parent.document.getElementById("vreports").style.display="none";
-    			        	  parent.document.getElementById("reports").style.display="block";
+    			        	  parent.document.getElementById("reports").style.display="inline-block";
     			        	  parent.document.getElementById("od").style.display="block";
 	  			        	  parent.document.getElementById("ar").style.display="none";
 	  			        	  parent.document.getElementById("pp").style.display="block";
@@ -175,7 +175,7 @@ var treemode='<%=request.getParameter("treemode")%>';
 			        	{
     			          parent.document.getElementById("rset").style.display="block";
   			        	  parent.document.getElementById("vreports").style.display="none";
-  			        	  parent.document.getElementById("reports").style.display="block";
+  			        	  parent.document.getElementById("reports").style.display="inline-block";
 			        	  parent.document.getElementById("od").style.display="none";
   			        	  parent.document.getElementById("ar").style.display="none";
   			        	  parent.document.getElementById("pp").style.display="block";
@@ -191,7 +191,7 @@ var treemode='<%=request.getParameter("treemode")%>';
 			        	{
 						  parent.document.getElementById("rset").style.display="block";
   			        	  parent.document.getElementById("vreports").style.display="none";
-  			        	  parent.document.getElementById("reports").style.display="block";
+  			        	  parent.document.getElementById("reports").style.display="inline-block";
 			        	  parent.document.getElementById("od").style.display="none";
   			        	  parent.document.getElementById("ar").style.display="block";
   			        	  parent.document.getElementById("pp").style.display="block";
@@ -263,27 +263,27 @@ var treemode='<%=request.getParameter("treemode")%>';
     			        	else{
     			        		if(pvtype=="GM"){
     			        			parent.document.getElementById("rset").style.display="none";
-		  			        	    parent.document.getElementById("vreports").style.display="block";
+		  			        	    parent.document.getElementById("vreports").style.display="inline";
 		  			        	    parent.document.getElementById("reports").style.display="none";
-		  			        	    parent.document.getElementById("gmreports").style.display="block";
+		  			        	    parent.document.getElementById("gmreports").style.display="compact";
 		  			        	    parent.document.getElementById("gtreports").style.display="none";
 		  			        	    parent.document.getElementById("coreports").style.display="none";		  			        	    
     			        		}
     			        		else if(pvtype=="GT"){
     			        			parent.document.getElementById("rset").style.display="none";
-		  			        	    parent.document.getElementById("vreports").style.display="block";
+		  			        	    parent.document.getElementById("vreports").style.display="inline";
 		  			        	    parent.document.getElementById("reports").style.display="none";
 		  			        	    parent.document.getElementById("gmreports").style.display="none";
-		  			        	    parent.document.getElementById("gtreports").style.display="block";
+		  			        	    parent.document.getElementById("gtreports").style.display="compact";
 		  			        	    parent.document.getElementById("coreports").style.display="none";
     			        		}
     			        		else if(pvtype=="CO"){
     			        			parent.document.getElementById("rset").style.display="none";
-		  			        	    parent.document.getElementById("vreports").style.display="block";
+		  			        	    parent.document.getElementById("vreports").style.display="inline";
 		  			        	    parent.document.getElementById("reports").style.display="none";
 		  			        	    parent.document.getElementById("gmreports").style.display="none";
 		  			        	    parent.document.getElementById("gtreports").style.display="none";
-		  			        	    parent.document.getElementById("coreports").style.display="block";
+		  			        	    parent.document.getElementById("coreports").style.display="compact";
     			        		}
     			        		else{
 		    			        	parent.document.getElementById("rset").style.display="none";

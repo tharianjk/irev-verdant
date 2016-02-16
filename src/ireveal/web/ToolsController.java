@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.Date;
 import java.text.DateFormat;
 
+import ireveal.domain.PVTest;
 import ireveal.domain.Product;
 import ireveal.domain.ProductSerial;
 import ireveal.domain.TestData;
@@ -241,10 +242,46 @@ public class ToolsController implements Controller {
 					return new ModelAndView(new RedirectView("/birt-viewer/frameset?__report=verdant/BlobWithOutCP.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
 					}
 			}
+			
+			
         	}//treetype=4
 			
         	else if (!treetype.equals("4"))
         	{
+        		if(treetype.equals("3"))
+        				{
+        					 if (operstr.contains("pvpolar")){
+        						String frequnit="MHz";
+        		        		logger.info("*** pvpolar ** testid "+testid);
+        		        		PVTest pd=mastersservice.getPVTest(Integer.parseInt(testid));
+        		        		frequnit=pd.getFrequnit();
+        		        		atype=pd.getTesttype();
+        		        		String typ=request.getParameter("typ");
+        		        		String strfreqs="";
+        		        		List<TestFrequency> freqlist=this.mastersservice.getPVFreqList(Integer.parseInt(testid));
+        		        		for (int i=0;i<freqlist.size();i++){
+        		        			if(i==0)
+        		        				{strfreqs=freqlist.get(i).getFrequency()+"";}
+        		        			else {strfreqs=strfreqs+","+freqlist.get(i).getFrequency();}
+        		        		}
+        		        		logger.info("*** strfreqs ** "+strfreqs);
+        		        		 //myModel.put("freqlist", this.mastersservice.getFreqList(Integer.parseInt(testid)));
+        		        		 myModel.put("typ",typ);
+        		        		 myModel.put("strfreqs",strfreqs);
+        		        		 myModel.put("freqlist", freqlist);
+        		        		 myModel.put("testid",testid);
+        		        		 myModel.put("freq",freq);
+        		        		 myModel.put("atype",atype);
+        		        		 myModel.put("rptheader",rptheader);
+        		        		 myModel.put("rptfooter",rptfooter);
+        		        		 myModel.put("nprecision",nprecision);
+        		        		 myModel.put("uname",uname);
+        		        		 myModel.put("frequnit",frequnit);
+        		        		 myModel.put("seriallist", mastersservice.getPVSerialList(Integer.parseInt(testid)));
+        		                return new ModelAndView("pvpolar", "model", myModel);        	
+        		        	}
+        					
+        				}
 			if (operstr.equals("ampphase"))
 			{				
         		logger.info("*** ampphase ** ");
