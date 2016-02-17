@@ -7,7 +7,14 @@ public class Product {
 	private String ptype;
 	private String imagefilename;
 	private Boolean bwithcp;
+	private String prodmodel;
 	
+	public String getProdmodel() {
+		return prodmodel;
+	}
+	public void setProdmodel(String prodmodel) {
+		this.prodmodel = prodmodel;
+	}
 	public Boolean getBwithcp() {
 		return bwithcp;
 	}

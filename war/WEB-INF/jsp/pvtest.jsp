@@ -19,7 +19,7 @@
 </script>
            
     <div id="pageHdr">
-	<h2><fmt:message key="Test.heading"/></h2>
+	<h2>Test Details</h2>
 </div>      
        
       <div>  
@@ -59,9 +59,9 @@
    		  <form:option value="CO" label="Combination"></form:option> 
 		</form:select> 
         </td>
-        <td><form:select path="frequnit" id="frequnit">
-        <form:option value="MHz" label="MHz"></form:option>
+        <td><form:select path="frequnit" id="frequnit">        
    		 <form:option value="GHz" label="GHz"></form:option>  
+   		 <form:option value="MHz" label="MHz"></form:option>
    		 
 		</form:select> 
 		</tr>
@@ -70,7 +70,7 @@
         <td><form:textarea id="testdesc"  path="testdesc"  rows="2" cols="50" /></td>  
         </tr> 
           <tr>
-		<td>Test Procedure  :</td> 
+		<td>Test Specification  :</td> 
 		<td><form:textarea id="testproc"  path="testproc"  rows="2" cols="50" /></td>   
 		        
 		</tr>
@@ -81,6 +81,11 @@
 		<tr>
 		<td>Calibration Status  :</td> 
 		<td><form:textarea   path="calibration"  rows="2" cols="50" /></td> 
+		</tr>
+        <tr>
+        <tr>
+		<td>Instrument Serial No. :</td> 
+		<td><form:textarea   path="instslno"  rows="2" cols="50" /></td> 
 		</tr>
         <tr>
 		<td>Report Header  :</td> 

@@ -55,6 +55,7 @@ public class PVSerialImportController extends SimpleFormController{
 	private int testid=0;
 	String testtype="";
 	String atype="";
+	
 	public PVSerialImportController(){
 		setCommandClass(PVSerialData.class);
 		setCommandName("PVSerialData");
@@ -521,6 +522,7 @@ public class PVSerialImportController extends SimpleFormController{
 	        	PVTest test=mastersservice.getPVTest(testid);
 	        	testdata.setTestname(test.getTestname());
 	        	testdata.setFrequnit(test.getFrequnit());
+	        	testtype=test.getTesttype();
 	        	return testdata;
 	        }else{
 	        	  logger.info("inside TestImportController id:" +id);
@@ -555,7 +557,7 @@ public class PVSerialImportController extends SimpleFormController{
 			String htfreq="";
 			String vtfreq="";
 	        List<ProductSerial> prodserlist = mastersservice.getProdVerSer();        
-	        String prodtype="";
+	        
 	    	hefreq=mastersservice.getPVFreqdatafile("H",serialid,"E");
 	    	vefreq=mastersservice.getPVFreqdatafile("V",serialid,"E"); 
 	    	hafreq=mastersservice.getPVFreqdatafile("H",serialid,"A");
@@ -566,7 +568,7 @@ public class PVSerialImportController extends SimpleFormController{
 	    	htfreq=mastersservice.getPVFreqdatafile("H",serialid,"T");
 	    	
 	        referenceData.put("prodserlist", prodserlist);
-	        referenceData.put("prodtype", prodtype);       
+	        referenceData.put("testtype", testtype);       
 	       
 	        referenceData.put("hefreq", hefreq);
 	        referenceData.put("vefreq", vefreq);
