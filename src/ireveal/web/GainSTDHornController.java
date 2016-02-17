@@ -98,7 +98,8 @@ public class GainSTDHornController implements Controller{
 		 myModel.put("testname",testdata.getTestname());
 		 myModel.put("freqlist",mastersservice.getGainSTD(testid));
 		 myModel.put("frequnit",frequnit);
-	     return new ModelAndView("gainstdhorn?oper=save&testid="+testid, "model", myModel); 
+	     return new ModelAndView("gainstdhorn", "model", myModel); 
+	     
 		}
 	
 	     
