@@ -1922,6 +1922,12 @@ Antenna without Radome&#13;
         <table id="65">
             <property name="style">Border</property>
             <property name="dataSet">GAIN CALCULATION AT VERTICAL POLARIZATION</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
             <list-property name="paramBindings">
                 <structure>
                     <property name="paramName">param_1</property>
@@ -2002,6 +2008,18 @@ Antenna without Radome&#13;
                     <text-property name="displayName">GM_GV</text-property>
                     <expression name="expression" type="javascript">dataSetRow["GM_GV"]</expression>
                     <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["FREQUENCY"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="87">
@@ -2153,6 +2171,12 @@ GV = C+D&#13;
         <table id="107">
             <property name="style">Border</property>
             <property name="dataSet">GAIN CORRECTION FACTOR CALCULATION</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
             <list-property name="paramBindings">
                 <structure>
                     <property name="paramName">param_1</property>
@@ -2209,6 +2233,18 @@ GV = C+D&#13;
                     <text-property name="displayName">GM_GF</text-property>
                     <expression name="expression" type="javascript">dataSetRow["GM_GF"]</expression>
                     <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["FREQUENCY"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="138">
@@ -2327,6 +2363,12 @@ GF = 20 log (Y+1/√2*Y)&#13;
         <table id="144">
             <property name="style">Border</property>
             <property name="dataSet">CP GAIN CALCULATION</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
             <list-property name="paramBindings">
                 <structure>
                     <property name="paramName">ProdSerial</property>
@@ -2389,6 +2431,19 @@ GF = 20 log (Y+1/√2*Y)&#13;
                     <text-property name="displayName">SPGAIN</text-property>
                     <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <text-property name="displayName">Count</text-property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["FREQUENCY"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="175">
