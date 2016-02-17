@@ -5,7 +5,13 @@
 
 <html>
 <head><title >X-db Beam Width </title>
-<link rel="stylesheet" type="text/css" href="irev-style.css" />
+<link rel="stylesheet" href="css/jquery-ui.css">
+  <script src="js/jquery.js"></script>
+  <script src="js/jquery-ui.js"></script>  
+  <script type='text/javascript' src="js/popupmessage.js" ></script>
+    <link rel="stylesheet" href="css/popupmessage.css">
+   
+    <link rel="stylesheet" type="text/css" href="irev-style.css" />
 </head>
 <body>
 <table>
@@ -16,16 +22,18 @@
 		       <input type="radio" id="90d" value="90d" name="optdb" >90 &deg; &nbsp; &nbsp;&nbsp;
 		       <input type="radio" id="all" value="0d90d" name="optdb" checked >All &nbsp; &nbsp;&nbsp;
 		       </td></tr>
-</table> 
-        </td>
-          <td > &nbsp; &nbsp;&nbsp;Precision: </td>
-        <td><select id="precision" >          
+</table>
+ </td>
+ <tr>
+          <td >Precision: 
+       <select id="precision" >          
          <option value="-1">--Select--</option> 
             <option value=1 > 1</option>
             <option value=2 > 2</option>
             <option value=3 > 3</option>
             <option value=4 > 4</option>
-		</select></td>
+		</select>
+		</td>
 		</tr>
 		<tr>
 		<td>
@@ -86,20 +94,23 @@ function Redirect(){
 		var atype='${model.atype}';
 		var rptheader='${model.rptheader}';
 		var rptfooter='${model.rptfooter}';
-		var arrsel[];
-		var arrslnos[];
+		var arrsel=[];
+		var arrslnos=[];
 		var strslno= '${model.strslno}';
 		var selslno="";
+		var oper='${model.oper}';
 		nprecision=document.getElementById('precision').value;
 		
 		arrslnos=strslno.split(",");
-		for (var i==1;i<50;i++){
+		for (var i=1;i<50;i++){
 			arrsel[i]=-1;
 		}
 		var i=0;
 		var j=0;
-				for (i==0;i<freqs.length;i++){				
-					if(document.getElementById(arrslnos[i]).checked){					
+				for (i=0;i<arrslnos.length;i++){
+					var slid=arrslnos[i];
+					console.log("slid="+slid);
+					if(document.getElementById(slid).checked){					
 						if(j==0){
 							selslno=arrslnos[i];
 							
@@ -131,7 +142,7 @@ function Redirect(){
 			var url="";
 			if(oper=='threedb' )
 			{				
-				 url="/birt-viewer/frameset?__report=verdant/3dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
+				 url="/birt-viewer/frameset?__report=verdant/3dbWithCP_report.rptdesign&deg="+deg+"&TestId="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
 				 "&s1="+arrsel[0]+"&s2="+arrsel[1]+"&s3="+arrsel[2]+"&s4="+arrsel[3]+"&s5="+arrsel[4]+"&s6="+arrsel[5]+"&s7="+arrsel[6]+"&s8="+arrsel[7]+"&s9="+arrsel[8]+"&s10="+arrsel[9]+
 				 "&s11="+arrsel[10]+"&s12="+arrsel[11]+"&s13="+arrsel[12]+"&s14="+arrsel[13]+"&s15="+arrsel[14]+"&s16="+arrsel[15]+"&s17="+arrsel[16]+"&s18="+arrsel[17]+"&s19="+arrsel[18]+"&s20="+arrsel[19]+
 				 "&s21="+arrsel[20]+"&s22="+arrsel[21]+"&s23="+arrsel[22]+"&s24="+arrsel[23]+"&s25="+arrsel[24]+"&s26="+arrsel[25]+"&s27="+arrsel[26]+"&s28="+arrsel[27]+"&s29="+arrsel[28]+"&s30="+arrsel[39]+
@@ -141,7 +152,7 @@ function Redirect(){
 			}
 			else if(oper=='tendb' )
 			{				
-				url="/birt-viewer/frameset?__report=verdant/3dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
+				url="/birt-viewer/frameset?__report=verdant/3dbWithCP_report.rptdesign&deg="+deg+"&TestId="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
 				 "&s1="+arrsel[0]+"&s2="+arrsel[1]+"&s3="+arrsel[2]+"&s4="+arrsel[3]+"&s5="+arrsel[4]+"&s6="+arrsel[5]+"&s7="+arrsel[6]+"&s8="+arrsel[7]+"&s9="+arrsel[8]+"&s10="+arrsel[9]+
 				 "&s11="+arrsel[10]+"&s12="+arrsel[11]+"&s13="+arrsel[12]+"&s14="+arrsel[13]+"&s15="+arrsel[14]+"&s16="+arrsel[15]+"&s17="+arrsel[16]+"&s18="+arrsel[17]+"&s19="+arrsel[18]+"&s20="+arrsel[19]+
 				 "&s21="+arrsel[20]+"&s22="+arrsel[21]+"&s23="+arrsel[22]+"&s24="+arrsel[23]+"&s25="+arrsel[24]+"&s26="+arrsel[25]+"&s27="+arrsel[26]+"&s28="+arrsel[27]+"&s29="+arrsel[28]+"&s30="+arrsel[39]+
@@ -151,7 +162,7 @@ function Redirect(){
 			}
 			else if(oper=='gm' )
 			{				
-				url="/birt-viewer/frameset?__report=verdant/GainMeasurement.rptdesign&deg="+deg+"&testid="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
+				url="/birt-viewer/frameset?__report=verdant/GainMeasurement.rptdesign&deg="+deg+"&TestId="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
 				 "&s1="+arrsel[0]+"&s2="+arrsel[1]+"&s3="+arrsel[2]+"&s4="+arrsel[3]+"&s5="+arrsel[4]+"&s6="+arrsel[5]+"&s7="+arrsel[6]+"&s8="+arrsel[7]+"&s9="+arrsel[8]+"&s10="+arrsel[9]+
 				 "&s11="+arrsel[10]+"&s12="+arrsel[11]+"&s13="+arrsel[12]+"&s14="+arrsel[13]+"&s15="+arrsel[14]+"&s16="+arrsel[15]+"&s17="+arrsel[16]+"&s18="+arrsel[17]+"&s19="+arrsel[18]+"&s20="+arrsel[19]+
 				 "&s21="+arrsel[20]+"&s22="+arrsel[21]+"&s23="+arrsel[22]+"&s24="+arrsel[23]+"&s25="+arrsel[24]+"&s26="+arrsel[25]+"&s27="+arrsel[26]+"&s28="+arrsel[27]+"&s29="+arrsel[28]+"&s30="+arrsel[39]+
@@ -161,7 +172,7 @@ function Redirect(){
 			}
 			if(oper=='bsbl' )
 			{				
-				url="/birt-viewer/frameset?__report=verdant/3dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
+				url="/birt-viewer/frameset?__report=verdant/3dbWithCP_report.rptdesign&deg="+deg+"&TestId="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
 				 "&s1="+arrsel[0]+"&s2="+arrsel[1]+"&s3="+arrsel[2]+"&s4="+arrsel[3]+"&s5="+arrsel[4]+"&s6="+arrsel[5]+"&s7="+arrsel[6]+"&s8="+arrsel[7]+"&s9="+arrsel[8]+"&s10="+arrsel[9]+
 				 "&s11="+arrsel[10]+"&s12="+arrsel[11]+"&s13="+arrsel[12]+"&s14="+arrsel[13]+"&s15="+arrsel[14]+"&s16="+arrsel[15]+"&s17="+arrsel[16]+"&s18="+arrsel[17]+"&s19="+arrsel[18]+"&s20="+arrsel[19]+
 				 "&s21="+arrsel[20]+"&s22="+arrsel[21]+"&s23="+arrsel[22]+"&s24="+arrsel[23]+"&s25="+arrsel[24]+"&s26="+arrsel[25]+"&s27="+arrsel[26]+"&s28="+arrsel[27]+"&s29="+arrsel[28]+"&s30="+arrsel[39]+
@@ -173,7 +184,7 @@ function Redirect(){
 			{	
 				if(typ=='EP'){
 				
-					url="/birt-viewer/frameset?__report=verdant/3dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
+					url="/birt-viewer/frameset?__report=verdant/3dbWithCP_report.rptdesign&deg="+deg+"&TestId="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
 					 "&s1="+arrsel[0]+"&s2="+arrsel[1]+"&s3="+arrsel[2]+"&s4="+arrsel[3]+"&s5="+arrsel[4]+"&s6="+arrsel[5]+"&s7="+arrsel[6]+"&s8="+arrsel[7]+"&s9="+arrsel[8]+"&s10="+arrsel[9]+
 					 "&s11="+arrsel[10]+"&s12="+arrsel[11]+"&s13="+arrsel[12]+"&s14="+arrsel[13]+"&s15="+arrsel[14]+"&s16="+arrsel[15]+"&s17="+arrsel[16]+"&s18="+arrsel[17]+"&s19="+arrsel[18]+"&s20="+arrsel[19]+
 					 "&s21="+arrsel[20]+"&s22="+arrsel[21]+"&s23="+arrsel[22]+"&s24="+arrsel[23]+"&s25="+arrsel[24]+"&s26="+arrsel[25]+"&s27="+arrsel[26]+"&s28="+arrsel[27]+"&s29="+arrsel[28]+"&s30="+arrsel[39]+
@@ -182,7 +193,7 @@ function Redirect(){
 				}
 				if(typ=='EN'){
 					
-					url="/birt-viewer/frameset?__report=verdant/3dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
+					url="/birt-viewer/frameset?__report=verdant/3dbWithCP_report.rptdesign&deg="+deg+"&TestId="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
 					 "&s1="+arrsel[0]+"&s2="+arrsel[1]+"&s3="+arrsel[2]+"&s4="+arrsel[3]+"&s5="+arrsel[4]+"&s6="+arrsel[5]+"&s7="+arrsel[6]+"&s8="+arrsel[7]+"&s9="+arrsel[8]+"&s10="+arrsel[9]+
 					 "&s11="+arrsel[10]+"&s12="+arrsel[11]+"&s13="+arrsel[12]+"&s14="+arrsel[13]+"&s15="+arrsel[14]+"&s16="+arrsel[15]+"&s17="+arrsel[16]+"&s18="+arrsel[17]+"&s19="+arrsel[18]+"&s20="+arrsel[19]+
 					 "&s21="+arrsel[20]+"&s22="+arrsel[21]+"&s23="+arrsel[22]+"&s24="+arrsel[23]+"&s25="+arrsel[24]+"&s26="+arrsel[25]+"&s27="+arrsel[26]+"&s28="+arrsel[27]+"&s29="+arrsel[28]+"&s30="+arrsel[39]+
@@ -191,7 +202,7 @@ function Redirect(){
 				}
 				if(typ=='E'){
 					
-					url="/birt-viewer/frameset?__report=verdant/3dbWithCP_report.rptdesign&deg="+deg+"&testid="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
+					url="/birt-viewer/frameset?__report=verdant/3dbWithCP_report.rptdesign&deg="+deg+"&TestId="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
 					 "&s1="+arrsel[0]+"&s2="+arrsel[1]+"&s3="+arrsel[2]+"&s4="+arrsel[3]+"&s5="+arrsel[4]+"&s6="+arrsel[5]+"&s7="+arrsel[6]+"&s8="+arrsel[7]+"&s9="+arrsel[8]+"&s10="+arrsel[9]+
 					 "&s11="+arrsel[10]+"&s12="+arrsel[11]+"&s13="+arrsel[12]+"&s14="+arrsel[13]+"&s15="+arrsel[14]+"&s16="+arrsel[15]+"&s17="+arrsel[16]+"&s18="+arrsel[17]+"&s19="+arrsel[18]+"&s20="+arrsel[19]+
 					 "&s21="+arrsel[20]+"&s22="+arrsel[21]+"&s23="+arrsel[22]+"&s24="+arrsel[23]+"&s25="+arrsel[24]+"&s26="+arrsel[25]+"&s27="+arrsel[26]+"&s28="+arrsel[27]+"&s29="+arrsel[28]+"&s30="+arrsel[39]+
@@ -204,7 +215,7 @@ function Redirect(){
 			
 			else if(oper=='gt' )
 			{				
-				url="/birt-viewer/frameset?__report=verdant/GainMeasurement.rptdesign&testid="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision;
+				url="/birt-viewer/frameset?__report=verdant/GainMeasurement.rptdesign&TestId="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision;
 				
 			}
 			

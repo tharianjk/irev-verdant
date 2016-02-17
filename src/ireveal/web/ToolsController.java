@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.Date;
 import java.text.DateFormat;
 
+import ireveal.domain.PVSerialData;
 import ireveal.domain.PVTest;
 import ireveal.domain.Product;
 import ireveal.domain.ProductSerial;
@@ -289,8 +290,16 @@ public class ToolsController implements Controller {
         		                return new ModelAndView("pvpolar", "model", myModel);        	
         		        	}
         					 else if (operstr.equals("gm") || operstr.equals("gt") || operstr.equals("threedb") || operstr.equals("tendb") || operstr.equals("axial") || operstr.equals("bsbl")  ){
-        							     			        		
-        							String typ = request.getParameter("typ");
+        							    
+        						   List<PVSerialData> seriallist=mastersservice.getPVSerialList(Integer.parseInt(testid));
+        							String strslno="";
+        							for (int i=0;i<seriallist.size();i++){
+            		        			if(i==0)
+            		        				{strslno=seriallist.get(i).getProductserialid()+"";}
+            		        			else {strslno=strslno+","+seriallist.get(i).getProductserialid();}
+            		        		}
+        						   
+        						   String typ = request.getParameter("typ");
         			        		logger.info("*** db ** testid= "+testid +" atype= "+atype);
         			        		myModel.put("atype",atype);
         			       		    myModel.put("testid",testid);
@@ -298,7 +307,8 @@ public class ToolsController implements Controller {
         			       		    myModel.put("rptheader",rptheader);
         		        		    myModel.put("rptfooter",rptfooter);
         			    		    myModel.put("nprecision",nprecision);
-        			    		    myModel.put("seriallist", mastersservice.getPVSerialList(Integer.parseInt(testid)));
+        			    		    myModel.put("seriallist", seriallist);
+        			    		    myModel.put("strslno",strslno);
         			    		    myModel.put("oper",operstr);
         			               return new ModelAndView("pvreports", "model", myModel);        	
         			       	}
