@@ -1479,6 +1479,39 @@ private static class PVSerialMapper implements ParameterizedRowMapper<PVSerialDa
        }
 
    }
+
+
+
+@Transactional
+public boolean deletePVSerial(int id) { 
+	   String sql = ""; 
+	   boolean bln=true;
+		   try{
+			   sql = " delete from pv_arcalculated where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   sql = "delete from pv_cpcalculated where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   sql = "delete from pv_gt_intermediate where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   sql = "delete from pv_hdata where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   sql = "delete from pv_vdata where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   sql = "delete from pv_cpdata where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   sql = "delete from pv_radata where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   sql = "delete from pv_prodserial where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   
+		   }
+		   catch(Exception e){
+			   logger.error("Exception Product serial "+e.getMessage());
+			   bln=false;
+		   }
+
+ return bln;
+ }
   
 public String getPVFreqdatafile(String typ,int serialid,String datatype ){
 	 String sql="";
