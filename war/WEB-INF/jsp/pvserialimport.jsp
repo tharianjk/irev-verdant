@@ -156,7 +156,7 @@ progress_clear();
           <td>Test Type * :</td> 
           
           <td width="50">          
-           <form:select id="datatype"  path="datatype"  width="50" >
+           <form:select id="datatype"  path="datatype"  width="50"  >
            <!-- <form:option value="A" label="Azimuth"></form:option>
    		   <form:option value="E" label="Elevation"></form:option>
    		   <form:option value="T" label="Gain Tracking"></form:option> 
@@ -172,7 +172,7 @@ progress_clear();
            <form:select id="ftype" name="D1" path="filetype"  >
            <form:option value="H" label="HP Data "></form:option>
    		   <form:option value="V" label="VP Data"></form:option>
-   		   <form:option value="M" label="Gain Measurement"></form:option>
+   		   <form:option value="M" label="RA of STD Horn" id="ogm"></form:option>
            </form:select>
          
 		</td>
@@ -368,6 +368,7 @@ progress_clear();
 var mode='<%=request.getParameter("mode")%>';
 var testid='${testid}';
 var testtype='${testtype}';
+
 console.log("testtype="+testtype);
 var check=1;
 $(document).ready( function () {	 
@@ -428,7 +429,9 @@ $(document).ready( function () {
 	    el = document.createElement("option");
 	    el.textContent = 'Gain Measurement';
 	    el.value ='M';
-	    odatatype.appendChild(el);}
+	    odatatype.appendChild(el);
+	   
+	}
 	else if(testtype=='GM')	
 	{	 
 		var el = document.createElement("option");
@@ -455,8 +458,13 @@ $(document).ready( function () {
 	 document.getElementById("frequnit").disabled = true;
 	 if(serialid!="" && serialid!=null && serialid !='null' && serialid!=0)
 		{
+		 
 		 document.getElementById("serialid").disabled = true;
 		 $("#datatype").val('${datatype}').change();
+		 if(testtype=='GM')
+		 document.getElementById("datatype").value='M';
+		 else if(testtype=='GT')
+			 document.getElementById("datatype").value='T';
 		 if(mode=='edit')
 			 {
 			 document.getElementById("tbimport").style.visibility="hidden";
@@ -514,9 +522,15 @@ $(document).ready( function () {
 	
 } );
 $('#datatype').on('change', function() {
+	
 	  var sel= this.value ; // or $(this).val()
+	  console.log("sel="+sel);
 	  var ftype = document.getElementById('ftype').value;
-	  		
+	  
+	   if (sel=='M')
+		  document.getElementById('ogm').style.visibility="block";
+	   else
+		  document.getElementById('ogm').style.visibility="none";
 	});
 
 

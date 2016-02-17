@@ -45,7 +45,7 @@
 		<td width="20%"> Product : </td>
        <td width="50">
 			           
-			 <form:select id="productk"   path="productid" required="required" >  
+			 <form:select id="productk"   path="productid" disabled="disabled" >  
 			 <option value="">--Select--</option>              
 			 <c:forEach items="${prodlist}" var="prd"> 
 			  <form:option label="${prd.productname}"   value="${prd.productid}"/>	     
@@ -108,6 +108,8 @@
      
        <script>
      $(document).ready(function () {
+    	 document.getElementById("productk").disabled=true;
+    	 
     	 var savestat='<%=request.getParameter("savestat")%>';
    		//alert (parmdelete);
    		if(savestat!=null && savestat!="")

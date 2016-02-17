@@ -93,13 +93,15 @@ public class PVSerialImportController extends SimpleFormController{
         	 JSONObject obj1 = new JSONObject(file.getStrjsonfreq());
 		     try {
 		      JSONArray result = obj1.getJSONArray("jsonfreq");
+		      logger.info("*** Inside PVSerialcontroller in onsubmit** freqlength:"+ result.length());
 		    for(int i=0;i<result.length();i++)
 		     {
 		    	TestFrequency testfreq= new TestFrequency();		    	
 		    	JSONObject obj2 = (JSONObject)result.get(i);		    	
 		    	if(file.getFrequnit().equals("GHz"))
-		    	{    		  
-		    	testfreq.setFrequency(Double.parseDouble(obj2.get("freq").toString())*1000);
+		    	{  		  
+		    	
+		    		testfreq.setFrequency(Double.parseDouble(obj2.get("freq").toString())*1000);
 		    	}
 		    	else
 		    		{testfreq.setFrequency(Double.parseDouble(obj2.get("freq").toString()));}
@@ -142,7 +144,7 @@ public class PVSerialImportController extends SimpleFormController{
      			      
      				
      			      for (int i=0; i<rowNum; i++){
-     						  logger.info("introw "+i);  
+     						  //logger.info("introw "+i);  
      						 XSSFRow row =(XSSFRow) sheet.getRow(i);
      						  int freqfound=0;
      						  if(i>0) //header
@@ -151,13 +153,14 @@ public class PVSerialImportController extends SimpleFormController{
      							for (int p=0;p<freqlist.size();p++){
      								
      								String freq=freqlist.get(p).getFrequency()+"";
-     								logger.info("freq "+freq+" row.getCell(0).toString()="+row.getCell(0).toString());
+     								//logger.info("freq "+freq+" row.getCell(0).toString()="+row.getCell(0).toString());
      								if(freq.equals(row.getCell(0).toString())){
      									freqfound=1;
      								}
      							}
 								  
-								if(freqfound==1){
+								if(freqfound==1)
+								{
 								logger.info("insider introw "+i); 
 								logger.info("Inside RA Std Horn import Controller rows.hasNext() " +row.getCell(0).toString());
 								TestFrequency rastd= new TestFrequency();

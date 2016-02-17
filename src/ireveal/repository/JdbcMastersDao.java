@@ -1452,7 +1452,7 @@ if(strmode.equals("new")){
 public List<PVSerialData> getPVSerialList(int testid) {  
     List dataList = new ArrayList();  
    
-    String sql = " select SerialNo,Prodserial_id,s.test_id,testname,frequnit  from pv_prodserial S inner join pv_testdata t on s.test_id=t.test_id where s.test_id=?";  
+    String sql = " select SerialNo,Prodserial_id,s.test_id,testname,frequnit,t.testtype  from pv_prodserial S inner join pv_testdata t on s.test_id=t.test_id where s.test_id=?";  
    
     dataList = getJdbcTemplate().query(sql, new PVSerialMapper(),testid);  
     return dataList;  
@@ -1460,7 +1460,7 @@ public List<PVSerialData> getPVSerialList(int testid) {
 public PVSerialData getPVSerialData(int serialid) {  
     List dataList = new ArrayList();  
    
-    String sql = "select SerialNo,Prodserial_id,s.test_id,testname,frequnit  from pv_prodserial S inner join pv_testdata t on s.test_id=t.test_id where prodserial_id=?";  
+    String sql = "select SerialNo,Prodserial_id,s.test_id,testname,frequnit,t.testtype  from pv_prodserial S inner join pv_testdata t on s.test_id=t.test_id where prodserial_id=?";  
    
     dataList = getJdbcTemplate().query(sql, new PVSerialMapper(),serialid);  
     return (PVSerialData) dataList.get(0);  
@@ -1475,6 +1475,7 @@ private static class PVSerialMapper implements ParameterizedRowMapper<PVSerialDa
     	   product.setTestid(rs.getInt("test_id")); 
     	   product.setTestname(rs.getString("testname")); 
     	   product.setFrequnit(rs.getString("frequnit")); 
+    	   product.setTesttype(rs.getString("testtype")); 
            return product;
        }
 
