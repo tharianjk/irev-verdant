@@ -462,25 +462,25 @@ if(strmode.equals("new")){
 	   
 	   int primaryKey=0;
 	  try{ 
-   final String  sql = "INSERT INTO product(Productname,Version,PType,ImageFileName) VALUES   (?,?,?,?)";    
+   final String  sql = "INSERT INTO product(Productname,Version,PType,ImageFileName,prodmodel) VALUES   (?,?,?,?,?)";    
 	     KeyHolder keyHolder = new GeneratedKeyHolder();
 	    
 	     final String prdname = prod.getProductname();
 	     final String version = prod.getVersion();	    
 	     final String ptype = prod.getPtype();
 	     final String iname = prod.getImagefilename();
-	   //  final Boolean bwithcp = prod.getBwithcp();
+	     final String prodmodel = prod.getProdmodel();
 	  	getJdbcTemplate().update(
 	  	    new PreparedStatementCreator() {
 	  	        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
 	  	            PreparedStatement ps =
 	  	                connection.prepareStatement(sql, new String[] {"PRODUCT_ID"}); 
-	  	            ps.setString(1, prdname);	
-	  	            ps.setString(2, version);
-	  	            ps.setString(3, ptype);	  
-	  	          ps.setString(4, iname);
-//	  	        ps.setBoolean(5, bwithcp);
-	  	            return ps;
+					    ps.setString(1, prdname);	
+					    ps.setString(2, version);
+					    ps.setString(3, ptype);	  
+					    ps.setString(4, iname);
+					    ps.setString(5, prodmodel);
+	  	            return ps; 
 	  	        }
 	  	    },
 	  	    keyHolder);
@@ -496,7 +496,7 @@ if(strmode.equals("new")){
    public List<Product> getProductList() {  
 	    List dataList = new ArrayList();  
 	   
-	    String sql = "select Product_id,version Productname,Version,PType,ImageFileName from product";  
+	    String sql = "select Product_id,version Productname,Version,PType,ImageFileName,prodmodel from product";  
 	   
 	    dataList = getJdbcTemplate().query(sql, new ProductMapper());  
 	    return dataList;  
@@ -527,10 +527,10 @@ if(strmode.equals("new")){
 	     
 	   public boolean updateProduct(Product prduct) {  
 		   try{
-	    String sql = "UPDATE Product set productname = ?,version = ?,ptype=?,imagefilename=? where product_id = ?";  
+	    String sql = "UPDATE Product set productname = ?,version = ?,ptype=?,imagefilename=?,prodmodel=? where product_id = ?";  
 	    getJdbcTemplate().update(  
 	      sql,  
-	      new Object[] { prduct.getProductname(), prduct.getVersion(),  prduct.getPtype(),prduct.getImagefilename(),
+	      new Object[] { prduct.getProductname(), prduct.getVersion(),  prduct.getPtype(),prduct.getImagefilename(),prduct.getProdmodel(),
 	    		  prduct.getProductid() }); 
 	    
 	   
@@ -546,7 +546,7 @@ if(strmode.equals("new")){
 	   public Product getProduct(int id) {  
 		   logger.info("***inside prduct** ");
 		   List<Product> dataList =null;
-	    String sql = "select Product_id,Productname,Version,PType,ImageFileName from product  where Product_id =" + id;  
+	    String sql = "select Product_id,Productname,Version,PType,ImageFileName,prodmodel from product  where Product_id =" + id;  
 	   try
 	   {
 		   dataList = getJdbcTemplate().query(sql, new ProductMapper());
@@ -567,7 +567,7 @@ if(strmode.equals("new")){
 	    	   product.setPtype(rs.getString("ptype"));  
 	    	   product.setVersion(rs.getString("version")); 	    	  
 	    	   product.setImagefilename(rs.getString("imagefilename"));
-	    	   
+	    	   product.setProdmodel(rs.getString("prodmodel"));
 	           return product;
 	       }
 
@@ -1197,7 +1197,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 					 logger.info("Inside InsertPVtest");
 					   int primaryKey;
 					   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					   final String  sql = "INSERT INTO pv_testdata(TestName,Product_id,rptheader,rptfooter,TestDesc,TestDate,testcenter,instruments,calibration,testproc,frequnit,testtype) VALUES  (?,?,?,?,?,?,?,?,?,?,?,?)";    
+					   final String  sql = "INSERT INTO pv_testdata(TestName,Product_id,rptheader,rptfooter,TestDesc,TestDate,testcenter,instruments,calibration,testproc,frequnit,testtype,inst_slno) VALUES  (?,?,?,?,?,?,?,?,?,?,?,?,?)";    
 						  
 						     KeyHolder keyHolder = new GeneratedKeyHolder();
 						    
@@ -1213,6 +1213,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 						     final String testproc=pvtest.getTestproc();
 						     final String frequnit=pvtest.getFrequnit();
 						     final String testtype=pvtest.getTesttype();
+						     final String instslno=pvtest.getInstslno();
 						  	getJdbcTemplate().update(
 						  	    new PreparedStatementCreator() {
 						  	        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
@@ -1230,6 +1231,8 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 					  	            ps.setString(10, testproc);
 					  	            ps.setString(11, frequnit);
 					  	            ps.setString(12,testtype);
+					  	            ps.setString(13,instslno);
+					  	          
 						  	            return ps;
 						  	        }
 						  	    },
@@ -1245,7 +1248,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 				   public List<PVTest> getPVTestList() {  
 					    List dataList = new ArrayList();  
 					   
-					    String sql = "select test_id, S.Product_id ,productname,TestName,rptheader,rptfooter,TestDesc,TestDate,testcenter,instruments,calibration,testproc,frequnit,testtype from PV_TESTDATA S inner join product p on s.Product_id=p.Product_id";  
+					    String sql = "select test_id, S.Product_id ,productname,TestName,rptheader,rptfooter,TestDesc,TestDate,testcenter,instruments,calibration,testproc,frequnit,testtype,inst_slno from PV_TESTDATA S inner join product p on s.Product_id=p.Product_id";  
 					   
 					    dataList = getJdbcTemplate().query(sql, new PVTestMapper());  
 					    return dataList;  
@@ -1272,10 +1275,10 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 					     
 					   public boolean UpdatePVTest(PVTest pvtest) {  
 						   try{
-					    String sql = "UPDATE PV_TESTDATA set TestName=?,Product_id=?,rptheader=?,rptfooter=?,TestDesc=?,TestDate=?,testcenter=?,instruments=?,calibration=?,testproc=?,frequnit=?,testtype=? where test_id = ?";  
+					    String sql = "UPDATE PV_TESTDATA set TestName=?,Product_id=?,rptheader=?,rptfooter=?,TestDesc=?,TestDate=?,testcenter=?,instruments=?,calibration=?,testproc=?,frequnit=?,testtype=?,inst_slno=? where test_id = ?";  
 					    getJdbcTemplate().update(  
 					      sql,  
-					      new Object[] { pvtest.getTestname(), pvtest.getProductid(),  pvtest.getRptheader(),pvtest.getRptfooter(),pvtest.getTestdesc(),pvtest.getDttestdate(),pvtest.getTestcenter(),pvtest.getInstruments(),pvtest.getCalibration(),pvtest.getTestproc() , pvtest.getFrequnit(),pvtest.getTesttype(), pvtest.getTestid() }); 
+					      new Object[] { pvtest.getTestname(), pvtest.getProductid(),  pvtest.getRptheader(),pvtest.getRptfooter(),pvtest.getTestdesc(),pvtest.getDttestdate(),pvtest.getTestcenter(),pvtest.getInstruments(),pvtest.getCalibration(),pvtest.getTestproc() , pvtest.getFrequnit(),pvtest.getTesttype(),pvtest.getInstslno(), pvtest.getTestid() }); 
 					    
 					   
 					    return true;    
@@ -1290,7 +1293,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 			public PVTest getPVTest(int id) {  
 						   logger.info("***inside prduct** ");
 						   List<PVTest> dataList =null;
-						   String sql = "select test_id, S.Product_id ,productname,TestName,rptheader,rptfooter,TestDesc,TestDate,testcenter,instruments,calibration,testproc,frequnit,testtype from PV_TESTDATA S inner join product p on s.Product_id=p.Product_id where S.test_id=?";  
+						   String sql = "select test_id, S.Product_id ,productname,TestName,rptheader,rptfooter,TestDesc,TestDate,testcenter,instruments,calibration,testproc,frequnit,testtype,inst_slno from PV_TESTDATA S inner join product p on s.Product_id=p.Product_id where S.test_id=?";  
 					try
 					   {
 						   dataList = getJdbcTemplate().query(sql, new PVTestMapper(),id);
@@ -1322,6 +1325,8 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 					    	   pvtest.setTestproc(rs.getString("testproc")); 
 					    	   pvtest.setFrequnit(rs.getString("frequnit")); 
 					    	   pvtest.setTesttype(rs.getString("testtype")); 
+					    	   pvtest.setInstslno(rs.getString("inst_slno")); 
+					    	   
 					           return pvtest;
 					       }
 
@@ -1474,6 +1479,39 @@ private static class PVSerialMapper implements ParameterizedRowMapper<PVSerialDa
        }
 
    }
+
+
+
+@Transactional
+public boolean deletePVSerial(int id) { 
+	   String sql = ""; 
+	   boolean bln=true;
+		   try{
+			   sql = " delete from pv_arcalculated where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   sql = "delete from pv_cpcalculated where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   sql = "delete from pv_gt_intermediate where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   sql = "delete from pv_hdata where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   sql = "delete from pv_vdata where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   sql = "delete from pv_cpdata where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   sql = "delete from pv_radata where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   sql = "delete from pv_prodserial where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   
+		   }
+		   catch(Exception e){
+			   logger.error("Exception Product serial "+e.getMessage());
+			   bln=false;
+		   }
+
+ return bln;
+ }
   
 public String getPVFreqdatafile(String typ,int serialid,String datatype ){
 	 String sql="";

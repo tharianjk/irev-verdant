@@ -18,9 +18,7 @@
   </head>
   <body>
   <h3 id="head3"> Serial List </h3>
-  <form action="pvserialimport.htm?pid=${model.testid}" method="GET">
-			<input type="submit" name="newpvserial"  class="myButton" value="NEW" />
-		</form>
+  <input type="button"  class="myButton" value="NEW"  onclick="fnnew();"/>
  <div id="dialogdelete" title="Delete Status" style="display:none;" >"${model.msg}" </div>
 <table id="listtab" class="display">
 	<thead>
@@ -33,27 +31,23 @@
 	<tbody>
     <c:forEach items="${model.pvserial}" var="pvserial" varStatus="Loop">
 		<tr>
-		    <td> <c:out value="${Loop.index+1}" />
+		    <td> <c:out value="${Loop.index+1}" /></td>
 		    
-			<td> <a href="<c:url value="pvserialimport.htm?pid=${pvserial.testid}&id=${pvserial.productserialid}"/>"> <c:out value="${pvserial.productserial}"/> </a>  <br>
-			<td> <a id="deleteclick" href='<c:url value="setup.htm?oper=deleterle&pvserialid=${pvserial.productserialid}&role=${pvserial.productserial}"/>' class="confirm"><img  src ="/irev-verdant/img/delete.jpg" >  </a> </td>
+			<td> <a href="<c:url value="pvserialimport.htm?mode=new&PId=${pvserial.testid}&id=${pvserial.productserialid}"/>"> <c:out value="${pvserial.productserial}"/> </a> </td>
+			<td> <a id="deleteclick" href='<c:url value="setup.htm?oper=deletepvserial&testid=${model.testid}&pvserialid=${pvserial.productserialid}&serialno=${pvserial.productserial}"/>' class="confirm"><img  src ="/irev-verdant/img/delete.jpg" >  </a> </td>
 		</tr>
     </c:forEach>
-   		<tr> <td>
-		<form action="pvserialimport.htm?pid=${model.testid}" method="GET">
-			<input type="submit" name="newpvserial" id="newpvserial" class="myButton" value="NEW" />
-		</form>
-		</tr> 
+   		
 	</tbody>
 	</table> <br><br>
-	
+	<input type="button"  class="myButton" value="NEW"  onclick="fnnew();"/>
 	<script>
 $(document).ready(function() {
 	document.getElementById("head3").innerHTML='${model.testname}  Serial List';
-     var eventFired = function ( type ) {
-        $(".confirm").confirm();
+     var eventFired = function ( type ) {        
     } 
- 
+     $(".confirm").confirm();
+     
     $('#listtab')
         .on( 'order.dt',  function () { eventFired( 'Order' ); } )
         .on( 'search.dt', function () { eventFired( 'Search' ); } )
@@ -91,7 +85,9 @@ dialog = $( "#dialogdelete" ).dialog({
     modal: true
   }); 
   
-
+function fnnew(){
+	window.location = 'pvserialimport.htm?PId=${model.testid}'
+}
 
 </script>
 	

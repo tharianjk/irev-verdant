@@ -1,9 +1,13 @@
-alter table product add prodmodel varchar(100);
+-- alter table product add prodmodel varchar(100);
+
+drop procedure if exists spPVPolarPlot;
+drop procedure if exists spPVPolarSummary;
 
 drop table if exists pv_GainSTDHorn;
 drop table if exists pv_testfreq;
 drop table if exists pv_vdata;
 drop table if exists pv_hdata;
+drop table if exists pv_cpdata;
 drop table if exists pv_vcalculated;
 drop table if exists pv_hcalculated;
 drop table if exists pv_cpcalculated;
@@ -12,6 +16,8 @@ drop table if exists pv_gt_intermediate;
 drop table if exists pv_gt_calculated;
 drop table if exists pv_radata;
 drop table if exists pv_gmcalculated;
+
+drop table if exists pv_speccalculated;
 drop table if exists pv_prodserial;
 drop table if exists pv_testdata;
 
@@ -81,97 +87,57 @@ CREATE TABLE pv_hdata (
   CONSTRAINT FK_pvhdata_test FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
 ) ;
 
-CREATE TABLE pv_hcalculated (
-  HCalculated_Id int(11) NOT NULL AUTO_INCREMENT,
-  Prodserial_id int(11) DEFAULT NULL,
-  datatype varchar(2) not null ,
-  Frequency decimal(40,20) DEFAULT NULL,
-  TestDate datetime DEFAULT NULL,
-  OmniDeviation decimal(40,20) DEFAULT NULL,
-  3Db_BW_BMax decimal(40,20) DEFAULT NULL,
-  3Db_BW_0 decimal(40,20) DEFAULT NULL,
-  3Db_BW_90 decimal(40,20) DEFAULT NULL,
-  3Db_BS_BMax decimal(40,20) DEFAULT NULL,
-  3Db_BS_0 decimal(40,20) DEFAULT NULL,
-  3Db_BS_90 decimal(40,20) DEFAULT NULL,
-  10Db_BW_BMax decimal(40,20) DEFAULT NULL,
-  10Db_BW_0 decimal(40,20) DEFAULT NULL,
-  10Db_BW_90 decimal(40,20) DEFAULT NULL,
-  10Db_BS_BMax decimal(40,20) DEFAULT NULL,
-  10Db_BS_0 decimal(40,20) DEFAULT NULL,
-  10Db_BS_90 decimal(40,20) DEFAULT NULL,
-  BackLobe decimal(40,20) DEFAULT NULL,
-  PRIMARY KEY (HCalculated_Id),
-  KEY FK_hpcalculated_pv (Prodserial_id),
-  CONSTRAINT FK_hpcalculated_pv FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
-) ;
-
-CREATE TABLE pv_vcalculated (
-  VCalculated_Id int(11) NOT NULL AUTO_INCREMENT,
-  Prodserial_id int(11) DEFAULT NULL,
-  datatype varchar(2) not null ,
-  Frequency decimal(40,20) DEFAULT NULL,
-  TestDate datetime DEFAULT NULL,
-  OmniDeviation decimal(40,20) DEFAULT NULL,
-  3Db_BW_BMax decimal(40,20) DEFAULT NULL,
-  3Db_BW_0 decimal(40,20) DEFAULT NULL,
-  3Db_BW_90 decimal(40,20) DEFAULT NULL,
-  3Db_BS_BMax decimal(40,20) DEFAULT NULL,
-  3Db_BS_0 decimal(40,20) DEFAULT NULL,
-  3Db_BS_90 decimal(40,20) DEFAULT NULL,
-  10Db_BW_BMax decimal(40,20) DEFAULT NULL,
-  10Db_BW_0 decimal(40,20) DEFAULT NULL,
-  10Db_BW_90 decimal(40,20) DEFAULT NULL,
-  10Db_BS_BMax decimal(40,20) DEFAULT NULL,
-  10Db_BS_0 decimal(40,20) DEFAULT NULL,
-  10Db_BS_90 decimal(40,20) DEFAULT NULL,
-  BackLobe decimal(40,20) DEFAULT NULL,
-  PRIMARY KEY (VCalculated_Id),
-  KEY FK_vpcalculated_pv (Prodserial_id),
-  CONSTRAINT FK_vpcalculated_pv FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
-
-) ;
-
 CREATE TABLE pv_cpcalculated (
   CPCalculated_Id int(11) NOT NULL AUTO_INCREMENT,
   Prodserial_id int(11) DEFAULT NULL,
+  Test_id INT(11) NULL ,
   datatype varchar(2) not null ,
   Frequency decimal(40,20) DEFAULT NULL,
   TestDate datetime DEFAULT NULL,
+  3Db_BW_BMax_left decimal(40,20) DEFAULT NULL,
+  3Db_BW_BMax_right decimal(40,20) DEFAULT NULL,
   3Db_BW_BMax decimal(40,20) DEFAULT NULL,
-  3Db_BW_0 decimal(40,20) DEFAULT NULL,
-  3Db_BW_90 decimal(40,20) DEFAULT NULL,
   3Db_BS_BMax decimal(40,20) DEFAULT NULL,
+  3Db_BW_0_left decimal(40,20) DEFAULT NULL,
+  3Db_BW_0_right decimal(40,20) DEFAULT NULL,
+  3Db_BW_0 decimal(40,20) DEFAULT NULL,
   3Db_BS_0 decimal(40,20) DEFAULT NULL,
-  3Db_BS_90 decimal(40,20) DEFAULT NULL,
+  10Db_BW_BMax_left decimal(40,20) DEFAULT NULL,
+  10Db_BW_BMax_right decimal(40,20) DEFAULT NULL,
   10Db_BW_BMax decimal(40,20) DEFAULT NULL,
+  10Db_BW_0_left decimal(40,20) DEFAULT NULL,
+  10Db_BW_0_right decimal(40,20) DEFAULT NULL,
   10Db_BW_0 decimal(40,20) DEFAULT NULL,
-  10Db_BW_90 decimal(40,20) DEFAULT NULL,
-  10Db_BS_BMax decimal(40,20) DEFAULT NULL,
-  10Db_BS_0 decimal(40,20) DEFAULT NULL,
-  10Db_BS_90 decimal(40,20) DEFAULT NULL,
-  BackLobe decimal(40,20) DEFAULT NULL,
-  CPGain decimal(40,20) DEFAULT NULL,
+  X1 decimal(40,20) DEFAULT NULL,
+  Y1 decimal(40,20) DEFAULT NULL,
+  Backlobe decimal(40,20) DEFAULT NULL,
   PRIMARY KEY (CPCalculated_Id),
   KEY FK_cpcalculated_pv (Prodserial_id),
-  CONSTRAINT FK_cpcalculated_pv FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
+  KEY FK_cpcalculated_pv1 (Test_id),
+  CONSTRAINT FK_cpcalculated_pv FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id),
+  CONSTRAINT FK_cpcalculated_pv1 FOREIGN KEY (Test_id) REFERENCES pv_testdata (Test_id)
 ) ;
 CREATE TABLE pv_arcalculated (
   ARCalculated_Id int(11) NOT NULL AUTO_INCREMENT,
   Prodserial_id int(11) DEFAULT NULL,
+  Test_id INT(11) NULL ,
   datatype varchar(2) not null ,
   Frequency decimal(40,20) DEFAULT NULL,
   TestDate datetime DEFAULT NULL,
+  VP_0 decimal(40,20) DEFAULT NULL,
+  HP_0 decimal(40,20) DEFAULT NULL,
   AR_0 decimal(40,20) DEFAULT NULL,
+  VP_P45 decimal(40,20) DEFAULT NULL,
+  HP_P45 decimal(40,20) DEFAULT NULL,
   AR_P45 decimal(40,20) DEFAULT NULL,
+  VP_M45 decimal(40,20) DEFAULT NULL,
+  HP_M45 decimal(40,20) DEFAULT NULL,
   AR_M45 decimal(40,20) DEFAULT NULL,
-  MaxAR_P_Ratio decimal(40,20) DEFAULT NULL,
-  MaxAR_P_Angle decimal(40,20) DEFAULT NULL,
-  MaxAR_M_Ratio decimal(40,20) DEFAULT NULL,
-  MaxAR_M_Angle decimal(40,20) DEFAULT NULL,
   PRIMARY KEY (ARCalculated_Id),
   KEY FK_arcalculated_pv (Prodserial_id),
-  CONSTRAINT FK_arcalculated_pv FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
+  KEY FK_arcalculated_pv1 (Test_id),
+  CONSTRAINT FK_arcalculated_pv FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id),
+  CONSTRAINT FK_arcalculated_pv1 FOREIGN KEY (Test_id) REFERENCES pv_testdata (Test_id)
 ) ;
 create table pv_GainSTDHorn(
 gsh_id int(11) NOT NULL AUTO_INCREMENT,
@@ -264,4 +230,41 @@ CREATE TABLE pv_gmcalculated (
   KEY FK_gmCalculated_pv1 (Test_id),
   CONSTRAINT FK_gmcalculated_pv FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id),
   CONSTRAINT FK_gmCalculated_pv1 FOREIGN KEY (Test_id) REFERENCES pv_testdata (Test_id)
+) ;
+CREATE TABLE pv_cpdata (
+  CPData_id int(11) NOT NULL AUTO_INCREMENT,
+  Prodserial_id int(11) DEFAULT NULL,
+  Test_id int(11) DEFAULT NULL,
+  Frequency decimal(40,20) DEFAULT NULL,
+  Angle decimal(12,2) DEFAULT NULL,
+  Amplitude decimal(12,8) DEFAULT NULL,
+  datatype varchar(2) not null,
+  PRIMARY KEY (CPData_id),
+  KEY Prodserialid_freq_angle_cp (Prodserial_id,Frequency,Angle,Amplitude,datatype),
+  KEY FK_cpdata_pv1 (Test_id),
+  CONSTRAINT FK_pvcpdata_test FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id),
+   CONSTRAINT FK_pvcpdata_test_pv1 FOREIGN KEY (Test_id) REFERENCES pv_testdata (Test_id)
+) ;
+
+CREATE TABLE pv_speccalculated (
+  SpecCalculated_Id int(11) NOT NULL AUTO_INCREMENT,
+  Prodserial_id int(11) DEFAULT NULL,
+  Test_id INT(11) NULL ,
+  datatype varchar(2) not null ,
+  TestDate datetime DEFAULT NULL,
+  3dbBW_BM_spec decimal(40,20) DEFAULT NULL,
+  3dbBW_0_spec decimal(40,20) DEFAULT NULL,
+  10dbBW_BM_majorspec decimal(40,20) DEFAULT NULL,
+  10dbBW_BM_minorspec decimal(40,20) DEFAULT NULL,
+  10dbBW_0_majorspec decimal(40,20) DEFAULT NULL,
+  10dbBW_0_minorspec decimal(40,20) DEFAULT NULL,
+  3dbBS_BM_majorspec decimal(40,20) DEFAULT NULL,
+  3dbBS_BM_minorspec decimal(40,20) DEFAULT NULL,
+  3dbBS_0_majorspec decimal(40,20) DEFAULT NULL,
+  3dbBS_0_minorspec decimal(40,20) DEFAULT NULL,
+  PRIMARY KEY (SpecCalculated_Id),
+  KEY FK_SpecCalculated_pv (Prodserial_id),
+  KEY FK_SpecCalculated_pv1 (Test_id),
+  CONSTRAINT FK_SpecCalculated_pv FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id),
+  CONSTRAINT FK_SpecCalculated_pv1 FOREIGN KEY (Test_id) REFERENCES pv_testdata (Test_id)
 ) ;

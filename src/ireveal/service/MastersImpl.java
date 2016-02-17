@@ -283,6 +283,10 @@ public int insertRASTDHorn(PVSerialData testdata,
 public String getPVFreqdataGM(int serialid) {
 	return mastersdao.getPVFreqdataGM(serialid);
 }
+@Override
+public boolean deletePVSerial(int id) {
+	return mastersdao.deletePVSerial(id);
+}
 
 
 

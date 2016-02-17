@@ -145,6 +145,7 @@ public class GetJSON extends HttpServlet {
              JSONObject jsonAttr = new JSONObject();   
              jsonAttr.put("id",treeval.get(0).getAssetid());
              jsonAttr.put("atype",treeval.get(0).getAtype());
+             jsonAttr.put("pvtype",treeval.get(0).getPvtype());
              jsonAttr.put("Assetname", treeval.get(0).getAssetname());
              jsonAttr.put("Assetid", treeval.get(0).getAssetid());
              jsonAttr.put("parentId", treeval.get(0).getAssetparentid());
@@ -193,6 +194,7 @@ public class GetJSON extends HttpServlet {
                        JSONObject jsonChildAttr = new JSONObject();
                        jsonChildAttr.put("id",treeval.get(i).getAssetid());
                        jsonChildAttr.put("atype",treeval.get(i).getAtype());
+                       jsonChildAttr.put("pvtype",treeval.get(i).getPvtype());
                        jsonChildAttr.put("Assetname", treeval.get(i).getAssetname());
                        jsonChildAttr.put("Assetid", treeval.get(i).getAssetid());
                        jsonChildAttr.put("parentId", treeval.get(i).getAssetparentid());
