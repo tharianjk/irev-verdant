@@ -250,10 +250,18 @@ public class ToolsController implements Controller {
         	{
         		if(treetype.equals("3"))
         				{
+        			         PVTest pd=mastersservice.getPVTest(Integer.parseInt(testid));
+        			         rptheader=pd.getRptheader();
+        			         rptfooter=pd.getRptfooter();
+        			        	
+        			        	if(rptheader==null || rptheader.equals("") || rptheader=="null")
+        			        		rptheader="No Header";
+        			        	if(rptfooter==null || rptfooter.equals("") || rptfooter=="null")
+        			        		rptfooter="No Footer";
         					 if (operstr.contains("pvpolar")){
         						String frequnit="MHz";
         		        		logger.info("*** pvpolar ** testid "+testid);
-        		        		PVTest pd=mastersservice.getPVTest(Integer.parseInt(testid));
+        		        		
         		        		frequnit=pd.getFrequnit();
         		        		atype=pd.getTesttype();
         		        		String typ=request.getParameter("typ");
@@ -288,7 +296,7 @@ public class ToolsController implements Controller {
         			       		    myModel.put("testid",testid);
         			       		    myModel.put("typ",typ);
         			       		    myModel.put("rptheader",rptheader);
-        			    		    myModel.put("rptfooter",rptfooter);
+        		        		    myModel.put("rptfooter",rptfooter);
         			    		    myModel.put("nprecision",nprecision);
         			    		    myModel.put("seriallist", mastersservice.getPVSerialList(Integer.parseInt(testid)));
         			    		    myModel.put("oper",operstr);
