@@ -148,25 +148,35 @@ progress_clear();
 		
 		<tr>
 		<td > Product Serial No: </td>
-       <td >
-			<form:input type="number" path="productserial" id="serialno"  min="1" max="50" maxlength="2" onchange="fnCheck();"/>          
-			
-			   
-          </td>
+       <td width="50">
+			<form:input width="50" type="number" path="productserial" id="serialno"  min="1" max="50" maxlength="2" onchange="fnCheck();"/>          
+	   </td>
           </tr>
           <tr>
           <td>Test Type * :</td> 
           
-          <td>          
-           <form:select id="datatype"  path="datatype"   >
-           <form:option value="A" label="Azimuth"></form:option>
+          <td width="50">          
+           <form:select id="datatype"  path="datatype"  width="50" >
+           <!-- <form:option value="A" label="Azimuth"></form:option>
    		   <form:option value="E" label="Elevation"></form:option>
    		   <form:option value="T" label="Gain Tracking"></form:option> 
-   		   <form:option value="M" label="Gain Measurement"></form:option>        		 
+   		   <form:option value="M" label="Gain Measurement"></form:option>    -->    		 
 		   </form:select>              
           </td> 
           </tr>
+          <tr> 
+      
+		<td>File Type * :</td> 
+          
+          <td width="50">
+           <form:select id="ftype" name="D1" path="filetype"  >
+           <form:option value="H" label="HP Data "></form:option>
+   		   <form:option value="V" label="VP Data"></form:option>
+   		   <form:option value="M" label="Gain Measurement"></form:option>
+           </form:select>
          
+		</td>
+		</tr>
         </table> 
         </td>
   <c:if test="${hefreq!='' || vefreq !=''  || hafreq !=''  || vafreq !=''  || gmfreq !=''  || htfreq !=''  || vtfreq !='' }">
@@ -230,26 +240,12 @@ progress_clear();
 	</td>
 	</c:if>
  </tr>
- </table>
  
-         <br> 
-         
-         
+ </table>
+  <br>      
        <table id="tbimport">  
        
-       <tr> 
       
-		<td>File Type * :</td> 
-          
-          <td width="50">
-           <form:select id="ftype" name="D1" path="filetype"  >
-           <form:option value="H" label="HP Data "></form:option>
-   		   <form:option value="V" label="VP Data"></form:option>
-   		   <form:option value="M" label="Gain Measurement"></form:option>
-           </form:select>
-         
-		</td>
-		</tr>
 	
 		<tr>
 		<td>
@@ -371,6 +367,8 @@ progress_clear();
 <script>
 var mode='<%=request.getParameter("mode")%>';
 var testid='${testid}';
+var testtype='${testtype}';
+console.log("testtype="+testtype);
 var check=1;
 $(document).ready( function () {	 
 	
@@ -382,17 +380,7 @@ $(document).ready( function () {
 			{
 			if(savestat==1)
 				{
-		flashMessenger.setText(msg);
-		var url = '<%=request.getContextPath()%>/assettree.htm?treemode=view';     
-        parent.frames['AssetTree'].location = url; 
-        parent.document.getElementById("od").style.display="none";
-  	    parent.document.getElementById("ar").style.display="none";
-  	    parent.document.getElementById("pp").style.display="none";
-  	    parent.document.getElementById("3db").style.display="none";
-  	    parent.document.getElementById("10db").style.display="none";
-  	    parent.document.getElementById("cpg").style.display="none";
-  	    parent.document.getElementById("blobe").style.display="none";
-  	    parent.document.getElementById("apt").style.display="none";
+		         flashMessenger.setText(msg);
 				}
 			else{
 				document.getElementById('errmsg').innerHTML=msg;
@@ -421,7 +409,43 @@ $(document).ready( function () {
 			}
 	
 	
-	var datatype = document.getElementById('datatype');
+	var odatatype = document.getElementById('datatype');
+	odatatype.InnerHTML="";
+	var oftype = document.getElementById('ftype');
+	if( testtype=="CO" ) {	
+		var el = document.createElement("option");
+		el.textContent = "--Select--";
+		el.value = "-1";
+		odatatype.appendChild(el);
+	    el = document.createElement("option");
+	    el.textContent = 'Azimuth';
+	    el.value ='A';
+	    odatatype.appendChild(el);
+	    el = document.createElement("option");
+	    el.textContent = 'Elevation';
+	    el.value ='E';
+	    odatatype.appendChild(el);
+	    el = document.createElement("option");
+	    el.textContent = 'Gain Measurement';
+	    el.value ='M';
+	    odatatype.appendChild(el);}
+	else if(testtype=='GM')	
+	{	 
+		var el = document.createElement("option");
+		el.textContent = "Gain Measurement";
+		el.value = "M";
+		odatatype.appendChild(el);
+	}
+	else if(testtype=='GT')	
+	{	 
+		var el = document.createElement("option");
+		el.textContent = "Gain Tracking";
+		el.value = "T";
+		odatatype.appendChild(el);
+	}
+	
+	
+	
 	//var ptype=document.getElementById("ptype").value;
 	var i;
 	
@@ -431,7 +455,7 @@ $(document).ready( function () {
 	 document.getElementById("frequnit").disabled = true;
 	 if(serialid!="" && serialid!=null && serialid !='null' && serialid!=0)
 		{
-		
+		 document.getElementById("serialid").disabled = true;
 		 $("#datatype").val('${datatype}').change();
 		 if(mode=='edit')
 			 {
@@ -459,7 +483,8 @@ $(document).ready( function () {
 	 }
 	 
 	 if( serialid!="" && serialid!=null && serialid !='null' && serialid!=0 && mode!='edit'){
-	 $('#tblmain').find('input, textarea, button, select,checkbox').attr('disabled',true);
+	 //$('#tblmain').find('input, textarea, button, select,checkbox').attr('disabled',true);
+	 document.getElementById("serialid").disabled = true;
 	 document.getElementById("more").style.visibility="visible";
 	 document.getElementById("done").style.visibility="visible";
 	 document.getElementById("save").style.visibility="hidden";
@@ -579,6 +604,13 @@ function Edit(){
 
 function AddPrev(){
 	if(document.getElementById("chkdel").checked){
+		var datatype=document.getElementById("datatype").value;
+		if(datatype==null || datatype=="" || datatype=="-1")
+		{
+		alert(" Select Test Type");
+		return;
+		}
+		
 		var ftype=document.getElementById("ftype").value;
 		if(ftype==null || ftype=="" || ftype=="-1")
 		{

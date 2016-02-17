@@ -120,12 +120,13 @@ public class SetupController implements Controller {
             }
         	else if (operstr.contains("pvserial")){
         		logger.info("*** PVSerial settings**");
+        		
         		String testid = request.getParameter("testid");
         		List<PVSerialData> pvserial=this.mastersservice.getPVSerialList(Integer.parseInt(testid));
         		myModel.put("pvserial", pvserial); 
         		myModel.put("stat", stat );
-        		myModel.put("testid", testid );
-        		myModel.put("testname", pvserial.get(0).getTestname() );
+        		myModel.put("testid", testid );        		
+        		myModel.put("testname", mastersservice.getPVTest(Integer.parseInt(testid)).getTestname() );
         		return new ModelAndView("pvseriallist", "model", myModel);
         		
         	}

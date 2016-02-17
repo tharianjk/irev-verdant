@@ -1,5 +1,8 @@
 alter table product add prodmodel varchar(100);
 
+drop procedure spPVPolarPlot;
+drop procedure if exists spPVPolarSummary;
+
 drop table if exists pv_GainSTDHorn;
 drop table if exists pv_testfreq;
 drop table if exists pv_vdata;

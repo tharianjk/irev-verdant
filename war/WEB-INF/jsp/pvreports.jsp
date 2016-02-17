@@ -113,8 +113,8 @@ function Redirect(){
 					}
 				if(selslno=="")
 				{
-				alert("Serial Nos not selected");
-				return;
+					alert("Serial Nos not selected");
+					return;
 				}
 				
 		if(document.getElementById('all').checked){
