@@ -160,6 +160,49 @@ function fnsetstat(typ,msg)
 			window.frames['AppBody'].location=url;
 			AssetTree.monitorstat="Reports";
 	    }
+		else if(typ=="gt" ) 
+		{			
+			url="tools.htm?oper=gt&typ=G&testid="+testid+"&atype="+AssetTree.atype+"&treetype="+treetype;
+			window.frames['AppBody'].location=url;
+			AssetTree.monitorstat="Reports";
+	    }
+		else if(typ=="gm" ) 
+		{			
+			url="tools.htm?oper=gm&typ=G&testid="+testid+"&atype="+AssetTree.atype+"&treetype="+treetype;
+			window.frames['AppBody'].location=url;
+			AssetTree.monitorstat="Reports";
+	    }
+		else if(typ=="a_bs_bl" ) 
+		{			
+			url="tools.htm?oper=bsbl&typ=A&testid="+testid+"&atype="+AssetTree.atype+"&treetype="+treetype;
+			window.frames['AppBody'].location=url;
+			AssetTree.monitorstat="Reports";
+	    }
+		else if(typ=="e_bs_bl" ) 
+		{			
+			url="tools.htm?oper=bsbl&typ=E&testid="+testid+"&atype="+AssetTree.atype+"&treetype="+treetype;
+			window.frames['AppBody'].location=url;
+			AssetTree.monitorstat="Reports";
+	    }
+		else if(typ=="axial_e" ) 
+		{			
+			url="tools.htm?oper=axial&typ=E&testid="+testid+"&atype="+AssetTree.atype+"&treetype="+treetype;
+			window.frames['AppBody'].location=url;
+			AssetTree.monitorstat="Reports";
+	    }
+		else if(typ=="axial_ep" ) 
+		{			
+			url="tools.htm?oper=axial&typ=EP&testid="+testid+"&atype="+AssetTree.atype+"&treetype="+treetype;
+			window.frames['AppBody'].location=url;
+			AssetTree.monitorstat="Reports";
+	    }
+		else if(typ=="axial_en" ) 
+		{			
+			url="tools.htm?oper=axial&typ=EN&testid="+testid+"&atype="+AssetTree.atype+"&treetype="+treetype;
+			window.frames['AppBody'].location=url;
+			AssetTree.monitorstat="Reports";
+	    }
+		
 		
 	}
 	

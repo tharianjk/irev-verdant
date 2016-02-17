@@ -56,8 +56,10 @@ function Redirect(){
    		 <form:option value="V" label="VT-JK S10 L ATP-2 REV 00"></form:option> 
 		</form:select>              
           </td> 
-          
-          <td>
+          <tr>
+         <td>Product Model  :</td> 
+		<td><form:textarea id="prodmodel"  path="prodmodel"  rows="2" cols="50" /></td> 
+          </tr>
        	  
 	  <!--  <form:checkbox id="bwithcp"  path="bwithcp" style="visibility:hidden;"  /><label id="lbl1" style="visibility:hidden;" >With CP conversion</label></td>--> 
          </tr> 

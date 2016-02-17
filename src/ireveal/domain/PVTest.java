@@ -19,8 +19,14 @@ private String testname;
 private String testdesc;
 private String frequnit;
 private String testtype;
+private String instslno;
 
-
+public String getInstslno() {
+	return instslno;
+}
+public void setInstslno(String instslno) {
+	this.instslno = instslno;
+}
 public String getTesttype() {
 	return testtype;
 }

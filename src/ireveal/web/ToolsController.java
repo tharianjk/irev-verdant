@@ -280,7 +280,7 @@ public class ToolsController implements Controller {
         		        		 myModel.put("seriallist", mastersservice.getPVSerialList(Integer.parseInt(testid)));
         		                return new ModelAndView("pvpolar", "model", myModel);        	
         		        	}
-        					 else if (operstr.equals("threedb") || operstr.equals("tendb") ){
+        					 else if (operstr.equals("gm") || operstr.equals("gt") || operstr.equals("threedb") || operstr.equals("tendb") || operstr.equals("axial") || operstr.equals("bsbl")  ){
         							     			        		
         							String typ = request.getParameter("typ");
         			        		logger.info("*** db ** testid= "+testid +" atype= "+atype);
@@ -294,6 +294,7 @@ public class ToolsController implements Controller {
         			    		    myModel.put("oper",operstr);
         			               return new ModelAndView("pvreports", "model", myModel);        	
         			       	}
+        					 
         					
         				}
 			if (operstr.equals("ampphase"))
