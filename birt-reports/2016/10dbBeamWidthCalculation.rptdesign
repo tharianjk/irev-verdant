@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="author">iReveal Technologies 2016</property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.3.2.v20140211-1400 Build &lt;4.3.2.v20140218-1056></property>
+    <text-property name="title">10 dB BEAMWIDTH CALCULATION</text-property>
+    <property name="units">in</property>
+    <property name="theme">BorderStyle.defaultTheme</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">BorderStyle.rptlibrary</property>
+            <property name="namespace">BorderStyle</property>
+        </structure>
+        <structure>
+            <property name="fileName">cssstr.rptlibrary</property>
+            <property name="namespace">cssstr</property>
+        </structure>
+    </list-property>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="VerdantProfile" id="7">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://localhost:3306/verdant</property>
+            <property name="odaUser">root</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">d2VsY29tZQ==</encrypted-property>
+            <property name="OdaConnProfileName">VerdantProfile</property>
+            <property name="OdaConnProfileStorePath">VerdantProfile</property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="TestDesc" id="8">
+            <structure name="cachedMetaData"/>
+            <property name="dataSource">VerdantProfile</property>
+            <xml-property name="queryText"><![CDATA[select 
+from ]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="AzimuthPattern" id="9">
+            <structure name="cachedMetaData"/>
+            <property name="dataSource">VerdantProfile</property>
+            <xml-property name="queryText"><![CDATA[select 
+from ]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="ElevationPattern" id="10">
+            <structure name="cachedMetaData"/>
+            <property name="dataSource">VerdantProfile</property>
+            <xml-property name="queryText"><![CDATA[select 
+from ]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="table-cell" id="461">
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">thin</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">thin</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">thin</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">thin</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <table id="202">
+            <column id="268">
+                <property name="style">Border</property>
+            </column>
+            <column id="269">
+                <property name="style">Border</property>
+            </column>
+            <column id="270">
+                <property name="style">Border</property>
+            </column>
+            <column id="271">
+                <property name="style">Border</property>
+            </column>
+            <header>
+                <row id="203">
+                    <cell id="204">
+                        <property name="colSpan">4</property>
+                        <property name="rowSpan">1</property>
+                        <label id="286">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">14pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Test Details</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="208">
+                    <cell id="209">
+                        <label id="272">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Test Description</text-property>
+                        </label>
+                    </cell>
+                    <cell id="210">
+                        <property name="colSpan">3</property>
+                        <property name="rowSpan">1</property>
+                    </cell>
+                </row>
+                <row id="213">
+                    <cell id="214">
+                        <label id="273">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Test Specification </text-property>
+                        </label>
+                    </cell>
+                    <cell id="215">
+                        <property name="colSpan">3</property>
+                        <property name="rowSpan">1</property>
+                    </cell>
+                </row>
+                <row id="218">
+                    <cell id="219">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">2</property>
+                        <label id="274">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Instrument/s used</text-property>
+                        </label>
+                    </cell>
+                    <cell id="220">
+                        <label id="282">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Instrument/ Ref Antenna Used</text-property>
+                        </label>
+                    </cell>
+                    <cell id="221">
+                        <label id="283">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">SL. No</text-property>
+                        </label>
+                    </cell>
+                    <cell id="222">
+                        <label id="284">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Calibration Due date</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="223">
+                    <property name="height">0.22916666666666666in</property>
+                    <cell id="225"/>
+                    <cell id="226"/>
+                    <cell id="227"/>
+                </row>
+                <row id="228">
+                    <cell id="229">
+                        <label id="276">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text"> Ref Antenna Used</text-property>
+                        </label>
+                    </cell>
+                    <cell id="230">
+                        <property name="colSpan">3</property>
+                        <property name="rowSpan">1</property>
+                    </cell>
+                </row>
+                <row id="233">
+                    <cell id="234">
+                        <label id="277">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Test Centre</text-property>
+                        </label>
+                    </cell>
+                    <cell id="235">
+                        <property name="colSpan">3</property>
+                        <property name="rowSpan">1</property>
+                    </cell>
+                </row>
+                <row id="238">
+                    <cell id="239">
+                        <label id="278">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Test Conducted on</text-property>
+                        </label>
+                    </cell>
+                    <cell id="240">
+                        <property name="colSpan">3</property>
+                        <property name="rowSpan">1</property>
+                    </cell>
+                </row>
+                <row id="243">
+                    <cell id="244">
+                        <label id="279">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Product Title</text-property>
+                        </label>
+                    </cell>
+                    <cell id="245">
+                        <property name="colSpan">3</property>
+                        <property name="rowSpan">1</property>
+                    </cell>
+                </row>
+                <row id="248">
+                    <cell id="249">
+                        <label id="280">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Product Part No.</text-property>
+                        </label>
+                    </cell>
+                    <cell id="250">
+                        <property name="colSpan">3</property>
+                        <property name="rowSpan">1</property>
+                    </cell>
+                </row>
+                <row id="253">
+                    <cell id="254">
+                        <label id="281">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Product Model No.</text-property>
+                        </label>
+                    </cell>
+                    <cell id="255">
+                        <property name="colSpan">3</property>
+                        <property name="rowSpan">1</property>
+                    </cell>
+                </row>
+                <row id="258">
+                    <cell id="259">
+                        <label id="285">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Product Sl. No &#13;
+Antenna without Radome&#13;
+</text-property>
+                        </label>
+                    </cell>
+                    <cell id="260">
+                        <property name="colSpan">3</property>
+                        <property name="rowSpan">1</property>
+                    </cell>
+                </row>
+            </detail>
+        </table>
+        <label id="355">
+            <property name="backgroundColor">#C0C0C0</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">TABLE-1</text-property>
+        </label>
+        <table id="319">
+            <property name="style">Border</property>
+            <column id="344">
+                <property name="style">Border</property>
+            </column>
+            <column id="345">
+                <property name="style">Border</property>
+            </column>
+            <column id="346">
+                <property name="style">Border</property>
+            </column>
+            <column id="347">
+                <property name="style">Border</property>
+            </column>
+            <column id="348">
+                <property name="style">Border</property>
+            </column>
+            <header>
+                <row id="320">
+                    <cell id="321">
+                        <property name="colSpan">5</property>
+                        <property name="rowSpan">1</property>
+                        <label id="349">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">14pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Azimuth Pattern SPEC:    110º to 200º over 80 % of the Band &amp;100º to 220º over 100% of the Band</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="326">
+                    <cell id="327">
+                        <label id="350">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Frequency (GHz)</text-property>
+                        </label>
+                    </cell>
+                    <cell id="328">
+                        <label id="351">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Left 10dB point&#13;
+(C1)&#13;
+</text-property>
+                        </label>
+                    </cell>
+                    <cell id="329">
+                        <label id="352">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Right 10dB point &#13;
+(D1)&#13;
+</text-property>
+                        </label>
+                    </cell>
+                    <cell id="330">
+                        <label id="353">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">10dB Beam width CP (D1-C1)</text-property>
+                        </label>
+                    </cell>
+                    <cell id="331">
+                        <label id="354">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Remarks</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="332">
+                    <cell id="333"/>
+                    <cell id="334"/>
+                    <cell id="335"/>
+                    <cell id="336"/>
+                    <cell id="337"/>
+                </row>
+            </detail>
+        </table>
+        <table id="383">
+            <property name="style">Border</property>
+            <column id="409">
+                <property name="style">Border</property>
+            </column>
+            <column id="410">
+                <property name="style">Border</property>
+            </column>
+            <column id="411">
+                <property name="style">Border</property>
+            </column>
+            <column id="412">
+                <property name="style">Border</property>
+            </column>
+            <header>
+                <row id="413">
+                    <cell id="414">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">2</property>
+                        <label id="418">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">No. Of points within 100º to 220º</text-property>
+                        </label>
+                    </cell>
+                    <cell id="415">
+                        <label id="420">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">SPEC</text-property>
+                        </label>
+                    </cell>
+                    <cell id="416">
+                        <label id="421">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Measured</text-property>
+                        </label>
+                    </cell>
+                    <cell id="417">
+                        <label id="422">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Remarks</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="384">
+                    <cell id="386">
+                        <label id="426">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">=18 Points</text-property>
+                        </label>
+                    </cell>
+                    <cell id="387"/>
+                    <cell id="388"/>
+                </row>
+            </header>
+            <detail>
+                <row id="389">
+                    <cell id="390">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">2</property>
+                        <label id="419">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">No. Of points within 110º to 200º</text-property>
+                        </label>
+                    </cell>
+                    <cell id="391">
+                        <label id="423">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">SPEC</text-property>
+                        </label>
+                    </cell>
+                    <cell id="392">
+                        <label id="424">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Measured</text-property>
+                        </label>
+                    </cell>
+                    <cell id="393">
+                        <label id="425">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Remarks</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="394">
+                    <cell id="396">
+                        <label id="427">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">≥14 Points</text-property>
+                        </label>
+                    </cell>
+                    <cell id="397"/>
+                    <cell id="398"/>
+                </row>
+            </detail>
+        </table>
+        <label id="382">
+            <property name="backgroundColor">#C0C0C0</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">TABLE-2</text-property>
+        </label>
+        <table id="356">
+            <property name="style">Border</property>
+            <column id="377">
+                <property name="style">Border</property>
+            </column>
+            <column id="378">
+                <property name="style">Border</property>
+            </column>
+            <column id="379">
+                <property name="style">Border</property>
+            </column>
+            <column id="380">
+                <property name="style">Border</property>
+            </column>
+            <column id="381">
+                <property name="style">Border</property>
+            </column>
+            <header>
+                <row id="357">
+                    <cell id="358">
+                        <property name="colSpan">5</property>
+                        <property name="rowSpan">1</property>
+                        <label id="359">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">14pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Elevation Pattern</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="360">
+                    <cell id="361">
+                        <label id="362">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Frequency (GHz)</text-property>
+                        </label>
+                    </cell>
+                    <cell id="363">
+                        <label id="364">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Left 10dB point&#13;
+(C1)&#13;
+</text-property>
+                        </label>
+                    </cell>
+                    <cell id="365">
+                        <label id="366">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Right10dB point&#13;
+(D1)&#13;
+</text-property>
+                        </label>
+                    </cell>
+                    <cell id="367">
+                        <label id="368">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">10dB Beam&#13;
+width CP&#13;
+(D1-C1)&#13;
+</text-property>
+                        </label>
+                    </cell>
+                    <cell id="369">
+                        <label id="370">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Remarks</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="371">
+                    <cell id="372"/>
+                    <cell id="373"/>
+                    <cell id="374"/>
+                    <cell id="375"/>
+                    <cell id="376"/>
+                </row>
+            </detail>
+        </table>
+        <table id="428">
+            <property name="style">Border</property>
+            <column id="457">
+                <property name="style">Border</property>
+            </column>
+            <column id="458">
+                <property name="style">Border</property>
+            </column>
+            <column id="459">
+                <property name="style">Border</property>
+            </column>
+            <column id="460">
+                <property name="style">Border</property>
+            </column>
+            <header>
+                <row id="429">
+                    <cell id="430">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">2</property>
+                        <label id="431">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">No. Of points within 100º to 220º</text-property>
+                        </label>
+                    </cell>
+                    <cell id="432">
+                        <label id="433">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">SPEC</text-property>
+                        </label>
+                    </cell>
+                    <cell id="434">
+                        <label id="435">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Measured</text-property>
+                        </label>
+                    </cell>
+                    <cell id="436">
+                        <label id="437">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Remarks</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="438">
+                    <cell id="439">
+                        <label id="440">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">=18 Points</text-property>
+                        </label>
+                    </cell>
+                    <cell id="441"/>
+                    <cell id="442"/>
+                </row>
+            </header>
+            <detail>
+                <row id="443">
+                    <cell id="444">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">2</property>
+                        <label id="445">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">No. Of points within 110º to 200º</text-property>
+                        </label>
+                    </cell>
+                    <cell id="446">
+                        <label id="447">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">SPEC</text-property>
+                        </label>
+                    </cell>
+                    <cell id="448">
+                        <label id="449">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Measured</text-property>
+                        </label>
+                    </cell>
+                    <cell id="450">
+                        <label id="451">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Remarks</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="452">
+                    <cell id="453">
+                        <label id="454">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">≥14 Points</text-property>
+                        </label>
+                    </cell>
+                    <cell id="455"/>
+                    <cell id="456"/>
+                </row>
+            </detail>
+        </table>
+    </body>
+</report>

@@ -1,6 +1,6 @@
 -- alter table product add prodmodel varchar(100);
 
-drop procedure spPVPolarPlot;
+drop procedure if exists spPVPolarPlot;
 drop procedure if exists spPVPolarSummary;
 
 drop table if exists pv_GainSTDHorn;
@@ -16,9 +16,10 @@ drop table if exists pv_gt_intermediate;
 drop table if exists pv_gt_calculated;
 drop table if exists pv_radata;
 drop table if exists pv_gmcalculated;
+
+drop table if exists pv_speccalculated;
 drop table if exists pv_prodserial;
 drop table if exists pv_testdata;
-drop table if exists pv_speccalculated;
 
 CREATE TABLE pv_testdata (
   Test_id int(11) NOT NULL AUTO_INCREMENT,
