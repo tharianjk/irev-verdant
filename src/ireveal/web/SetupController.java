@@ -118,7 +118,7 @@ public class SetupController implements Controller {
         		myModel.put("roles", this.setupManager.getRoles()); 
         		return new ModelAndView("rolelist", "model", myModel);
             }
-        	else if (operstr.contains("pvserial")){
+        	else if (operstr.equals("pvserial")){
         		logger.info("*** PVSerial settings**");
         		
         		String testid = request.getParameter("testid");
@@ -130,7 +130,27 @@ public class SetupController implements Controller {
         		return new ModelAndView("pvseriallist", "model", myModel);
         		
         	}
-        	
+        	else if (operstr.equals("deletepvserial")){
+        		deletemsg="Deleted";
+            	String id = request.getParameter("pvserialid");
+            	String serialno = request.getParameter("serialno");
+            	String testid=request.getParameter("testid");
+        		logger.info("*** serial delete**" +id);
+        		boolean blnstat=this.mastersservice.deletePVSerial(Integer.parseInt(id));
+     		    stat=1; 
+        		if(blnstat==false)
+        		{
+        			stat=0;
+        			deletemsg=serialno +" could not be deleted reference exists";
+        		}
+        		myModel.put("msg", deletemsg );
+        		myModel.put("stat", stat );
+        		myModel.put("testid", testid );   
+        		List<PVSerialData> pvserial=this.mastersservice.getPVSerialList(Integer.parseInt(testid));
+        		myModel.put("pvserial", pvserial); 
+        		myModel.put("testname", mastersservice.getPVTest(Integer.parseInt(testid)).getTestname() );
+        		return new ModelAndView("pvseriallist", "model", myModel);
+            }
                 return new ModelAndView("setup", "model", myModel);
              
     }

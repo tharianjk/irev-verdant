@@ -1,4 +1,4 @@
-alter table product add prodmodel varchar(100);
+-- alter table product add prodmodel varchar(100);
 
 drop procedure spPVPolarPlot;
 drop procedure if exists spPVPolarSummary;
