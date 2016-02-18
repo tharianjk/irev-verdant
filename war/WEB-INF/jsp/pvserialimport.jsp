@@ -149,7 +149,7 @@ progress_clear();
 		<tr>
 		<td > Product Serial No: </td>
        <td width="50">
-			<form:input width="50" type="number" path="productserial" id="serialno"  min="1" max="50" maxlength="2" onchange="fnCheck();"/>          
+			<form:input width="50" type="number" path="productserial" id="serialno" required="required"  min="1" max="50" maxlength="2" onchange="fnCheck();"/>          
 	   </td>
           </tr>
           <tr>

@@ -143,6 +143,7 @@ $(document).ready(function(){
 		var i=0;
 		var j=0;
 		var fre= '${model.strfreqs}';
+		var url="";
 		nprecision=document.getElementById("precision").value;	
 		var serialid=document.getElementById("serial").value;	
 		var uname='${model.uname}';
@@ -204,12 +205,14 @@ $(document).ready(function(){
 	
 	i=0;
 	j=0;
-			for (i==0;i<freqs.length;i++){				
+			for (i==0;i<freqs.length;i++){	
+				
 				if(document.getElementById(freqs[i]).checked){					
 					if(j==0){
 						selfreq=freqs[i];}
 					else{selfreq=selfreq+','+freqs[i];}
 					strfreqs[j]=freqs[i];
+					
 					j=j+1;
 					}	
 				}
@@ -221,7 +224,7 @@ $(document).ready(function(){
 					}
 				if(j==1)
 				{
-					var url="/birt-viewer/frameset?__report=verdant/PolarGeneric.rptdesign&type="+typ+"&testid="+testid+"&serialid="+serialid+"&datatype="+datatype+"&scale="+scale+"&max="+max+"&min="+min+"&rpth="+rptheader+"&rptf="+rptfooter+"&freq1="+selfreq+
+					var url="/birt-viewer/frameset?__report=verdant/PolarGenericRadiationPattern.rptdesign&type="+typ+"&testid="+testid+"&serialid="+serialid+"&vdatatype="+datatype+"&scale="+scale+"&max="+max+"&min="+min+"&rpth="+rptheader+"&rptf="+rptfooter+"&freq1="+selfreq+
 					"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
 					"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&freq11="+strfreqs[10]+"&freq12="+strfreqs[11]+"&freq13="+strfreqs[12]+"&freq14="+strfreqs[13]+"&freq15="+strfreqs[14]+"&freq16="+strfreqs[15]+"&freq17="+strfreqs[16]+"&freq18="+strfreqs[17];
 				}

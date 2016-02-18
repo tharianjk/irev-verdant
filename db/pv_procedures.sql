@@ -1,6 +1,8 @@
 drop procedure spPVPolarPlot;
 drop procedure if exists spPVPolarSummary;
-
+drop procedure if exists spPV_DB;
+drop procedure if exists spPV_BSBL;
+drop procedure if exists spPV_Axial;
 -- --------------------------------------------------------------------------------
 -- Routine DDL
 -- Note: comments before and after the routine body will not be stored by the server
@@ -238,4 +240,269 @@ if freqparm >0 then
 	end if;	
    	
 end if;     
-END
+END$$
+
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE  PROCEDURE spPV_DB(
+testid INT,
+typ varchar(5), -- 3,10 db
+vdatatype varchar(5), -- Azimuth,Elevation
+deg varchar(10), -- 0,BM
+serialid INT,
+prec int
+
+)
+BEGIN
+
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'spPV_DB';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+
+
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(l_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Test id : ", testid, ", deg : ",deg, ", typ : ",typ,",serialid : ",serialid);
+		call debug(l_proc_id, @details,'I','I');
+        
+         RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+	end if;
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(l_proc_id,'in spPV_DB','I','I');
+ end if;
+
+
+-- select nprecision into prec from fwk_company;
+
+ select frequnit into @unt from pv_testdata where test_id=testid;
+
+
+if typ='3' then
+
+	select case @unt when 'GHz' then frequency/1000 else frequency end frequency, 
+    round(case deg when '0' then 3Db_BW_0_left else 3Db_BW_BMax_left end,prec) ldbpoint,
+    round(case deg when '0' then 3Db_BW_0_right else 3Db_BW_BMax_right end,prec) rdbpoint ,
+    round(case deg when '0' then 3Db_BW_0 else 3Db_BW_BMax end,prec) cp,'' remarks 
+    from pv_cpcalculated where prodserial_id=serialid and datatype=vdatatype ;
+end if;
+if typ='10' then
+	select case @unt when 'GHz' then frequency/1000 else frequency end frequency, 
+    round(case deg when '0' then 10Db_BW_0_left else 10Db_BW_BMax_left end,prec) ldbpoint,
+    round(case deg when '0' then 10Db_BW_0_right else 10Db_BW_BMax_right end,prec) rdbpoint ,
+    round(case deg when '0' then 10Db_BW_0 else 10Db_BW_BMax end,prec) cp,'' remarks
+    from pv_cpcalculated where prodserial_id=serialid and datatype=vdatatype ;
+end if;
+
+
+END$$
+
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE  PROCEDURE spPV_BSBL(
+testid INT,
+vdatatype varchar(5), -- Azimuth,Elevation
+deg varchar(10), -- 0,BM
+serialid INT,
+prec int
+
+)
+BEGIN
+
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'spPV_BSBL';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+
+
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(l_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Test id : ", testid, ", deg : ",deg, ", typ : ",typ,",serialid : ",serialid);
+		call debug(l_proc_id, @details,'I','I');
+        
+         RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+	end if;
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(l_proc_id,'in spPV_BSBL','I','I');
+ end if;
+
+
+-- select nprecision into prec from fwk_company;
+
+ select frequnit into @unt from pv_testdata where test_id=testid;
+  select case @unt when 'GHz' then frequency/1000 else frequency end frequency, 
+   round( case deg when '0' then 3Db_BW_0_left else 3Db_BW_BMax_left end,prec) ldbpoint,
+    round(case deg when '0' then 3Db_BW_0_right else 3Db_BW_BMax_right end,prec) rdbpoint ,
+    round(case deg when '0' then 3Db_BS_0 else 3Db_BS_BMax end,prec) BS ,
+    round(X1,prec) X1, round(Y1,prec) Y1, round(Backlobe,prec) Backlobe, '' remark
+    from pv_cpcalculated where prodserial_id=serialid and datatype=vdatatype ;
+
+
+
+END$$
+
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE  PROCEDURE spPV_Axial(
+testid INT,
+vdatatype varchar(5), -- Elevation
+deg varchar(10), -- 0,BM
+serialid INT,
+prec int
+
+)
+BEGIN
+
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'spPV_Axial';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+
+
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(l_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Test id : ", testid, ", deg : ",deg, ", typ : ",typ,",serialid : ",serialid);
+		call debug(l_proc_id, @details,'I','I');
+        
+         RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+	end if;
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(l_proc_id,'in spPV_Axial','I','I');
+ end if;
+
+
+-- select nprecision into prec from fwk_company;
+
+ select frequnit into @unt from pv_testdata where test_id=testid;
+
+  select case @unt when 'GHz' then frequency/1000 else frequency end frequency, 
+   round( case deg when '0' then VP_0 when 'P45' then VP_P45 else VP_M45 end,prec) VP_A,
+   round( case deg when '0' then HP_0 when 'P45' then HP_P45 else HP_M45 end,prec) VP_B,
+   round( case deg when '0' then AR_0 when 'P45' then AR_P45 else AR_M45 end,prec) AR, '' remark
+   from pv_arcalculated where prodserial_id=serialid and datatype=vdatatype ;
+
+
+
+END$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
