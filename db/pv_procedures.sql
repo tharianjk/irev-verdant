@@ -1,5 +1,10 @@
-drop procedure spPVPolarPlot;
+drop procedure if exists spPVPolarPlot;
 drop procedure if exists spPVPolarSummary;
+drop procedure if exists pv_calc_Gain_Tracking;
+drop procedure if exists pv_Calculate_params;
+drop procedure if exists pv_calc_AxialRatio;
+drop procedure if exists pv_calc_Gain_Measurement;
+drop procedure if exists pv_calc_cpdata;
 
 -- --------------------------------------------------------------------------------
 -- Routine DDL
@@ -238,4 +243,495 @@ if freqparm >0 then
 	end if;	
    	
 end if;     
-END
+END$$
+
+DELIMITER $$
+
+-- to calculate axial ratio
+CREATE FUNCTION `pv_calc_AxialRatio`(
+cProdSerialId INT, freq decimal(40,20), degree INT, cdatatype char(2)
+) RETURNS decimal(40,20)
+BEGIN
+
+# Axial Ratio =( HP – VP) at degree for freq
+
+DECLARE AR decimal(40,20) default 0;
+
+
+-- if degree = 0 then 
+-- 	set degree = 360;
+--  else
+if degree = -45 then
+	set degree = 315;
+end if;
+
+-- HP
+select Amplitude into @hp from pv_hdata where Prodserial_id = cProdSerialId and datatype = cdatatype and Frequency = freq
+and Angle = degree ;
+-- VP
+select Amplitude into @vp from pv_vdata where Prodserial_id = cProdSerialId and datatype = cdatatype and Frequency = freq
+and Angle = degree ;
+
+set AR = @hp - @vp;
+ 
+RETURN AR;
+END$$
+
+DELIMITER ;
+
+-- to calculate CPdata
+DELIMITER $$
+CREATE FUNCTION `pv_calc_cpdata`(
+cProdSerialId INT, freq decimal(40,20), cAngle decimal(40,20),
+cAmplitudeA decimal(40,20),cAmplitudeB decimal(40,20)
+) RETURNS decimal(40,20)
+BEGIN
+
+declare C,D,E,cpdata decimal(40,20) default 0;
+
+
+if cAmplitudeA > cAmplitudeB then
+	set C = cAmplitudeA - cAmplitudeB;
+else 
+	set C = cAmplitudeB - cAmplitudeA;
+end if;
+
+set D = EXP(C/20);
+-- select D;
+
+set E = 20 * LOG10((D+1)/(1.414*D));
+-- select E;
+
+if cAmplitudeA > cAmplitudeB then
+	set cpdata = cAmplitudeA+E;
+else 
+	set cpdata = cAmplitudeB+E;
+end if;
+
+-- select cpdata;    
+    
+RETURN cpdata;
+END$$
+
+DELIMITER ;
+
+-- the parent calculate procedure for new type - call with myPoltype = 'PV'
+DELIMITER $$
+CREATE PROCEDURE `pv_Calculate_params`(
+myTestId INT,
+-- myFreqUnit char(1), -- 'M' = MHz, 'G' = GHz
+myPoltype char(2) -- 'L'=linear, 'C'= circular
+)
+BEGIN
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'pv_Calculate_params';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+
+declare myfreq,myserial decimal(40,20);
+declare myTestDate datetime;
+DECLARE myTestType char(4);
+
+ -- for the cursor
+DECLARE done INT DEFAULT 0;
+
+ DECLARE freqcur CURSOR FOR
+ select Frequency,p.Prodserial_Id -- , lineargain
+ from pv_testfreq t
+ inner join pv_prodserial p on p.Test_id = t.Test_id
+ where t.Test_id = myTestId
+ order by p.Prodserial_Id, Frequency;
+ 
+
+ #declare handle 
+  DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+  
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(l_proc_id, @full_error,'F','I');
+        SET @infoText = CONCAT("Test Id : ", myTestId, ", Polarization Type : ",myPolType,", Test Type : ", myTestType);
+		call debug(l_proc_id,@infoText,'I','I');
+        
+        
+	end if;
+    
+    -- rollback all calculations
+    delete from pv_gt_intermediate where Test_id = myTestId;
+    delete from pv_gt_calculated where Test_id = myTestId;
+	delete from pv_gmcalculated where test_id = myTestId;
+    delete from pv_cpcalculated where test_id = myTestId;
+	delete from pv_speccalculated where test_id = myTestId;
+
+    
+    -- raise exception
+	RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(l_proc_id,'Debug logging is ON. Calculations begin ...','I','I');
+ end if;
+
+
+# Declarations -end
+
+select TestDate,testType into myTestDate,myTestType 
+from pv_testdata where Test_id = myTestId;
+
+if isDebug > 0 then
+	SET @infoText = CONCAT("Test Id : ", myTestId, ", Polarization Type : ",myPolType,", Test Type : ", myTestType);
+	call debug(l_proc_id,@infoText,'I','I');
+ end if;
+ 
+#open cursor
+  OPEN freqcur;
+  
+  #starts the loop
+  pv_the_loop: LOOP
+  
+ FETCH freqcur INTO myfreq,myserial; -- ,mylinear_Gain;
+IF done = 1 THEN
+	if isDebug > 0 then
+		SET @infoText = "Done looping through spot frequencies";
+		call debug(l_proc_id,@infoText,'I','I');
+	end if;
+LEAVE pv_the_loop;
+END IF;
+   
+    -- call calculate(myTestId,myPolType,myfreq,mylinear_Gain,myTestDate,myFreqUnit);
+   
+-- conv GHz to MHz - REMOVED AS IT IS NOT REQUIRED, only M supported
+-- if myFreqUnit = 'G' then
+-- set myfreq = myfreq*1000;
+-- end if;
+        
+        -- sanity check is not done
+        -- call pv_sanity_check(myTestId,myFreq,myPolType,myTestType);
+
+
+#calculations - begin
+-- Gain Measurement
+  IF ( myPolType = 'PV' and myTestType = 'GM') THEN
+	if isDebug > 0 then
+		SET @infoText = CONCAT("invoking Gain-Measurement calculations for frequency : ",myfreq," , serial ",myserial);
+		call debug(l_proc_id,@infoText,'I','I');
+	end if;
+	 call pv_calc_Gain_Measurement(myTestId,myfreq,myTestDate,myserial);
+-- Gain TRacking
+  elseif ( myPolType = 'PV' and myTestType = 'GT') THEN
+	if isDebug > 0 then
+		SET @infoText = CONCAT("invoking Gain Tracking calculations for frequency : ",myfreq," , serial ",myserial);
+		call debug(l_proc_id,@infoText,'I','I');
+	end if;
+	call pv_calc_Gain_Tracking(myTestId,myfreq,myTestDate,myserial);
+-- Combination
+  elseif ( myPolType = 'PV' and myTestType = 'CO') THEN
+	if isDebug > 0 then
+		SET @infoText = CONCAT("invoking Combination calculations for frequency : ",myfreq," , serial ",myserial);
+		call debug(l_proc_id,@infoText,'I','I');
+	end if;
+	call pv_calc_Combination(myTestId,myfreq,myTestDate,myserial);
+    
+    
+ END IF;
+  #Calculations - end
+    
+    END LOOP pv_the_loop;
+ 
+  CLOSE freqcur;
+  
+  -- to populate the spec tables for combination testtype
+  if myTestType = 'CO' then
+    -- call pv_calc_spec(myTestId,myTestDate);
+   end if;
+   
+-- store calculated values for gain tracking
+if myTestType = 'GT' then
+	# store calculated values into calculated table
+	
+    delete from pv_gt_calculated where Test_id = myTestId;
+	  insert into pv_gt_calculated (Test_id,Frequency,TestDate, 
+									MAX_CP_0,MIN_CP_0,Window_0,
+									MAX_CP_P45,MIN_CP_P45,Window_P45,
+									MAX_CP_M45,MIN_CP_M45,Window_M45
+									)
+		select Test_id,Frequency,TestDate, 
+									MAX(CP_0),MIN(CP_0),MAX(CP_0) - MIN(CP_0),
+									MAX(CP_P45),MIN(CP_P45),MAX(CP_P45) - MIN(CP_P45),
+									MAX(CP_M45),MIN(CP_M45),MAX(CP_M45) - MIN(CP_M45)
+							from pv_gt_intermediate
+							where Test_id = myTestId 
+							group by Frequency,Test_id,TestDate;
+
+end if;
+    
+if isDebug > 0 then
+	call debug(l_proc_id,'Calculations end','I','I');
+ end if;
+ 
+END$$
+
+DELIMITER ;
+
+-- Gain measurement calculations
+DELIMITER $$
+CREATE PROCEDURE `pv_calc_Gain_Measurement`(
+gmTestId INT,
+gmFreq decimal(40,20),
+gmTestDate datetime,
+gmSerial INT
+)
+BEGIN
+
+# Declarations -begin
+declare C,Gv,Y,GF,CPGAIN decimal(40,20) default 0;
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare gm_proc_id varchar(100) default 'pv_calc_Gain_Measurement';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+
+ 
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(gm_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Test id : ",gmTestId,",Frequency : ",gmFreq);
+		call debug(gm_proc_id, @details,'I','I');
+        
+	end if;
+	RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(gm_proc_id,'in pv_calc_Gain_Measurement','I','I');
+ end if;
+ 
+ 
+# Declarations -end
+
+# --------------CALCULATIONS BEGIN ----------------------
+
+-- Max Received Amplitude of AUT in VP -> A
+select MAX(Amplitude) into @A from pv_vdata where Prodserial_id = gmSerial and datatype = 'M' and Frequency = gmFreq ;
+
+-- Received Amplitude of STD HORN -> B
+select RecvdAmp into @B from pv_radata where Prodserial_id = gmSerial and Frequency = gmFreq;
+
+-- Received Amp Diff (C=A-B) 
+set C = @A - @B;
+
+-- Gain of STD HORN ,D 
+select stdhorn into @D from pv_GainSTDHorn where test_id = gmTestId and Frequency = gmFreq;
+
+-- Gain (dBLi) ,GV = C+D
+set Gv = C + @D;
+
+-- AXIAL RATIO (dB) X
+select pv_calc_AxialRatio(gmSerial,gmFreq,0,'M') into @X;
+
+-- AXIAL RATIO (UNITLESS) Y= Antilog (X / 20)
+set Y = EXP(@X/20);
+
+-- Gain correction Factor ,GF = 20 log (Y+1/√2*Y)
+set GF = 20 * LOG10((Y+1)/(1.414*Y));
+
+-- CP GAIN = GV + GF (dBiC) Measured GAIN
+set CPGAIN = Gv + GF;
+
+
+# --------------CALCULATIONS END ------------------------
+
+delete from pv_gmcalculated where Prodserial_id = gmSerial and Test_id = gmTestId and Frequency = gmFreq;
+-- insert into calculated table
+insert into pv_gmcalculated (Prodserial_id,Test_id ,Frequency,TestDate,
+							gm_A,gm_B,gm_C,gm_D,gm_Gv,
+                            gm_X,gm_Y,gm_GF,gm_CPGAIN)
+			values
+							(gmSerial, gmTestId, gmFreq, gmTestDate,
+                            @A, @B, C, @D, Gv,
+                            @X, Y, GF, CPGAIN);
+
+ 
+END$$
+
+DELIMITER ;
+
+-- Gain tracking
+DELIMITER $$
+CREATE PROCEDURE `pv_calc_Gain_Tracking`(
+gmTestId INT,
+gmFreq decimal(40,20),
+gmTestDate datetime,
+gmSerial decimal(40,20)
+)
+BEGIN
+
+# Declarations -begin
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare gm_proc_id varchar(100) default 'pv_calc_Gain_Tracking';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+
+
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(gm_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Test id : ",gmTestId,",Frequency : ",gmFreq);
+		call debug(gm_proc_id, @details,'I','I');
+        
+	end if;
+	RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(gm_proc_id,'in pv_calc_Gain_Tracking','I','I');
+ end if;
+ 
+ 
+# Declarations -end
+
+
+# --------------CALCULATIONS BEGIN ----------------------
+
+# Gain tracking on axis
+
+-- hp
+select Amplitude into @Hamp_0 from pv_hdata where Prodserial_id = gmSerial and datatype = 'T' and Frequency = gmFreq
+and Angle = 0 ;
+
+-- vp
+select Amplitude into @Vamp_0 from pv_vdata where Prodserial_id = gmSerial and datatype = 'T' and Frequency = gmFreq
+and Angle = 0 ;
+
+-- cp
+select pv_calc_cpdata(gmSerial, gmFreq, 0,@Hamp_0,@Vamp_0) into @CPamp_0; 
+
+# Gain tracking at +45 degree
+
+-- hp
+select Amplitude into @Hamp_p45 from pv_hdata where Prodserial_id = gmSerial  and datatype = 'T' and Frequency = gmFreq
+and Angle = 45;
+
+-- vp
+select Amplitude into @Vamp_p45 from pv_vdata where Prodserial_id = gmSerial and datatype = 'T' and Frequency = gmFreq
+and Angle = 45 ;
+
+-- cp
+select pv_calc_cpdata(gmSerial, gmFreq, 45,@Hamp_p45,@Vamp_p45) into @CPamp_p45; 
+
+# Gain tracking at -45 degree
+
+-- hp
+select Amplitude into @Hamp_m45 from pv_hdata where Prodserial_id = gmSerial and datatype = 'T' and Frequency = gmFreq
+and Angle = 315 ;
+
+-- vp
+select Amplitude into @Vamp_m45 from pv_vdata where Prodserial_id = gmSerial  and datatype = 'T' and Frequency = gmFreq
+and Angle = 315;
+
+-- cp
+select pv_calc_cpdata(gmSerial, gmFreq, 315, @Hamp_m45, @Vamp_m45) into @CPamp_m45; 
+
+-- store into intermediate table
+delete from pv_gt_intermediate where Prodserial_id= gmSerial and Test_id = gmTestId and Frequency =gmFreq;
+insert into pv_gt_intermediate (Prodserial_id, Frequency, TestDate,
+								HP_0,VP_0,CP_0,
+                                HP_P45,VP_P45,CP_P45,
+                                HP_M45,VP_M45,CP_M45,
+                                Test_id)
+						VALUES (gmSerial, gmFreq, gmTestDate, 
+										@Hamp_0, @Vamp_0, @CPamp_0,
+                                        @Hamp_P45, @Vamp_P45, @CPamp_P45,
+                                        @Hamp_M45, @Vamp_M45, @CPamp_M45,
+                                        gmTestId);
+
+# --------------- CALCULATIONS END ------------------------
+ 
+ 
+END$$
+
+DELIMITER ;
+
+
