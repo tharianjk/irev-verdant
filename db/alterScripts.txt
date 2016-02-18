@@ -268,3 +268,25 @@ CREATE TABLE pv_speccalculated (
   CONSTRAINT FK_SpecCalculated_pv FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id),
   CONSTRAINT FK_SpecCalculated_pv1 FOREIGN KEY (Test_id) REFERENCES pv_testdata (Test_id)
 ) ;
+
+ALTER TABLE pv_hdata
+DROP INDEX Prodserialid_freq_angle_hp ;
+
+ALTER TABLE pv_hdata
+ADD INDEX Prodserialid_datatype_freq_angle_amplitude (Prodserial_id ASC, datatype ASC, Frequency ASC, Angle ASC, Amplitude ASC);
+
+ALTER TABLE pv_radata 
+DROP INDEX Prodserialid_freq_ra ,
+ADD INDEX Prodserialid_freq_ra (Prodserial_id ASC, Frequency ASC, RecvdAmp ASC);
+
+ALTER TABLE pv_vdata 
+ADD INDEX Prodserial_datatype_freq_angle_amplitude_vp (Prodserial_id ASC, datatype ASC, Frequency ASC, Angle ASC, Amplitude ASC);
+
+ALTER TABLE pv_vdata
+DROP INDEX Prodserialid_freq_angle_vp ;
+
+ALTER TABLE pv_cpdata 
+DROP INDEX Prodserialid_freq_angle_cp ,
+ADD INDEX Prodserialid_freq_angle_cp (Prodserial_id ASC, datatype ASC, Frequency ASC, Angle ASC, Amplitude ASC);
+
+
