@@ -353,11 +353,13 @@ dialog.dialog( "open" );
 			<li><a rel="ten_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('ten_e');">10 dB beamwidth Elevation</a> </li>
 			<li><a rel="a_bs_bl" class="menuarray" TARGET="AppBody" onclick="fnsetstat('a_bs_bl');">Azimuth Beam Squint and Backlobe level</a> </li>
 			<li><a rel="e_bs_bl" class="menuarray" TARGET="AppBody" onclick="fnsetstat('e_bs_bl');">Elevation Beam Squint and Backlobe level</a> </li>
-			<li><a rel="axial_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('axial_e');">Axial Ratio Measurement Elevation Bore sight</a> </li>
-			<li><a rel="axial_ep" class="menuarray" TARGET="AppBody" onclick="fnsetstat('axial_ep');">Axial Ratio Measurement Elevation +45 DEG</a> </li>
-			<li><a rel="axial_en" class="menuarray" TARGET="AppBody" onclick="fnsetstat('axial_en');">Axial Ratio Measurement Elevation -45 DEG</a> </li>
+			<li><a rel="axial_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('axial_e');">Axial Ratio Measurement Bore sight</a> </li>
+			<li><a rel="axial_ep" class="menuarray" TARGET="AppBody" onclick="fnsetstat('axial_ep');">Axial Ratio Measurement +45 DEG</a> </li>
+			<li><a rel="axial_en" class="menuarray" TARGET="AppBody" onclick="fnsetstat('axial_en');">Axial Ratio Measurement -45 DEG</a> </li>
 			<li><a rel="polar_a" class="menuarray" TARGET="AppBody" onclick="fnsetstat('pv_polar_a');">Polar Plot Azimuth</a> </li>
 			<li><a rel="polar_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('pv_polar_e');">Polar Plot Elevation</a> </li>
+			<li><a rel="Gain Measurement" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gt');">Gain Tracking</a> </li>
+			<li><a rel="Gain Measurement" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">Gain Measurement</a> </li>
 		
 			</ul>
 		

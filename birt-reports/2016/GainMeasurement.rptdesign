@@ -8,7 +8,20 @@
     <property name="bidiLayoutOrientation">ltr</property>
     <property name="imageDPI">96</property>
     <parameters>
-        <scalar-parameter name="ProdSerial" id="300">
+        <scalar-parameter name="s1" id="300">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="TestId" id="301">
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -20,10 +33,40 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
-        <scalar-parameter name="TestId" id="301">
+        <scalar-parameter name="rpth" id="302">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant"></value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="rptf" id="303">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant"></value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="pc" id="304">
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
-            <property name="dataType">string</property>
+            <property name="dataType">integer</property>
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -101,12 +144,72 @@
             </list-property>
             <list-property name="parameters">
                 <structure>
-                    <property name="name">param_1</property>
-                    <property name="paramName">ProdSerial</property>
+                    <property name="name">param_2</property>
+                    <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
                     <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_3</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_4</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_5</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">4</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_6</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">5</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_7</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">6</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_1</property>
+                    <property name="paramName">s1</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">7</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -190,8 +293,8 @@
                     <property name="nativeDataType">3</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select round(frequency,0) as FREQUENCY,round(gm_A,0) as GM_A,round(gm_B,0)  as GM_B,
-round(gm_C,0) as GM_C,round(gm_D,0) as GM_D,round(gm_Gv,0) as GM_GV from pv_gmcalculated where Prodserial_id=?;]]></xml-property>
+            <xml-property name="queryText"><![CDATA[select round(frequency,?) as FREQUENCY,round(gm_A,?) as GM_A,round(gm_B,?)  as GM_B,
+round(gm_C,?) as GM_C,round(gm_D,?) as GM_D,round(gm_Gv,?) as GM_GV from pv_gmcalculated where Prodserial_id=?;]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -203,6 +306,96 @@ round(gm_C,0) as GM_C,round(gm_D,0) as GM_D,round(gm_Gv,0) as GM_GV from pv_gmca
           <design:identifier>
             <design:name></design:name>
             <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>4</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>5</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>6</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>7</design:position>
           </design:identifier>
           <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
           <design:precision>0</design:precision>
@@ -243,12 +436,52 @@ round(gm_C,0) as GM_C,round(gm_D,0) as GM_D,round(gm_Gv,0) as GM_GV from pv_gmca
             </list-property>
             <list-property name="parameters">
                 <structure>
-                    <property name="name">param_1</property>
-                    <property name="paramName">ProdSerial</property>
+                    <property name="name">param_2</property>
+                    <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
                     <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_3</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_4</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_5</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">4</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_1</property>
+                    <property name="paramName">s1</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">5</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -308,7 +541,7 @@ round(gm_C,0) as GM_C,round(gm_D,0) as GM_D,round(gm_Gv,0) as GM_GV from pv_gmca
                     <property name="nativeDataType">3</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select round(frequency,0) as FREQUENCY,round(gm_X,0) as GM_X,round(gm_Y,0) as GM_Y,round(gm_GF,0) as GM_GF from pv_gmcalculated where Prodserial_id=?]]></xml-property>
+            <xml-property name="queryText"><![CDATA[select round(frequency,?) as FREQUENCY,round(gm_X,?) as GM_X,round(gm_Y,?) as GM_Y,round(gm_GF,?) as GM_GF from pv_gmcalculated where Prodserial_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -320,6 +553,66 @@ round(gm_C,0) as GM_C,round(gm_D,0) as GM_D,round(gm_Gv,0) as GM_GV from pv_gmca
           <design:identifier>
             <design:name></design:name>
             <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>4</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>5</design:position>
           </design:identifier>
           <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
           <design:precision>0</design:precision>
@@ -366,12 +659,52 @@ round(gm_C,0) as GM_C,round(gm_D,0) as GM_D,round(gm_Gv,0) as GM_GV from pv_gmca
             </list-property>
             <list-property name="parameters">
                 <structure>
-                    <property name="name">param_1</property>
-                    <property name="paramName">ProdSerial</property>
+                    <property name="name">Precision1</property>
+                    <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
                     <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_3</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_4</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_5</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">4</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">ProdSerial</property>
+                    <property name="paramName">s1</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">5</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -443,7 +776,7 @@ round(gm_C,0) as GM_C,round(gm_D,0) as GM_D,round(gm_Gv,0) as GM_GV from pv_gmca
                     <property name="nativeDataType">12</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select round(a.frequency,0) as FREQUENCY,round(gm_Gv,0) as GM_GV,round(gm_GF,0) as GM_GF,round(gm_CPGAIN,0) as GM_CPGAIN,
+            <xml-property name="queryText"><![CDATA[select round(a.frequency,?) as FREQUENCY,round(gm_Gv,?) as GM_GV,round(gm_GF,?) as GM_GF,round(gm_CPGAIN,?) as GM_CPGAIN,
 spgain as SPGAIN from pv_gmcalculated a 
 inner join pv_spgain b on a.frequency=b.frequency where Prodserial_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
@@ -457,6 +790,66 @@ inner join pv_spgain b on a.frequency=b.frequency where Prodserial_id=?]]></xml-
           <design:identifier>
             <design:name></design:name>
             <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>4</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>5</design:position>
           </design:identifier>
           <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
           <design:precision>0</design:precision>
@@ -562,7 +955,7 @@ inner join pv_spgain b on a.frequency=b.frequency where Prodserial_id=?]]></xml-
                 </structure>
                 <structure>
                     <property name="name">Prodserial</property>
-                    <property name="paramName">ProdSerial</property>
+                    <property name="paramName">s1</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
@@ -1103,11 +1496,92 @@ inner join pv_prodserial p on td.test_id=p.test_id
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
-            <page-footer>
-                <text id="3">
+            <property name="borderBottomStyle">none</property>
+            <property name="borderLeftStyle">none</property>
+            <property name="borderRightStyle">none</property>
+            <property name="borderTopStyle">none</property>
+            <page-header>
+                <text-data id="1281">
+                    <property name="backgroundColor">#E9E9E9</property>
+                    <property name="fontFamily">serif</property>
+                    <property name="fontSize">14pt</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
+                    <property name="textAlign">center</property>
+                    <expression name="valueExpr">params["rpth"].value</expression>
                     <property name="contentType">html</property>
-                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
-                </text>
+                </text-data>
+            </page-header>
+            <page-footer>
+                <grid id="1266">
+                    <property name="backgroundColor">white</property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">thin</property>
+                    <property name="canShrink">false</property>
+                    <column id="1267"/>
+                    <row id="1268">
+                        <cell id="1269">
+                            <grid id="1272">
+                                <property name="backgroundColor">white</property>
+                                <property name="fontFamily">serif</property>
+                                <property name="fontSize">11pt</property>
+                                <column id="1273"/>
+                                <column id="1274"/>
+                                <row id="1275">
+                                    <cell id="1276">
+                                        <text id="1278">
+                                            <property name="width">6cm</property>
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[<html>
+<body>
+<style>
+.outer{
+  text-align: center;
+}
+.outer img{
+  display: inline-block;
+}
+</style>
+<table>
+<tr>
+<td>
+<div class="outer">
+
+<img src="\img\Verdantlogo.png" height="50px" width="200px" align="baseline" name="myimage">
+
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>]]></text-property>
+                                        </text>
+                                    </cell>
+                                    <cell id="1277">
+                                        <text-data id="1279">
+                                            <property name="fontWeight">normal</property>
+                                            <expression name="valueExpr">params["rptf"].value</expression>
+                                            <property name="contentType">html</property>
+                                        </text-data>
+                                    </cell>
+                                </row>
+                            </grid>
+                        </cell>
+                    </row>
+                    <row id="1270">
+                        <cell id="1271">
+                            <text-data id="1280">
+                                <property name="textAlign">center</property>
+                                <expression name="valueExpr">"Verdant Telemetry and Antenna Systems Pvt. Ltd., Cochin, India"</expression>
+                                <property name="contentType">html</property>
+                            </text-data>
+                        </cell>
+                    </row>
+                </grid>
             </page-footer>
         </simple-master-page>
     </page-setup>
@@ -1124,7 +1598,7 @@ inner join pv_prodserial p on td.test_id=p.test_id
                 <structure>
                     <property name="paramName">Prodserial</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["ProdSerial"].value</value>
+                        <value type="javascript">params["s1"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -1448,11 +1922,53 @@ Antenna without Radome&#13;
         <table id="65">
             <property name="style">Border</property>
             <property name="dataSet">GAIN CALCULATION AT VERTICAL POLARIZATION</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
             <list-property name="paramBindings">
                 <structure>
                     <property name="paramName">param_1</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["ProdSerial"].value</value>
+                        <value type="javascript">params["s1"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">param_2</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">param_3</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">param_4</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">param_5</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">param_6</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">param_7</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -1492,6 +2008,18 @@ Antenna without Radome&#13;
                     <text-property name="displayName">GM_GV</text-property>
                     <expression name="expression" type="javascript">dataSetRow["GM_GV"]</expression>
                     <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["FREQUENCY"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="87">
@@ -1643,11 +2171,41 @@ GV = C+D&#13;
         <table id="107">
             <property name="style">Border</property>
             <property name="dataSet">GAIN CORRECTION FACTOR CALCULATION</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
             <list-property name="paramBindings">
                 <structure>
                     <property name="paramName">param_1</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["ProdSerial"].value</value>
+                        <value type="javascript">params["s1"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">param_2</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">param_3</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">param_4</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">param_5</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -1675,6 +2233,18 @@ GV = C+D&#13;
                     <text-property name="displayName">GM_GF</text-property>
                     <expression name="expression" type="javascript">dataSetRow["GM_GF"]</expression>
                     <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["FREQUENCY"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="138">
@@ -1793,11 +2363,41 @@ GF = 20 log (Y+1/√2*Y)&#13;
         <table id="144">
             <property name="style">Border</property>
             <property name="dataSet">CP GAIN CALCULATION</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
             <list-property name="paramBindings">
                 <structure>
-                    <property name="paramName">param_1</property>
+                    <property name="paramName">ProdSerial</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["ProdSerial"].value</value>
+                        <value type="javascript">params["s1"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">Precision1</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">param_3</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">param_4</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">param_5</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -1831,6 +2431,19 @@ GF = 20 log (Y+1/√2*Y)&#13;
                     <text-property name="displayName">SPGAIN</text-property>
                     <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <text-property name="displayName">Count</text-property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["FREQUENCY"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="175">
