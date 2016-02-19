@@ -89,7 +89,27 @@ var rptheader='${model.rptheader}';
 var rptfooter='${model.rptfooter}';
 var ptype =parent.AssetTree.selectedparenttype;
 var atype=parent.AssetTree.atype;
-
+function fnenable(ctyp){
+	console.log("checked");
+	
+		if(ctyp=='c'){
+			if(document.getElementById("cpdata").checked){
+				document.getElementById("hdata").checked=false;
+				document.getElementById("vdata").checked=false;
+			}
+		    }
+			else{
+			if(document.getElementById("hdata").checked){
+				document.getElementById("cpdata").checked=false;
+				document.getElementById("vdata").checked=false;
+			}
+			if(document.getElementById("vdata").checked){
+				document.getElementById("cpdata").checked=false;
+				document.getElementById("hdata").checked=false;
+			}
+			}
+	
+}
 
 $(document).ready(function(){
 	
@@ -130,7 +150,8 @@ $(document).ready(function(){
 		 window.location="/irev-verdant/start.htm";
 		// self.close();
 	}
-	function Redirect(){
+	function Redirect()
+	{
 		var img="no";
 		//alert("go clicked");
 		var nprecision=1;
@@ -145,20 +166,17 @@ $(document).ready(function(){
 		var fre= '${model.strfreqs}';
 		var url="";
 		nprecision=document.getElementById("precision").value;	
-		var serialid=document.getElementById("serial").value;	
+		var serialid=document.getElementById("serialid").value;	
 		var uname='${model.uname}';
 		var frequnit='${model.frequnit}';
 		var selfreq=0;
 		//var freqid =document.getElementById("freqid").value;
-		var freqid =document.getElementById("freqid").value;
-		console.log(" freqids "+freqid);
+		
 		
 		for (i==1;i<20;i++){
 			strfreqs[i]=-1;
 		}
-		console.log(strfreqs[0]);
 		
-		strfreqs[0]=freqid;
 		var max =document.getElementById("max").value;
 		var min =document.getElementById("min").value;
 		if(min!=null && min !=""){
@@ -206,7 +224,7 @@ $(document).ready(function(){
 	i=0;
 	j=0;
 			for (i==0;i<freqs.length;i++){	
-				
+				console.log("freqs[i]="+freqs[i]);
 				if(document.getElementById(freqs[i]).checked){					
 					if(j==0){
 						selfreq=freqs[i];}
@@ -222,30 +240,14 @@ $(document).ready(function(){
 					alert("Frequencies not selected");
 					return;
 					}
-				if(j==1)
-				{
-					var url="/birt-viewer/frameset?__report=verdant/PolarGenericRadiationPattern.rptdesign&type="+typ+"&testid="+testid+"&serialid="+serialid+"&vdatatype="+datatype+"&scale="+scale+"&max="+max+"&min="+min+"&rpth="+rptheader+"&rptf="+rptfooter+"&freq1="+selfreq+
+				
+					 url="/birt-viewer/frameset?__report=verdant/PolarGenericRadiationPattern.rptdesign&type="+typ+"&testid="+testid+"&serialid="+serialid+"&vdatatype="+datatype+"&scale="+scale+"&max="+max+"&min="+min+"&rpth="+rptheader+"&rptf="+rptfooter+"&freq1="+selfreq+
 					"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
 					"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&freq11="+strfreqs[10]+"&freq12="+strfreqs[11]+"&freq13="+strfreqs[12]+"&freq14="+strfreqs[13]+"&freq15="+strfreqs[14]+"&freq16="+strfreqs[15]+"&freq17="+strfreqs[16]+"&freq18="+strfreqs[17];
-				}
-				else
-				var url="/birt-viewer/frameset?__report=verdant/PolarMultiple.rptdesign&typ="+typ+"&testid="+testid+"&strlg="+sellg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&strfreq="+selfreq+"&usr="+uname+"&scale="+scale+"&max="+max+"&min="+min+"&frequnit="+frequnit;
-		
-		/*var url="/birt-viewer/frameset?__report=verdant/PolarGeneric.rptdesign&type="+typ+"&testid="+testid+"&scale="+scale+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&freq1="+strfreqs[0]+
-		"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
-		"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9];
-		*/
-		//"tools.htm?oper=registry&frm=view&sel=true&secid="+sectionid+"&meterid="+meterid+"&tagid="+tagid+"&dtfrom="+frm+"&dtto="+dtto;
-		if(typ=="B")
-			var url="/birt-viewer/frameset?__report=verdant/PolarHPVP.rptdesign&type="+typ+"&testid="+testid+"&scale="+scale+"&max="+max+"&min="+min+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&freq1="+strfreqs[0]+
-			"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
-			"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&freq11="+strfreqs[10]+"&freq12="+strfreqs[11]+"&freq13="+strfreqs[12]+"&freq14="+strfreqs[13]+"&freq15="+strfreqs[14]+"&freq16="+strfreqs[15]+"&freq17="+strfreqs[16]+"&freq18="+strfreqs[17];
-			console.log("url " + url);
-		//window.location =url; 		
-		 }
+			
 		console.log(url);
 window.frames['AppBody'].location=url;
-	
+	}	
 </script>
 </body>
 </html>
