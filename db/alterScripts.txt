@@ -289,4 +289,17 @@ ALTER TABLE pv_cpdata
 DROP INDEX Prodserialid_freq_angle_cp ,
 ADD INDEX Prodserialid_freq_angle_cp (Prodserial_id ASC, datatype ASC, Frequency ASC, Angle ASC, Amplitude ASC);
 
+ALTER TABLE pv_cpdata
+DROP FOREIGN KEY FK_pvcpdata_test_pv1;
+ALTER TABLE pv_cpdata 
+DROP COLUMN Test_id,
+DROP INDEX FK_cpdata_pv1 ;
+
+ALTER TABLE pv_cpdata 
+CHANGE COLUMN Angle Angle DECIMAL(40,20) NULL DEFAULT NULL ,
+CHANGE COLUMN Amplitude Amplitude DECIMAL(40,20) NULL DEFAULT NULL ;
+
+
+
+
 
