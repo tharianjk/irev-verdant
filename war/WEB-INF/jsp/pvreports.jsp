@@ -23,6 +23,12 @@
 		       <input type="radio" id="all" value="0d90d" name="optdb" checked >All &nbsp; &nbsp;&nbsp;
 		       </td></tr>
 </table>
+ <table id="gttab" style="display:none"><tr><td>       	       
+		       <input type="radio" id="0" value="0d" name="optgt" checked>0 &#176;  &nbsp; &nbsp;&nbsp;
+		       <input type="radio" id="P45" value="P45" name="optgt" >+45 &#176; &nbsp; &nbsp;&nbsp;
+		       <input type="radio" id="M45" value="P45" name="optgt" >+45 &#176; &nbsp; &nbsp;&nbsp;
+		       </td></tr>
+</table>
  </td>
  <tr>
           <td >Precision: 
@@ -66,14 +72,16 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 <script type="text/javascript">
 $(document).ready(function(){
 	var oper='${model.oper}'; //'threedb',tendb,
-	var oper='${model.typ}';
+	var typ='${model.typ}';
+	console.log('oper='+oper);
 	document.getElementById("precision").value='${model.nprecision}';
 	if(oper=='threedb' || oper=='tendb'){
-		document.getElementById("dbtab").display="block";
+		document.getElementById("dbtab").style.display="block";
+		document.getElementById("gttab").style.display="none";
 	}
 	if(oper=='gt'){
-		document.getElementById("mtab").display="none";
-		
+		document.getElementById("mtab").style.display="none";
+		document.getElementById("gttab").style.display="block";
 	}
 	
 	
@@ -100,7 +108,7 @@ function Redirect(){
 		var selslno="";
 		var oper='${model.oper}';
 		nprecision=document.getElementById('precision').value;
-		
+		if(oper!='gt'){
 		arrslnos=strslno.split(",");
 		for (var i=1;i<50;i++){
 			arrsel[i]=-1;
@@ -127,7 +135,7 @@ function Redirect(){
 					alert("Serial Nos not selected");
 					return;
 				}
-				
+		}
 		if(document.getElementById('all').checked){
 			deg='0d90d';
 		}
@@ -214,8 +222,14 @@ function Redirect(){
 			
 			
 			else if(oper=='gt' )
-			{				
-				url="/birt-viewer/frameset?__report=verdant/GainMeasurement.rptdesign&TestId="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision;
+			{		
+				if(document.getElementById('0').checked)
+					deg='0';
+				else if(document.getElementById('P45').checked)
+					deg='P45';
+				else
+					deg='M45';
+				url="/birt-viewer/frameset?__report=verdant/GainMeasurement.rptdesign&TestId="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+"deg="+deg;
 				
 			}
 			
