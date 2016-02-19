@@ -2,9 +2,9 @@ drop procedure if exists spPVPolarPlot;
 drop procedure if exists spPVPolarSummary;
 drop procedure if exists pv_calc_Gain_Tracking;
 drop procedure if exists pv_Calculate_params;
-drop procedure if exists pv_calc_AxialRatio;
+drop FUNCTION  if exists pv_calc_AxialRatio;
 drop procedure if exists pv_calc_Gain_Measurement;
-drop procedure if exists pv_calc_cpdata;
+drop FUNCTION  if exists pv_calc_cpdata;
 drop procedure if exists spPV_Axial;
 drop procedure if exists spPV_BSBL;
 drop procedure if exists spPV_DB;
@@ -1083,7 +1083,7 @@ end if;
 
 
 END$$
-DELIMITER;
+
 
 
 
