@@ -17,10 +17,10 @@
 <table>
  <tr><td>
  <table id="dbtab" style="display:none"><tr><td>
-       	       <input type="radio" id="bm" value="bm" name="optdb" >Beam Max &nbsp; &nbsp;&nbsp;
+       	       <input type="radio" id="bm" value="bm" name="optdb" checked>Beam Max &nbsp; &nbsp;&nbsp;
 		       <input type="radio" id="0d" value="0d" name="optdb" >0 &#176;  &nbsp; &nbsp;&nbsp;
-		       <input type="radio" id="90d" value="90d" name="optdb" >90 &deg; &nbsp; &nbsp;&nbsp;
-		       <input type="radio" id="all" value="0d90d" name="optdb" checked >All &nbsp; &nbsp;&nbsp;
+		       <!-- <input type="radio" id="90d" value="90d" name="optdb" >90 &deg; &nbsp; &nbsp;&nbsp;
+		       <input type="radio" id="all" value="0d90d" name="optdb" checked >All &nbsp; &nbsp;&nbsp; -->
 		       </td></tr>
 </table>
  <table id="gttab" style="display:none"><tr><td>       	       
@@ -136,13 +136,9 @@ function Redirect(){
 					return;
 				}
 		}
-		if(document.getElementById('all').checked){
-			deg='0d90d';
-		}
-		else if(document.getElementById('0d').checked)
+		 if(document.getElementById('0d').checked)
 			deg='0d';
-		else if(document.getElementById('90d').checked)
-			deg='90d';	
+		
 		else if(document.getElementById('bm').checked)
 			{
 			deg='bm';
