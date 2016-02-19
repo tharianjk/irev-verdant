@@ -347,12 +347,12 @@ dialog.dialog( "open" );
 			    <li><a rel="Gain Measurement" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gt');">Gain Tracking</a> </li>
 			</ul>
 			<ul id="coreports">
-			<li><a rel="three_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('three_e');">3dB beamwidth Azimuth</a> </li>
-			<li><a rel="three_a" class="menuarray" TARGET="AppBody" onclick="fnsetstat('three_a');">3dB beamwidth Elevation</a> </li>
-			<li><a rel="ten_a" class="menuarray" TARGET="AppBody" onclick="fnsetstat('ten_a');">10dB beamwidth Azimuth</a> </li>
-			<li><a rel="ten_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('ten_e');">10 dB beamwidth Elevation</a> </li>
-			<li><a rel="a_bs_bl" class="menuarray" TARGET="AppBody" onclick="fnsetstat('a_bs_bl');">Azimuth Beam Squint and Backlobe level</a> </li>
-			<li><a rel="e_bs_bl" class="menuarray" TARGET="AppBody" onclick="fnsetstat('e_bs_bl');">Elevation Beam Squint and Backlobe level</a> </li>
+			<li><a rel="three_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('three_e');">3dB beamwidth</a> </li>
+			<!-- <li><a rel="three_a" class="menuarray" TARGET="AppBody" onclick="fnsetstat('three_a');">3dB beamwidth Elevation</a> </li>
+			<li><a rel="ten_a" class="menuarray" TARGET="AppBody" onclick="fnsetstat('ten_a');">10dB beamwidth Azimuth</a> </li> -->
+			<li><a rel="ten_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('ten_e');">10 dB beamwidth</a> </li>
+			<li><a rel="a_bs_bl" class="menuarray" TARGET="AppBody" onclick="fnsetstat('a_bs_bl');"> Beam Squint and Backlobe level</a> </li>
+			<!--  <li><a rel="e_bs_bl" class="menuarray" TARGET="AppBody" onclick="fnsetstat('e_bs_bl');">Elevation Beam Squint and Backlobe level</a> </li> -->
 			<li><a rel="axial_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('axial_e');">Axial Ratio Measurement Bore sight</a> </li>
 			<li><a rel="axial_ep" class="menuarray" TARGET="AppBody" onclick="fnsetstat('axial_ep');">Axial Ratio Measurement +45 DEG</a> </li>
 			<li><a rel="axial_en" class="menuarray" TARGET="AppBody" onclick="fnsetstat('axial_en');">Axial Ratio Measurement -45 DEG</a> </li>
