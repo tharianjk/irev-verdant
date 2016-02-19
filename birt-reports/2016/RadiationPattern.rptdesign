@@ -12,7 +12,7 @@
     <property name="imageDPI">96</property>
     <parameters>
         <scalar-parameter name="freq1" id="10">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <text-property name="helpText">Enter the frequency</text-property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
@@ -30,7 +30,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="testid" id="12">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -47,7 +47,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="max" id="764">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -62,7 +62,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="min" id="765">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -77,9 +77,9 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="type" id="767">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
-            <property name="isRequired">false</property>
+            <property name="isRequired">true</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
@@ -94,9 +94,9 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="serialid" id="768">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
-            <property name="isRequired">false</property>
+            <property name="isRequired">true</property>
             <property name="dataType">integer</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
@@ -111,7 +111,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="img" id="1028">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -126,7 +126,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rpth" id="1124">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -141,7 +141,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rptf" id="1125">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -156,7 +156,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="scale" id="1128">
-            <property name="hidden">false</property>
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -171,6 +171,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="pc" id="1357">
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">integer</property>
@@ -187,8 +188,9 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="vdatatype" id="1358">
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
-            <property name="isRequired">false</property>
+            <property name="isRequired">true</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
