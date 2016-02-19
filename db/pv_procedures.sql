@@ -10,6 +10,11 @@ drop procedure if exists spPV_BSBL;
 drop procedure if exists spPV_DB;
 drop procedure if exists spPV_DB_sum;
 drop procedure if exists spPVPolarPlot;
+drop function if exists pv_calc_cpdata_combi;
+drop procedure if exists pv_calc_combination;
+drop procedure if exists pv_calc_XdB_BW_BS;
+drop procedure if exists pv_calc_backlobelevel;
+drop procedure if exists pv_calc_spec;
 
 -- --------------------------------------------------------------------------------
 -- Routine DDL
@@ -324,7 +329,7 @@ DELIMITER ;
 
 -- the parent calculate procedure for new type - call with myPoltype = 'PV'
 DELIMITER $$
-CREATE PROCEDURE `pv_Calculate_params`(
+CREATE PROCEDURE pv_Calculate_params(
 myTestId INT,
 -- myFreqUnit char(1), -- 'M' = MHz, 'G' = GHz
 myPoltype char(2) -- 'L'=linear, 'C'= circular
@@ -337,7 +342,8 @@ BEGIN
 # 2. declare variable to store debug flag
     declare isDebug INT default 0;
 
-declare myfreq,myserial decimal(40,20);
+declare myserial INT;
+declare myfreq decimal(40,20);
 declare myTestDate datetime;
 DECLARE myTestType char(4);
 
@@ -392,6 +398,8 @@ DECLARE done INT DEFAULT 0;
     delete from pv_gt_calculated where Test_id = myTestId;
 	delete from pv_gmcalculated where test_id = myTestId;
     delete from pv_cpcalculated where test_id = myTestId;
+    delete from pv_cpdata where prodserial_id in (select prodserial_id from pv_prodserial where Test_id = myTestId);
+	delete from pv_arcalculated where test_id = myTestId;
 	delete from pv_speccalculated where test_id = myTestId;
 
     
@@ -475,9 +483,9 @@ END IF;
   CLOSE freqcur;
   
   -- to populate the spec tables for combination testtype
-  -- if myTestType = 'CO' then
-    -- call pv_calc_spec(myTestId,myTestDate);
-   -- end if;
+ if myTestType = 'CO' then
+    call pv_calc_spec(myTestId,myTestDate);
+ end if;
    
 -- store calculated values for gain tracking
 if myTestType = 'GT' then
@@ -1086,11 +1094,637 @@ end if;
 
 END$$
 
+DELIMITER;
+
+DELIMITER$$
+
+CREATE PROCEDURE `pv_calc_combination`(
+coTestId INT,
+coFreq decimal(40,20),
+coTestDate datetime,
+coSerial INT
+)
+BEGIN
+
+# Declarations -begin
+
+declare _3dbBW_BM_Azimuth,_3dbBW_BM_Azimuth_left, _3dbBW_BM_Azimuth_right, _3dbBS_BM_Azimuth decimal(40,20) default 0.00;
+declare _3dbBW_BM_Elevation,_3dbBW_BM_Elevation_left, _3dbBW_BM_Elevation_right, _3dbBS_BM_Elevation decimal(40,20) default 0.00;
+declare _3dbBW_0_Azimuth,_3dbBW_0_Azimuth_left, _3dbBW_0_Azimuth_right, _3dbBS_0_Azimuth decimal(40,20) default 0;
+declare _3dbBW_0_Elevation,_3dbBW_0_Elevation_left, _3dbBW_0_Elevation_right, _3dbBS_0_Elevation decimal(40,20) default 0;
+
+declare _10dbBW_BM_Azimuth,_10dbBW_BM_Azimuth_left, _10dbBW_BM_Azimuth_right decimal(40,20) default 0;
+declare _10dbBW_BM_Elevation,_10dbBW_BM_Elevation_left, _10dbBW_BM_Elevation_right decimal(40,20) default 0;
+declare _10dbBW_0_Azimuth,_10dbBW_0_Azimuth_left, _10dbBW_0_Azimuth_right decimal(40,20) default 0;
+declare _10dbBW_0_Elevation,_10dbBW_0_Elevation_left, _10dbBW_0_Elevation_right decimal(40,20) default 0;
+
+declare dummyBS decimal(40,20) default 0;
+
+declare X1_Azimuth, Y1_Azimuth, Backlobe_Azimuth decimal(40,20) default 0;
+declare X1_Elevation, Y1_Elevation, Backlobe_Elevation decimal(40,20) default 0;
+
+declare AR_0, AR_P45, AR_M45 decimal(40,20) default 0;
+
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare co_proc_id varchar(100) default 'pv_calc_combination';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(co_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Test id : ",coTestId,",Frequency : ",coFreq);
+		call debug(co_proc_id, @details,'I','I');
+        
+	end if;
+	RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(co_proc_id,'in pv_calc_Combination','I','I');
+ end if;
+ 
+ 
+# Declarations -end
+
+# --------------CALCULATIONS BEGIN ----------------------
+
+
+# convert to cp and store in cpdata table
+ delete from pv_cpdata where Prodserial_id = coSerial and Frequency = coFreq;
+
+ insert into pv_cpdata ( Prodserial_id,datatype, Frequency, Angle, Amplitude)
+
+ select Prodserial_id,datatype , Frequency, Angle, pv_calc_cpdata_combi(Prodserial_id, Frequency, Angle,datatype)
+ from pv_hdata  
+ where Prodserial_id = coSerial and datatype= 'A' and Frequency = coFreq;
+ 
+  insert into pv_cpdata ( Prodserial_id,datatype, Frequency, Angle, Amplitude)
+
+ select Prodserial_id,datatype , Frequency, Angle, pv_calc_cpdata_combi(Prodserial_id, Frequency, Angle,datatype)
+ from pv_hdata  
+ where Prodserial_id = coSerial and datatype= 'E' and Frequency = coFreq;
 
 
 
+#Beamwidth, Beamsquint
+set _3dbBW_BM_Azimuth_left =0,_3dbBW_BM_Azimuth_right=0,_3dbBW_BM_Azimuth=0,_3dbBS_BM_Azimuth=0;
+-- 3 db BW and BS from Bmax Azimuth
+ call pv_calc_XdB_BW_BS(coSerial,coFreq,3,'CP','BM','A',_3dbBW_BM_Azimuth_left,_3dbBW_BM_Azimuth_right, _3dbBW_BM_Azimuth, _3dbBS_BM_Azimuth);
+-- 3 db BW and BS from Bmax Elevation
+call pv_calc_XdB_BW_BS(coSerial,coFreq,3,'CP','BM','E',_3dbBW_BM_Elevation_left,_3dbBW_BM_Elevation_right, _3dbBW_BM_Elevation, _3dbBS_BM_Elevation);
+-- 3 db BW and BS from 0 Azimuth
+call pv_calc_XdB_BW_BS(coSerial,coFreq,3,'CP','0','A',_3dbBW_0_Azimuth_left,_3dbBW_0_Azimuth_right, _3dbBW_0_Azimuth, _3dbBS_0_Azimuth);
+-- 3 db BW and BS from 0 Elevation
+call pv_calc_XdB_BW_BS(coSerial,coFreq,3,'CP','0','E',_3dbBW_0_Elevation_left,_3dbBW_0_Elevation_right, _3dbBW_0_Elevation, _3dbBS_0_Elevation);
+
+-- 10 db BW and BS from Bmax Azimuth
+call pv_calc_XdB_BW_BS(coSerial,coFreq,10,'CP','BM','A',_10dbBW_BM_Azimuth_left,_10dbBW_BM_Azimuth_right, _10dbBW_BM_Azimuth, dummyBS);
+-- 10 db BW and BS from Bmax Elevation
+call pv_calc_XdB_BW_BS(coSerial,coFreq,10,'CP','BM','E',_10dbBW_BM_Elevation_left,_10dbBW_BM_Elevation_right, _10dbBW_BM_Elevation, dummyBS);
+-- 10 db BW and BS from 0 Azimuth
+call pv_calc_XdB_BW_BS(coSerial,coFreq,10,'CP','0','A',_10dbBW_0_Azimuth_left,_10dbBW_0_Azimuth_right, _10dbBW_0_Azimuth, dummyBS);
+-- 10 db BW and BS from 0 Elevation
+call pv_calc_XdB_BW_BS(coSerial,coFreq,10,'CP','0','E',_10dbBW_0_Elevation_left,_10dbBW_0_Elevation_right, _10dbBW_0_Elevation, dummyBS);
+
+# Backlobe
+ call pv_calc_backlobelevel(coSerial, coFreq, 'CP','A', X1_Azimuth, Y1_Azimuth, Backlobe_Azimuth);
+
+ call pv_calc_backlobelevel(coSerial, coFreq, 'CP','E', X1_Elevation, Y1_Elevation, Backlobe_Elevation);
+
+# Axial Ratio
+-- on axis
+select Amplitude into @vp_0 from pv_vdata 
+where Prodserial_id = coSerial and datatype = 'E' and Frequency = coFreq and Angle = 0 ;
+
+select Amplitude into @hp_0 from pv_hdata 
+where Prodserial_id = coSerial and datatype = 'E' and Frequency = coFreq and Angle = 0 ;
+
+set AR_0 = @hp_0 - @vp_0;
+
+-- at +45 degree
+select Amplitude into @vp_P45 from pv_vdata 
+where Prodserial_id = coSerial and datatype = 'E' and Frequency = coFreq and Angle = 45 ;
+
+select Amplitude into @hp_P45 from pv_hdata 
+where Prodserial_id = coSerial and datatype = 'E' and Frequency = coFreq and Angle = 45 ;
+
+set AR_P45 = @hp_P45 - @vp_P45;
+
+-- at -45 degree
+select Amplitude into @vp_M45 from pv_vdata 
+where Prodserial_id = coSerial and datatype = 'E' and Frequency = coFreq and Angle = 315 ;
+
+select Amplitude into @hp_M45 from pv_hdata 
+where Prodserial_id = coSerial and datatype = 'E' and Frequency = coFreq and Angle = 315 ;
+
+set AR_M45 = @hp_M45 - @vp_M45;
+
+# --------------CALCULATIONS END ----------------------
+
+-- insert into calculated table
+-- azimuth
+delete from pv_cpcalculated where Prodserial_id = coSerial and Test_id = coTestId and  datatype ='A' and Frequency = coFreq;
+insert into pv_cpcalculated ( Prodserial_id,Test_id,datatype,Frequency,TestDate,
+						3Db_BW_BMax_left,3Db_BW_BMax_right,3Db_BW_BMax,3Db_BS_BMax,
+						3Db_BW_0_left,3Db_BW_0_right,3Db_BW_0,3Db_BS_0,
+						10Db_BW_BMax_left,10Db_BW_BMax_right,10Db_BW_BMax,
+						10Db_BW_0_left,10Db_BW_0_right,10Db_BW_0,
+						X1,Y1,Backlobe)
+			values
+							(coSerial, coTestId, 'A',coFreq, coTestDate,
+                            _3dbBW_BM_Azimuth_left, _3dbBW_BM_Azimuth_right, _3dbBW_BM_Azimuth, _3dbBS_BM_Azimuth,
+                            _3dbBW_0_Azimuth_left, _3dbBW_0_Azimuth_right, _3dbBW_0_Azimuth, _3dbBS_0_Azimuth,
+                            _10dbBW_BM_Azimuth_left, _10dbBW_BM_Azimuth_right, _10dbBW_BM_Azimuth, 
+                            _10dbBW_0_Azimuth_left, _10dbBW_0_Azimuth_right, _10dbBW_0_Azimuth, 
+                            X1_Azimuth,Y1_Azimuth,Backlobe_Azimuth
+                            );
 
 
+-- elevation
+delete from pv_cpcalculated where Prodserial_id = coSerial and Test_id = coTestId and  datatype ='E' and Frequency = coFreq;
+
+insert into pv_cpcalculated ( Prodserial_id,Test_id,datatype,Frequency,TestDate,
+						3Db_BW_BMax_left,3Db_BW_BMax_right,3Db_BW_BMax,3Db_BS_BMax,
+						3Db_BW_0_left,3Db_BW_0_right,3Db_BW_0,3Db_BS_0,
+						10Db_BW_BMax_left,10Db_BW_BMax_right,10Db_BW_BMax,
+						10Db_BW_0_left,10Db_BW_0_right,10Db_BW_0,
+						X1,Y1,Backlobe)
+			values
+							(coSerial, coTestId, 'E',coFreq, coTestDate,
+                            _3dbBW_BM_Elevation_left, _3dbBW_BM_Elevation_right, _3dbBW_BM_Elevation, _3dbBS_BM_Elevation,
+                            _3dbBW_0_Elevation_left, _3dbBW_0_Elevation_right, _3dbBW_0_Elevation, _3dbBS_0_Elevation,
+                            _10dbBW_BM_Elevation_left, _10dbBW_BM_Elevation_right, _10dbBW_BM_Elevation, 
+                            _10dbBW_0_Elevation_left, _10dbBW_0_Elevation_right, _10dbBW_0_Elevation, 
+                            X1_Elevation,Y1_Elevation,Backlobe_Elevation
+                            );
+
+-- axial ratio
+delete from pv_arcalculated where Prodserial_id = coSerial 
+and Test_id = coTestId and  Frequency = coFreq;
+
+	insert into pv_arcalculated( Prodserial_id,Test_id,datatype,Frequency,TestDate,
+    VP_0, HP_0, AR_0 ,
+	VP_P45, HP_P45 ,AR_P45,
+	VP_M45, HP_M45, AR_M45)
+    values
+    (coSerial,coTestId, 'E',  coFreq,coTestDate,
+     @vp_0,@hp_0, AR_0,
+     @vp_P45, @hp_P45, AR_P45,
+     @vp_M45, @hp_M45, AR_M45);
+    
+    
+  
+END$$
+
+DELIMITER;
+
+DELIMITER$$
+
+CREATE PROCEDURE `pv_calc_backlobelevel`(
+bProdserialId INT, bFreq decimal(40,20), bPolType char(2),bDatatype char(2),
+out X1 decimal(40,20), out Y1 decimal(40,20), out backlobe decimal(40,20)
+)
+BEGIN
+
+# A = Amplitude at 0 degree 
+# B = Amplitude at 180 degree 
+# Back Lobe = B - A
+
+
+	set X1 = (select Amplitude 
+				from pv_cpdata 
+				where Prodserial_id = bProdserialId and datatype = bDatatype and Frequency = bFreq and Angle = 0 );
+	set Y1 =(select Amplitude 
+					from pv_cpdata 
+					where Prodserial_id = bProdserialId and datatype = bDatatype and Frequency = bFreq and Angle = 180 );
+
+set backlobe = Y1 - X1;
+
+
+END$$
+
+DELIMITER;
+
+DELIMITER$$
+
+CREATE PROCEDURE `pv_calc_XdB_BW_BS`(
+xProdSerialId INT, freq decimal(40,20), X INT, polType char(2), fromAngle char(2), xdatatype char(2),
+out leftpoint decimal(40,20), out rightpoint decimal(40,20), out beam_width decimal(40,20), out beam_squint decimal(40,20)
+)
+BEGIN
+
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'pv_calc_XdB_BW_BS';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+
+declare C,D,E,AminX,B_angle decimal(40,20);
+
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(l_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("ProdSerial id : ",xProdSerialId,",Frequency : ",freq,",X : ",X,", Type : ",polType,", fromAngle : ",fromAngle);
+		call debug(l_proc_id, @details,'I','I');
+        
+	end if;
+    RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(l_proc_id,'in pv_calc_XdB_BW_BS','I','I');
+ end if;
+
+if fromAngle = 'BM' then
+
+	select MAX(amplitude) into @A from pv_cpdata where Prodserial_id = xProdSerialId and datatype = xdatatype and Frequency = freq;  
+   
+    select MAX(angle) into @B from pv_cpdata where Prodserial_id = xProdSerialId and datatype = xdatatype and Frequency = freq and amplitude = @A;  
+     
+elseif fromAngle = '0' then
+	select amplitude, angle into @A,@B from pv_cpdata where Prodserial_id = xProdSerialId and datatype = xdatatype and Frequency = freq and angle = 0;  
+
+end if;
+    
+-- A-X to the right
+set AminX = @A-X;
+  set B_angle = @B;
+  set @p=0;
+  set @j=0;
+    -- select @A as 'A';
+    -- select AminX as 'A-X';
+	-- select @B;
+ 
+ select amplitude,angle into @tempright,@p 
+ from pv_cpdata 
+ where Prodserial_Id = xProdSerialId and datatype = xdatatype and Frequency = freq 
+and Angle >= 0 and Angle <= 180 
+and amplitude <= AminX
+group by amplitude
+order by Angle limit 1;
+ 
+   set rightpoint = @p;
+   
+select amplitude,angle-360 into @templeft,@j
+ from pv_cpdata 
+where Prodserial_Id = xProdSerialId and datatype = xdatatype and Frequency = freq 
+and Angle >= 180 and Angle <= 360 
+and amplitude <= AminX
+group by amplitude
+order by Angle desc limit 1;
+   
+  
+set leftpoint = @j;
+
+-- set E = 360-D;
+-- select E as 'E';
+
+set beam_width = rightpoint-leftpoint;
+
+-- select beam_width as 'BW';
+
+
+-- Beamsquint calculation
+
+set beam_squint = leftpoint + (rightpoint - leftpoint)/2;
+
+ -- select beam_squint as 'BS';
+END$$
+
+DELIMITER;
+
+DELIMITER$$
+CREATE PROCEDURE `pv_calc_spec`(
+coTestId INT,
+coTestDate datetime)
+BEGIN
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare co_proc_id varchar(100) default 'pv_calc_spec';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+
+declare myserial int(11);
+
+ -- for the cursor
+DECLARE done INT DEFAULT 0;
+
+ #declare cursor for serials
+ DECLARE serialcur CURSOR FOR 
+ select Prodserial_id 
+ from pv_prodserial ps
+ where ps.test_id = coTestId;
+
+
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(co_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Test id : ",coTestId);
+		call debug(co_proc_id, @details,'I','I');
+        
+	end if;
+	RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(co_proc_id,'in pv_calc_spec','I','I');
+ end if;
+ 
+ 
+# Declarations -end
+
+
+#open cursor
+  OPEN serialcur;
+  
+  #starts the loop
+  the_loop: LOOP
+  
+ FETCH serialcur INTO myserial; 
+IF done = 1 THEN
+	if isDebug > 0 then
+		SET @infoText = "Done looping through serials";
+		call debug(co_proc_id,@infoText,'I','I');
+	end if;
+LEAVE the_loop;
+END IF;
+
+
+# --------------CALCULATIONS BEGIN ----------------------
+
+-- 3 db BW
+select count(*) into @_3dbBW_BM_A_spec
+from pv_cpcalculated 
+where 3Db_BW_BMax >= 55 and 3Db_BW_BMax <= 110
+and Prodserial_id = myserial and datatype = 'A';
+
+select count(*) into @_3dbBW_BM_E_spec
+from pv_cpcalculated 
+where 3Db_BW_BMax >= 55 and 3Db_BW_BMax <= 110
+and Prodserial_id = myserial and datatype = 'E';
+
+select count(*) into @_3dbBW_0_A_spec
+from pv_cpcalculated 
+where 3Db_BW_0 >= 55 and 3Db_BW_0 <= 110
+and Prodserial_id = myserial and datatype = 'A';
+
+select count(*) into @_3dbBW_0_E_spec
+from pv_cpcalculated 
+where 3Db_BW_0 >= 55 and 3Db_BW_0 <= 110
+and Prodserial_id = myserial and datatype = 'E';
+
+-- 10 db BW
+select count(*) into @_10dbBW_BM_A_majorspec
+from pv_cpcalculated 
+where 10Db_BW_BMax >= 100 and 10Db_BW_BMax <= 220
+and Prodserial_id = myserial and datatype = 'A';
+
+select count(*) into @_10dbBW_BM_A_minorspec
+from pv_cpcalculated 
+where 10Db_BW_BMax >= 110 and 10Db_BW_BMax <= 200
+and Prodserial_id = myserial and datatype = 'A';
+
+select count(*) into @_10dbBW_BM_E_majorspec
+from pv_cpcalculated 
+where 10Db_BW_BMax >= 100 and 10Db_BW_BMax <= 220
+and Prodserial_id = myserial and datatype = 'E';
+
+select count(*) into @_10dbBW_BM_E_minorspec
+from pv_cpcalculated 
+where 10Db_BW_BMax >= 110 and 10Db_BW_BMax <= 200
+and Prodserial_id = myserial and datatype = 'E';
+
+select count(*) into @_10dbBW_0_A_majorspec
+from pv_cpcalculated 
+where 10Db_BW_0 >= 100 and 10Db_BW_0 <= 220
+and Prodserial_id = myserial and datatype = 'A';
+
+select count(*) into @_10dbBW_0_A_minorspec
+from pv_cpcalculated 
+where 10Db_BW_0 >= 110 and 10Db_BW_0 <= 200
+and Prodserial_id = myserial and datatype = 'A';
+
+select count(*) into @_10dbBW_0_E_majorspec
+from pv_cpcalculated 
+where 10Db_BW_0 >= 100 and 10Db_BW_0 <= 220
+and Prodserial_id = myserial and datatype = 'E';
+
+select count(*) into @_10dbBW_0_E_minorspec
+from pv_cpcalculated 
+where 10Db_BW_0 >= 110 and 10Db_BW_0 <= 200
+and Prodserial_id = myserial and datatype = 'E';
+
+-- BS
+
+select count(*) into @_BS_BM_A_majorspec
+from pv_cpcalculated 
+where 3Db_BS_BMax <= 10
+and Prodserial_id = myserial and datatype = 'A';
+
+
+select count(*) into @_BS_BM_A_minorspec
+from pv_cpcalculated 
+where 3Db_BS_BMax <= 6
+and Prodserial_id = myserial and datatype = 'A';
+
+select count(*) into @_BS_BM_E_majorspec
+from pv_cpcalculated 
+where 3Db_BS_BMax <= 10
+and Prodserial_id = myserial and datatype = 'E';
+
+
+select count(*) into @_BS_BM_E_minorspec
+from pv_cpcalculated 
+where 3Db_BS_BMax <= 6
+and Prodserial_id = myserial and datatype = 'E';
+ 
+select count(*) into @_BS_0_A_majorspec
+from pv_cpcalculated 
+where 3Db_BS_0 <= 10
+and Prodserial_id = myserial and datatype = 'A';
+
+
+select count(*) into @_BS_0_A_minorspec
+from pv_cpcalculated 
+where 3Db_BS_0 <= 6
+and Prodserial_id = myserial and datatype = 'A';
+
+select count(*) into @_BS_0_E_majorspec
+from pv_cpcalculated 
+where 3Db_BS_0 <= 10
+and Prodserial_id = myserial and datatype = 'E';
+
+
+select count(*) into @_BS_0_E_minorspec
+from pv_cpcalculated 
+where 3Db_BS_0 <= 6
+and Prodserial_id = myserial and datatype = 'E';
+
+# --------------CALCULATIONS END ----------------------
+
+-- insert into calculated table
+-- azimuth
+
+delete from pv_speccalculated where Prodserial_Id = myserial;
+
+ insert into pv_speccalculated(Prodserial_id,Test_id,datatype,TestDate,
+  3dbBW_BM_spec,3dbBW_0_spec,
+  10dbBW_BM_majorspec ,10dbBW_BM_minorspec,
+  10dbBW_0_majorspec, 10dbBW_0_minorspec, 
+  3dbBS_BM_majorspec , 3dbBS_BM_minorspec,
+  3dbBS_0_majorspec ,3dbBS_0_minorspec )
+  values
+  (myserial,coTestId,'A',coTestDate,
+  @_3dbBW_BM_A_spec,@_3dbBW_0_A_spec,
+  @_10dbBW_BM_A_majorspec, @_10dbBW_BM_A_minorspec,
+   @_10dbBW_0_A_majorspec, @_10dbBW_0_A_minorspec,
+   @_BS_BM_A_majorspec,@_BS_BM_A_minorspec,
+   @_BS_0_A_majorspec,@_BS_0_A_minorspec);
+  
+-- elevation
+ insert into pv_speccalculated(Prodserial_id,Test_id,datatype,TestDate,
+  3dbBW_BM_spec,3dbBW_0_spec,
+  10dbBW_BM_majorspec ,10dbBW_BM_minorspec,
+  10dbBW_0_majorspec, 10dbBW_0_minorspec, 
+  3dbBS_BM_majorspec , 3dbBS_BM_minorspec,
+  3dbBS_0_majorspec ,3dbBS_0_minorspec )
+  values
+  (myserial,coTestId,'E',coTestDate,
+  @_3dbBW_BM_E_spec,@_3dbBW_0_E_spec,
+  @_10dbBW_BM_E_majorspec, @_10dbBW_BM_E_minorspec,
+   @_10dbBW_0_E_majorspec, @_10dbBW_0_E_minorspec,
+   @_BS_BM_E_majorspec,@_BS_BM_E_minorspec,
+   @_BS_0_E_majorspec,@_BS_0_E_minorspec);
+   
+ END LOOP the_loop;
+ 
+  CLOSE serialcur;
+
+END$$
+
+DELIMITER;
+
+DELIMITER$$
+CREATE FUNCTION `pv_calc_cpdata_combi`(
+cProdSerialId INT, freq decimal(40,20), cAngle decimal(40,20), cDatatype char(2)
+) RETURNS decimal(40,20)
+BEGIN
+
+declare A,B,C,D,E,cpdata decimal(40,20) default 0;
+
+select Amplitude into A from pv_hdata h
+ 		 where h.Prodserial_id = cProdSerialId and h.datatype = cDatatype and h.Frequency = freq and h.Angle = cAngle ;
+-- select A;
+ select Amplitude into B from pv_vdata v
+ 		 where v.Prodserial_id = cProdSerialId and v.datatype = cDatatype and v.Frequency = freq and v.Angle = cAngle ;
+-- select B;
+if A > B then
+	set C = A - B;
+else 
+	set C = B - A;
+end if;
+
+-- select C;
+
+set D = EXP(C/20);
+-- select D;
+
+set E = 20 * LOG10((D+1)/(1.414*D));
+-- select E;
+
+if A > B then
+	set cpdata = A+E;
+else 
+	set cpdata = B+E;
+end if;
+
+-- select cpdata;    
+    
+RETURN cpdata;
+END$$
 
 
 
