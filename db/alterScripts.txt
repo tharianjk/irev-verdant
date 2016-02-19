@@ -1,3 +1,5 @@
+
+-- alter table pv_testdata add AntennaUsed varchar(200) 
 -- alter table product add prodmodel varchar(100);
 
 -- 18-02-2016
@@ -96,6 +98,7 @@ CREATE TABLE pv_testdata (
   rptheader varchar(200) DEFAULT NULL,
   rptfooter varchar(200) DEFAULT NULL,
   inst_slno varchar(100),
+  AntennaUsed varchar(200) ,
   PRIMARY KEY (Test_id)
 ) ;
 

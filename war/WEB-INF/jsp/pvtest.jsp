@@ -87,6 +87,11 @@
 		<td>Instrument Serial No. :</td> 
 		<td><form:textarea   path="instslno"  rows="2" cols="50" /></td> 
 		</tr>
+		<tr>
+		<td>Ref. Antenna Used :</td> 
+		<td><form:textarea   path="antennaused"  rows="2" cols="50" /></td> 
+		</tr>
+		
         <tr>
 		<td>Report Header  :</td> 
 		<td><form:textarea   path="rptheader"  rows="2" cols="50" /></td>

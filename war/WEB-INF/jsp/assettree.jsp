@@ -786,7 +786,7 @@ function recreatewithparents()
                          }
                          ,
                          edittgain: { // The "rename" menu item
-                             label: "Gain of STD Horn",                      
+                             label: "Gain of STD HORN",                      
                              action: function(response) {
                                  var url = '<%=request.getContextPath()%>/gainstdhorn.htm?oper=gainstd&testid='+ node.attr('assetId') ;
                                  //alert("url "+ url);

@@ -230,7 +230,7 @@ public class PVSerialImportController extends SimpleFormController{
 			        }
 			 
 			if(action.equals("Done")){
-			 stat=	mastersservice.CalcProc(file.getPtype(),serialid);
+			 stat=	mastersservice.PV_CalcProc(testid);
 			if(stat==0)
 			{
 				err="Failed to calculate";
