@@ -75,7 +75,7 @@ $(document).ready(function(){
 	var typ='${model.typ}';
 	console.log('oper='+oper);
 	document.getElementById("precision").value='${model.nprecision}';
-	if(oper=='threedb' || oper=='tendb' oper=='axial' || oper=='bsbl'){
+	if(oper=='threedb' || oper=='tendb' || oper=='axial' || oper=='bsbl'){
 		document.getElementById("dbtab").style.display="block";
 		document.getElementById("gttab").style.display="none";
 	}
