@@ -20,6 +20,7 @@
     </list-property>
     <parameters>
         <scalar-parameter name="rpth" id="489">
+            <property name="hidden">true</property>
             <text-property name="helpText">Report Header</text-property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
@@ -35,6 +36,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rptf" id="490">
+            <property name="hidden">true</property>
             <text-property name="helpText">Report Footer</text-property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
@@ -50,6 +52,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="s1" id="300">
+            <property name="hidden">true</property>
             <text-property name="helpText">Serial</text-property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
@@ -67,6 +70,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="TestId" id="301">
+            <property name="hidden">true</property>
             <text-property name="helpText">Testid</text-property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
@@ -83,6 +87,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="pc" id="304">
+            <property name="hidden">true</property>
             <text-property name="helpText">precision</text-property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
@@ -100,6 +105,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="vdatatype" id="513">
+            <property name="hidden">true</property>
             <text-property name="helpText">AorE</text-property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
@@ -117,6 +123,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="deg" id="514">
+            <property name="hidden">true</property>
             <text-property name="helpText">0orBM</text-property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
@@ -134,6 +141,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="typ" id="531">
+            <property name="hidden">true</property>
             <text-property name="helpText">3or10</text-property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
