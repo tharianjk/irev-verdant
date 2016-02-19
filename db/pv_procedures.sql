@@ -1004,7 +1004,7 @@ DELIMITER ;
 
 
 
-drop procedure if exists spPV_DB_sum;
+-- drop procedure if exists spPV_DB_sum;
 -- --------------------------------------------------------------------------------
 -- Routine DDL
 -- Note: comments before and after the routine body will not be stored by the server
@@ -1090,7 +1090,13 @@ if typ='10' then
     '' remarks
     from pv_speccalculated where prodserial_id=serialid and datatype=vdatatype ;
 end if;
-
+if typ='BSBL' then
+	select  
+    round(case deg when '0' then 3dbBS_0_majorspec else 3dbBS_BM_majorspec end,prec) majorspec,
+    round(case deg when '0' then 3dbBS_0_minorspec else 3dbBS_BM_minorspec end,prec) minorspec ,
+    '' remarks
+    from pv_speccalculated where prodserial_id=serialid and datatype=vdatatype ;
+end if;
 
 END$$
 
