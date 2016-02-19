@@ -55,8 +55,7 @@ V46 decimal(40,20),H46 decimal(40,20),C46 decimal(40,20),
 V47 decimal(40,20),H47 decimal(40,20),C47 decimal(40,20),
 V48 decimal(40,20),H48 decimal(40,20),C48 decimal(40,20),
 V49 decimal(40,20),H49 decimal(40,20),C49 decimal(40,20),
-V50 decimal(40,20),H50 decimal(40,20),C50 decimal(40,20),
-maxcp decimal(40,20),mincp decimal(40,20),window decimal(40,20));
+V50 decimal(40,20),H50 decimal(40,20),C50 decimal(40,20)));
 
 
 
