@@ -1834,13 +1834,13 @@ Antenna without Radome&#13;
                 <structure>
                     <property name="paramName">typ</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["typ"].value</value>
+                        <value type="javascript">params["typ"].value=3</value>
                     </simple-property-list>
                 </structure>
                 <structure>
                     <property name="paramName">vdatatype</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["vdatatype"].value</value>
+                        <value type="javascript">params["vdatatype"].value='A'</value>
                     </simple-property-list>
                 </structure>
                 <structure>
@@ -2065,13 +2065,13 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                 <structure>
                     <property name="paramName">typ</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["typ"].value</value>
+                        <value type="javascript">params["typ"].value='3'</value>
                     </simple-property-list>
                 </structure>
                 <structure>
                     <property name="paramName">vdatatype</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["vdatatype"].value</value>
+                        <value type="javascript">params["vdatatype"].value='A'</value>
                     </simple-property-list>
                 </structure>
                 <structure>
@@ -2201,6 +2201,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="356">
             <property name="style">Border</property>
+            <property name="pageBreakBefore">always</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -2218,13 +2219,13 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                 <structure>
                     <property name="paramName">type</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["typ"].value</value>
+                        <value type="javascript">params["typ"].value='3'</value>
                     </simple-property-list>
                 </structure>
                 <structure>
                     <property name="paramName">vdatatype</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["vdatatype"].value</value>
+                        <value type="javascript">params["vdatatype"].value='E'</value>
                     </simple-property-list>
                 </structure>
                 <structure>
@@ -2447,13 +2448,13 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                 <structure>
                     <property name="paramName">typ</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["typ"].value</value>
+                        <value type="javascript">params["typ"].value='3'</value>
                     </simple-property-list>
                 </structure>
                 <structure>
                     <property name="paramName">vdatatype</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["vdatatype"].value</value>
+                        <value type="javascript">params["vdatatype"].value='E'</value>
                     </simple-property-list>
                 </structure>
                 <structure>
