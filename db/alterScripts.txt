@@ -55,8 +55,7 @@ V46 decimal(40,20),H46 decimal(40,20),C46 decimal(40,20),
 V47 decimal(40,20),H47 decimal(40,20),C47 decimal(40,20),
 V48 decimal(40,20),H48 decimal(40,20),C48 decimal(40,20),
 V49 decimal(40,20),H49 decimal(40,20),C49 decimal(40,20),
-V50 decimal(40,20),H50 decimal(40,20),C50 decimal(40,20),
-maxcp decimal(40,20),mincp decimal(40,20),window decimal(40,20));
+V50 decimal(40,20),H50 decimal(40,20),C50 decimal(40,20)));
 
 
 
@@ -351,5 +350,18 @@ DROP INDEX Prodserialid_freq_angle_vp ;
 ALTER TABLE pv_cpdata 
 DROP INDEX Prodserialid_freq_angle_cp ,
 ADD INDEX Prodserialid_freq_angle_cp (Prodserial_id ASC, datatype ASC, Frequency ASC, Angle ASC, Amplitude ASC);
+
+ALTER TABLE pv_cpdata
+DROP FOREIGN KEY FK_pvcpdata_test_pv1;
+ALTER TABLE pv_cpdata 
+DROP COLUMN Test_id,
+DROP INDEX FK_cpdata_pv1 ;
+
+ALTER TABLE pv_cpdata 
+CHANGE COLUMN Angle Angle DECIMAL(40,20) NULL DEFAULT NULL ,
+CHANGE COLUMN Amplitude Amplitude DECIMAL(40,20) NULL DEFAULT NULL ;
+
+
+
 
 
