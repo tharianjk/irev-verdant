@@ -1384,11 +1384,65 @@ inner join pv_prodserial p on td.test_id=p.test_id
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
-            <page-footer>
-                <text id="3">
+            <page-header>
+                <text-data id="1280">
+                    <property name="backgroundColor">#E9E9E9</property>
+                    <property name="fontFamily">serif</property>
+                    <property name="fontSize">14pt</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <property name="textAlign">center</property>
+                    <expression name="valueExpr">params["rpth"].value</expression>
                     <property name="contentType">html</property>
-                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
-                </text>
+                </text-data>
+            </page-header>
+            <page-footer>
+                <grid id="1272">
+                    <property name="backgroundColor">white</property>
+                    <property name="fontFamily">serif</property>
+                    <property name="fontSize">11pt</property>
+                    <column id="1273"/>
+                    <column id="1274"/>
+                    <row id="1275">
+                        <cell id="1276">
+                            <text id="1278">
+                                <property name="width">6cm</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<html>
+<body>
+<style>
+.outer{
+  text-align: center;
+}
+.outer img{
+  display: inline-block;
+}
+</style>
+<table>
+<tr>
+<td>
+<div class="outer">
+
+<img src="\img\Verdantlogo.png" height="50px" width="200px" align="baseline" name="myimage">
+
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="1277">
+                            <text-data id="1279">
+                                <property name="fontWeight">normal</property>
+                                <expression name="valueExpr">params["rptf"].value</expression>
+                                <property name="contentType">html</property>
+                            </text-data>
+                        </cell>
+                    </row>
+                </grid>
             </page-footer>
         </simple-master-page>
     </page-setup>
