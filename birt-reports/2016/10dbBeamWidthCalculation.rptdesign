@@ -1879,10 +1879,8 @@ Antenna without Radome&#13;
                         </label>
                     </cell>
                 </row>
-            </header>
-            <detail>
-                <row id="326">
-                    <cell id="327">
+                <row id="1281">
+                    <cell id="1282">
                         <label id="350">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -1891,7 +1889,7 @@ Antenna without Radome&#13;
                             <text-property name="text">Frequency (GHz)</text-property>
                         </label>
                     </cell>
-                    <cell id="328">
+                    <cell id="1283">
                         <label id="351">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -1902,7 +1900,7 @@ Antenna without Radome&#13;
 </text-property>
                         </label>
                     </cell>
-                    <cell id="329">
+                    <cell id="1284">
                         <label id="352">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -1913,7 +1911,7 @@ Antenna without Radome&#13;
 </text-property>
                         </label>
                     </cell>
-                    <cell id="330">
+                    <cell id="1285">
                         <label id="353">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -1922,7 +1920,7 @@ Antenna without Radome&#13;
                             <text-property name="text">10dB Beam width CP (D1-C1)</text-property>
                         </label>
                     </cell>
-                    <cell id="331">
+                    <cell id="1286">
                         <label id="354">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -1932,6 +1930,8 @@ Antenna without Radome&#13;
                         </label>
                     </cell>
                 </row>
+            </header>
+            <detail>
                 <row id="332">
                     <cell id="333">
                         <data id="462">
@@ -2299,10 +2299,8 @@ Antenna without Radome&#13;
                         </label>
                     </cell>
                 </row>
-            </header>
-            <detail>
-                <row id="360">
-                    <cell id="361">
+                <row id="1287">
+                    <cell id="1288">
                         <label id="362">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -2311,7 +2309,7 @@ Antenna without Radome&#13;
                             <text-property name="text">Frequency (GHz)</text-property>
                         </label>
                     </cell>
-                    <cell id="363">
+                    <cell id="1289">
                         <label id="364">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -2322,7 +2320,7 @@ Antenna without Radome&#13;
 </text-property>
                         </label>
                     </cell>
-                    <cell id="365">
+                    <cell id="1290">
                         <label id="366">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -2333,7 +2331,7 @@ Antenna without Radome&#13;
 </text-property>
                         </label>
                     </cell>
-                    <cell id="367">
+                    <cell id="1291">
                         <label id="368">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -2345,7 +2343,7 @@ width CP&#13;
 </text-property>
                         </label>
                     </cell>
-                    <cell id="369">
+                    <cell id="1292">
                         <label id="370">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -2355,6 +2353,8 @@ width CP&#13;
                         </label>
                     </cell>
                 </row>
+            </header>
+            <detail>
                 <row id="371">
                     <cell id="372">
                         <data id="471">
