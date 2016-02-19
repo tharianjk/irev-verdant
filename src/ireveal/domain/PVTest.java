@@ -20,7 +20,17 @@ private String testdesc;
 private String frequnit;
 private String testtype;
 private String instslno;
+private String antennaused;
 
+
+
+
+public String getAntennaused() {
+	return antennaused;
+}
+public void setAntennaused(String antennaused) {
+	this.antennaused = antennaused;
+}
 public String getInstslno() {
 	return instslno;
 }

@@ -128,7 +128,7 @@ progress_clear();
 
 
     <div id="pageHdr" style="width:1000px;">
-	<h2>Test Details</h2>
+	<h2>Product Serial Setup and Import</h2>
 	</div>
  
 	<form:form name="form1" id="form1" method="POST"  commandName="PVSerialData" enctype="multipart/form-data">
@@ -149,7 +149,7 @@ progress_clear();
 		<tr>
 		<td > Product Serial No: </td>
        <td width="50">
-			<form:input width="50" type="number" path="productserial" id="serialno"  min="1" max="50" maxlength="2" onchange="fnCheck();"/>          
+			<form:input width="50" type="number" path="productserial" id="serialno" required="required"  min="1" max="50" maxlength="2" onchange="fnCheck();"/>          
 	   </td>
           </tr>
           <tr>

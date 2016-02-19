@@ -287,6 +287,10 @@ public String getPVFreqdataGM(int serialid) {
 public boolean deletePVSerial(int id) {
 	return mastersdao.deletePVSerial(id);
 }
+@Override
+public int PV_CalcProc(int testid) {
+	return mastersdao.PV_CalcProc(testid);
+}
 
 
 

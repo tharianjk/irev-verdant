@@ -1,4 +1,66 @@
+
+-- alter table pv_testdata add AntennaUsed varchar(200) 
 -- alter table product add prodmodel varchar(100);
+
+-- 18-02-2016
+
+create table temp_GT (id integer auto_increment primary key,
+frequency decimal(40,20),
+V1 decimal(40,20),H1 decimal(40,20),C1 decimal(40,20),
+V2 decimal(40,20),H2 decimal(40,20),C2 decimal(40,20),
+V3 decimal(40,20),H3 decimal(40,20),C3 decimal(40,20),
+V4 decimal(40,20),H4 decimal(40,20),C4 decimal(40,20),
+V5 decimal(40,20),H5 decimal(40,20),C5 decimal(40,20),
+V6 decimal(40,20),H6 decimal(40,20),C6 decimal(40,20),
+V7 decimal(40,20),H7 decimal(40,20),C7 decimal(40,20),
+V8 decimal(40,20),H8 decimal(40,20),C8 decimal(40,20),
+V9 decimal(40,20),H9 decimal(40,20),C9 decimal(40,20),
+V10 decimal(40,20),H10 decimal(40,20),C10 decimal(40,20),
+V11 decimal(40,20),H11 decimal(40,20),C11 decimal(40,20),
+V12 decimal(40,20),H12 decimal(40,20),C12 decimal(40,20),
+V13 decimal(40,20),H13 decimal(40,20),C13 decimal(40,20),
+V14 decimal(40,20),H14 decimal(40,20),C14 decimal(40,20),
+V15 decimal(40,20),H15 decimal(40,20),C15 decimal(40,20),
+V16 decimal(40,20),H16 decimal(40,20),C16 decimal(40,20),
+V17 decimal(40,20),H17 decimal(40,20),C17 decimal(40,20),
+V18 decimal(40,20),H18 decimal(40,20),C18 decimal(40,20),
+V19 decimal(40,20),H19 decimal(40,20),C19 decimal(40,20),
+V20 decimal(40,20),H20 decimal(40,20),C20 decimal(40,20),
+V21 decimal(40,20),H21 decimal(40,20),C21 decimal(40,20),
+V22 decimal(40,20),H22 decimal(40,20),C22 decimal(40,20),
+V23 decimal(40,20),H23 decimal(40,20),C23 decimal(40,20),
+V24 decimal(40,20),H24 decimal(40,20),C24 decimal(40,20),
+V25 decimal(40,20),H25 decimal(40,20),C25 decimal(40,20),
+V26 decimal(40,20),H26 decimal(40,20),C26 decimal(40,20),
+V27 decimal(40,20),H27 decimal(40,20),C27 decimal(40,20),
+V28 decimal(40,20),H28 decimal(40,20),C28 decimal(40,20),
+V29 decimal(40,20),H29 decimal(40,20),C29 decimal(40,20),
+V30 decimal(40,20),H30 decimal(40,20),C30 decimal(40,20),
+V31 decimal(40,20),H31 decimal(40,20),C31 decimal(40,20),
+V32 decimal(40,20),H32 decimal(40,20),C32 decimal(40,20),
+V33 decimal(40,20),H33 decimal(40,20),C33 decimal(40,20),
+V34 decimal(40,20),H34 decimal(40,20),C34 decimal(40,20),
+V35 decimal(40,20),H35 decimal(40,20),C35 decimal(40,20),
+V36 decimal(40,20),H36 decimal(40,20),C36 decimal(40,20),
+V37 decimal(40,20),H37 decimal(40,20),C37 decimal(40,20),
+V38 decimal(40,20),H38 decimal(40,20),C38 decimal(40,20),
+V39 decimal(40,20),H39 decimal(40,20),C39 decimal(40,20),
+V40 decimal(40,20),H40 decimal(40,20),C40 decimal(40,20),
+V41 decimal(40,20),H41 decimal(40,20),C41 decimal(40,20),
+V42 decimal(40,20),H42 decimal(40,20),C42 decimal(40,20),
+V43 decimal(40,20),H43 decimal(40,20),C43 decimal(40,20),
+V44 decimal(40,20),H44 decimal(40,20),C44 decimal(40,20),
+V45 decimal(40,20),H45 decimal(40,20),C45 decimal(40,20),
+V46 decimal(40,20),H46 decimal(40,20),C46 decimal(40,20),
+V47 decimal(40,20),H47 decimal(40,20),C47 decimal(40,20),
+V48 decimal(40,20),H48 decimal(40,20),C48 decimal(40,20),
+V49 decimal(40,20),H49 decimal(40,20),C49 decimal(40,20),
+V50 decimal(40,20),H50 decimal(40,20),C50 decimal(40,20),
+maxcp decimal(40,20),mincp decimal(40,20),window decimal(40,20));
+
+
+
+
 
 drop procedure if exists spPVPolarPlot;
 drop procedure if exists spPVPolarSummary;
@@ -36,6 +98,7 @@ CREATE TABLE pv_testdata (
   rptheader varchar(200) DEFAULT NULL,
   rptfooter varchar(200) DEFAULT NULL,
   inst_slno varchar(100),
+  AntennaUsed varchar(200) ,
   PRIMARY KEY (Test_id)
 ) ;
 
