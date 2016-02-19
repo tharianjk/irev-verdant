@@ -2167,6 +2167,7 @@ GV = C+D&#13;
         </table>
         <table id="107">
             <property name="style">Border</property>
+            <property name="pageBreakBefore">always</property>
             <property name="dataSet">GAIN CORRECTION FACTOR CALCULATION</property>
             <list-property name="visibility">
                 <structure>
@@ -2366,6 +2367,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
         </table>
         <table id="144">
             <property name="style">Border</property>
+            <property name="pageBreakBefore">always</property>
             <property name="dataSet">CP GAIN CALCULATION</property>
             <list-property name="visibility">
                 <structure>
