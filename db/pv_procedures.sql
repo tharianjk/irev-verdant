@@ -1,4 +1,4 @@
-drop procedure if exists spPVPolarPlot;
+
 drop procedure if exists spPVPolarSummary;
 drop procedure if exists pv_calc_Gain_Tracking;
 drop procedure if exists pv_Calculate_params;
@@ -9,6 +9,8 @@ drop procedure if exists spPV_Axial;
 drop procedure if exists spPV_BSBL;
 drop procedure if exists spPV_DB;
 drop procedure if exists spPV_DB_sum;
+drop procedure if exists spPVPolarPlot;
+
 -- --------------------------------------------------------------------------------
 -- Routine DDL
 -- Note: comments before and after the routine body will not be stored by the server
@@ -18,8 +20,8 @@ DELIMITER $$
 CREATE  PROCEDURE spPVPolarPlot(
 testid INT,
 freqparm decimal(40,20),
-typ varchar(5), -- H HP,V VP,B HP&VP,P Pitch,R Roll ,Y Yaw
-vdatatype varchar(5), -- Azimuth,Elevation
+typ varchar(5), -- C CP,H HP,V VP,B HP&VP
+vdatatype varchar(5), -- A Azimuth,E Elevation,T Gain Tracking,M Gain Measurement
 serialid INT,
 prec int
 )
@@ -100,7 +102,7 @@ if typ='H' then
 			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_hdata HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid and datatype=vdatatype;
 	end if;
-      SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Prodserial_id,strmaxvalue,strminvalue FROM pv_hdata HD 
+      SELECT case when HD.Angle >180 then HD.Angle -360 else HD.Angle end Angle ,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Prodserial_id,strmaxvalue,strminvalue FROM pv_hdata HD 
 		where HD.Frequency=freq and HD.Prodserial_id=serialid and datatype=vdatatype;
 
 end if;
@@ -111,7 +113,7 @@ if typ='V' then
 			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_vdata HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid and datatype=vdatatype;
 	end if;
-		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Prodserial_id,strmaxvalue,strminvalue FROM pv_vdata HD 
+		SELECT case when HD.Angle >180 then HD.Angle -360 else HD.Angle end Angle,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Prodserial_id,strmaxvalue,strminvalue FROM pv_vdata HD 
 		where HD.Frequency=freq and HD.Prodserial_id=serialid and datatype=vdatatype;
 
 end if;
@@ -122,7 +124,7 @@ if typ='C' then
 				select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_cpdata HD 
 				where HD.Frequency=freq and HD.Prodserial_id=serialid and datatype=vdatatype;
 		end if;
-		SELECT HD.Angle,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Prodserial_id,strmaxvalue,strminvalue FROM pv_cpdata HD 
+		SELECT case when HD.Angle >180 then HD.Angle -360 else HD.Angle end Angle,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Prodserial_id,strmaxvalue,strminvalue FROM pv_cpdata HD 
 		where HD.Frequency=freq and HD.Prodserial_id=serialid and datatype=vdatatype;
 end if;
 if typ='B' then
@@ -132,7 +134,7 @@ if typ='B' then
 			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_hdata HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid and datatype=vdatatype;
 	end if;	
-		select test_id, case unt when 'GHz' then concat(RPAD(round(Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(Frequency,prec),10,' '),unt) end frequency,Angle,sum(hamplitude) hamplitude,sum(vamplitude) vamplitude,strmaxvalue,strminvalue 
+		select test_id, case unt when 'GHz' then concat(RPAD(round(Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(Frequency,prec),10,' '),unt) end frequency,case when HD.Angle >180 then HD.Angle -360 else HD.Angle end  Angle,sum(hamplitude) hamplitude,sum(vamplitude) vamplitude,strmaxvalue,strminvalue 
 		from (
 		SELECT hp.Prodserial_id, frequency ,hp.angle,hp.amplitude hamplitude, 0 vamplitude, 0 camplitude, 0 pamplitude, 0 ramplitude, 0 yamplitude,t.frequnit
 		FROM pv_hdata hp inner join pv_prodserial t on hp.Prodserial_id=t.Prodserial_id where Frequency  =freq and t.Prodserial_id=serialid and datatype=vdatatype

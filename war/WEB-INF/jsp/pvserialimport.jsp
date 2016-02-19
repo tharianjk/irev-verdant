@@ -128,7 +128,7 @@ progress_clear();
 
 
     <div id="pageHdr" style="width:1000px;">
-	<h2>Test Details</h2>
+	<h2>Product Serial Setup and Import</h2>
 	</div>
  
 	<form:form name="form1" id="form1" method="POST"  commandName="PVSerialData" enctype="multipart/form-data">
