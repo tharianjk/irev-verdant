@@ -3,7 +3,7 @@
 -- alter table product add prodmodel varchar(100);
 
 -- 18-02-2016
-
+drop table if exists temp_GT ; 
 create table temp_GT (id integer auto_increment primary key,
 frequency decimal(40,20),
 V1 decimal(40,20),H1 decimal(40,20),C1 decimal(40,20),
@@ -70,6 +70,18 @@ drop table if exists pv_testfreq;
 drop table if exists pv_vdata;
 drop table if exists pv_hdata;
 drop table if exists pv_cpdata;
+drop table if exists pv_vdata_azimuth;
+drop table if exists pv_hdata_azimuth;
+drop table if exists pv_cpdata_azimuth;
+drop table if exists pv_vdata_elevation;
+drop table if exists pv_hdata_elevation;
+drop table if exists pv_cpdata_elevation;
+drop table if exists pv_vdata_gt;
+drop table if exists pv_hdata_gt;
+drop table if exists pv_cpdata_gt;
+drop table if exists pv_vdata_gm;
+drop table if exists pv_hdata_gm;
+
 drop table if exists pv_vcalculated;
 drop table if exists pv_hcalculated;
 drop table if exists pv_cpcalculated;
@@ -126,28 +138,91 @@ CREATE TABLE pv_testfreq (
   CONSTRAINT Prodserial_id FOREIGN KEY (test_id) REFERENCES pv_testdata(test_id) 
 );
 
-CREATE TABLE pv_vdata (
+CREATE TABLE pv_vdata_azimuth (
   VData_id int(11) NOT NULL AUTO_INCREMENT,
   Prodserial_id int(11) DEFAULT NULL,
   Frequency decimal(40,20) DEFAULT NULL,
   Angle decimal(12,2) DEFAULT NULL,
   Amplitude decimal(12,8) DEFAULT NULL,
-  datatype varchar(2) ,
-
   PRIMARY KEY (VData_id),
-  KEY Prodserialid_freq_angle_vp (Prodserial_id,Frequency,Angle,Amplitude,datatype),
+  KEY Prodserialid_freq_angle_vp_a (Prodserial_id,Frequency,Angle),
   CONSTRAINT FK_pvvdata_test FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
 ) ;
-CREATE TABLE pv_hdata (
+CREATE TABLE pv_vdata_elevation (
+  VData_id int(11) NOT NULL AUTO_INCREMENT,
+  Prodserial_id int(11) DEFAULT NULL,
+  Frequency decimal(40,20) DEFAULT NULL,
+  Angle decimal(12,2) DEFAULT NULL,
+  Amplitude decimal(12,8) DEFAULT NULL,
+  PRIMARY KEY (VData_id),
+  KEY Prodserialid_freq_angle_vp_e (Prodserial_id,Frequency,Angle),
+  CONSTRAINT FK_pvvdata_test1 FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
+) ;
+CREATE TABLE pv_vdata_gt (
+  VData_id int(11) NOT NULL AUTO_INCREMENT,
+  Prodserial_id int(11) DEFAULT NULL,
+  Frequency decimal(40,20) DEFAULT NULL,
+  Angle decimal(12,2) DEFAULT NULL,
+  Amplitude decimal(12,8) DEFAULT NULL,
+  PRIMARY KEY (VData_id),
+  KEY Prodserialid_freq_angle_vp_gt (Prodserial_id,Frequency,Angle),
+  CONSTRAINT FK_pvvdata_test2 FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
+) ;
+
+CREATE TABLE pv_vdata_gm (
+  VData_id int(11) NOT NULL AUTO_INCREMENT,
+  Prodserial_id int(11) DEFAULT NULL,
+  Frequency decimal(40,20) DEFAULT NULL,
+  Angle decimal(12,2) DEFAULT NULL,
+  Amplitude decimal(12,8) DEFAULT NULL,
+  PRIMARY KEY (VData_id),
+  KEY Prodserialid_freq_angle_vp_gm (Prodserial_id,Frequency,Angle),
+  CONSTRAINT FK_pvvdata_testgm FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
+) ;
+
+CREATE TABLE pv_hdata_azimuth (
   HData_id int(11) NOT NULL AUTO_INCREMENT,
   Prodserial_id int(11) DEFAULT NULL,
   Frequency decimal(40,20) DEFAULT NULL,
   Angle decimal(12,2) DEFAULT NULL,
   Amplitude decimal(12,8) DEFAULT NULL,
-  datatype varchar(2) not null,
   PRIMARY KEY (HData_id),
-  KEY Prodserialid_freq_angle_hp (Prodserial_id,Frequency,Angle,Amplitude,datatype),
+  KEY Prodserialid_freq_angle_hp_a (Prodserial_id,Frequency,Angle),
   CONSTRAINT FK_pvhdata_test FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
+) ;
+
+CREATE TABLE pv_hdata_elevation (
+  HData_id int(11) NOT NULL AUTO_INCREMENT,
+  Prodserial_id int(11) DEFAULT NULL,
+  Frequency decimal(40,20) DEFAULT NULL,
+  Angle decimal(12,2) DEFAULT NULL,
+  Amplitude decimal(12,8) DEFAULT NULL,
+  PRIMARY KEY (HData_id),
+  KEY Prodserialid_freq_angle_hp_e (Prodserial_id,Frequency,Angle),
+  CONSTRAINT FK_pvhdata_test1 FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
+) ;
+
+CREATE TABLE pv_hdata_gt (
+  HData_id int(11) NOT NULL AUTO_INCREMENT,
+  Prodserial_id int(11) DEFAULT NULL,
+  Frequency decimal(40,20) DEFAULT NULL,
+  Angle decimal(12,2) DEFAULT NULL,
+  Amplitude decimal(12,8) DEFAULT NULL,
+  PRIMARY KEY (HData_id),
+  KEY Prodserialid_freq_angle_hp_gt (Prodserial_id,Frequency,Angle),
+  CONSTRAINT FK_pvhdata_test_g FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
+) ;
+
+
+CREATE TABLE pv_hdata_gm (
+  HData_id int(11) NOT NULL AUTO_INCREMENT,
+  Prodserial_id int(11) DEFAULT NULL,
+  Frequency decimal(40,20) DEFAULT NULL,
+  Angle decimal(12,2) DEFAULT NULL,
+  Amplitude decimal(12,8) DEFAULT NULL,
+  PRIMARY KEY (HData_id),
+  KEY Prodserialid_freq_angle_hp_gm (Prodserial_id,Frequency,Angle),
+  CONSTRAINT FK_pvhdata_test_gm FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
 ) ;
 
 CREATE TABLE pv_cpcalculated (
@@ -294,19 +369,26 @@ CREATE TABLE pv_gmcalculated (
   CONSTRAINT FK_gmcalculated_pv FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id),
   CONSTRAINT FK_gmCalculated_pv1 FOREIGN KEY (Test_id) REFERENCES pv_testdata (Test_id)
 ) ;
-CREATE TABLE pv_cpdata (
+CREATE TABLE pv_cpdata_azimuth (
   CPData_id int(11) NOT NULL AUTO_INCREMENT,
   Prodserial_id int(11) DEFAULT NULL,
-  Test_id int(11) DEFAULT NULL,
   Frequency decimal(40,20) DEFAULT NULL,
-  Angle decimal(12,2) DEFAULT NULL,
-  Amplitude decimal(12,8) DEFAULT NULL,
-  datatype varchar(2) not null,
+  Angle decimal(40,20) DEFAULT NULL,
+  Amplitude decimal(40,20) DEFAULT NULL,
   PRIMARY KEY (CPData_id),
-  KEY Prodserialid_freq_angle_cp (Prodserial_id,Frequency,Angle,Amplitude,datatype),
-  KEY FK_cpdata_pv1 (Test_id),
-  CONSTRAINT FK_pvcpdata_test FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id),
-   CONSTRAINT FK_pvcpdata_test_pv1 FOREIGN KEY (Test_id) REFERENCES pv_testdata (Test_id)
+  KEY Prodserialid_freq_angle_cp_a (Prodserial_id,Frequency,Angle),
+  CONSTRAINT FK_pvcpdata_testa FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
+) ;
+
+CREATE TABLE pv_cpdata_elevation (
+  CPData_id int(11) NOT NULL AUTO_INCREMENT,
+  Prodserial_id int(11) DEFAULT NULL,
+  Frequency decimal(40,20) DEFAULT NULL,
+  Angle decimal(40,20) DEFAULT NULL,
+  Amplitude decimal(40,20) DEFAULT NULL,
+  PRIMARY KEY (CPData_id),
+  KEY Prodserialid_freq_angle_cp_e (Prodserial_id,Frequency,Angle),
+  CONSTRAINT FK_pvcpdata_teste FOREIGN KEY (Prodserial_id) REFERENCES pv_prodserial (Prodserial_id)
 ) ;
 
 CREATE TABLE pv_speccalculated (
@@ -332,35 +414,10 @@ CREATE TABLE pv_speccalculated (
   CONSTRAINT FK_SpecCalculated_pv1 FOREIGN KEY (Test_id) REFERENCES pv_testdata (Test_id)
 ) ;
 
-ALTER TABLE pv_hdata
-DROP INDEX Prodserialid_freq_angle_hp ;
-
-ALTER TABLE pv_hdata
-ADD INDEX Prodserialid_datatype_freq_angle_amplitude (Prodserial_id ASC, datatype ASC, Frequency ASC, Angle ASC, Amplitude ASC);
-
 ALTER TABLE pv_radata 
 DROP INDEX Prodserialid_freq_ra ,
 ADD INDEX Prodserialid_freq_ra (Prodserial_id ASC, Frequency ASC, RecvdAmp ASC);
 
-ALTER TABLE pv_vdata 
-ADD INDEX Prodserial_datatype_freq_angle_amplitude_vp (Prodserial_id ASC, datatype ASC, Frequency ASC, Angle ASC, Amplitude ASC);
-
-ALTER TABLE pv_vdata
-DROP INDEX Prodserialid_freq_angle_vp ;
-
-ALTER TABLE pv_cpdata 
-DROP INDEX Prodserialid_freq_angle_cp ,
-ADD INDEX Prodserialid_freq_angle_cp (Prodserial_id ASC, datatype ASC, Frequency ASC, Angle ASC, Amplitude ASC);
-
-ALTER TABLE pv_cpdata
-DROP FOREIGN KEY FK_pvcpdata_test_pv1;
-ALTER TABLE pv_cpdata 
-DROP COLUMN Test_id,
-DROP INDEX FK_cpdata_pv1 ;
-
-ALTER TABLE pv_cpdata 
-CHANGE COLUMN Angle Angle DECIMAL(40,20) NULL DEFAULT NULL ,
-CHANGE COLUMN Amplitude Amplitude DECIMAL(40,20) NULL DEFAULT NULL ;
 
 
 
