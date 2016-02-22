@@ -15,7 +15,7 @@ drop procedure if exists pv_calc_combination;
 drop procedure if exists pv_calc_XdB_BW_BS;
 drop procedure if exists pv_calc_backlobelevel;
 drop procedure if exists pv_calc_spec;
-
+drop procedure if exists spPV_GT;
 -- --------------------------------------------------------------------------------
 -- Routine DDL
 -- Note: comments before and after the routine body will not be stored by the server
@@ -1004,7 +1004,7 @@ DELIMITER ;
 
 
 
-drop procedure if exists spPV_DB_sum;
+-- drop procedure if exists spPV_DB_sum;
 -- --------------------------------------------------------------------------------
 -- Routine DDL
 -- Note: comments before and after the routine body will not be stored by the server
@@ -1090,7 +1090,13 @@ if typ='10' then
     '' remarks
     from pv_speccalculated where prodserial_id=serialid and datatype=vdatatype ;
 end if;
-
+if typ='BSBL' then
+	select  
+    round(case deg when '0' then 3dbBS_0_majorspec else 3dbBS_BM_majorspec end,prec) majorspec,
+    round(case deg when '0' then 3dbBS_0_minorspec else 3dbBS_BM_minorspec end,prec) minorspec ,
+    '' remarks
+    from pv_speccalculated where prodserial_id=serialid and datatype=vdatatype ;
+end if;
 
 END$$
 
@@ -1725,6 +1731,191 @@ end if;
     
 RETURN cpdata;
 END$$
+
+DELIMITER;
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE  PROCEDURE spPV_GT(
+testid INT,
+deg varchar(10), -- 0,P45,M45
+prec int
+
+)
+BEGIN
+
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'spPV_GT';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+
+
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+DECLARE v_finished INTEGER DEFAULT 0;
+Declare v_freq decimal(40,20);
+Declare v_serialid int;
+Declare v_prevfreq decimal(40,20);
+Declare v_prevserialid int;
+Declare v_id int default 0;
+Declare v_insertsql varchar(2000) default '';
+Declare v_valsql  varchar(2000) default '';
+Declare v_hp decimal(40,4);
+Declare v_vp decimal(40,4);
+Declare v_cp decimal(40,4);
+
+DECLARE C1 CURSOR FOR select distinct frequency,prodserial_id from pv_gt_intermediate 
+where test_id=testid order by frequency,prodserial_id;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_finished = 1;
+DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ 
+
+begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(l_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Test id : ", testid, ", deg : ",deg, ", prec : ",prec);
+		call debug(l_proc_id, @details,'I','I');
+        
+         RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+	end if;
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(l_proc_id,'in spPV_GT','I','I');
+ end if;
+
+
+-- select nprecision into prec from fwk_company;
+
+ select frequnit into @unt from pv_testdata where test_id=testid;
+ truncate table temp_GT;
+ /* insert into temp_GT(frequency,V1,H1,C1,V2,H2,C2,V3,H3,C3,V4,H4,C4,V4,H5,C5,V6,H6,C6,V7,H7,C7,V8,H8,C8,V9,H9,C9,V10,H10,C10
+,V11,H11,C11,V12,H12,C12,V13,H13,C13,V14,H14,C14,V14,H15,C15,V16,H16,C16,V17,H17,C17,V18,H18,C18,V19,H19,C19,V20,H20,C20
+,V21,H21,C21,V22,H22,C22,V23,H23,C23,V24,H24,C24,V24,H25,C25,V26,H26,C26,V27,H27,C27,V28,H28,C28,V29,H29,C29,V30,H30,C30
+calc_Linear_Elevation,V31,H31,C31,V32,H32,C32,V33,H33,C33,V34,H34,C34,V34,H35,C35,V36,H36,C36,V37,H37,C37,V38,H38,C38,V39,H39,C39,V40,H40,C40
+,V41,H41,C41,V42,H42,C42,V43,H43,C43,V44,H44,C44,V44,H45,C45,V46,H46,C46,V47,H47,C47,V48,H48,C48,V49,H49,C49,V50,H50,C50)
+*/
+set v_id=0;
+set v_insertsql='';
+set v_valsql='';
+set v_prevfreq=-1;
+
+
+			OPEN C1;
+			 
+				getlist: LOOP
+				 
+				 FETCH C1 INTO v_freq,v_serialid;
+				 
+				IF v_finished = 1 THEN
+				  LEAVE getlist;
+				END IF;
+                if v_prevfreq=-1 then
+				  set v_prevfreq=v_freq;
+                end if;
+                if v_prevfreq<>v_freq then
+                 -- select concat(v_freq,' ',v_prevfreq);
+                 
+					set v_insertsql =concat('insert into temp_GT (frequency',v_insertsql,')');
+					set v_valsql=concat('values(',round(v_prevfreq,prec), v_valsql,')');
+
+					 -- select v_insertsql;
+					 -- select  v_valsql;
+
+                	set	@sql1= concat(v_insertsql,v_valsql);
+					PREPARE stmt1 FROM @sql1; 
+					EXECUTE stmt1; 
+					DEALLOCATE PREPARE stmt1;
+				set v_id=0;
+				set v_insertsql='';
+				set v_valsql='';
+                end if;
+
+
+					select round(case deg when '0' then HP_0 when 'P45' then HP_P45 else HP_M45 end,prec),
+					 round(case deg when '0' then VP_0 when 'P45' then VP_P45 else VP_M45 end,prec),
+					 round(case deg when '0' then CP_0 when 'P45' then CP_P45 else CP_M45 end,prec)
+					into v_hp,v_vp,v_cp  from pv_gt_intermediate a where Prodserial_id=v_serialid and frequency=v_freq;
+					
+
+					if v_hp is null then
+					set v_hp=0;
+					end if;
+					if v_vp is null then
+					set v_vp=0;
+					end if;
+					if v_cp is null then
+					set v_cp=0;
+					end if;
+
+                    set v_id=v_id+1;
+					set v_insertsql=concat(v_insertsql,',','V',v_id,',','H',v_id,',','C',v_id);
+					set v_valsql=concat(v_valsql,',',v_hp,',',v_vp,',',v_cp);
+                     
+					set v_prevfreq=v_freq;
+					
+
+				END LOOP getlist;
+			 
+			CLOSE C1;
+
+                    set v_insertsql =concat('insert into temp_GT (frequency',v_insertsql,')');
+					set v_valsql=concat('values(',round(v_prevfreq,prec), v_valsql,')');
+
+					  -- select v_insertsql;
+					  -- select  v_valsql;
+
+                	set	@sql1= concat(v_insertsql,v_valsql);
+					PREPARE stmt1 FROM @sql1; 
+					EXECUTE stmt1; 
+					DEALLOCATE PREPARE stmt1;
+
+
+if deg='0' then
+	select a.*,round(MAX_CP_0,prec) MAXCP,round(MIN_CP_0,prec) MINCP,round(Window_0,prec) WINDOW from temp_GT a left join pv_gt_calculated b on a.Frequency=b.Frequency 
+	where Test_id=testid ;
+END if;
+ if deg='P45' then
+	select a.*,round(MAX_CP_P45,prec) MAXCP,round(MIN_CP_P45,prec) MINCP,round(Window_P45,prec) WINDOW from temp_GT a left join pv_gt_calculated b on a.Frequency=b.Frequency 
+	where Test_id=testid ;
+else 
+	select a.*,round(MAX_CP_M45,prec) MAXCP,round(MIN_CP_M45,prec) MINCP,round(Window_M45,prec) WINDOW from temp_GT a left join pv_gt_calculated b on a.Frequency=b.Frequency 
+	where Test_id=testid ;
+end if;
+
+END$$
+DELIMITER;
+
+
 
 
 

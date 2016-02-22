@@ -18,6 +18,146 @@
             <property name="namespace">cssstr</property>
         </structure>
     </list-property>
+    <parameters>
+        <scalar-parameter name="rpth" id="489">
+            <property name="hidden">true</property>
+            <text-property name="helpText">Report Header</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">My header</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="rptf" id="490">
+            <property name="hidden">true</property>
+            <text-property name="helpText">Report Footer</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">My Footer</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="s1" id="300">
+            <property name="hidden">true</property>
+            <text-property name="helpText">Serial</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">2</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="TestId" id="301">
+            <property name="hidden">true</property>
+            <text-property name="helpText">Testid</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">4</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="pc" id="304">
+            <property name="hidden">true</property>
+            <text-property name="helpText">precision</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">2</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="vdatatype" id="513">
+            <property name="hidden">true</property>
+            <text-property name="helpText">AorE</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">A</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="deg" id="514">
+            <property name="hidden">true</property>
+            <text-property name="helpText">0orBM</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">0</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="typ" id="531">
+            <property name="hidden">true</property>
+            <text-property name="helpText">3or10</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">10</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="VerdantProfile" id="7">
             <list-property name="privateDriverProperties">
@@ -46,22 +186,1164 @@
     </data-sources>
     <data-sets>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="TestDesc" id="8">
-            <structure name="cachedMetaData"/>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">testproc</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">testproc</text-property>
+                    <text-property name="heading">testproc</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TestDesc</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TestDesc</text-property>
+                    <text-property name="heading">TestDesc</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TestDate</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TestDate</text-property>
+                    <text-property name="heading">TestDate</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">frequnit</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <text-property name="heading">frequnit</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">testcenter</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">testcenter</text-property>
+                    <text-property name="heading">testcenter</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">instruments</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">instruments</text-property>
+                    <text-property name="heading">instruments</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Calibration</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">calibration</text-property>
+                    <text-property name="heading">calibration</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SerialNo</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">SerialNo</text-property>
+                    <text-property name="heading">SerialNo</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Productname</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Productname</text-property>
+                    <text-property name="heading">Productname</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Version</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">version</text-property>
+                    <text-property name="heading">version</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Product_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Product_id</text-property>
+                    <text-property name="heading">Product_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">inst_slno</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">inst_slno</text-property>
+                    <text-property name="heading">inst_slno</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">prodmodel</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <text-property name="heading">prodmodel</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">testid</property>
+                    <property name="paramName">TestId</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">prodserialid</property>
+                    <property name="paramName">s1</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">testproc</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">TestDesc</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">TestDate</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">frequnit</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">testcenter</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">instruments</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">Calibration</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">SerialNo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">Productname</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">Version</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">Product_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">inst_slno</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">prodmodel</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
             <property name="dataSource">VerdantProfile</property>
-            <xml-property name="queryText"><![CDATA[select 
-from ]]></xml-property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">testproc</property>
+                    <property name="nativeName">testproc</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">TestDesc</property>
+                    <property name="nativeName">TestDesc</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">TestDate</property>
+                    <property name="nativeName">TestDate</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">frequnit</property>
+                    <property name="nativeName">frequnit</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">testcenter</property>
+                    <property name="nativeName">testcenter</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">instruments</property>
+                    <property name="nativeName">instruments</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">Calibration</property>
+                    <property name="nativeName">Calibration</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">SerialNo</property>
+                    <property name="nativeName">SerialNo</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">Productname</property>
+                    <property name="nativeName">Productname</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">Version</property>
+                    <property name="nativeName">Version</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">Product_id</property>
+                    <property name="nativeName">Product_id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">inst_slno</property>
+                    <property name="nativeName">inst_slno</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">prodmodel</property>
+                    <property name="nativeName">prodmodel</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT distinct TD.testproc,TD.TestDesc,TD.TestDate,TD.frequnit,TD.testcenter,TD.instruments,TD.calibration ,
+p.SerialNo,s.Productname,s.version,s.Product_id,inst_slno ,prodmodel
+FROM pv_testdata TD inner join product s on td.Product_id=S.Product_id  
+inner join pv_prodserial p on td.test_id=p.test_id
+ where TD.Test_id=? and Prodserial_id=?]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+</model:DesignValues>]]></xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="AzimuthPattern" id="9">
-            <structure name="cachedMetaData"/>
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">testid</property>
+                    <property name="paramName">TestId</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">typ</property>
+                    <property name="paramName">typ</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">vdatatype</property>
+                    <property name="paramName">vdatatype</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">deg</property>
+                    <property name="paramName">deg</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">4</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">serialid</property>
+                    <property name="paramName">s1</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">5</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">pc</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">6</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">frequency</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">ldbpoint</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">rdbpoint</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">cp</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">remarks</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
             <property name="dataSource">VerdantProfile</property>
-            <xml-property name="queryText"><![CDATA[select 
-from ]]></xml-property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">frequency</property>
+                    <property name="nativeName">frequency</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">ldbpoint</property>
+                    <property name="nativeName">ldbpoint</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">rdbpoint</property>
+                    <property name="nativeName">rdbpoint</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">cp</property>
+                    <property name="nativeName">cp</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">remarks</property>
+                    <property name="nativeName">remarks</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[{call spPV_DB(?,?,?,?,?,?) } ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>4</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>5</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>6</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+</model:DesignValues>]]></xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="ElevationPattern" id="10">
-            <structure name="cachedMetaData"/>
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">testid</property>
+                    <property name="paramName">TestId</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">typ</property>
+                    <property name="paramName">typ</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">vdatatype</property>
+                    <property name="paramName">vdatatype</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">deg</property>
+                    <property name="paramName">deg</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">4</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">serialid</property>
+                    <property name="paramName">s1</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">5</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">pc</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">6</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">frequency</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">ldbpoint</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">rdbpoint</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">cp</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">remarks</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
             <property name="dataSource">VerdantProfile</property>
-            <xml-property name="queryText"><![CDATA[select 
-from ]]></xml-property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">frequency</property>
+                    <property name="nativeName">frequency</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">ldbpoint</property>
+                    <property name="nativeName">ldbpoint</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">rdbpoint</property>
+                    <property name="nativeName">rdbpoint</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">cp</property>
+                    <property name="nativeName">cp</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">remarks</property>
+                    <property name="nativeName">remarks</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[{call spPV_DB(?,?,?,?,?,?) } ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>4</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>5</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>6</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="AzimuthPatternSum" id="483">
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">testid</property>
+                    <property name="paramName">TestId</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">typ</property>
+                    <property name="paramName">typ</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">vdatatype</property>
+                    <property name="paramName">vdatatype</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">deg</property>
+                    <property name="paramName">vdatatype</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">4</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">serialid</property>
+                    <property name="paramName">s1</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">5</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">pc</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">6</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">majorspec</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">minorspec</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">remarks</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">majorspec</property>
+                    <property name="nativeName">majorspec</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">minorspec</property>
+                    <property name="nativeName">minorspec</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">remarks</property>
+                    <property name="nativeName">remarks</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[{call spPV_DB_sum(?,?,?,?,?,?) } ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>4</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>5</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>6</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="ElevationPatternSum" id="486">
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">testid</property>
+                    <property name="paramName">TestId</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">typ</property>
+                    <property name="paramName">typ</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">vdatatype</property>
+                    <property name="paramName">vdatatype</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">deg</property>
+                    <property name="paramName">deg</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">4</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">serialid</property>
+                    <property name="paramName">s1</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">5</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">pc</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">6</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">majorspec</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">minorspec</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">remarks</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">majorspec</property>
+                    <property name="nativeName">majorspec</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">minorspec</property>
+                    <property name="nativeName">minorspec</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">remarks</property>
+                    <property name="nativeName">remarks</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[{call spPV_DB_sum(?,?,?,?,?,?) } ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>4</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>5</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>6</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+</model:DesignValues>]]></xml-property>
         </oda-data-set>
     </data-sets>
     <styles>
@@ -110,16 +1392,139 @@ from ]]></xml-property>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
-            <page-footer>
-                <text id="3">
+            <page-header>
+                <text-data id="1280">
+                    <property name="backgroundColor">#E9E9E9</property>
+                    <property name="fontFamily">serif</property>
+                    <property name="fontSize">14pt</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <property name="textAlign">center</property>
+                    <expression name="valueExpr">params["rpth"].value</expression>
                     <property name="contentType">html</property>
-                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
-                </text>
+                </text-data>
+            </page-header>
+            <page-footer>
+                <grid id="1272">
+                    <property name="backgroundColor">white</property>
+                    <property name="fontFamily">serif</property>
+                    <property name="fontSize">11pt</property>
+                    <column id="1273"/>
+                    <column id="1274"/>
+                    <row id="1275">
+                        <cell id="1276">
+                            <text id="1278">
+                                <property name="width">6cm</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<html>
+<body>
+<style>
+.outer{
+  text-align: center;
+}
+.outer img{
+  display: inline-block;
+}
+</style>
+<table>
+<tr>
+<td>
+<div class="outer">
+
+<img src="\img\Verdantlogo.png" height="50px" width="200px" align="baseline" name="myimage">
+
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="1277">
+                            <text-data id="1279">
+                                <property name="fontWeight">normal</property>
+                                <expression name="valueExpr">params["rptf"].value</expression>
+                                <property name="contentType">html</property>
+                            </text-data>
+                        </cell>
+                    </row>
+                </grid>
             </page-footer>
         </simple-master-page>
     </page-setup>
     <body>
         <table id="202">
+            <property name="dataSet">TestDesc</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">SerialNo</property>
+                    <text-property name="displayName">SerialNo</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["SerialNo"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Version</property>
+                    <text-property name="displayName">version</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Version"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Productname</property>
+                    <text-property name="displayName">Productname</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Productname"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TestDate</property>
+                    <text-property name="displayName">TestDate</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TestDate"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">testcenter</property>
+                    <text-property name="displayName">testcenter</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["testcenter"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">instruments</property>
+                    <text-property name="displayName">instruments</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["instruments"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">inst_slno</property>
+                    <text-property name="displayName">inst_slno</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["inst_slno"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Calibration</property>
+                    <text-property name="displayName">calibration</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Calibration"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">testproc</property>
+                    <text-property name="displayName">testproc</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["testproc"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TestDesc</property>
+                    <text-property name="displayName">TestDesc</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TestDesc"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
             <column id="268">
                 <property name="style">Border</property>
             </column>
@@ -159,6 +1564,11 @@ from ]]></xml-property>
                     <cell id="210">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
+                        <data id="482">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="resultSetColumn">TestDesc</property>
+                        </data>
                     </cell>
                 </row>
                 <row id="213">
@@ -173,6 +1583,11 @@ from ]]></xml-property>
                     <cell id="215">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
+                        <data id="481">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="resultSetColumn">testproc</property>
+                        </data>
                     </cell>
                 </row>
                 <row id="218">
@@ -217,22 +1632,29 @@ from ]]></xml-property>
                 </row>
                 <row id="223">
                     <property name="height">0.22916666666666666in</property>
-                    <cell id="225"/>
-                    <cell id="226"/>
-                    <cell id="227"/>
-                </row>
-                <row id="228">
-                    <cell id="229">
-                        <label id="276">
+                    <cell id="225">
+                        <data id="478">
                             <property name="fontFamily">serif</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text"> Ref Antenna Used</text-property>
-                        </label>
+                            <property name="fontSize">11pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">instruments</property>
+                        </data>
                     </cell>
-                    <cell id="230">
-                        <property name="colSpan">3</property>
-                        <property name="rowSpan">1</property>
+                    <cell id="226">
+                        <data id="479">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">inst_slno</property>
+                        </data>
+                    </cell>
+                    <cell id="227">
+                        <data id="480">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Calibration</property>
+                        </data>
                     </cell>
                 </row>
                 <row id="233">
@@ -247,6 +1669,11 @@ from ]]></xml-property>
                     <cell id="235">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
+                        <data id="477">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="resultSetColumn">testcenter</property>
+                        </data>
                     </cell>
                 </row>
                 <row id="238">
@@ -261,6 +1688,11 @@ from ]]></xml-property>
                     <cell id="240">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
+                        <data id="476">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="resultSetColumn">TestDate</property>
+                        </data>
                     </cell>
                 </row>
                 <row id="243">
@@ -275,6 +1707,11 @@ from ]]></xml-property>
                     <cell id="245">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
+                        <data id="475">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="resultSetColumn">Productname</property>
+                        </data>
                     </cell>
                 </row>
                 <row id="248">
@@ -289,6 +1726,11 @@ from ]]></xml-property>
                     <cell id="250">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
+                        <data id="474">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="resultSetColumn">Version</property>
+                        </data>
                     </cell>
                 </row>
                 <row id="253">
@@ -303,6 +1745,11 @@ from ]]></xml-property>
                     <cell id="255">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
+                        <data id="473">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="resultSetColumn">prodmodel</property>
+                        </data>
                     </cell>
                 </row>
                 <row id="258">
@@ -319,17 +1766,88 @@ Antenna without Radome&#13;
                     <cell id="260">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
+                        <data id="472">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="resultSetColumn">SerialNo</property>
+                        </data>
                     </cell>
                 </row>
             </detail>
         </table>
-        <label id="355">
-            <property name="backgroundColor">#C0C0C0</property>
-            <property name="textAlign">center</property>
-            <text-property name="text">TABLE-1</text-property>
-        </label>
         <table id="319">
             <property name="style">Border</property>
+            <property name="dataSet">AzimuthPattern</property>
+            <list-property name="paramBindings">
+                <structure>
+                    <property name="paramName">testid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["TestId"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">typ</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["typ"].value='10'</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">vdatatype</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["vdatatype"].value='A'</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">deg</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">serialid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["s1"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">pc</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">frequency</property>
+                    <text-property name="displayName">frequency</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequency"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">ldbpoint</property>
+                    <text-property name="displayName">ldbpoint</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ldbpoint"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">rdbpoint</property>
+                    <text-property name="displayName">rdbpoint</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["rdbpoint"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">cp</property>
+                    <text-property name="displayName">cp</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cp"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">remarks</property>
+                    <text-property name="displayName">remarks</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["remarks"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
             <column id="344">
                 <property name="style">Border</property>
             </column>
@@ -346,6 +1864,17 @@ Antenna without Radome&#13;
                 <property name="style">Border</property>
             </column>
             <header>
+                <row id="519">
+                    <cell id="520">
+                        <property name="colSpan">5</property>
+                        <property name="rowSpan">1</property>
+                        <label id="355">
+                            <property name="backgroundColor">#C0C0C0</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">TABLE-1</text-property>
+                        </label>
+                    </cell>
+                </row>
                 <row id="320">
                     <cell id="321">
                         <property name="colSpan">5</property>
@@ -358,10 +1887,8 @@ Antenna without Radome&#13;
                         </label>
                     </cell>
                 </row>
-            </header>
-            <detail>
-                <row id="326">
-                    <cell id="327">
+                <row id="1281">
+                    <cell id="1282">
                         <label id="350">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -370,7 +1897,7 @@ Antenna without Radome&#13;
                             <text-property name="text">Frequency (GHz)</text-property>
                         </label>
                     </cell>
-                    <cell id="328">
+                    <cell id="1283">
                         <label id="351">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -381,7 +1908,7 @@ Antenna without Radome&#13;
 </text-property>
                         </label>
                     </cell>
-                    <cell id="329">
+                    <cell id="1284">
                         <label id="352">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -392,7 +1919,7 @@ Antenna without Radome&#13;
 </text-property>
                         </label>
                     </cell>
-                    <cell id="330">
+                    <cell id="1285">
                         <label id="353">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -401,7 +1928,7 @@ Antenna without Radome&#13;
                             <text-property name="text">10dB Beam width CP (D1-C1)</text-property>
                         </label>
                     </cell>
-                    <cell id="331">
+                    <cell id="1286">
                         <label id="354">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -411,17 +1938,113 @@ Antenna without Radome&#13;
                         </label>
                     </cell>
                 </row>
+            </header>
+            <detail>
                 <row id="332">
-                    <cell id="333"/>
-                    <cell id="334"/>
-                    <cell id="335"/>
-                    <cell id="336"/>
-                    <cell id="337"/>
+                    <cell id="333">
+                        <data id="462">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">frequency</property>
+                        </data>
+                    </cell>
+                    <cell id="334">
+                        <data id="463">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">ldbpoint</property>
+                        </data>
+                    </cell>
+                    <cell id="335">
+                        <data id="464">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">rdbpoint</property>
+                        </data>
+                    </cell>
+                    <cell id="336">
+                        <data id="465">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">cp</property>
+                        </data>
+                    </cell>
+                    <cell id="337">
+                        <data id="466">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">remarks</property>
+                        </data>
+                    </cell>
                 </row>
             </detail>
         </table>
         <table id="383">
             <property name="style">Border</property>
+            <property name="dataSet">AzimuthPatternSum</property>
+            <list-property name="paramBindings">
+                <structure>
+                    <property name="paramName">testid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["TestId"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">typ</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["typ"].value='10'</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">vdatatype</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["vdatatype"].value='A'</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">deg</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">serialid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["s1"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">pc</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">majorspec</property>
+                    <text-property name="displayName">majorspec</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["majorspec"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">minorspec</property>
+                    <text-property name="displayName">minorspec</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["minorspec"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">remarks</property>
+                    <text-property name="displayName">remarks</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["remarks"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
             <column id="409">
                 <property name="style">Border</property>
             </column>
@@ -485,8 +2108,20 @@ Antenna without Radome&#13;
                             <text-property name="text">=18 Points</text-property>
                         </label>
                     </cell>
-                    <cell id="387"/>
-                    <cell id="388"/>
+                    <cell id="387">
+                        <data id="484">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="resultSetColumn">majorspec</property>
+                        </data>
+                    </cell>
+                    <cell id="388">
+                        <data id="515">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="resultSetColumn">remarks</property>
+                        </data>
+                    </cell>
                 </row>
             </header>
             <detail>
@@ -540,18 +2175,99 @@ Antenna without Radome&#13;
                             <text-property name="text">≥14 Points</text-property>
                         </label>
                     </cell>
-                    <cell id="397"/>
-                    <cell id="398"/>
+                    <cell id="397">
+                        <data id="485">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">minorspec</property>
+                        </data>
+                    </cell>
+                    <cell id="398">
+                        <data id="516">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">remarks</property>
+                        </data>
+                    </cell>
                 </row>
             </detail>
         </table>
-        <label id="382">
-            <property name="backgroundColor">#C0C0C0</property>
-            <property name="textAlign">center</property>
-            <text-property name="text">TABLE-2</text-property>
-        </label>
         <table id="356">
             <property name="style">Border</property>
+            <property name="pageBreakBefore">always</property>
+            <property name="dataSet">ElevationPattern</property>
+            <list-property name="paramBindings">
+                <structure>
+                    <property name="paramName">testid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["TestId"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">typ</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["typ"].value='10'</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">vdatatype</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["vdatatype"].value='E'</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">deg</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">serialid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["s1"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">pc</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">remarks</property>
+                    <text-property name="displayName">remarks</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["remarks"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cp</property>
+                    <text-property name="displayName">cp</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cp"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">rdbpoint</property>
+                    <text-property name="displayName">rdbpoint</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["rdbpoint"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">ldbpoint</property>
+                    <text-property name="displayName">ldbpoint</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ldbpoint"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">frequency</property>
+                    <text-property name="displayName">frequency</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequency"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
             <column id="377">
                 <property name="style">Border</property>
             </column>
@@ -568,6 +2284,17 @@ Antenna without Radome&#13;
                 <property name="style">Border</property>
             </column>
             <header>
+                <row id="525">
+                    <cell id="526">
+                        <property name="colSpan">5</property>
+                        <property name="rowSpan">1</property>
+                        <label id="382">
+                            <property name="backgroundColor">#C0C0C0</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">TABLE-2</text-property>
+                        </label>
+                    </cell>
+                </row>
                 <row id="357">
                     <cell id="358">
                         <property name="colSpan">5</property>
@@ -580,10 +2307,8 @@ Antenna without Radome&#13;
                         </label>
                     </cell>
                 </row>
-            </header>
-            <detail>
-                <row id="360">
-                    <cell id="361">
+                <row id="1287">
+                    <cell id="1288">
                         <label id="362">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -592,7 +2317,7 @@ Antenna without Radome&#13;
                             <text-property name="text">Frequency (GHz)</text-property>
                         </label>
                     </cell>
-                    <cell id="363">
+                    <cell id="1289">
                         <label id="364">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -603,7 +2328,7 @@ Antenna without Radome&#13;
 </text-property>
                         </label>
                     </cell>
-                    <cell id="365">
+                    <cell id="1290">
                         <label id="366">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -614,7 +2339,7 @@ Antenna without Radome&#13;
 </text-property>
                         </label>
                     </cell>
-                    <cell id="367">
+                    <cell id="1291">
                         <label id="368">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -626,7 +2351,7 @@ width CP&#13;
 </text-property>
                         </label>
                     </cell>
-                    <cell id="369">
+                    <cell id="1292">
                         <label id="370">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -636,17 +2361,113 @@ width CP&#13;
                         </label>
                     </cell>
                 </row>
+            </header>
+            <detail>
                 <row id="371">
-                    <cell id="372"/>
-                    <cell id="373"/>
-                    <cell id="374"/>
-                    <cell id="375"/>
-                    <cell id="376"/>
+                    <cell id="372">
+                        <data id="471">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">frequency</property>
+                        </data>
+                    </cell>
+                    <cell id="373">
+                        <data id="470">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">ldbpoint</property>
+                        </data>
+                    </cell>
+                    <cell id="374">
+                        <data id="469">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">rdbpoint</property>
+                        </data>
+                    </cell>
+                    <cell id="375">
+                        <data id="468">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">cp</property>
+                        </data>
+                    </cell>
+                    <cell id="376">
+                        <data id="467">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">remarks</property>
+                        </data>
+                    </cell>
                 </row>
             </detail>
         </table>
         <table id="428">
             <property name="style">Border</property>
+            <property name="dataSet">ElevationPatternSum</property>
+            <list-property name="paramBindings">
+                <structure>
+                    <property name="paramName">testid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["TestId"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">typ</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["typ"].value='10'</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">vdatatype</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["vdatatype"].value='E'</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">deg</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">serialid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["s1"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">pc</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">majorspec</property>
+                    <text-property name="displayName">majorspec</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["majorspec"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">minorspec</property>
+                    <text-property name="displayName">minorspec</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["minorspec"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">remarks</property>
+                    <text-property name="displayName">remarks</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["remarks"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
             <column id="457">
                 <property name="style">Border</property>
             </column>
@@ -710,8 +2531,20 @@ width CP&#13;
                             <text-property name="text">=18 Points</text-property>
                         </label>
                     </cell>
-                    <cell id="441"/>
-                    <cell id="442"/>
+                    <cell id="441">
+                        <data id="487">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="resultSetColumn">majorspec</property>
+                        </data>
+                    </cell>
+                    <cell id="442">
+                        <data id="517">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="resultSetColumn">remarks</property>
+                        </data>
+                    </cell>
                 </row>
             </header>
             <detail>
@@ -765,8 +2598,22 @@ width CP&#13;
                             <text-property name="text">≥14 Points</text-property>
                         </label>
                     </cell>
-                    <cell id="455"/>
-                    <cell id="456"/>
+                    <cell id="455">
+                        <data id="488">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">minorspec</property>
+                        </data>
+                    </cell>
+                    <cell id="456">
+                        <data id="518">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">11pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">remarks</property>
+                        </data>
+                    </cell>
                 </row>
             </detail>
         </table>

@@ -17,10 +17,16 @@
 <table>
  <tr><td>
  <table id="dbtab" style="display:none"><tr><td>
-       	       <input type="radio" id="bm" value="bm" name="optdb" >Beam Max &nbsp; &nbsp;&nbsp;
+       	       <input type="radio" id="bm" value="bm" name="optdb" checked>Beam Max &nbsp; &nbsp;&nbsp;
 		       <input type="radio" id="0d" value="0d" name="optdb" >0 &#176;  &nbsp; &nbsp;&nbsp;
-		       <input type="radio" id="90d" value="90d" name="optdb" >90 &deg; &nbsp; &nbsp;&nbsp;
-		       <input type="radio" id="all" value="0d90d" name="optdb" checked >All &nbsp; &nbsp;&nbsp;
+		       <!-- <input type="radio" id="90d" value="90d" name="optdb" >90 &deg; &nbsp; &nbsp;&nbsp;
+		       <input type="radio" id="all" value="0d90d" name="optdb" checked >All &nbsp; &nbsp;&nbsp; -->
+		       </td></tr>
+</table>
+ <table id="gttab" style="display:none"><tr><td>       	       
+		       <input type="radio" id="0" value="0d" name="optgt" checked>0 &#176;  &nbsp; &nbsp;&nbsp;
+		       <input type="radio" id="P45" value="P45" name="optgt" >+45 &#176; &nbsp; &nbsp;&nbsp;
+		       <input type="radio" id="M45" value="P45" name="optgt" >+45 &#176; &nbsp; &nbsp;&nbsp;
 		       </td></tr>
 </table>
  </td>
@@ -66,14 +72,16 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 <script type="text/javascript">
 $(document).ready(function(){
 	var oper='${model.oper}'; //'threedb',tendb,
-	var oper='${model.typ}';
+	var typ='${model.typ}';
+	console.log('oper='+oper);
 	document.getElementById("precision").value='${model.nprecision}';
-	if(oper=='threedb' || oper=='tendb'){
-		document.getElementById("dbtab").display="block";
+	if(oper=='threedb' || oper=='tendb' || oper=='axial' || oper=='bsbl'){
+		document.getElementById("dbtab").style.display="block";
+		document.getElementById("gttab").style.display="none";
 	}
 	if(oper=='gt'){
-		document.getElementById("mtab").display="none";
-		
+		document.getElementById("mtab").style.display="none";
+		document.getElementById("gttab").style.display="block";
 	}
 	
 	
@@ -100,7 +108,7 @@ function Redirect(){
 		var selslno="";
 		var oper='${model.oper}';
 		nprecision=document.getElementById('precision').value;
-		
+		if(oper!='gt'){
 		arrslnos=strslno.split(",");
 		for (var i=1;i<50;i++){
 			arrsel[i]=-1;
@@ -127,14 +135,10 @@ function Redirect(){
 					alert("Serial Nos not selected");
 					return;
 				}
-				
-		if(document.getElementById('all').checked){
-			deg='0d90d';
 		}
-		else if(document.getElementById('0d').checked)
+		 if(document.getElementById('0d').checked)
 			deg='0d';
-		else if(document.getElementById('90d').checked)
-			deg='90d';	
+		
 		else if(document.getElementById('bm').checked)
 			{
 			deg='bm';
@@ -142,7 +146,7 @@ function Redirect(){
 			var url="";
 			if(oper=='threedb' )
 			{				
-				 url="/birt-viewer/frameset?__report=verdant/3dbWithCP_report.rptdesign&deg="+deg+"&TestId="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
+				 url="/birt-viewer/frameset?__report=verdant/3dbBeamWidthCalculation.rptdesign&deg="+deg+"&TestId="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
 				 "&s1="+arrsel[0]+"&s2="+arrsel[1]+"&s3="+arrsel[2]+"&s4="+arrsel[3]+"&s5="+arrsel[4]+"&s6="+arrsel[5]+"&s7="+arrsel[6]+"&s8="+arrsel[7]+"&s9="+arrsel[8]+"&s10="+arrsel[9]+
 				 "&s11="+arrsel[10]+"&s12="+arrsel[11]+"&s13="+arrsel[12]+"&s14="+arrsel[13]+"&s15="+arrsel[14]+"&s16="+arrsel[15]+"&s17="+arrsel[16]+"&s18="+arrsel[17]+"&s19="+arrsel[18]+"&s20="+arrsel[19]+
 				 "&s21="+arrsel[20]+"&s22="+arrsel[21]+"&s23="+arrsel[22]+"&s24="+arrsel[23]+"&s25="+arrsel[24]+"&s26="+arrsel[25]+"&s27="+arrsel[26]+"&s28="+arrsel[27]+"&s29="+arrsel[28]+"&s30="+arrsel[39]+
@@ -152,7 +156,7 @@ function Redirect(){
 			}
 			else if(oper=='tendb' )
 			{				
-				url="/birt-viewer/frameset?__report=verdant/3dbWithCP_report.rptdesign&deg="+deg+"&TestId="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
+				url="/birt-viewer/frameset?__report=verdant/10dbBeamWidthCalculation.rptdesign&deg="+deg+"&TestId="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
 				 "&s1="+arrsel[0]+"&s2="+arrsel[1]+"&s3="+arrsel[2]+"&s4="+arrsel[3]+"&s5="+arrsel[4]+"&s6="+arrsel[5]+"&s7="+arrsel[6]+"&s8="+arrsel[7]+"&s9="+arrsel[8]+"&s10="+arrsel[9]+
 				 "&s11="+arrsel[10]+"&s12="+arrsel[11]+"&s13="+arrsel[12]+"&s14="+arrsel[13]+"&s15="+arrsel[14]+"&s16="+arrsel[15]+"&s17="+arrsel[16]+"&s18="+arrsel[17]+"&s19="+arrsel[18]+"&s20="+arrsel[19]+
 				 "&s21="+arrsel[20]+"&s22="+arrsel[21]+"&s23="+arrsel[22]+"&s24="+arrsel[23]+"&s25="+arrsel[24]+"&s26="+arrsel[25]+"&s27="+arrsel[26]+"&s28="+arrsel[27]+"&s29="+arrsel[28]+"&s30="+arrsel[39]+
@@ -214,8 +218,14 @@ function Redirect(){
 			
 			
 			else if(oper=='gt' )
-			{				
-				url="/birt-viewer/frameset?__report=verdant/GainMeasurement.rptdesign&TestId="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision;
+			{		
+				if(document.getElementById('0').checked)
+					deg='0';
+				else if(document.getElementById('P45').checked)
+					deg='P45';
+				else
+					deg='M45';
+				url="/birt-viewer/frameset?__report=verdant/GainMeasurement.rptdesign&TestId="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+"deg="+deg;
 				
 			}
 			

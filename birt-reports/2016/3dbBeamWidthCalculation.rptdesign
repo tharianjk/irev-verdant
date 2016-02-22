@@ -1834,13 +1834,13 @@ Antenna without Radome&#13;
                 <structure>
                     <property name="paramName">typ</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["typ"].value</value>
+                        <value type="javascript">params["typ"].value=3</value>
                     </simple-property-list>
                 </structure>
                 <structure>
                     <property name="paramName">vdatatype</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["vdatatype"].value</value>
+                        <value type="javascript">params["vdatatype"].value='A'</value>
                     </simple-property-list>
                 </structure>
                 <structure>
@@ -1947,10 +1947,8 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         </label>
                     </cell>
                 </row>
-            </header>
-            <detail>
-                <row id="326">
-                    <cell id="327">
+                <row id="1293">
+                    <cell id="1294">
                         <label id="350">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -1959,7 +1957,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                             <text-property name="text">Frequency (GHz)</text-property>
                         </label>
                     </cell>
-                    <cell id="328">
+                    <cell id="1295">
                         <label id="351">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -1970,7 +1968,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
 </text-property>
                         </label>
                     </cell>
-                    <cell id="329">
+                    <cell id="1296">
                         <label id="352">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -1981,7 +1979,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
 </text-property>
                         </label>
                     </cell>
-                    <cell id="330">
+                    <cell id="1297">
                         <label id="353">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -1992,7 +1990,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
 </text-property>
                         </label>
                     </cell>
-                    <cell id="331">
+                    <cell id="1298">
                         <label id="354">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -2002,6 +2000,8 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         </label>
                     </cell>
                 </row>
+            </header>
+            <detail>
                 <row id="332">
                     <cell id="333">
                         <data id="481">
@@ -2065,13 +2065,13 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                 <structure>
                     <property name="paramName">typ</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["typ"].value</value>
+                        <value type="javascript">params["typ"].value='3'</value>
                     </simple-property-list>
                 </structure>
                 <structure>
                     <property name="paramName">vdatatype</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["vdatatype"].value</value>
+                        <value type="javascript">params["vdatatype"].value='A'</value>
                     </simple-property-list>
                 </structure>
                 <structure>
@@ -2201,6 +2201,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="356">
             <property name="style">Border</property>
+            <property name="pageBreakBefore">always</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -2218,13 +2219,13 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                 <structure>
                     <property name="paramName">type</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["typ"].value</value>
+                        <value type="javascript">params["typ"].value='3'</value>
                     </simple-property-list>
                 </structure>
                 <structure>
                     <property name="paramName">vdatatype</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["vdatatype"].value</value>
+                        <value type="javascript">params["vdatatype"].value='E'</value>
                     </simple-property-list>
                 </structure>
                 <structure>
@@ -2329,10 +2330,8 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         </label>
                     </cell>
                 </row>
-            </header>
-            <detail>
-                <row id="360">
-                    <cell id="361">
+                <row id="1299">
+                    <cell id="1300">
                         <label id="362">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -2341,7 +2340,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                             <text-property name="text">Frequency (GHz)</text-property>
                         </label>
                     </cell>
-                    <cell id="363">
+                    <cell id="1301">
                         <label id="364">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -2352,7 +2351,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
 </text-property>
                         </label>
                     </cell>
-                    <cell id="365">
+                    <cell id="1302">
                         <label id="366">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -2363,7 +2362,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
 </text-property>
                         </label>
                     </cell>
-                    <cell id="367">
+                    <cell id="1303">
                         <label id="368">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -2374,7 +2373,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
 </text-property>
                         </label>
                     </cell>
-                    <cell id="369">
+                    <cell id="1304">
                         <label id="370">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -2384,6 +2383,8 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         </label>
                     </cell>
                 </row>
+            </header>
+            <detail>
                 <row id="371">
                     <cell id="372">
                         <data id="486">
@@ -2447,13 +2448,13 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                 <structure>
                     <property name="paramName">typ</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["typ"].value</value>
+                        <value type="javascript">params["typ"].value='3'</value>
                     </simple-property-list>
                 </structure>
                 <structure>
                     <property name="paramName">vdatatype</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["vdatatype"].value</value>
+                        <value type="javascript">params["vdatatype"].value='E'</value>
                     </simple-property-list>
                 </structure>
                 <structure>
