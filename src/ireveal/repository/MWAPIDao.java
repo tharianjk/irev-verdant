@@ -1,17 +1,18 @@
 
 package ireveal.repository;
 
+
+import ireveal.domain.JsonSerials;
+import ireveal.domain.JsonSlno;
 import ireveal.domain.RoleDsp;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
 import java.util.List;
-
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;	
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -69,6 +70,41 @@ public class MWAPIDao extends JdbcDaoSupport {
         		return "1";
         	}
         }
+        
+        /**
+         * 
+         * Serial list 
+         *
+         * @param  
+         * @return 
+         */
+         public JsonSerials SerialNos(String testid){
+         	logger.info("Going to SerialNos testid= : "+testid);
+         	JsonSerials jserials=new JsonSerials();
+         	List<JsonSlno> JsonSlnos = new ArrayList<JsonSlno>();
+         	try{         		
+            	
+            	String sql="select prodserial_id,serialno from prodserial where test_id=? ";
+            	JsonSlnos=  getJdbcTemplate().query(sql, new Object[] {testid}, new int[] {java.sql.Types.VARCHAR},new SerialMapper());
+         	}
+         	catch(Exception e)
+         	{
+         		
+         	}
+         	
+         	jserials.setJsonSlnos(JsonSlnos);
+         	return jserials;
+         }
+         private static class SerialMapper implements ParameterizedRowMapper<JsonSlno> {
+
+             public JsonSlno mapRow(ResultSet rs, int rowNum) throws SQLException {
+            	 JsonSlno mdtl = new JsonSlno();             
+                 mdtl.setSerialid(rs.getString("prodserial_id"));
+                 mdtl.setSerialno(rs.getString("serialno")); 
+                
+                 return mdtl;
+             }
+         }
        
        
      /**
