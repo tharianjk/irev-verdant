@@ -7,6 +7,1474 @@
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="bidiLayoutOrientation">ltr</property>
     <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="TestId" id="447">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="s1" id="448">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="pc" id="449">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="rpth" id="450">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="rptf" id="451">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="VerdantProfile" id="379">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://localhost:3306/verdant</property>
+            <property name="odaUser">root</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">d2VsY29tZQ==</encrypted-property>
+            <property name="OdaConnProfileName">VerdantProfile</property>
+            <property name="OdaConnProfileStorePath">VerdantProfile</property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="AxialRatioforZeroDegree" id="380">
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">testid</property>
+                    <property name="paramName">TestId</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">serialid</property>
+                    <property name="paramName">s1</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">precision</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">frequency</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">VP_A</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">VP_B</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">AR</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">remark</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">frequency</property>
+                    <property name="nativeName">frequency</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">VP_A</property>
+                    <property name="nativeName">VP_A</property>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">VP_B</property>
+                    <property name="nativeName">VP_B</property>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">AR</property>
+                    <property name="nativeName">AR</property>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">remark</property>
+                    <property name="nativeName">remark</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[call spPV_Axial(?,'E','0',?,?)]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>frequency</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>44</design:precision>
+            <design:scale>24</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>frequency</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>frequency</design:label>
+            <design:formattingHints>
+              <design:displaySize>46</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>VP_A</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>21</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>VP_A</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>VP_A</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>VP_B</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>21</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>VP_B</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>VP_B</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>AR</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>21</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>AR</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>AR</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>remark</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>remark</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>remark</design:label>
+            <design:formattingHints>
+              <design:displaySize>0</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="AxialRatioforP45Degree" id="381">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">testid</property>
+                    <property name="paramName">TestId</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">serialid</property>
+                    <property name="paramName">s1</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">precision</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">frequency</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">VP_A</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">VP_B</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">AR</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">remark</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">frequency</property>
+                    <property name="nativeName">frequency</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">VP_A</property>
+                    <property name="nativeName">VP_A</property>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">VP_B</property>
+                    <property name="nativeName">VP_B</property>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">AR</property>
+                    <property name="nativeName">AR</property>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">remark</property>
+                    <property name="nativeName">remark</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[call spPV_Axial(?,'E','P45',?,?)]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>frequency</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>44</design:precision>
+            <design:scale>24</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>frequency</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>frequency</design:label>
+            <design:formattingHints>
+              <design:displaySize>46</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>VP_A</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>21</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>VP_A</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>VP_A</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>VP_B</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>21</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>VP_B</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>VP_B</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>AR</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>21</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>AR</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>AR</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>remark</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>remark</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>remark</design:label>
+            <design:formattingHints>
+              <design:displaySize>0</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="AxialRatioforM45Degree" id="382">
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">testid</property>
+                    <property name="paramName">TestId</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">serialid</property>
+                    <property name="paramName">s1</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">precision</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">frequency</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">VP_A</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">VP_B</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">AR</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">remark</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">frequency</property>
+                    <property name="nativeName">frequency</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">VP_A</property>
+                    <property name="nativeName">VP_A</property>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">VP_B</property>
+                    <property name="nativeName">VP_B</property>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">AR</property>
+                    <property name="nativeName">AR</property>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">remark</property>
+                    <property name="nativeName">remark</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[call spPV_Axial(?,'E','M45',?,?)]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>frequency</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>44</design:precision>
+            <design:scale>24</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>frequency</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>frequency</design:label>
+            <design:formattingHints>
+              <design:displaySize>46</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>VP_A</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>21</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>VP_A</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>VP_A</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>VP_B</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>21</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>VP_B</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>VP_B</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>AR</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>21</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>AR</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>AR</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>remark</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>remark</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>remark</design:label>
+            <design:formattingHints>
+              <design:displaySize>0</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="TestDescription" id="399">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">testproc</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">testproc</text-property>
+                    <text-property name="heading">testproc</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TestDesc</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TestDesc</text-property>
+                    <text-property name="heading">TestDesc</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TestDate</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TestDate</text-property>
+                    <text-property name="heading">TestDate</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">frequnit</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <text-property name="heading">frequnit</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">testcenter</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">testcenter</text-property>
+                    <text-property name="heading">testcenter</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">instruments</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">instruments</text-property>
+                    <text-property name="heading">instruments</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Calibration</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">calibration</text-property>
+                    <text-property name="heading">calibration</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SerialNo</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">SerialNo</text-property>
+                    <text-property name="heading">SerialNo</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Productname</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Productname</text-property>
+                    <text-property name="heading">Productname</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Version</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">version</text-property>
+                    <text-property name="heading">version</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Product_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Product_id</text-property>
+                    <text-property name="heading">Product_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">inst_slno</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">inst_slno</text-property>
+                    <text-property name="heading">inst_slno</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">prodmodel</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <text-property name="heading">prodmodel</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">TestID</property>
+                    <property name="paramName">TestId</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">Prodserial</property>
+                    <property name="paramName">s1</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">testproc</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">TestDesc</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">TestDate</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">frequnit</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">testcenter</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">instruments</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">Calibration</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">SerialNo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">Productname</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">Version</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">Product_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">inst_slno</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">prodmodel</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">testproc</property>
+                    <property name="nativeName">testproc</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">TestDesc</property>
+                    <property name="nativeName">TestDesc</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">TestDate</property>
+                    <property name="nativeName">TestDate</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">frequnit</property>
+                    <property name="nativeName">frequnit</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">testcenter</property>
+                    <property name="nativeName">testcenter</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">instruments</property>
+                    <property name="nativeName">instruments</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">Calibration</property>
+                    <property name="nativeName">Calibration</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">SerialNo</property>
+                    <property name="nativeName">SerialNo</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">Productname</property>
+                    <property name="nativeName">Productname</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">Version</property>
+                    <property name="nativeName">Version</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">Product_id</property>
+                    <property name="nativeName">Product_id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">inst_slno</property>
+                    <property name="nativeName">inst_slno</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">prodmodel</property>
+                    <property name="nativeName">prodmodel</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT distinct TD.testproc,TD.TestDesc,TD.TestDate,TD.frequnit,TD.testcenter,TD.instruments,TD.calibration ,
+p.SerialNo,s.Productname,s.version,s.Product_id,inst_slno ,prodmodel
+FROM pv_testdata TD inner join product s on td.Product_id=S.Product_id  
+inner join pv_prodserial p on td.test_id=p.test_id
+ where TD.Test_id=? and Prodserial_id=?]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>testproc</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>testproc</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>testproc</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>TestDesc</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TestDesc</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TestDesc</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>TestDate</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TestDate</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TestDate</design:label>
+            <design:formattingHints>
+              <design:displaySize>19</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>frequnit</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>5</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>frequnit</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>frequnit</design:label>
+            <design:formattingHints>
+              <design:displaySize>5</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>testcenter</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>testcenter</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>testcenter</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>instruments</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>instruments</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>instruments</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Calibration</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>calibration</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>calibration</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>SerialNo</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>45</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>SerialNo</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>SerialNo</design:label>
+            <design:formattingHints>
+              <design:displaySize>45</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Productname</design:name>
+              <design:position>9</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>45</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Productname</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Productname</design:label>
+            <design:formattingHints>
+              <design:displaySize>45</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Version</design:name>
+              <design:position>10</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>45</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>version</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>version</design:label>
+            <design:formattingHints>
+              <design:displaySize>45</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Product_id</design:name>
+              <design:position>11</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Product_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Product_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>inst_slno</design:name>
+              <design:position>12</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>inst_slno</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>inst_slno</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>prodmodel</design:name>
+              <design:position>13</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>prodmodel</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>prodmodel</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
     <styles>
         <style name="report" id="4">
             <property name="fontFamily">sans-serif</property>
@@ -50,19 +1518,187 @@
             <property name="borderTopStyle">solid</property>
             <property name="borderTopWidth">thin</property>
         </style>
+        <style name="Border" id="1282">
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">thin</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">thin</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">thin</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">thin</property>
+        </style>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
-            <page-footer>
-                <text id="3">
+            <page-header>
+                <text-data id="1281">
+                    <property name="backgroundColor">#E9E9E9</property>
+                    <property name="fontFamily">serif</property>
+                    <property name="fontSize">14pt</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderTopStyle">none</property>
+                    <property name="textAlign">center</property>
+                    <expression name="valueExpr">params["rpth"].value</expression>
                     <property name="contentType">html</property>
-                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
-                </text>
+                </text-data>
+            </page-header>
+            <page-footer>
+                <grid id="1272">
+                    <property name="backgroundColor">white</property>
+                    <property name="fontFamily">serif</property>
+                    <property name="fontSize">11pt</property>
+                    <column id="1273"/>
+                    <column id="1274"/>
+                    <row id="1275">
+                        <cell id="1276">
+                            <text id="1278">
+                                <property name="width">6cm</property>
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<html>
+<body>
+<style>
+.outer{
+  text-align: center;
+}
+.outer img{
+  display: inline-block;
+}
+</style>
+<table>
+<tr>
+<td>
+<div class="outer">
+
+<img src="\img\Verdantlogo.png" height="50px" width="200px" align="baseline" name="myimage">
+
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>]]></text-property>
+                            </text>
+                        </cell>
+                        <cell id="1277">
+                            <text-data id="1279">
+                                <property name="fontWeight">normal</property>
+                                <expression name="valueExpr">params["rptf"].value</expression>
+                                <property name="contentType">html</property>
+                            </text-data>
+                        </cell>
+                    </row>
+                </grid>
             </page-footer>
         </simple-master-page>
     </page-setup>
     <body>
         <table id="202">
+            <property name="dataSet">TestDescription</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
+            <list-property name="paramBindings">
+                <structure>
+                    <property name="paramName">TestID</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["TestId"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">Prodserial</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["s1"].value</value>
+                    </simple-property-list>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">TestDesc</property>
+                    <text-property name="displayName">TestDesc</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TestDesc"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">testproc</property>
+                    <text-property name="displayName">testproc</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["testproc"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">inst_slno</property>
+                    <text-property name="displayName">inst_slno</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["inst_slno"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Calibration</property>
+                    <text-property name="displayName">calibration</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Calibration"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Product_id</property>
+                    <text-property name="displayName">Product_id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Product_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">SerialNo</property>
+                    <text-property name="displayName">SerialNo</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["SerialNo"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Version</property>
+                    <text-property name="displayName">version</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Version"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TestDate</property>
+                    <text-property name="displayName">TestDate</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TestDate"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">testcenter</property>
+                    <text-property name="displayName">testcenter</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["testcenter"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">instruments</property>
+                    <text-property name="displayName">instruments</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["instruments"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["TestDate"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
             <column id="268">
                 <property name="style">Border</property>
             </column>
@@ -102,6 +1738,9 @@
                     <cell id="210">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
+                        <data id="400">
+                            <property name="resultSetColumn">TestDesc</property>
+                        </data>
                     </cell>
                 </row>
                 <row id="213">
@@ -116,6 +1755,9 @@
                     <cell id="215">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
+                        <data id="401">
+                            <property name="resultSetColumn">testproc</property>
+                        </data>
                     </cell>
                 </row>
                 <row id="218">
@@ -154,28 +1796,29 @@
                             <property name="fontSize">12pt</property>
                             <property name="fontWeight">bold</property>
                             <property name="textAlign">center</property>
-                            <text-property name="text">Calibration Due date</text-property>
+                            <text-property name="text">Calibration </text-property>
                         </label>
                     </cell>
                 </row>
                 <row id="223">
                     <property name="height">0.22916666666666666in</property>
-                    <cell id="225"/>
-                    <cell id="226"/>
-                    <cell id="227"/>
-                </row>
-                <row id="228">
-                    <cell id="229">
-                        <label id="276">
-                            <property name="fontFamily">serif</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text"> Ref Antenna Used</text-property>
-                        </label>
+                    <cell id="225">
+                        <data id="410">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">instruments</property>
+                        </data>
                     </cell>
-                    <cell id="230">
-                        <property name="colSpan">3</property>
-                        <property name="rowSpan">1</property>
+                    <cell id="226">
+                        <data id="402">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">inst_slno</property>
+                        </data>
+                    </cell>
+                    <cell id="227">
+                        <data id="403">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Calibration</property>
+                        </data>
                     </cell>
                 </row>
                 <row id="233">
@@ -190,6 +1833,9 @@
                     <cell id="235">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
+                        <data id="409">
+                            <property name="resultSetColumn">testcenter</property>
+                        </data>
                     </cell>
                 </row>
                 <row id="238">
@@ -204,6 +1850,9 @@
                     <cell id="240">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
+                        <data id="408">
+                            <property name="resultSetColumn">TestDate</property>
+                        </data>
                     </cell>
                 </row>
                 <row id="243">
@@ -218,6 +1867,9 @@
                     <cell id="245">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
+                        <data id="404">
+                            <property name="resultSetColumn">prodmodel</property>
+                        </data>
                     </cell>
                 </row>
                 <row id="248">
@@ -232,6 +1884,10 @@
                     <cell id="250">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
+                        <data id="405">
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">Product_id</property>
+                        </data>
                     </cell>
                 </row>
                 <row id="253">
@@ -246,6 +1902,9 @@
                     <cell id="255">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
+                        <data id="407">
+                            <property name="resultSetColumn">Version</property>
+                        </data>
                     </cell>
                 </row>
                 <row id="258">
@@ -262,23 +1921,103 @@ Antenna without Radome&#13;
                     <cell id="260">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
+                        <data id="406">
+                            <property name="resultSetColumn">SerialNo</property>
+                        </data>
                     </cell>
                 </row>
             </detail>
         </table>
-        <label id="324">
-            <property name="backgroundColor">#C0C0C0</property>
-            <property name="fontWeight">bold</property>
-            <property name="textAlign">center</property>
-            <text-property name="text">TABLE-1</text-property>
-        </label>
         <table id="288">
+            <property name="dataSet">AxialRatioforZeroDegree</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
+            <list-property name="paramBindings">
+                <structure>
+                    <property name="paramName">testid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["TestId"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">serialid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["s1"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">precision</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">frequency</property>
+                    <text-property name="displayName">frequency</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequency"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">VP_A</property>
+                    <text-property name="displayName">VP_A</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["VP_A"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">VP_B</property>
+                    <text-property name="displayName">VP_B</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["VP_B"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">AR</property>
+                    <text-property name="displayName">AR</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["AR"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">remark</property>
+                    <text-property name="displayName">remark</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
             <column id="313"/>
             <column id="314"/>
             <column id="315"/>
             <column id="316"/>
             <column id="317"/>
             <header>
+                <row id="435">
+                    <cell id="436">
+                        <property name="colSpan">5</property>
+                        <property name="rowSpan">1</property>
+                        <label id="324">
+                            <property name="backgroundColor">#C0C0C0</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">TABLE-1</text-property>
+                        </label>
+                    </cell>
+                </row>
                 <row id="289">
                     <cell id="290">
                         <property name="colSpan">5</property>
@@ -291,10 +2030,8 @@ Antenna without Radome&#13;
                         </label>
                     </cell>
                 </row>
-            </header>
-            <detail>
-                <row id="295">
-                    <cell id="296">
+                <row id="441">
+                    <cell id="442">
                         <label id="319">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -304,7 +2041,7 @@ Antenna without Radome&#13;
 </text-property>
                         </label>
                     </cell>
-                    <cell id="297">
+                    <cell id="443">
                         <label id="320">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -315,7 +2052,7 @@ Antenna without Radome&#13;
 </text-property>
                         </label>
                     </cell>
-                    <cell id="298">
+                    <cell id="444">
                         <label id="321">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -326,7 +2063,7 @@ Antenna without Radome&#13;
 </text-property>
                         </label>
                     </cell>
-                    <cell id="299">
+                    <cell id="445">
                         <label id="322">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -338,7 +2075,7 @@ AR = B-A&#13;
 </text-property>
                         </label>
                     </cell>
-                    <cell id="300">
+                    <cell id="446">
                         <label id="323">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -348,28 +2085,133 @@ AR = B-A&#13;
                         </label>
                     </cell>
                 </row>
+            </header>
+            <detail>
                 <row id="301">
-                    <cell id="302"/>
-                    <cell id="303"/>
-                    <cell id="304"/>
-                    <cell id="305"/>
-                    <cell id="306"/>
+                    <cell id="302">
+                        <data id="394">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">frequency</property>
+                        </data>
+                    </cell>
+                    <cell id="303">
+                        <data id="395">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">VP_A</property>
+                        </data>
+                    </cell>
+                    <cell id="304">
+                        <data id="396">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">VP_B</property>
+                        </data>
+                    </cell>
+                    <cell id="305">
+                        <data id="397">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">AR</property>
+                        </data>
+                    </cell>
+                    <cell id="306">
+                        <data id="398">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">remark</property>
+                        </data>
+                    </cell>
                 </row>
             </detail>
         </table>
-        <label id="325">
-            <property name="backgroundColor">#C0C0C0</property>
-            <property name="fontWeight">bold</property>
-            <property name="textAlign">center</property>
-            <text-property name="text">TABLE-2</text-property>
-        </label>
         <table id="326">
+            <property name="pageBreakBefore">always</property>
+            <property name="dataSet">AxialRatioforP45Degree</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
+            <list-property name="paramBindings">
+                <structure>
+                    <property name="paramName">testid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["TestId"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">serialid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["s1"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">precision</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">frequency</property>
+                    <text-property name="displayName">frequency</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequency"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">VP_A</property>
+                    <text-property name="displayName">VP_A</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["VP_A"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">VP_B</property>
+                    <text-property name="displayName">VP_B</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["VP_B"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">AR</property>
+                    <text-property name="displayName">AR</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["AR"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">remark</property>
+                    <text-property name="displayName">remark</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
             <column id="347"/>
             <column id="348"/>
             <column id="349"/>
             <column id="350"/>
             <column id="351"/>
             <header>
+                <row id="423">
+                    <cell id="424">
+                        <property name="colSpan">5</property>
+                        <property name="rowSpan">1</property>
+                        <label id="325">
+                            <property name="backgroundColor">#C0C0C0</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">TABLE-2</text-property>
+                        </label>
+                    </cell>
+                </row>
                 <row id="327">
                     <cell id="328">
                         <property name="colSpan">5</property>
@@ -382,10 +2224,8 @@ AR = B-A&#13;
                         </label>
                     </cell>
                 </row>
-            </header>
-            <detail>
-                <row id="330">
-                    <cell id="331">
+                <row id="429">
+                    <cell id="430">
                         <label id="332">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -395,7 +2235,7 @@ AR = B-A&#13;
 </text-property>
                         </label>
                     </cell>
-                    <cell id="333">
+                    <cell id="431">
                         <label id="334">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -406,7 +2246,7 @@ AR = B-A&#13;
 </text-property>
                         </label>
                     </cell>
-                    <cell id="335">
+                    <cell id="432">
                         <label id="336">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -416,7 +2256,7 @@ AR = B-A&#13;
 ‘B’</text-property>
                         </label>
                     </cell>
-                    <cell id="337">
+                    <cell id="433">
                         <label id="338">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -427,7 +2267,7 @@ AXIAL RATIO&#13;
 AR = B-A</text-property>
                         </label>
                     </cell>
-                    <cell id="339">
+                    <cell id="434">
                         <label id="340">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -437,28 +2277,133 @@ AR = B-A</text-property>
                         </label>
                     </cell>
                 </row>
+            </header>
+            <detail>
                 <row id="341">
-                    <cell id="342"/>
-                    <cell id="343"/>
-                    <cell id="344"/>
-                    <cell id="345"/>
-                    <cell id="346"/>
+                    <cell id="342">
+                        <data id="389">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">frequency</property>
+                        </data>
+                    </cell>
+                    <cell id="343">
+                        <data id="390">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">VP_A</property>
+                        </data>
+                    </cell>
+                    <cell id="344">
+                        <data id="391">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">VP_B</property>
+                        </data>
+                    </cell>
+                    <cell id="345">
+                        <data id="392">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">AR</property>
+                        </data>
+                    </cell>
+                    <cell id="346">
+                        <data id="393">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">remark</property>
+                        </data>
+                    </cell>
                 </row>
             </detail>
         </table>
-        <label id="352">
-            <property name="backgroundColor">#C0C0C0</property>
-            <property name="fontWeight">bold</property>
-            <property name="textAlign">center</property>
-            <text-property name="text">TABLE-3</text-property>
-        </label>
         <table id="353">
+            <property name="pageBreakBefore">always</property>
+            <property name="dataSet">AxialRatioforM45Degree</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
+            <list-property name="paramBindings">
+                <structure>
+                    <property name="paramName">testid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["TestId"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">serialid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["s1"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">precision</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">frequency</property>
+                    <text-property name="displayName">frequency</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequency"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">VP_A</property>
+                    <text-property name="displayName">VP_A</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["VP_A"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">VP_B</property>
+                    <text-property name="displayName">VP_B</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["VP_B"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">AR</property>
+                    <text-property name="displayName">AR</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["AR"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">remark</property>
+                    <text-property name="displayName">remark</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
             <column id="374"/>
             <column id="375"/>
             <column id="376"/>
             <column id="377"/>
             <column id="378"/>
             <header>
+                <row id="411">
+                    <cell id="412">
+                        <property name="colSpan">5</property>
+                        <property name="rowSpan">1</property>
+                        <label id="352">
+                            <property name="backgroundColor">#C0C0C0</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">TABLE-3</text-property>
+                        </label>
+                    </cell>
+                </row>
                 <row id="354">
                     <cell id="355">
                         <property name="colSpan">5</property>
@@ -471,10 +2416,8 @@ AR = B-A</text-property>
                         </label>
                     </cell>
                 </row>
-            </header>
-            <detail>
-                <row id="357">
-                    <cell id="358">
+                <row id="417">
+                    <cell id="418">
                         <label id="359">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -484,7 +2427,7 @@ AR = B-A</text-property>
 </text-property>
                         </label>
                     </cell>
-                    <cell id="360">
+                    <cell id="419">
                         <label id="361">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -495,7 +2438,7 @@ AR = B-A</text-property>
 </text-property>
                         </label>
                     </cell>
-                    <cell id="362">
+                    <cell id="420">
                         <label id="363">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -505,7 +2448,7 @@ AR = B-A</text-property>
 ‘B’</text-property>
                         </label>
                     </cell>
-                    <cell id="364">
+                    <cell id="421">
                         <label id="365">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -516,7 +2459,7 @@ AXIAL RATIO&#13;
 AR = B-A</text-property>
                         </label>
                     </cell>
-                    <cell id="366">
+                    <cell id="422">
                         <label id="367">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
@@ -526,12 +2469,39 @@ AR = B-A</text-property>
                         </label>
                     </cell>
                 </row>
+            </header>
+            <detail>
                 <row id="368">
-                    <cell id="369"/>
-                    <cell id="370"/>
-                    <cell id="371"/>
-                    <cell id="372"/>
-                    <cell id="373"/>
+                    <cell id="369">
+                        <data id="384">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">frequency</property>
+                        </data>
+                    </cell>
+                    <cell id="370">
+                        <data id="385">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">VP_A</property>
+                        </data>
+                    </cell>
+                    <cell id="371">
+                        <data id="386">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">VP_B</property>
+                        </data>
+                    </cell>
+                    <cell id="372">
+                        <data id="387">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">AR</property>
+                        </data>
+                    </cell>
+                    <cell id="373">
+                        <data id="388">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">remark</property>
+                        </data>
+                    </cell>
                 </row>
             </detail>
         </table>

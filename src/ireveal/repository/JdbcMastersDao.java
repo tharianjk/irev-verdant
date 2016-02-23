@@ -1399,6 +1399,10 @@ if(strmode.equals("new")){
 						sqlcnt="select count(*) from pv_Vdata_GT where Prodserial_id=? and frequency=? ";
 						sqldelete="delete from pv_Vdata_GT where Prodserial_id=? and frequency=? ";
 					}
+					else if(datatype.equals("M")){
+						sqlcnt="select count(*) from pv_Vdata_GM where Prodserial_id=? and frequency=? ";
+						sqldelete="delete from pv_Vdata_GM where Prodserial_id=? and frequency=? ";
+					}
 				}
 				if(testdata.getFiletype().equals("H"))
 				{
@@ -1414,6 +1418,10 @@ if(strmode.equals("new")){
 					else if(datatype.equals("T")){
 						sqlcnt="select count(*) from pv_Hdata_GT where Prodserial_id=? and frequency=? ";
 						sqldelete="delete from pv_Hdata_GT where Prodserial_id=? and frequency=? ";
+					}
+					else if(datatype.equals("M")){
+						sqlcnt="select count(*) from pv_Hdata_GM where Prodserial_id=? and frequency=? ";
+						sqldelete="delete from pv_Hdata_GM where Prodserial_id=? and frequency=? ";
 					}
 				}
 				logger.info(" PVSerialData 6 freq"+testfreqlist.get(i).getFrequency()+" datatype="+datatype);
@@ -1442,6 +1450,9 @@ if(strmode.equals("new")){
 	  		else if(datatype.equals("T")){
 	  			sqltest="insert into pv_Vdata_GT (Prodserial_id,Frequency,Angle,Amplitude) values (?,?,?,?)"; 
 	  		}
+	  		else if(datatype.equals("M")){
+	  			sqltest="insert into pv_Vdata_GM (Prodserial_id,Frequency,Angle,Amplitude) values (?,?,?,?)"; 
+	  		}
 	  		
 	  	}
 	  	else if(testdata.getFiletype().equals("H"))
@@ -1454,6 +1465,9 @@ if(strmode.equals("new")){
 		  		}
 		  		else if(datatype.equals("T")){
 		  			sqltest="insert into pv_Hdata_GT (Prodserial_id,Frequency,Angle,Amplitude) values (?,?,?,?)"; 
+		  		}
+		  		else if(datatype.equals("M")){
+		  			sqltest="insert into pv_Hdata_GM (Prodserial_id,Frequency,Angle,Amplitude) values (?,?,?,?)"; 
 		  		}
 	  	}
 	  	for (int i=0;i<dataloglist.size();i++){	
