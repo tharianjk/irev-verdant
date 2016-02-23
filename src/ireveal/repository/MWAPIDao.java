@@ -159,12 +159,12 @@ public class MWAPIDao extends JdbcDaoSupport {
               		//final String funit = "M";
               		try{
               		getJdbcTemplate().update("call pv_Calculate_params (?,?,?)", testid,"PV",serialid);
-              		return "1";
+              		return "0";
               		}
               		catch(Exception e)
               		{
               			 logger.info("PV_CalcProc Exception "+e.getMessage());
-              			   return "0";
+              			   return "1";
               		}
               			
               }
