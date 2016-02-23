@@ -592,7 +592,7 @@ END IF;
 		SET @infoText = CONCAT("invoking Combination calculations for frequency : ",myfreq," , serial ",myserial);
 		call debug(l_proc_id,@infoText,'I','I');
 	end if;
-	call pv_calc_Combination(myTestId,myfreq,myTestDate,myserial);
+	call pv_calc_combination(myTestId,myfreq,myTestDate,myserial);
     
     
  END IF;
