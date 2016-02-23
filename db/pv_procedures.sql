@@ -186,12 +186,7 @@ if typ='C' then
 			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_cpdata_elevation HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
 	end if;
-	if datatype='T' then
-			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_cpdata_GT HD 
-			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
-			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_cpdata_GT HD 
-			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
-	end if;
+	
 		end if;
 		if datatype='A' then
       SELECT case when HD.Angle >180 then HD.Angle -360 else HD.Angle end Angle ,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Prodserial_id,strmaxvalue,strminvalue FROM pv_cpdata_azimuth HD 
