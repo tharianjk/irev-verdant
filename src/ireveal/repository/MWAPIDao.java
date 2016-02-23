@@ -151,20 +151,20 @@ public class MWAPIDao extends JdbcDaoSupport {
                       return roledsp;
                   }
               }
-              public int PV_Calculate(String testid,String serialid)
+              public String PV_Calculate(String testid,String serialid)
               {
-              	   
+              	   logger.info("PV_Calculate testid="+testid+" ser="+serialid);
               	   
               		//final String funit = testdata.getFrequnit().equals("MHz")?"M":"G";
               		//final String funit = "M";
               		try{
               		getJdbcTemplate().update("call pv_Calculate_params (?,?,?)", testid,"PV",serialid);
-              		return 1;
+              		return "1";
               		}
               		catch(Exception e)
               		{
               			 logger.info("PV_CalcProc Exception "+e.getMessage());
-              			   return 0;
+              			   return "0";
               		}
               			
               }

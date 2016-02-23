@@ -81,9 +81,7 @@ function progress_update( typ) {
 		return;
 	}
 	}
-	if(typ=='D'){
-		calculate();
-	}
+	
 	
 	/*var filename=document.getElementById("filename").value;
 	if(filename==null || filename=="")
@@ -96,6 +94,7 @@ progressAt++;
 if (progressAt > progressEnd) progress_clear();
 else document.getElementById('progress'+progressAt).style.backgroundColor = progressColor;
 progressTimer = setTimeout('progress_update("D")',progressInterval);
+
 }
 function progress_stop() {
 clearTimeout(progressTimer);
@@ -334,7 +333,8 @@ progress_clear();
 		<table>
 		<tr>
 	<td>	<input type="submit" id="more" value="Import" name="fmaction" class="myButton" onclick="progress_update('M');form1.submit();"/></td>
-	<td>	<input type="submit" id="done" value="Calculate" name="fmaction" class="myButton" onclick="progress_update('D');form1.submit();"/></td>
+	<td>	<input type="button" id="done" value="Calculate" name="fmaction" class="myButton" onclick="progress_update('D');calculate();"/></td>
+	
 	<td>	<input type="submit" id="save" value="Save" name="fmaction" class="myButton" onclick="form1.submit();" style="visibility:hidden"/></td>
 		<td>
 <table align="center" id="progressbar" style="display:none"><tr><td><b><label id="lblmsg">Saving ....</label></b>
@@ -861,25 +861,26 @@ function calculate(){
 			
 		 console.log(' going to set the data-segments. Cnt of elements = '+data.JsonSlnos.length);
 		
-
+         var status=1;
 			for (var i=0; i< data.JsonSlnos.length; i++){
 				var id=data.JsonSlnos[i].serialid;
 				console.log("id="+id);
 				document.getElementById("lblmsg").innerHTML='Processing ..'+data.JsonSlnos[i].serialno;
-				
+				// progress_update('D');
 				
 				var urls = pat+'/MWAPI/pvcalculate/'+testid+'/'+$( "#serialno" ).val();
 				$.ajax({
 					type: "GET",
 					url: urls,
 					error: function(XMLHttpRequest, textStatus, errorThrown)  {
+						       status=0;
 								alert("An error has occurred making the request: " + errorThrown)
 							},
 					success : function(response) {
 	                console.log("Success-serial: "+ response);
 					if(response=='1')
 					{
-			        			       
+						status=0;		       
 					$( "#validate" ).dialog({
 					height: 200,
 					width: 300,
@@ -889,6 +890,7 @@ function calculate(){
 					else
 					{
 					console.log("success");
+					
 					//document.getElementById("save").disabled = false;
 					}
 					}			
@@ -897,7 +899,11 @@ function calculate(){
 				
 			}
 			
-
+			
+		if(status==0){
+		$('#form1').append('<input type="hidden" name="fmaction " value="Calculate" />');
+		form1.submit();
+		}
 		
 			progress_stop();
 	}
