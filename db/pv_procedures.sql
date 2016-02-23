@@ -521,7 +521,7 @@ DECLARE done INT DEFAULT 0;
     delete from pv_gt_intermediate where Test_id = myTestId and Prodserial_Id = myserial;
     delete from pv_gt_calculated where Test_id = myTestId;
 	delete from pv_gmcalculated where test_id = myTestId and Prodserial_Id = myserial;
-    delete from pv_cpdata_gt where Prodserial_Id = myserial; -- in (select prodserial_id from pv_prodserial where Test_id = myTestId);
+    -- delete from pv_cpdata_gt where Prodserial_Id = myserial; -- in (select prodserial_id from pv_prodserial where Test_id = myTestId);
     delete from pv_cpdata_azimuth where Prodserial_Id = myserial;
     delete from pv_cpdata_elevation where Prodserial_Id = myserial;
     delete from pv_cpcalculated where test_id = myTestId and Prodserial_Id = myserial;
