@@ -1224,7 +1224,7 @@ DELIMITER;
 
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pv_calc_combination`(
+CREATE PROCEDURE `pv_calc_combination`(
 coTestId INT,
 coFreq decimal(40,20),
 coTestDate datetime,
