@@ -1650,6 +1650,8 @@ DECLARE done INT DEFAULT 0;
  from pv_prodserial ps
  where ps.test_id = coTestId;
 
+ #declare handle 
+  DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
 
 # 3. declare continue/exit handlers for logging SQL exceptions/errors :
 -- write handlers for specific known error codes which are likely to occur here    
