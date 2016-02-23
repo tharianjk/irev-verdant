@@ -1628,8 +1628,8 @@ DELIMITER;
 
 DELIMITER$$
 CREATE PROCEDURE `pv_calc_spec`(
-coTestId INT,
-coTestDate datetime)
+coTestId INT
+)
 BEGIN
 
 # 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
@@ -1639,6 +1639,7 @@ BEGIN
     declare isDebug INT default 0;
 
 declare myserial int(11);
+declare coTestDate datetime;
 
  -- for the cursor
 DECLARE done INT DEFAULT 0;
@@ -1693,6 +1694,8 @@ if isDebug > 0 then
  
 # Declarations -end
 
+select TestDate into coTestDate 
+from pv_testdata where Test_id = coTestId;
 
 #open cursor
   OPEN serialcur;
@@ -1859,9 +1862,6 @@ delete from pv_speccalculated where Prodserial_Id = myserial;
  END LOOP the_loop;
  
   CLOSE serialcur;
-
-
-
 
 END$$
 
