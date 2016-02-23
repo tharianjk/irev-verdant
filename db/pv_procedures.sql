@@ -1222,7 +1222,7 @@ END$$
 
 DELIMITER;
 
-DELIMITER$$
+DELIMITER $$
 
 CREATE PROCEDURE `pv_calc_combination`(
 coTestId INT,
@@ -1432,7 +1432,7 @@ END$$
 
 DELIMITER;
 
-DELIMITER$$
+DELIMITER $$
 
 CREATE PROCEDURE `pv_calc_backlobelevel`(
 bProdserialId INT, bFreq decimal(40,20), bPolType char(2),bDatatype char(2),
@@ -1467,7 +1467,7 @@ END$$
 
 DELIMITER;
 
-DELIMITER$$
+DELIMITER $$
 
 CREATE PROCEDURE `pv_calc_XdB_BW_BS`(
 xProdSerialId INT, freq decimal(40,20), X INT, polType char(2), fromAngle char(2), xdatatype char(2),
@@ -1621,7 +1621,7 @@ END$$
 
 DELIMITER;
 
-DELIMITER$$
+DELIMITER $$
 CREATE PROCEDURE `pv_calc_spec`(
 coTestId INT
 )
@@ -1864,7 +1864,7 @@ END$$
 
 DELIMITER;
 
-DELIMITER$$
+DELIMITER $$
 CREATE FUNCTION `pv_calc_cpdata_combi`(
 cProdSerialId INT, freq decimal(40,20), cAngle decimal(40,20), cDatatype char(2)
 ) RETURNS decimal(40,20)
