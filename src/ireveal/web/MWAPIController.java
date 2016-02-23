@@ -41,7 +41,7 @@ import org.springframework.http.ResponseEntity;
 
 import javax.annotation.Resource;
 
-import java.util.List;
+import ireveal.domain.JsonSerials;
 import ireveal.repository.MWAPIDao;
 
 
@@ -78,6 +78,26 @@ public class MWAPIController {
 		public String checkserialno(@PathVariable String testid,@PathVariable String serialid){			
 		return metertagmngr.CheckSerialNo(testid,serialid);
 	}
+	/**
+	    * Handler function for returning serials nos for a test id. 
+	    * 
+	    *
+	    * @param  
+	    * @return JSON struct like: {"slnos": [{"serialid":"1","serialno":"01"},{"serialid":"2","serialno":"02"}]}
+	    */
+		@RequestMapping(value = "/serialsnos/{testid}", method = RequestMethod.GET)
+		public @ResponseBody
+		JsonSerials SerialNos(@PathVariable String testid) {
+			logger.info("*** Inside MWAPI.SerialNos***:param="+testid);
+			JsonSerials serials = metertagmngr.SerialNos(testid);
+			return serials;
+		}
+		
+		@RequestMapping(value = "/pvcalculate/{testid}/{serialid}",  method = RequestMethod.GET)
+		@ResponseBody
+			public String pvcalculate(@PathVariable String testid,@PathVariable String serialid){			
+			return metertagmngr.PV_Calculate(testid,serialid);
+		}
 
 }
     
