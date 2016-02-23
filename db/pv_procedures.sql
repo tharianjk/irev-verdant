@@ -1224,7 +1224,7 @@ DELIMITER;
 
 DELIMITER $$
 
-CREATE PROCEDURE `pv_calc_combination`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pv_calc_combination`(
 coTestId INT,
 coFreq decimal(40,20),
 coTestDate datetime,
@@ -1234,23 +1234,27 @@ BEGIN
 
 # Declarations -begin
 
-declare _3dbBW_BM_Azimuth,_3dbBW_BM_Azimuth_left, _3dbBW_BM_Azimuth_right, _3dbBS_BM_Azimuth decimal(40,20) default 0.00;
-declare _3dbBW_BM_Elevation,_3dbBW_BM_Elevation_left, _3dbBW_BM_Elevation_right, _3dbBS_BM_Elevation decimal(40,20) default 0.00;
-declare _3dbBW_0_Azimuth,_3dbBW_0_Azimuth_left, _3dbBW_0_Azimuth_right, _3dbBS_0_Azimuth decimal(40,20) default 0;
-declare _3dbBW_0_Elevation,_3dbBW_0_Elevation_left, _3dbBW_0_Elevation_right, _3dbBS_0_Elevation decimal(40,20) default 0;
+declare _3dbBW_BM_Azimuth,_3dbBW_BM_Azimuth_left, _3dbBW_BM_Azimuth_right, _3dbBS_BM_Azimuth decimal(40,20) ;
+declare _3dbBW_BM_Elevation,_3dbBW_BM_Elevation_left, _3dbBW_BM_Elevation_right, _3dbBS_BM_Elevation decimal(40,20) ;
+declare _3dbBW_0_Azimuth,_3dbBW_0_Azimuth_left, _3dbBW_0_Azimuth_right, _3dbBS_0_Azimuth decimal(40,20) ;
+declare _3dbBW_0_Elevation,_3dbBW_0_Elevation_left, _3dbBW_0_Elevation_right, _3dbBS_0_Elevation decimal(40,20) ;
 
-declare _10dbBW_BM_Azimuth,_10dbBW_BM_Azimuth_left, _10dbBW_BM_Azimuth_right decimal(40,20) default 0;
-declare _10dbBW_BM_Elevation,_10dbBW_BM_Elevation_left, _10dbBW_BM_Elevation_right decimal(40,20) default 0;
-declare _10dbBW_0_Azimuth,_10dbBW_0_Azimuth_left, _10dbBW_0_Azimuth_right decimal(40,20) default 0;
-declare _10dbBW_0_Elevation,_10dbBW_0_Elevation_left, _10dbBW_0_Elevation_right decimal(40,20) default 0;
+declare _10dbBW_BM_Azimuth,_10dbBW_BM_Azimuth_left, _10dbBW_BM_Azimuth_right decimal(40,20) ;
+declare _10dbBW_BM_Elevation,_10dbBW_BM_Elevation_left, _10dbBW_BM_Elevation_right decimal(40,20) ;
+declare _10dbBW_0_Azimuth,_10dbBW_0_Azimuth_left, _10dbBW_0_Azimuth_right decimal(40,20) ;
+declare _10dbBW_0_Elevation,_10dbBW_0_Elevation_left, _10dbBW_0_Elevation_right decimal(40,20);
 
 declare dummyBS decimal(40,20) default 0;
 
-declare X1_Azimuth, Y1_Azimuth, Backlobe_Azimuth decimal(40,20) default 0;
-declare X1_Elevation, Y1_Elevation, Backlobe_Elevation decimal(40,20) default 0;
+declare X1_Azimuth, Y1_Azimuth, Backlobe_Azimuth decimal(40,20) ;
+declare X1_Elevation, Y1_Elevation, Backlobe_Elevation decimal(40,20) ;
 
-declare AR_0, AR_P45, AR_M45 decimal(40,20) default 0;
+declare hp_0,vp_0,AR_0 decimal(40,20);
+declare hp_p45,vp_p45,AR_P45 decimal(40,20);
+declare hp_m45,vp_m45,AR_M45 decimal(40,20) ;
 
+DECLARE azimuthDataPresent INT default 0;
+DECLARE elevationDataPresent INT default 0;
 
 # 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
 	declare co_proc_id varchar(100) default 'pv_calc_combination';
@@ -1303,77 +1307,29 @@ if isDebug > 0 then
 
 # --------------CALCULATIONS BEGIN ----------------------
 
+select count(*) into azimuthDataPresent from pv_hdata_azimuth  where Prodserial_id = coSerial and Frequency = coFreq and Angle=0;
+select count(*) into elevationDataPresent from pv_hdata_elevation  where Prodserial_id = coSerial and Frequency = coFreq and Angle=0;
 
 # convert to cp and store in cpdata table
- delete from pv_cpdata_azimuth where Prodserial_id = coSerial and Frequency = coFreq;
+if azimuthDataPresent > 0  then
+	 delete from pv_cpdata_azimuth where Prodserial_id = coSerial and Frequency = coFreq;
 
- insert into pv_cpdata_azimuth ( Prodserial_id, Frequency, Angle, Amplitude)
- select Prodserial_id, Frequency, Angle, pv_calc_cpdata_combi(Prodserial_id, Frequency, Angle,'A')
- from pv_hdata_azimuth  
- where Prodserial_id = coSerial and Frequency = coFreq;
- 
-  delete from pv_cpdata_elevation where Prodserial_id = coSerial and Frequency = coFreq;
-
-  insert into pv_cpdata_elevation ( Prodserial_id, Frequency, Angle, Amplitude)
- select Prodserial_id, Frequency, Angle, pv_calc_cpdata_combi(Prodserial_id, Frequency, Angle,'E')
-  from pv_hdata_elevation  
-where Prodserial_id = coSerial and Frequency = coFreq;
-
-
-#Beamwidth, Beamsquint
-set _3dbBW_BM_Azimuth_left =0,_3dbBW_BM_Azimuth_right=0,_3dbBW_BM_Azimuth=0,_3dbBS_BM_Azimuth=0;
--- 3 db BW and BS from Bmax Azimuth
+	 insert into pv_cpdata_azimuth ( Prodserial_id, Frequency, Angle, Amplitude)
+	 select Prodserial_id, Frequency, Angle, pv_calc_cpdata_combi(Prodserial_id, Frequency, Angle,'A')
+	 from pv_hdata_azimuth  
+	 where Prodserial_id = coSerial and Frequency = coFreq;
+     
+   #Beamwidth, Beamsquint  
+     -- 3 db BW and BS from Bmax Azimuth
  call pv_calc_XdB_BW_BS(coSerial,coFreq,3,'CP','BM','A',_3dbBW_BM_Azimuth_left,_3dbBW_BM_Azimuth_right, _3dbBW_BM_Azimuth, _3dbBS_BM_Azimuth);
--- 3 db BW and BS from Bmax Elevation
-call pv_calc_XdB_BW_BS(coSerial,coFreq,3,'CP','BM','E',_3dbBW_BM_Elevation_left,_3dbBW_BM_Elevation_right, _3dbBW_BM_Elevation, _3dbBS_BM_Elevation);
--- 3 db BW and BS from 0 Azimuth
+ -- 3 db BW and BS from 0 Azimuth
 call pv_calc_XdB_BW_BS(coSerial,coFreq,3,'CP','0','A',_3dbBW_0_Azimuth_left,_3dbBW_0_Azimuth_right, _3dbBW_0_Azimuth, _3dbBS_0_Azimuth);
--- 3 db BW and BS from 0 Elevation
-call pv_calc_XdB_BW_BS(coSerial,coFreq,3,'CP','0','E',_3dbBW_0_Elevation_left,_3dbBW_0_Elevation_right, _3dbBW_0_Elevation, _3dbBS_0_Elevation);
-
 -- 10 db BW and BS from Bmax Azimuth
 call pv_calc_XdB_BW_BS(coSerial,coFreq,10,'CP','BM','A',_10dbBW_BM_Azimuth_left,_10dbBW_BM_Azimuth_right, _10dbBW_BM_Azimuth, dummyBS);
--- 10 db BW and BS from Bmax Elevation
-call pv_calc_XdB_BW_BS(coSerial,coFreq,10,'CP','BM','E',_10dbBW_BM_Elevation_left,_10dbBW_BM_Elevation_right, _10dbBW_BM_Elevation, dummyBS);
 -- 10 db BW and BS from 0 Azimuth
 call pv_calc_XdB_BW_BS(coSerial,coFreq,10,'CP','0','A',_10dbBW_0_Azimuth_left,_10dbBW_0_Azimuth_right, _10dbBW_0_Azimuth, dummyBS);
--- 10 db BW and BS from 0 Elevation
-call pv_calc_XdB_BW_BS(coSerial,coFreq,10,'CP','0','E',_10dbBW_0_Elevation_left,_10dbBW_0_Elevation_right, _10dbBW_0_Elevation, dummyBS);
-
 # Backlobe
  call pv_calc_backlobelevel(coSerial, coFreq, 'CP','A', X1_Azimuth, Y1_Azimuth, Backlobe_Azimuth);
-
- call pv_calc_backlobelevel(coSerial, coFreq, 'CP','E', X1_Elevation, Y1_Elevation, Backlobe_Elevation);
-
-# Axial Ratio
--- on axis
-select Amplitude into @vp_0 from pv_vdata_elevation 
-where Prodserial_id = coSerial and Frequency = coFreq and Angle = 0 ;
-
-select Amplitude into @hp_0 from pv_hdata_elevation 
-where Prodserial_id = coSerial and Frequency = coFreq and Angle = 0 ;
-
-set AR_0 = @hp_0 - @vp_0;
-
--- at +45 degree
-select Amplitude into @vp_P45 from pv_vdata_elevation 
-where Prodserial_id = coSerial and Frequency = coFreq and Angle = 45 ;
-
-select Amplitude into @hp_P45 from pv_hdata_elevation 
-where Prodserial_id = coSerial and Frequency = coFreq and Angle = 45 ;
-
-set AR_P45 = @hp_P45 - @vp_P45;
-
--- at -45 degree
-select Amplitude into @vp_M45 from pv_vdata_elevation 
-where Prodserial_id = coSerial and Frequency = coFreq and Angle = 315 ;
-
-select Amplitude into @hp_M45 from pv_hdata_elevation 
-where Prodserial_id = coSerial and Frequency = coFreq and Angle = 315 ;
-
-set AR_M45 = @hp_M45 - @vp_M45;
-
-# --------------CALCULATIONS END ----------------------
 
 -- insert into calculated table
 -- azimuth
@@ -1393,6 +1349,61 @@ insert into pv_cpcalculated ( Prodserial_id,Test_id,datatype,Frequency,TestDate,
                             X1_Azimuth,Y1_Azimuth,Backlobe_Azimuth
                             );
 
+end if; 
+
+if elevationDataPresent > 0 then
+  delete from pv_cpdata_elevation where Prodserial_id = coSerial and Frequency = coFreq;
+
+  insert into pv_cpdata_elevation ( Prodserial_id, Frequency, Angle, Amplitude)
+	select Prodserial_id, Frequency, Angle, pv_calc_cpdata_combi(Prodserial_id, Frequency, Angle,'E')
+  from pv_hdata_elevation  
+	where Prodserial_id = coSerial and Frequency = coFreq;
+    
+    
+    #Beamwidth, Beamsquint
+-- set _3dbBW_BM_Azimuth_left =0,_3dbBW_BM_Azimuth_right=0,_3dbBW_BM_Azimuth=0,_3dbBS_BM_Azimuth=0;
+
+-- 3 db BW and BS from Bmax Elevation
+call pv_calc_XdB_BW_BS(coSerial,coFreq,3,'CP','BM','E',_3dbBW_BM_Elevation_left,_3dbBW_BM_Elevation_right, _3dbBW_BM_Elevation, _3dbBS_BM_Elevation);
+-- 3 db BW and BS from 0 Elevation
+call pv_calc_XdB_BW_BS(coSerial,coFreq,3,'CP','0','E',_3dbBW_0_Elevation_left,_3dbBW_0_Elevation_right, _3dbBW_0_Elevation, _3dbBS_0_Elevation);
+
+-- 10 db BW and BS from Bmax Elevation
+call pv_calc_XdB_BW_BS(coSerial,coFreq,10,'CP','BM','E',_10dbBW_BM_Elevation_left,_10dbBW_BM_Elevation_right, _10dbBW_BM_Elevation, dummyBS);
+-- 10 db BW and BS from 0 Elevation
+call pv_calc_XdB_BW_BS(coSerial,coFreq,10,'CP','0','E',_10dbBW_0_Elevation_left,_10dbBW_0_Elevation_right, _10dbBW_0_Elevation, dummyBS);
+
+ call pv_calc_backlobelevel(coSerial, coFreq, 'CP','E', X1_Elevation, Y1_Elevation, Backlobe_Elevation);
+
+# Axial Ratio
+-- on axis
+select Amplitude into vp_0 
+from pv_vdata_elevation 
+where Prodserial_id = coSerial and Frequency = coFreq and Angle = 0 ;
+
+select Amplitude into hp_0 
+from pv_hdata_elevation 
+where Prodserial_id = coSerial and Frequency = coFreq and Angle = 0 ;
+
+set AR_0 = hp_0 - vp_0;
+
+-- at +45 degree
+select Amplitude into vp_P45 from pv_vdata_elevation 
+where Prodserial_id = coSerial and Frequency = coFreq and Angle = 45 ;
+
+select Amplitude into hp_P45 from pv_hdata_elevation 
+where Prodserial_id = coSerial and Frequency = coFreq and Angle = 45 ;
+
+set AR_P45 = hp_P45 - vp_P45;
+
+-- at -45 degree
+select Amplitude into vp_M45 from pv_vdata_elevation 
+where Prodserial_id = coSerial and Frequency = coFreq and Angle = 315 ;
+
+select Amplitude into hp_M45 from pv_hdata_elevation 
+where Prodserial_id = coSerial and Frequency = coFreq and Angle = 315 ;
+
+set AR_M45 = hp_M45 - vp_M45;
 
 -- elevation
 delete from pv_cpcalculated where Prodserial_id = coSerial and Test_id = coTestId and  datatype ='E' and Frequency = coFreq;
@@ -1422,11 +1433,16 @@ and Test_id = coTestId and  Frequency = coFreq;
 	VP_M45, HP_M45, AR_M45)
     values
     (coSerial,coTestId, 'E',  coFreq,coTestDate,
-     @vp_0,@hp_0, AR_0,
-     @vp_P45, @hp_P45, AR_P45,
-     @vp_M45, @hp_M45, AR_M45);
-    
-    
+     vp_0,hp_0, AR_0,
+     vp_P45, hp_P45, AR_P45,
+     vp_M45, hp_M45, AR_M45);
+     
+end if;
+
+
+
+# --------------CALCULATIONS END ----------------------
+
   
 END$$
 
