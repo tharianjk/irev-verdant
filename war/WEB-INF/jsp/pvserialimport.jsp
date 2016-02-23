@@ -81,6 +81,9 @@ function progress_update( typ) {
 		return;
 	}
 	}
+	if(typ=='D'){
+		calculate();
+	}
 	
 	/*var filename=document.getElementById("filename").value;
 	if(filename==null || filename=="")
@@ -334,7 +337,7 @@ progress_clear();
 	<td>	<input type="submit" id="done" value="Calculate" name="fmaction" class="myButton" onclick="progress_update('D');form1.submit();"/></td>
 	<td>	<input type="submit" id="save" value="Save" name="fmaction" class="myButton" onclick="form1.submit();" style="visibility:hidden"/></td>
 		<td>
-		<table align="center" id="progressbar" style="display:none"><tr><td><b>Saving ....</b>
+<table align="center" id="progressbar" style="display:none"><tr><td><b><label id="lblmsg">Saving ....</label></b>
 <div style="font-size:8pt;padding:2px;border:solid black 1px">
 <span id="progress0">&nbsp; &nbsp;</span>
 <span id="progress1">&nbsp; &nbsp;</span>
@@ -838,6 +841,75 @@ function fnCheck()
 					});
 
    
+}
+
+
+function calculate(){
+	var pat='<%=request.getContextPath()%>';
+	$.ajax({
+		url: pat+"/MWAPI/serialsnos/"+testid
+	}).then(function(data) {
+		 console.log(' API returned # recs = '+data);
+	if(data!=null  )
+	{
+		if (data.JsonSlnos == null)
+		{
+			console.log("no JsonSlnos");
+			progress_stop();
+			return;
+		}
+			
+		 console.log(' going to set the data-segments. Cnt of elements = '+data.JsonSlnos.length);
+		
+
+			for (var i=0; i< data.JsonSlnos.length; i++){
+				var id=data.JsonSlnos[i].serialid;
+				console.log("id="+id);
+				document.getElementById("lblmsg").innerHTML='Processing ..'+data.JsonSlnos[i].serialno;
+				
+				
+				var urls = pat+'/MWAPI/pvcalculate/'+testid+'/'+$( "#serialno" ).val();
+				$.ajax({
+					type: "GET",
+					url: urls,
+					error: function(XMLHttpRequest, textStatus, errorThrown)  {
+								alert("An error has occurred making the request: " + errorThrown)
+							},
+					success : function(response) {
+	                console.log("Success-serial: "+ response);
+					if(response=='1')
+					{
+			        			       
+					$( "#validate" ).dialog({
+					height: 200,
+					width: 300,
+					modal: true				
+					});	
+					}
+					else
+					{
+					console.log("success");
+					//document.getElementById("save").disabled = false;
+					}
+					}			
+				});
+				
+				
+			}
+			
+
+		
+			progress_stop();
+	}
+	else
+	{
+		console.log("data is null");
+		progress_stop();
+	}
+	
+		
+},function(error){progress_stop();  }
+);
 }
 
 

@@ -1561,8 +1561,7 @@ public boolean deletePVSerial(int id) {
 			   sql = "delete from pv_hdata_GT where Prodserial_id=" + id;
 			   getJdbcTemplate().update(sql);
 			   sql = "delete from pv_vdata_GT where Prodserial_id=" + id;
-			   getJdbcTemplate().update(sql);
-			   sql = "delete from pv_cpdata_GT where Prodserial_id=" + id;
+			   
 			   getJdbcTemplate().update(sql);
 			   sql = "delete from pv_radata where Prodserial_id=" + id;
 			   getJdbcTemplate().update(sql);
@@ -1752,12 +1751,15 @@ catch(Exception e){
 
 public int PV_CalcProc(int testid)
 {
+	String sql="select testtype from pv_testdata where test_id=?";
 	   
-	   
-		//final String funit = testdata.getFrequnit().equals("MHz")?"M":"G";
-		//final String funit = "M";
 		try{
-		getJdbcTemplate().update("call pv_Calculate_params (?,?)", testid,"PV");
+			 String testtype=getJdbcTemplate().queryForObject(sql, String.class,testid);
+			 if(testtype.equals("GT")){
+		getJdbcTemplate().update("call pv_calc_gtcalculated (?)", testid);
+			 }
+			 else if(testtype.equals("CO")){
+					getJdbcTemplate().update("call pv_calc_spec (?,?)", testid);}
 		return 1;
 		}
 		catch(Exception e)

@@ -84,8 +84,9 @@ public class MWAPIDao extends JdbcDaoSupport {
          	List<JsonSlno> JsonSlnos = new ArrayList<JsonSlno>();
          	try{         		
             	
-            	String sql="select prodserial_id,serialno from prodserial where test_id=? ";
+            	String sql="select prodserial_id,serialno from pv_prodserial where test_id=? ";
             	JsonSlnos=  getJdbcTemplate().query(sql, new Object[] {testid}, new int[] {java.sql.Types.VARCHAR},new SerialMapper());
+            	logger.info("JsonSlnos ="+JsonSlnos.size());
          	}
          	catch(Exception e)
          	{
@@ -150,5 +151,21 @@ public class MWAPIDao extends JdbcDaoSupport {
                       return roledsp;
                   }
               }
-
+              public int PV_Calculate(String testid,String serialid)
+              {
+              	   
+              	   
+              		//final String funit = testdata.getFrequnit().equals("MHz")?"M":"G";
+              		//final String funit = "M";
+              		try{
+              		getJdbcTemplate().update("call pv_Calculate_params (?,?,?)", testid,"PV",serialid);
+              		return 1;
+              		}
+              		catch(Exception e)
+              		{
+              			 logger.info("PV_CalcProc Exception "+e.getMessage());
+              			   return 0;
+              		}
+              			
+              }
 }
