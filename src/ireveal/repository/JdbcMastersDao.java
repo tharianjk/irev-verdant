@@ -1387,22 +1387,50 @@ if(strmode.equals("new")){
 				if(testdata.getFiletype().equals("V"))
 				{
 					logger.info(" PVSerialData 4");
-					sqlcnt="select count(*) from pv_Vdata where Prodserial_id=? and frequency=? and datatype=?";
-					sqldelete="delete from pv_Vdata where Prodserial_id=? and frequency=? and datatype=?";
+					if(datatype.equals("A")){
+						sqlcnt="select count(*) from pv_Vdata_Azimuth where Prodserial_id=? and frequency=? ";
+						sqldelete="delete from pv_Vdata_Azimuth where Prodserial_id=? and frequency=? ";
+					}
+					else if(datatype.equals("E")){
+						sqlcnt="select count(*) from pv_Vdata_Elevation where Prodserial_id=? and frequency=? ";
+						sqldelete="delete from pv_Vdata_Elevation where Prodserial_id=? and frequency=? ";
+					}
+					else if(datatype.equals("T")){
+						sqlcnt="select count(*) from pv_Vdata_GT where Prodserial_id=? and frequency=? ";
+						sqldelete="delete from pv_Vdata_GT where Prodserial_id=? and frequency=? ";
+					}
+					else if(datatype.equals("M")){
+						sqlcnt="select count(*) from pv_Vdata_GM where Prodserial_id=? and frequency=? ";
+						sqldelete="delete from pv_Vdata_GM where Prodserial_id=? and frequency=? ";
+					}
 				}
 				if(testdata.getFiletype().equals("H"))
 				{
 					logger.info(" PVSerialData 5");
-					sqlcnt="select count(*) from pv_hdata where Prodserial_id=? and frequency=? and datatype=?";
-					sqldelete="delete from pv_hdata where Prodserial_id=? and frequency=? and datatype=?";
+					if(datatype.equals("A")){
+						sqlcnt="select count(*) from pv_Hdata_Azimuth where Prodserial_id=? and frequency=? ";
+						sqldelete="delete from pv_Hdata_Azimuth where Prodserial_id=? and frequency=? ";
+					}
+					else if(datatype.equals("E")){
+						sqlcnt="select count(*) from pv_Hdata_Elevation where Prodserial_id=? and frequency=? ";
+						sqldelete="delete from pv_Hdata_Elevation where Prodserial_id=? and frequency=? ";
+					}
+					else if(datatype.equals("T")){
+						sqlcnt="select count(*) from pv_Hdata_GT where Prodserial_id=? and frequency=? ";
+						sqldelete="delete from pv_Hdata_GT where Prodserial_id=? and frequency=? ";
+					}
+					else if(datatype.equals("M")){
+						sqlcnt="select count(*) from pv_Hdata_GM where Prodserial_id=? and frequency=? ";
+						sqldelete="delete from pv_Hdata_GM where Prodserial_id=? and frequency=? ";
+					}
 				}
 				logger.info(" PVSerialData 6 freq"+testfreqlist.get(i).getFrequency()+" datatype="+datatype);
 				//logger.info("sqlcnt="+sqlcnt);
-			int cntfreq=getJdbcTemplate().queryForObject(sqlcnt,Integer.class,serialid,testfreqlist.get(i).getFrequency(),datatype);
+			int cntfreq=getJdbcTemplate().queryForObject(sqlcnt,Integer.class,serialid,testfreqlist.get(i).getFrequency());
 			logger.info(" PVSerialData 7");
 			if(cntfreq >0)
 			{
-				getJdbcTemplate().update(sqldelete,serialid,testfreqlist.get(i).getFrequency(),datatype);
+				getJdbcTemplate().update(sqldelete,serialid,testfreqlist.get(i).getFrequency());
 			}
 		 }
 		
@@ -1413,17 +1441,40 @@ if(strmode.equals("new")){
 	  	logger.info(" PVSerialData 8");
 	  	if(testdata.getFiletype().equals("V"))
 	  	{
-	  		sqltest="insert into pv_Vdata (Prodserial_id,Frequency,Angle,Amplitude,datatype) values (?,?,?,?,?)"; 
+	  		if(datatype.equals("A")){
+	  		sqltest="insert into pv_Vdata_Azimuth (Prodserial_id,Frequency,Angle,Amplitude) values (?,?,?,?)"; 
+	  		}
+	  		else if(datatype.equals("E")){
+	  			sqltest="insert into pv_Vdata_Elevation (Prodserial_id,Frequency,Angle,Amplitude) values (?,?,?,?)"; 
+	  		}
+	  		else if(datatype.equals("T")){
+	  			sqltest="insert into pv_Vdata_GT (Prodserial_id,Frequency,Angle,Amplitude) values (?,?,?,?)"; 
+	  		}
+	  		else if(datatype.equals("M")){
+	  			sqltest="insert into pv_Vdata_GM (Prodserial_id,Frequency,Angle,Amplitude) values (?,?,?,?)"; 
+	  		}
+	  		
 	  	}
 	  	else if(testdata.getFiletype().equals("H"))
 	  	{
-	  		sqltest="insert into pv_Hdata (Prodserial_id,Frequency,Angle,Amplitude,datatype) values (?,?,?,?,?)"; 
+	  		if(datatype.equals("A")){
+		  		sqltest="insert into pv_Hdata_Azimuth (Prodserial_id,Frequency,Angle,Amplitude) values (?,?,?,?)"; 
+		  		}
+		  		else if(datatype.equals("E")){
+		  			sqltest="insert into pv_Hdata_Elevation (Prodserial_id,Frequency,Angle,Amplitude) values (?,?,?,?)"; 
+		  		}
+		  		else if(datatype.equals("T")){
+		  			sqltest="insert into pv_Hdata_GT (Prodserial_id,Frequency,Angle,Amplitude) values (?,?,?,?)"; 
+		  		}
+		  		else if(datatype.equals("M")){
+		  			sqltest="insert into pv_Hdata_GM (Prodserial_id,Frequency,Angle,Amplitude) values (?,?,?,?)"; 
+		  		}
 	  	}
 	  	for (int i=0;i<dataloglist.size();i++){	
 	  		
 		getJdbcTemplate().update(  
 				sqltest,  
-		 new Object[] {serialid, dataloglist.get(i).getFreq(), dataloglist.get(i).getAngle()==360.00?0:dataloglist.get(i).getAngle(),dataloglist.get(i).getAmplitude(),datatype });
+		 new Object[] {serialid, dataloglist.get(i).getFreq(), dataloglist.get(i).getAngle()==360.00?0:dataloglist.get(i).getAngle(),dataloglist.get(i).getAmplitude()});
 
 		}
 	  	/* if(action.equals("Done"))
@@ -1495,11 +1546,23 @@ public boolean deletePVSerial(int id) {
 			   getJdbcTemplate().update(sql);
 			   sql = "delete from pv_gt_intermediate where Prodserial_id=" + id;
 			   getJdbcTemplate().update(sql);
-			   sql = "delete from pv_hdata where Prodserial_id=" + id;
+			   sql = "delete from pv_hdata_azimuth where Prodserial_id=" + id;
 			   getJdbcTemplate().update(sql);
-			   sql = "delete from pv_vdata where Prodserial_id=" + id;
+			   sql = "delete from pv_vdata_azimuth where Prodserial_id=" + id;
 			   getJdbcTemplate().update(sql);
-			   sql = "delete from pv_cpdata where Prodserial_id=" + id;
+			   sql = "delete from pv_cpdata_azimuth where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   sql = "delete from pv_hdata_elevation where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   sql = "delete from pv_vdata_elevation where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   sql = "delete from pv_cpdata_elevation where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   sql = "delete from pv_hdata_GT where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   sql = "delete from pv_vdata_GT where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   sql = "delete from pv_cpdata_GT where Prodserial_id=" + id;
 			   getJdbcTemplate().update(sql);
 			   sql = "delete from pv_radata where Prodserial_id=" + id;
 			   getJdbcTemplate().update(sql);
@@ -1518,12 +1581,25 @@ public boolean deletePVSerial(int id) {
 public String getPVFreqdatafile(String typ,int serialid,String datatype ){
 	 String sql="";
 	 String strfreqs="";
-	 if(typ.equals("H"))
-		 sql="select distinct frequency from pv_hdata where prodserial_id=? and datatype=?";
-	 else if(typ.equals("V"))
-		 sql="select distinct frequency from pv_vdata where prodserial_id=? and datatype=?";
+	 if(typ.equals("H")){
+		 if(datatype.equals("A"))
+		 sql="select distinct frequency from pv_hdata_Azimuth where prodserial_id=? ";
+		 else if(datatype.equals("E"))
+		 sql="select distinct frequency from pv_hdata_Elevation where prodserial_id=? ";
+		 else if(datatype.equals("T"))
+		 sql="select distinct frequency from pv_hdata_GT where prodserial_id=? ";
+	 }
+	 else if(typ.equals("V")){
+		 if(datatype.equals("A"))
+			 sql="select distinct frequency from pv_vdata_Azimuth where prodserial_id=? ";
+			 else if(datatype.equals("E"))
+			 sql="select distinct frequency from pv_vdata_Elevation where prodserial_id=? ";
+			 else if(datatype.equals("T"))
+			 sql="select distinct frequency from pv_vdata_GT where prodserial_id=? ";
+	 }
+		
 		 
-	 List<TestFrequency> freqlist=getJdbcTemplate().query(sql, new FreqdatafileMapper(),serialid,datatype);  
+	 List<TestFrequency> freqlist=getJdbcTemplate().query(sql, new FreqdatafileMapper(),serialid);  
 		for (int i=0;i<freqlist.size();i++){
 			if(i==0)
 				{strfreqs=freqlist.get(i).getFrequency()+"";}
