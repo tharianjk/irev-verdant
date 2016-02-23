@@ -95,7 +95,7 @@ public class MWAPIController {
 		
 		@RequestMapping(value = "/pvcalculate/{testid}/{serialid}",  method = RequestMethod.GET)
 		@ResponseBody
-			public int pvcalculate(@PathVariable String testid,@PathVariable String serialid){			
+			public String pvcalculate(@PathVariable String testid,@PathVariable String serialid){			
 			return metertagmngr.PV_Calculate(testid,serialid);
 		}
 

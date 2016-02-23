@@ -1759,7 +1759,7 @@ public int PV_CalcProc(int testid)
 		getJdbcTemplate().update("call pv_calc_gtcalculated (?)", testid);
 			 }
 			 else if(testtype.equals("CO")){
-					getJdbcTemplate().update("call pv_calc_spec (?,?)", testid);}
+					getJdbcTemplate().update("call pv_calc_spec (?)", testid);}
 		return 1;
 		}
 		catch(Exception e)
