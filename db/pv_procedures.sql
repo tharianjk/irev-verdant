@@ -2101,8 +2101,7 @@ DELIMITER;
 DELIMITER $$
 
 CREATE PROCEDURE `pv_calc_gtcalculated`(
-gtTestId INT,
-gtTestDate datetime)
+gtTestId INT)
 BEGIN
 
 # 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
