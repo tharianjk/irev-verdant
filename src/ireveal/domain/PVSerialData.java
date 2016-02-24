@@ -18,6 +18,16 @@ private String frequnit;
 private String ptype;
 private String testtype;
 private String datatype;
+private int calccnt;
+
+
+public int getCalccnt() {
+	return calccnt;
+}
+
+public void setCalccnt(int calccnt) {
+	this.calccnt = calccnt;
+}
 
 public String getDatatype() {
 	return datatype;

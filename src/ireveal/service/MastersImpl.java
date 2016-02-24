@@ -288,8 +288,17 @@ public boolean deletePVSerial(int id) {
 	return mastersdao.deletePVSerial(id);
 }
 @Override
-public int PV_CalcProc(int testid) {
-	return mastersdao.PV_CalcProc(testid);
+public int PV_CalcProc(int testid, int serialid) {
+	return mastersdao.PV_CalcProc(testid,serialid);
+}
+@Override
+public int PV_serialcount(int testid) {
+	return mastersdao.PV_serialcount(testid);
+}
+
+@Override
+public int PV_CalcProcSum(int testid) {
+	return mastersdao.PV_CalcProcSum(testid);
 }
 
 

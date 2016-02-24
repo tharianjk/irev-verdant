@@ -225,7 +225,9 @@ function Redirect(){
 					deg='P45';
 				else
 					deg='M45';
-				url="/birt-viewer/frameset?__report=verdant/GainMeasurement.rptdesign&TestId="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+"deg="+deg;
+				
+				var serialcnt='${model.serialcnt}';
+				url="/birt-viewer/frameset?__report=verdant/GainMeasurement.rptdesign&TestId="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+"deg="+deg+"&scount="+serialcnt;
 				
 			}
 			

@@ -141,20 +141,26 @@ public class PVSerialImportController extends SimpleFormController{
      			      }
      			      int rowNum = sheet.getLastRowNum()+1;
      			      int colNum = sheet.getRow(0).getLastCellNum();
-     			      
+     			     ArrayList<Double> freqarr= new ArrayList<Double>();
+				      for(int u=1;u<rowNum;u++){
+				    	  XSSFRow row =(XSSFRow) sheet.getRow(u);
+				    	  freqarr.add( Double.parseDouble(row.getCell(u).toString()));
+				      }
      				
      			      for (int i=0; i<rowNum; i++){
      						  //logger.info("introw "+i);  
      						 XSSFRow row =(XSSFRow) sheet.getRow(i);
      						  int freqfound=0;
+     						  Double selfreq=0.00;
      						  if(i>0) //header
      						  {
      							
      							for (int p=0;p<freqlist.size();p++){
      								
      								String freq=freqlist.get(p).getFrequency()+"";
+     								selfreq=ClosetFreq(Double.parseDouble(freq), freqarr);
      								//logger.info("freq "+freq+" row.getCell(0).toString()="+row.getCell(0).toString());
-     								if(freq.equals(row.getCell(0).toString())){
+     								if(selfreq.equals(row.getCell(0).toString())){
      									freqfound=1;
      								}
      							}
@@ -230,7 +236,7 @@ public class PVSerialImportController extends SimpleFormController{
 			        }
 			 
 			if(action.equals("Done")){
-			 stat=	mastersservice.PV_CalcProc(testid);
+			 stat=	mastersservice.PV_CalcProc(testid,serialid);
 			if(stat==0)
 			{
 				err="Failed to calculate";
@@ -316,6 +322,7 @@ public class PVSerialImportController extends SimpleFormController{
 				    	  }
 				      
 				      XSSFRow freqrow =(XSSFRow) sheet.getRow(startrow);
+				     
 				      for(int u=1;u<colNum;u++){
 				    	  freqarr.add( Double.parseDouble(freqrow.getCell(u).toString()));
 				      }
