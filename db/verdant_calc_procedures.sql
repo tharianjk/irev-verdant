@@ -880,6 +880,7 @@ seTestDate datetime
 )
 BEGIN
 -- same for cp without conversion
+-- same for cp without conversion
 
 # Declarations -begin
 
@@ -892,15 +893,19 @@ BEGIN
 DECLARE _3dB_BW_HP_BM, _3dB_BW_VP_BM decimal(40,20);
 DECLARE _3dB_BW_HP_0, _3dB_BW_VP_0 decimal(40,20);
 DECLARE _3dB_BW_HP_90, _3dB_BW_VP_90 decimal(40,20);
+DECLARE _3dB_BW_HP_270, _3dB_BW_VP_270 decimal(40,20);
 DECLARE _10dB_BW_HP_BM, _10dB_BW_VP_BM decimal(40,20);
 DECLARE _10dB_BW_HP_0, _10dB_BW_VP_0 decimal(40,20);
 DECLARE _10dB_BW_HP_90, _10dB_BW_VP_90 decimal(40,20);
+DECLARE _10dB_BW_HP_270, _10dB_BW_VP_270 decimal(40,20);
 DECLARE _3dB_BS_HP_BM, _3dB_BS_VP_BM decimal(40,20);
 DECLARE _3dB_BS_HP_0, _3dB_BS_VP_0 decimal(40,20);
 DECLARE _3dB_BS_HP_90, _3dB_BS_VP_90 decimal(40,20);
+DECLARE _3dB_BS_HP_270, _3dB_BS_VP_270 decimal(40,20);
 DECLARE _10dB_BS_HP_BM, _10dB_BS_VP_BM decimal(40,20);
 DECLARE _10dB_BS_HP_0, _10dB_BS_VP_0 decimal(40,20);
 DECLARE _10dB_BS_HP_90, _10dB_BS_VP_90 decimal(40,20);
+DECLARE _10dB_BS_HP_270, _10dB_BS_VP_270 decimal(40,20);
 DECLARE backlobe_HP,backlobe_VP decimal(40,20);
 DECLARE axial_0,axial_P45,axial_M45,AR_Maxdiff_P, AR_Maxdiff_M decimal(40,20);
 DECLARE angle_Maxdiff_P, angle_Maxdiff_M decimal(40,20);
@@ -979,6 +984,10 @@ if hDataPresent > 0 then
            
 		   -- Calculate 3dB Beam Width, Beam Squint for pitch data for 90 degree
 		    call calc_XdB_BW_BS(seTestId,seFreq,3,'HP','90', _3dB_BW_HP_90, _3dB_BS_HP_90);
+            
+            -- new req
+             -- Calculate 3dB Beam Width, Beam Squint for pitch data for 90 degree
+		    call calc_XdB_BW_BS(seTestId,seFreq,3,'HP','270', _3dB_BW_HP_270, _3dB_BS_HP_270);
            
 			 if isDebug > 0 then
 				SET @infoText = "invoking 10 db BW and BS calculations ..."; 
@@ -992,6 +1001,10 @@ if hDataPresent > 0 then
             
 		   -- Calculate 10dB Beam Width, Beam Squint for Pitch data for 90 degree
 		     call calc_XdB_BW_BS(seTestId,seFreq,10,'HP','90', _10dB_BW_HP_90, _10dB_BS_HP_90);
+             
+             -- new req
+              -- Calculate 10dB Beam Width, Beam Squint for Pitch data for 270 degree
+		     call calc_XdB_BW_BS(seTestId,seFreq,10,'HP','270', _10dB_BW_HP_270, _10dB_BS_HP_270);
             
 		 if isDebug > 0 then
 				SET @infoText = "invoking Backlobe calculations ..."; 
@@ -1005,16 +1018,16 @@ if hDataPresent > 0 then
 		-- insert into pitchCalculated table
              delete from hcalculated where Test_id =seTestId and Frequency = seFreq;
 			 insert into hcalculated(Test_id,Frequency,TestDate
-								,3Db_BW_BMax,3Db_BW_0,3Db_BW_90
-                                ,10Db_BW_BMax,10Db_BW_0,10Db_BW_90
-                                ,3Db_BS_BMax,3Db_BS_0,3Db_BS_90
-                                ,10Db_BS_BMax,10Db_BS_0,10Db_BS_90
+								,3Db_BW_BMax,3Db_BW_0,3Db_BW_90,3Db_BW_270
+                                ,10Db_BW_BMax,10Db_BW_0,10Db_BW_90,10Db_BW_270
+                                ,3Db_BS_BMax,3Db_BS_0,3Db_BS_90,3Db_BS_270
+                                ,10Db_BS_BMax,10Db_BS_0,10Db_BS_90,10Db_BS_270
                                 ,BackLobe)
 		   select seTestId,seFreq,seTestDate,
-				_3dB_BW_HP_BM,_3dB_BW_HP_0,_3dB_BW_HP_90,
-				_10dB_BW_HP_BM,_10dB_BW_HP_0,_10dB_BW_HP_90,
-                _3dB_BS_HP_BM,_3dB_BS_HP_0,_3dB_BS_HP_90,
-				_10dB_BS_HP_BM,_10dB_BS_HP_0,_10dB_BS_HP_90,
+				_3dB_BW_HP_BM,_3dB_BW_HP_0,_3dB_BW_HP_90,_3dB_BW_HP_270,
+				_10dB_BW_HP_BM,_10dB_BW_HP_0,_10dB_BW_HP_90,_10dB_BW_HP_270,
+                _3dB_BS_HP_BM,_3dB_BS_HP_0,_3dB_BS_HP_90,_3dB_BS_HP_270,
+				_10dB_BS_HP_BM,_10dB_BS_HP_0,_10dB_BS_HP_90,_10dB_BS_HP_270,
                 backlobe_HP;
                 
 		 if isDebug > 0 then
@@ -1043,6 +1056,9 @@ if vDataPresent > 0 then
            
 		   -- Calculate 3dB Beam Width, Beam Squint for pitch data for 90 degree
 		    call calc_XdB_BW_BS(seTestId,seFreq,3,'VP','90', _3dB_BW_VP_90, _3dB_BS_VP_90);
+            
+             -- Calculate 3dB Beam Width, Beam Squint for pitch data for 90 degree
+		    call calc_XdB_BW_BS(seTestId,seFreq,3,'VP','270', _3dB_BW_VP_270, _3dB_BS_VP_270);
            
 		     
             if isDebug > 0 then
@@ -1057,6 +1073,9 @@ if vDataPresent > 0 then
             
 		   -- Calculate 10dB Beam Width, Beam Squint for Pitch data for 90 degree
 		     call calc_XdB_BW_BS(seTestId,seFreq,10,'VP','90', _10dB_BW_VP_90, _10dB_BS_VP_90);
+             
+             -- Calculate 10dB Beam Width, Beam Squint for Pitch data for 90 degree
+		     call calc_XdB_BW_BS(seTestId,seFreq,10,'VP','270', _10dB_BW_VP_270, _10dB_BS_VP_270);
             
 		  if isDebug > 0 then
 				SET @infoText = "invoking backlobe calculations ..."; 
@@ -1070,16 +1089,16 @@ if vDataPresent > 0 then
 		-- insert into vcalculated table
              delete from vcalculated where Test_id =seTestId and Frequency = seFreq;
 			 insert into vcalculated(Test_id,Frequency,TestDate
-								,3Db_BW_BMax,3Db_BW_0,3Db_BW_90
-                                ,10Db_BW_BMax,10Db_BW_0,10Db_BW_90
-                                ,3Db_BS_BMax,3Db_BS_0,3Db_BS_90
-                                ,10Db_BS_BMax,10Db_BS_0,10Db_BS_90
+								,3Db_BW_BMax,3Db_BW_0,3Db_BW_90,3Db_BW_270
+                                ,10Db_BW_BMax,10Db_BW_0,10Db_BW_90,10Db_BW_270
+                                ,3Db_BS_BMax,3Db_BS_0,3Db_BS_90,3Db_BS_270
+                                ,10Db_BS_BMax,10Db_BS_0,10Db_BS_90,10Db_BS_270
                                 ,BackLobe)
 		   select seTestId,seFreq,seTestDate,
-				_3dB_BW_VP_BM,_3dB_BW_VP_0,_3dB_BW_VP_90,
-				_10dB_BW_VP_BM,_10dB_BW_VP_0,_10dB_BW_VP_90,
-                _3dB_BS_VP_BM,_3dB_BS_VP_0,_3dB_BS_VP_90,
-				_10dB_BS_VP_BM,_10dB_BS_VP_0,_10dB_BS_VP_90,
+				_3dB_BW_VP_BM,_3dB_BW_VP_0,_3dB_BW_VP_90,_3dB_BW_VP_270,
+				_10dB_BW_VP_BM,_10dB_BW_VP_0,_10dB_BW_VP_90,_10dB_BW_VP_270,
+                _3dB_BS_VP_BM,_3dB_BS_VP_0,_3dB_BS_VP_90,_3dB_BS_VP_270,
+				_10dB_BS_VP_BM,_10dB_BS_VP_0,_10dB_BS_VP_90,_10dB_BS_VP_270,
                 backlobe_VP;
                 
 		  if isDebug > 0 then
@@ -1120,7 +1139,6 @@ if hDataPresent > 0 and vDataPresent > 0 then
 				SET @infoText = "Calculated data saved successfully into arcalculated";
 				call debug(l_proc_id,@infoText,'I','I');
 			end if;
-end if;
 END$$
 DELIMITER ;
 DELIMITER $$
@@ -1204,7 +1222,7 @@ END$$
 DELIMITER ;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `calc_XdB_BW_BS`(
-xtest_id INT, freq decimal(40,20), X INT, polType char(2), fromAngle char(2),
+xtest_id INT, freq decimal(40,20), X INT, polType char(2), fromAngle char(3),
 out beam_width decimal(40,20), out beam_squint decimal(40,20)
 )
 BEGIN
@@ -1292,6 +1310,15 @@ elseif fromAngle = '0' then
 SET @s = CONCAT('select amplitude, angle into @A,@B from ', @tab, 
 ' where test_id = ',xtest_id,' and Frequency = ',freq,
                         ' and angle = 0');  
+
+PREPARE stmt1 FROM @s; 
+EXECUTE stmt1; 
+DEALLOCATE PREPARE stmt1;
+
+elseif fromAngle = '270' then
+SET @s = CONCAT('select amplitude, angle into @A,@B from ', @tab, 
+' where test_id = ',xtest_id,' and Frequency = ',freq,
+                        ' and angle = 270');  
 
 PREPARE stmt1 FROM @s; 
 EXECUTE stmt1; 
@@ -1420,7 +1447,6 @@ end if;
 
 
  -- select beam_squint as 'BS';
-
 
 
 END$$
