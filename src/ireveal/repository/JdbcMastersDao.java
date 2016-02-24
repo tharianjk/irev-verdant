@@ -1588,6 +1588,8 @@ public String getPVFreqdatafile(String typ,int serialid,String datatype ){
 		 sql="select distinct frequency from pv_hdata_Elevation where prodserial_id=? ";
 		 else if(datatype.equals("T"))
 		 sql="select distinct frequency from pv_hdata_GT where prodserial_id=? ";
+		 else if(datatype.equals("M"))
+		sql="select distinct frequency from pv_hdata_GM where prodserial_id=? ";
 	 }
 	 else if(typ.equals("V")){
 		 if(datatype.equals("A"))
@@ -1596,6 +1598,8 @@ public String getPVFreqdatafile(String typ,int serialid,String datatype ){
 			 sql="select distinct frequency from pv_vdata_Elevation where prodserial_id=? ";
 			 else if(datatype.equals("T"))
 			 sql="select distinct frequency from pv_vdata_GT where prodserial_id=? ";
+			 else if(datatype.equals("M"))
+			 sql="select distinct frequency from pv_vdata_GM where prodserial_id=? ";
 	 }
 		
 		 
@@ -1752,7 +1756,7 @@ catch(Exception e){
 
 public int PV_CalcProc(int testid,int serialid)
 {
-	   
+	logger.info("inside PV_CalcProc testid="+testid+" serialid="+serialid);
 		try{
 			
 		getJdbcTemplate().update("call pv_Calculate_params (?,?,?)", testid,"PV",serialid);

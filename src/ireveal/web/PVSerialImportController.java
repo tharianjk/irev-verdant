@@ -84,9 +84,28 @@ public class PVSerialImportController extends SimpleFormController{
 		 testtype=file.getTesttype();
          atype=file.getPtype();
          testid=file.getTestid();
+         serialid=file.getProductserialid();
          String filetype=file.getFiletype();
          MultipartFile multipartFile = file.getFilename();
          logger.info("*** Inside PVSerialcontroller in onsubmit** filetype:"+filetype);
+    	 if (request.getParameter("fmaction").equals("Calculate"))
+	        {
+	        	action="Done";
+	        }
+	 
+		if(action.equals("Done")){
+				 stat=	mastersservice.PV_CalcProc(testid,serialid);
+				if(stat==0)
+				{
+					err="Failed to calculate";
+					
+				}
+				else
+				{
+					err="Calculation completed successfully";
+				}
+		}
+		else{
          if(filetype.equals("M")){
         	 List<TestFrequency> freqlist=new ArrayList<TestFrequency>();
         	 logger.info("*** Inside PVSerialcontroller in onsubmit**: Gain Measurement");
@@ -141,64 +160,55 @@ public class PVSerialImportController extends SimpleFormController{
      			      }
      			      int rowNum = sheet.getLastRowNum()+1;
      			      int colNum = sheet.getRow(0).getLastCellNum();
-     			     ArrayList<Double> freqarr= new ArrayList<Double>();
+     			      ArrayList<Double> freqarr= new ArrayList<Double>();
 				      for(int u=1;u<rowNum;u++){
 				    	  XSSFRow row =(XSSFRow) sheet.getRow(u);
-				    	  freqarr.add( Double.parseDouble(row.getCell(u).toString()));
+				    	  freqarr.add( Double.parseDouble(row.getCell(0).toString()));
 				      }
-     				
-     			      for (int i=0; i<rowNum; i++){
+				      Double selfreq=0.00;
+				      String freq="";
+						for (int p=0;p<freqlist.size();p++)
+						{    								
+							 freq=freqlist.get(p).getFrequency()+"";
+							selfreq=ClosetFreq(Double.parseDouble(freq), freqarr);
+     			            for (int i=0; i<rowNum; i++)
+     			            {
      						  //logger.info("introw "+i);  
      						 XSSFRow row =(XSSFRow) sheet.getRow(i);
      						  int freqfound=0;
-     						  Double selfreq=0.00;
+     						 
      						  if(i>0) //header
      						  {
-     							
-     							for (int p=0;p<freqlist.size();p++){
-     								
-     								String freq=freqlist.get(p).getFrequency()+"";
-     								selfreq=ClosetFreq(Double.parseDouble(freq), freqarr);
-     								//logger.info("freq "+freq+" row.getCell(0).toString()="+row.getCell(0).toString());
-     								if(selfreq.equals(row.getCell(0).toString())){
+     							  logger.info("freq "+freq+" row.getCell(0).toString()="+row.getCell(0).toString());
+     								if(selfreq.toString().equals(row.getCell(0).toString())){
      									freqfound=1;
+     									logger.info("freq found"+freq);
+     									logger.info("insider introw "+i); 
+     									logger.info("Inside RA Std Horn import Controller rows.hasNext() " +row.getCell(0).toString());
+     									TestFrequency rastd= new TestFrequency();
+     									
+     									String sreading;
+     	     							rastd.setFrequency(Double.parseDouble(freq));	     							
+     		     						if(row.getCell(1) != null && row.getCell(1).toString() != "" )
+     		     						{
+     	     									sreading=row.getCell(1).toString();
+     	     								
+     	     								logger.info("Inside serialimport Controller sreading " +sreading);
+     	     								if (row.getCell(1).getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
+     	     								{
+     	     									rastd.setLineargain(row.getCell(1).getNumericCellValue());
+     	     								}
+     	     								else
+     	     									rastd.setLineargain(Double.parseDouble(sreading));
+     	     								 
+     	     							}
+     	     							rastdlist.add(rastd);
+     									break;
      								}
-     							}
-								  
-								if(freqfound==1)
-								{
-								logger.info("insider introw "+i); 
-								logger.info("Inside RA Std Horn import Controller rows.hasNext() " +row.getCell(0).toString());
-								TestFrequency rastd= new TestFrequency();
-								
-								String sreading;
      							
-     							if(row.getCell(0) != null && row.getCell(0).toString() != "" ){
-     								
-     								if (row.getCell(0).getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
-     								{
-     									rastd.setFrequency(row.getCell(0).getNumericCellValue());
-     								}
-     								else
-     									rastd.setFrequency(Double.parseDouble(row.getCell(0).toString()));	
-     							
-     								if(row.getCell(1) != null && row.getCell(1).toString() != "" ){
-     									sreading=row.getCell(1).toString();
-     								
-     								logger.info("Inside serialimport Controller sreading " +sreading);
-     								if (row.getCell(1).getCellType() == HSSFCell.CELL_TYPE_NUMERIC)
-     								{
-     									rastd.setLineargain(row.getCell(1).getNumericCellValue());
-     								}
-     								else
-     									rastd.setLineargain(Double.parseDouble(sreading));
-     								}
-     							}
-     							rastdlist.add(rastd);
-     							
-     					      }
+							
      						  }
-     						  		
+     			            }	
      					  }
      				      
      				  inp.close();
@@ -214,8 +224,11 @@ public class PVSerialImportController extends SimpleFormController{
      					}
      		serialid=	mastersservice.insertRASTDHorn(file,rastdlist,strmode);
          
-         
-         
+         if(serialid==-1){
+        	 stat=0;
+        	 
+         }
+         else{stat=1;};
          
  //**********************************************************
 	 }
@@ -235,20 +248,8 @@ public class PVSerialImportController extends SimpleFormController{
 			        	action="Done";
 			        }
 			 
-			if(action.equals("Done")){
-			 stat=	mastersservice.PV_CalcProc(testid,serialid);
-			if(stat==0)
-			{
-				err="Failed to calculate";
-				
-			}
-			else
-			{
-				err="Calculation completed successfully";
-			}
-			}
-			
-			else{
+			if(!action.equals("Done")){
+			 
 			List<DataLog> datalogList = new ArrayList<DataLog>();
 			List<TestFrequency> freqlist=new ArrayList<TestFrequency>();
 			
@@ -472,7 +473,7 @@ public class PVSerialImportController extends SimpleFormController{
 			 }       
 			 }
          }
-         
+		}
 		//
 		request.setAttribute("id", null);
      	cursess.setAttribute("id",null);
@@ -566,6 +567,8 @@ public class PVSerialImportController extends SimpleFormController{
 			String gmfreq="";			
 			String htfreq="";
 			String vtfreq="";
+			String vmfreq="";
+			String hmfreq="";
 	        List<ProductSerial> prodserlist = mastersservice.getProdVerSer();        
 	        
 	    	hefreq=mastersservice.getPVFreqdatafile("H",serialid,"E");
@@ -573,7 +576,8 @@ public class PVSerialImportController extends SimpleFormController{
 	    	hafreq=mastersservice.getPVFreqdatafile("H",serialid,"A");
 	    	vafreq=mastersservice.getPVFreqdatafile("V",serialid,"A"); 
 	    	gmfreq=mastersservice.getPVFreqdataGM(serialid);
-	    	//vmfreq=mastersservice.getPVFreqdatafile("V",serialid,"M");
+	    	vmfreq=mastersservice.getPVFreqdatafile("V",serialid,"M");
+	    	hmfreq=mastersservice.getPVFreqdatafile("H",serialid,"M");
 	    	vtfreq=mastersservice.getPVFreqdatafile("V",serialid,"T");
 	    	htfreq=mastersservice.getPVFreqdatafile("H",serialid,"T");
 	    	
@@ -588,7 +592,8 @@ public class PVSerialImportController extends SimpleFormController{
 	        referenceData.put("htfreq", htfreq);
 	        referenceData.put("vtfreq", vtfreq);
 	        referenceData.put("testid", testid);
-	        
+	        referenceData.put("hmfreq", hmfreq);
+	        referenceData.put("vmfreq", vmfreq);
 	        List<TestFrequency> freqlist=mastersservice.getPVFreqList(testid);  
 	        String strfreqs="";
 	      

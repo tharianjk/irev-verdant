@@ -227,12 +227,23 @@ progress_clear();
 	</c:if>
 	<c:if test="${gmfreq!='' && gmfreq !=null}">
 	<tr>
-	<td> Gain Measurement</td>
+	<td> RA of STD HORN</td>
 	<td> ${gmfreq}</td>				
 	</tr>
 	</c:if>
 	
-	 
+	 <c:if test="${hmfreq!='' && hmfreq !=null}">
+	<tr>
+	<td> HP Gain Measurement</td>
+	<td> ${hmfreq}</td>				
+	</tr>
+	</c:if>
+	<c:if test="${vmfreq!='' && vmfreq !=null}">
+	<tr>
+	<td> VP Gain Measurement</td>
+	<td> ${vmfreq}</td>				
+	</tr>
+	</c:if>
 	</tbody>
 	</table> 
 	
