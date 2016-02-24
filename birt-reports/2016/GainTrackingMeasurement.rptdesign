@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="author">iReveal Technologies 2016</property>
     <property name="createdBy">Eclipse BIRT Designer Version 4.3.2.v20140211-1400 Build &lt;4.3.2.v20140218-1056></property>
     <text-property name="title">Gain Tracking Measurement</text-property>
     <property name="units">in</property>
@@ -59,24 +60,6 @@
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
-            <property name="controlType">text-box</property>
-            <structure name="format">
-                <property name="category">Unformatted</property>
-            </structure>
-        </scalar-parameter>
-        <scalar-parameter name="s1" id="300">
-            <property name="hidden">false</property>
-            <text-property name="helpText">Serial Number</text-property>
-            <property name="valueType">static</property>
-            <property name="isRequired">true</property>
-            <property name="dataType">integer</property>
-            <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="constant">2</value>
-            </simple-property-list>
-            <list-property name="selectionList"/>
-            <property name="paramType">simple</property>
-            <property name="concealValue">false</property>
             <property name="controlType">text-box</property>
             <structure name="format">
                 <property name="category">Unformatted</property>
@@ -220,12 +203,6 @@
                     <text-property name="heading">calibration</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">SerialNo</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">SerialNo</text-property>
-                    <text-property name="heading">SerialNo</text-property>
-                </structure>
-                <structure>
                     <property name="columnName">Productname</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">Productname</text-property>
@@ -258,22 +235,12 @@
             </list-property>
             <list-property name="parameters">
                 <structure>
-                    <property name="name">testid</property>
+                    <property name="name">TestId</property>
                     <property name="paramName">TestId</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
                     <property name="position">1</property>
-                    <property name="isInput">true</property>
-                    <property name="isOutput">false</property>
-                </structure>
-                <structure>
-                    <property name="name">prodserialid</property>
-                    <property name="paramName">s1</property>
-                    <property name="nativeName"></property>
-                    <property name="dataType">integer</property>
-                    <property name="nativeDataType">-1</property>
-                    <property name="position">2</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -317,31 +284,26 @@
                     </structure>
                     <structure>
                         <property name="position">8</property>
-                        <property name="name">SerialNo</property>
-                        <property name="dataType">string</property>
-                    </structure>
-                    <structure>
-                        <property name="position">9</property>
                         <property name="name">Productname</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">10</property>
+                        <property name="position">9</property>
                         <property name="name">Version</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">11</property>
+                        <property name="position">10</property>
                         <property name="name">Product_id</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">12</property>
+                        <property name="position">11</property>
                         <property name="name">inst_slno</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">13</property>
+                        <property name="position">12</property>
                         <property name="name">prodmodel</property>
                         <property name="dataType">string</property>
                     </structure>
@@ -400,41 +362,34 @@
                 </structure>
                 <structure>
                     <property name="position">8</property>
-                    <property name="name">SerialNo</property>
-                    <property name="nativeName">SerialNo</property>
-                    <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
-                </structure>
-                <structure>
-                    <property name="position">9</property>
                     <property name="name">Productname</property>
                     <property name="nativeName">Productname</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">10</property>
+                    <property name="position">9</property>
                     <property name="name">Version</property>
                     <property name="nativeName">Version</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">11</property>
+                    <property name="position">10</property>
                     <property name="name">Product_id</property>
                     <property name="nativeName">Product_id</property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">12</property>
+                    <property name="position">11</property>
                     <property name="name">inst_slno</property>
                     <property name="nativeName">inst_slno</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">13</property>
+                    <property name="position">12</property>
                     <property name="name">prodmodel</property>
                     <property name="nativeName">prodmodel</property>
                     <property name="dataType">string</property>
@@ -442,10 +397,9 @@
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[SELECT distinct TD.testproc,TD.TestDesc,TD.TestDate,TD.frequnit,TD.testcenter,TD.instruments,TD.calibration ,
-p.SerialNo,s.Productname,s.version,s.Product_id,inst_slno ,prodmodel
+s.Productname,s.version,s.Product_id,inst_slno ,prodmodel
 FROM pv_testdata TD inner join product s on td.Product_id=S.Product_id  
-inner join pv_prodserial p on td.test_id=p.test_id
- where TD.Test_id=? and Prodserial_id=?]]></xml-property>
+where TD.Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -457,21 +411,6 @@ inner join pv_prodserial p on td.test_id=p.test_id
           <design:identifier>
             <design:name></design:name>
             <design:position>1</design:position>
-          </design:identifier>
-          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
-          <design:precision>0</design:precision>
-          <design:scale>0</design:scale>
-          <design:nullability>Unknown</design:nullability>
-        </design:attributes>
-      </design:ParameterDefinition>
-    </parameter>
-    <parameter>
-      <design:ParameterDefinition>
-        <design:inOutMode>In</design:inOutMode>
-        <design:attributes>
-          <design:identifier>
-            <design:name></design:name>
-            <design:position>2</design:position>
           </design:identifier>
           <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
           <design:precision>0</design:precision>
@@ -742,27 +681,7 @@ inner join pv_prodserial p on td.test_id=p.test_id
                     <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
                 </structure>
             </list-property>
-            <list-property name="paramBindings">
-                <structure>
-                    <property name="paramName">testid</property>
-                    <simple-property-list name="expression">
-                        <value type="javascript">params["TestId"].value</value>
-                    </simple-property-list>
-                </structure>
-                <structure>
-                    <property name="paramName">prodserialid</property>
-                    <simple-property-list name="expression">
-                        <value type="javascript">params["s1"].value</value>
-                    </simple-property-list>
-                </structure>
-            </list-property>
             <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">TestDesc</property>
-                    <text-property name="displayName">TestDesc</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["TestDesc"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
                 <structure>
                     <property name="name">testproc</property>
                     <text-property name="displayName">testproc</text-property>
@@ -770,27 +689,9 @@ inner join pv_prodserial p on td.test_id=p.test_id
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">instruments</property>
-                    <text-property name="displayName">instruments</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["instruments"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">SerialNo</property>
-                    <text-property name="displayName">SerialNo</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["SerialNo"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">Calibration</property>
-                    <text-property name="displayName">calibration</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["Calibration"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">testcenter</property>
-                    <text-property name="displayName">testcenter</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["testcenter"]</expression>
+                    <property name="name">TestDesc</property>
+                    <text-property name="displayName">TestDesc</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TestDesc"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -800,9 +701,39 @@ inner join pv_prodserial p on td.test_id=p.test_id
                     <property name="dataType">date-time</property>
                 </structure>
                 <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">testcenter</property>
+                    <text-property name="displayName">testcenter</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["testcenter"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">instruments</property>
+                    <text-property name="displayName">instruments</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["instruments"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Calibration</property>
+                    <text-property name="displayName">calibration</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Calibration"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
                     <property name="name">Productname</property>
                     <text-property name="displayName">Productname</text-property>
                     <expression name="expression" type="javascript">dataSetRow["Productname"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Version</property>
+                    <text-property name="displayName">version</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Version"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -812,15 +743,15 @@ inner join pv_prodserial p on td.test_id=p.test_id
                     <property name="dataType">integer</property>
                 </structure>
                 <structure>
-                    <property name="name">Version</property>
-                    <text-property name="displayName">version</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["Version"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
                     <property name="name">inst_slno</property>
                     <text-property name="displayName">inst_slno</text-property>
                     <expression name="expression" type="javascript">dataSetRow["inst_slno"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -830,7 +761,7 @@ inner join pv_prodserial p on td.test_id=p.test_id
                     <list-property name="arguments">
                         <structure>
                             <property name="name">Expression</property>
-                            <expression name="value" type="javascript">row["SerialNo"]</expression>
+                            <expression name="value" type="javascript">row["TestDate"]</expression>
                         </structure>
                     </list-property>
                     <property name="allowExport">true</property>
@@ -1063,27 +994,6 @@ inner join pv_prodserial p on td.test_id=p.test_id
                         </data>
                     </cell>
                 </row>
-                <row id="258">
-                    <cell id="259">
-                        <label id="285">
-                            <property name="fontFamily">serif</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Product Sl. No &#13;
-Antenna without Radome&#13;
-</text-property>
-                        </label>
-                    </cell>
-                    <cell id="260">
-                        <property name="colSpan">3</property>
-                        <property name="rowSpan">1</property>
-                        <data id="501">
-                            <property name="fontFamily">serif</property>
-                            <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">SerialNo</property>
-                        </data>
-                    </cell>
-                </row>
             </detail>
         </table>
         <label id="1439">
@@ -1094,6 +1004,12 @@ Antenna without Radome&#13;
         </label>
         <table id="963">
             <property name="dataSet">At0axis</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
             <list-property name="boundDataColumns">
                 <structure>
                     <property name="name">frequency</property>
@@ -1208,6 +1124,18 @@ Antenna without Radome&#13;
                     <text-property name="displayName">C6</text-property>
                     <expression name="expression" type="javascript">dataSetRow["C6"]</expression>
                     <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="1027">
@@ -1510,7 +1438,7 @@ Antenna without Radome&#13;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">params["scount"].value&lt;7</expression>
+                    <expression name="valueExpr" type="javascript">params["scount"].value&lt;7 || row["Aggregation"]==0</expression>
                 </structure>
             </list-property>
             <list-property name="boundDataColumns">
@@ -1735,6 +1663,18 @@ Antenna without Radome&#13;
                     <text-property name="displayName">C12</text-property>
                     <expression name="expression" type="javascript">dataSetRow["C12"]</expression>
                     <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="1257">
@@ -2034,6 +1974,12 @@ Antenna without Radome&#13;
         <table id="1295">
             <property name="pageBreakBefore">always</property>
             <property name="dataSet">At0axis</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
             <list-property name="boundDataColumns">
                 <structure>
                     <property name="name">frequency</property>
@@ -2275,6 +2221,18 @@ Antenna without Radome&#13;
                     <expression name="expression" type="javascript">dataSetRow["WINDOW"]</expression>
                     <property name="dataType">decimal</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="1393">
                 <property name="width">2cm</property>
@@ -2390,6 +2348,12 @@ Antenna without Radome&#13;
         </label>
         <table id="1442">
             <property name="dataSet">Atp45axis</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
             <list-property name="boundDataColumns">
                 <structure>
                     <property name="name">frequency</property>
@@ -2504,6 +2468,18 @@ Antenna without Radome&#13;
                     <text-property name="displayName">C6</text-property>
                     <expression name="expression" type="javascript">dataSetRow["C6"]</expression>
                     <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="1540">
@@ -2806,7 +2782,7 @@ Antenna without Radome&#13;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">params["scount"].value&lt;7</expression>
+                    <expression name="valueExpr" type="javascript">params["scount"].value&lt;7 || row["Aggregation"]==0</expression>
                 </structure>
             </list-property>
             <list-property name="boundDataColumns">
@@ -2923,6 +2899,18 @@ Antenna without Radome&#13;
                     <text-property name="displayName">C12</text-property>
                     <expression name="expression" type="javascript">dataSetRow["C12"]</expression>
                     <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="1658">
@@ -3222,6 +3210,12 @@ Antenna without Radome&#13;
         <table id="1678">
             <property name="pageBreakBefore">always</property>
             <property name="dataSet">Atp45axis</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
             <list-property name="boundDataColumns">
                 <structure>
                     <property name="name">frequency</property>
@@ -3246,6 +3240,18 @@ Antenna without Radome&#13;
                     <text-property name="displayName">WINDOW</text-property>
                     <expression name="expression" type="javascript">dataSetRow["WINDOW"]</expression>
                     <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="1704">
@@ -3362,6 +3368,12 @@ Antenna without Radome&#13;
         </label>
         <table id="1716">
             <property name="dataSet">Atm45axis</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
             <list-property name="boundDataColumns">
                 <structure>
                     <property name="name">frequency</property>
@@ -3476,6 +3488,18 @@ Antenna without Radome&#13;
                     <text-property name="displayName">C6</text-property>
                     <expression name="expression" type="javascript">dataSetRow["C6"]</expression>
                     <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="1814">
@@ -3778,7 +3802,7 @@ Antenna without Radome&#13;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">params["scount"].value&lt;7</expression>
+                    <expression name="valueExpr" type="javascript">params["scount"].value&lt;7 || row["Aggregation"]==0</expression>
                 </structure>
             </list-property>
             <list-property name="boundDataColumns">
@@ -3895,6 +3919,18 @@ Antenna without Radome&#13;
                     <text-property name="displayName">C12</text-property>
                     <expression name="expression" type="javascript">dataSetRow["C12"]</expression>
                     <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="1932">
@@ -4194,6 +4230,12 @@ Antenna without Radome&#13;
         <table id="1952">
             <property name="pageBreakBefore">always</property>
             <property name="dataSet">Atm45axis</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
             <list-property name="boundDataColumns">
                 <structure>
                     <property name="name">frequency</property>
@@ -4218,6 +4260,18 @@ Antenna without Radome&#13;
                     <text-property name="displayName">WINDOW</text-property>
                     <expression name="expression" type="javascript">dataSetRow["WINDOW"]</expression>
                     <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="1978">
