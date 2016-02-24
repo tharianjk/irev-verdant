@@ -109,32 +109,32 @@ function Redirect(){
 		var oper='${model.oper}';
 		nprecision=document.getElementById('precision').value;
 		if(oper!='gt'){
-		arrslnos=strslno.split(",");
-		for (var i=1;i<50;i++){
-			arrsel[i]=-1;
-		}
-		var i=0;
-		var j=0;
-				for (i=0;i<arrslnos.length;i++){
-					var slid=arrslnos[i];
-					console.log("slid="+slid);
-					if(document.getElementById(slid).checked){					
-						if(j==0){
-							selslno=arrslnos[i];
-							
+			arrslnos=strslno.split(",");
+			for (var i=1;i<50;i++){
+				arrsel[i]=-1;
+			}
+			var i=0;
+			var j=0;
+					for (i=0;i<arrslnos.length;i++){
+						var slid=arrslnos[i];
+						console.log("slid="+slid);
+						if(document.getElementById(slid).checked){					
+							if(j==0){
+								selslno=arrslnos[i];
+								
+								}
+							else{
+								selslno=selslno+','+arrslnos[i];
 							}
-						else{
-							selslno=selslno+','+arrslnos[i];
+							arrsel[j]=arrslnos[i];
+							j=j+1;
+							}	
 						}
-						arrsel[j]=arrslnos[i];
-						j=j+1;
-						}	
+					if(selslno=="")
+					{
+						alert("Serial Nos not selected");
+						return;
 					}
-				if(selslno=="")
-				{
-					alert("Serial Nos not selected");
-					return;
-				}
 		}
 		 if(document.getElementById('0d').checked)
 			deg='0d';
