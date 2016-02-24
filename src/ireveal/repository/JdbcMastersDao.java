@@ -1704,7 +1704,8 @@ public int insertRASTDHorn(PVSerialData testdata,List<TestFrequency> rastdlist,S
 	
 		   int serialid=0;
 		   logger.info(" strmode "+strmode);
-try{
+try
+{
 		   
 	if(strmode.equals("new")){
 		   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -1731,25 +1732,33 @@ try{
 	}
 	else{
 	serialid=testdata.getProductserialid();
+	
+	
 	}
 	try{
     
-	 String sqlsavetags = "INSERT INTO pv_radata (Prodserial_id,Frequency,RecvdAmp) VALUES (?,?,?)";
-	for(int i=0;i<rastdlist.size();i++)
-	{
+			 String sqlsavetags = "INSERT INTO pv_radata (Prodserial_id,Frequency,RecvdAmp) VALUES (?,?,?)";
+			 String sqltestfreq=	"INSERT INTO pv_testfreq(test_id,Frequency)  VALUES   (?,?)"; 
+			for(int i=0;i<rastdlist.size();i++)
+			{	
+			    getJdbcTemplate().update(sqlsavetags, serialid, rastdlist.get(i).getFrequency(), rastdlist.get(i).getLineargain());
+			    
+			    int cnt =getJdbcTemplate().queryForObject("select count(*) from pv_testfreq where test_id=? and Frequency=?",Integer.class,testdata.getTestid(),rastdlist.get(i).getFrequency());
+		  		//logger.info(" PVSerialData 1");
+		  		if(cnt==0){
+		  		//	logger.info(" PVSerialData 2");
+			  		getJdbcTemplate().update(  
+						sqltestfreq,  
+						new Object[] {testdata.getTestid(), rastdlist.get(i).getFrequency() });
+		  		}
+			}
+	 
+	}
+   catch(Exception e){
 		
-	    getJdbcTemplate().update(sqlsavetags, serialid, rastdlist.get(i).getFrequency(), rastdlist.get(i).getLineargain());
-	    
-	    
 	}
-	}
-	catch(Exception e){
-		
-	}
-		   }
-catch(Exception e){
-		
-	}
+}
+catch(Exception ep){}
 	return serialid;
 
 }
