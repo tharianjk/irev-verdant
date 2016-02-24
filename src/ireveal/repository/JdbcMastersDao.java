@@ -1804,11 +1804,11 @@ public int PV_serialcount(int testid){
 	  String sql="select count(*) from pv_cpcalculated where prodserial_id=?";
 	  cnt=getJdbcTemplate().queryForObject(sql, Integer.class,serialno);
 	  if(cnt==0){
-		   sql=" select * from pv_gmcalculated where prodserial_id=? ";
+		   sql=" select count(*) from pv_gmcalculated where prodserial_id=? ";
 	  cnt=getJdbcTemplate().queryForObject(sql, Integer.class,serialno);
      }
 	  if(cnt==0){
-	  sql=" select * from pv_gt_intermediate where prodserial_id=? ";
+	  sql=" select count(*) from pv_gt_intermediate where prodserial_id=? ";
 	  cnt=getJdbcTemplate().queryForObject(sql, Integer.class,serialno);
 	     }
 	 
