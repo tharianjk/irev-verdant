@@ -292,6 +292,7 @@ public class ToolsController implements Controller {
         					 else if (operstr.equals("gm") || operstr.equals("gt") || operstr.equals("threedb") || operstr.equals("tendb") || operstr.equals("axial") || operstr.equals("bsbl")  ){
         							    
         						   List<PVSerialData> seriallist=mastersservice.getPVSerialList(Integer.parseInt(testid));
+        						   int serialcnt=mastersservice.PV_serialcount(Integer.parseInt(testid));
         							String strslno="";
         							for (int i=0;i<seriallist.size();i++){
             		        			if(i==0)
@@ -310,6 +311,7 @@ public class ToolsController implements Controller {
         			    		    myModel.put("seriallist", seriallist);
         			    		    myModel.put("strslno",strslno);
         			    		    myModel.put("oper",operstr);
+        			    		    myModel.put("serialcnt", serialcnt);
         			               return new ModelAndView("pvreports", "model", myModel);        	
         			       	}
         					 

@@ -845,6 +845,7 @@ function fnCheck()
 
 
 function calculate(){
+	var JsonSlnos=[];
 	var pat='<%=request.getContextPath()%>';
 	$.ajax({
 		url: pat+"/MWAPI/serialsnos/"+testid
@@ -858,17 +859,28 @@ function calculate(){
 			progress_stop();
 			return;
 		}
-			
-		 console.log(' going to set the data-segments. Cnt of elements = '+data.JsonSlnos.length);
+		else{
+			JsonSlnos=data.JsonSlnos;
+		}
+	}
+	else
+	{
+		console.log("data is null");
+		progress_stop();
+	}});	
+	
+		 console.log(' going to set the data-segments. Cnt of elements = '+JsonSlnos.length);
 		
          var status=1;
-			for (var i=0; i< data.JsonSlnos.length; i++){
-				var id=data.JsonSlnos[i].serialid;
+			for (var i=0; i< JsonSlnos.length; i++)
+			{
+				var id=JsonSlnos[i].serialid;
 				console.log("id="+id);
 				document.getElementById("lblmsg").innerHTML='Processing ..'+data.JsonSlnos[i].serialno;
 				// progress_update('D');
 				
-				var urls = pat+'/MWAPI/pvcalculate/'+testid+'/'+$( "#serialno" ).val();
+				var urls = pat+'/MWAPI/pvcalculate/'+testid+'/'+id;
+				console.log("urls="+urls);
 				$.ajax({
 					type: "GET",
 					url: urls,
@@ -906,16 +918,9 @@ function calculate(){
 		}
 		
 			progress_stop();
-	}
-	else
-	{
-		console.log("data is null");
-		progress_stop();
-	}
+	//}
 	
-		
-},function(error){progress_stop();  }
-);
+
 }
 
 

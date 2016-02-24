@@ -158,6 +158,7 @@ public class MWAPIDao extends JdbcDaoSupport {
               		//final String funit = testdata.getFrequnit().equals("MHz")?"M":"G";
               		//final String funit = "M";
               		try{
+              			logger.info("PV_Calculate");
               		getJdbcTemplate().update("call pv_Calculate_params (?,?,?)", testid,"PV",serialid);
               		return "0";
               		}
