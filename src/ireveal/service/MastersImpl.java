@@ -291,6 +291,10 @@ public boolean deletePVSerial(int id) {
 public int PV_CalcProc(int testid) {
 	return mastersdao.PV_CalcProc(testid);
 }
+@Override
+public int PV_serialcount(int testid) {
+	return mastersdao.PV_serialcount(testid);
+}
 
 
 

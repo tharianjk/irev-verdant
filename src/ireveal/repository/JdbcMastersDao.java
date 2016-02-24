@@ -1769,6 +1769,18 @@ public int PV_CalcProc(int testid)
 		}
 			
 }
+public int PV_serialcount(int testid){
+	String sql="select count(*) from pv_prodserial where test_id=?";
+	   int cnt=0;
+	try{
+		cnt=getJdbcTemplate().queryForObject(sql, Integer.class,testid);	
+	}
+	catch(Exception e)
+	{
+		 logger.info("PV_serialcount Exception "+e.getMessage());
+	}
+	return cnt;
+}
   
 }
 
