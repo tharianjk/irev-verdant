@@ -873,7 +873,7 @@ function calculate(){
 					type: "GET",
 					url: urls,
 					error: function(XMLHttpRequest, textStatus, errorThrown)  {
-						       status=0;
+						        status=0;
 								alert("An error has occurred making the request: " + errorThrown)
 							},
 					success : function(response) {
@@ -900,7 +900,7 @@ function calculate(){
 			}
 			
 			
-		if(status==0){
+		if(status==1){
 		$('#form1').append('<input type="hidden" name="fmaction " value="Calculate" />');
 		form1.submit();
 		}
