@@ -876,7 +876,7 @@ function calculate(){
 			{
 				var id=JsonSlnos[i].serialid;
 				console.log("id="+id);
-				document.getElementById("lblmsg").innerHTML='Processing ..'+data.JsonSlnos[i].serialno;
+				document.getElementById("lblmsg").innerHTML='Processing ..'+JsonSlnos[i].serialno;
 				// progress_update('D');
 				
 				var urls = pat+'/MWAPI/pvcalculate/'+testid+'/'+id;
