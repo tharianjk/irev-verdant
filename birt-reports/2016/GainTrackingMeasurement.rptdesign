@@ -996,12 +996,6 @@ where TD.Test_id=?]]></xml-property>
                 </row>
             </detail>
         </table>
-        <label id="1439">
-            <property name="backgroundColor">#C0C0C0</property>
-            <property name="fontWeight">bold</property>
-            <property name="textAlign">center</property>
-            <text-property name="text">TABLE-1 GAIN TRACKING CP AT ON AXIS</text-property>
-        </label>
         <table id="963">
             <property name="dataSet">At0axis</property>
             <list-property name="visibility">
@@ -1163,6 +1157,21 @@ where TD.Test_id=?]]></xml-property>
             <column id="1045"/>
             <column id="1046"/>
             <header>
+                <row id="1990">
+                    <property name="fontFamily">serif</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="verticalAlign">middle</property>
+                    <cell id="1991">
+                        <property name="colSpan">20</property>
+                        <property name="rowSpan">1</property>
+                        <label id="1439">
+                            <property name="backgroundColor">#C0C0C0</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">TABLE-1 GAIN TRACKING CP AT ON AXIS</text-property>
+                        </label>
+                    </cell>
+                </row>
                 <row id="1047">
                     <property name="fontFamily">serif</property>
                     <property name="fontWeight">bold</property>
@@ -2339,13 +2348,6 @@ where TD.Test_id=?]]></xml-property>
                 </row>
             </detail>
         </table>
-        <label id="1441">
-            <property name="backgroundColor">#C0C0C0</property>
-            <property name="fontWeight">bold</property>
-            <property name="textAlign">center</property>
-            <property name="pageBreakBefore">always</property>
-            <text-property name="text">TABLE-2 GAIN TRACKING CP AT +45°</text-property>
-        </label>
         <table id="1442">
             <property name="dataSet">Atp45axis</property>
             <list-property name="visibility">
@@ -2507,6 +2509,22 @@ where TD.Test_id=?]]></xml-property>
             <column id="1558"/>
             <column id="1559"/>
             <header>
+                <row id="1992">
+                    <property name="fontFamily">serif</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="verticalAlign">middle</property>
+                    <cell id="1993">
+                        <property name="colSpan">20</property>
+                        <property name="rowSpan">1</property>
+                        <label id="1441">
+                            <property name="backgroundColor">#C0C0C0</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <property name="pageBreakBefore">always</property>
+                            <text-property name="text">TABLE-2 GAIN TRACKING CP AT +45°</text-property>
+                        </label>
+                    </cell>
+                </row>
                 <row id="1443">
                     <property name="fontFamily">serif</property>
                     <property name="fontWeight">bold</property>
@@ -3359,13 +3377,6 @@ where TD.Test_id=?]]></xml-property>
                 </row>
             </detail>
         </table>
-        <label id="1715">
-            <property name="backgroundColor">#C0C0C0</property>
-            <property name="fontWeight">bold</property>
-            <property name="textAlign">center</property>
-            <property name="pageBreakBefore">always</property>
-            <text-property name="text">TABLE-3 GAIN TRACKING CP AT -45°</text-property>
-        </label>
         <table id="1716">
             <property name="dataSet">Atm45axis</property>
             <list-property name="visibility">
@@ -3527,6 +3538,22 @@ where TD.Test_id=?]]></xml-property>
             <column id="1832"/>
             <column id="1833"/>
             <header>
+                <row id="2013">
+                    <property name="fontFamily">serif</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="verticalAlign">middle</property>
+                    <cell id="2014">
+                        <property name="colSpan">20</property>
+                        <property name="rowSpan">1</property>
+                        <label id="1715">
+                            <property name="backgroundColor">#C0C0C0</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <property name="pageBreakBefore">always</property>
+                            <text-property name="text">TABLE-3 GAIN TRACKING CP AT -45°</text-property>
+                        </label>
+                    </cell>
+                </row>
                 <row id="1717">
                     <property name="fontFamily">serif</property>
                     <property name="fontWeight">bold</property>
