@@ -95,8 +95,15 @@ public class MWAPIController {
 		
 		@RequestMapping(value = "/pvcalculate/{testid}/{serialid}",  method = RequestMethod.GET)
 		@ResponseBody
-			public String pvcalculate(@PathVariable String testid,@PathVariable String serialid){			
-			return metertagmngr.PV_Calculate(testid,serialid);
+			public String pvcalculate(@PathVariable String testid,@PathVariable String serialid){	
+			String rtn="0";
+			try{
+			 rtn=metertagmngr.PV_Calculate(testid,serialid);
+			}
+			catch(Exception e ){
+				logger.info("Exception pvcalculate "+e.getMessage());
+			}
+			return rtn;
 		}
 
 }

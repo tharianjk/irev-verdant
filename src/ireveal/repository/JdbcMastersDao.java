@@ -1504,7 +1504,7 @@ if(strmode.equals("new")){
 public List<PVSerialData> getPVSerialList(int testid) {  
     List dataList = new ArrayList();  
    
-    String sql = " select SerialNo,Prodserial_id,s.test_id,testname,frequnit,t.testtype  from pv_prodserial S inner join pv_testdata t on s.test_id=t.test_id where s.test_id=?";  
+    String sql = " select SerialNo,Prodserial_id,s.test_id,testname,frequnit,t.testtype,(select count(1) from pv_cpcalculated where prodserial_id=S.Prodserial_id) calccnt  from pv_prodserial S inner join pv_testdata t on s.test_id=t.test_id where s.test_id=?";  
    
     dataList = getJdbcTemplate().query(sql, new PVSerialMapper(),testid);  
     return dataList;  
@@ -1512,7 +1512,7 @@ public List<PVSerialData> getPVSerialList(int testid) {
 public PVSerialData getPVSerialData(int serialid) {  
     List dataList = new ArrayList();  
    
-    String sql = "select SerialNo,Prodserial_id,s.test_id,testname,frequnit,t.testtype  from pv_prodserial S inner join pv_testdata t on s.test_id=t.test_id where prodserial_id=?";  
+    String sql = "select SerialNo,Prodserial_id,s.test_id,testname,frequnit,t.testtype,0 calccnt  from pv_prodserial S inner join pv_testdata t on s.test_id=t.test_id where prodserial_id=?";  
    
     dataList = getJdbcTemplate().query(sql, new PVSerialMapper(),serialid);  
     return (PVSerialData) dataList.get(0);  
@@ -1528,6 +1528,7 @@ private static class PVSerialMapper implements ParameterizedRowMapper<PVSerialDa
     	   product.setTestname(rs.getString("testname")); 
     	   product.setFrequnit(rs.getString("frequnit")); 
     	   product.setTesttype(rs.getString("testtype")); 
+    	   product.setCalccnt(rs.getInt("Calccnt")>0?1:0);
            return product;
        }
 
@@ -1749,7 +1750,27 @@ catch(Exception e){
 
 }
 
-public int PV_CalcProc(int testid)
+public int PV_CalcProc(int testid,int serialid)
+{
+	String sql="select testtype from pv_testdata where test_id=?";
+	   
+		try{
+			 String testtype=getJdbcTemplate().queryForObject(sql, String.class,testid);
+			 if(testtype.equals("GT")){
+		getJdbcTemplate().update("call pv_calc_gtcalculated (?)", testid);
+			 }
+			 else if(testtype.equals("CO")){
+					getJdbcTemplate().update("call pv_calc_spec (?)", testid);}
+		return 1;
+		}
+		catch(Exception e)
+		{
+			 logger.info("PV_CalcProc Exception "+e.getMessage());
+			   return 0;
+		}
+			
+}
+public int PV_CalcProcSum(int testid)
 {
 	String sql="select testtype from pv_testdata where test_id=?";
 	   

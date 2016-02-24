@@ -151,6 +151,25 @@ public class SetupController implements Controller {
         		myModel.put("testname", mastersservice.getPVTest(Integer.parseInt(testid)).getTestname() );
         		return new ModelAndView("pvseriallist", "model", myModel);
             }
+        	else if (operstr.equals("calctest")){
+        		String msg="Calculation Completed";
+            	
+            	String testid=request.getParameter("testid");
+        		
+        		 stat=this.mastersservice.PV_CalcProcSum(Integer.parseInt(testid));
+     		   
+        		if(stat==0)
+        		{
+        			msg="Exception in calculation";
+        		}
+        		myModel.put("msg", msg );
+        		myModel.put("stat", stat );
+        		myModel.put("testid", testid );   
+        		List<PVSerialData> pvserial=this.mastersservice.getPVSerialList(Integer.parseInt(testid));
+        		myModel.put("pvserial", pvserial); 
+        		myModel.put("testname", mastersservice.getPVTest(Integer.parseInt(testid)).getTestname() );
+        		return new ModelAndView("pvseriallist", "model", myModel);
+            }
                 return new ModelAndView("setup", "model", myModel);
              
     }

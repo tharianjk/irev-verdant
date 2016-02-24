@@ -105,6 +105,7 @@ public interface MastersService {
 		 public int insertRASTDHorn(PVSerialData testdata,List<TestFrequency> rastdlist,String strmode) ;
 		 public String getPVFreqdataGM(int serialid);
 		 public boolean deletePVSerial(int id);
-		 public int PV_CalcProc(int testid);
+		 public int PV_CalcProc(int testid,int serialid);
 		 public int PV_serialcount(int testid);
+		 public int PV_CalcProcSum(int testid);
 } 
