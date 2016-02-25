@@ -1292,7 +1292,7 @@ private static class ProdVerSerMapper implements ParameterizedRowMapper<ProductS
 					    
 					   
 			public PVTest getPVTest(int id) {  
-						   logger.info("***inside prduct** ");
+						   logger.info("***inside getPVTest** ");
 						   List<PVTest> dataList =null;
 						   String sql = "select test_id, S.Product_id ,productname,TestName,rptheader,rptfooter,TestDesc,TestDate,testcenter,instruments,calibration,testproc,frequnit,testtype,inst_slno,antennaused from PV_TESTDATA S inner join product p on s.Product_id=p.Product_id where S.test_id=?";  
 					try
@@ -1541,6 +1541,10 @@ public boolean deletePVSerial(int id) {
 	   String sql = ""; 
 	   boolean bln=true;
 		   try{
+			   sql = " delete from pv_gmcalculated where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
+			   sql = " delete from pv_gt_calculated where Prodserial_id=" + id;
+			   getJdbcTemplate().update(sql);
 			   sql = " delete from pv_arcalculated where Prodserial_id=" + id;
 			   getJdbcTemplate().update(sql);
 			   sql = "delete from pv_cpcalculated where Prodserial_id=" + id;
