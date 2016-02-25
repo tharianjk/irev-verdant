@@ -514,7 +514,7 @@ where TD.Test_id=?]]></xml-property>
             <structure name="cachedMetaData"/>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet"/>
-            <xml-property name="queryText"><![CDATA[call spPV_GT(?,'P45',?)]]></xml-property>
+            <xml-property name="queryText"><![CDATA[call spPV_GT(?,'M45',?)]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
