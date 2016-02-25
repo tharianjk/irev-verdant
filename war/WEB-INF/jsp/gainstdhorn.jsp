@@ -58,7 +58,7 @@
 	    
 		
 		<input type="button" value="Save" id="save"  class="myButton" />
-		<input type="button" value="Cancel" id="cancel" class="myButton" onclick="redirect();"/>
+		<input type="button" value="Cancel" id="cancel" class="myButton" onclick="redirect();" style="display:none"/>
 		 
 	</form:form>
  </div>
@@ -112,10 +112,13 @@ function tabledata()
 		console.log("save: True");
 		
 		tabledata();
-		if(json!="" && json!=null && json !='undefined' && json!='null'){
+		if(json!="" && json!=null && json !='undefined' && json!='null' && json.length > 15){
 		var url="gainstdhorn.htm?oper=save&testid="+testid+"&frequnit="+frequnit+"&strjsonfreq="+json;
 		console.log("url "+url);
 		window.location = url;
+		}
+		else{
+			alert("No Data Imported");
 		}
 	});
  $("#cancel").click(function(e){
