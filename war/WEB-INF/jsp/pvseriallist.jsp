@@ -21,7 +21,7 @@
   <table><tr><td>
   <input type="button"  class="myButton" value="NEW"  onclick="fnnew();"/><td>
   <td>
-  <input type="button"  class="myButton" value="Calculate"  onclick="fncalculate();"/>
+  <input type="button"  class="myButton" value="Calculate"  onclick="fncalculate();" style="display:none;"/>
   </td></tr>
   </table>
  <div id="dialogdelete" title="Delete Status" style="display:none;" >"${model.msg}" </div>

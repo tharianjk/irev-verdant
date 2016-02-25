@@ -603,9 +603,9 @@ END IF;
   CLOSE freqcur;
   
   -- to populate the spec tables for combination testtype
- -- if myTestType = 'CO' then
- --    call pv_calc_spec(myTestId,myTestDate);
--- end if;
+  if myTestType = 'CO' then
+     call pv_calc_spec(myTestId,myTestDate,myserial);
+ end if;
    
 -- store calculated values for gain tracking
 -- if myTestType = 'GT' then
@@ -630,6 +630,7 @@ END IF;
 if isDebug > 0 then
 	call debug(l_proc_id,'Calculations end','I','I');
  end if;
+ 
  
  
 END$$
@@ -1668,7 +1669,9 @@ DELIMITER;
 
 DELIMITER $$
 CREATE PROCEDURE `pv_calc_spec`(
-coTestId INT
+coTestId INT,
+coTestDate datetime,
+coSerial INT
 )
 BEGIN
 # 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
@@ -1681,22 +1684,22 @@ DECLARE AzimuthDataPresent INT default 0;
 DECLARE ElevationDataPresent INT default 0;
 
 
-declare myserial int(11);
-declare coTestDate datetime;
+-- declare myserial int(11);
+-- declare coTestDate datetime;
 
  -- for the cursor
-DECLARE done INT DEFAULT 0;
+-- DECLARE done INT DEFAULT 0;
 
  
  
  #declare cursor for serials
- DECLARE serialcur CURSOR FOR 
- select Prodserial_id 
- from pv_prodserial ps
- where ps.test_id = coTestId;
+ -- DECLARE serialcur CURSOR FOR 
+ -- select Prodserial_id 
+ -- from pv_prodserial ps
+ -- where ps.test_id = coTestId;
 
 #declare handle 
-  DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+ -- DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
  
 
 # 3. declare continue/exit handlers for logging SQL exceptions/errors :
@@ -1725,7 +1728,7 @@ DECLARE done INT DEFAULT 0;
 		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
 		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
 		call debug(co_proc_id, @full_error,'F','I');
-        SET @details = CONCAT("Test id : ",coTestId);
+        SET @details = CONCAT("Test id : ",coTestId," , serial : ",coSerial);
 		call debug(co_proc_id, @details,'I','I');
         
 	end if;
@@ -1742,94 +1745,94 @@ if isDebug > 0 then
  
 # Declarations -end
 
-select TestDate into coTestDate 
-from pv_testdata where Test_id = coTestId;
+-- select TestDate into coTestDate 
+-- from pv_testdata where Test_id = coTestId;
 
 #open cursor
-  OPEN serialcur;
+ -- OPEN serialcur;
   
   #starts the loop
-  the_loop: LOOP
+ -- the_loop: LOOP
   
- FETCH serialcur INTO myserial; 
-IF done = 1 THEN
-	if isDebug > 0 then
-		SET @infoText = "Done looping through serials";
-		call debug(co_proc_id,@infoText,'I','I');
-	end if;
-LEAVE the_loop;
-END IF;
+-- FETCH serialcur INTO myserial; 
+-- IF done = 1 THEN
+-- 	if isDebug > 0 then
+	-- 	SET @infoText = "Done looping through serials";
+	-- 	call debug(co_proc_id,@infoText,'I','I');
+-- 	end if;
+-- LEAVE the_loop;
+-- END IF;
 
 
 # --------------CALCULATIONS BEGIN ----------------------
 
 select count(*) into AzimuthDataPresent from pv_cpcalculated  
-where Prodserial_id = myserial and datatype = 'A';
+where Prodserial_id = coSerial and datatype = 'A';
 
 select count(*) into ElevationDataPresent from pv_cpcalculated  
-where Prodserial_id = myserial and datatype = 'E';
+where Prodserial_id = coSerial and datatype = 'E';
 
 if AzimuthDataPresent > 0 then
 		-- 3 db BW
 		select count(*) into @_3dbBW_BM_A_spec
 		from pv_cpcalculated 
 		where 3Db_BW_BMax >= 55 and 3Db_BW_BMax <= 110
-		and Prodserial_id = myserial and datatype = 'A';
+		and Prodserial_id = coSerial and datatype = 'A';
 
 		select count(*) into @_3dbBW_0_A_spec
 		from pv_cpcalculated 
 		where 3Db_BW_0 >= 55 and 3Db_BW_0 <= 110
-		and Prodserial_id = myserial and datatype = 'A';
+		and Prodserial_id = coSerial and datatype = 'A';
 
 		-- 10 db BW
 		select count(*) into @_10dbBW_BM_A_majorspec
 		from pv_cpcalculated 
 		where 10Db_BW_BMax >= 100 and 10Db_BW_BMax <= 220
-		and Prodserial_id = myserial and datatype = 'A';
+		and Prodserial_id = coSerial and datatype = 'A';
 
 		select count(*) into @_10dbBW_BM_A_minorspec
 		from pv_cpcalculated 
 		where 10Db_BW_BMax >= 110 and 10Db_BW_BMax <= 200
-		and Prodserial_id = myserial and datatype = 'A';
+		and Prodserial_id = coSerial and datatype = 'A';
 
 		select count(*) into @_10dbBW_0_A_majorspec
 		from pv_cpcalculated 
 		where 10Db_BW_0 >= 100 and 10Db_BW_0 <= 220
-		and Prodserial_id = myserial and datatype = 'A';
+		and Prodserial_id = coSerial and datatype = 'A';
 
 		select count(*) into @_10dbBW_0_A_minorspec
 		from pv_cpcalculated 
 		where 10Db_BW_0 >= 110 and 10Db_BW_0 <= 200
-		and Prodserial_id = myserial and datatype = 'A';
+		and Prodserial_id = coSerial and datatype = 'A';
 
 		-- BS
 
 		select count(*) into @_BS_BM_A_majorspec
 		from pv_cpcalculated 
 		where 3Db_BS_BMax <= 10
-		and Prodserial_id = myserial and datatype = 'A';
+		and Prodserial_id = coSerial and datatype = 'A';
 
 
 		select count(*) into @_BS_BM_A_minorspec
 		from pv_cpcalculated 
 		where 3Db_BS_BMax <= 6
-		and Prodserial_id = myserial and datatype = 'A';
+		and Prodserial_id = coSerial and datatype = 'A';
 
 		select count(*) into @_BS_0_A_majorspec
 		from pv_cpcalculated 
 		where 3Db_BS_0 <= 10
-		and Prodserial_id = myserial and datatype = 'A';
+		and Prodserial_id = coSerial and datatype = 'A';
 
 
 		select count(*) into @_BS_0_A_minorspec
 		from pv_cpcalculated 
 		where 3Db_BS_0 <= 6
-		and Prodserial_id = myserial and datatype = 'A';
+		and Prodserial_id = coSerial and datatype = 'A';
 
 		-- insert into calculated table
 		-- azimuth
 
-		delete from pv_speccalculated where Prodserial_Id = myserial and datatype = 'A';
+		delete from pv_speccalculated where Prodserial_Id = coSerial and datatype = 'A';
 
 		 insert into pv_speccalculated(Prodserial_id,Test_id,datatype,TestDate,
 		  3dbBW_BM_spec,3dbBW_0_spec,
@@ -1838,7 +1841,7 @@ if AzimuthDataPresent > 0 then
 		  3dbBS_BM_majorspec , 3dbBS_BM_minorspec,
 		  3dbBS_0_majorspec ,3dbBS_0_minorspec )
 		  values
-		  (myserial,coTestId,'A',coTestDate,
+		  (coSerial,coTestId,'A',coTestDate,
 		  @_3dbBW_BM_A_spec,@_3dbBW_0_A_spec,
 		  @_10dbBW_BM_A_majorspec, @_10dbBW_BM_A_minorspec,
 		   @_10dbBW_0_A_majorspec, @_10dbBW_0_A_minorspec,
@@ -1851,59 +1854,59 @@ if ElevationDataPresent > 0 then
 		select count(*) into @_3dbBW_BM_E_spec
 		from pv_cpcalculated 
 		where 3Db_BW_BMax >= 55 and 3Db_BW_BMax <= 110
-		and Prodserial_id = myserial and datatype = 'E';
+		and Prodserial_id = coSerial and datatype = 'E';
 
 		select count(*) into @_3dbBW_0_E_spec
 		from pv_cpcalculated 
 		where 3Db_BW_0 >= 55 and 3Db_BW_0 <= 110
-		and Prodserial_id = myserial and datatype = 'E';
+		and Prodserial_id = coSerial and datatype = 'E';
 
 
 		select count(*) into @_10dbBW_BM_E_majorspec
 		from pv_cpcalculated 
 		where 10Db_BW_BMax >= 100 and 10Db_BW_BMax <= 220
-		and Prodserial_id = myserial and datatype = 'E';
+		and Prodserial_id = coSerial and datatype = 'E';
 
 		select count(*) into @_10dbBW_BM_E_minorspec
 		from pv_cpcalculated 
 		where 10Db_BW_BMax >= 110 and 10Db_BW_BMax <= 200
-		and Prodserial_id = myserial and datatype = 'E';
+		and Prodserial_id = coSerial and datatype = 'E';
 
 		select count(*) into @_10dbBW_0_E_majorspec
 		from pv_cpcalculated 
 		where 10Db_BW_0 >= 100 and 10Db_BW_0 <= 220
-		and Prodserial_id = myserial and datatype = 'E';
+		and Prodserial_id = coSerial and datatype = 'E';
 
 		select count(*) into @_10dbBW_0_E_minorspec
 		from pv_cpcalculated 
 		where 10Db_BW_0 >= 110 and 10Db_BW_0 <= 200
-		and Prodserial_id = myserial and datatype = 'E';
+		and Prodserial_id = coSerial and datatype = 'E';
 
 		select count(*) into @_BS_BM_E_majorspec
 		from pv_cpcalculated 
 		where 3Db_BS_BMax <= 10
-		and Prodserial_id = myserial and datatype = 'E';
+		and Prodserial_id = coSerial and datatype = 'E';
 
 
 		select count(*) into @_BS_BM_E_minorspec
 		from pv_cpcalculated 
 		where 3Db_BS_BMax <= 6
-		and Prodserial_id = myserial and datatype = 'E';
+		and Prodserial_id = coSerial and datatype = 'E';
 		 
 		select count(*) into @_BS_0_E_majorspec
 		from pv_cpcalculated 
 		where 3Db_BS_0 <= 10
-		and Prodserial_id = myserial and datatype = 'E';
+		and Prodserial_id = coSerial and datatype = 'E';
 
 
 		select count(*) into @_BS_0_E_minorspec
 		from pv_cpcalculated 
 		where 3Db_BS_0 <= 6
-		and Prodserial_id = myserial and datatype = 'E';
+		and Prodserial_id = coSerial and datatype = 'E';
 
 		# --------------CALCULATIONS END ----------------------
 
-		delete from pv_speccalculated where Prodserial_Id = myserial and datatype = 'E';
+		delete from pv_speccalculated where Prodserial_Id = coSerial and datatype = 'E';
 		  
 		-- elevation
 		 insert into pv_speccalculated(Prodserial_id,Test_id,datatype,TestDate,
@@ -1913,7 +1916,7 @@ if ElevationDataPresent > 0 then
 		  3dbBS_BM_majorspec , 3dbBS_BM_minorspec,
 		  3dbBS_0_majorspec ,3dbBS_0_minorspec )
 		  values
-		  (myserial,coTestId,'E',coTestDate,
+		  (coSerial,coTestId,'E',coTestDate,
 		  @_3dbBW_BM_E_spec,@_3dbBW_0_E_spec,
 		  @_10dbBW_BM_E_majorspec, @_10dbBW_BM_E_minorspec,
 		   @_10dbBW_0_E_majorspec, @_10dbBW_0_E_minorspec,
@@ -1921,10 +1924,9 @@ if ElevationDataPresent > 0 then
 		   @_BS_0_E_majorspec,@_BS_0_E_minorspec);
 end if;
    
- END LOOP the_loop;
+-- END LOOP the_loop;
  
-  CLOSE serialcur;
-
+--  CLOSE serialcur;
 END$$
 
 DELIMITER;
@@ -2054,7 +2056,7 @@ if isDebug > 0 then
 	call debug(l_proc_id,'in spPV_GT','I','I');
  end if;
 
-
+call pv_calc_gtcalculated(testid);
 -- select nprecision into prec from fwk_company;
 
  select frequnit into @unt from pv_testdata where test_id=testid;
@@ -2210,9 +2212,7 @@ delete from pv_gt_calculated where Test_id = gtTestId;
 							group by Frequency,Test_id,TestDate;
  
  end if;  
-END$$
-
-DELIMITER;
+END;
 
 
 
