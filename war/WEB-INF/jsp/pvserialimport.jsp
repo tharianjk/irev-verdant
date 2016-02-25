@@ -9,8 +9,7 @@
   <script src="js/jquery.js"></script>
   <script src="js/jquery-ui.js"></script>  
   <script type='text/javascript' src="js/popupmessage.js" ></script>
-    <link rel="stylesheet" href="css/popupmessage.css">
-   
+    <link rel="stylesheet" href="css/popupmessage.css">   
     <link rel="stylesheet" type="text/css" href="irev-style.css" />
 <style>
 #errmsg1
@@ -82,7 +81,6 @@ function progress_update( typ) {
 	}
 	}
 	
-	
 	/*var filename=document.getElementById("filename").value;
 	if(filename==null || filename=="")
 		{
@@ -94,7 +92,6 @@ progressAt++;
 if (progressAt > progressEnd) progress_clear();
 else document.getElementById('progress'+progressAt).style.backgroundColor = progressColor;
 progressTimer = setTimeout('progress_update("D")',progressInterval);
-
 }
 function progress_stop() {
 clearTimeout(progressTimer);
@@ -230,12 +227,23 @@ progress_clear();
 	</c:if>
 	<c:if test="${gmfreq!='' && gmfreq !=null}">
 	<tr>
-	<td> Gain Measurement</td>
+	<td> RA of STD HORN</td>
 	<td> ${gmfreq}</td>				
 	</tr>
 	</c:if>
 	
-	 
+	 <c:if test="${hmfreq!='' && hmfreq !=null}">
+	<tr>
+	<td> HP Gain Measurement</td>
+	<td> ${hmfreq}</td>				
+	</tr>
+	</c:if>
+	<c:if test="${vmfreq!='' && vmfreq !=null}">
+	<tr>
+	<td> VP Gain Measurement</td>
+	<td> ${vmfreq}</td>				
+	</tr>
+	</c:if>
 	</tbody>
 	</table> 
 	
@@ -333,11 +341,10 @@ progress_clear();
 		<table>
 		<tr>
 	<td>	<input type="submit" id="more" value="Import" name="fmaction" class="myButton" onclick="progress_update('M');form1.submit();"/></td>
-	<td>	<input type="button" id="done" value="Calculate" name="fmaction" class="myButton" onclick="progress_update('D');calculate();"/></td>
-	
+	<td>	<input type="submit" id="done" value="Calculate" name="fmaction" class="myButton" onclick="progress_update('D');form1.submit();"/></td>
 	<td>	<input type="submit" id="save" value="Save" name="fmaction" class="myButton" onclick="form1.submit();" style="visibility:hidden"/></td>
 		<td>
-<table align="center" id="progressbar" style="display:none"><tr><td><b><label id="lblmsg">Saving ....</label></b>
+		<table align="center" id="progressbar" style="display:none"><tr><td><b>Saving ....</b>
 <div style="font-size:8pt;padding:2px;border:solid black 1px">
 <span id="progress0">&nbsp; &nbsp;</span>
 <span id="progress1">&nbsp; &nbsp;</span>
@@ -841,86 +848,6 @@ function fnCheck()
 					});
 
    
-}
-
-
-function calculate(){
-	var JsonSlnos=[];
-	var pat='<%=request.getContextPath()%>';
-	$.ajax({
-		url: pat+"/MWAPI/serialsnos/"+testid
-	}).then(function(data) {
-		 console.log(' API returned # recs = '+data);
-	if(data!=null  )
-	{
-		if (data.JsonSlnos == null)
-		{
-			console.log("no JsonSlnos");
-			progress_stop();
-			return;
-		}
-		else{
-			JsonSlnos=data.JsonSlnos;
-		}
-	}
-	else
-	{
-		console.log("data is null");
-		progress_stop();
-	}});	
-	
-		 console.log(' going to set the data-segments. Cnt of elements = '+JsonSlnos.length);
-		
-         var status=1;
-			for (var i=0; i< JsonSlnos.length; i++)
-			{
-				var id=JsonSlnos[i].serialid;
-				console.log("id="+id);
-				document.getElementById("lblmsg").innerHTML='Processing ..'+JsonSlnos[i].serialno;
-				// progress_update('D');
-				
-				var urls = pat+'/MWAPI/pvcalculate/'+testid+'/'+id;
-				console.log("urls="+urls);
-				$.ajax({
-					type: "GET",
-					url: urls,
-					error: function(XMLHttpRequest, textStatus, errorThrown)  {
-						        status=0;
-								alert("An error has occurred making the request: " + errorThrown)
-							},
-					success : function(response) {
-	                console.log("Success-serial: "+ response);
-					if(response=='1')
-					{
-						status=0;		       
-					$( "#validate" ).dialog({
-					height: 200,
-					width: 300,
-					modal: true				
-					});	
-					}
-					else
-					{
-					console.log("success");
-					
-					//document.getElementById("save").disabled = false;
-					}
-					}			
-				});
-				
-				
-			}
-			
-			
-		if(status==1){
-		$('#form1').append('<input type="hidden" name="fmaction " value="Calculate" />');
-		form1.submit();
-		}
-		
-			progress_stop();
-	//}
-	
-
 }
 
 

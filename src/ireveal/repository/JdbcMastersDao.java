@@ -1518,7 +1518,7 @@ public PVSerialData getPVSerialData(int serialid) {
     return (PVSerialData) dataList.get(0);  
    }
 
-private static class PVSerialMapper implements ParameterizedRowMapper<PVSerialData> {
+private  class PVSerialMapper implements ParameterizedRowMapper<PVSerialData> {
 	   
        public PVSerialData mapRow(ResultSet rs, int rowNum) throws SQLException {
     	   PVSerialData product = new PVSerialData(); 
@@ -1528,6 +1528,7 @@ private static class PVSerialMapper implements ParameterizedRowMapper<PVSerialDa
     	   product.setTestname(rs.getString("testname")); 
     	   product.setFrequnit(rs.getString("frequnit")); 
     	   product.setTesttype(rs.getString("testtype")); 
+    	   product.setCalccnt(calccount(rs.getInt("Prodserial_id"))>0?1:0);
            return product;
        }
 
@@ -1587,6 +1588,8 @@ public String getPVFreqdatafile(String typ,int serialid,String datatype ){
 		 sql="select distinct frequency from pv_hdata_Elevation where prodserial_id=? ";
 		 else if(datatype.equals("T"))
 		 sql="select distinct frequency from pv_hdata_GT where prodserial_id=? ";
+		 else if(datatype.equals("M"))
+		sql="select distinct frequency from pv_hdata_GM where prodserial_id=? ";
 	 }
 	 else if(typ.equals("V")){
 		 if(datatype.equals("A"))
@@ -1595,6 +1598,8 @@ public String getPVFreqdatafile(String typ,int serialid,String datatype ){
 			 sql="select distinct frequency from pv_vdata_Elevation where prodserial_id=? ";
 			 else if(datatype.equals("T"))
 			 sql="select distinct frequency from pv_vdata_GT where prodserial_id=? ";
+			 else if(datatype.equals("M"))
+			 sql="select distinct frequency from pv_vdata_GM where prodserial_id=? ";
 	 }
 		
 		 
@@ -1699,7 +1704,8 @@ public int insertRASTDHorn(PVSerialData testdata,List<TestFrequency> rastdlist,S
 	
 		   int serialid=0;
 		   logger.info(" strmode "+strmode);
-try{
+try
+{
 		   
 	if(strmode.equals("new")){
 		   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -1726,30 +1732,54 @@ try{
 	}
 	else{
 	serialid=testdata.getProductserialid();
+	
+	
 	}
 	try{
     
-	 String sqlsavetags = "INSERT INTO pv_radata (Prodserial_id,Frequency,RecvdAmp) VALUES (?,?,?)";
-	for(int i=0;i<rastdlist.size();i++)
-	{
+			 String sqlsavetags = "INSERT INTO pv_radata (Prodserial_id,Frequency,RecvdAmp) VALUES (?,?,?)";
+			 String sqltestfreq=	"INSERT INTO pv_testfreq(test_id,Frequency)  VALUES   (?,?)"; 
+			for(int i=0;i<rastdlist.size();i++)
+			{	
+			    getJdbcTemplate().update(sqlsavetags, serialid, rastdlist.get(i).getFrequency(), rastdlist.get(i).getLineargain());
+			    
+			    int cnt =getJdbcTemplate().queryForObject("select count(*) from pv_testfreq where test_id=? and Frequency=?",Integer.class,testdata.getTestid(),rastdlist.get(i).getFrequency());
+		  		//logger.info(" PVSerialData 1");
+		  		if(cnt==0){
+		  		//	logger.info(" PVSerialData 2");
+			  		getJdbcTemplate().update(  
+						sqltestfreq,  
+						new Object[] {testdata.getTestid(), rastdlist.get(i).getFrequency() });
+		  		}
+			}
+	 
+	}
+   catch(Exception e){
 		
-	    getJdbcTemplate().update(sqlsavetags, serialid, rastdlist.get(i).getFrequency(), rastdlist.get(i).getLineargain());
-	    
-	    
 	}
-	}
-	catch(Exception e){
-		
-	}
-		   }
-catch(Exception e){
-		
-	}
+}
+catch(Exception ep){}
 	return serialid;
 
 }
 
-public int PV_CalcProc(int testid)
+public int PV_CalcProc(int testid,int serialid)
+{
+	logger.info("inside PV_CalcProc testid="+testid+" serialid="+serialid);
+		try{
+			
+		getJdbcTemplate().update("call pv_Calculate_params (?,?,?)", testid,"PV",serialid);
+			
+		return 1;
+		}
+		catch(Exception e)
+		{
+			 logger.info("PV_CalcProc Exception "+e.getMessage());
+			   return 0;
+		}
+			
+}
+public int PV_CalcProcSum(int testid)
 {
 	String sql="select testtype from pv_testdata where test_id=?";
 	   
@@ -1781,7 +1811,22 @@ public int PV_serialcount(int testid){
 	}
 	return cnt;
 }
-  
+  public  int calccount(int serialno){
+	  logger.info("inside calccount serialno="+serialno); 
+	  int cnt=0;
+	  String sql="select count(*) from pv_cpcalculated where prodserial_id=?";
+	  cnt=getJdbcTemplate().queryForObject(sql, Integer.class,serialno);
+	  if(cnt==0){
+		   sql=" select count(*) from pv_gmcalculated where prodserial_id=? ";
+	  cnt=getJdbcTemplate().queryForObject(sql, Integer.class,serialno);
+     }
+	  if(cnt==0){
+	  sql=" select count(*) from pv_gt_intermediate where prodserial_id=? ";
+	  cnt=getJdbcTemplate().queryForObject(sql, Integer.class,serialno);
+	     }
+	 
+		return cnt;
+  }
 }
 
 

@@ -2,6 +2,19 @@
 -- alter table pv_testdata add AntennaUsed varchar(200) 
 -- alter table product add prodmodel varchar(100);
 
+-- uncommment below two alter tables for slant-elevation 270 degree change
+-- ALTER TABLE hcalculated
+-- ADD COLUMN 3Db_BW_270 DECIMAL(40,20) NULL DEFAULT NULL,
+-- ADD COLUMN 3Db_BS_270 DECIMAL(40,20) NULL DEFAULT NULL,
+-- ADD COLUMN 10Db_BW_270 DECIMAL(40,20) NULL DEFAULT NULL,
+-- ADD COLUMN 10Db_BS_270 DECIMAL(40,20) NULL DEFAULT NULL;
+
+-- ALTER TABLE vcalculated
+-- ADD COLUMN 3Db_BW_270 DECIMAL(40,20) NULL DEFAULT NULL,
+-- ADD COLUMN 3Db_BS_270 DECIMAL(40,20) NULL DEFAULT NULL,
+-- ADD COLUMN 10Db_BW_270 DECIMAL(40,20) NULL DEFAULT NULL,
+-- ADD COLUMN 10Db_BS_270 DECIMAL(40,20) NULL DEFAULT NULL;
+
 -- 18-02-2016
 drop table if exists temp_GT ; 
 

@@ -17,15 +17,15 @@ drop procedure if exists pv_calc_backlobelevel;
 drop procedure if exists pv_calc_spec;
 drop procedure if exists pv_calc_gtcalculated;
 drop procedure if exists spPV_GT;
+-- drop procedure spPVPolarPlot
+
 -- --------------------------------------------------------------------------------
 -- Routine DDL
 -- Note: comments before and after the routine body will not be stored by the server
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
--- drop procedure if exists spPVPolarPlot;
-
-CREATE  PROCEDURE spPVPolarPlot(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spPVPolarPlot`(
 testid INT,
 freqparm decimal(40,20),
 typ varchar(5), -- C CP,H HP,V VP,B HP&VP
@@ -105,68 +105,68 @@ end if;
 
 if typ='H' then
 	if cnt=0 then
-	if datatype='A' then
+	if vdatatype='A' then
 			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_hdata_azimuth HD 
 			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
 			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_hdata_azimuth HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
 	end if;
-	if datatype='E' then
+	if vdatatype='E' then
 			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_hdata_elevation HD 
 			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
 			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_hdata_elevation HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
 	end if;
-	if datatype='T' then
+	if vdatatype='T' then
 			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_hdata_GT HD 
 			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
 			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_hdata_GT HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
 	end if;
 	end if;
-	if datatype='A' then
+	if vdatatype='A' then
       SELECT case when HD.Angle >180 then HD.Angle -360 else HD.Angle end Angle ,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Prodserial_id,strmaxvalue,strminvalue FROM pv_hdata_azimuth HD 
 		where HD.Frequency=freq and HD.Prodserial_id=serialid ;
     end if;
-	if datatype='E' then
+	if vdatatype='E' then
       SELECT case when HD.Angle >180 then HD.Angle -360 else HD.Angle end Angle ,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Prodserial_id,strmaxvalue,strminvalue FROM pv_hdata_elevation HD 
 		where HD.Frequency=freq and HD.Prodserial_id=serialid ;
     end if;
-	if datatype='T' then
+	if vdatatype='T' then
       SELECT case when HD.Angle >180 then HD.Angle -360 else HD.Angle end Angle ,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Prodserial_id,strmaxvalue,strminvalue FROM pv_hdata_GT HD 
 		where HD.Frequency=freq and HD.Prodserial_id=serialid ;
     end if;
 end if;
 if typ='V' then
 	if cnt=0 then
-	if datatype='A' then
+	if vdatatype='A' then
 			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_vdata_azimuth HD 
 			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
 			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_vdata_azimuth HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
 	end if;
-	if datatype='E' then
+	if vdatatype='E' then
 			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_vdata_elevation HD 
 			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
 			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_vdata_elevation HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
 	end if;
-	if datatype='T' then
+	if vdatatype='T' then
 			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_vdata_GT HD 
 			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
 			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_vdata_GT HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
 	end if;
 	end if;
-		if datatype='A' then
+		if vdatatype='A' then
       SELECT case when HD.Angle >180 then HD.Angle -360 else HD.Angle end Angle ,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Prodserial_id,strmaxvalue,strminvalue FROM pv_Vdata_azimuth HD 
 		where HD.Frequency=freq and HD.Prodserial_id=serialid ;
     end if;
-	if datatype='E' then
+	if vdatatype='E' then
       SELECT case when HD.Angle >180 then HD.Angle -360 else HD.Angle end Angle ,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Prodserial_id,strmaxvalue,strminvalue FROM pv_vdata_elevation HD 
 		where HD.Frequency=freq and HD.Prodserial_id=serialid ;
     end if;
-	if datatype='T' then
+	if vdatatype='T' then
       SELECT case when HD.Angle >180 then HD.Angle -360 else HD.Angle end Angle ,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Prodserial_id,strmaxvalue,strminvalue FROM pv_vdata_GT HD 
 		where HD.Frequency=freq and HD.Prodserial_id=serialid ;
     end if;
@@ -174,13 +174,13 @@ if typ='V' then
 end if;
 if typ='C' then
 		if cnt=0 then
-				if datatype='A' then
+				if vdatatype='A' then
 			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_cpdata_azimuth HD 
 			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
 			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_cpdata_azimuth HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
 	end if;
-	if datatype='E' then
+	if vdatatype='E' then
 			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_cpdata_elevation HD 
 			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
 			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_cpdata_elevation HD 
@@ -188,41 +188,41 @@ if typ='C' then
 	end if;
 	
 		end if;
-		if datatype='A' then
+		if vdatatype='A' then
       SELECT case when HD.Angle >180 then HD.Angle -360 else HD.Angle end Angle ,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Prodserial_id,strmaxvalue,strminvalue FROM pv_cpdata_azimuth HD 
 		where HD.Frequency=freq and HD.Prodserial_id=serialid ;
     end if;
-	if datatype='E' then
+	if vdatatype='E' then
       SELECT case when HD.Angle >180 then HD.Angle -360 else HD.Angle end Angle ,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Prodserial_id,strmaxvalue,strminvalue FROM pv_cpdata_elevation HD 
 		where HD.Frequency=freq and HD.Prodserial_id=serialid ;
     end if;
-	if datatype='T' then
+	if vdatatype='T' then
       SELECT case when HD.Angle >180 then HD.Angle -360 else HD.Angle end Angle ,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Prodserial_id,strmaxvalue,strminvalue FROM pv_cpdata_GT HD 
 		where HD.Frequency=freq and HD.Prodserial_id=serialid ;
     end if;
 end if;
 if typ='B' then
 	if cnt=0 then
-			if datatype='A' then
+			if vdatatype='A' then
 			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_hdata_azimuth HD 
 			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
 			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_hdata_azimuth HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
 	end if;
-	if datatype='E' then
+	if vdatatype='E' then
 			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_hdata_elevation HD 
 			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
 			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_hdata_elevation HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
 	end if;
-	if datatype='T' then
+	if vdatatype='T' then
 			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_hdata_GT HD 
 			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
 			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_hdata_GT HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
 	end if;
 	end if;
-    if datatype='A' then	
+    if vdatatype='A' then	
 				select test_id, case unt when 'GHz' then concat(RPAD(round(Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(Frequency,prec),10,' '),unt) end frequency,case when HD.Angle >180 then HD.Angle -360 else HD.Angle end  Angle,sum(hamplitude) hamplitude,sum(vamplitude) vamplitude,strmaxvalue,strminvalue 
 				from (
 				SELECT hp.Prodserial_id, frequency ,hp.angle,hp.amplitude hamplitude, 0 vamplitude, 0 camplitude, 0 pamplitude, 0 ramplitude, 0 yamplitude,t.frequnit
@@ -232,7 +232,7 @@ if typ='B' then
 				FROM pv_vdata_azimuth hp inner join pv_prodserial t on hp.Prodserial_id=t.Prodserial_id where Frequency  =freq and hp.Prodserial_id=serialid  ) as tab
 				group by Prodserial_id,frequency,angle,strmaxvalue,strminvalue;
 		end if;
-		if datatype='E' then	
+		if vdatatype='E' then	
 				select test_id, case unt when 'GHz' then concat(RPAD(round(Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(Frequency,prec),10,' '),unt) end frequency,case when HD.Angle >180 then HD.Angle -360 else HD.Angle end  Angle,sum(hamplitude) hamplitude,sum(vamplitude) vamplitude,strmaxvalue,strminvalue 
 				from (
 				SELECT hp.Prodserial_id, frequency ,hp.angle,hp.amplitude hamplitude, 0 vamplitude, 0 camplitude, 0 pamplitude, 0 ramplitude, 0 yamplitude,t.frequnit
@@ -631,6 +631,7 @@ if isDebug > 0 then
 	call debug(l_proc_id,'Calculations end','I','I');
  end if;
  
+ 
 END$$
 
 DELIMITER ;
@@ -644,9 +645,14 @@ gmTestDate datetime,
 gmSerial INT
 )
 BEGIN
-
 # Declarations -begin
 declare C,Gv,Y,GF,CPGAIN decimal(40,20) default 0;
+
+
+DECLARE HPDataPresent INT default 0;
+DECLARE VPDataPresent INT default 0;
+DECLARE raDataPresent INT default 0;
+DECLARE GainSTDHornPresent INT default 0;
 
 # 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
 	declare gm_proc_id varchar(100) default 'pv_calc_Gain_Measurement';
@@ -699,47 +705,56 @@ if isDebug > 0 then
 # Declarations -end
 
 # --------------CALCULATIONS BEGIN ----------------------
+select count(*) into HPDataPresent from pv_hdata_gm  where Prodserial_id = gmSerial and Frequency = gmFreq and Angle=0;
+select count(*) into VPDataPresent from pv_vdata_gm  where Prodserial_id = gmSerial and Frequency = gmFreq and Angle=0;
+select count(*) into raDataPresent from pv_radata where Prodserial_id = gmSerial and Frequency = gmFreq;
+select count(*) into GainSTDHornPresent from pv_GainSTDHorn where test_id = gmTestId and Frequency = gmFreq;
 
--- Max Received Amplitude of AUT in VP -> A
-select MAX(Amplitude) into @A from pv_vdata_gm where Prodserial_id = gmSerial and Frequency = gmFreq ;
+if HPDataPresent > 0 and VPDataPresent > 0 and raDataPresent > 0  and GainSTDHornPresent > 0 then
+	-- Max Received Amplitude of AUT in VP -> A
+	select MAX(Amplitude) into @A from pv_vdata_gm where Prodserial_id = gmSerial and Frequency = gmFreq ;
 
--- Received Amplitude of STD HORN -> B
-select RecvdAmp into @B from pv_radata where Prodserial_id = gmSerial and Frequency = gmFreq;
+	-- Received Amplitude of STD HORN -> B
+	select RecvdAmp into @B from pv_radata where Prodserial_id = gmSerial and Frequency = gmFreq;
 
--- Received Amp Diff (C=A-B) 
-set C = @A - @B;
+	-- Received Amp Diff (C=A-B) 
+	set C = @A - @B;
 
--- Gain of STD HORN ,D 
-select stdhorn into @D from pv_GainSTDHorn where test_id = gmTestId and Frequency = gmFreq;
+	-- Gain of STD HORN ,D 
+	select stdhorn into @D from pv_GainSTDHorn where test_id = gmTestId and Frequency = gmFreq;
 
--- Gain (dBLi) ,GV = C+D
-set Gv = C + @D;
+	-- Gain (dBLi) ,GV = C+D
+	set Gv = C + @D;
 
--- AXIAL RATIO (dB) X
-select pv_calc_AxialRatio(gmSerial,gmFreq,0,'M') into @X;
+	-- AXIAL RATIO (dB) X
+	select pv_calc_AxialRatio(gmSerial,gmFreq,0,'M') into @X;
 
--- AXIAL RATIO (UNITLESS) Y= Antilog (X / 20)
-set Y = EXP(@X/20);
+	-- AXIAL RATIO (UNITLESS) Y= Antilog (X / 20)
+	set Y = EXP(@X/20);
 
--- Gain correction Factor ,GF = 20 log (Y+1/√2*Y)
-set GF = 20 * LOG10((Y+1)/(1.414*Y));
+	-- Gain correction Factor ,GF = 20 log (Y+1/√2*Y)
+	set GF = 20 * LOG10((Y+1)/(1.414*Y));
 
--- CP GAIN = GV + GF (dBiC) Measured GAIN
-set CPGAIN = Gv + GF;
+	-- CP GAIN = GV + GF (dBiC) Measured GAIN
+	set CPGAIN = Gv + GF;
 
 
-# --------------CALCULATIONS END ------------------------
+	# --------------CALCULATIONS END ------------------------
 
-delete from pv_gmcalculated where Prodserial_id = gmSerial and Test_id = gmTestId and Frequency = gmFreq;
--- insert into calculated table
-insert into pv_gmcalculated (Prodserial_id,Test_id ,Frequency,TestDate,
-							gm_A,gm_B,gm_C,gm_D,gm_Gv,
-                            gm_X,gm_Y,gm_GF,gm_CPGAIN)
-			values
-							(gmSerial, gmTestId, gmFreq, gmTestDate,
-                            @A, @B, C, @D, Gv,
-                            @X, Y, GF, CPGAIN);
+	delete from pv_gmcalculated where Prodserial_id = gmSerial and Test_id = gmTestId and Frequency = gmFreq;
+	-- insert into calculated table
+	insert into pv_gmcalculated (Prodserial_id,Test_id ,Frequency,TestDate,
+								gm_A,gm_B,gm_C,gm_D,gm_Gv,
+								gm_X,gm_Y,gm_GF,gm_CPGAIN)
+				values
+								(gmSerial, gmTestId, gmFreq, gmTestDate,
+								@A, @B, C, @D, Gv,
+								@X, Y, GF, CPGAIN);
+else
 
+	call debug(gm_proc_id,'all required raw data not imported/input','E','I');
+end if;
+ 
  
 END$$
 
@@ -763,6 +778,8 @@ BEGIN
 # 2. declare variable to store debug flag
     declare isDebug INT default 0;
 
+DECLARE HPDataPresent INT default 0;
+DECLARE VPDataPresent INT default 0;
 
 # 3. declare continue/exit handlers for logging SQL exceptions/errors :
 -- write handlers for specific known error codes which are likely to occur here    
@@ -809,9 +826,11 @@ if isDebug > 0 then
 
 
 # --------------CALCULATIONS BEGIN ----------------------
+select count(*) into HPDataPresent from pv_hdata_gt  where Prodserial_id = gmSerial and Frequency = gmFreq and Angle=0;
+select count(*) into VPDataPresent from pv_vdata_gt  where Prodserial_id = gmSerial and Frequency = gmFreq and Angle=0;
 
 # Gain tracking on axis
-
+if HPDataPresent > 0 and VPDataPresent > 0 then
 -- hp
 select Amplitude into @Hamp_0 from pv_hdata_gt where Prodserial_id = gmSerial and Frequency = gmFreq
 and Angle = 0 ;
@@ -863,7 +882,10 @@ insert into pv_gt_intermediate (Prodserial_id, Frequency, TestDate,
                                         gmTestId);
 
 # --------------- CALCULATIONS END ------------------------
- 
+else
+
+	call debug(gm_proc_id,'all required raw data not imported','E','I');
+end if;
  
 END$$
 
@@ -1253,8 +1275,11 @@ declare hp_0,vp_0,AR_0 decimal(40,20);
 declare hp_p45,vp_p45,AR_P45 decimal(40,20);
 declare hp_m45,vp_m45,AR_M45 decimal(40,20) ;
 
-DECLARE azimuthDataPresent INT default 0;
-DECLARE elevationDataPresent INT default 0;
+DECLARE azimuthHPDataPresent INT default 0;
+DECLARE azimuthVPDataPresent INT default 0;
+
+DECLARE elevationHPDataPresent INT default 0;
+DECLARE elevationVPDataPresent INT default 0;
 
 # 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
 	declare co_proc_id varchar(100) default 'pv_calc_combination';
@@ -1307,11 +1332,14 @@ if isDebug > 0 then
 
 # --------------CALCULATIONS BEGIN ----------------------
 
-select count(*) into azimuthDataPresent from pv_hdata_azimuth  where Prodserial_id = coSerial and Frequency = coFreq and Angle=0;
-select count(*) into elevationDataPresent from pv_hdata_elevation  where Prodserial_id = coSerial and Frequency = coFreq and Angle=0;
+select count(*) into azimuthHPDataPresent from pv_hdata_azimuth  where Prodserial_id = coSerial and Frequency = coFreq and Angle=0;
+select count(*) into azimuthVPDataPresent from pv_vdata_azimuth  where Prodserial_id = coSerial and Frequency = coFreq and Angle=0;
+
+select count(*) into elevationHPDataPresent from pv_hdata_elevation  where Prodserial_id = coSerial and Frequency = coFreq and Angle=0;
+select count(*) into elevationVPDataPresent from pv_vdata_elevation  where Prodserial_id = coSerial and Frequency = coFreq and Angle=0;
 
 # convert to cp and store in cpdata table
-if azimuthDataPresent > 0  then
+if azimuthHPDataPresent > 0 and azimuthVPDataPresent then
 	 delete from pv_cpdata_azimuth where Prodserial_id = coSerial and Frequency = coFreq;
 
 	 insert into pv_cpdata_azimuth ( Prodserial_id, Frequency, Angle, Amplitude)
@@ -1351,7 +1379,7 @@ insert into pv_cpcalculated ( Prodserial_id,Test_id,datatype,Frequency,TestDate,
 
 end if; 
 
-if elevationDataPresent > 0 then
+if elevationHPDataPresent > 0 and elevationVPDataPresent > 0 then
   delete from pv_cpdata_elevation where Prodserial_id = coSerial and Frequency = coFreq;
 
   insert into pv_cpdata_elevation ( Prodserial_id, Frequency, Angle, Amplitude)
@@ -1443,6 +1471,7 @@ end if;
 
 # --------------CALCULATIONS END ----------------------
 
+
   
 END$$
 
@@ -1479,6 +1508,7 @@ end if;
 set backlobe = Y1 - X1;
 
 
+
 END$$
 
 DELIMITER;
@@ -1490,6 +1520,7 @@ xProdSerialId INT, freq decimal(40,20), X INT, polType char(2), fromAngle char(2
 out leftpoint decimal(40,20), out rightpoint decimal(40,20), out beam_width decimal(40,20), out beam_squint decimal(40,20)
 )
 BEGIN
+
 
 
 # 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
@@ -1631,8 +1662,6 @@ set beam_squint = leftpoint + (rightpoint - leftpoint)/2;
 
  -- select beam_squint as 'BS';
 
-
-
 END$$
 
 DELIMITER;
@@ -1642,12 +1671,15 @@ CREATE PROCEDURE `pv_calc_spec`(
 coTestId INT
 )
 BEGIN
-
 # 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
 	declare co_proc_id varchar(100) default 'pv_calc_spec';
 
 # 2. declare variable to store debug flag
     declare isDebug INT default 0;
+
+DECLARE AzimuthDataPresent INT default 0;
+DECLARE ElevationDataPresent INT default 0;
+
 
 declare myserial int(11);
 declare coTestDate datetime;
@@ -1655,14 +1687,17 @@ declare coTestDate datetime;
  -- for the cursor
 DECLARE done INT DEFAULT 0;
 
+ 
+ 
  #declare cursor for serials
  DECLARE serialcur CURSOR FOR 
  select Prodserial_id 
  from pv_prodserial ps
  where ps.test_id = coTestId;
 
- #declare handle 
+#declare handle 
   DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+ 
 
 # 3. declare continue/exit handlers for logging SQL exceptions/errors :
 -- write handlers for specific known error codes which are likely to occur here    
@@ -1728,149 +1763,163 @@ END IF;
 
 # --------------CALCULATIONS BEGIN ----------------------
 
--- 3 db BW
-select count(*) into @_3dbBW_BM_A_spec
-from pv_cpcalculated 
-where 3Db_BW_BMax >= 55 and 3Db_BW_BMax <= 110
-and Prodserial_id = myserial and datatype = 'A';
+select count(*) into AzimuthDataPresent from pv_cpcalculated  
+where Prodserial_id = myserial and datatype = 'A';
 
-select count(*) into @_3dbBW_BM_E_spec
-from pv_cpcalculated 
-where 3Db_BW_BMax >= 55 and 3Db_BW_BMax <= 110
-and Prodserial_id = myserial and datatype = 'E';
+select count(*) into ElevationDataPresent from pv_cpcalculated  
+where Prodserial_id = myserial and datatype = 'E';
 
-select count(*) into @_3dbBW_0_A_spec
-from pv_cpcalculated 
-where 3Db_BW_0 >= 55 and 3Db_BW_0 <= 110
-and Prodserial_id = myserial and datatype = 'A';
+if AzimuthDataPresent > 0 then
+		-- 3 db BW
+		select count(*) into @_3dbBW_BM_A_spec
+		from pv_cpcalculated 
+		where 3Db_BW_BMax >= 55 and 3Db_BW_BMax <= 110
+		and Prodserial_id = myserial and datatype = 'A';
 
-select count(*) into @_3dbBW_0_E_spec
-from pv_cpcalculated 
-where 3Db_BW_0 >= 55 and 3Db_BW_0 <= 110
-and Prodserial_id = myserial and datatype = 'E';
+		select count(*) into @_3dbBW_0_A_spec
+		from pv_cpcalculated 
+		where 3Db_BW_0 >= 55 and 3Db_BW_0 <= 110
+		and Prodserial_id = myserial and datatype = 'A';
 
--- 10 db BW
-select count(*) into @_10dbBW_BM_A_majorspec
-from pv_cpcalculated 
-where 10Db_BW_BMax >= 100 and 10Db_BW_BMax <= 220
-and Prodserial_id = myserial and datatype = 'A';
+		-- 10 db BW
+		select count(*) into @_10dbBW_BM_A_majorspec
+		from pv_cpcalculated 
+		where 10Db_BW_BMax >= 100 and 10Db_BW_BMax <= 220
+		and Prodserial_id = myserial and datatype = 'A';
 
-select count(*) into @_10dbBW_BM_A_minorspec
-from pv_cpcalculated 
-where 10Db_BW_BMax >= 110 and 10Db_BW_BMax <= 200
-and Prodserial_id = myserial and datatype = 'A';
+		select count(*) into @_10dbBW_BM_A_minorspec
+		from pv_cpcalculated 
+		where 10Db_BW_BMax >= 110 and 10Db_BW_BMax <= 200
+		and Prodserial_id = myserial and datatype = 'A';
 
-select count(*) into @_10dbBW_BM_E_majorspec
-from pv_cpcalculated 
-where 10Db_BW_BMax >= 100 and 10Db_BW_BMax <= 220
-and Prodserial_id = myserial and datatype = 'E';
+		select count(*) into @_10dbBW_0_A_majorspec
+		from pv_cpcalculated 
+		where 10Db_BW_0 >= 100 and 10Db_BW_0 <= 220
+		and Prodserial_id = myserial and datatype = 'A';
 
-select count(*) into @_10dbBW_BM_E_minorspec
-from pv_cpcalculated 
-where 10Db_BW_BMax >= 110 and 10Db_BW_BMax <= 200
-and Prodserial_id = myserial and datatype = 'E';
+		select count(*) into @_10dbBW_0_A_minorspec
+		from pv_cpcalculated 
+		where 10Db_BW_0 >= 110 and 10Db_BW_0 <= 200
+		and Prodserial_id = myserial and datatype = 'A';
 
-select count(*) into @_10dbBW_0_A_majorspec
-from pv_cpcalculated 
-where 10Db_BW_0 >= 100 and 10Db_BW_0 <= 220
-and Prodserial_id = myserial and datatype = 'A';
+		-- BS
 
-select count(*) into @_10dbBW_0_A_minorspec
-from pv_cpcalculated 
-where 10Db_BW_0 >= 110 and 10Db_BW_0 <= 200
-and Prodserial_id = myserial and datatype = 'A';
-
-select count(*) into @_10dbBW_0_E_majorspec
-from pv_cpcalculated 
-where 10Db_BW_0 >= 100 and 10Db_BW_0 <= 220
-and Prodserial_id = myserial and datatype = 'E';
-
-select count(*) into @_10dbBW_0_E_minorspec
-from pv_cpcalculated 
-where 10Db_BW_0 >= 110 and 10Db_BW_0 <= 200
-and Prodserial_id = myserial and datatype = 'E';
-
--- BS
-
-select count(*) into @_BS_BM_A_majorspec
-from pv_cpcalculated 
-where 3Db_BS_BMax <= 10
-and Prodserial_id = myserial and datatype = 'A';
+		select count(*) into @_BS_BM_A_majorspec
+		from pv_cpcalculated 
+		where 3Db_BS_BMax <= 10
+		and Prodserial_id = myserial and datatype = 'A';
 
 
-select count(*) into @_BS_BM_A_minorspec
-from pv_cpcalculated 
-where 3Db_BS_BMax <= 6
-and Prodserial_id = myserial and datatype = 'A';
+		select count(*) into @_BS_BM_A_minorspec
+		from pv_cpcalculated 
+		where 3Db_BS_BMax <= 6
+		and Prodserial_id = myserial and datatype = 'A';
 
-select count(*) into @_BS_BM_E_majorspec
-from pv_cpcalculated 
-where 3Db_BS_BMax <= 10
-and Prodserial_id = myserial and datatype = 'E';
-
-
-select count(*) into @_BS_BM_E_minorspec
-from pv_cpcalculated 
-where 3Db_BS_BMax <= 6
-and Prodserial_id = myserial and datatype = 'E';
- 
-select count(*) into @_BS_0_A_majorspec
-from pv_cpcalculated 
-where 3Db_BS_0 <= 10
-and Prodserial_id = myserial and datatype = 'A';
+		select count(*) into @_BS_0_A_majorspec
+		from pv_cpcalculated 
+		where 3Db_BS_0 <= 10
+		and Prodserial_id = myserial and datatype = 'A';
 
 
-select count(*) into @_BS_0_A_minorspec
-from pv_cpcalculated 
-where 3Db_BS_0 <= 6
-and Prodserial_id = myserial and datatype = 'A';
+		select count(*) into @_BS_0_A_minorspec
+		from pv_cpcalculated 
+		where 3Db_BS_0 <= 6
+		and Prodserial_id = myserial and datatype = 'A';
 
-select count(*) into @_BS_0_E_majorspec
-from pv_cpcalculated 
-where 3Db_BS_0 <= 10
-and Prodserial_id = myserial and datatype = 'E';
+		-- insert into calculated table
+		-- azimuth
+
+		delete from pv_speccalculated where Prodserial_Id = myserial and datatype = 'A';
+
+		 insert into pv_speccalculated(Prodserial_id,Test_id,datatype,TestDate,
+		  3dbBW_BM_spec,3dbBW_0_spec,
+		  10dbBW_BM_majorspec ,10dbBW_BM_minorspec,
+		  10dbBW_0_majorspec, 10dbBW_0_minorspec, 
+		  3dbBS_BM_majorspec , 3dbBS_BM_minorspec,
+		  3dbBS_0_majorspec ,3dbBS_0_minorspec )
+		  values
+		  (myserial,coTestId,'A',coTestDate,
+		  @_3dbBW_BM_A_spec,@_3dbBW_0_A_spec,
+		  @_10dbBW_BM_A_majorspec, @_10dbBW_BM_A_minorspec,
+		   @_10dbBW_0_A_majorspec, @_10dbBW_0_A_minorspec,
+		   @_BS_BM_A_majorspec,@_BS_BM_A_minorspec,
+		   @_BS_0_A_majorspec,@_BS_0_A_minorspec);
+
+end if;
+
+if ElevationDataPresent > 0 then 
+		select count(*) into @_3dbBW_BM_E_spec
+		from pv_cpcalculated 
+		where 3Db_BW_BMax >= 55 and 3Db_BW_BMax <= 110
+		and Prodserial_id = myserial and datatype = 'E';
+
+		select count(*) into @_3dbBW_0_E_spec
+		from pv_cpcalculated 
+		where 3Db_BW_0 >= 55 and 3Db_BW_0 <= 110
+		and Prodserial_id = myserial and datatype = 'E';
 
 
-select count(*) into @_BS_0_E_minorspec
-from pv_cpcalculated 
-where 3Db_BS_0 <= 6
-and Prodserial_id = myserial and datatype = 'E';
+		select count(*) into @_10dbBW_BM_E_majorspec
+		from pv_cpcalculated 
+		where 10Db_BW_BMax >= 100 and 10Db_BW_BMax <= 220
+		and Prodserial_id = myserial and datatype = 'E';
 
-# --------------CALCULATIONS END ----------------------
+		select count(*) into @_10dbBW_BM_E_minorspec
+		from pv_cpcalculated 
+		where 10Db_BW_BMax >= 110 and 10Db_BW_BMax <= 200
+		and Prodserial_id = myserial and datatype = 'E';
 
--- insert into calculated table
--- azimuth
+		select count(*) into @_10dbBW_0_E_majorspec
+		from pv_cpcalculated 
+		where 10Db_BW_0 >= 100 and 10Db_BW_0 <= 220
+		and Prodserial_id = myserial and datatype = 'E';
 
-delete from pv_speccalculated where Prodserial_Id = myserial;
+		select count(*) into @_10dbBW_0_E_minorspec
+		from pv_cpcalculated 
+		where 10Db_BW_0 >= 110 and 10Db_BW_0 <= 200
+		and Prodserial_id = myserial and datatype = 'E';
 
- insert into pv_speccalculated(Prodserial_id,Test_id,datatype,TestDate,
-  3dbBW_BM_spec,3dbBW_0_spec,
-  10dbBW_BM_majorspec ,10dbBW_BM_minorspec,
-  10dbBW_0_majorspec, 10dbBW_0_minorspec, 
-  3dbBS_BM_majorspec , 3dbBS_BM_minorspec,
-  3dbBS_0_majorspec ,3dbBS_0_minorspec )
-  values
-  (myserial,coTestId,'A',coTestDate,
-  @_3dbBW_BM_A_spec,@_3dbBW_0_A_spec,
-  @_10dbBW_BM_A_majorspec, @_10dbBW_BM_A_minorspec,
-   @_10dbBW_0_A_majorspec, @_10dbBW_0_A_minorspec,
-   @_BS_BM_A_majorspec,@_BS_BM_A_minorspec,
-   @_BS_0_A_majorspec,@_BS_0_A_minorspec);
-  
--- elevation
- insert into pv_speccalculated(Prodserial_id,Test_id,datatype,TestDate,
-  3dbBW_BM_spec,3dbBW_0_spec,
-  10dbBW_BM_majorspec ,10dbBW_BM_minorspec,
-  10dbBW_0_majorspec, 10dbBW_0_minorspec, 
-  3dbBS_BM_majorspec , 3dbBS_BM_minorspec,
-  3dbBS_0_majorspec ,3dbBS_0_minorspec )
-  values
-  (myserial,coTestId,'E',coTestDate,
-  @_3dbBW_BM_E_spec,@_3dbBW_0_E_spec,
-  @_10dbBW_BM_E_majorspec, @_10dbBW_BM_E_minorspec,
-   @_10dbBW_0_E_majorspec, @_10dbBW_0_E_minorspec,
-   @_BS_BM_E_majorspec,@_BS_BM_E_minorspec,
-   @_BS_0_E_majorspec,@_BS_0_E_minorspec);
+		select count(*) into @_BS_BM_E_majorspec
+		from pv_cpcalculated 
+		where 3Db_BS_BMax <= 10
+		and Prodserial_id = myserial and datatype = 'E';
+
+
+		select count(*) into @_BS_BM_E_minorspec
+		from pv_cpcalculated 
+		where 3Db_BS_BMax <= 6
+		and Prodserial_id = myserial and datatype = 'E';
+		 
+		select count(*) into @_BS_0_E_majorspec
+		from pv_cpcalculated 
+		where 3Db_BS_0 <= 10
+		and Prodserial_id = myserial and datatype = 'E';
+
+
+		select count(*) into @_BS_0_E_minorspec
+		from pv_cpcalculated 
+		where 3Db_BS_0 <= 6
+		and Prodserial_id = myserial and datatype = 'E';
+
+		# --------------CALCULATIONS END ----------------------
+
+		delete from pv_speccalculated where Prodserial_Id = myserial and datatype = 'E';
+		  
+		-- elevation
+		 insert into pv_speccalculated(Prodserial_id,Test_id,datatype,TestDate,
+		  3dbBW_BM_spec,3dbBW_0_spec,
+		  10dbBW_BM_majorspec ,10dbBW_BM_minorspec,
+		  10dbBW_0_majorspec, 10dbBW_0_minorspec, 
+		  3dbBS_BM_majorspec , 3dbBS_BM_minorspec,
+		  3dbBS_0_majorspec ,3dbBS_0_minorspec )
+		  values
+		  (myserial,coTestId,'E',coTestDate,
+		  @_3dbBW_BM_E_spec,@_3dbBW_0_E_spec,
+		  @_10dbBW_BM_E_majorspec, @_10dbBW_BM_E_minorspec,
+		   @_10dbBW_0_E_majorspec, @_10dbBW_0_E_minorspec,
+		   @_BS_BM_E_majorspec,@_BS_BM_E_minorspec,
+		   @_BS_0_E_majorspec,@_BS_0_E_minorspec);
+end if;
    
  END LOOP the_loop;
  
@@ -1888,26 +1937,22 @@ BEGIN
 
 declare A,B,C,D,E,cpdata decimal(40,20) default 0;
 if cDatatype = 'A' then
- select Amplitude into A from pv_hdata_azimuth h
- 	 where h.Prodserial_id = cProdSerialId and h.Frequency = freq and h.Angle = cAngle ;
--- select A;
- select Amplitude into B from pv_vdata_azimuth v
- 		 where v.Prodserial_id = cProdSerialId and v.Frequency = freq and v.Angle = cAngle ;
--- select B;
+	 select Amplitude into A from pv_hdata_azimuth h
+		 where h.Prodserial_id = cProdSerialId and h.Frequency = freq and h.Angle = cAngle ;
+	-- select A;
+	 select Amplitude into B from pv_vdata_azimuth v
+			 where v.Prodserial_id = cProdSerialId and v.Frequency = freq and v.Angle = cAngle ;
+	-- select B;
 else
-select Amplitude into A from pv_hdata_elevation h
- 	 where h.Prodserial_id = cProdSerialId and h.Frequency = freq and h.Angle = cAngle ;
--- select A;
- select Amplitude into B from pv_vdata_elevation v
- 		 where v.Prodserial_id = cProdSerialId and v.Frequency = freq and v.Angle = cAngle ;
--- select B;
+		select Amplitude into A from pv_hdata_elevation h
+			 where h.Prodserial_id = cProdSerialId and h.Frequency = freq and h.Angle = cAngle ;
+		-- select A;
+		 select Amplitude into B from pv_vdata_elevation v
+				 where v.Prodserial_id = cProdSerialId and v.Frequency = freq and v.Angle = cAngle ;
+		-- select B;
 end if;
 
-if A > B then
-	set C = A - B;
-else 
-	set C = B - A;
-end if;
+set C = ABS( A - B );
 
 -- select C;
 
@@ -2116,6 +2161,7 @@ DELIMITER $$
 CREATE PROCEDURE `pv_calc_gtcalculated`(
 gtTestId INT)
 BEGIN
+DECLARE gtDataPresent INT default 0;
 
 # 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
 	declare co_proc_id varchar(100) default 'pv_calc_gtcalculated';
@@ -2146,8 +2192,9 @@ if isDebug > 0 then
  
  
 # Declarations -end
+select count(*) into gtDataPresent from pv_gt_intermediate where Test_id = gtTestId; 
 
-
+if gtDataPresent > 0 then
 delete from pv_gt_calculated where Test_id = gtTestId;
 	  insert into pv_gt_calculated (Test_id,Frequency,TestDate, 
 									MAX_CP_0,MIN_CP_0,Window_0,
@@ -2161,7 +2208,8 @@ delete from pv_gt_calculated where Test_id = gtTestId;
 							from pv_gt_intermediate
 							where Test_id = gtTestId 
 							group by Frequency,Test_id,TestDate;
-                            
+ 
+ end if;  
 END$$
 
 DELIMITER;

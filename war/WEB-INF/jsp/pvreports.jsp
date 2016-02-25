@@ -109,32 +109,32 @@ function Redirect(){
 		var oper='${model.oper}';
 		nprecision=document.getElementById('precision').value;
 		if(oper!='gt'){
-		arrslnos=strslno.split(",");
-		for (var i=1;i<50;i++){
-			arrsel[i]=-1;
-		}
-		var i=0;
-		var j=0;
-				for (i=0;i<arrslnos.length;i++){
-					var slid=arrslnos[i];
-					console.log("slid="+slid);
-					if(document.getElementById(slid).checked){					
-						if(j==0){
-							selslno=arrslnos[i];
-							
+			arrslnos=strslno.split(",");
+			for (var i=1;i<50;i++){
+				arrsel[i]=-1;
+			}
+			var i=0;
+			var j=0;
+					for (i=0;i<arrslnos.length;i++){
+						var slid=arrslnos[i];
+						console.log("slid="+slid);
+						if(document.getElementById(slid).checked){					
+							if(j==0){
+								selslno=arrslnos[i];
+								
+								}
+							else{
+								selslno=selslno+','+arrslnos[i];
 							}
-						else{
-							selslno=selslno+','+arrslnos[i];
+							arrsel[j]=arrslnos[i];
+							j=j+1;
+							}	
 						}
-						arrsel[j]=arrslnos[i];
-						j=j+1;
-						}	
+					if(selslno=="")
+					{
+						alert("Serial Nos not selected");
+						return;
 					}
-				if(selslno=="")
-				{
-					alert("Serial Nos not selected");
-					return;
-				}
 		}
 		 if(document.getElementById('0d').checked)
 			deg='0d';
@@ -175,44 +175,35 @@ function Redirect(){
 			 
 			}
 			if(oper=='bsbl' )
-			{				
-				url="/birt-viewer/frameset?__report=verdant/3dbWithCP_report.rptdesign&deg="+deg+"&TestId="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
+			{	
+				if(typ=="A"){
+				url="/birt-viewer/frameset?__report=verdant/AzimuthBeamSquintAndBackloabeCalc.rptdesign&deg="+deg+"&TestId="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
 				 "&s1="+arrsel[0]+"&s2="+arrsel[1]+"&s3="+arrsel[2]+"&s4="+arrsel[3]+"&s5="+arrsel[4]+"&s6="+arrsel[5]+"&s7="+arrsel[6]+"&s8="+arrsel[7]+"&s9="+arrsel[8]+"&s10="+arrsel[9]+
 				 "&s11="+arrsel[10]+"&s12="+arrsel[11]+"&s13="+arrsel[12]+"&s14="+arrsel[13]+"&s15="+arrsel[14]+"&s16="+arrsel[15]+"&s17="+arrsel[16]+"&s18="+arrsel[17]+"&s19="+arrsel[18]+"&s20="+arrsel[19]+
 				 "&s21="+arrsel[20]+"&s22="+arrsel[21]+"&s23="+arrsel[22]+"&s24="+arrsel[23]+"&s25="+arrsel[24]+"&s26="+arrsel[25]+"&s27="+arrsel[26]+"&s28="+arrsel[27]+"&s29="+arrsel[28]+"&s30="+arrsel[39]+
 				 "&s31="+arrsel[30]+"&s32="+arrsel[31]+"&s33="+arrsel[32]+"&s34="+arrsel[33]+"&s35="+arrsel[34]+"&s36="+arrsel[35]+"&s37="+arrsel[36]+"&s38="+arrsel[37]+"&s39="+arrsel[38]+"&s40="+arrsel[39]+
 				 "&s41="+arrsel[40]+"&s42="+arrsel[41]+"&s43="+arrsel[42]+"&s44="+arrsel[43]+"&s45="+arrsel[44]+"&s46="+arrsel[45]+"&s47="+arrsel[46]+"&s48="+arrsel[47]+"&s49="+arrsel[48]+"&s50="+arrsel[49];
-			 
+				}
+				if(typ=="E"){
+					url="/birt-viewer/frameset?__report=verdant/ElevationBeamSquintAndBackloabeCalc.rptdesign&deg="+deg+"&TestId="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
+					 "&s1="+arrsel[0]+"&s2="+arrsel[1]+"&s3="+arrsel[2]+"&s4="+arrsel[3]+"&s5="+arrsel[4]+"&s6="+arrsel[5]+"&s7="+arrsel[6]+"&s8="+arrsel[7]+"&s9="+arrsel[8]+"&s10="+arrsel[9]+
+					 "&s11="+arrsel[10]+"&s12="+arrsel[11]+"&s13="+arrsel[12]+"&s14="+arrsel[13]+"&s15="+arrsel[14]+"&s16="+arrsel[15]+"&s17="+arrsel[16]+"&s18="+arrsel[17]+"&s19="+arrsel[18]+"&s20="+arrsel[19]+
+					 "&s21="+arrsel[20]+"&s22="+arrsel[21]+"&s23="+arrsel[22]+"&s24="+arrsel[23]+"&s25="+arrsel[24]+"&s26="+arrsel[25]+"&s27="+arrsel[26]+"&s28="+arrsel[27]+"&s29="+arrsel[28]+"&s30="+arrsel[39]+
+					 "&s31="+arrsel[30]+"&s32="+arrsel[31]+"&s33="+arrsel[32]+"&s34="+arrsel[33]+"&s35="+arrsel[34]+"&s36="+arrsel[35]+"&s37="+arrsel[36]+"&s38="+arrsel[37]+"&s39="+arrsel[38]+"&s40="+arrsel[39]+
+					 "&s41="+arrsel[40]+"&s42="+arrsel[41]+"&s43="+arrsel[42]+"&s44="+arrsel[43]+"&s45="+arrsel[44]+"&s46="+arrsel[45]+"&s47="+arrsel[46]+"&s48="+arrsel[47]+"&s49="+arrsel[48]+"&s50="+arrsel[49];
+					}
+				
 			}
 			if(oper=='axial' )
 			{	
-				if(typ=='EP'){
 				
-					url="/birt-viewer/frameset?__report=verdant/3dbWithCP_report.rptdesign&deg="+deg+"&TestId="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
+					url="/birt-viewer/frameset?__report=verdant/AxialRatioMeasurement.rptdesign&deg="+deg+"&TestId="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
 					 "&s1="+arrsel[0]+"&s2="+arrsel[1]+"&s3="+arrsel[2]+"&s4="+arrsel[3]+"&s5="+arrsel[4]+"&s6="+arrsel[5]+"&s7="+arrsel[6]+"&s8="+arrsel[7]+"&s9="+arrsel[8]+"&s10="+arrsel[9]+
 					 "&s11="+arrsel[10]+"&s12="+arrsel[11]+"&s13="+arrsel[12]+"&s14="+arrsel[13]+"&s15="+arrsel[14]+"&s16="+arrsel[15]+"&s17="+arrsel[16]+"&s18="+arrsel[17]+"&s19="+arrsel[18]+"&s20="+arrsel[19]+
 					 "&s21="+arrsel[20]+"&s22="+arrsel[21]+"&s23="+arrsel[22]+"&s24="+arrsel[23]+"&s25="+arrsel[24]+"&s26="+arrsel[25]+"&s27="+arrsel[26]+"&s28="+arrsel[27]+"&s29="+arrsel[28]+"&s30="+arrsel[39]+
 					 "&s31="+arrsel[30]+"&s32="+arrsel[31]+"&s33="+arrsel[32]+"&s34="+arrsel[33]+"&s35="+arrsel[34]+"&s36="+arrsel[35]+"&s37="+arrsel[36]+"&s38="+arrsel[37]+"&s39="+arrsel[38]+"&s40="+arrsel[39]+
 					 "&s41="+arrsel[40]+"&s42="+arrsel[41]+"&s43="+arrsel[42]+"&s44="+arrsel[43]+"&s45="+arrsel[44]+"&s46="+arrsel[45]+"&s47="+arrsel[46]+"&s48="+arrsel[47]+"&s49="+arrsel[48]+"&s50="+arrsel[49];
-				}
-				if(typ=='EN'){
-					
-					url="/birt-viewer/frameset?__report=verdant/3dbWithCP_report.rptdesign&deg="+deg+"&TestId="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
-					 "&s1="+arrsel[0]+"&s2="+arrsel[1]+"&s3="+arrsel[2]+"&s4="+arrsel[3]+"&s5="+arrsel[4]+"&s6="+arrsel[5]+"&s7="+arrsel[6]+"&s8="+arrsel[7]+"&s9="+arrsel[8]+"&s10="+arrsel[9]+
-					 "&s11="+arrsel[10]+"&s12="+arrsel[11]+"&s13="+arrsel[12]+"&s14="+arrsel[13]+"&s15="+arrsel[14]+"&s16="+arrsel[15]+"&s17="+arrsel[16]+"&s18="+arrsel[17]+"&s19="+arrsel[18]+"&s20="+arrsel[19]+
-					 "&s21="+arrsel[20]+"&s22="+arrsel[21]+"&s23="+arrsel[22]+"&s24="+arrsel[23]+"&s25="+arrsel[24]+"&s26="+arrsel[25]+"&s27="+arrsel[26]+"&s28="+arrsel[27]+"&s29="+arrsel[28]+"&s30="+arrsel[39]+
-					 "&s31="+arrsel[30]+"&s32="+arrsel[31]+"&s33="+arrsel[32]+"&s34="+arrsel[33]+"&s35="+arrsel[34]+"&s36="+arrsel[35]+"&s37="+arrsel[36]+"&s38="+arrsel[37]+"&s39="+arrsel[38]+"&s40="+arrsel[39]+
-					 "&s41="+arrsel[40]+"&s42="+arrsel[41]+"&s43="+arrsel[42]+"&s44="+arrsel[43]+"&s45="+arrsel[44]+"&s46="+arrsel[45]+"&s47="+arrsel[46]+"&s48="+arrsel[47]+"&s49="+arrsel[48]+"&s50="+arrsel[49];
-				}
-				if(typ=='E'){
-					
-					url="/birt-viewer/frameset?__report=verdant/3dbWithCP_report.rptdesign&deg="+deg+"&TestId="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
-					 "&s1="+arrsel[0]+"&s2="+arrsel[1]+"&s3="+arrsel[2]+"&s4="+arrsel[3]+"&s5="+arrsel[4]+"&s6="+arrsel[5]+"&s7="+arrsel[6]+"&s8="+arrsel[7]+"&s9="+arrsel[8]+"&s10="+arrsel[9]+
-					 "&s11="+arrsel[10]+"&s12="+arrsel[11]+"&s13="+arrsel[12]+"&s14="+arrsel[13]+"&s15="+arrsel[14]+"&s16="+arrsel[15]+"&s17="+arrsel[16]+"&s18="+arrsel[17]+"&s19="+arrsel[18]+"&s20="+arrsel[19]+
-					 "&s21="+arrsel[20]+"&s22="+arrsel[21]+"&s23="+arrsel[22]+"&s24="+arrsel[23]+"&s25="+arrsel[24]+"&s26="+arrsel[25]+"&s27="+arrsel[26]+"&s28="+arrsel[27]+"&s29="+arrsel[28]+"&s30="+arrsel[39]+
-					 "&s31="+arrsel[30]+"&s32="+arrsel[31]+"&s33="+arrsel[32]+"&s34="+arrsel[33]+"&s35="+arrsel[34]+"&s36="+arrsel[35]+"&s37="+arrsel[36]+"&s38="+arrsel[37]+"&s39="+arrsel[38]+"&s40="+arrsel[39]+
-					 "&s41="+arrsel[40]+"&s42="+arrsel[41]+"&s43="+arrsel[42]+"&s44="+arrsel[43]+"&s45="+arrsel[44]+"&s46="+arrsel[45]+"&s47="+arrsel[46]+"&s48="+arrsel[47]+"&s49="+arrsel[48]+"&s50="+arrsel[49];
-				}
+			
 			}
 			
 			
@@ -227,7 +218,7 @@ function Redirect(){
 					deg='M45';
 				
 				var serialcnt='${model.serialcnt}';
-				url="/birt-viewer/frameset?__report=verdant/GainMeasurement.rptdesign&TestId="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+"deg="+deg+"&scount="+serialcnt;
+				url="/birt-viewer/frameset?__report=verdant/GainTrackingMeasurement.rptdesign&TestId="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+"deg="+deg+"&scount="+serialcnt;
 				
 			}
 			
