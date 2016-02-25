@@ -2056,7 +2056,7 @@ if isDebug > 0 then
 	call debug(l_proc_id,'in spPV_GT','I','I');
  end if;
 
-
+call pv_calc_gtcalculated(testid);
 -- select nprecision into prec from fwk_company;
 
  select frequnit into @unt from pv_testdata where test_id=testid;
@@ -2212,9 +2212,7 @@ delete from pv_gt_calculated where Test_id = gtTestId;
 							group by Frequency,Test_id,TestDate;
  
  end if;  
-END$$
-
-DELIMITER;
+END;
 
 
 
