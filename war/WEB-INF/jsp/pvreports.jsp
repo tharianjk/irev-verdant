@@ -146,7 +146,7 @@ function Redirect(){
 			var url="";
 			if(oper=='threedb' )
 			{				
-				 url="/birt-viewer/frameset?__report=verdant/3dbBeamWidthCalculation.rptdesign&deg="+deg+"&TestId="+testid+"&type=3&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
+				 url="/birt-viewer/frameset?__report=verdant/3dbBeamWidthCalculation.rptdesign&deg="+deg+"&TestId="+testid+"&typ=3&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
 				 "&s1="+arrsel[0]+"&s2="+arrsel[1]+"&s3="+arrsel[2]+"&s4="+arrsel[3]+"&s5="+arrsel[4]+"&s6="+arrsel[5]+"&s7="+arrsel[6]+"&s8="+arrsel[7]+"&s9="+arrsel[8]+"&s10="+arrsel[9]+
 				 "&s11="+arrsel[10]+"&s12="+arrsel[11]+"&s13="+arrsel[12]+"&s14="+arrsel[13]+"&s15="+arrsel[14]+"&s16="+arrsel[15]+"&s17="+arrsel[16]+"&s18="+arrsel[17]+"&s19="+arrsel[18]+"&s20="+arrsel[19]+
 				 "&s21="+arrsel[20]+"&s22="+arrsel[21]+"&s23="+arrsel[22]+"&s24="+arrsel[23]+"&s25="+arrsel[24]+"&s26="+arrsel[25]+"&s27="+arrsel[26]+"&s28="+arrsel[27]+"&s29="+arrsel[28]+"&s30="+arrsel[39]+
@@ -156,7 +156,7 @@ function Redirect(){
 			}
 			else if(oper=='tendb' )
 			{				
-				url="/birt-viewer/frameset?__report=verdant/10dbBeamWidthCalculation.rptdesign&deg="+deg+"&TestId="+testid+"&type=10&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
+				url="/birt-viewer/frameset?__report=verdant/10dbBeamWidthCalculation.rptdesign&deg="+deg+"&TestId="+testid+"&typ=10&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+
 				 "&s1="+arrsel[0]+"&s2="+arrsel[1]+"&s3="+arrsel[2]+"&s4="+arrsel[3]+"&s5="+arrsel[4]+"&s6="+arrsel[5]+"&s7="+arrsel[6]+"&s8="+arrsel[7]+"&s9="+arrsel[8]+"&s10="+arrsel[9]+
 				 "&s11="+arrsel[10]+"&s12="+arrsel[11]+"&s13="+arrsel[12]+"&s14="+arrsel[13]+"&s15="+arrsel[14]+"&s16="+arrsel[15]+"&s17="+arrsel[16]+"&s18="+arrsel[17]+"&s19="+arrsel[18]+"&s20="+arrsel[19]+
 				 "&s21="+arrsel[20]+"&s22="+arrsel[21]+"&s23="+arrsel[22]+"&s24="+arrsel[23]+"&s25="+arrsel[24]+"&s26="+arrsel[25]+"&s27="+arrsel[26]+"&s28="+arrsel[27]+"&s29="+arrsel[28]+"&s30="+arrsel[39]+

@@ -1594,6 +1594,7 @@ public boolean deletePVSerial(int id) {
 public String getPVFreqdatafile(String typ,int serialid,String datatype ){
 	 String sql="";
 	 String strfreqs="";
+	 logger.i
 	 if(typ.equals("H")){
 		 if(datatype.equals("A"))
 		 sql="select distinct frequency from pv_hdata_Azimuth where prodserial_id=? ";
