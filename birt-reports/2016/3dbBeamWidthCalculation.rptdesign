@@ -1834,7 +1834,7 @@ Antenna without Radome&#13;
                 <structure>
                     <property name="paramName">typ</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["typ"].value=3</value>
+                        <value type="javascript">params["typ"].value='3'</value>
                     </simple-property-list>
                 </structure>
                 <structure>
