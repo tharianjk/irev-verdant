@@ -26,7 +26,7 @@
  <table id="gttab" style="display:none"><tr><td>       	       
 		       <input type="radio" id="0" value="0d" name="optgt" checked>0 &#176;  &nbsp; &nbsp;&nbsp;
 		       <input type="radio" id="P45" value="P45" name="optgt" >+45 &#176; &nbsp; &nbsp;&nbsp;
-		       <input type="radio" id="M45" value="P45" name="optgt" >+45 &#176; &nbsp; &nbsp;&nbsp;
+		       <input type="radio" id="M45" value="M45" name="optgt" >-45 &#176; &nbsp; &nbsp;&nbsp;
 		       </td></tr>
 </table>
  </td>
