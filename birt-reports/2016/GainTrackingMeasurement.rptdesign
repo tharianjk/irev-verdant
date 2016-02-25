@@ -1132,12 +1132,8 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="1027">
-                <property name="width">2cm</property>
-            </column>
-            <column id="1028">
-                <property name="width">2cm</property>
-            </column>
+            <column id="1027"/>
+            <column id="1028"/>
             <column id="1029"/>
             <column id="1030"/>
             <column id="1031"/>
@@ -1241,6 +1237,7 @@ where TD.Test_id=?]]></xml-property>
                         </label>
                     </cell>
                     <cell id="966">
+                        <property name="verticalAlign">middle</property>
                         <label id="1092">
                             <text-property name="text">Freq(GHz)</text-property>
                         </label>
@@ -1686,12 +1683,8 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="1257">
-                <property name="width">2cm</property>
-            </column>
-            <column id="1258">
-                <property name="width">2cm</property>
-            </column>
+            <column id="1257"/>
+            <column id="1258"/>
             <column id="1259"/>
             <column id="1260"/>
             <column id="1261"/>
@@ -2243,12 +2236,8 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="1393">
-                <property name="width">2cm</property>
-            </column>
-            <column id="1394">
-                <property name="width">2cm</property>
-            </column>
+            <column id="1393"/>
+            <column id="1394"/>
             <column id="1395"/>
             <column id="1396"/>
             <column id="1397"/>
@@ -2484,12 +2473,8 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="1540">
-                <property name="width">2cm</property>
-            </column>
-            <column id="1541">
-                <property name="width">2cm</property>
-            </column>
+            <column id="1540"/>
+            <column id="1541"/>
             <column id="1542"/>
             <column id="1543"/>
             <column id="1544"/>
@@ -2931,12 +2916,8 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="1658">
-                <property name="width">2cm</property>
-            </column>
-            <column id="1659">
-                <property name="width">2cm</property>
-            </column>
+            <column id="1658"/>
+            <column id="1659"/>
             <column id="1660"/>
             <column id="1661"/>
             <column id="1662"/>
@@ -3272,12 +3253,8 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="1704">
-                <property name="width">2cm</property>
-            </column>
-            <column id="1705">
-                <property name="width">2cm</property>
-            </column>
+            <column id="1704"/>
+            <column id="1705"/>
             <column id="1706"/>
             <column id="1707"/>
             <column id="1708"/>
@@ -3513,12 +3490,8 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="1814">
-                <property name="width">2cm</property>
-            </column>
-            <column id="1815">
-                <property name="width">2cm</property>
-            </column>
+            <column id="1814"/>
+            <column id="1815"/>
             <column id="1816"/>
             <column id="1817"/>
             <column id="1818"/>
@@ -3960,12 +3933,8 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="1932">
-                <property name="width">2cm</property>
-            </column>
-            <column id="1933">
-                <property name="width">2cm</property>
-            </column>
+            <column id="1932"/>
+            <column id="1933"/>
             <column id="1934"/>
             <column id="1935"/>
             <column id="1936"/>
@@ -4301,12 +4270,8 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="1978">
-                <property name="width">2cm</property>
-            </column>
-            <column id="1979">
-                <property name="width">2cm</property>
-            </column>
+            <column id="1978"/>
+            <column id="1979"/>
             <column id="1980"/>
             <column id="1981"/>
             <column id="1982"/>
