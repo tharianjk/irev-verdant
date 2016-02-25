@@ -218,7 +218,7 @@ function Redirect(){
 					deg='M45';
 				
 				var serialcnt='${model.serialcnt}';
-				url="/birt-viewer/frameset?__report=verdant/GainTrackingMeasurement.rptdesign&TestId="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+"deg="+deg+"&scount="+serialcnt;
+				url="/birt-viewer/frameset?__report=verdant/GainTrackingMeasurement.rptdesign&TestId="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+"&deg="+deg+"&scount="+serialcnt;
 				
 			}
 			

@@ -1546,8 +1546,7 @@ public boolean deletePVSerial(int id) {
 			   getJdbcTemplate().update(sql);
 			   sql = " delete from pv_gmcalculated where Prodserial_id=" + id;
 			   getJdbcTemplate().update(sql);
-			   sql = " delete from pv_gt_calculated where Prodserial_id=" + id;
-			   getJdbcTemplate().update(sql);
+			   
 			   sql = " delete from pv_arcalculated where Prodserial_id=" + id;
 			   getJdbcTemplate().update(sql);
 			   sql = "delete from pv_cpcalculated where Prodserial_id=" + id;
