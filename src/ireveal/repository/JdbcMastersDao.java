@@ -1381,9 +1381,11 @@ if(strmode.equals("new")){
 				sqltestfreq,  
 				new Object[] {testdata.getTestid(), testfreqlist.get(i).getFrequency() });
 	  		}
-			else{
-				logger.info(" PVSerialData 3 testdata.getFiletype()"+testdata.getFiletype());
+			else
+			{
+				logger.info(" PVSerialData 3 testdata.getFiletype()"+testdata.getFiletype()+"datatype ="+datatype );
 				
+				logger.info(" PVSerialData 3 testdata.getFiletype()"+testdata.getFiletype()+"datatype ="+datatype );	
 				if(testdata.getFiletype().equals("V"))
 				{
 					logger.info(" PVSerialData 4");
@@ -1438,7 +1440,8 @@ if(strmode.equals("new")){
 	  	
 	 // datalog
 	  	 String sqltest="";
-	  	logger.info(" PVSerialData 8");
+	  	
+	  	logger.info(" PVSerialData 8 testdata.getFiletype()"+testdata.getFiletype()+"datatype ="+datatype );
 	  	if(testdata.getFiletype().equals("V"))
 	  	{
 	  		if(datatype.equals("A")){
@@ -1470,6 +1473,7 @@ if(strmode.equals("new")){
 		  			sqltest="insert into pv_Hdata_GM (Prodserial_id,Frequency,Angle,Amplitude) values (?,?,?,?)"; 
 		  		}
 	  	}
+	  	logger.info(" PVSerialData 3 sqltest"+sqltest );
 	  	for (int i=0;i<dataloglist.size();i++){	
 	  		
 		getJdbcTemplate().update(  
@@ -1590,6 +1594,7 @@ public boolean deletePVSerial(int id) {
 public String getPVFreqdatafile(String typ,int serialid,String datatype ){
 	 String sql="";
 	 String strfreqs="";
+	 logger.info("typ="+typ+" serialid="+serialid+" datatype="+datatype);
 	 if(typ.equals("H")){
 		 if(datatype.equals("A"))
 		 sql="select distinct frequency from pv_hdata_Azimuth where prodserial_id=? ";

@@ -178,7 +178,7 @@ progress_clear();
 		</tr>
         </table> 
         </td>
-  <c:if test="${hefreq!='' || vefreq !=''  || hafreq !=''  || vafreq !=''  || gmfreq !=''  || htfreq !=''  || vtfreq !='' }">
+  <c:if test="${hefreq!='' || vefreq !=''  || hafreq !=''  || vafreq !=''  || gmfreq !=''  || htfreq !=''  || vtfreq !='' || hmfreq !=''  || vmfreq !='' }">
  <td align="center"> <b> <u>Imported Data </u></b> 
 		<table id="listtab"  border="1" cellpadding="1" cellspacing="2" style="width: 500px;vertical-align:top;">
 		
