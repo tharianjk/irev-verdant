@@ -580,10 +580,10 @@ public class PVSerialImportController extends SimpleFormController{
 	    	hmfreq=mastersservice.getPVFreqdatafile("H",serialid,"M");
 	    	vtfreq=mastersservice.getPVFreqdatafile("V",serialid,"T");
 	    	htfreq=mastersservice.getPVFreqdatafile("H",serialid,"T");
-	    	
+	    	int gcnt=mastersservice.checkGainSTD(testid);
 	        referenceData.put("prodserlist", prodserlist);
 	        referenceData.put("testtype", testtype);       
-	       
+	        referenceData.put("gcnt", gcnt);       
 	        referenceData.put("hefreq", hefreq);
 	        referenceData.put("vefreq", vefreq);
 	        referenceData.put("hafreq", hafreq);

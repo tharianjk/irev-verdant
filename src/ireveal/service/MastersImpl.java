@@ -300,6 +300,10 @@ public int PV_serialcount(int testid) {
 public int PV_CalcProcSum(int testid) {
 	return mastersdao.PV_CalcProcSum(testid);
 }
+@Override
+public int checkGainSTD(int testid) {
+	return mastersdao.checkGainSTD(testid);
+}
 
 
 

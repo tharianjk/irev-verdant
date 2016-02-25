@@ -266,35 +266,51 @@ var treemode='<%=request.getParameter("treemode")%>';
     			        	}
     			        	else{
     			        		if(pvtype=="GM"){
-    			        			console.log("GM ="+ parent.document.getElementById("gmreports").style.display);
     			        			parent.document.getElementById("rset").style.display="none";
     			        			parent.document.getElementById("vreports").style.display="block";
 		  			        	    //parent.document.getElementById("vreports").style.display="inline";
 		  			        	    parent.document.getElementById("reports").style.display="none";
 		  			        	   // parent.document.getElementById("gmreports").style.display="block";
-		  			        	    parent.document.getElementById("gmreports").style.display="compact";
-		  			        	    parent.document.getElementById("gtreports").style.display="none";
-		  			        	    parent.document.getElementById("coreports").style.display="none";		  			        	    
+		  			        	    parent.document.getElementById("pv_rgm").style.display="block";
+		  			        	    parent.document.getElementById("pv_rgt").style.display="none";
+		  			        	    parent.document.getElementById("pv_r3db").style.display="none";	
+		  			        	    parent.document.getElementById("pv_r10db").style.display="none";
+		  			        	    parent.document.getElementById("pv_rbsbla").style.display="none";
+		  			        	    parent.document.getElementById("pv_rbsble").style.display="none";	
+		  			        	    parent.document.getElementById("pv_ra").style.display="none";
+		  			        	    parent.document.getElementById("pv_rpa").style.display="none";
+		  			        	    parent.document.getElementById("pv_rpe").style.display="none";	
     			        		}
     			        		else if(pvtype=="GT"){
-    			        			console.log("GT="+ parent.document.getElementById("gmreports").style.display);
+    			        			
     			        			parent.document.getElementById("rset").style.display="none";
     			        			parent.document.getElementById("vreports").style.display="block";
 		  			        	   // parent.document.getElementById("vreports").style.display="inline";
 		  			        	    parent.document.getElementById("reports").style.display="none";
-		  			        	    parent.document.getElementById("gmreports").style.display="none";
-		  			        	    //parent.document.getElementById("gtreports").style.display="block";
-		  			        	    parent.document.getElementById("gtreports").style.display="compact";
-		  			        	    parent.document.getElementById("coreports").style.display="none";
+		  			        	  parent.document.getElementById("pv_rgm").style.display="none";
+		  			        	    parent.document.getElementById("pv_rgt").style.display="block";
+		  			        	    parent.document.getElementById("pv_r3db").style.display="none";	
+		  			        	    parent.document.getElementById("pv_r10db").style.display="none";
+		  			        	    parent.document.getElementById("pv_rbsbla").style.display="none";
+		  			        	    parent.document.getElementById("pv_rbsble").style.display="none";	
+		  			        	    parent.document.getElementById("pv_ra").style.display="none";
+		  			        	    parent.document.getElementById("pv_rpa").style.display="none";
+		  			        	    parent.document.getElementById("pv_rpe").style.display="none";
     			        		}
     			        		else if(pvtype=="CO"){
     			        			console.log("CO");
     			        			parent.document.getElementById("rset").style.display="none";
 		  			        	    parent.document.getElementById("vreports").style.display="inline";
 		  			        	    parent.document.getElementById("reports").style.display="none";
-		  			        	    parent.document.getElementById("gmreports").style.display="none";
-		  			        	    parent.document.getElementById("gtreports").style.display="none";
-		  			        	    parent.document.getElementById("coreports").style.display="compact";
+		  			        	    parent.document.getElementById("pv_rgm").style.display="none";
+		  			        	    parent.document.getElementById("pv_rgt").style.display="none";
+		  			        	    parent.document.getElementById("pv_r3db").style.display="block";	
+		  			        	    parent.document.getElementById("pv_r10db").style.display="block";
+		  			        	    parent.document.getElementById("pv_rbsbla").style.display="block";
+		  			        	    parent.document.getElementById("pv_rbsble").style.display="block";	
+		  			        	    parent.document.getElementById("pv_ra").style.display="block";
+		  			        	    parent.document.getElementById("pv_rpa").style.display="block";
+		  			        	    parent.document.getElementById("pv_rpe").style.display="block";
     			        		}
     			        		else{
 		    			        	parent.document.getElementById("rset").style.display="none";

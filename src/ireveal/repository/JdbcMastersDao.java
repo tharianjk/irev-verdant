@@ -1848,6 +1848,13 @@ public int PV_serialcount(int testid){
 	 
 		return cnt;
   }
+  public  int checkGainSTD(int testid){
+	  logger.info("inside checkGainSTD testid="+testid); 
+	  int cnt=0;
+	  String sql="select count(*) from pv_gainstdhorn where test_id=?";
+	  cnt=getJdbcTemplate().queryForObject(sql, Integer.class,testid); 
+	  return cnt;
+  }
 }
 
 
