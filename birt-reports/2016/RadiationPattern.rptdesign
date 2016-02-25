@@ -781,8 +781,9 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[SELECT distinct TD.testproc,TD.TestDesc,TD.TestDate,TD.frequnit,TD.testcenter,TD.instruments,TD.calibration ,s.SerialNo,p.Productname,p.version
-FROM testdata TD inner join product_serial s on td.ProdSerial_id=S.Prodserial_id 
-inner join product p on s.Product_id=p.Product_id   where TD.Test_id=?]]></xml-property>
+FROM pv_testdata TD 
+inner join pv_prodserial s on td.test_id=S.test_id 
+inner join product p on p.Product_id=TD.Product_id   where TD.Test_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
