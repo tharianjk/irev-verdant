@@ -117,4 +117,5 @@ public interface MastersDao {
 	 public int PV_CalcProc(int testid,int serialid);
 	 public int PV_serialcount(int testid);
 	 public int PV_CalcProcSum(int testid);
+	 public  int checkGainSTD(int testid);
 }

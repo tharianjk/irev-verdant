@@ -1545,7 +1545,8 @@ public boolean deletePVSerial(int id) {
 	   String sql = ""; 
 	   boolean bln=true;
 		   try{
-			  
+			   sql="select test_id from pv_prodserial where Prodserial_id=?";
+			   int testid= getJdbcTemplate().queryForObject(sql,Integer.class,id);
 			   sql = " delete from pv_speccalculated where Prodserial_id=" + id;
 			   getJdbcTemplate().update(sql);
 			   sql = " delete from pv_gmcalculated where Prodserial_id=" + id;
@@ -1582,6 +1583,12 @@ public boolean deletePVSerial(int id) {
 			   sql = "delete from pv_prodserial where Prodserial_id=" + id;
 			   getJdbcTemplate().update(sql);
 			   
+			   sql="select count(*) from pv_prodserial where test_id=?";
+			   int cnt= getJdbcTemplate().queryForObject(sql,Integer.class,testid);
+			   if(cnt==0){
+				   sql = "delete from pv_testfreq where test_id=" + testid;
+				   getJdbcTemplate().update(sql);
+			   }
 		   }
 		   catch(Exception e){
 			   logger.error("Exception Product serial "+e.getMessage());
@@ -1840,6 +1847,13 @@ public int PV_serialcount(int testid){
 	     }
 	 
 		return cnt;
+  }
+  public  int checkGainSTD(int testid){
+	  logger.info("inside checkGainSTD testid="+testid); 
+	  int cnt=0;
+	  String sql="select count(*) from pv_gainstdhorn where test_id=?";
+	  cnt=getJdbcTemplate().queryForObject(sql, Integer.class,testid); 
+	  return cnt;
   }
 }
 

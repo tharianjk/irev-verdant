@@ -81,6 +81,8 @@ function progress_update( typ) {
 	}
 	}
 	
+	
+	
 	/*var filename=document.getElementById("filename").value;
 	if(filename==null || filename=="")
 		{
@@ -341,7 +343,7 @@ progress_clear();
 		<table>
 		<tr>
 	<td>	<input type="submit" id="more" value="Import" name="fmaction" class="myButton" onclick="progress_update('M');form1.submit();"/></td>
-	<td>	<input type="submit" id="done" value="Calculate" name="fmaction" class="myButton" onclick="progress_update('D');form1.submit();"/></td>
+	<td>	<input type="button" id="done" value="Calculate" name="fmaction" class="myButton" onclick="progress_update('D');fncalculate();"/></td>
 	<td>	<input type="submit" id="save" value="Save" name="fmaction" class="myButton" onclick="form1.submit();" style="visibility:hidden"/></td>
 		<td>
 		<table align="center" id="progressbar" style="display:none"><tr><td><b>Saving ....</b>
@@ -378,7 +380,7 @@ progress_clear();
 var mode='<%=request.getParameter("mode")%>';
 var testid='${testid}';
 var testtype='${testtype}';
-
+var gcnt='${gcnt}';
 console.log("testtype="+testtype);
 var check=1;
 $(document).ready( function () {	 
@@ -849,7 +851,19 @@ function fnCheck()
 
    
 }
-
+function fncalculate(){
+	
+		if(testtype=='GM' && gcnt=='0'){
+			alert("Gain of STD HORN not entered");
+			progress_stop();
+			return;
+		}
+		
+		$('#form1').append('<input type="hidden" name="fmaction " value="Calculate" />');
+		form1.submit();
+		
+	
+}
 
 </script>
 

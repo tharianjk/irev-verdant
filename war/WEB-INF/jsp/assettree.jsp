@@ -139,6 +139,7 @@ var treemode='<%=request.getParameter("treemode")%>';
        
        
                 $("#jsTreeComponent").bind("select_node.jstree", function (e, data) {
+                	console.log("click");
                 	var node = $.jstree._focused().get_selected();
                 	 treeType=node.attr('treeType')
                 	if(treeType!=1){
@@ -151,11 +152,13 @@ var treemode='<%=request.getParameter("treemode")%>';
     					atype=node.attr('atype');
     					var pvtype=node.attr('pvtype');
     					console.log("pvtype="+pvtype);
+    					console.log("selectedtype="+selectedtype);
     			        selectedsection=node.attr('assetId');
     			        if(selectedtype!=1)
     			        selectedparenttype=parent_node.attr('atype');
     			        //console.log(" selectedparenttype ="+selectedparenttype)
-    			        if(selectedtype==4){
+    			        if(selectedtype==4)
+    			        {
     			        	//parent.document.getElementById("pm").style.display="block";
     			        if ((atype=="A") )
     			        	{
@@ -244,6 +247,7 @@ var treemode='<%=request.getParameter("treemode")%>';
 			        	  parent.document.getElementById("apt").style.display="none";
 			        	}
     			        }
+    			        
     			        else
     			        	{
     			        	console.log("atype ="+atype);
@@ -263,27 +267,50 @@ var treemode='<%=request.getParameter("treemode")%>';
     			        	else{
     			        		if(pvtype=="GM"){
     			        			parent.document.getElementById("rset").style.display="none";
-		  			        	    parent.document.getElementById("vreports").style.display="inline";
+    			        			parent.document.getElementById("vreports").style.display="block";
+		  			        	    //parent.document.getElementById("vreports").style.display="inline";
 		  			        	    parent.document.getElementById("reports").style.display="none";
-		  			        	    parent.document.getElementById("gmreports").style.display="compact";
-		  			        	    parent.document.getElementById("gtreports").style.display="none";
-		  			        	    parent.document.getElementById("coreports").style.display="none";		  			        	    
+		  			        	   // parent.document.getElementById("gmreports").style.display="block";
+		  			        	    parent.document.getElementById("pv_rgm").style.display="block";
+		  			        	    parent.document.getElementById("pv_rgt").style.display="none";
+		  			        	    parent.document.getElementById("pv_r3db").style.display="none";	
+		  			        	    parent.document.getElementById("pv_r10db").style.display="none";
+		  			        	    parent.document.getElementById("pv_rbsbla").style.display="none";
+		  			        	    parent.document.getElementById("pv_rbsble").style.display="none";	
+		  			        	    parent.document.getElementById("pv_ra").style.display="none";
+		  			        	    parent.document.getElementById("pv_rpa").style.display="none";
+		  			        	    parent.document.getElementById("pv_rpe").style.display="none";	
     			        		}
     			        		else if(pvtype=="GT"){
+    			        			
     			        			parent.document.getElementById("rset").style.display="none";
-		  			        	    parent.document.getElementById("vreports").style.display="inline";
+    			        			parent.document.getElementById("vreports").style.display="block";
+		  			        	   // parent.document.getElementById("vreports").style.display="inline";
 		  			        	    parent.document.getElementById("reports").style.display="none";
-		  			        	    parent.document.getElementById("gmreports").style.display="none";
-		  			        	    parent.document.getElementById("gtreports").style.display="compact";
-		  			        	    parent.document.getElementById("coreports").style.display="none";
+		  			        	  parent.document.getElementById("pv_rgm").style.display="none";
+		  			        	    parent.document.getElementById("pv_rgt").style.display="block";
+		  			        	    parent.document.getElementById("pv_r3db").style.display="none";	
+		  			        	    parent.document.getElementById("pv_r10db").style.display="none";
+		  			        	    parent.document.getElementById("pv_rbsbla").style.display="none";
+		  			        	    parent.document.getElementById("pv_rbsble").style.display="none";	
+		  			        	    parent.document.getElementById("pv_ra").style.display="none";
+		  			        	    parent.document.getElementById("pv_rpa").style.display="none";
+		  			        	    parent.document.getElementById("pv_rpe").style.display="none";
     			        		}
     			        		else if(pvtype=="CO"){
+    			        			console.log("CO");
     			        			parent.document.getElementById("rset").style.display="none";
 		  			        	    parent.document.getElementById("vreports").style.display="inline";
 		  			        	    parent.document.getElementById("reports").style.display="none";
-		  			        	    parent.document.getElementById("gmreports").style.display="none";
-		  			        	    parent.document.getElementById("gtreports").style.display="none";
-		  			        	    parent.document.getElementById("coreports").style.display="compact";
+		  			        	    parent.document.getElementById("pv_rgm").style.display="none";
+		  			        	    parent.document.getElementById("pv_rgt").style.display="none";
+		  			        	    parent.document.getElementById("pv_r3db").style.display="block";	
+		  			        	    parent.document.getElementById("pv_r10db").style.display="block";
+		  			        	    parent.document.getElementById("pv_rbsbla").style.display="block";
+		  			        	    parent.document.getElementById("pv_rbsble").style.display="block";	
+		  			        	    parent.document.getElementById("pv_ra").style.display="block";
+		  			        	    parent.document.getElementById("pv_rpa").style.display="block";
+		  			        	    parent.document.getElementById("pv_rpe").style.display="block";
     			        		}
     			        		else{
 		    			        	parent.document.getElementById("rset").style.display="none";

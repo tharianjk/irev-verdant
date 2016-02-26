@@ -339,25 +339,21 @@ dialog.dialog( "open" );
 			</li>
 		<li id="vreports" title="VT-JK S10 L ATP-2 REV 00" style="display:none"><a href="#"><b> Reports</b></a>
 		
-			<ul id="gmreports">
-			    <li><a rel="Gain Measurement" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">Gain Measurement</a> </li>
-				
-			</ul>
-			<ul id="gtreports">
-			    <li><a rel="Gain Measurement" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gt');">Gain Tracking</a> </li>
-			</ul>
-			<ul id="coreports">
-			<li><a rel="three_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('three_e');">3dB beamwidth</a> </li>
+			   
+			<ul>
+			 <li><a rel="Gain Measurement" id="pv_rgm" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">Gain Measurement</a> </li>			
+			 <li><a rel="Gain Tracking" id="pv_rgt" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gt');">Gain Tracking</a> </li>			
+			<li><a rel="three_e" id="pv_r3db" class="menuarray" TARGET="AppBody" onclick="fnsetstat('three_e');">3dB beamwidth</a> </li>
 			<!-- <li><a rel="three_a" class="menuarray" TARGET="AppBody" onclick="fnsetstat('three_a');">3dB beamwidth Elevation</a> </li>
-			<li><a rel="ten_a" class="menuarray" TARGET="AppBody" onclick="fnsetstat('ten_a');">10dB beamwidth Azimuth</a> </li> -->
-			<li><a rel="ten_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('ten_e');">10 dB beamwidth</a> </li>
-			<li><a rel="a_bs_bl" class="menuarray" TARGET="AppBody" onclick="fnsetstat('a_bs_bl');"> Azimuth Beam Squint and Backlobe level</a> </li>
-			<li><a rel="e_bs_bl" class="menuarray" TARGET="AppBody" onclick="fnsetstat('e_bs_bl');">Elevation Beam Squint and Backlobe level</a> </li> 
-			<li><a rel="axial_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('axial_e');">Axial Ratio Measurement </a> </li>
+			<li><a rel="ten_a"  class="menuarray" TARGET="AppBody" onclick="fnsetstat('ten_a');">10dB beamwidth Azimuth</a> </li> -->
+			<li><a rel="ten_e" id="pv_r10db" class="menuarray" TARGET="AppBody" onclick="fnsetstat('ten_e');">10 dB beamwidth</a> </li>
+			<li><a rel="a_bs_bl" id="pv_rbsbla" class="menuarray" TARGET="AppBody" onclick="fnsetstat('a_bs_bl');"> Azimuth Beam Squint and Backlobe level</a> </li>
+			<li><a rel="e_bs_bl" id="pv_rbsble" class="menuarray" TARGET="AppBody" onclick="fnsetstat('e_bs_bl');">Elevation Beam Squint and Backlobe level</a> </li> 
+			<li><a rel="axial_e" id="pv_ra" class="menuarray" TARGET="AppBody" onclick="fnsetstat('axial_e');">Axial Ratio Measurement </a> </li>
 			<!-- <li><a rel="axial_ep" class="menuarray" TARGET="AppBody" onclick="fnsetstat('axial_ep');">Axial Ratio Measurement +45 DEG</a> </li>
 			<li><a rel="axial_en" class="menuarray" TARGET="AppBody" onclick="fnsetstat('axial_en');">Axial Ratio Measurement -45 DEG</a> </li> -->
-			<li><a rel="polar_a" class="menuarray" TARGET="AppBody" onclick="fnsetstat('pv_polar_a');">Polar Plot Azimuth</a> </li>
-			<li><a rel="polar_e" class="menuarray" TARGET="AppBody" onclick="fnsetstat('pv_polar_e');">Polar Plot Elevation</a> </li>
+			<li><a rel="polar_a" id="pv_rpa" class="menuarray" TARGET="AppBody" onclick="fnsetstat('pv_polar_a');">Azimuth Radiation Pattern </a> </li>
+			<li><a rel="polar_e" id="pv_rpe"class="menuarray" TARGET="AppBody" onclick="fnsetstat('pv_polar_e');">Elevation Radiation Pattern</a> </li>
 			<!-- <li><a rel="Gain Measurement" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gt');">Gain Tracking</a> </li>
 			<li><a rel="Gain Measurement" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">Gain Measurement</a> </li>
 		    -->

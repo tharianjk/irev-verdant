@@ -30,7 +30,7 @@
 				<tr>
 				    <th scope="col"> No </th>
 					<th scope="col"> Serial </th>
-					<th scope="col"> Calculation </th>
+					<th scope="col"> Calculated ? </th>
 					<th scope="col">  </th>
 				</tr>
 	</thead>

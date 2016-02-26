@@ -23,12 +23,12 @@
 		       <input type="radio" id="all" value="0d90d" name="optdb" checked >All &nbsp; &nbsp;&nbsp; -->
 		       </td></tr>
 </table>
- <table id="gttab" style="display:none"><tr><td>       	       
+ <!-- <table id="gttab" style="display:none"><tr><td>       	       
 		       <input type="radio" id="0" value="0d" name="optgt" checked>0 &#176;  &nbsp; &nbsp;&nbsp;
 		       <input type="radio" id="P45" value="P45" name="optgt" >+45 &#176; &nbsp; &nbsp;&nbsp;
 		       <input type="radio" id="M45" value="M45" name="optgt" >-45 &#176; &nbsp; &nbsp;&nbsp;
 		       </td></tr>
-</table>
+</table> -->
  </td>
  <tr>
           <td >Precision: 
@@ -75,13 +75,13 @@ $(document).ready(function(){
 	var typ='${model.typ}';
 	console.log('oper='+oper);
 	document.getElementById("precision").value='${model.nprecision}';
-	if(oper=='threedb' || oper=='tendb' || oper=='axial' || oper=='bsbl'){
+	if(oper=='threedb' || oper=='tendb'  || oper=='bsbl'){
 		document.getElementById("dbtab").style.display="block";
-		document.getElementById("gttab").style.display="none";
+		//document.getElementById("gttab").style.display="none";
 	}
 	if(oper=='gt'){
 		document.getElementById("mtab").style.display="none";
-		document.getElementById("gttab").style.display="block";
+		//document.getElementById("gttab").style.display="block";
 	}
 	
 	
@@ -137,7 +137,7 @@ function Redirect(){
 					}
 		}
 		 if(document.getElementById('0d').checked)
-			deg='0d';
+			deg='0';
 		
 		else if(document.getElementById('bm').checked)
 			{
