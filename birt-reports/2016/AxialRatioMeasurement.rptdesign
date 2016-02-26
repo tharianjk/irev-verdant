@@ -1709,6 +1709,12 @@ inner join pv_prodserial p on td.test_id=p.test_id
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">Productname</property>
+                    <text-property name="displayName">Productname</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Productname"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="268">
                 <property name="style">Border</property>
@@ -1878,8 +1884,8 @@ inner join pv_prodserial p on td.test_id=p.test_id
                     <cell id="245">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
-                        <data id="404">
-                            <property name="resultSetColumn">prodmodel</property>
+                        <data id="1310">
+                            <property name="resultSetColumn">Productname</property>
                         </data>
                     </cell>
                 </row>
@@ -1895,9 +1901,8 @@ inner join pv_prodserial p on td.test_id=p.test_id
                     <cell id="250">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
-                        <data id="405">
-                            <property name="textAlign">left</property>
-                            <property name="resultSetColumn">Product_id</property>
+                        <data id="407">
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -1913,8 +1918,8 @@ inner join pv_prodserial p on td.test_id=p.test_id
                     <cell id="255">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
-                        <data id="407">
-                            <property name="resultSetColumn">Version</property>
+                        <data id="404">
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>

@@ -979,10 +979,10 @@ where TD.Test_id=?]]></xml-property>
                     <cell id="250">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
-                        <data id="499">
+                        <data id="500">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -998,10 +998,10 @@ where TD.Test_id=?]]></xml-property>
                     <cell id="255">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
-                        <data id="500">
+                        <data id="2024">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
