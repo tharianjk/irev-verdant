@@ -254,16 +254,17 @@ public class ToolsController implements Controller {
         			         PVTest pd=mastersservice.getPVTest(Integer.parseInt(testid));
         			         rptheader=pd.getRptheader();
         			         rptfooter=pd.getRptfooter();
-        			        	
+        			         String frequnit="MHz";
+        			         frequnit=pd.getFrequnit();
         			        	if(rptheader==null || rptheader.equals("") || rptheader=="null")
         			        		rptheader="No Header";
         			        	if(rptfooter==null || rptfooter.equals("") || rptfooter=="null")
         			        		rptfooter="No Footer";
         					 if (operstr.contains("pvpolar")){
-        						String frequnit="MHz";
+        						
         		        		logger.info("*** pvpolar ** testid "+testid);
         		        		
-        		        		frequnit=pd.getFrequnit();
+        		        		
         		        		atype=pd.getTesttype();
         		        		String typ=request.getParameter("typ");
         		        		String strfreqs="";
@@ -312,6 +313,7 @@ public class ToolsController implements Controller {
         			    		    myModel.put("strslno",strslno);
         			    		    myModel.put("oper",operstr);
         			    		    myModel.put("serialcnt", serialcnt);
+        			    		    myModel.put("frequnit",frequnit);
         			               return new ModelAndView("pvreports", "model", myModel);        	
         			       	}
         					 
