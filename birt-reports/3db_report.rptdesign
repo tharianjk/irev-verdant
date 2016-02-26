@@ -34,7 +34,7 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
-        <scalar-parameter name="TestId" id="175">
+        <scalar-parameter name="testid" id="175">
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">integer</property>
@@ -388,7 +388,7 @@
                 </structure>
                 <structure>
                     <property name="name">param_18</property>
-                    <property name="paramName">TestId</property>
+                    <property name="paramName">testid</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
