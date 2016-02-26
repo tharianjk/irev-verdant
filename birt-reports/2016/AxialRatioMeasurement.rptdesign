@@ -74,6 +74,17 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
+        <scalar-parameter name="frequnit" id="1283">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="VerdantProfile" id="379">
@@ -2032,14 +2043,13 @@ Antenna without Radome&#13;
                 </row>
                 <row id="441">
                     <cell id="442">
-                        <label id="319">
+                        <text-data id="1307">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
                             <property name="fontWeight">bold</property>
-                            <property name="textAlign">center</property>
-                            <text-property name="text">Freq. (GHz)&#13;
-</text-property>
-                        </label>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="443">
                         <label id="320">
@@ -2226,14 +2236,13 @@ AR = B-A&#13;
                 </row>
                 <row id="429">
                     <cell id="430">
-                        <label id="332">
+                        <text-data id="1308">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
                             <property name="fontWeight">bold</property>
-                            <property name="textAlign">center</property>
-                            <text-property name="text">Freq. (GHz)&#13;
-</text-property>
-                        </label>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="431">
                         <label id="334">
@@ -2418,14 +2427,13 @@ AR = B-A</text-property>
                 </row>
                 <row id="417">
                     <cell id="418">
-                        <label id="359">
+                        <text-data id="1309">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
                             <property name="fontWeight">bold</property>
-                            <property name="textAlign">center</property>
-                            <text-property name="text">Freq. (GHz)&#13;
-</text-property>
-                        </label>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="419">
                         <label id="361">

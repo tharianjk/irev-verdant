@@ -92,6 +92,17 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
+        <scalar-parameter name="frequnit" id="1287">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="VerdantProfile" id="462">
@@ -902,13 +913,13 @@
                 <row id="8">
                     <property name="style">Border</property>
                     <cell id="9">
-                        <label id="43">
+                        <text-data id="1307">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
                             <property name="fontWeight">bold</property>
-                            <text-property name="text">Freq&#13;
-GHz</text-property>
-                        </label>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="10">
                         <label id="44">

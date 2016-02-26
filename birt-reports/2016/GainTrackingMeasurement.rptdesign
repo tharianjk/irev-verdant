@@ -65,6 +65,17 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
+        <scalar-parameter name="frequnit" id="2015">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="VerdantProfile" id="7">
@@ -1238,9 +1249,13 @@ where TD.Test_id=?]]></xml-property>
                     </cell>
                     <cell id="966">
                         <property name="verticalAlign">middle</property>
-                        <label id="1092">
-                            <text-property name="text">Freq(GHz)</text-property>
-                        </label>
+                        <text-data id="1307">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">10pt</property>
+                            <property name="fontWeight">bold</property>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="967">
                         <label id="1068">
@@ -1773,9 +1788,13 @@ where TD.Test_id=?]]></xml-property>
                         </label>
                     </cell>
                     <cell id="1179">
-                        <label id="1180">
-                            <text-property name="text">Freq(GHz)</text-property>
-                        </label>
+                        <text-data id="2016">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">10pt</property>
+                            <property name="fontWeight">bold</property>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="1181">
                         <label id="1182">
@@ -2298,9 +2317,13 @@ where TD.Test_id=?]]></xml-property>
                         </label>
                     </cell>
                     <cell id="1315">
-                        <label id="1316">
-                            <text-property name="text">Freq(GHz)</text-property>
-                        </label>
+                        <text-data id="2017">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">10pt</property>
+                            <property name="fontWeight">bold</property>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                 </row>
             </header>
@@ -2579,9 +2602,13 @@ where TD.Test_id=?]]></xml-property>
                         </label>
                     </cell>
                     <cell id="1462">
-                        <label id="1463">
-                            <text-property name="text">Freq(GHz)</text-property>
-                        </label>
+                        <text-data id="2018">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">10pt</property>
+                            <property name="fontWeight">bold</property>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="1464">
                         <label id="1465">
@@ -3006,9 +3033,13 @@ where TD.Test_id=?]]></xml-property>
                         </label>
                     </cell>
                     <cell id="1580">
-                        <label id="1581">
-                            <text-property name="text">Freq(GHz)</text-property>
-                        </label>
+                        <text-data id="2019">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">10pt</property>
+                            <property name="fontWeight">bold</property>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="1582">
                         <label id="1583">
@@ -3315,9 +3346,13 @@ where TD.Test_id=?]]></xml-property>
                         </label>
                     </cell>
                     <cell id="1692">
-                        <label id="1693">
-                            <text-property name="text">Freq(GHz)</text-property>
-                        </label>
+                        <text-data id="2020">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">10pt</property>
+                            <property name="fontWeight">bold</property>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                 </row>
             </header>
@@ -3596,9 +3631,13 @@ where TD.Test_id=?]]></xml-property>
                         </label>
                     </cell>
                     <cell id="1736">
-                        <label id="1737">
-                            <text-property name="text">Freq(GHz)</text-property>
-                        </label>
+                        <text-data id="2021">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">10pt</property>
+                            <property name="fontWeight">bold</property>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="1738">
                         <label id="1739">
@@ -4023,9 +4062,13 @@ where TD.Test_id=?]]></xml-property>
                         </label>
                     </cell>
                     <cell id="1854">
-                        <label id="1855">
-                            <text-property name="text">Freq(GHz)</text-property>
-                        </label>
+                        <text-data id="2022">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">10pt</property>
+                            <property name="fontWeight">bold</property>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="1856">
                         <label id="1857">
@@ -4332,9 +4375,13 @@ where TD.Test_id=?]]></xml-property>
                         </label>
                     </cell>
                     <cell id="1966">
-                        <label id="1967">
-                            <text-property name="text">Freq(GHz)</text-property>
-                        </label>
+                        <text-data id="2023">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">10pt</property>
+                            <property name="fontWeight">bold</property>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                 </row>
             </header>
