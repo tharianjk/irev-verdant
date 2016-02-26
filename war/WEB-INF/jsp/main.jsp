@@ -352,8 +352,8 @@ dialog.dialog( "open" );
 			<li><a rel="axial_e" id="pv_ra" class="menuarray" TARGET="AppBody" onclick="fnsetstat('axial_e');">Axial Ratio Measurement </a> </li>
 			<!-- <li><a rel="axial_ep" class="menuarray" TARGET="AppBody" onclick="fnsetstat('axial_ep');">Axial Ratio Measurement +45 DEG</a> </li>
 			<li><a rel="axial_en" class="menuarray" TARGET="AppBody" onclick="fnsetstat('axial_en');">Axial Ratio Measurement -45 DEG</a> </li> -->
-			<li><a rel="polar_a" id="pv_rpa" class="menuarray" TARGET="AppBody" onclick="fnsetstat('pv_polar_a');">Polar Plot Azimuth</a> </li>
-			<li><a rel="polar_e" id="pv_rpe"class="menuarray" TARGET="AppBody" onclick="fnsetstat('pv_polar_e');">Polar Plot Elevation</a> </li>
+			<li><a rel="polar_a" id="pv_rpa" class="menuarray" TARGET="AppBody" onclick="fnsetstat('pv_polar_a');">Azimuth Radiation Pattern </a> </li>
+			<li><a rel="polar_e" id="pv_rpe"class="menuarray" TARGET="AppBody" onclick="fnsetstat('pv_polar_e');">Elevation Radiation Pattern</a> </li>
 			<!-- <li><a rel="Gain Measurement" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gt');">Gain Tracking</a> </li>
 			<li><a rel="Gain Measurement" class="menuarray" TARGET="AppBody" onclick="fnsetstat('gm');">Gain Measurement</a> </li>
 		    -->
