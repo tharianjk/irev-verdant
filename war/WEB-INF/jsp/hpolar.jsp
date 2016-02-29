@@ -168,7 +168,7 @@ $(document).ready(function(){
 		else
 			document.getElementById("divlg").style.display="none";
 	
-	
+	document.getElementById("tabrange").style.visibility="hidden";
 	
 	if(lgtype=="DCP" || parent.AssetTree.selectedparenttype=="L")
 		{document.getElementById("cp").style.display="none";}
@@ -212,11 +212,13 @@ function fnonchange(){
 		{
 		document.getElementById("stab").style.display="none";
 		document.getElementById("mtab").style.display="block";
+		document.getElementById("tabrange").style.visibility="visible";
 		}
 	else
 	{
 		document.getElementById("stab").style.display="block";
 		document.getElementById("mtab").style.display="none";
+		document.getElementById("tabrange").style.visibility="hidden";
 		}
 		
 	
