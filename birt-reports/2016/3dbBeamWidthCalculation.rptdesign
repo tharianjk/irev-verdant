@@ -212,6 +212,18 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
+        <scalar-parameter name="frequnit" id="2007">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="VerdantProfile" id="7">
@@ -2000,13 +2012,13 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                 </row>
                 <row id="1293">
                     <cell id="1294">
-                        <label id="350">
+                        <text-data id="2009">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
                             <property name="fontWeight">bold</property>
-                            <property name="textAlign">center</property>
-                            <text-property name="text">Frequency (GHz)</text-property>
-                        </label>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="1295">
                         <label id="351">
@@ -2383,13 +2395,13 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                 </row>
                 <row id="1299">
                     <cell id="1300">
-                        <label id="362">
+                        <text-data id="2010">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
                             <property name="fontWeight">bold</property>
-                            <property name="textAlign">center</property>
-                            <text-property name="text">Frequency (GHz)</text-property>
-                        </label>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="1301">
                         <label id="364">
@@ -2988,7 +3000,7 @@ Antenna without Radome&#13;
         </table>
         <table id="1375">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">AzimuthPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -3121,13 +3133,13 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                 </row>
                 <row id="1382">
                     <cell id="1383">
-                        <label id="1384">
+                        <text-data id="2011">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
                             <property name="fontWeight">bold</property>
-                            <property name="textAlign">center</property>
-                            <text-property name="text">Frequency (GHz)</text-property>
-                        </label>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="1385">
                         <label id="1386">
@@ -3504,13 +3516,13 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                 </row>
                 <row id="1437">
                     <cell id="1438">
-                        <label id="1439">
+                        <text-data id="2012">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
                             <property name="fontWeight">bold</property>
-                            <property name="textAlign">center</property>
-                            <text-property name="text">Frequency (GHz)</text-property>
-                        </label>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="1440">
                         <label id="1441">
@@ -4109,7 +4121,7 @@ Antenna without Radome&#13;
         </table>
         <table id="1549">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">AzimuthPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -4242,13 +4254,13 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                 </row>
                 <row id="1556">
                     <cell id="1557">
-                        <label id="1558">
+                        <text-data id="2013">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
                             <property name="fontWeight">bold</property>
-                            <property name="textAlign">center</property>
-                            <text-property name="text">Frequency (GHz)</text-property>
-                        </label>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="1559">
                         <label id="1560">
@@ -4625,13 +4637,13 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                 </row>
                 <row id="1611">
                     <cell id="1612">
-                        <label id="1613">
+                        <text-data id="2014">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
                             <property name="fontWeight">bold</property>
-                            <property name="textAlign">center</property>
-                            <text-property name="text">Frequency (GHz)</text-property>
-                        </label>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="1614">
                         <label id="1615">
@@ -5230,7 +5242,7 @@ Antenna without Radome&#13;
         </table>
         <table id="1723">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">AzimuthPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -5363,13 +5375,13 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                 </row>
                 <row id="1730">
                     <cell id="1731">
-                        <label id="1732">
+                        <text-data id="2015">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
                             <property name="fontWeight">bold</property>
-                            <property name="textAlign">center</property>
-                            <text-property name="text">Frequency (GHz)</text-property>
-                        </label>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="1733">
                         <label id="1734">
@@ -5746,13 +5758,13 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                 </row>
                 <row id="1785">
                     <cell id="1786">
-                        <label id="1787">
+                        <text-data id="2016">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
                             <property name="fontWeight">bold</property>
-                            <property name="textAlign">center</property>
-                            <text-property name="text">Frequency (GHz)</text-property>
-                        </label>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="1788">
                         <label id="1789">
@@ -6351,7 +6363,7 @@ Antenna without Radome&#13;
         </table>
         <table id="1897">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">AzimuthPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -6484,13 +6496,13 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                 </row>
                 <row id="1904">
                     <cell id="1905">
-                        <label id="1906">
+                        <text-data id="2017">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
                             <property name="fontWeight">bold</property>
-                            <property name="textAlign">center</property>
-                            <text-property name="text">Frequency (GHz)</text-property>
-                        </label>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="1907">
                         <label id="1908">
@@ -6867,13 +6879,13 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                 </row>
                 <row id="1959">
                     <cell id="1960">
-                        <label id="1961">
+                        <text-data id="2018">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">12pt</property>
                             <property name="fontWeight">bold</property>
-                            <property name="textAlign">center</property>
-                            <text-property name="text">Frequency (GHz)</text-property>
-                        </label>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="1962">
                         <label id="1963">
