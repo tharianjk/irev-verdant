@@ -2634,6 +2634,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
             </header>
         </table>
         <table id="1311">
+            <property name="pageBreakBefore">always</property>
             <property name="dataSet">TestDesc</property>
             <list-property name="visibility">
                 <structure>
@@ -3754,6 +3755,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
             </header>
         </table>
         <table id="1485">
+            <property name="pageBreakBefore">always</property>
             <property name="dataSet">TestDesc</property>
             <list-property name="visibility">
                 <structure>
@@ -4874,6 +4876,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
             </header>
         </table>
         <table id="1659">
+            <property name="pageBreakBefore">always</property>
             <property name="dataSet">TestDesc</property>
             <list-property name="visibility">
                 <structure>
@@ -5994,6 +5997,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
             </header>
         </table>
         <table id="1833">
+            <property name="pageBreakBefore">always</property>
             <property name="dataSet">TestDesc</property>
             <list-property name="visibility">
                 <structure>
