@@ -17,8 +17,7 @@ drop procedure if exists pv_calc_backlobelevel;
 drop procedure if exists pv_calc_spec;
 drop procedure if exists pv_calc_gtcalculated;
 drop procedure if exists spPV_GT;
--- drop procedure spPVPolarPlot
-
+drop procedure if exists spPVPolarPlot;
 -- --------------------------------------------------------------------------------
 -- Routine DDL
 -- Note: comments before and after the routine body will not be stored by the server
@@ -106,24 +105,38 @@ end if;
 if typ='H' then
 	if cnt=0 then
 	if vdatatype='A' then
-			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_hdata_azimuth HD 
+			select floor(max(Amplitude))+1 into @maxamp FROM pv_hdata_azimuth HD 
 			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
-			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_hdata_azimuth HD 
+			select round(min(Amplitude),0) into @minamp FROM pv_hdata_azimuth HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
 	end if;
 	if vdatatype='E' then
-			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_hdata_elevation HD 
+			select floor(max(Amplitude))+1 into @maxamp FROM pv_hdata_elevation HD 
 			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
-			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_hdata_elevation HD 
+			select round(min(Amplitude),0) into @minamp FROM pv_hdata_elevation HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
 	end if;
 	if vdatatype='T' then
-			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_hdata_GT HD 
+			select floor(max(Amplitude))+1 into @maxamp FROM pv_hdata_GT HD 
 			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
-			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_hdata_GT HD 
+			select round(min(Amplitude),0) into @minamp FROM pv_hdata_GT HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
 	end if;
+   
+
+    select 5-mod((@maxamp-@minamp),5) into @mod ;
+   
+	if @maxamp<0 then
+	  set @maxamp= (abs(@maxamp)-@mod)*-1;
+	else
+	set @maxamp= @maxamp+@mod;
 	end if;
+
+   select convert(@maxamp,char(30)) into strmaxvalue;
+   select convert(@minamp,char(30)) into strminvalue;
+	end if;
+
+   
 	if vdatatype='A' then
       SELECT case when HD.Angle >180 then HD.Angle -360 else HD.Angle end Angle ,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Prodserial_id,strmaxvalue,strminvalue FROM pv_hdata_azimuth HD 
 		where HD.Frequency=freq and HD.Prodserial_id=serialid ;
@@ -140,24 +153,36 @@ end if;
 if typ='V' then
 	if cnt=0 then
 	if vdatatype='A' then
-			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_vdata_azimuth HD 
+			select floor(max(Amplitude))+1 into @maxamp FROM pv_vdata_azimuth HD 
 			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
-			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_vdata_azimuth HD 
+			select round(min(Amplitude),0) into @minamp FROM pv_vdata_azimuth HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
 	end if;
 	if vdatatype='E' then
-			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_vdata_elevation HD 
+			select floor(max(Amplitude))+1 into @maxamp FROM pv_vdata_elevation HD 
 			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
-			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_vdata_elevation HD 
+			select round(min(Amplitude),0) into @minamp FROM pv_vdata_elevation HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
 	end if;
 	if vdatatype='T' then
-			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_vdata_GT HD 
+			select floor(max(Amplitude))+1 into @maxamp FROM pv_vdata_GT HD 
 			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
-			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_vdata_GT HD 
+			select round(min(Amplitude),0) into @minamp FROM pv_vdata_GT HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
 	end if;
+  select 5-mod((@maxamp-@minamp),5) into @mod ;
+   
+	if @maxamp<0 then
+	  set @maxamp= (abs(@maxamp)-@mod)*-1;
+	else
+	set @maxamp= @maxamp+@mod;
 	end if;
+   select convert(@maxamp,char(30)) into strmaxvalue;
+   select convert(@minamp,char(30)) into strminvalue;
+	end if;
+
+   
+
 		if vdatatype='A' then
       SELECT case when HD.Angle >180 then HD.Angle -360 else HD.Angle end Angle ,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Prodserial_id,strmaxvalue,strminvalue FROM pv_Vdata_azimuth HD 
 		where HD.Frequency=freq and HD.Prodserial_id=serialid ;
@@ -175,19 +200,28 @@ end if;
 if typ='C' then
 		if cnt=0 then
 				if vdatatype='A' then
-			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_cpdata_azimuth HD 
+			select floor(max(Amplitude))+1 into @maxamp FROM pv_cpdata_azimuth HD 
 			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
-			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_cpdata_azimuth HD 
+			select round(min(Amplitude),0) into @minamp FROM pv_cpdata_azimuth HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
 	end if;
 	if vdatatype='E' then
-			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_cpdata_elevation HD 
+			select floor(max(Amplitude))+1 into @maxamp FROM pv_cpdata_elevation HD 
 			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
-			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_cpdata_elevation HD 
+			select round(min(Amplitude),0) into @minamp FROM pv_cpdata_elevation HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
 	end if;
-	
+	select 5-mod((@maxamp-@minamp),5) into @mod ;
+   
+	if @maxamp<0 then
+	  set @maxamp= (abs(@maxamp)-@mod)*-1;
+	else
+	set @maxamp= @maxamp+@mod;
+	end if;
+   select convert(@maxamp,char(30)) into strmaxvalue;
+   select convert(@minamp,char(30)) into strminvalue;
 		end if;
+
 		if vdatatype='A' then
       SELECT case when HD.Angle >180 then HD.Angle -360 else HD.Angle end Angle ,HD.Amplitude,case unt when 'GHz' then concat(RPAD(round(HD.Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(HD.Frequency,prec),10,' '),unt) end Frequency,HD.Prodserial_id,strmaxvalue,strminvalue FROM pv_cpdata_azimuth HD 
 		where HD.Frequency=freq and HD.Prodserial_id=serialid ;
@@ -204,24 +238,34 @@ end if;
 if typ='B' then
 	if cnt=0 then
 			if vdatatype='A' then
-			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_hdata_azimuth HD 
+			select floor(max(Amplitude))+1 into @maxamp FROM pv_hdata_azimuth HD 
 			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
-			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_hdata_azimuth HD 
+			select round(min(Amplitude),0) into @minamp FROM pv_hdata_azimuth HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
 	end if;
 	if vdatatype='E' then
-			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_hdata_elevation HD 
+			select floor(max(Amplitude))+1 into @maxamp FROM pv_hdata_elevation HD 
 			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
-			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_hdata_elevation HD 
+			select round(min(Amplitude),0) into @minamp FROM pv_hdata_elevation HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
 	end if;
 	if vdatatype='T' then
-			select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pv_hdata_GT HD 
+			select floor(max(Amplitude))+1 into @maxamp FROM pv_hdata_GT HD 
 			where HD.Frequency= freq and HD.Prodserial_id=serialid ;
-			select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pv_hdata_GT HD 
+			select round(min(Amplitude),0) into @minamp FROM pv_hdata_GT HD 
 			where HD.Frequency=freq and HD.Prodserial_id=serialid ;
 	end if;
+  select 5-mod((@maxamp-@minamp),5) into @mod ;
+   
+	if @maxamp<0 then
+	  set @maxamp= (abs(@maxamp)-@mod)*-1;
+	else
+	set @maxamp= @maxamp+@mod;
 	end if;
+   select convert(@maxamp,char(30)) into strmaxvalue;
+   select convert(@minamp,char(30)) into strminvalue;
+	end if;
+
     if vdatatype='A' then	
 				select test_id, case unt when 'GHz' then concat(RPAD(round(Frequency/1000,prec),10,' '),unt) else  concat(RPAD(round(Frequency,prec),10,' '),unt) end frequency,case when HD.Angle >180 then HD.Angle -360 else HD.Angle end  Angle,sum(hamplitude) hamplitude,sum(vamplitude) vamplitude,strmaxvalue,strminvalue 
 				from (
@@ -246,6 +290,8 @@ end if;
 
 END$$
 DELIMITER ;
+
+
 
 -- --------------------------------------------------------------------------------
 -- Routine DDL
