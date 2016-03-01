@@ -5786,6 +5786,7 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontSize">11pt</property>
                     <column id="1428"/>
                     <column id="1429"/>
+                    <column id="5080"/>
                     <row id="1430">
                         <cell id="1431">
                             <text id="1432">
@@ -5819,10 +5820,12 @@ where TD.Test_id=?]]></xml-property>
                         <cell id="1433">
                             <text-data id="1434">
                                 <property name="fontWeight">normal</property>
+                                <property name="textAlign">center</property>
                                 <expression name="valueExpr">params["rptf"].value</expression>
                                 <property name="contentType">html</property>
                             </text-data>
                         </cell>
+                        <cell id="5079"/>
                     </row>
                 </grid>
             </page-footer>
@@ -12927,9 +12930,6 @@ where TD.Test_id=?]]></xml-property>
                 </row>
             </detail>
         </table>
-        <label id="2986">
-            <text-property name="text">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</text-property>
-        </label>
         <table id="2987">
             <property name="pageBreakBefore">always</property>
             <property name="dataSet">Atp45axis</property>
