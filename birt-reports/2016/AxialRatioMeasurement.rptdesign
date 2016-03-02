@@ -1985,6 +1985,80 @@ inner join pv_prodserial p on td.test_id=p.test_id
         </simple-master-page>
     </page-setup>
     <body>
+        <label id="7028">
+            <property name="fontFamily">serif</property>
+            <property name="fontSize">12pt</property>
+            <property name="fontWeight">bold</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">thin</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">TEST RECORD SHEET-8: AXIAL RATIO MEASUREMENT</text-property>
+        </label>
+        <grid id="7029">
+            <column id="7030"/>
+            <column id="7031"/>
+            <row id="7032">
+                <cell id="7033">
+                    <label id="7034">
+                        <property name="fontFamily">serif</property>
+                        <property name="fontSize">11pt</property>
+                        <text-property name="text">1. Tests Conducted for the Sale order (Ref No):&#13;
+</text-property>
+                    </label>
+                </cell>
+                <cell id="7035">
+                    <label id="7036">
+                        <property name="fontFamily">serif</property>
+                        <property name="fontSize">11pt</property>
+                    </label>
+                </cell>
+            </row>
+            <row id="7037">
+                <cell id="7038">
+                    <label id="7039">
+                        <property name="fontFamily">serif</property>
+                        <property name="fontSize">11pt</property>
+                        <text-property name="text">2. Sl. No of AUT:</text-property>
+                    </label>
+                </cell>
+                <cell id="7040">
+                    <label id="7041">
+                        <property name="fontFamily">serif</property>
+                        <property name="fontSize">11pt</property>
+                    </label>
+                </cell>
+            </row>
+            <row id="7042">
+                <cell id="7043">
+                    <label id="7044">
+                        <property name="fontFamily">serif</property>
+                        <property name="fontSize">11pt</property>
+                        <text-property name="text">3. Date and Time of Test:</text-property>
+                    </label>
+                </cell>
+                <cell id="7045">
+                    <label id="7046">
+                        <property name="fontFamily">serif</property>
+                        <property name="fontSize">11pt</property>
+                    </label>
+                </cell>
+            </row>
+            <row id="7047">
+                <cell id="7048">
+                    <label id="7049">
+                        <property name="fontFamily">serif</property>
+                        <property name="fontSize">11pt</property>
+                        <text-property name="text">4. Environmental condition (Lab / ESS/QT…):</text-property>
+                    </label>
+                </cell>
+                <cell id="7050">
+                    <label id="7051">
+                        <property name="fontFamily">serif</property>
+                        <property name="fontSize">11pt</property>
+                    </label>
+                </cell>
+            </row>
+        </grid>
         <table id="202">
             <property name="dataSet">TestDescription</property>
             <list-property name="visibility">
