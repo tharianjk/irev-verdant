@@ -287,7 +287,7 @@ var treemode='<%=request.getParameter("treemode")%>';
     			        			parent.document.getElementById("vreports").style.display="block";
 		  			        	   // parent.document.getElementById("vreports").style.display="inline";
 		  			        	    parent.document.getElementById("reports").style.display="none";
-		  			        	  parent.document.getElementById("pv_rgm").style.display="none";
+		  			        	    parent.document.getElementById("pv_rgm").style.display="none";
 		  			        	    parent.document.getElementById("pv_rgt").style.display="block";
 		  			        	    parent.document.getElementById("pv_r3db").style.display="none";	
 		  			        	    parent.document.getElementById("pv_r10db").style.display="none";
