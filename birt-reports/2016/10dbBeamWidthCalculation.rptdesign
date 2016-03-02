@@ -1539,7 +1539,7 @@ inner join pv_prodserial p on td.test_id=p.test_id
                 <structure>
                     <property name="paramName">prodserialid</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["s2"].value</value>
+                        <value type="javascript">params["s1"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
