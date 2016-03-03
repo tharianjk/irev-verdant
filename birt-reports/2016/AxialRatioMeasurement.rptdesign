@@ -2164,11 +2164,10 @@ inner join pv_prodserial p on td.test_id=p.test_id
             <column id="7031"/>
             <row id="7032">
                 <cell id="7033">
-                    <label id="7034">
+                    <label id="9557">
                         <property name="fontFamily">serif</property>
                         <property name="fontSize">11pt</property>
-                        <text-property name="text">1. Tests Conducted for the Sale order (Ref No):&#13;
-</text-property>
+                        <text-property name="text">1. Tests Conducted for the Sale order (Ref No):</text-property>
                     </label>
                 </cell>
                 <cell id="7035">
