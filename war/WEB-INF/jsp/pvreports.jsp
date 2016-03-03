@@ -48,7 +48,7 @@
 	     <td > &nbsp; &nbsp;&nbsp;Serial Nos: </td>
 	    <td>
 	    <c:forEach items="${model.seriallist}" var="serial">			
-				<input type="checkbox" name="chkid" value="${serial.productserialid}" id="${serial.productserialid}" class="chkfreq">${serial.productserial}
+				<input type="checkbox" name="chkid" value="${serial.productserialid}" id="${serial.productserialid}" class="chkfreq" checked="checked">${serial.productserial}
 		</c:forEach></td></tr></tbody>	    
         </table>
 		</td>
