@@ -106,7 +106,8 @@ public class PVSerialImportController extends SimpleFormController{
 				}
 		}
 		else{
-         if(filetype.equals("M")){
+       /*  if(filetype.equals("M"))
+         {
         	 List<TestFrequency> freqlist=new ArrayList<TestFrequency>();
         	 logger.info("*** Inside PVSerialcontroller in onsubmit**: Gain Measurement");
         	 JSONObject obj1 = new JSONObject(file.getStrjsonfreq());
@@ -234,7 +235,7 @@ public class PVSerialImportController extends SimpleFormController{
 	 }
          }
 	 else
-	 {
+	 {*/
 	        	 logger.info("*** Inside PVSerialcontroller in onsubmit**filetype: filetype"); 
 			 if(strmode.equals("edit")){
 				 logger.info("*** Inside PVSerialcontroller in onsubmit**: update");
@@ -477,7 +478,7 @@ public class PVSerialImportController extends SimpleFormController{
 			}
 			 }       
 			 }
-         }
+        // }
 		}
 		//
 		request.setAttribute("id", null);
