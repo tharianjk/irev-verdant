@@ -1518,6 +1518,15 @@ inner join pv_prodserial p on td.test_id=p.test_id
         </simple-master-page>
     </page-setup>
     <body>
+        <label id="5078">
+            <property name="fontFamily">serif</property>
+            <property name="fontSize">12pt</property>
+            <property name="fontWeight">bold</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">thin</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">TEST RECORD SHEET-5: 10 dB BEAMWIDTH CALCULATION </text-property>
+        </label>
         <table id="202">
             <property name="dataSet">TestDesc</property>
             <list-property name="paramBindings">
@@ -1530,7 +1539,7 @@ inner join pv_prodserial p on td.test_id=p.test_id
                 <structure>
                     <property name="paramName">prodserialid</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["s2"].value</value>
+                        <value type="javascript">params["s1"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
