@@ -22,9 +22,7 @@ drop procedure if exists spGetPolarSummary;
 DROP procedure IF EXISTS `debug`;
 drop procedure if exists spPolarMultiple;
 drop procedure if exists sanity_check;
-drop procedure if exists pv_calc_AxialRatio;
-drop procedure if exists pv_calc_Gain_Measurement;
-drop procedure if exists pv_Calculate_params;
+
 
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `calc_CP`(
@@ -874,6 +872,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `calc_Slant_Elevation`(
 seTestId INT,
 seFreq decimal(40,20),
@@ -1140,6 +1139,7 @@ if hDataPresent > 0 and vDataPresent > 0 then
 				SET @infoText = "Calculated data saved successfully into arcalculated";
 				call debug(l_proc_id,@infoText,'I','I');
 			end if;
+end if;
 END$$
 DELIMITER ;
 DELIMITER $$
@@ -2762,4 +2762,3 @@ sum(amp18) Amplitude18,sum(amp19) Amplitude19,sum(amp20) Amplitude20,strmaxvalue
  from temppolar where user=usr group by test_id,angle,frequency  ,strmaxvalue,strminvalue, frequnit
 order by test_id,frequency,angle;  
 END$$
-DELIMITER;
