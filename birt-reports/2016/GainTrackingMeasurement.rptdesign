@@ -5842,71 +5842,6 @@ where TD.Test_id=?]]></xml-property>
             <text-property name="text">TEST RECORD SHEET-09: GAIN TRACKING MEASUREMENT: CP &#13;
 </text-property>
         </label>
-        <grid id="5055">
-            <column id="5056"/>
-            <column id="5057"/>
-            <row id="5058">
-                <cell id="5059">
-                    <label id="5070">
-                        <property name="fontFamily">serif</property>
-                        <property name="fontSize">11pt</property>
-                        <text-property name="text">1. Tests Conducted for the Sale order (Ref No):&#13;
-</text-property>
-                    </label>
-                </cell>
-                <cell id="5060">
-                    <label id="5074">
-                        <property name="fontFamily">serif</property>
-                        <property name="fontSize">11pt</property>
-                    </label>
-                </cell>
-            </row>
-            <row id="5061">
-                <cell id="5062">
-                    <label id="5071">
-                        <property name="fontFamily">serif</property>
-                        <property name="fontSize">11pt</property>
-                        <text-property name="text">2. Sl. No of AUT:</text-property>
-                    </label>
-                </cell>
-                <cell id="5063">
-                    <label id="5075">
-                        <property name="fontFamily">serif</property>
-                        <property name="fontSize">11pt</property>
-                    </label>
-                </cell>
-            </row>
-            <row id="5064">
-                <cell id="5065">
-                    <label id="5072">
-                        <property name="fontFamily">serif</property>
-                        <property name="fontSize">11pt</property>
-                        <text-property name="text">3. Date and Time of Test:</text-property>
-                    </label>
-                </cell>
-                <cell id="5066">
-                    <label id="5076">
-                        <property name="fontFamily">serif</property>
-                        <property name="fontSize">11pt</property>
-                    </label>
-                </cell>
-            </row>
-            <row id="5067">
-                <cell id="5068">
-                    <label id="5073">
-                        <property name="fontFamily">serif</property>
-                        <property name="fontSize">11pt</property>
-                        <text-property name="text">4. Environmental condition (Lab / ESS/QT…):</text-property>
-                    </label>
-                </cell>
-                <cell id="5069">
-                    <label id="5077">
-                        <property name="fontFamily">serif</property>
-                        <property name="fontSize">11pt</property>
-                    </label>
-                </cell>
-            </row>
-        </grid>
         <table id="202">
             <property name="dataSet">TestDesc</property>
             <list-property name="visibility">
@@ -6018,6 +5953,74 @@ where TD.Test_id=?]]></xml-property>
                     <cell id="204">
                         <property name="colSpan">4</property>
                         <property name="rowSpan">1</property>
+                        <grid id="5055">
+                            <column id="5056"/>
+                            <column id="5057"/>
+                            <row id="5058">
+                                <cell id="5059">
+                                    <label id="5070">
+                                        <property name="fontFamily">serif</property>
+                                        <property name="fontSize">11pt</property>
+                                        <property name="textAlign">left</property>
+                                        <text-property name="text">1. Tests Conducted for the Sale order (Ref No):</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="5060">
+                                    <label id="5074">
+                                        <property name="fontFamily">serif</property>
+                                        <property name="fontSize">11pt</property>
+                                    </label>
+                                </cell>
+                            </row>
+                            <row id="5061">
+                                <cell id="5062">
+                                    <label id="5071">
+                                        <property name="fontFamily">serif</property>
+                                        <property name="fontSize">11pt</property>
+                                        <property name="textAlign">left</property>
+                                        <text-property name="text">2. Sl. No of AUT:</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="5063">
+                                    <label id="5075">
+                                        <property name="fontFamily">serif</property>
+                                        <property name="fontSize">11pt</property>
+                                    </label>
+                                </cell>
+                            </row>
+                            <row id="5064">
+                                <cell id="5065">
+                                    <label id="5072">
+                                        <property name="fontFamily">serif</property>
+                                        <property name="fontSize">11pt</property>
+                                        <property name="textAlign">left</property>
+                                        <text-property name="text">3. Date and Time of Test:</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="5066">
+                                    <label id="5076">
+                                        <property name="fontFamily">serif</property>
+                                        <property name="fontSize">11pt</property>
+                                    </label>
+                                </cell>
+                            </row>
+                            <row id="5067">
+                                <cell id="5068">
+                                    <label id="5073">
+                                        <property name="fontFamily">serif</property>
+                                        <property name="fontSize">11pt</property>
+                                        <property name="textAlign">left</property>
+                                        <text-property name="text">4. Environmental condition (Lab / ESS/QT…):</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="5069">
+                                    <label id="5077">
+                                        <property name="fontFamily">serif</property>
+                                        <property name="fontSize">11pt</property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </grid>
                         <label id="286">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">14pt</property>
@@ -6366,7 +6369,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="1027"/>
+            <column id="1027">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="1028"/>
             <column id="1029">
                 <list-property name="visibility">
@@ -6525,6 +6535,21 @@ where TD.Test_id=?]]></xml-property>
                             <property name="fontWeight">bold</property>
                             <property name="textAlign">center</property>
                             <text-property name="text">TABLE-1 GAIN TRACKING CP AT ON AXIS</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="5081">
+                    <property name="fontFamily">serif</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="verticalAlign">middle</property>
+                    <cell id="5082">
+                        <property name="colSpan">20</property>
+                        <property name="rowSpan">1</property>
+                        <label id="5147">
+                            <property name="backgroundColor">#FFFFFF</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">SPEC: ± 1 dB (2 dB window )</text-property>
                         </label>
                     </cell>
                 </row>
@@ -7047,7 +7072,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="1257"/>
+            <column id="1257">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="1258"/>
             <column id="1259">
                 <list-property name="visibility">
@@ -7820,7 +7852,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="2123"/>
+            <column id="2123">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="2124"/>
             <column id="2125">
                 <list-property name="visibility">
@@ -8593,7 +8632,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="2241"/>
+            <column id="2241">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="2242"/>
             <column id="2243">
                 <list-property name="visibility">
@@ -9366,7 +9412,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="2359"/>
+            <column id="2359">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="2360"/>
             <column id="2361">
                 <list-property name="visibility">
@@ -10139,7 +10192,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="2552"/>
+            <column id="2552">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="2553"/>
             <column id="2554">
                 <list-property name="visibility">
@@ -10912,7 +10972,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="2670"/>
+            <column id="2670">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="2671"/>
             <column id="2672">
                 <list-property name="visibility">
@@ -11685,7 +11752,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="2788"/>
+            <column id="2788">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="2789"/>
             <column id="2790">
                 <list-property name="visibility">
@@ -12386,7 +12460,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="2906"/>
+            <column id="2906">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="2907"/>
             <column id="2908">
                 <list-property name="visibility">
@@ -12825,7 +12906,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="1393"/>
+            <column id="1393">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="1394"/>
             <column id="1395"/>
             <column id="1396"/>
@@ -13883,7 +13971,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="3088"/>
+            <column id="3088">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="3089"/>
             <column id="3090">
                 <list-property name="visibility">
@@ -14042,6 +14137,21 @@ where TD.Test_id=?]]></xml-property>
                             <property name="fontWeight">bold</property>
                             <property name="textAlign">center</property>
                             <text-property name="text">TABLE-2 GAIN TRACKING CP AT AT +45°</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="5148">
+                    <property name="fontFamily">serif</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="verticalAlign">middle</property>
+                    <cell id="5149">
+                        <property name="colSpan">20</property>
+                        <property name="rowSpan">1</property>
+                        <label id="5169">
+                            <property name="backgroundColor">#FFFFFF</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">SPEC: ± 2 dB 4 dB window </text-property>
                         </label>
                     </cell>
                 </row>
@@ -14564,7 +14674,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="3206"/>
+            <column id="3206">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="3207"/>
             <column id="3208">
                 <list-property name="visibility">
@@ -15337,7 +15454,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="3324"/>
+            <column id="3324">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="3325"/>
             <column id="3326">
                 <list-property name="visibility">
@@ -16110,7 +16234,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="3442"/>
+            <column id="3442">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="3443"/>
             <column id="3444">
                 <list-property name="visibility">
@@ -16883,7 +17014,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="3560"/>
+            <column id="3560">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="3561"/>
             <column id="3562">
                 <list-property name="visibility">
@@ -17656,7 +17794,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="3678"/>
+            <column id="3678">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="3679"/>
             <column id="3680">
                 <list-property name="visibility">
@@ -18429,7 +18574,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="3796"/>
+            <column id="3796">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="3797"/>
             <column id="3798">
                 <list-property name="visibility">
@@ -19202,7 +19354,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="3914"/>
+            <column id="3914">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="3915"/>
             <column id="3916">
                 <list-property name="visibility">
@@ -19903,7 +20062,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="3976"/>
+            <column id="3976">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="3977"/>
             <column id="3978">
                 <list-property name="visibility">
@@ -20342,7 +20508,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="4010"/>
+            <column id="4010">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="4011"/>
             <column id="4012"/>
             <column id="4013"/>
@@ -21400,7 +21573,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="4122"/>
+            <column id="4122">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="4123"/>
             <column id="4124">
                 <list-property name="visibility">
@@ -21559,6 +21739,21 @@ where TD.Test_id=?]]></xml-property>
                             <property name="fontWeight">bold</property>
                             <property name="textAlign">center</property>
                             <text-property name="text">TABLE-3 GAIN TRACKING CP AT AT -45°</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="5170">
+                    <property name="fontFamily">serif</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="verticalAlign">middle</property>
+                    <cell id="5171">
+                        <property name="colSpan">20</property>
+                        <property name="rowSpan">1</property>
+                        <label id="5191">
+                            <property name="backgroundColor">#FFFFFF</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">SPEC: ± 2 dB 4 dB window </text-property>
                         </label>
                     </cell>
                 </row>
@@ -22081,7 +22276,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="4240"/>
+            <column id="4240">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="4241"/>
             <column id="4242">
                 <list-property name="visibility">
@@ -22854,7 +23056,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="4358"/>
+            <column id="4358">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="4359"/>
             <column id="4360">
                 <list-property name="visibility">
@@ -23627,7 +23836,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="4476"/>
+            <column id="4476">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="4477"/>
             <column id="4478">
                 <list-property name="visibility">
@@ -24400,7 +24616,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="4594"/>
+            <column id="4594">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="4595"/>
             <column id="4596">
                 <list-property name="visibility">
@@ -25173,7 +25396,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="4712"/>
+            <column id="4712">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="4713"/>
             <column id="4714">
                 <list-property name="visibility">
@@ -25946,7 +26176,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="4830"/>
+            <column id="4830">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="4831"/>
             <column id="4832">
                 <list-property name="visibility">
@@ -26719,7 +26956,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="4948"/>
+            <column id="4948">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="4949"/>
             <column id="4950">
                 <list-property name="visibility">
@@ -27420,7 +27664,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="5010"/>
+            <column id="5010">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="5011"/>
             <column id="5012">
                 <list-property name="visibility">
@@ -27859,7 +28110,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="5044"/>
+            <column id="5044">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="5045"/>
             <column id="5046"/>
             <column id="5047"/>
