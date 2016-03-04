@@ -6369,14 +6369,7 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="1027">
-                <list-property name="visibility">
-                    <structure>
-                        <property name="format">all</property>
-                        <expression name="valueExpr" type="javascript">true</expression>
-                    </structure>
-                </list-property>
-            </column>
+            <column id="1027"/>
             <column id="1028"/>
             <column id="1029">
                 <list-property name="visibility">
@@ -6558,14 +6551,9 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="1048">
-                        <label id="1093">
-                            <text-property name="text">Specification&#13;
-(dB)&#13;
-&#13;
-</text-property>
-                        </label>
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                     </cell>
-                    <cell id="1049"/>
                     <cell id="1050">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
@@ -6614,15 +6602,8 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="965">
-                        <label id="1094">
-                            <text-property name="text">Spec&#13;
- ± 1 dB&#13;
-2 dB window&#13;
-</text-property>
-                        </label>
-                    </cell>
-                    <cell id="966">
-                        <property name="verticalAlign">middle</property>
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                         <text-data id="1307">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">10pt</property>
@@ -6728,8 +6709,9 @@ where TD.Test_id=?]]></xml-property>
             <detail>
                 <row id="985">
                     <property name="textAlign">center</property>
-                    <cell id="986"/>
-                    <cell id="987">
+                    <cell id="986">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                         <data id="1096">
                             <property name="resultSetColumn">frequency</property>
                         </data>
@@ -7072,14 +7054,7 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="1257">
-                <list-property name="visibility">
-                    <structure>
-                        <property name="format">all</property>
-                        <expression name="valueExpr" type="javascript">true</expression>
-                    </structure>
-                </list-property>
-            </column>
+            <column id="1257"/>
             <column id="1258"/>
             <column id="1259">
                 <list-property name="visibility">
@@ -7231,14 +7206,9 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="1161">
-                        <label id="1162">
-                            <text-property name="text">Specification&#13;
-(dB)&#13;
-&#13;
-</text-property>
-                        </label>
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                     </cell>
-                    <cell id="1163"/>
                     <cell id="1164">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
@@ -7287,14 +7257,8 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="1177">
-                        <label id="1178">
-                            <text-property name="text">Spec&#13;
- ± 1 dB&#13;
-2 dB window&#13;
-</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1179">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                         <text-data id="2016">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">10pt</property>
@@ -7400,8 +7364,9 @@ where TD.Test_id=?]]></xml-property>
             <detail>
                 <row id="1217">
                     <property name="textAlign">center</property>
-                    <cell id="1218"/>
-                    <cell id="1219">
+                    <cell id="1218">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                         <data id="1220">
                             <property name="resultSetColumn">frequency</property>
                         </data>
@@ -7852,14 +7817,7 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="2123">
-                <list-property name="visibility">
-                    <structure>
-                        <property name="format">all</property>
-                        <expression name="valueExpr" type="javascript">true</expression>
-                    </structure>
-                </list-property>
-            </column>
+            <column id="2123"/>
             <column id="2124"/>
             <column id="2125">
                 <list-property name="visibility">
@@ -8011,14 +7969,9 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="2027">
-                        <label id="2028">
-                            <text-property name="text">Specification&#13;
-(dB)&#13;
-&#13;
-</text-property>
-                        </label>
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                     </cell>
-                    <cell id="2029"/>
                     <cell id="2030">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
@@ -8067,14 +8020,8 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="2043">
-                        <label id="2044">
-                            <text-property name="text">Spec&#13;
- ± 1 dB&#13;
-2 dB window&#13;
-</text-property>
-                        </label>
-                    </cell>
-                    <cell id="2045">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                         <text-data id="2046">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">10pt</property>
@@ -8180,8 +8127,9 @@ where TD.Test_id=?]]></xml-property>
             <detail>
                 <row id="2083">
                     <property name="textAlign">center</property>
-                    <cell id="2084"/>
-                    <cell id="2085">
+                    <cell id="2084">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                         <data id="2086">
                             <property name="resultSetColumn">frequency</property>
                         </data>
@@ -8632,14 +8580,7 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="2241">
-                <list-property name="visibility">
-                    <structure>
-                        <property name="format">all</property>
-                        <expression name="valueExpr" type="javascript">true</expression>
-                    </structure>
-                </list-property>
-            </column>
+            <column id="2241"/>
             <column id="2242"/>
             <column id="2243">
                 <list-property name="visibility">
@@ -8791,14 +8732,9 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="2145">
-                        <label id="2146">
-                            <text-property name="text">Specification&#13;
-(dB)&#13;
-&#13;
-</text-property>
-                        </label>
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                     </cell>
-                    <cell id="2147"/>
                     <cell id="2148">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
@@ -8847,14 +8783,8 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="2161">
-                        <label id="2162">
-                            <text-property name="text">Spec&#13;
- ± 1 dB&#13;
-2 dB window&#13;
-</text-property>
-                        </label>
-                    </cell>
-                    <cell id="2163">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                         <text-data id="2164">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">10pt</property>
@@ -8960,8 +8890,9 @@ where TD.Test_id=?]]></xml-property>
             <detail>
                 <row id="2201">
                     <property name="textAlign">center</property>
-                    <cell id="2202"/>
-                    <cell id="2203">
+                    <cell id="2202">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                         <data id="2204">
                             <property name="resultSetColumn">frequency</property>
                         </data>
@@ -9412,14 +9343,7 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="2359">
-                <list-property name="visibility">
-                    <structure>
-                        <property name="format">all</property>
-                        <expression name="valueExpr" type="javascript">true</expression>
-                    </structure>
-                </list-property>
-            </column>
+            <column id="2359"/>
             <column id="2360"/>
             <column id="2361">
                 <list-property name="visibility">
@@ -9571,14 +9495,9 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="2263">
-                        <label id="2264">
-                            <text-property name="text">Specification&#13;
-(dB)&#13;
-&#13;
-</text-property>
-                        </label>
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                     </cell>
-                    <cell id="2265"/>
                     <cell id="2266">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
@@ -9627,14 +9546,8 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="2279">
-                        <label id="2280">
-                            <text-property name="text">Spec&#13;
- ± 1 dB&#13;
-2 dB window&#13;
-</text-property>
-                        </label>
-                    </cell>
-                    <cell id="2281">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                         <text-data id="2282">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">10pt</property>
@@ -9740,8 +9653,9 @@ where TD.Test_id=?]]></xml-property>
             <detail>
                 <row id="2319">
                     <property name="textAlign">center</property>
-                    <cell id="2320"/>
-                    <cell id="2321">
+                    <cell id="2320">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                         <data id="2322">
                             <property name="resultSetColumn">frequency</property>
                         </data>
@@ -13971,14 +13885,7 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="3088">
-                <list-property name="visibility">
-                    <structure>
-                        <property name="format">all</property>
-                        <expression name="valueExpr" type="javascript">true</expression>
-                    </structure>
-                </list-property>
-            </column>
+            <column id="3088"/>
             <column id="3089"/>
             <column id="3090">
                 <list-property name="visibility">
@@ -14160,14 +14067,9 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="2992">
-                        <label id="2993">
-                            <text-property name="text">Specification&#13;
-(dB)&#13;
-&#13;
-</text-property>
-                        </label>
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                     </cell>
-                    <cell id="2994"/>
                     <cell id="2995">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
@@ -14216,15 +14118,8 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="3008">
-                        <label id="3009">
-                            <text-property name="text">Spec&#13;
- ± 2 dB&#13;
-4 dB window&#13;
-</text-property>
-                        </label>
-                    </cell>
-                    <cell id="3010">
-                        <property name="verticalAlign">middle</property>
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                         <text-data id="3011">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">10pt</property>
@@ -14330,8 +14225,9 @@ where TD.Test_id=?]]></xml-property>
             <detail>
                 <row id="3048">
                     <property name="textAlign">center</property>
-                    <cell id="3049"/>
-                    <cell id="3050">
+                    <cell id="3049">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                         <data id="3051">
                             <property name="resultSetColumn">frequency</property>
                         </data>
@@ -21573,14 +21469,7 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="4122">
-                <list-property name="visibility">
-                    <structure>
-                        <property name="format">all</property>
-                        <expression name="valueExpr" type="javascript">true</expression>
-                    </structure>
-                </list-property>
-            </column>
+            <column id="4122"/>
             <column id="4123"/>
             <column id="4124">
                 <list-property name="visibility">
@@ -21762,14 +21651,9 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="4026">
-                        <label id="4027">
-                            <text-property name="text">Specification&#13;
-(dB)&#13;
-&#13;
-</text-property>
-                        </label>
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                     </cell>
-                    <cell id="4028"/>
                     <cell id="4029">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
@@ -21818,15 +21702,8 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="4042">
-                        <label id="4043">
-                            <text-property name="text">Spec&#13;
- ± 2 dB&#13;
-4 dB window&#13;
-</text-property>
-                        </label>
-                    </cell>
-                    <cell id="4044">
-                        <property name="verticalAlign">middle</property>
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                         <text-data id="4045">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">10pt</property>
@@ -21932,8 +21809,9 @@ where TD.Test_id=?]]></xml-property>
             <detail>
                 <row id="4082">
                     <property name="textAlign">center</property>
-                    <cell id="4083"/>
-                    <cell id="4084">
+                    <cell id="4083">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                         <data id="4085">
                             <property name="resultSetColumn">frequency</property>
                         </data>
