@@ -715,8 +715,8 @@ if HPDataPresent > 0 and VPDataPresent > 0 and raDataPresent > 0  and GainSTDHor
 	-- Max Received Amplitude of AUT in VP -> A
 	select MAX(Amplitude) into @A from pv_vdata_gm where Prodserial_id = gmSerial and Frequency = gmFreq ;
 
-	-- Received Amplitude of STD HORN -> B
-	select RecvdAmp into @B from pv_radata where Prodserial_id = gmSerial and Frequency = gmFreq;
+	-- Max Received Amplitude of STD HORN -> B
+	select MAX(RecvdAmp) into @B from pv_radata where Prodserial_id = gmSerial and Frequency = gmFreq;
 
 	-- Received Amp Diff (C=A-B) 
 	set C = @A - @B;
