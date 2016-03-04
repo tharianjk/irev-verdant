@@ -38,11 +38,11 @@
           </tr>
            </table>
           
-          <table id ='mtab' >
+          <table id ='mtab' style="display:none">
 	    
 	    <tbody><tr><td>
 	    <c:forEach items="${model.freqlist}" var="freq">			
-				<input type="checkbox" name="chkid" value="${freq.frequency}" id="${freq.frequency}" class="chkfreq">${freq.frequency}
+				<input type="checkbox" name="chkid" value="${freq.frequency}" id="${freq.frequency}" class="chkfreq" checked="checked">${freq.frequency}
 				
 			</c:forEach></td></tr></tbody>	    
 	    </table> 
@@ -57,6 +57,8 @@
         </div> </td>
        </tr>
        </table>
+       
+       
        <table>
        <tr>
        <td > Max.Amplitude: </td>

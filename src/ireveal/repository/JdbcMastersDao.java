@@ -1426,6 +1426,12 @@ if(strmode.equals("new")){
 						sqldelete="delete from pv_Hdata_GM where Prodserial_id=? and frequency=? ";
 					}
 				}
+				if(testdata.getFiletype().equals("M"))
+				{
+					sqlcnt="select count(*) from pv_radata where Prodserial_id=? and frequency=? ";
+					sqldelete="delete from pv_radata where Prodserial_id=? and frequency=? ";
+				}
+				
 				logger.info(" PVSerialData 6 freq"+testfreqlist.get(i).getFrequency()+" datatype="+datatype);
 				//logger.info("sqlcnt="+sqlcnt);
 			int cntfreq=getJdbcTemplate().queryForObject(sqlcnt,Integer.class,serialid,testfreqlist.get(i).getFrequency());
@@ -1473,13 +1479,23 @@ if(strmode.equals("new")){
 		  			sqltest="insert into pv_Hdata_GM (Prodserial_id,Frequency,Angle,Amplitude) values (?,?,?,?)"; 
 		  		}
 	  	}
+	  	else if(testdata.getFiletype().equals("M"))
+		{
+	  		sqltest="insert into pv_radata (Prodserial_id,Frequency,RecvdAmp) values (?,?,?)"; 
+		}
 	  	logger.info(" PVSerialData 3 sqltest"+sqltest );
 	  	for (int i=0;i<dataloglist.size();i++){	
-	  		
-		getJdbcTemplate().update(  
-				sqltest,  
-		 new Object[] {serialid, dataloglist.get(i).getFreq(), dataloglist.get(i).getAngle()==360.00?0:dataloglist.get(i).getAngle(),dataloglist.get(i).getAmplitude()});
-
+	  		if(testdata.getFiletype().equals("M")){
+	  			getJdbcTemplate().update(  
+						sqltest,  
+				 new Object[] {serialid, dataloglist.get(i).getFreq(),dataloglist.get(i).getAmplitude()});
+		  			
+	  		}
+	  		else{
+			getJdbcTemplate().update(  
+					sqltest,  
+			 new Object[] {serialid, dataloglist.get(i).getFreq(), dataloglist.get(i).getAngle()==360.00?0:dataloglist.get(i).getAngle(),dataloglist.get(i).getAmplitude()});
+	  		}
 		}
 	  	/* if(action.equals("Done"))
 	  	{

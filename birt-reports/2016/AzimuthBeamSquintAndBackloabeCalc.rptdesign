@@ -103,6 +103,50 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
+        <scalar-parameter name="s2" id="1308">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="s3" id="1309">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="s4" id="1310">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="s5" id="1311">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="VerdantProfile" id="462">
@@ -732,6 +776,7 @@
                     <property name="fontSize">11pt</property>
                     <column id="1273"/>
                     <column id="1274"/>
+                    <column id="1313"/>
                     <row id="1275">
                         <cell id="1276">
                             <text id="1278">
@@ -765,16 +810,29 @@
                         <cell id="1277">
                             <text-data id="1279">
                                 <property name="fontWeight">normal</property>
+                                <property name="textAlign">center</property>
                                 <expression name="valueExpr">params["rptf"].value</expression>
                                 <property name="contentType">html</property>
                             </text-data>
                         </cell>
+                        <cell id="1312"/>
                     </row>
                 </grid>
             </page-footer>
         </simple-master-page>
     </page-setup>
     <body>
+        <label id="5078">
+            <property name="fontFamily">serif</property>
+            <property name="fontSize">12pt</property>
+            <property name="fontWeight">bold</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">thin</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">TEST RECORD SHEET-6: &#13;
+AZIMUTH BEAMSQUINT AND BACKLOBE CALCULATION&#13;
+</text-property>
+        </label>
         <table id="7">
             <property name="style">Border</property>
             <property name="dataSet">AzimuthBSBaclLobe</property>
@@ -1259,6 +1317,1974 @@ Z1=A1+[(B1-A1)/2]&#13;
                     </cell>
                     <cell id="456">
                         <data id="519">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">remarks</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+        </table>
+        <table id="5079">
+            <property name="style">Border</property>
+            <property name="pageBreakBefore">always</property>
+            <property name="dataSet">AzimuthBSBaclLobe</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
+            <list-property name="paramBindings">
+                <structure>
+                    <property name="paramName">Testid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["TestId"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">degree</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">serialid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["s2"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">precision</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">frequency</property>
+                    <text-property name="displayName">frequency</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequency"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">ldbpoint</property>
+                    <text-property name="displayName">ldbpoint</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ldbpoint"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">rdbpoint</property>
+                    <text-property name="displayName">rdbpoint</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["rdbpoint"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">BS</property>
+                    <text-property name="displayName">BS</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["BS"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">X1</property>
+                    <text-property name="displayName">X1</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["X1"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Y1</property>
+                    <text-property name="displayName">Y1</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Y1"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Backlobe</property>
+                    <text-property name="displayName">Backlobe</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Backlobe"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">remark</property>
+                    <text-property name="displayName">remark</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="5117">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5118">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5119">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5120">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5121">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5122">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5123">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5124">
+                <property name="style">BorderStyle</property>
+            </column>
+            <header>
+                <row id="5080">
+                    <property name="style">Border</property>
+                    <cell id="5081">
+                        <property name="colSpan">8</property>
+                        <property name="rowSpan">1</property>
+                        <label id="5082">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">14pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">AZIMUTH BEAMSQUINT AND BACKLOBE CALCULATION</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="5083">
+                    <property name="style">Border</property>
+                    <cell id="5084">
+                        <text-data id="5085">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                    <cell id="5086">
+                        <label id="5087">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Left 3dB&#13;
+point&#13;
+(A1)</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5088">
+                        <label id="5089">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Right 3dB&#13;
+point&#13;
+(B1)</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5090">
+                        <label id="5091">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Beam Squint&#13;
+Z1=A1+[(B1-A1)/2]&#13;
+(6° for 80% of band &amp;10° for 100% of Band)&#13;
+</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5092">
+                        <label id="5093">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Received Power at Beam peak by AUT (dB)&#13;
+(X1)&#13;
+</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5094">
+                        <label id="5095">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Received Power at 180 deg from Beam peak (dB)&#13;
+(Y1)&#13;
+</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5096">
+                        <label id="5097">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Back lobe level&#13;
+(dB)&#13;
+(Y1-X1)&#13;
+≤ -20dB for 3-18GHz&#13;
+≤ -12dB for ≤3GHz</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5098">
+                        <label id="5099">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Remarks</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="5100">
+                    <property name="style">Border</property>
+                    <cell id="5101">
+                        <data id="5102">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">frequency</property>
+                        </data>
+                    </cell>
+                    <cell id="5103">
+                        <data id="5104">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">ldbpoint</property>
+                        </data>
+                    </cell>
+                    <cell id="5105">
+                        <data id="5106">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">rdbpoint</property>
+                        </data>
+                    </cell>
+                    <cell id="5107">
+                        <data id="5108">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">BS</property>
+                        </data>
+                    </cell>
+                    <cell id="5109">
+                        <data id="5110">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">X1</property>
+                        </data>
+                    </cell>
+                    <cell id="5111">
+                        <data id="5112">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Y1</property>
+                        </data>
+                    </cell>
+                    <cell id="5113">
+                        <data id="5114">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Backlobe</property>
+                        </data>
+                    </cell>
+                    <cell id="5115">
+                        <data id="5116">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">remark</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+        </table>
+        <table id="5125">
+            <property name="style">Border</property>
+            <property name="dataSet">AzimuthBSSummary</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
+            <list-property name="paramBindings">
+                <structure>
+                    <property name="paramName">Testid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["TestId"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">degree</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">serialid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["s2"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">precision</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">majorspec</property>
+                    <text-property name="displayName">majorspec</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["majorspec"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">minorspec</property>
+                    <text-property name="displayName">minorspec</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["minorspec"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">remarks</property>
+                    <text-property name="displayName">remarks</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["remarks"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["majorspec"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="5161">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5162">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5163">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5164">
+                <property name="style">BorderStyle</property>
+            </column>
+            <header>
+                <row id="5126">
+                    <cell id="5127">
+                        <property name="colSpan">4</property>
+                        <property name="rowSpan">1</property>
+                        <label id="5128"/>
+                    </cell>
+                </row>
+                <row id="5129">
+                    <cell id="5130">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">2</property>
+                        <label id="5131">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">No. Of points within 10º </text-property>
+                        </label>
+                    </cell>
+                    <cell id="5132">
+                        <label id="5133">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">SPEC</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5134">
+                        <label id="5135">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Measured</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5136">
+                        <label id="5137">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Remarks</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="5138">
+                    <cell id="5139">
+                        <label id="5140">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">=18 Points</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5141">
+                        <data id="5142">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">majorspec</property>
+                        </data>
+                    </cell>
+                    <cell id="5143">
+                        <data id="5144">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">remarks</property>
+                        </data>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="5145">
+                    <cell id="5146">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">2</property>
+                        <label id="5147">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">No. Of points within 6º </text-property>
+                        </label>
+                    </cell>
+                    <cell id="5148">
+                        <label id="5149">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">SPEC</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5150">
+                        <label id="5151">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Measured</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5152">
+                        <label id="5153">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Remarks</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="5154">
+                    <cell id="5155">
+                        <label id="5156">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">≥14 Points</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5157">
+                        <data id="5158">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">minorspec</property>
+                        </data>
+                    </cell>
+                    <cell id="5159">
+                        <data id="5160">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">remarks</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+        </table>
+        <table id="5165">
+            <property name="style">Border</property>
+            <property name="pageBreakBefore">always</property>
+            <property name="dataSet">AzimuthBSBaclLobe</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
+            <list-property name="paramBindings">
+                <structure>
+                    <property name="paramName">Testid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["TestId"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">degree</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">serialid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["s3"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">precision</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">frequency</property>
+                    <text-property name="displayName">frequency</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequency"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">ldbpoint</property>
+                    <text-property name="displayName">ldbpoint</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ldbpoint"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">rdbpoint</property>
+                    <text-property name="displayName">rdbpoint</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["rdbpoint"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">BS</property>
+                    <text-property name="displayName">BS</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["BS"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">X1</property>
+                    <text-property name="displayName">X1</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["X1"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Y1</property>
+                    <text-property name="displayName">Y1</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Y1"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Backlobe</property>
+                    <text-property name="displayName">Backlobe</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Backlobe"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">remark</property>
+                    <text-property name="displayName">remark</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="5203">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5204">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5205">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5206">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5207">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5208">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5209">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5210">
+                <property name="style">BorderStyle</property>
+            </column>
+            <header>
+                <row id="5166">
+                    <property name="style">Border</property>
+                    <cell id="5167">
+                        <property name="colSpan">8</property>
+                        <property name="rowSpan">1</property>
+                        <label id="5168">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">14pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">AZIMUTH BEAMSQUINT AND BACKLOBE CALCULATION</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="5169">
+                    <property name="style">Border</property>
+                    <cell id="5170">
+                        <text-data id="5171">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                    <cell id="5172">
+                        <label id="5173">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Left 3dB&#13;
+point&#13;
+(A1)</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5174">
+                        <label id="5175">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Right 3dB&#13;
+point&#13;
+(B1)</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5176">
+                        <label id="5177">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Beam Squint&#13;
+Z1=A1+[(B1-A1)/2]&#13;
+(6° for 80% of band &amp;10° for 100% of Band)&#13;
+</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5178">
+                        <label id="5179">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Received Power at Beam peak by AUT (dB)&#13;
+(X1)&#13;
+</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5180">
+                        <label id="5181">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Received Power at 180 deg from Beam peak (dB)&#13;
+(Y1)&#13;
+</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5182">
+                        <label id="5183">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Back lobe level&#13;
+(dB)&#13;
+(Y1-X1)&#13;
+≤ -20dB for 3-18GHz&#13;
+≤ -12dB for ≤3GHz</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5184">
+                        <label id="5185">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Remarks</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="5186">
+                    <property name="style">Border</property>
+                    <cell id="5187">
+                        <data id="5188">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">frequency</property>
+                        </data>
+                    </cell>
+                    <cell id="5189">
+                        <data id="5190">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">ldbpoint</property>
+                        </data>
+                    </cell>
+                    <cell id="5191">
+                        <data id="5192">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">rdbpoint</property>
+                        </data>
+                    </cell>
+                    <cell id="5193">
+                        <data id="5194">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">BS</property>
+                        </data>
+                    </cell>
+                    <cell id="5195">
+                        <data id="5196">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">X1</property>
+                        </data>
+                    </cell>
+                    <cell id="5197">
+                        <data id="5198">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Y1</property>
+                        </data>
+                    </cell>
+                    <cell id="5199">
+                        <data id="5200">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Backlobe</property>
+                        </data>
+                    </cell>
+                    <cell id="5201">
+                        <data id="5202">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">remark</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+        </table>
+        <table id="5211">
+            <property name="style">Border</property>
+            <property name="dataSet">AzimuthBSSummary</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
+            <list-property name="paramBindings">
+                <structure>
+                    <property name="paramName">Testid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["TestId"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">degree</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">serialid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["s3"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">precision</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">majorspec</property>
+                    <text-property name="displayName">majorspec</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["majorspec"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">minorspec</property>
+                    <text-property name="displayName">minorspec</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["minorspec"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">remarks</property>
+                    <text-property name="displayName">remarks</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["remarks"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["majorspec"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="5247">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5248">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5249">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5250">
+                <property name="style">BorderStyle</property>
+            </column>
+            <header>
+                <row id="5212">
+                    <cell id="5213">
+                        <property name="colSpan">4</property>
+                        <property name="rowSpan">1</property>
+                        <label id="5214"/>
+                    </cell>
+                </row>
+                <row id="5215">
+                    <cell id="5216">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">2</property>
+                        <label id="5217">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">No. Of points within 10º </text-property>
+                        </label>
+                    </cell>
+                    <cell id="5218">
+                        <label id="5219">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">SPEC</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5220">
+                        <label id="5221">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Measured</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5222">
+                        <label id="5223">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Remarks</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="5224">
+                    <cell id="5225">
+                        <label id="5226">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">=18 Points</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5227">
+                        <data id="5228">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">majorspec</property>
+                        </data>
+                    </cell>
+                    <cell id="5229">
+                        <data id="5230">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">remarks</property>
+                        </data>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="5231">
+                    <cell id="5232">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">2</property>
+                        <label id="5233">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">No. Of points within 6º </text-property>
+                        </label>
+                    </cell>
+                    <cell id="5234">
+                        <label id="5235">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">SPEC</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5236">
+                        <label id="5237">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Measured</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5238">
+                        <label id="5239">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Remarks</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="5240">
+                    <cell id="5241">
+                        <label id="5242">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">≥14 Points</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5243">
+                        <data id="5244">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">minorspec</property>
+                        </data>
+                    </cell>
+                    <cell id="5245">
+                        <data id="5246">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">remarks</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+        </table>
+        <table id="5251">
+            <property name="style">Border</property>
+            <property name="pageBreakBefore">always</property>
+            <property name="dataSet">AzimuthBSBaclLobe</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
+            <list-property name="paramBindings">
+                <structure>
+                    <property name="paramName">Testid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["TestId"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">degree</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">serialid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["s4"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">precision</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">frequency</property>
+                    <text-property name="displayName">frequency</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequency"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">ldbpoint</property>
+                    <text-property name="displayName">ldbpoint</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ldbpoint"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">rdbpoint</property>
+                    <text-property name="displayName">rdbpoint</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["rdbpoint"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">BS</property>
+                    <text-property name="displayName">BS</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["BS"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">X1</property>
+                    <text-property name="displayName">X1</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["X1"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Y1</property>
+                    <text-property name="displayName">Y1</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Y1"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Backlobe</property>
+                    <text-property name="displayName">Backlobe</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Backlobe"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">remark</property>
+                    <text-property name="displayName">remark</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="5289">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5290">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5291">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5292">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5293">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5294">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5295">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5296">
+                <property name="style">BorderStyle</property>
+            </column>
+            <header>
+                <row id="5252">
+                    <property name="style">Border</property>
+                    <cell id="5253">
+                        <property name="colSpan">8</property>
+                        <property name="rowSpan">1</property>
+                        <label id="5254">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">14pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">AZIMUTH BEAMSQUINT AND BACKLOBE CALCULATION</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="5255">
+                    <property name="style">Border</property>
+                    <cell id="5256">
+                        <text-data id="5257">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                    <cell id="5258">
+                        <label id="5259">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Left 3dB&#13;
+point&#13;
+(A1)</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5260">
+                        <label id="5261">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Right 3dB&#13;
+point&#13;
+(B1)</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5262">
+                        <label id="5263">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Beam Squint&#13;
+Z1=A1+[(B1-A1)/2]&#13;
+(6° for 80% of band &amp;10° for 100% of Band)&#13;
+</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5264">
+                        <label id="5265">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Received Power at Beam peak by AUT (dB)&#13;
+(X1)&#13;
+</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5266">
+                        <label id="5267">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Received Power at 180 deg from Beam peak (dB)&#13;
+(Y1)&#13;
+</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5268">
+                        <label id="5269">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Back lobe level&#13;
+(dB)&#13;
+(Y1-X1)&#13;
+≤ -20dB for 3-18GHz&#13;
+≤ -12dB for ≤3GHz</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5270">
+                        <label id="5271">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Remarks</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="5272">
+                    <property name="style">Border</property>
+                    <cell id="5273">
+                        <data id="5274">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">frequency</property>
+                        </data>
+                    </cell>
+                    <cell id="5275">
+                        <data id="5276">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">ldbpoint</property>
+                        </data>
+                    </cell>
+                    <cell id="5277">
+                        <data id="5278">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">rdbpoint</property>
+                        </data>
+                    </cell>
+                    <cell id="5279">
+                        <data id="5280">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">BS</property>
+                        </data>
+                    </cell>
+                    <cell id="5281">
+                        <data id="5282">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">X1</property>
+                        </data>
+                    </cell>
+                    <cell id="5283">
+                        <data id="5284">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Y1</property>
+                        </data>
+                    </cell>
+                    <cell id="5285">
+                        <data id="5286">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Backlobe</property>
+                        </data>
+                    </cell>
+                    <cell id="5287">
+                        <data id="5288">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">remark</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+        </table>
+        <table id="5297">
+            <property name="style">Border</property>
+            <property name="dataSet">AzimuthBSSummary</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
+            <list-property name="paramBindings">
+                <structure>
+                    <property name="paramName">Testid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["TestId"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">degree</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">serialid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["s4"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">precision</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">majorspec</property>
+                    <text-property name="displayName">majorspec</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["majorspec"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">minorspec</property>
+                    <text-property name="displayName">minorspec</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["minorspec"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">remarks</property>
+                    <text-property name="displayName">remarks</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["remarks"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["majorspec"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="5333">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5334">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5335">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5336">
+                <property name="style">BorderStyle</property>
+            </column>
+            <header>
+                <row id="5298">
+                    <cell id="5299">
+                        <property name="colSpan">4</property>
+                        <property name="rowSpan">1</property>
+                        <label id="5300"/>
+                    </cell>
+                </row>
+                <row id="5301">
+                    <cell id="5302">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">2</property>
+                        <label id="5303">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">No. Of points within 10º </text-property>
+                        </label>
+                    </cell>
+                    <cell id="5304">
+                        <label id="5305">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">SPEC</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5306">
+                        <label id="5307">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Measured</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5308">
+                        <label id="5309">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Remarks</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="5310">
+                    <cell id="5311">
+                        <label id="5312">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">=18 Points</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5313">
+                        <data id="5314">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">majorspec</property>
+                        </data>
+                    </cell>
+                    <cell id="5315">
+                        <data id="5316">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">remarks</property>
+                        </data>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="5317">
+                    <cell id="5318">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">2</property>
+                        <label id="5319">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">No. Of points within 6º </text-property>
+                        </label>
+                    </cell>
+                    <cell id="5320">
+                        <label id="5321">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">SPEC</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5322">
+                        <label id="5323">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Measured</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5324">
+                        <label id="5325">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Remarks</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="5326">
+                    <cell id="5327">
+                        <label id="5328">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">≥14 Points</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5329">
+                        <data id="5330">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">minorspec</property>
+                        </data>
+                    </cell>
+                    <cell id="5331">
+                        <data id="5332">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">remarks</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+        </table>
+        <table id="5337">
+            <property name="style">Border</property>
+            <property name="pageBreakBefore">always</property>
+            <property name="dataSet">AzimuthBSBaclLobe</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
+            <list-property name="paramBindings">
+                <structure>
+                    <property name="paramName">Testid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["TestId"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">degree</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">serialid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["s5"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">precision</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">frequency</property>
+                    <text-property name="displayName">frequency</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequency"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">ldbpoint</property>
+                    <text-property name="displayName">ldbpoint</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ldbpoint"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">rdbpoint</property>
+                    <text-property name="displayName">rdbpoint</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["rdbpoint"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">BS</property>
+                    <text-property name="displayName">BS</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["BS"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">X1</property>
+                    <text-property name="displayName">X1</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["X1"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Y1</property>
+                    <text-property name="displayName">Y1</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Y1"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Backlobe</property>
+                    <text-property name="displayName">Backlobe</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Backlobe"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">remark</property>
+                    <text-property name="displayName">remark</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="5375">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5376">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5377">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5378">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5379">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5380">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5381">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5382">
+                <property name="style">BorderStyle</property>
+            </column>
+            <header>
+                <row id="5338">
+                    <property name="style">Border</property>
+                    <cell id="5339">
+                        <property name="colSpan">8</property>
+                        <property name="rowSpan">1</property>
+                        <label id="5340">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">14pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">AZIMUTH BEAMSQUINT AND BACKLOBE CALCULATION</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="5341">
+                    <property name="style">Border</property>
+                    <cell id="5342">
+                        <text-data id="5343">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <expression name="valueExpr">"Frequency ("+params["frequnit"].value+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                    <cell id="5344">
+                        <label id="5345">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Left 3dB&#13;
+point&#13;
+(A1)</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5346">
+                        <label id="5347">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Right 3dB&#13;
+point&#13;
+(B1)</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5348">
+                        <label id="5349">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Beam Squint&#13;
+Z1=A1+[(B1-A1)/2]&#13;
+(6° for 80% of band &amp;10° for 100% of Band)&#13;
+</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5350">
+                        <label id="5351">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Received Power at Beam peak by AUT (dB)&#13;
+(X1)&#13;
+</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5352">
+                        <label id="5353">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Received Power at 180 deg from Beam peak (dB)&#13;
+(Y1)&#13;
+</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5354">
+                        <label id="5355">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Back lobe level&#13;
+(dB)&#13;
+(Y1-X1)&#13;
+≤ -20dB for 3-18GHz&#13;
+≤ -12dB for ≤3GHz</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5356">
+                        <label id="5357">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Remarks</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="5358">
+                    <property name="style">Border</property>
+                    <cell id="5359">
+                        <data id="5360">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">frequency</property>
+                        </data>
+                    </cell>
+                    <cell id="5361">
+                        <data id="5362">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">ldbpoint</property>
+                        </data>
+                    </cell>
+                    <cell id="5363">
+                        <data id="5364">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">rdbpoint</property>
+                        </data>
+                    </cell>
+                    <cell id="5365">
+                        <data id="5366">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">BS</property>
+                        </data>
+                    </cell>
+                    <cell id="5367">
+                        <data id="5368">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">X1</property>
+                        </data>
+                    </cell>
+                    <cell id="5369">
+                        <data id="5370">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Y1</property>
+                        </data>
+                    </cell>
+                    <cell id="5371">
+                        <data id="5372">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">Backlobe</property>
+                        </data>
+                    </cell>
+                    <cell id="5373">
+                        <data id="5374">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">remark</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+        </table>
+        <table id="5383">
+            <property name="style">Border</property>
+            <property name="dataSet">AzimuthBSSummary</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                </structure>
+            </list-property>
+            <list-property name="paramBindings">
+                <structure>
+                    <property name="paramName">Testid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["TestId"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">degree</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">serialid</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["s5"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">precision</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">majorspec</property>
+                    <text-property name="displayName">majorspec</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["majorspec"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">minorspec</property>
+                    <text-property name="displayName">minorspec</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["minorspec"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">remarks</property>
+                    <text-property name="displayName">remarks</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["remarks"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["majorspec"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="5419">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5420">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5421">
+                <property name="style">BorderStyle</property>
+            </column>
+            <column id="5422">
+                <property name="style">BorderStyle</property>
+            </column>
+            <header>
+                <row id="5384">
+                    <cell id="5385">
+                        <property name="colSpan">4</property>
+                        <property name="rowSpan">1</property>
+                        <label id="5386"/>
+                    </cell>
+                </row>
+                <row id="5387">
+                    <cell id="5388">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">2</property>
+                        <label id="5389">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">No. Of points within 10º </text-property>
+                        </label>
+                    </cell>
+                    <cell id="5390">
+                        <label id="5391">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">SPEC</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5392">
+                        <label id="5393">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Measured</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5394">
+                        <label id="5395">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Remarks</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="5396">
+                    <cell id="5397">
+                        <label id="5398">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">=18 Points</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5399">
+                        <data id="5400">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">majorspec</property>
+                        </data>
+                    </cell>
+                    <cell id="5401">
+                        <data id="5402">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">remarks</property>
+                        </data>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="5403">
+                    <cell id="5404">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">2</property>
+                        <label id="5405">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">No. Of points within 6º </text-property>
+                        </label>
+                    </cell>
+                    <cell id="5406">
+                        <label id="5407">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">SPEC</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5408">
+                        <label id="5409">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Measured</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5410">
+                        <label id="5411">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">Remarks</text-property>
+                        </label>
+                    </cell>
+                </row>
+                <row id="5412">
+                    <cell id="5413">
+                        <label id="5414">
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">≥14 Points</text-property>
+                        </label>
+                    </cell>
+                    <cell id="5415">
+                        <data id="5416">
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">minorspec</property>
+                        </data>
+                    </cell>
+                    <cell id="5417">
+                        <data id="5418">
                             <property name="textAlign">center</property>
                             <property name="resultSetColumn">remarks</property>
                         </data>

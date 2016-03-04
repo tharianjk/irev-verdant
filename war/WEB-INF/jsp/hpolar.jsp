@@ -57,11 +57,29 @@
 	    
 	    <tbody><tr><td>
 	    <c:forEach items="${model.freqlist}" var="freq">			
-				<input type="checkbox" name="chkid" value="${freq.frequency}" id="${freq.frequency}" class="chkfreq">${freq.frequency}
+				<input type="checkbox" name="chkid" value="${freq.frequency}" id="${freq.frequency}" class="chkfreq" >${freq.frequency}
 				 &nbsp;<input type="text" name="lgid"  id='lg-${freq.frequency}'  class="hintTextbox" style="width:50;display:none;" maxlength="20"  value="l-gain"/>
 			</c:forEach></td></tr></tbody>	    
 	    </table> 
-          
+          <table id="tabrange">
+		<tr>
+		<td>
+          <input type="checkbox" id="chkrange"  onchange="enablerange();" />Frequency Range
+        </td>        
+        </tr>
+        <tr>
+        <td>
+        <div id ="rangediv" style="display:none;">
+        Start Freq.
+        &nbsp; &nbsp;<input type="number" id="startfreq" />
+        &nbsp; &nbsp;Increment By
+        &nbsp; &nbsp;<input type="number" id="freqrange" />
+        &nbsp; &nbsp;End Freq.
+        &nbsp; &nbsp;<input type="number" id="lastfreq"  />
+        &nbsp; &nbsp;<input type="button" id="btnrange" onclick="uprange();" value="Populate" class="mybuttongo" />
+        </div>
+        </td>
+		</table>
           <table>
           <tr>
           <td>
@@ -150,7 +168,7 @@ $(document).ready(function(){
 		else
 			document.getElementById("divlg").style.display="none";
 	
-	
+	document.getElementById("tabrange").style.visibility="hidden";
 	
 	if(lgtype=="DCP" || parent.AssetTree.selectedparenttype=="L")
 		{document.getElementById("cp").style.display="none";}
@@ -194,11 +212,13 @@ function fnonchange(){
 		{
 		document.getElementById("stab").style.display="none";
 		document.getElementById("mtab").style.display="block";
+		document.getElementById("tabrange").style.visibility="visible";
 		}
 	else
 	{
 		document.getElementById("stab").style.display="block";
 		document.getElementById("mtab").style.display="none";
+		document.getElementById("tabrange").style.visibility="hidden";
 		}
 		
 	
@@ -289,8 +309,10 @@ if(document.getElementById("freqtype").value=="M"){
 	
 	i=0;
 	j=0;
-			for (i==0;i<freqs.length;i++){				
-				if(document.getElementById(freqs[i]).checked){					
+			for (i==0;i<freqs.length;i++){	
+				console.log("freqs[i]="+freqs[i]);
+				if(document.getElementById(freqs[i]).checked){	
+					console.log("freqs[i]="+document.getElementById(freqs[i]).innerHTML);
 					if(j==0){
 						selfreq=freqs[i];}
 					else{selfreq=selfreq+','+freqs[i];}
@@ -302,7 +324,7 @@ if(document.getElementById("freqtype").value=="M"){
 						console.log("lg "+lgs[j]);
 					if(document.getElementById('lg-'+freqs[i]).value !="l-gain" && document.getElementById('lg-'+freqs[i]).value!=null && document.getElementById('lg-'+freqs[i]).value!="" && document.getElementById('lg-'+freqs[i]).value!="undefined")
 						{						
-						lgs[j]=document.getElementById('lg-'+freqs[i]).value;
+						 lgs[j]=document.getElementById('lg-'+freqs[i]).value;
 						}				
 					}
 					if(j==0){
@@ -349,6 +371,59 @@ if(document.getElementById("freqtype").value=="M"){
 		console.log(url);
 window.frames['AppBody'].location=url;
 	}
+	
+	function uprange()
+	{
+		console.log("inside uprange");			
+	
+			if(document.getElementById("startfreq").value==null || document.getElementById("startfreq").value=="")
+			{
+					alert("Enter Starting frequency");
+					return;
+			}
+			
+			if(document.getElementById("freqrange").value==null || document.getElementById("freqrange").value=="")
+				{
+					alert("Enter Range");
+					return;
+				}
+	
+			if(document.getElementById("lastfreq").value==null || document.getElementById("lastfreq").value=="")
+			{
+				alert("Enter Last frequency");
+				return;
+			}
+			var rng=parseInt(document.getElementById("freqrange").value);
+			var rstart=parseInt(document.getElementById("startfreq").value);
+			var rlast=parseInt(document.getElementById("lastfreq").value);
+			
+			var ai=rstart;
+			// console.log("rlast "+rlast +" rng ="+rng);
+
+			while (ai <= rlast){
+				console.log("ai "+ai);
+				/*$("#tblData tbody").append(
+						"<tr>"+
+						"<td>"+ai+"</td>"+				
+						"<td><img src='img/delete.jpg' class='btnDelete'/></td>"+
+					"</tr>");
+				$(".btnDelete").bind("click", Delete);
+				*/
+				var id=ai+'.0';
+				document.getElementById(id).checked=true;
+				ai= ai + rng;
+				//console.log("ai "+ai);
+			}
+
+}
+
+function enablerange()
+{
+	if(document.getElementById("chkrange").checked)
+	document.getElementById("rangediv").style.display="block";
+	else
+		document.getElementById("rangediv").style.display="none";
+}
 </script>
 </body>
 </html>

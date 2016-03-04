@@ -48,7 +48,7 @@
 	     <td > &nbsp; &nbsp;&nbsp;Serial Nos: </td>
 	    <td>
 	    <c:forEach items="${model.seriallist}" var="serial">			
-				<input type="checkbox" name="chkid" value="${serial.productserialid}" id="${serial.productserialid}" class="chkfreq">${serial.productserial}
+				<input type="checkbox" name="chkid" value="${serial.productserialid}" id="${serial.productserialid}" class="chkfreq" checked="checked">${serial.productserial}
 		</c:forEach></td></tr></tbody>	    
         </table>
 		</td>
@@ -211,12 +211,12 @@ function Redirect(){
 			
 			else if(oper=='gt' )
 			{		
-				if(document.getElementById('0').checked)
+			/*	if(document.getElementById('0').checked)
 					deg='0';
 				else if(document.getElementById('P45').checked)
 					deg='P45';
 				else
-					deg='M45';
+					deg='M45';*/
 				
 				var serialcnt='${model.serialcnt}';
 				url="/birt-viewer/frameset?__report=verdant/GainTrackingMeasurement.rptdesign&TestId="+testid+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+"&deg="+deg+"&scount="+serialcnt+"&frequnit="+frequnit;

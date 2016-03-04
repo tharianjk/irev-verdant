@@ -106,7 +106,8 @@ public class PVSerialImportController extends SimpleFormController{
 				}
 		}
 		else{
-         if(filetype.equals("M")){
+       /*  if(filetype.equals("M"))
+         {
         	 List<TestFrequency> freqlist=new ArrayList<TestFrequency>();
         	 logger.info("*** Inside PVSerialcontroller in onsubmit**: Gain Measurement");
         	 JSONObject obj1 = new JSONObject(file.getStrjsonfreq());
@@ -234,7 +235,7 @@ public class PVSerialImportController extends SimpleFormController{
 	 }
          }
 	 else
-	 {
+	 {*/
 	        	 logger.info("*** Inside PVSerialcontroller in onsubmit**filetype: filetype"); 
 			 if(strmode.equals("edit")){
 				 logger.info("*** Inside PVSerialcontroller in onsubmit**: update");
@@ -321,13 +322,13 @@ public class PVSerialImportController extends SimpleFormController{
 				    	  {
 				    		  startrow=1; 
 				    	  }
-				      
+				    	  logger.info("startrow " +startrow);
 				      XSSFRow freqrow =(XSSFRow) sheet.getRow(startrow);
 				     
 				      for(int u=1;u<colNum;u++){
 				    	  freqarr.add( Double.parseDouble(freqrow.getCell(u).toString()));
 				      }
-				      
+				      logger.info("freqarr done " );
 				      for(y=0;y<freqlist.size();y++)
 				      {
 				    	  double colfreq=0;	
@@ -345,7 +346,7 @@ public class PVSerialImportController extends SimpleFormController{
 									int dup=0;
 									String ang=row.getCell(0).toString();
 									if(y==0){
-										
+										//logger.info("ang "+ang);
 									if(Double.parseDouble(ang)>360.0){
 										logger.info("TestImportController Invalid angle in file");									
 										 throw new ImportException("Invalid angle in file");
@@ -383,14 +384,19 @@ public class PVSerialImportController extends SimpleFormController{
 				    	  
 				    	  HSSFRow strow =(HSSFRow) sheet.getRow(0);
 					      logger.info("strow,1 " +strow.getCell(1));
+					      // ignore first row if it contains text
 				    	  if(strow.getCell(1) != null && strow.getCell(1).toString().toLowerCase().contains("freq") )
 				    	  {
 				    		  logger.info("strow,1 " +strow.getCell(1));
 				    		  startrow=1; 
 				    	  }
 				    	  
-					      HSSFRow freqrow =(HSSFRow) sheet.getRow(startrow);		
+					      HSSFRow freqrow =(HSSFRow) sheet.getRow(startrow);	
+					      logger.info("startrow="+startrow);
+					      
 					      for(int u=1;u<colNum;u++){
+					    	  //logger.info("freqrow.getCell(u).toString()"+freqrow.getCell(u).toString());
+					    	 
 					    	  freqarr.add(Double.parseDouble(freqrow.getCell(u).toString()));
 					    	  //logger.info( u +' '+freqrow.getCell(u).toString()); 
 					      }
@@ -472,7 +478,7 @@ public class PVSerialImportController extends SimpleFormController{
 			}
 			 }       
 			 }
-         }
+        // }
 		}
 		//
 		request.setAttribute("id", null);
