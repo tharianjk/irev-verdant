@@ -1153,6 +1153,18 @@ ELEVATION BEAMSQUINT AND BACKLOBE CALCULATION&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="35">
                 <property name="style">BorderStyle</property>
@@ -1448,6 +1460,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="7126">
@@ -1745,6 +1769,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="7175">
                 <property name="style">BorderStyle</property>
@@ -2040,6 +2076,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="7224">
@@ -2337,6 +2385,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="7273">
                 <property name="style">BorderStyle</property>
@@ -2632,6 +2692,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="7322">
@@ -2929,6 +3001,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="7371">
                 <property name="style">BorderStyle</property>
@@ -3224,6 +3308,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="7420">
@@ -3521,6 +3617,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="7469">
                 <property name="style">BorderStyle</property>
@@ -3816,6 +3924,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="7518">
@@ -4113,6 +4233,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="7567">
                 <property name="style">BorderStyle</property>
@@ -4408,6 +4540,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="7616">
@@ -4705,6 +4849,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="7665">
                 <property name="style">BorderStyle</property>
@@ -5000,6 +5156,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="7714">
@@ -5297,6 +5465,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="7763">
                 <property name="style">BorderStyle</property>
@@ -5592,6 +5772,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="7812">
@@ -5889,6 +6081,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="7861">
                 <property name="style">BorderStyle</property>
@@ -6184,6 +6388,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="7910">
@@ -6481,6 +6697,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="7959">
                 <property name="style">BorderStyle</property>
@@ -6776,6 +7004,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="8008">
@@ -7073,6 +7313,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="8057">
                 <property name="style">BorderStyle</property>
@@ -7368,6 +7620,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="8106">
@@ -7665,6 +7929,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="8155">
                 <property name="style">BorderStyle</property>
@@ -7960,6 +8236,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="8204">
@@ -8257,6 +8545,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="8253">
                 <property name="style">BorderStyle</property>
@@ -8552,6 +8852,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="8302">
@@ -8849,6 +9161,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="8351">
                 <property name="style">BorderStyle</property>
@@ -9144,6 +9468,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="8400">
@@ -9441,6 +9777,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="8449">
                 <property name="style">BorderStyle</property>
@@ -9736,6 +10084,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="8498">
@@ -10033,6 +10393,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="8547">
                 <property name="style">BorderStyle</property>
@@ -10328,6 +10700,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="8596">
@@ -10625,6 +11009,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="8645">
                 <property name="style">BorderStyle</property>
@@ -10920,6 +11316,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="8694">
@@ -11217,6 +11625,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="8743">
                 <property name="style">BorderStyle</property>
@@ -11512,6 +11932,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="8792">
@@ -11809,6 +12241,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="8841">
                 <property name="style">BorderStyle</property>
@@ -12104,6 +12548,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="8890">
@@ -12401,6 +12857,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="8939">
                 <property name="style">BorderStyle</property>
@@ -12696,6 +13164,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="8988">
@@ -12993,6 +13473,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="9037">
                 <property name="style">BorderStyle</property>
@@ -13288,6 +13780,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="9086">
@@ -13585,6 +14089,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="9135">
                 <property name="style">BorderStyle</property>
@@ -13880,6 +14396,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="9184">
@@ -14177,6 +14705,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="9233">
                 <property name="style">BorderStyle</property>
@@ -14472,6 +15012,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="9282">
@@ -14769,6 +15321,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="9331">
                 <property name="style">BorderStyle</property>
@@ -15064,6 +15628,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="9380">
@@ -15361,6 +15937,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="9429">
                 <property name="style">BorderStyle</property>
@@ -15656,6 +16244,18 @@ Z1=A1+[(B1-A1)/2]&#13;
                     <text-property name="displayName">remark</text-property>
                     <expression name="expression" type="javascript">dataSetRow["remark"]</expression>
                     <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["frequency"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <column id="9478">
