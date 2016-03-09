@@ -1023,6 +1023,8 @@ DELIMITER ;
 -- Routine DDL
 -- Note: comments before and after the routine body will not be stored by the server
 -- --------------------------------------------------------------------------------
+-- drop procedure if exists spPV_BSBL;
+
 DELIMITER $$
 
 CREATE  PROCEDURE spPV_BSBL(
@@ -1087,12 +1089,12 @@ if isDebug > 0 then
 -- select nprecision into prec from fwk_company;
 
  select frequnit into @unt from pv_testdata where test_id=testid;
-  select case @unt when 'GHz' then frequency/1000 else frequency end frequency, 
+  select distinct case @unt when 'GHz' then frequency/1000 else frequency end frequency, 
    round( case deg when '0' then 3Db_BW_0_left else 3Db_BW_BMax_left end,prec) ldbpoint,
     round(case deg when '0' then 3Db_BW_0_right else 3Db_BW_BMax_right end,prec) rdbpoint ,
     round(case deg when '0' then 3Db_BS_0 else 3Db_BS_BMax end,prec) BS ,
-    round(X1,prec) X1, round(Y1,prec) Y1, round(Backlobe,prec) Backlobe, '' remark
-    from pv_cpcalculated where prodserial_id=serialid and datatype=vdatatype ;
+    round(X1,prec) X1, round(Y1,prec) Y1, round(Backlobe,prec) Backlobe,s.serialno, '' remark
+    from pv_cpcalculated c inner join pv_prodserial s on c.prodserial_id=s.prodserial_id where p.prodserial_id=serialid and datatype=vdatatype ;
 
 
 

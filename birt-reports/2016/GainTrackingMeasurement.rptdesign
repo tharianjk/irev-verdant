@@ -9,13 +9,11 @@
     <property name="imageDPI">96</property>
     <parameters>
         <scalar-parameter name="TestId" id="1421">
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="constant">1</value>
-            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="controlType">text-box</property>
@@ -24,13 +22,11 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="pc" id="1422">
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="constant">1</value>
-            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="controlType">text-box</property>
@@ -39,6 +35,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="scount" id="1423">
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">integer</property>
             <property name="distinct">true</property>
@@ -53,12 +50,10 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rpth" id="1424">
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="constant">dd</value>
-            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="controlType">text-box</property>
@@ -67,12 +62,10 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rptf" id="1426">
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="constant">dd</value>
-            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="controlType">text-box</property>
@@ -81,6 +74,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="frequnit" id="2015">
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -5842,71 +5836,6 @@ where TD.Test_id=?]]></xml-property>
             <text-property name="text">TEST RECORD SHEET-09: GAIN TRACKING MEASUREMENT: CP &#13;
 </text-property>
         </label>
-        <grid id="5055">
-            <column id="5056"/>
-            <column id="5057"/>
-            <row id="5058">
-                <cell id="5059">
-                    <label id="5070">
-                        <property name="fontFamily">serif</property>
-                        <property name="fontSize">11pt</property>
-                        <text-property name="text">1. Tests Conducted for the Sale order (Ref No):&#13;
-</text-property>
-                    </label>
-                </cell>
-                <cell id="5060">
-                    <label id="5074">
-                        <property name="fontFamily">serif</property>
-                        <property name="fontSize">11pt</property>
-                    </label>
-                </cell>
-            </row>
-            <row id="5061">
-                <cell id="5062">
-                    <label id="5071">
-                        <property name="fontFamily">serif</property>
-                        <property name="fontSize">11pt</property>
-                        <text-property name="text">2. Sl. No of AUT:</text-property>
-                    </label>
-                </cell>
-                <cell id="5063">
-                    <label id="5075">
-                        <property name="fontFamily">serif</property>
-                        <property name="fontSize">11pt</property>
-                    </label>
-                </cell>
-            </row>
-            <row id="5064">
-                <cell id="5065">
-                    <label id="5072">
-                        <property name="fontFamily">serif</property>
-                        <property name="fontSize">11pt</property>
-                        <text-property name="text">3. Date and Time of Test:</text-property>
-                    </label>
-                </cell>
-                <cell id="5066">
-                    <label id="5076">
-                        <property name="fontFamily">serif</property>
-                        <property name="fontSize">11pt</property>
-                    </label>
-                </cell>
-            </row>
-            <row id="5067">
-                <cell id="5068">
-                    <label id="5073">
-                        <property name="fontFamily">serif</property>
-                        <property name="fontSize">11pt</property>
-                        <text-property name="text">4. Environmental condition (Lab / ESS/QT…):</text-property>
-                    </label>
-                </cell>
-                <cell id="5069">
-                    <label id="5077">
-                        <property name="fontFamily">serif</property>
-                        <property name="fontSize">11pt</property>
-                    </label>
-                </cell>
-            </row>
-        </grid>
         <table id="202">
             <property name="dataSet">TestDesc</property>
             <list-property name="visibility">
@@ -6018,6 +5947,74 @@ where TD.Test_id=?]]></xml-property>
                     <cell id="204">
                         <property name="colSpan">4</property>
                         <property name="rowSpan">1</property>
+                        <grid id="5055">
+                            <column id="5056"/>
+                            <column id="5057"/>
+                            <row id="5058">
+                                <cell id="5059">
+                                    <label id="5070">
+                                        <property name="fontFamily">serif</property>
+                                        <property name="fontSize">11pt</property>
+                                        <property name="textAlign">left</property>
+                                        <text-property name="text">1. Tests Conducted for the Sale order (Ref No):</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="5060">
+                                    <label id="5074">
+                                        <property name="fontFamily">serif</property>
+                                        <property name="fontSize">11pt</property>
+                                    </label>
+                                </cell>
+                            </row>
+                            <row id="5061">
+                                <cell id="5062">
+                                    <label id="5071">
+                                        <property name="fontFamily">serif</property>
+                                        <property name="fontSize">11pt</property>
+                                        <property name="textAlign">left</property>
+                                        <text-property name="text">2. Sl. No of AUT:</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="5063">
+                                    <label id="5075">
+                                        <property name="fontFamily">serif</property>
+                                        <property name="fontSize">11pt</property>
+                                    </label>
+                                </cell>
+                            </row>
+                            <row id="5064">
+                                <cell id="5065">
+                                    <label id="5072">
+                                        <property name="fontFamily">serif</property>
+                                        <property name="fontSize">11pt</property>
+                                        <property name="textAlign">left</property>
+                                        <text-property name="text">3. Date and Time of Test:</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="5066">
+                                    <label id="5076">
+                                        <property name="fontFamily">serif</property>
+                                        <property name="fontSize">11pt</property>
+                                    </label>
+                                </cell>
+                            </row>
+                            <row id="5067">
+                                <cell id="5068">
+                                    <label id="5073">
+                                        <property name="fontFamily">serif</property>
+                                        <property name="fontSize">11pt</property>
+                                        <property name="textAlign">left</property>
+                                        <text-property name="text">4. Environmental condition (Lab / ESS/QT…):</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="5069">
+                                    <label id="5077">
+                                        <property name="fontFamily">serif</property>
+                                        <property name="fontSize">11pt</property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </grid>
                         <label id="286">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">14pt</property>
@@ -6528,19 +6525,28 @@ where TD.Test_id=?]]></xml-property>
                         </label>
                     </cell>
                 </row>
+                <row id="5081">
+                    <property name="fontFamily">serif</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="verticalAlign">middle</property>
+                    <cell id="5082">
+                        <property name="colSpan">20</property>
+                        <property name="rowSpan">1</property>
+                        <label id="5147">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">SPEC: ± 1 dB (2 dB window )</text-property>
+                        </label>
+                    </cell>
+                </row>
                 <row id="1047">
                     <property name="fontFamily">serif</property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="1048">
-                        <label id="1093">
-                            <text-property name="text">Specification&#13;
-(dB)&#13;
-&#13;
-</text-property>
-                        </label>
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                     </cell>
-                    <cell id="1049"/>
                     <cell id="1050">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
@@ -6589,15 +6595,8 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="965">
-                        <label id="1094">
-                            <text-property name="text">Spec&#13;
- ± 1 dB&#13;
-2 dB window&#13;
-</text-property>
-                        </label>
-                    </cell>
-                    <cell id="966">
-                        <property name="verticalAlign">middle</property>
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                         <text-data id="1307">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">10pt</property>
@@ -6703,8 +6702,9 @@ where TD.Test_id=?]]></xml-property>
             <detail>
                 <row id="985">
                     <property name="textAlign">center</property>
-                    <cell id="986"/>
-                    <cell id="987">
+                    <cell id="986">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                         <data id="1096">
                             <property name="resultSetColumn">frequency</property>
                         </data>
@@ -7047,7 +7047,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="1257"/>
+            <column id="1257">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="1258"/>
             <column id="1259">
                 <list-property name="visibility">
@@ -7199,14 +7206,10 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="1161">
-                        <label id="1162">
-                            <text-property name="text">Specification&#13;
-(dB)&#13;
-&#13;
-</text-property>
-                        </label>
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">1</property>
                     </cell>
-                    <cell id="1163"/>
+                    <cell id="5198"/>
                     <cell id="1164">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
@@ -7255,14 +7258,10 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="1177">
-                        <label id="1178">
-                            <text-property name="text">Spec&#13;
- ± 1 dB&#13;
-2 dB window&#13;
-</text-property>
-                        </label>
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">1</property>
                     </cell>
-                    <cell id="1179">
+                    <cell id="5199">
                         <text-data id="2016">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">10pt</property>
@@ -7368,8 +7367,11 @@ where TD.Test_id=?]]></xml-property>
             <detail>
                 <row id="1217">
                     <property name="textAlign">center</property>
-                    <cell id="1218"/>
-                    <cell id="1219">
+                    <cell id="1218">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">1</property>
+                    </cell>
+                    <cell id="5200">
                         <data id="1220">
                             <property name="resultSetColumn">frequency</property>
                         </data>
@@ -7820,7 +7822,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="2123"/>
+            <column id="2123">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="2124"/>
             <column id="2125">
                 <list-property name="visibility">
@@ -7972,14 +7981,10 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="2027">
-                        <label id="2028">
-                            <text-property name="text">Specification&#13;
-(dB)&#13;
-&#13;
-</text-property>
-                        </label>
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">1</property>
                     </cell>
-                    <cell id="2029"/>
+                    <cell id="5201"/>
                     <cell id="2030">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
@@ -8028,14 +8033,10 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="2043">
-                        <label id="2044">
-                            <text-property name="text">Spec&#13;
- ± 1 dB&#13;
-2 dB window&#13;
-</text-property>
-                        </label>
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">1</property>
                     </cell>
-                    <cell id="2045">
+                    <cell id="5202">
                         <text-data id="2046">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">10pt</property>
@@ -8141,8 +8142,11 @@ where TD.Test_id=?]]></xml-property>
             <detail>
                 <row id="2083">
                     <property name="textAlign">center</property>
-                    <cell id="2084"/>
-                    <cell id="2085">
+                    <cell id="2084">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">1</property>
+                    </cell>
+                    <cell id="5203">
                         <data id="2086">
                             <property name="resultSetColumn">frequency</property>
                         </data>
@@ -8593,7 +8597,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="2241"/>
+            <column id="2241">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="2242"/>
             <column id="2243">
                 <list-property name="visibility">
@@ -8745,14 +8756,10 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="2145">
-                        <label id="2146">
-                            <text-property name="text">Specification&#13;
-(dB)&#13;
-&#13;
-</text-property>
-                        </label>
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">1</property>
                     </cell>
-                    <cell id="2147"/>
+                    <cell id="5204"/>
                     <cell id="2148">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
@@ -8801,14 +8808,10 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="2161">
-                        <label id="2162">
-                            <text-property name="text">Spec&#13;
- ± 1 dB&#13;
-2 dB window&#13;
-</text-property>
-                        </label>
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">1</property>
                     </cell>
-                    <cell id="2163">
+                    <cell id="5205">
                         <text-data id="2164">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">10pt</property>
@@ -8914,8 +8917,11 @@ where TD.Test_id=?]]></xml-property>
             <detail>
                 <row id="2201">
                     <property name="textAlign">center</property>
-                    <cell id="2202"/>
-                    <cell id="2203">
+                    <cell id="2202">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">1</property>
+                    </cell>
+                    <cell id="5206">
                         <data id="2204">
                             <property name="resultSetColumn">frequency</property>
                         </data>
@@ -9366,7 +9372,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="2359"/>
+            <column id="2359">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="2360"/>
             <column id="2361">
                 <list-property name="visibility">
@@ -9518,14 +9531,10 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="2263">
-                        <label id="2264">
-                            <text-property name="text">Specification&#13;
-(dB)&#13;
-&#13;
-</text-property>
-                        </label>
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">1</property>
                     </cell>
-                    <cell id="2265"/>
+                    <cell id="5207"/>
                     <cell id="2266">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
@@ -9574,14 +9583,10 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="2279">
-                        <label id="2280">
-                            <text-property name="text">Spec&#13;
- ± 1 dB&#13;
-2 dB window&#13;
-</text-property>
-                        </label>
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">1</property>
                     </cell>
-                    <cell id="2281">
+                    <cell id="5208">
                         <text-data id="2282">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">10pt</property>
@@ -9687,8 +9692,11 @@ where TD.Test_id=?]]></xml-property>
             <detail>
                 <row id="2319">
                     <property name="textAlign">center</property>
-                    <cell id="2320"/>
-                    <cell id="2321">
+                    <cell id="2320">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">1</property>
+                    </cell>
+                    <cell id="5209">
                         <data id="2322">
                             <property name="resultSetColumn">frequency</property>
                         </data>
@@ -10139,7 +10147,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="2552"/>
+            <column id="2552">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="2553"/>
             <column id="2554">
                 <list-property name="visibility">
@@ -10912,7 +10927,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="2670"/>
+            <column id="2670">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="2671"/>
             <column id="2672">
                 <list-property name="visibility">
@@ -11685,7 +11707,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="2788"/>
+            <column id="2788">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="2789"/>
             <column id="2790">
                 <list-property name="visibility">
@@ -12386,7 +12415,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="2906"/>
+            <column id="2906">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="2907"/>
             <column id="2908">
                 <list-property name="visibility">
@@ -12825,7 +12861,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="1393"/>
+            <column id="1393">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="1394"/>
             <column id="1395"/>
             <column id="1396"/>
@@ -14045,19 +14088,28 @@ where TD.Test_id=?]]></xml-property>
                         </label>
                     </cell>
                 </row>
+                <row id="5148">
+                    <property name="fontFamily">serif</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="verticalAlign">middle</property>
+                    <cell id="5149">
+                        <property name="colSpan">20</property>
+                        <property name="rowSpan">1</property>
+                        <label id="5169">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">SPEC: ± 2 dB 4 dB window </text-property>
+                        </label>
+                    </cell>
+                </row>
                 <row id="2991">
                     <property name="fontFamily">serif</property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="2992">
-                        <label id="2993">
-                            <text-property name="text">Specification&#13;
-(dB)&#13;
-&#13;
-</text-property>
-                        </label>
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                     </cell>
-                    <cell id="2994"/>
                     <cell id="2995">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
@@ -14106,15 +14158,8 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="3008">
-                        <label id="3009">
-                            <text-property name="text">Spec&#13;
- ± 2 dB&#13;
-4 dB window&#13;
-</text-property>
-                        </label>
-                    </cell>
-                    <cell id="3010">
-                        <property name="verticalAlign">middle</property>
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                         <text-data id="3011">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">10pt</property>
@@ -14220,8 +14265,9 @@ where TD.Test_id=?]]></xml-property>
             <detail>
                 <row id="3048">
                     <property name="textAlign">center</property>
-                    <cell id="3049"/>
-                    <cell id="3050">
+                    <cell id="3049">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                         <data id="3051">
                             <property name="resultSetColumn">frequency</property>
                         </data>
@@ -14564,7 +14610,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="3206"/>
+            <column id="3206">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="3207"/>
             <column id="3208">
                 <list-property name="visibility">
@@ -15337,7 +15390,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="3324"/>
+            <column id="3324">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="3325"/>
             <column id="3326">
                 <list-property name="visibility">
@@ -16110,7 +16170,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="3442"/>
+            <column id="3442">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="3443"/>
             <column id="3444">
                 <list-property name="visibility">
@@ -16883,7 +16950,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="3560"/>
+            <column id="3560">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="3561"/>
             <column id="3562">
                 <list-property name="visibility">
@@ -17656,7 +17730,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="3678"/>
+            <column id="3678">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="3679"/>
             <column id="3680">
                 <list-property name="visibility">
@@ -18429,7 +18510,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="3796"/>
+            <column id="3796">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="3797"/>
             <column id="3798">
                 <list-property name="visibility">
@@ -19202,7 +19290,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="3914"/>
+            <column id="3914">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="3915"/>
             <column id="3916">
                 <list-property name="visibility">
@@ -19903,7 +19998,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="3976"/>
+            <column id="3976">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="3977"/>
             <column id="3978">
                 <list-property name="visibility">
@@ -20342,7 +20444,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="4010"/>
+            <column id="4010">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="4011"/>
             <column id="4012"/>
             <column id="4013"/>
@@ -21562,19 +21671,28 @@ where TD.Test_id=?]]></xml-property>
                         </label>
                     </cell>
                 </row>
+                <row id="5170">
+                    <property name="fontFamily">serif</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="verticalAlign">middle</property>
+                    <cell id="5171">
+                        <property name="colSpan">20</property>
+                        <property name="rowSpan">1</property>
+                        <label id="5191">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">center</property>
+                            <text-property name="text">SPEC: ± 2 dB 4 dB window </text-property>
+                        </label>
+                    </cell>
+                </row>
                 <row id="4025">
                     <property name="fontFamily">serif</property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="4026">
-                        <label id="4027">
-                            <text-property name="text">Specification&#13;
-(dB)&#13;
-&#13;
-</text-property>
-                        </label>
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                     </cell>
-                    <cell id="4028"/>
                     <cell id="4029">
                         <property name="colSpan">3</property>
                         <property name="rowSpan">1</property>
@@ -21623,15 +21741,8 @@ where TD.Test_id=?]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <property name="verticalAlign">middle</property>
                     <cell id="4042">
-                        <label id="4043">
-                            <text-property name="text">Spec&#13;
- ± 2 dB&#13;
-4 dB window&#13;
-</text-property>
-                        </label>
-                    </cell>
-                    <cell id="4044">
-                        <property name="verticalAlign">middle</property>
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                         <text-data id="4045">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">10pt</property>
@@ -21737,8 +21848,9 @@ where TD.Test_id=?]]></xml-property>
             <detail>
                 <row id="4082">
                     <property name="textAlign">center</property>
-                    <cell id="4083"/>
-                    <cell id="4084">
+                    <cell id="4083">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
                         <data id="4085">
                             <property name="resultSetColumn">frequency</property>
                         </data>
@@ -22081,7 +22193,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="4240"/>
+            <column id="4240">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="4241"/>
             <column id="4242">
                 <list-property name="visibility">
@@ -22854,7 +22973,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="4358"/>
+            <column id="4358">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="4359"/>
             <column id="4360">
                 <list-property name="visibility">
@@ -23627,7 +23753,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="4476"/>
+            <column id="4476">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="4477"/>
             <column id="4478">
                 <list-property name="visibility">
@@ -24400,7 +24533,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="4594"/>
+            <column id="4594">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="4595"/>
             <column id="4596">
                 <list-property name="visibility">
@@ -25173,7 +25313,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="4712"/>
+            <column id="4712">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="4713"/>
             <column id="4714">
                 <list-property name="visibility">
@@ -25946,7 +26093,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="4830"/>
+            <column id="4830">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="4831"/>
             <column id="4832">
                 <list-property name="visibility">
@@ -26719,7 +26873,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="4948"/>
+            <column id="4948">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="4949"/>
             <column id="4950">
                 <list-property name="visibility">
@@ -27420,7 +27581,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="dataType">decimal</property>
                 </structure>
             </list-property>
-            <column id="5010"/>
+            <column id="5010">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="5011"/>
             <column id="5012">
                 <list-property name="visibility">
@@ -27859,7 +28027,14 @@ where TD.Test_id=?]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="5044"/>
+            <column id="5044">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">true</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="5045"/>
             <column id="5046"/>
             <column id="5047"/>
