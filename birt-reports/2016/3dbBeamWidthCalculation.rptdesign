@@ -39454,7 +39454,7 @@ Antenna without Radome&#13;
                 <structure>
                     <property name="paramName">serialid</property>
                     <simple-property-list name="expression">
-                        <value type="javascript">params["34"].value</value>
+                        <value type="javascript">params["s34"].value</value>
                     </simple-property-list>
                 </structure>
                 <structure>
