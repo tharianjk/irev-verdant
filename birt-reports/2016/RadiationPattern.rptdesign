@@ -587,8 +587,8 @@
                     </structure>
                 </list-property>
             </structure>
-            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX1", dataSetRow["strmaxvalue"]);
-reportContext.setPersistentGlobalVariable("MN1", dataSetRow["strminvalue"]);
+            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX1", dataSetRow["MX"]);
+reportContext.setPersistentGlobalVariable("MN1", dataSetRow["MN"]);
 reportContext.setPersistentGlobalVariable("MXU1", dataSetRow["MXU"]);
 reportContext.setPersistentGlobalVariable("MNU1", dataSetRow["MNU"]);
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
