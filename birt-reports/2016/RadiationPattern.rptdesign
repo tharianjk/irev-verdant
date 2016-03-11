@@ -7818,7 +7818,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                    <expression name="valueExpr" type="javascript">params["freq1"].value=='-1'</expression>
                 </structure>
             </list-property>
             <list-property name="paramBindings">
@@ -8967,7 +8967,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                    <expression name="valueExpr" type="javascript">params["freq2"].value=='-1'</expression>
                 </structure>
             </list-property>
             <list-property name="paramBindings">
@@ -10104,7 +10104,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                    <expression name="valueExpr" type="javascript">params["freq3"].value=='-1'</expression>
                 </structure>
             </list-property>
             <list-property name="paramBindings">
@@ -11241,7 +11241,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                    <expression name="valueExpr" type="javascript">params["freq4"].value=='-1'</expression>
                 </structure>
             </list-property>
             <list-property name="paramBindings">
@@ -12378,7 +12378,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                    <expression name="valueExpr" type="javascript">params["freq5"].value=='-1'</expression>
                 </structure>
             </list-property>
             <list-property name="paramBindings">
@@ -13514,7 +13514,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                    <expression name="valueExpr" type="javascript">params["freq6"].value=='-1'</expression>
                 </structure>
             </list-property>
             <list-property name="paramBindings">
@@ -14651,7 +14651,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                    <expression name="valueExpr" type="javascript">params["freq7"].value=='-1'</expression>
                 </structure>
             </list-property>
             <list-property name="paramBindings">
@@ -15788,7 +15788,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                    <expression name="valueExpr" type="javascript">params["freq8"].value=='-1'</expression>
                 </structure>
             </list-property>
             <list-property name="paramBindings">
@@ -16925,7 +16925,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                    <expression name="valueExpr" type="javascript">params["freq9"].value=='-1'</expression>
                 </structure>
             </list-property>
             <list-property name="paramBindings">
@@ -18062,7 +18062,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                    <expression name="valueExpr" type="javascript">params["freq10"].value=='-1'</expression>
                 </structure>
             </list-property>
             <list-property name="paramBindings">
@@ -19199,7 +19199,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                    <expression name="valueExpr" type="javascript">params["freq11"].value=='-1'</expression>
                 </structure>
             </list-property>
             <list-property name="paramBindings">
@@ -20336,7 +20336,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                    <expression name="valueExpr" type="javascript">params["freq12"].value=='-1'</expression>
                 </structure>
             </list-property>
             <list-property name="paramBindings">
@@ -21473,7 +21473,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                    <expression name="valueExpr" type="javascript">params["freq13"].value=='-1'</expression>
                 </structure>
             </list-property>
             <list-property name="paramBindings">
@@ -22609,7 +22609,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                    <expression name="valueExpr" type="javascript">params["freq14"].value=='-1'</expression>
                 </structure>
             </list-property>
             <list-property name="paramBindings">
@@ -23746,7 +23746,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                    <expression name="valueExpr" type="javascript">params["freq15"].value=='-1'</expression>
                 </structure>
             </list-property>
             <list-property name="paramBindings">
@@ -24883,7 +24883,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                    <expression name="valueExpr" type="javascript">params["freq16"].value=='-1'</expression>
                 </structure>
             </list-property>
             <list-property name="paramBindings">
@@ -26020,7 +26020,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                    <expression name="valueExpr" type="javascript">params["freq17"].value=='-1'</expression>
                 </structure>
             </list-property>
             <list-property name="paramBindings">
@@ -27157,7 +27157,7 @@ else&#xD;
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                    <expression name="valueExpr" type="javascript">params["freq18"].value=='-1'</expression>
                 </structure>
             </list-property>
             <list-property name="paramBindings">
