@@ -587,10 +587,137 @@
                     </structure>
                 </list-property>
             </structure>
-            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX1", dataSetRow["MX"]);
+            <method name="onFetch"><![CDATA[if(params["freq1"].value!='-1')
+{
+reportContext.setPersistentGlobalVariable("MX1", dataSetRow["MX"]);
 reportContext.setPersistentGlobalVariable("MN1", dataSetRow["MN"]);
 reportContext.setPersistentGlobalVariable("MXU1", dataSetRow["MXU"]);
 reportContext.setPersistentGlobalVariable("MNU1", dataSetRow["MNU"]);
+
+}
+else if(params["freq4"].value!='-1')
+{
+reportContext.setPersistentGlobalVariable("MX4", dataSetRow["MX"]);
+reportContext.setPersistentGlobalVariable("MN4", dataSetRow["MN"]);
+reportContext.setPersistentGlobalVariable("MXU4", dataSetRow["MXU"]);
+reportContext.setPersistentGlobalVariable("MNU4", dataSetRow["MNU"]);
+
+}
+else if(params["freq5"].value!='-1')
+{
+reportContext.setPersistentGlobalVariable("MX5", dataSetRow["MX"]);
+reportContext.setPersistentGlobalVariable("MN5", dataSetRow["MN"]);
+reportContext.setPersistentGlobalVariable("MXU5", dataSetRow["MXU"]);
+reportContext.setPersistentGlobalVariable("MNU5", dataSetRow["MNU"]);
+
+}
+else if(params["freq6"].value!='-1')
+{
+reportContext.setPersistentGlobalVariable("MX6", dataSetRow["MX"]);
+reportContext.setPersistentGlobalVariable("MN6", dataSetRow["MN"]);
+reportContext.setPersistentGlobalVariable("MXU6", dataSetRow["MXU"]);
+reportContext.setPersistentGlobalVariable("MNU6", dataSetRow["MNU"]);
+
+}
+else if(params["freq7"].value!='-1')
+{
+reportContext.setPersistentGlobalVariable("MX7", dataSetRow["MX"]);
+reportContext.setPersistentGlobalVariable("MN7", dataSetRow["MN"]);
+reportContext.setPersistentGlobalVariable("MXU7", dataSetRow["MXU"]);
+reportContext.setPersistentGlobalVariable("MNU7", dataSetRow["MNU"]);
+
+}
+else if(params["freq8"].value!='-1')
+{
+reportContext.setPersistentGlobalVariable("MX8", dataSetRow["MX"]);
+reportContext.setPersistentGlobalVariable("MN8", dataSetRow["MN"]);
+reportContext.setPersistentGlobalVariable("MXU8", dataSetRow["MXU"]);
+reportContext.setPersistentGlobalVariable("MNU8", dataSetRow["MNU"]);
+
+}
+else if(params["freq9"].value!='-1')
+{
+reportContext.setPersistentGlobalVariable("MX9", dataSetRow["MX"]);
+reportContext.setPersistentGlobalVariable("MN9", dataSetRow["MN"]);
+reportContext.setPersistentGlobalVariable("MXU9", dataSetRow["MXU"]);
+reportContext.setPersistentGlobalVariable("MNU9", dataSetRow["MNU"]);
+
+}
+else if(params["freq10"].value!='-1')
+{
+reportContext.setPersistentGlobalVariable("MX10", dataSetRow["MX"]);
+reportContext.setPersistentGlobalVariable("MN10", dataSetRow["MN"]);
+reportContext.setPersistentGlobalVariable("MXU10", dataSetRow["MXU"]);
+reportContext.setPersistentGlobalVariable("MNU10", dataSetRow["MNU"]);
+
+}
+else if(params["freq11"].value!='-1')
+{
+reportContext.setPersistentGlobalVariable("MX11", dataSetRow["MX"]);
+reportContext.setPersistentGlobalVariable("MN11", dataSetRow["MN"]);
+reportContext.setPersistentGlobalVariable("MXU11", dataSetRow["MXU"]);
+reportContext.setPersistentGlobalVariable("MNU11", dataSetRow["MNU"]);
+
+}
+else if(params["freq12"].value!='-1')
+{
+reportContext.setPersistentGlobalVariable("MX12", dataSetRow["MX"]);
+reportContext.setPersistentGlobalVariable("MN12", dataSetRow["MN"]);
+reportContext.setPersistentGlobalVariable("MXU12", dataSetRow["MXU"]);
+reportContext.setPersistentGlobalVariable("MNU12", dataSetRow["MNU"]);
+
+}
+else if(params["freq13"].value!='-1')
+{
+reportContext.setPersistentGlobalVariable("MX13", dataSetRow["MX"]);
+reportContext.setPersistentGlobalVariable("MN13", dataSetRow["MN"]);
+reportContext.setPersistentGlobalVariable("MXU13", dataSetRow["MXU"]);
+reportContext.setPersistentGlobalVariable("MNU13", dataSetRow["MNU"]);
+
+}
+else if(params["freq14"].value!='-1')
+{
+reportContext.setPersistentGlobalVariable("MX14", dataSetRow["MX"]);
+reportContext.setPersistentGlobalVariable("MN14", dataSetRow["MN"]);
+reportContext.setPersistentGlobalVariable("MXU14", dataSetRow["MXU"]);
+reportContext.setPersistentGlobalVariable("MNU14", dataSetRow["MNU"]);
+
+}
+else if(params["freq15"].value!='-1')
+{
+reportContext.setPersistentGlobalVariable("MX15", dataSetRow["MX"]);
+reportContext.setPersistentGlobalVariable("MN15", dataSetRow["MN"]);
+reportContext.setPersistentGlobalVariable("MXU15", dataSetRow["MXU"]);
+reportContext.setPersistentGlobalVariable("MNU15", dataSetRow["MNU"]);
+
+}
+else if(params["freq16"].value!='-1')
+{
+reportContext.setPersistentGlobalVariable("MX16", dataSetRow["MX"]);
+reportContext.setPersistentGlobalVariable("MN16", dataSetRow["MN"]);
+reportContext.setPersistentGlobalVariable("MXU16", dataSetRow["MXU"]);
+reportContext.setPersistentGlobalVariable("MNU16", dataSetRow["MNU"]);
+
+}
+else if(params["freq17"].value!='-1')
+{
+reportContext.setPersistentGlobalVariable("MX17", dataSetRow["MX"]);
+reportContext.setPersistentGlobalVariable("MN17", dataSetRow["MN"]);
+reportContext.setPersistentGlobalVariable("MXU17", dataSetRow["MXU"]);
+reportContext.setPersistentGlobalVariable("MNU17", dataSetRow["MNU"]);
+
+}
+else if(params["freq18"].value!='-1')
+{
+reportContext.setPersistentGlobalVariable("MX18", dataSetRow["MX"]);
+reportContext.setPersistentGlobalVariable("MN18", dataSetRow["MN"]);
+reportContext.setPersistentGlobalVariable("MXU18", dataSetRow["MXU"]);
+reportContext.setPersistentGlobalVariable("MNU18", dataSetRow["MNU"]);
+
+}
+
+
+
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
 reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
 //reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
@@ -3756,7 +3883,7 @@ else&#xD;
             <property name="pageBreakAfter">auto</property>
             <property name="height">130pt</property>
             <property name="width">212pt</property>
-            <property name="dataSet">HnVdataset3</property>
+            <property name="dataSet">HnVdataset2</property>
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
@@ -5305,11 +5432,11 @@ function beforeGeneration( chart, icsc )&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
 			&#xD;
-			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX1&quot;);&#xD;
-			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN1&quot;);&#xD;
+			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX4&quot;);&#xD;
+			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN4&quot;);&#xD;
 			&#xD;
-			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU1&quot;);&#xD;
-			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU1&quot;);&#xD;
+			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU4&quot;);&#xD;
+			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU4&quot;);&#xD;
 			&#xD;
 			if(show==1)&#xD;
 			{&#xD;
@@ -6454,11 +6581,11 @@ function beforeGeneration( chart, icsc )&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
 			&#xD;
-			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX1&quot;);&#xD;
-			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN1&quot;);&#xD;
+			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX5&quot;);&#xD;
+			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN5&quot;);&#xD;
 			&#xD;
-			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU1&quot;);&#xD;
-			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU1&quot;);&#xD;
+			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU5&quot;);&#xD;
+			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU5&quot;);&#xD;
 			&#xD;
 			if(show==1)&#xD;
 			{&#xD;
@@ -7603,10 +7730,10 @@ function beforeGeneration( chart, icsc )&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
 			&#xD;
-			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX1&quot;);&#xD;
-			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN1&quot;);&#xD;
-			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU1&quot;);&#xD;
-			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU1&quot;);&#xD;
+			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX6&quot;);&#xD;
+			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN6&quot;);&#xD;
+			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU6&quot;);&#xD;
+			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU6&quot;);&#xD;
 			&#xD;
 			if(show==1)&#xD;
 			{&#xD;
@@ -8751,11 +8878,11 @@ function beforeGeneration( chart, icsc )&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
 			&#xD;
-			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX1&quot;);&#xD;
-			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN1&quot;);&#xD;
+			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX7&quot;);&#xD;
+			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN7&quot;);&#xD;
 			&#xD;
-			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU1&quot;);&#xD;
-			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU1&quot;);&#xD;
+			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU7&quot;);&#xD;
+			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU7&quot;);&#xD;
 			&#xD;
 			if(show==1)&#xD;
 			{&#xD;
@@ -9900,11 +10027,11 @@ function beforeGeneration( chart, icsc )&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
 			&#xD;
-			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX1&quot;);&#xD;
-			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN1&quot;);&#xD;
+			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX8&quot;);&#xD;
+			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN8&quot;);&#xD;
 			&#xD;
-			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU1&quot;);&#xD;
-			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU1&quot;);&#xD;
+			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU8&quot;);&#xD;
+			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU8&quot;);&#xD;
 			&#xD;
 			if(show==1)&#xD;
 			{&#xD;
@@ -11049,11 +11176,11 @@ function beforeGeneration( chart, icsc )&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
 			&#xD;
-			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX1&quot;);&#xD;
-			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN1&quot;);&#xD;
+			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX9&quot;);&#xD;
+			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN9&quot;);&#xD;
 			&#xD;
-			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU1&quot;);&#xD;
-			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU1&quot;);&#xD;
+			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU9&quot;);&#xD;
+			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU9&quot;);&#xD;
 			&#xD;
 			if(show==1)&#xD;
 			{&#xD;
@@ -12198,11 +12325,11 @@ function beforeGeneration( chart, icsc )&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
 			&#xD;
-			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX1&quot;);&#xD;
-			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN1&quot;);&#xD;
+			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX10&quot;);&#xD;
+			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN10&quot;);&#xD;
 			&#xD;
-			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU1&quot;);&#xD;
-			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU1&quot;);&#xD;
+			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU10&quot;);&#xD;
+			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU10&quot;);&#xD;
 			&#xD;
 			if(show==1)&#xD;
 			{&#xD;
@@ -13347,11 +13474,11 @@ function beforeGeneration( chart, icsc )&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
 			&#xD;
-			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX1&quot;);&#xD;
-			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN1&quot;);&#xD;
+			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX11&quot;);&#xD;
+			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN11&quot;);&#xD;
 			&#xD;
-			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU1&quot;);&#xD;
-			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU1&quot;);&#xD;
+			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU11&quot;);&#xD;
+			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU11&quot;);&#xD;
 			&#xD;
 			if(show==1)&#xD;
 			{&#xD;
@@ -14496,11 +14623,11 @@ function beforeGeneration( chart, icsc )&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
 			&#xD;
-			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX1&quot;);&#xD;
-			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN1&quot;);&#xD;
+			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX12&quot;);&#xD;
+			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN12&quot;);&#xD;
 			&#xD;
-			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU1&quot;);&#xD;
-			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU1&quot;);&#xD;
+			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU12&quot;);&#xD;
+			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU12&quot;);&#xD;
 			&#xD;
 			if(show==1)&#xD;
 			{&#xD;
@@ -15645,11 +15772,11 @@ function beforeGeneration( chart, icsc )&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
 			&#xD;
-			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX1&quot;);&#xD;
-			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN1&quot;);&#xD;
+			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX13&quot;);&#xD;
+			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN13&quot;);&#xD;
 			&#xD;
-			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU1&quot;);&#xD;
-			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU1&quot;);&#xD;
+			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU13&quot;);&#xD;
+			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU13&quot;);&#xD;
 			&#xD;
 			if(show==1)&#xD;
 			{&#xD;
@@ -16794,11 +16921,11 @@ function beforeGeneration( chart, icsc )&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
 			&#xD;
-			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX1&quot;);&#xD;
-			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN1&quot;);&#xD;
+			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX14&quot;);&#xD;
+			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN14&quot;);&#xD;
 			&#xD;
-			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU1&quot;);&#xD;
-			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU1&quot;);&#xD;
+			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU14&quot;);&#xD;
+			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU14&quot;);&#xD;
 			if(show==1)&#xD;
 			{&#xD;
 				if(scaleparam==&quot;yes&quot;)&#xD;
@@ -17942,11 +18069,11 @@ function beforeGeneration( chart, icsc )&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
 			&#xD;
-			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX1&quot;);&#xD;
-			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN1&quot;);&#xD;
+			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX15&quot;);&#xD;
+			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN15&quot;);&#xD;
 			&#xD;
-			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU1&quot;);&#xD;
-			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU1&quot;);&#xD;
+			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU15&quot;);&#xD;
+			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU15&quot;);&#xD;
 			&#xD;
 			if(show==1)&#xD;
 			{&#xD;
@@ -19091,11 +19218,11 @@ function beforeGeneration( chart, icsc )&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
 			&#xD;
-			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX1&quot;);&#xD;
-			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN1&quot;);&#xD;
+			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX16&quot;);&#xD;
+			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN16&quot;);&#xD;
 			&#xD;
-			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU1&quot;);&#xD;
-			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU1&quot;);&#xD;
+			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU16&quot;);&#xD;
+			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU16&quot;);&#xD;
 			&#xD;
 			if(show==1)&#xD;
 			{&#xD;
@@ -20240,11 +20367,11 @@ function beforeGeneration( chart, icsc )&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
 			&#xD;
-			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX1&quot;);&#xD;
-			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN1&quot;);&#xD;
+			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX17&quot;);&#xD;
+			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN17&quot;);&#xD;
 			&#xD;
-			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU1&quot;);&#xD;
-			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU1&quot;);&#xD;
+			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU17&quot;);&#xD;
+			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU17&quot;);&#xD;
 			&#xD;
 			if(show==1)&#xD;
 			{&#xD;
@@ -21389,11 +21516,11 @@ function beforeGeneration( chart, icsc )&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
 			&#xD;
-			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX1&quot;);&#xD;
-			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN1&quot;);&#xD;
+			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX18&quot;);&#xD;
+			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN18&quot;);&#xD;
 			&#xD;
-			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU1&quot;);&#xD;
-			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU1&quot;);&#xD;
+			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU18&quot;);&#xD;
+			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU18&quot;);&#xD;
 			&#xD;
 			if(show==1)&#xD;
 			{&#xD;
