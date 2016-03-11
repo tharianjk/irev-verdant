@@ -1716,7 +1716,7 @@ public List<GainSTDHorn> getGainSTD(int testid){
 		logger.info("JdbcMastersDao inside getGainSTD testid="+testid);
 		try{
 	      sql = "SELECT distinct frequency ,stdhorn,test_id from pv_GainSTDHorn s  where s.test_id=? "+
-		" union SELECT distinct frequency ,0.0001 stdhorn,test_id from pv_testfreq s  where s.test_id=? and frequency not in (select frequency from pv_GainSTDHorn where test_id=?) ";
+		" union SELECT distinct frequency ,0.0 stdhorn,test_id from pv_testfreq s  where s.test_id=? and frequency not in (select frequency from pv_GainSTDHorn where test_id=?) ";
 	       strLst=	getJdbcTemplate().query(sql, new GainSTDMapper(),testid,testid,testid); 
 		}
 	  catch(Exception e)

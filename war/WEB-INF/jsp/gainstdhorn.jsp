@@ -47,7 +47,15 @@
     <c:forEach items="${model.freqlist}" var="freqlst">
 		<tr>
 			<td> <c:out value="${freqlst.frequency}"/> <br>
-			<td> <input type='text' id='txtlg' value='<c:out value="${freqlst.stdhorn}"/>'/> <br>
+			<td> <input type='text' id='txtlg' 
+			value=<c:choose>
+   		    <c:when test="${freqlst.stdhorn eq '0.0'}">	   		    
+            ""
+           </c:when>
+	       <c:otherwise>
+	      '<c:out value="${freqlst.stdhorn}"/>'
+	      </c:otherwise>      
+		  </c:choose>/> </td>
 			
 			<td> </td> 
 			<td> </td>
