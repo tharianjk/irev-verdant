@@ -761,6 +761,700 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
   </DataSetParameters>
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.SPSelectDataSet" name="HnVdataset2" id="1450">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="computedColumns">
+                <structure>
+                    <property name="name">MX</property>
+                    <expression name="expression">row["strmaxvalue"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">MN</property>
+                    <expression name="expression">row["strminvalue"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">showimage</property>
+                    <expression name="expression">params["img"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">scaleparam</property>
+                    <expression name="expression">params["scale"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">MXU</property>
+                    <expression name="expression">params["max"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">MNU</property>
+                    <expression name="expression">params["min"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">testid</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName">testid</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">1</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">freqparm</property>
+                    <property name="paramName">freq1</property>
+                    <property name="nativeName">freqparm</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                    <property name="position">2</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">typ</property>
+                    <property name="paramName">type</property>
+                    <property name="nativeName">typ</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">3</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">vdatatype</property>
+                    <property name="paramName">vdatatype</property>
+                    <property name="nativeName">vdatatype</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">4</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">serialid</property>
+                    <property name="paramName">serialid</property>
+                    <property name="nativeName">serialid</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">5</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">prec</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName">prec</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">6</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Angle</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Amplitude</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">Frequency</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">Prodserial_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">strmaxvalue</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">strminvalue</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">MX</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">MN</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">showimage</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">scaleparam</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">MXU</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">MNU</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX2", dataSetRow["MX"]);
+reportContext.setPersistentGlobalVariable("MN2", dataSetRow["MN"]);
+reportContext.setPersistentGlobalVariable("MXU2", dataSetRow["MXU"]);
+reportContext.setPersistentGlobalVariable("MNU2", dataSetRow["MNU"]);
+reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
+reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
+//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Angle</property>
+                    <property name="nativeName">Angle</property>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">Amplitude</property>
+                    <property name="nativeName">Amplitude</property>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">Frequency</property>
+                    <property name="nativeName">Frequency</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">Prodserial_id</property>
+                    <property name="nativeName">Prodserial_id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">strmaxvalue</property>
+                    <property name="nativeName">strmaxvalue</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">strminvalue</property>
+                    <property name="nativeName">strminvalue</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[{call spPVPolarPlot(?,?,?,?,?,?)} ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>testid</design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+          <design:precision>10</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>freqparm</design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          <design:precision>40</design:precision>
+          <design:scale>20</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>typ</design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>5</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>vdatatype</design:name>
+            <design:position>4</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>5</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>serialid</design:name>
+            <design:position>5</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+          <design:precision>10</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>prec</design:name>
+            <design:position>6</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+          <design:precision>10</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.SPSelectDataSet" name="HnVdataset3" id="1453">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="computedColumns">
+                <structure>
+                    <property name="name">MX</property>
+                    <expression name="expression">row["strmaxvalue"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">MN</property>
+                    <expression name="expression">row["strminvalue"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">showimage</property>
+                    <expression name="expression">params["img"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">scaleparam</property>
+                    <expression name="expression">params["scale"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">MXU</property>
+                    <expression name="expression">params["max"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">MNU</property>
+                    <expression name="expression">params["min"].value</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">testid</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName">testid</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">1</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">freqparm</property>
+                    <property name="paramName">freq1</property>
+                    <property name="nativeName">freqparm</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                    <property name="position">2</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">typ</property>
+                    <property name="paramName">type</property>
+                    <property name="nativeName">typ</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">3</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">vdatatype</property>
+                    <property name="paramName">vdatatype</property>
+                    <property name="nativeName">vdatatype</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">4</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">serialid</property>
+                    <property name="paramName">serialid</property>
+                    <property name="nativeName">serialid</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">5</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">prec</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName">prec</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">6</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Angle</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Amplitude</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">Frequency</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">Prodserial_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">strmaxvalue</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">strminvalue</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">MX</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">MN</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">showimage</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">scaleparam</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">MXU</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">MNU</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX3", dataSetRow["MX"]);
+reportContext.setPersistentGlobalVariable("MN3", dataSetRow["MN"]);
+reportContext.setPersistentGlobalVariable("MXU3", dataSetRow["MXU"]);
+reportContext.setPersistentGlobalVariable("MNU3", dataSetRow["MNU"]);
+reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
+reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
+//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
+            <property name="dataSource">VerdantProfile</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Angle</property>
+                    <property name="nativeName">Angle</property>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">Amplitude</property>
+                    <property name="nativeName">Amplitude</property>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">Frequency</property>
+                    <property name="nativeName">Frequency</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">Prodserial_id</property>
+                    <property name="nativeName">Prodserial_id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">strmaxvalue</property>
+                    <property name="nativeName">strmaxvalue</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">strminvalue</property>
+                    <property name="nativeName">strminvalue</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[{call spPVPolarPlot(?,?,?,?,?,?)} ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>testid</design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+          <design:precision>10</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>freqparm</design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          <design:precision>40</design:precision>
+          <design:scale>20</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>typ</design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>5</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>vdatatype</design:name>
+            <design:position>4</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          <design:precision>5</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>serialid</design:name>
+            <design:position>5</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+          <design:precision>10</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name>prec</design:name>
+            <design:position>6</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+          <design:precision>10</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Nullable</design:nullability>
+        </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:optional>true</design:optional>
+          </design:elementAttributes>
+        </design:inputAttributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
     </data-sets>
     <styles>
         <style name="report" id="4">
@@ -2337,11 +3031,11 @@ function beforeGeneration( chart, icsc )&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
 			&#xD;
-			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX1&quot;);&#xD;
-			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN1&quot;);&#xD;
+			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX2&quot;);&#xD;
+			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN2&quot;);&#xD;
 			&#xD;
-			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU1&quot;);&#xD;
-			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU1&quot;);&#xD;
+			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU2&quot;);&#xD;
+			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU2&quot;);&#xD;
 			&#xD;
 			if(show==1)&#xD;
 			{&#xD;
@@ -3046,7 +3740,7 @@ else&#xD;
       <Stacked>false</Stacked>
     </Series>
     <Grouping>
-      <Enabled>false</Enabled>
+      <Enabled>true</Enabled>
       <GroupingInterval>5.0</GroupingInterval>
       <GroupType>Numeric</GroupType>
       <AggregateExpression>Average</AggregateExpression>
@@ -3062,7 +3756,7 @@ else&#xD;
             <property name="pageBreakAfter">auto</property>
             <property name="height">130pt</property>
             <property name="width">212pt</property>
-            <property name="dataSet">HnVdataset</property>
+            <property name="dataSet">HnVdataset3</property>
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
@@ -3167,18 +3861,6 @@ else&#xD;
                     <property name="name">MNU</property>
                     <expression name="expression" type="javascript">dataSetRow["MNU"]</expression>
                     <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">Aggregation</property>
-                    <property name="dataType">integer</property>
-                    <property name="aggregateFunction">COUNT</property>
-                    <list-property name="arguments">
-                        <structure>
-                            <property name="name">Expression</property>
-                            <expression name="value" type="javascript">row["Angle"]</expression>
-                        </structure>
-                    </list-property>
-                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
         </extended-item>
@@ -3486,11 +4168,11 @@ function beforeGeneration( chart, icsc )&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
 			&#xD;
-			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX1&quot;);&#xD;
-			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN1&quot;);&#xD;
+			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX3&quot;);&#xD;
+			MinAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MN3&quot;);&#xD;
 			&#xD;
-			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU1&quot;);&#xD;
-			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU1&quot;);&#xD;
+			MaxAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MXU3&quot;);&#xD;
+			MinAmpU=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MNU3&quot;);&#xD;
 			&#xD;
 			if(show==1)&#xD;
 			{&#xD;
@@ -4195,7 +4877,7 @@ else&#xD;
       <Stacked>false</Stacked>
     </Series>
     <Grouping>
-      <Enabled>false</Enabled>
+      <Enabled>true</Enabled>
       <GroupingInterval>5.0</GroupingInterval>
       <GroupType>Numeric</GroupType>
       <AggregateExpression>Average</AggregateExpression>
@@ -4211,7 +4893,7 @@ else&#xD;
             <property name="pageBreakAfter">auto</property>
             <property name="height">130pt</property>
             <property name="width">212pt</property>
-            <property name="dataSet">HnVdataset</property>
+            <property name="dataSet">HnVdataset3</property>
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
@@ -4316,18 +4998,6 @@ else&#xD;
                     <property name="name">MNU</property>
                     <expression name="expression" type="javascript">dataSetRow["MNU"]</expression>
                     <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">Aggregation</property>
-                    <property name="dataType">integer</property>
-                    <property name="aggregateFunction">COUNT</property>
-                    <list-property name="arguments">
-                        <structure>
-                            <property name="name">Expression</property>
-                            <expression name="value" type="javascript">row["Angle"]</expression>
-                        </structure>
-                    </list-property>
-                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
         </extended-item>
