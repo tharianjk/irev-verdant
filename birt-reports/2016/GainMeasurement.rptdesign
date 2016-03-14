@@ -2152,7 +2152,7 @@ inner join pv_prodserial p on td.test_id=p.test_id
 <td>
 <div class="outer">
 
-<img src="\img\Verdantlogo.png" height="50px" width="200px" align="baseline" name="myimage">
+<img src="\img\Verdantlogo.png" height="50px" width="144px" align="baseline" name="myimage">
 
 </div>
 </td>
@@ -3138,7 +3138,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -4234,7 +4234,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -5330,7 +5330,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -6426,7 +6426,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -7522,7 +7522,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
                 </structure>
@@ -8619,7 +8619,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -9715,7 +9715,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -10811,7 +10811,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -11907,7 +11907,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -13003,7 +13003,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -14099,7 +14099,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -15195,7 +15195,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -16291,7 +16291,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -17387,7 +17387,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -18483,7 +18483,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -19579,7 +19579,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -20675,7 +20675,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -21771,7 +21771,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -22867,7 +22867,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -23963,7 +23963,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -25059,7 +25059,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -26155,7 +26155,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -27251,7 +27251,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -28347,7 +28347,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -29443,7 +29443,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -30539,7 +30539,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -31635,7 +31635,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -32731,7 +32731,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -33827,7 +33827,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -34923,7 +34923,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -36019,7 +36019,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -37115,7 +37115,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -38211,7 +38211,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -39307,7 +39307,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -40403,7 +40403,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -41499,7 +41499,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -42595,7 +42595,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -43691,7 +43691,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -44787,7 +44787,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -45883,7 +45883,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -46979,7 +46979,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -48075,7 +48075,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -49171,7 +49171,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -50267,7 +50267,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -51363,7 +51363,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -52459,7 +52459,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -53555,7 +53555,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -54651,7 +54651,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -55747,7 +55747,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -56843,7 +56843,7 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
