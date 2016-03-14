@@ -186,7 +186,7 @@
         <scalar-parameter name="freq2" id="1414">
             <property name="hidden">true</property>
             <property name="valueType">static</property>
-            <property name="dataType">string</property>
+            <property name="dataType">decimal</property>
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -198,7 +198,7 @@
         <scalar-parameter name="freq3" id="1415">
             <property name="hidden">true</property>
             <property name="valueType">static</property>
-            <property name="dataType">string</property>
+            <property name="dataType">decimal</property>
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -210,7 +210,7 @@
         <scalar-parameter name="freq4" id="1416">
             <property name="hidden">true</property>
             <property name="valueType">static</property>
-            <property name="dataType">string</property>
+            <property name="dataType">decimal</property>
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -222,7 +222,7 @@
         <scalar-parameter name="freq5" id="1417">
             <property name="hidden">true</property>
             <property name="valueType">static</property>
-            <property name="dataType">string</property>
+            <property name="dataType">decimal</property>
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -767,12 +767,12 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
             <property name="nullsOrdering">nulls lowest</property>
             <list-property name="computedColumns">
                 <structure>
-                    <property name="name">MX</property>
+                    <property name="name">MX2</property>
                     <expression name="expression">row["strmaxvalue"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">MN</property>
+                    <property name="name">MN2</property>
                     <expression name="expression">row["strminvalue"]</expression>
                     <property name="dataType">string</property>
                 </structure>
@@ -787,12 +787,12 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">MXU</property>
+                    <property name="name">MXU2</property>
                     <expression name="expression">params["max"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">MNU</property>
+                    <property name="name">MNU2</property>
                     <expression name="expression">params["min"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
@@ -906,12 +906,12 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     </structure>
                     <structure>
                         <property name="position">7</property>
-                        <property name="name">MX</property>
+                        <property name="name">MX2</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">8</property>
-                        <property name="name">MN</property>
+                        <property name="name">MN2</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
@@ -926,20 +926,20 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     </structure>
                     <structure>
                         <property name="position">11</property>
-                        <property name="name">MXU</property>
+                        <property name="name">MXU2</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">12</property>
-                        <property name="name">MNU</property>
+                        <property name="name">MNU2</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
             </structure>
-            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX2", dataSetRow["MX"]);
-reportContext.setPersistentGlobalVariable("MN2", dataSetRow["MN"]);
-reportContext.setPersistentGlobalVariable("MXU2", dataSetRow["MXU"]);
-reportContext.setPersistentGlobalVariable("MNU2", dataSetRow["MNU"]);
+            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX2", dataSetRow["MX2"]);
+reportContext.setPersistentGlobalVariable("MN2", dataSetRow["MN2"]);
+reportContext.setPersistentGlobalVariable("MXU2", dataSetRow["MXU2"]);
+reportContext.setPersistentGlobalVariable("MNU2", dataSetRow["MNU2"]);
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
 reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
 //reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
@@ -1114,12 +1114,12 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
             <property name="nullsOrdering">nulls lowest</property>
             <list-property name="computedColumns">
                 <structure>
-                    <property name="name">MX</property>
+                    <property name="name">MX3</property>
                     <expression name="expression">row["strmaxvalue"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">MN</property>
+                    <property name="name">MN3</property>
                     <expression name="expression">row["strminvalue"]</expression>
                     <property name="dataType">string</property>
                 </structure>
@@ -1134,12 +1134,12 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">MXU</property>
+                    <property name="name">MXU3</property>
                     <expression name="expression">params["max"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">MNU</property>
+                    <property name="name">MNU3</property>
                     <expression name="expression">params["min"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
@@ -1253,12 +1253,12 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     </structure>
                     <structure>
                         <property name="position">7</property>
-                        <property name="name">MX</property>
+                        <property name="name">MX3</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">8</property>
-                        <property name="name">MN</property>
+                        <property name="name">MN3</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
@@ -1273,20 +1273,20 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     </structure>
                     <structure>
                         <property name="position">11</property>
-                        <property name="name">MXU</property>
+                        <property name="name">MXU3</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">12</property>
-                        <property name="name">MNU</property>
+                        <property name="name">MNU3</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
             </structure>
-            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX3", dataSetRow["MX"]);
-reportContext.setPersistentGlobalVariable("MN3", dataSetRow["MN"]);
-reportContext.setPersistentGlobalVariable("MXU3", dataSetRow["MXU"]);
-reportContext.setPersistentGlobalVariable("MNU3", dataSetRow["MNU"]);
+            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX3", dataSetRow["MX3"]);
+reportContext.setPersistentGlobalVariable("MN3", dataSetRow["MN3"]);
+reportContext.setPersistentGlobalVariable("MXU3", dataSetRow["MXU3"]);
+reportContext.setPersistentGlobalVariable("MNU3", dataSetRow["MNU3"]);
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
 reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
 //reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
@@ -6734,7 +6734,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
 <td>
 <div class="outer">
 
-<img src="\img\Verdantlogo.png" height="50px" width="200px" align="baseline" name="myimage">
+<img src="\img\Verdantlogo.png" height="50px" width="144px" align="baseline" name="myimage">
 
 </div>
 </td>
@@ -8947,7 +8947,7 @@ else&#xD;
       <Stacked>false</Stacked>
     </Series>
     <Grouping>
-      <Enabled>true</Enabled>
+      <Enabled>false</Enabled>
       <GroupingInterval>5.0</GroupingInterval>
       <GroupType>Numeric</GroupType>
       <AggregateExpression>Average</AggregateExpression>
@@ -9040,13 +9040,13 @@ else&#xD;
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">MX</property>
-                    <expression name="expression" type="javascript">dataSetRow["MX"]</expression>
+                    <property name="name">MX2</property>
+                    <expression name="expression" type="javascript">dataSetRow["MX2"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">MN</property>
-                    <expression name="expression" type="javascript">dataSetRow["MN"]</expression>
+                    <property name="name">MN2</property>
+                    <expression name="expression" type="javascript">dataSetRow["MN2"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -9060,13 +9060,13 @@ else&#xD;
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">MXU</property>
-                    <expression name="expression" type="javascript">dataSetRow["MXU"]</expression>
+                    <property name="name">MXU2</property>
+                    <expression name="expression" type="javascript">dataSetRow["MXU2"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">MNU</property>
-                    <expression name="expression" type="javascript">dataSetRow["MNU"]</expression>
+                    <property name="name">MNU2</property>
+                    <expression name="expression" type="javascript">dataSetRow["MNU2"]</expression>
                     <property name="dataType">string</property>
                 </structure>
             </list-property>
@@ -10084,7 +10084,7 @@ else&#xD;
       <Stacked>false</Stacked>
     </Series>
     <Grouping>
-      <Enabled>true</Enabled>
+      <Enabled>false</Enabled>
       <GroupingInterval>5.0</GroupingInterval>
       <GroupType>Numeric</GroupType>
       <AggregateExpression>Average</AggregateExpression>
@@ -10177,13 +10177,13 @@ else&#xD;
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">MX</property>
-                    <expression name="expression" type="javascript">dataSetRow["MX"]</expression>
+                    <property name="name">MX3</property>
+                    <expression name="expression" type="javascript">dataSetRow["MX3"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">MN</property>
-                    <expression name="expression" type="javascript">dataSetRow["MN"]</expression>
+                    <property name="name">MN3</property>
+                    <expression name="expression" type="javascript">dataSetRow["MN3"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -10197,13 +10197,13 @@ else&#xD;
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">MXU</property>
-                    <expression name="expression" type="javascript">dataSetRow["MXU"]</expression>
+                    <property name="name">MXU3</property>
+                    <expression name="expression" type="javascript">dataSetRow["MXU3"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">MNU</property>
-                    <expression name="expression" type="javascript">dataSetRow["MNU"]</expression>
+                    <property name="name">MNU3</property>
+                    <expression name="expression" type="javascript">dataSetRow["MNU3"]</expression>
                     <property name="dataType">string</property>
                 </structure>
             </list-property>
@@ -11221,7 +11221,7 @@ else&#xD;
       <Stacked>false</Stacked>
     </Series>
     <Grouping>
-      <Enabled>true</Enabled>
+      <Enabled>false</Enabled>
       <GroupingInterval>5.0</GroupingInterval>
       <GroupType>Numeric</GroupType>
       <AggregateExpression>Average</AggregateExpression>
@@ -12358,7 +12358,7 @@ else&#xD;
       <Stacked>false</Stacked>
     </Series>
     <Grouping>
-      <Enabled>true</Enabled>
+      <Enabled>false</Enabled>
       <GroupingInterval>5.0</GroupingInterval>
       <GroupType>Numeric</GroupType>
       <AggregateExpression>Average</AggregateExpression>
@@ -13494,7 +13494,7 @@ else&#xD;
       <Stacked>false</Stacked>
     </Series>
     <Grouping>
-      <Enabled>true</Enabled>
+      <Enabled>false</Enabled>
       <GroupingInterval>5.0</GroupingInterval>
       <GroupType>Numeric</GroupType>
       <AggregateExpression>Average</AggregateExpression>
@@ -14631,7 +14631,7 @@ else&#xD;
       <Stacked>false</Stacked>
     </Series>
     <Grouping>
-      <Enabled>true</Enabled>
+      <Enabled>false</Enabled>
       <GroupingInterval>5.0</GroupingInterval>
       <GroupType>Numeric</GroupType>
       <AggregateExpression>Average</AggregateExpression>
@@ -15768,7 +15768,7 @@ else&#xD;
       <Stacked>false</Stacked>
     </Series>
     <Grouping>
-      <Enabled>true</Enabled>
+      <Enabled>false</Enabled>
       <GroupingInterval>5.0</GroupingInterval>
       <GroupType>Numeric</GroupType>
       <AggregateExpression>Average</AggregateExpression>
@@ -16905,7 +16905,7 @@ else&#xD;
       <Stacked>false</Stacked>
     </Series>
     <Grouping>
-      <Enabled>true</Enabled>
+      <Enabled>false</Enabled>
       <GroupingInterval>5.0</GroupingInterval>
       <GroupType>Numeric</GroupType>
       <AggregateExpression>Average</AggregateExpression>
@@ -18042,7 +18042,7 @@ else&#xD;
       <Stacked>false</Stacked>
     </Series>
     <Grouping>
-      <Enabled>true</Enabled>
+      <Enabled>false</Enabled>
       <GroupingInterval>5.0</GroupingInterval>
       <GroupType>Numeric</GroupType>
       <AggregateExpression>Average</AggregateExpression>
@@ -19179,7 +19179,7 @@ else&#xD;
       <Stacked>false</Stacked>
     </Series>
     <Grouping>
-      <Enabled>true</Enabled>
+      <Enabled>false</Enabled>
       <GroupingInterval>5.0</GroupingInterval>
       <GroupType>Numeric</GroupType>
       <AggregateExpression>Average</AggregateExpression>
@@ -20316,7 +20316,7 @@ else&#xD;
       <Stacked>false</Stacked>
     </Series>
     <Grouping>
-      <Enabled>true</Enabled>
+      <Enabled>false</Enabled>
       <GroupingInterval>5.0</GroupingInterval>
       <GroupType>Numeric</GroupType>
       <AggregateExpression>Average</AggregateExpression>
@@ -21453,7 +21453,7 @@ else&#xD;
       <Stacked>false</Stacked>
     </Series>
     <Grouping>
-      <Enabled>true</Enabled>
+      <Enabled>false</Enabled>
       <GroupingInterval>5.0</GroupingInterval>
       <GroupType>Numeric</GroupType>
       <AggregateExpression>Average</AggregateExpression>
@@ -22589,7 +22589,7 @@ else&#xD;
       <Stacked>false</Stacked>
     </Series>
     <Grouping>
-      <Enabled>true</Enabled>
+      <Enabled>false</Enabled>
       <GroupingInterval>5.0</GroupingInterval>
       <GroupType>Numeric</GroupType>
       <AggregateExpression>Average</AggregateExpression>
@@ -23726,7 +23726,7 @@ else&#xD;
       <Stacked>false</Stacked>
     </Series>
     <Grouping>
-      <Enabled>true</Enabled>
+      <Enabled>false</Enabled>
       <GroupingInterval>5.0</GroupingInterval>
       <GroupType>Numeric</GroupType>
       <AggregateExpression>Average</AggregateExpression>
@@ -24863,7 +24863,7 @@ else&#xD;
       <Stacked>false</Stacked>
     </Series>
     <Grouping>
-      <Enabled>true</Enabled>
+      <Enabled>false</Enabled>
       <GroupingInterval>5.0</GroupingInterval>
       <GroupType>Numeric</GroupType>
       <AggregateExpression>Average</AggregateExpression>
@@ -26000,7 +26000,7 @@ else&#xD;
       <Stacked>false</Stacked>
     </Series>
     <Grouping>
-      <Enabled>true</Enabled>
+      <Enabled>false</Enabled>
       <GroupingInterval>5.0</GroupingInterval>
       <GroupType>Numeric</GroupType>
       <AggregateExpression>Average</AggregateExpression>
@@ -27137,7 +27137,7 @@ else&#xD;
       <Stacked>false</Stacked>
     </Series>
     <Grouping>
-      <Enabled>true</Enabled>
+      <Enabled>false</Enabled>
       <GroupingInterval>5.0</GroupingInterval>
       <GroupType>Numeric</GroupType>
       <AggregateExpression>Average</AggregateExpression>

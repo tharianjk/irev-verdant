@@ -1371,13 +1371,13 @@ round(gm_C,?) as GM_C,round(gm_D,?) as GM_D,round(gm_Gv,?) as GM_GV from pv_gmca
                 <structure>
                     <property name="position">5</property>
                     <property name="name">spgain</property>
-                    <property name="nativeName">SPGAIN</property>
+                    <property name="nativeName">spgain</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[select round(a.frequency,?) as FREQUENCY,round(gm_Gv,?) as GM_GV,round(gm_GF,?) as GM_GF,round(gm_CPGAIN,?) as GM_CPGAIN,
-concat('≥ ',spgain) as SPGAIN from pv_gmcalculated a 
+spgain as SPGAIN from pv_gmcalculated a 
 inner join pv_spgain b on a.frequency=b.frequency where Prodserial_id=?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
@@ -2152,7 +2152,7 @@ inner join pv_prodserial p on td.test_id=p.test_id
 <td>
 <div class="outer">
 
-<img src="\img\Verdantlogo.png" height="50px" width="200px" align="baseline" name="myimage">
+<img src="\img\Verdantlogo.png" height="50px" width="144px" align="baseline" name="myimage">
 
 </div>
 </td>
@@ -7522,8 +7522,9 @@ GF = 20 log (Y+1/√2*Y)&#13;
                 <structure>
                     <property name="name">spgain</property>
                     <text-property name="displayName">SPGAIN</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["spgain"]</expression>
+                    <expression name="expression" type="javascript">'≥ '+dataSetRow["spgain"]</expression>
                     <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
                 </structure>
                 <structure>
                     <property name="name">Aggregation</property>
