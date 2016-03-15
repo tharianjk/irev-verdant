@@ -322,6 +322,13 @@ public class PVSerialImportController extends SimpleFormController{
 				    	  {
 				    		  startrow=1; 
 				    	  }
+				    	  else{
+				    	   strow =(XSSFRow) sheet.getRow(23);
+				    	   if(strow.getCell(1) != null && strow.getCell(1).toString().toLowerCase().contains("freq") )
+					    	  {
+					    		  startrow=24; 
+					    	  }
+				    	  }
 				    	  logger.info("startrow " +startrow);
 				      XSSFRow freqrow =(XSSFRow) sheet.getRow(startrow);
 				     

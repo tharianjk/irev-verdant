@@ -688,8 +688,17 @@ function recreatewithparents()
                                   //alert("url "+ url);
                                   parent.frames['AppBody'].location = url;
                                         }
-                          }
-                          ,
+                          },
+                          deleteItem: { // The "rename" menu item
+                              label: "Delete Test",                      
+                              action: function(response) {
+                            	  var url = '<%=request.getContextPath()%>/assettree.htm?treemode=edit&stat=delete&id='+ node.attr('assetId')+'&typ=8&assetname='+node.attr('assetName');                    
+                                  
+                                 // var url = '<%=request.getContextPath()%>/setup.htm?oper=pvdeltest&testid='+ node.attr('assetId') ;
+                                  //alert("url "+ url);
+                            	  window.location.href = url; 
+                              }
+                          },
                           edittgain: { // The "rename" menu item
                               label: "Gain of STD Horn",                      
                               action: function(response) {
@@ -810,8 +819,17 @@ function recreatewithparents()
                                  //alert("url "+ url);
                                  parent.frames['AppBody'].location = url;
                                        }
-                         }
-                         ,
+                         },
+                         deleteItem: { // The "rename" menu item
+                             label: "Delete Test",                      
+                             action: function(response) {
+                           	  var url = '<%=request.getContextPath()%>/assettree.htm?treemode=edit&stat=delete&id='+ node.attr('assetId')+'&typ=8&assetname='+node.attr('assetName');                    
+                                 
+                                // var url = '<%=request.getContextPath()%>/setup.htm?oper=pvdeltest&testid='+ node.attr('assetId') ;
+                                 //alert("url "+ url);
+                           	  window.location.href = url; 
+                             }
+                         },
                          edittgain: { // The "rename" menu item
                              label: "Gain of STD HORN",                      
                              action: function(response) {
