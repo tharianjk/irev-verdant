@@ -8,7 +8,8 @@
     <property name="bidiLayoutOrientation">ltr</property>
     <property name="imageDPI">96</property>
     <parameters>
-        <scalar-parameter name="deg" id="143">
+        <scalar-parameter name="3dbDeg" id="143">
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">string</property>
@@ -22,6 +23,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="pc" id="174">
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">integer</property>
@@ -35,6 +37,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="testid" id="175">
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">integer</property>
@@ -48,6 +51,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rpth" id="195">
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -59,6 +63,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="rptf" id="196">
+            <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -1181,6 +1186,7 @@ where VC.Test_id=?;]]></xml-property>
                     <property name="fontSize">11pt</property>
                     <column id="1273"/>
                     <column id="1274"/>
+                    <column id="1284"/>
                     <row id="1275">
                         <cell id="1276">
                             <text id="1278">
@@ -1218,6 +1224,7 @@ where VC.Test_id=?;]]></xml-property>
                                 <property name="contentType">html</property>
                             </text-data>
                         </cell>
+                        <cell id="1283"/>
                     </row>
                 </grid>
             </page-footer>
@@ -1253,7 +1260,7 @@ where VC.Test_id=?;]]></xml-property>
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0</expression>
+                    <expression name="valueExpr" type="javascript">row["Aggregation"]==0 || params["3db"].value!='yes'</expression>
                 </structure>
             </list-property>
             <list-property name="boundDataColumns">
@@ -1373,13 +1380,27 @@ where VC.Test_id=?;]]></xml-property>
                 </structure>
             </list-property>
             <column id="62"/>
-            <column id="63"/>
-            <column id="64"/>
+            <column id="63">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">params["3dbDeg"].value=='90d' || params["3dbDeg"].value=='0d'</expression>
+                    </structure>
+                </list-property>
+            </column>
+            <column id="64">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">params["3dbDeg"].value=='90d' || params["3dbDeg"].value=='0d'</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="65">
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
-                        <expression name="valueExpr" type="javascript">params["deg"].value=='90d' || params["deg"].value=='bm'</expression>
+                        <expression name="valueExpr" type="javascript">params["3dbDeg"].value=='90d' || params["3dbDeg"].value=='bm'</expression>
                     </structure>
                 </list-property>
             </column>
@@ -1387,7 +1408,7 @@ where VC.Test_id=?;]]></xml-property>
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
-                        <expression name="valueExpr" type="javascript">params["deg"].value=='90d' || params["deg"].value=='bm'</expression>
+                        <expression name="valueExpr" type="javascript">params["3dbDeg"].value=='90d' || params["3dbDeg"].value=='bm'</expression>
                     </structure>
                 </list-property>
             </column>
@@ -1395,7 +1416,7 @@ where VC.Test_id=?;]]></xml-property>
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
-                        <expression name="valueExpr" type="javascript">params["deg"].value=='0d' || params["deg"].value=='bm'</expression>
+                        <expression name="valueExpr" type="javascript">params["3dbDeg"].value=='0d' || params["3dbDeg"].value=='bm'</expression>
                     </structure>
                 </list-property>
             </column>
@@ -1403,7 +1424,7 @@ where VC.Test_id=?;]]></xml-property>
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
-                        <expression name="valueExpr" type="javascript">params["deg"].value=='0d' || params["deg"].value=='bm'</expression>
+                        <expression name="valueExpr" type="javascript">params["3dbDeg"].value=='0d' || params["3dbDeg"].value=='bm'</expression>
                     </structure>
                 </list-property>
             </column>
@@ -1411,7 +1432,7 @@ where VC.Test_id=?;]]></xml-property>
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
-                        <expression name="valueExpr" type="javascript">params["deg"].value=='0d' || params["deg"].value=='bm'</expression>
+                        <expression name="valueExpr" type="javascript">params["3dbDeg"].value=='0d' || params["3dbDeg"].value=='bm'</expression>
                     </structure>
                 </list-property>
             </column>
@@ -1419,17 +1440,31 @@ where VC.Test_id=?;]]></xml-property>
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
-                        <expression name="valueExpr" type="javascript">params["deg"].value=='0d' || params["deg"].value=='bm'</expression>
+                        <expression name="valueExpr" type="javascript">params["3dbDeg"].value=='0d' || params["3dbDeg"].value=='bm'</expression>
                     </structure>
                 </list-property>
             </column>
-            <column id="71"/>
-            <column id="72"/>
+            <column id="71">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">params["3dbDeg"].value=='90d' || params["3dbDeg"].value=='0d'</expression>
+                    </structure>
+                </list-property>
+            </column>
+            <column id="72">
+                <list-property name="visibility">
+                    <structure>
+                        <property name="format">all</property>
+                        <expression name="valueExpr" type="javascript">params["3dbDeg"].value=='90d' || params["3dbDeg"].value=='0d'</expression>
+                    </structure>
+                </list-property>
+            </column>
             <column id="73">
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
-                        <expression name="valueExpr" type="javascript">params["deg"].value=='90d' || params["deg"].value=='bm'</expression>
+                        <expression name="valueExpr" type="javascript">params["3dbDeg"].value=='90d' || params["3dbDeg"].value=='bm'</expression>
                     </structure>
                 </list-property>
             </column>
@@ -1437,7 +1472,7 @@ where VC.Test_id=?;]]></xml-property>
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
-                        <expression name="valueExpr" type="javascript">params["deg"].value=='90d' || params["deg"].value=='bm'</expression>
+                        <expression name="valueExpr" type="javascript">params["3dbDeg"].value=='90d' || params["3dbDeg"].value=='bm'</expression>
                     </structure>
                 </list-property>
             </column>
@@ -1445,7 +1480,7 @@ where VC.Test_id=?;]]></xml-property>
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
-                        <expression name="valueExpr" type="javascript">params["deg"].value=='0d' || params["deg"].value=='bm'</expression>
+                        <expression name="valueExpr" type="javascript">params["3dbDeg"].value=='0d' || params["3dbDeg"].value=='bm'</expression>
                     </structure>
                 </list-property>
             </column>
@@ -1453,7 +1488,7 @@ where VC.Test_id=?;]]></xml-property>
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
-                        <expression name="valueExpr" type="javascript">params["deg"].value=='0d' || params["deg"].value=='bm'</expression>
+                        <expression name="valueExpr" type="javascript">params["3dbDeg"].value=='0d' || params["3dbDeg"].value=='bm'</expression>
                     </structure>
                 </list-property>
             </column>
@@ -1461,7 +1496,7 @@ where VC.Test_id=?;]]></xml-property>
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
-                        <expression name="valueExpr" type="javascript">params["deg"].value=='0d' || params["deg"].value=='bm'</expression>
+                        <expression name="valueExpr" type="javascript">params["3dbDeg"].value=='0d' || params["3dbDeg"].value=='bm'</expression>
                     </structure>
                 </list-property>
             </column>
@@ -1469,7 +1504,7 @@ where VC.Test_id=?;]]></xml-property>
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
-                        <expression name="valueExpr" type="javascript">params["deg"].value=='0d' || params["deg"].value=='bm'</expression>
+                        <expression name="valueExpr" type="javascript">params["3dbDeg"].value=='0d' || params["3dbDeg"].value=='bm'</expression>
                     </structure>
                 </list-property>
             </column>
