@@ -59,10 +59,9 @@
    		  <form:option value="CO" label="Combination"></form:option> 
 		</form:select> 
         </td>
-        <td><form:select path="frequnit" id="frequnit">        
-   		 <form:option value="GHz" label="GHz"></form:option>  
+        <td><form:select path="frequnit" id="frequnit" disabled="disabled" > 
    		 <form:option value="MHz" label="MHz"></form:option>
-   		 
+   		 <form:option value="GHz" label="GHz"></form:option>     		 
 		</form:select> 
 		</tr>
 		<tr>
@@ -114,7 +113,7 @@
        <script>
      $(document).ready(function () {
     	 document.getElementById("productk").disabled=true;
-    	 
+    	 document.getElementById("frequnit").disabled=true;
     	 var savestat='<%=request.getParameter("savestat")%>';
    		//alert (parmdelete);
    		if(savestat!=null && savestat!="")

@@ -39,6 +39,13 @@
             <option value=3 > 3</option>
             <option value=4 > 4</option>
 		</select>
+		<div style="display:none">
+		&nbsp; &nbsp;&nbsp;Frequency: 
+		 <select id="funit"> 
+   		 <option value="MHz"> MHz</option>
+   		 <option value="GHz" >GHz</option>     		 
+		</select> 
+		</div>
 		</td>
 		</tr>
 		<tr>
@@ -70,11 +77,13 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 
 
 <script type="text/javascript">
+var frequnit='${model.frequnit}';
 $(document).ready(function(){
 	var oper='${model.oper}'; //'threedb',tendb,
 	var typ='${model.typ}';
 	console.log('oper='+oper);
 	document.getElementById("precision").value='${model.nprecision}';
+	// document.getElementById("frequnit").value=frequnit;
 	if(oper=='threedb' || oper=='tendb'  || oper=='bsbl'){
 		document.getElementById("dbtab").style.display="block";
 		//document.getElementById("gttab").style.display="none";
@@ -107,8 +116,9 @@ function Redirect(){
 		var strslno= '${model.strslno}';
 		var selslno="";
 		var oper='${model.oper}';
-		var frequnit='${model.frequnit}';
+		//var frequnit='${model.frequnit}';
 		nprecision=document.getElementById('precision').value;
+		frequnit='MHz';//document.getElementById("funit").value;
 		if(oper!='gt'){
 			arrslnos=strslno.split(",");
 			for (var i=1;i<50;i++){

@@ -179,7 +179,14 @@ public class TestImportController extends SimpleFormController{
 			    	  {
 			    		  startrow=1; 
 			    	  }
-			      
+			    	  else{				    		  
+			    		  strow =(XSSFRow) sheet.getRow(22);
+			    		  logger.info("strow,22 " +strow.getCell(1));
+				    	   if(strow.getCell(1) != null && strow.getCell(1).toString().toLowerCase().contains("freq") )
+					    	  {
+					    		  startrow=23; 
+					    	  }
+				    	  }
 			      XSSFRow freqrow =(XSSFRow) sheet.getRow(startrow);
 			      for(int u=1;u<colNum;u++){
 			    	  freqarr.add( Double.parseDouble(freqrow.getCell(u).toString()));
@@ -245,7 +252,14 @@ public class TestImportController extends SimpleFormController{
 			    		  logger.info("strow,1 " +strow.getCell(1));
 			    		  startrow=1; 
 			    	  }
-			    	  
+			    	  else{				    		  
+			    		  strow =(HSSFRow) sheet.getRow(22);
+			    		  logger.info("strow,22 " +strow.getCell(1));
+				    	   if(strow.getCell(1) != null && strow.getCell(1).toString().toLowerCase().contains("freq") )
+					    	  {
+					    		  startrow=23; 
+					    	  }
+				    	  }
 				      HSSFRow freqrow =(HSSFRow) sheet.getRow(startrow);		
 				      for(int u=1;u<colNum;u++){
 				    	  freqarr.add(Double.parseDouble(freqrow.getCell(u).toString()));

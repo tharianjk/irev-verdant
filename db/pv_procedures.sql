@@ -18,10 +18,6 @@ drop procedure if exists pv_calc_spec;
 drop procedure if exists pv_calc_gtcalculated;
 drop procedure if exists spPV_GT;
 drop procedure if exists spPVPolarPlot;
--- --------------------------------------------------------------------------------
--- Routine DDL
--- Note: comments before and after the routine body will not be stored by the server
--- --------------------------------------------------------------------------------
 DELIMITER $$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spPVPolarPlot`(
@@ -31,6 +27,7 @@ typ varchar(5), -- C CP,H HP,V VP,B HP&VP
 vdatatype varchar(5), -- A Azimuth,E Elevation,T Gain Tracking,M Gain Measurement
 serialid INT,
 prec int
+-- ,frequnit varchar(10)
 )
 BEGIN
 
@@ -93,14 +90,16 @@ if isDebug > 0 then
 
 -- select nprecision into prec from fwk_company;
 
-select frequnit into unt from pv_testdata where test_id=testid;
+ select frequnit into unt from pv_testdata where test_id=testid;
 
-
+-- set unt=frequnit;
 set freq=freqparm;
 set cnt=0;
-if unt='GHz' then
-set freq=freqparm*1000;
-end if;
+
+
+-- if unt='GHz' then
+-- set freq=freqparm*1000;
+-- end if;
 
 if typ='H' then
 	if cnt=0 then
@@ -939,7 +938,7 @@ END$$
 DELIMITER ;
 
 
-
+-- drop procedure spPV_Axial
 -- --------------------------------------------------------------------------------
 -- Routine DDL
 -- Note: comments before and after the routine body will not be stored by the server
@@ -952,6 +951,7 @@ vdatatype varchar(5), -- Elevation
 deg varchar(10), -- 0,BM
 serialid INT,
 prec int
+-- ,frequnit varchar(10)
 
 )
 BEGIN
@@ -1007,8 +1007,8 @@ if isDebug > 0 then
 
 -- select nprecision into prec from fwk_company;
 
- select frequnit into @unt from pv_testdata where test_id=testid;
-
+  select frequnit into @unt from pv_testdata where test_id=testid;
+-- set @unt=frequnit;
   select case @unt when 'GHz' then frequency/1000 else frequency end frequency, 
    round( case deg when '0' then VP_0 when 'P45' then VP_P45 else VP_M45 end,prec) VP_A,
    round( case deg when '0' then HP_0 when 'P45' then HP_P45 else HP_M45 end,prec) VP_B,
@@ -1035,6 +1035,7 @@ vdatatype varchar(5), -- Azimuth,Elevation
 deg varchar(10), -- 0,BM
 serialid INT,
 prec int
+-- ,frequnit varchar(10)
 
 )
 BEGIN
@@ -1090,7 +1091,8 @@ if isDebug > 0 then
 
 -- select nprecision into prec from fwk_company;
 
- select frequnit into @unt from pv_testdata where test_id=testid;
+  select frequnit into @unt from pv_testdata where test_id=testid;
+ -- set @unt=frequnit;
   select distinct case @unt when 'GHz' then frequency/1000 else frequency end frequency,
    round( case deg when '0' then 3Db_BW_0_left else 3Db_BW_BMax_left end,prec) ldbpoint,
     round(case deg when '0' then 3Db_BW_0_right else 3Db_BW_BMax_right end,prec) rdbpoint ,
@@ -1117,6 +1119,7 @@ vdatatype varchar(5), -- Azimuth,Elevation
 deg varchar(10), -- 0,BM
 serialid INT,
 prec int
+-- ,frequnit varchar(10)
 
 )
 BEGIN
@@ -1171,7 +1174,7 @@ if isDebug > 0 then
 
 
 -- select nprecision into prec from fwk_company;
-
+-- set @unt=frequnit;
  select frequnit into @unt from pv_testdata where test_id=testid;
 
 

@@ -323,10 +323,11 @@ public class PVSerialImportController extends SimpleFormController{
 				    		  startrow=1; 
 				    	  }
 				    	  else{
-				    	   strow =(XSSFRow) sheet.getRow(23);
+				    	   strow =(XSSFRow) sheet.getRow(22);
+				    	   logger.info("strow,22 " +strow.getCell(1));
 				    	   if(strow.getCell(1) != null && strow.getCell(1).toString().toLowerCase().contains("freq") )
 					    	  {
-					    		  startrow=24; 
+					    		  startrow=23; 
 					    	  }
 				    	  }
 				    	  logger.info("startrow " +startrow);
@@ -397,7 +398,14 @@ public class PVSerialImportController extends SimpleFormController{
 				    		  logger.info("strow,1 " +strow.getCell(1));
 				    		  startrow=1; 
 				    	  }
-				    	  
+				    	  else{				    		  
+				    		  strow =(HSSFRow) sheet.getRow(22);
+				    		  logger.info("strow,22 " +strow.getCell(1));
+					    	   if(strow.getCell(1) != null && strow.getCell(1).toString().toLowerCase().contains("freq") )
+						    	  {
+						    		  startrow=23; 
+						    	  }
+					    	  }
 					      HSSFRow freqrow =(HSSFRow) sheet.getRow(startrow);	
 					      logger.info("startrow="+startrow);
 					      

@@ -31,9 +31,14 @@
 	    </c:otherwise>      
 		</c:choose>
     	</c:forEach>
-		</select>			           
-			   
-           
+		</select>          
+			<div style="display:none">
+		&nbsp; &nbsp;&nbsp;Frequency: 
+		 <select id="funit"> 
+   		 <option value="MHz"> MHz</option>
+   		 <option value="GHz" >GHz</option>     		 
+		</select> 
+		</div>
           </td>
           </tr>
            </table>
@@ -89,6 +94,7 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 var datatype="${model.typ}";
 var rptheader='${model.rptheader}';
 var rptfooter='${model.rptfooter}';
+var frequnit='${model.frequnit}';
 var ptype =parent.AssetTree.selectedparenttype;
 var atype=parent.AssetTree.atype;
 function fnenable(ctyp){
@@ -116,8 +122,8 @@ function fnenable(ctyp){
 $(document).ready(function(){
 	
 	console.log("parenttype="+parent.AssetTree.selectedparenttype);
-	console.log("atype="+parent.AssetTree.atype);
-	
+	console.log("atype="+parent.AssetTree.atype);	
+//	document.getElementById("frequnit").value=frequnit;
 	document.getElementById("precision").value='${model.nprecision}';
 	$(".scale").keydown(function (e) {
 		
@@ -170,7 +176,7 @@ $(document).ready(function(){
 		nprecision=document.getElementById("precision").value;	
 		var serialid=document.getElementById("serialid").value;	
 		var uname='${model.uname}';
-		var frequnit='${model.frequnit}';
+			
 		var selfreq=0;
 		//var freqid =document.getElementById("freqid").value;
 		
@@ -242,9 +248,9 @@ $(document).ready(function(){
 					alert("Frequencies not selected");
 					return;
 					}
-				
+				frequnit='MHz';//document.getElementById("funit").value;	
 					 url="/birt-viewer/frameset?__report=verdant/RadiationPattern.rptdesign&type="+typ+"&testid="+testid+"&serialid="+serialid+"&vdatatype="+datatype+"&scale="+scale+"&max="+max+"&min="+min+"&rpth="+rptheader+"&rptf="+rptfooter+"&img=yes&freq1="+strfreqs[0]+
-					"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+
+					"&freq2="+strfreqs[1]+"&freq3="+strfreqs[2]+"&freq4="+strfreqs[3]+"&freq5="+strfreqs[4]+"&pc="+nprecision+"&frequnit="+frequnit+
 					"&freq6="+strfreqs[5]+"&freq7="+strfreqs[6]+"&freq8="+strfreqs[7]+"&freq9="+strfreqs[8]+"&freq10="+strfreqs[9]+"&freq11="+strfreqs[10]+"&freq12="+strfreqs[11]+"&freq13="+strfreqs[12]+"&freq14="+strfreqs[13]+"&freq15="+strfreqs[14]+"&freq16="+strfreqs[15]+"&freq17="+strfreqs[16]+"&freq18="+strfreqs[17];
 			
 		console.log(url);
