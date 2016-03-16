@@ -9674,7 +9674,7 @@ where VC.Test_id=?;]]></xml-property>
                 </structure>
             </list-property>
         </extended-item>
-        <table id="4905">
+        <table id="5019">
             <property name="fontFamily">serif</property>
             <property name="dataSet">HPDataSet</property>
             <list-property name="visibility">
@@ -9799,8 +9799,11 @@ where VC.Test_id=?;]]></xml-property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
-            <column id="5002"/>
-            <column id="5003">
+            <column id="5033"/>
+            <column id="5034">
+                <property name="width">0.01mm</property>
+            </column>
+            <column id="5035">
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
@@ -9808,7 +9811,7 @@ where VC.Test_id=?;]]></xml-property>
                     </structure>
                 </list-property>
             </column>
-            <column id="5004">
+            <column id="5036">
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
@@ -9816,7 +9819,7 @@ where VC.Test_id=?;]]></xml-property>
                     </structure>
                 </list-property>
             </column>
-            <column id="5005">
+            <column id="5037">
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
@@ -9824,7 +9827,7 @@ where VC.Test_id=?;]]></xml-property>
                     </structure>
                 </list-property>
             </column>
-            <column id="5006">
+            <column id="5038">
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
@@ -9832,7 +9835,7 @@ where VC.Test_id=?;]]></xml-property>
                     </structure>
                 </list-property>
             </column>
-            <column id="5007">
+            <column id="5039">
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
@@ -9840,7 +9843,7 @@ where VC.Test_id=?;]]></xml-property>
                     </structure>
                 </list-property>
             </column>
-            <column id="5008">
+            <column id="68">
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
@@ -9848,7 +9851,7 @@ where VC.Test_id=?;]]></xml-property>
                     </structure>
                 </list-property>
             </column>
-            <column id="5009">
+            <column id="69">
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
@@ -9856,7 +9859,7 @@ where VC.Test_id=?;]]></xml-property>
                     </structure>
                 </list-property>
             </column>
-            <column id="5010">
+            <column id="70">
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
@@ -9864,7 +9867,10 @@ where VC.Test_id=?;]]></xml-property>
                     </structure>
                 </list-property>
             </column>
-            <column id="5011">
+            <column id="1364">
+                <property name="width">0.01mm</property>
+            </column>
+            <column id="71">
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
@@ -9872,7 +9878,7 @@ where VC.Test_id=?;]]></xml-property>
                     </structure>
                 </list-property>
             </column>
-            <column id="5012">
+            <column id="72">
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
@@ -9880,7 +9886,7 @@ where VC.Test_id=?;]]></xml-property>
                     </structure>
                 </list-property>
             </column>
-            <column id="5013">
+            <column id="73">
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
@@ -9888,7 +9894,7 @@ where VC.Test_id=?;]]></xml-property>
                     </structure>
                 </list-property>
             </column>
-            <column id="5014">
+            <column id="74">
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
@@ -9896,7 +9902,7 @@ where VC.Test_id=?;]]></xml-property>
                     </structure>
                 </list-property>
             </column>
-            <column id="5015">
+            <column id="75">
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
@@ -9904,7 +9910,7 @@ where VC.Test_id=?;]]></xml-property>
                     </structure>
                 </list-property>
             </column>
-            <column id="5016">
+            <column id="76">
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
@@ -9912,7 +9918,7 @@ where VC.Test_id=?;]]></xml-property>
                     </structure>
                 </list-property>
             </column>
-            <column id="5017">
+            <column id="77">
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
@@ -9920,7 +9926,7 @@ where VC.Test_id=?;]]></xml-property>
                     </structure>
                 </list-property>
             </column>
-            <column id="5018">
+            <column id="78">
                 <list-property name="visibility">
                     <structure>
                         <property name="format">all</property>
@@ -9929,272 +9935,279 @@ where VC.Test_id=?;]]></xml-property>
                 </list-property>
             </column>
             <header>
-                <row id="4906">
+                <row id="176">
                     <property name="fontSize">12pt</property>
                     <property name="fontWeight">bold</property>
-                    <cell id="4907">
-                        <property name="colSpan">17</property>
+                    <cell id="177">
+                        <property name="colSpan">19</property>
                         <property name="rowSpan">1</property>
-                        <label id="4908">
+                        <label id="194">
                             <text-property name="text">3dB Beam Width and Beam Squint</text-property>
                         </label>
                     </cell>
                 </row>
-                <row id="4909">
+                <row id="79">
                     <property name="fontSize">12pt</property>
                     <property name="fontWeight">bold</property>
-                    <cell id="4910">
+                    <cell id="80">
                         <property name="colSpan">1</property>
-                        <property name="rowSpan">2</property>
-                    </cell>
-                    <cell id="4911">
-                        <property name="colSpan">8</property>
                         <property name="rowSpan">1</property>
-                        <label id="4912">
+                    </cell>
+                    <cell id="1348">
+                        <property name="colSpan">9</property>
+                        <property name="rowSpan">1</property>
+                        <label id="140">
                             <text-property name="text">HP</text-property>
                         </label>
                     </cell>
-                    <cell id="4913">
-                        <property name="colSpan">8</property>
+                    <cell id="1360">
+                        <property name="colSpan">9</property>
                         <property name="rowSpan">1</property>
-                        <label id="4914">
+                        <label id="141">
                             <text-property name="text">VP</text-property>
                         </label>
                     </cell>
                 </row>
-                <row id="4915">
+                <row id="113">
                     <property name="fontWeight">bold</property>
-                    <cell id="4916">
+                    <cell id="5020"/>
+                    <cell id="1349"/>
+                    <cell id="115">
                         <property name="colSpan">2</property>
                         <property name="rowSpan">1</property>
-                        <label id="4917">
+                        <label id="131">
                             <text-property name="text">Beam Max</text-property>
                         </label>
                     </cell>
-                    <cell id="4918">
+                    <cell id="117">
                         <property name="colSpan">2</property>
                         <property name="rowSpan">1</property>
-                        <label id="4919">
+                        <label id="133">
                             <text-property name="text">0</text-property>
                         </label>
                     </cell>
-                    <cell id="4920">
+                    <cell id="119">
                         <property name="colSpan">2</property>
                         <property name="rowSpan">1</property>
-                        <label id="4921">
+                        <label id="134">
                             <text-property name="text">90</text-property>
                         </label>
                     </cell>
-                    <cell id="4922">
+                    <cell id="121">
                         <property name="colSpan">2</property>
                         <property name="rowSpan">1</property>
-                        <label id="4923">
+                        <label id="135">
                             <text-property name="text">270</text-property>
                         </label>
                     </cell>
-                    <cell id="4924">
+                    <cell id="1361"/>
+                    <cell id="123">
                         <property name="colSpan">2</property>
                         <property name="rowSpan">1</property>
-                        <label id="4925">
+                        <label id="132">
                             <text-property name="text">Beam Max</text-property>
                         </label>
                     </cell>
-                    <cell id="4926">
+                    <cell id="125">
                         <property name="colSpan">2</property>
                         <property name="rowSpan">1</property>
-                        <label id="4927">
+                        <label id="136">
                             <text-property name="text">0</text-property>
                         </label>
                     </cell>
-                    <cell id="4928">
+                    <cell id="127">
                         <property name="colSpan">2</property>
                         <property name="rowSpan">1</property>
-                        <label id="4929">
+                        <label id="137">
                             <text-property name="text">90</text-property>
                         </label>
                     </cell>
-                    <cell id="4930">
+                    <cell id="129">
                         <property name="colSpan">2</property>
                         <property name="rowSpan">1</property>
-                        <label id="4931">
+                        <label id="138">
                             <text-property name="text">270</text-property>
                         </label>
                     </cell>
                 </row>
-                <row id="4932">
+                <row id="8">
                     <property name="fontWeight">bold</property>
-                    <cell id="4933">
-                        <label id="4934">
+                    <cell id="5021">
+                        <label id="139">
                             <text-property name="text">Spot Freq. (GHz)</text-property>
                         </label>
                     </cell>
-                    <cell id="4935">
-                        <label id="4936">
+                    <cell id="1350"/>
+                    <cell id="5022">
+                        <label id="97">
                             <text-property name="text">3dB BW (deg.)</text-property>
                         </label>
                     </cell>
-                    <cell id="4937">
-                        <label id="4938">
+                    <cell id="11">
+                        <label id="105">
                             <text-property name="text">Beam squint (dB)</text-property>
                         </label>
                     </cell>
-                    <cell id="4939">
-                        <label id="4940">
+                    <cell id="5023">
+                        <label id="98">
                             <text-property name="text">3dB BW (deg.)</text-property>
                         </label>
                     </cell>
-                    <cell id="4941">
-                        <label id="4942">
+                    <cell id="5024">
+                        <label id="106">
                             <text-property name="text">Beam squint (dB)</text-property>
                         </label>
                     </cell>
-                    <cell id="4943">
-                        <label id="4944">
+                    <cell id="5025">
+                        <label id="99">
                             <text-property name="text">3dB BW (deg.)</text-property>
                         </label>
                     </cell>
-                    <cell id="4945">
-                        <label id="4946">
+                    <cell id="15">
+                        <label id="107">
                             <text-property name="text">Beam squint (dB)</text-property>
                         </label>
                     </cell>
-                    <cell id="4947">
-                        <label id="4948">
+                    <cell id="16">
+                        <label id="100">
                             <text-property name="text">3dB BW (deg.)</text-property>
                         </label>
                     </cell>
-                    <cell id="4949">
-                        <label id="4950">
+                    <cell id="17">
+                        <label id="108">
                             <text-property name="text">Beam squint (dB)</text-property>
                         </label>
                     </cell>
-                    <cell id="4951">
-                        <label id="4952">
+                    <cell id="1362"/>
+                    <cell id="5026">
+                        <label id="101">
                             <text-property name="text">3dB BW (deg.)</text-property>
                         </label>
                     </cell>
-                    <cell id="4953">
-                        <label id="4954">
+                    <cell id="5027">
+                        <label id="109">
                             <text-property name="text">Beam squint (dB)</text-property>
                         </label>
                     </cell>
-                    <cell id="4955">
-                        <label id="4956">
+                    <cell id="5028">
+                        <label id="102">
                             <text-property name="text">3dB BW (deg.)</text-property>
                         </label>
                     </cell>
-                    <cell id="4957">
-                        <label id="4958">
+                    <cell id="5029">
+                        <label id="110">
                             <text-property name="text">Beam squint (dB)</text-property>
                         </label>
                     </cell>
-                    <cell id="4959">
-                        <label id="4960">
+                    <cell id="5030">
+                        <label id="103">
                             <text-property name="text">3dB BW (deg.)</text-property>
                         </label>
                     </cell>
-                    <cell id="4961">
-                        <label id="4962">
+                    <cell id="5031">
+                        <label id="111">
                             <text-property name="text">Beam squint (dB)</text-property>
                         </label>
                     </cell>
-                    <cell id="4963">
-                        <label id="4964">
+                    <cell id="24">
+                        <label id="104">
                             <text-property name="text">3dB BW (deg.)</text-property>
                         </label>
                     </cell>
-                    <cell id="4965">
-                        <label id="4966">
+                    <cell id="25">
+                        <label id="112">
                             <text-property name="text">Beam squint (dB)</text-property>
                         </label>
                     </cell>
                 </row>
             </header>
             <detail>
-                <row id="4967">
+                <row id="26">
                     <property name="textAlign">center</property>
-                    <cell id="4968">
-                        <data id="4969">
+                    <cell id="27">
+                        <data id="157">
                             <property name="resultSetColumn">Frequency</property>
                         </data>
                     </cell>
-                    <cell id="4970">
-                        <data id="4971">
+                    <cell id="5032"/>
+                    <cell id="28">
+                        <data id="158">
                             <property name="resultSetColumn">3Db_BW_BMaxHP</property>
                         </data>
                     </cell>
-                    <cell id="4972">
-                        <data id="4973">
+                    <cell id="29">
+                        <data id="159">
                             <property name="resultSetColumn">3Db_BS_BMaxHP</property>
                         </data>
                     </cell>
-                    <cell id="4974">
-                        <data id="4975">
+                    <cell id="30">
+                        <data id="160">
                             <property name="resultSetColumn">3Db_BW_0HP</property>
                         </data>
                     </cell>
-                    <cell id="4976">
-                        <data id="4977">
+                    <cell id="31">
+                        <data id="161">
                             <property name="resultSetColumn">3Db_BS_0HP</property>
                         </data>
                     </cell>
-                    <cell id="4978">
-                        <data id="4979">
+                    <cell id="32">
+                        <data id="162">
                             <property name="resultSetColumn">3Db_BW_90HP</property>
                         </data>
                     </cell>
-                    <cell id="4980">
-                        <data id="4981">
+                    <cell id="33">
+                        <data id="163">
                             <property name="resultSetColumn">3Db_BS_90HP</property>
                         </data>
                     </cell>
-                    <cell id="4982">
-                        <data id="4983">
+                    <cell id="34">
+                        <data id="164">
                             <property name="resultSetColumn">3Db_BW_270HP</property>
                         </data>
                     </cell>
-                    <cell id="4984">
-                        <data id="4985">
+                    <cell id="35">
+                        <data id="165">
                             <property name="resultSetColumn">3Db_BS_270HP</property>
                         </data>
                     </cell>
-                    <cell id="4986">
-                        <data id="4987">
+                    <cell id="1363"/>
+                    <cell id="36">
+                        <data id="166">
                             <property name="resultSetColumn">3Db_BW_BMaxVC</property>
                         </data>
                     </cell>
-                    <cell id="4988">
-                        <data id="4989">
+                    <cell id="37">
+                        <data id="167">
                             <property name="resultSetColumn">3Db_BS_BMaxVC</property>
                         </data>
                     </cell>
-                    <cell id="4990">
-                        <data id="4991">
+                    <cell id="38">
+                        <data id="168">
                             <property name="resultSetColumn">3Db_BW_0VC</property>
                         </data>
                     </cell>
-                    <cell id="4992">
-                        <data id="4993">
+                    <cell id="39">
+                        <data id="169">
                             <property name="resultSetColumn">3Db_BS_0VC</property>
                         </data>
                     </cell>
-                    <cell id="4994">
-                        <data id="4995">
+                    <cell id="40">
+                        <data id="170">
                             <property name="resultSetColumn">3Db_BW_90VC</property>
                         </data>
                     </cell>
-                    <cell id="4996">
-                        <data id="4997">
+                    <cell id="41">
+                        <data id="171">
                             <property name="resultSetColumn">3Db_BS_90VC</property>
                         </data>
                     </cell>
-                    <cell id="4998">
-                        <data id="4999">
+                    <cell id="42">
+                        <data id="172">
                             <property name="resultSetColumn">3Db_BW_270VC</property>
                         </data>
                     </cell>
-                    <cell id="5000">
-                        <data id="5001">
+                    <cell id="43">
+                        <data id="173">
                             <property name="resultSetColumn">3Db_BS_270VC</property>
                         </data>
                     </cell>

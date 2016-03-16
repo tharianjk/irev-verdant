@@ -1380,6 +1380,9 @@ where VC.Test_id=?;]]></xml-property>
                 </structure>
             </list-property>
             <column id="62"/>
+            <column id="1352">
+                <property name="width">0.01mm</property>
+            </column>
             <column id="63">
                 <list-property name="visibility">
                     <structure>
@@ -1443,6 +1446,9 @@ where VC.Test_id=?;]]></xml-property>
                         <expression name="valueExpr" type="javascript">params["3dbDeg"].value=='0d' || params["3dbDeg"].value=='bm'</expression>
                     </structure>
                 </list-property>
+            </column>
+            <column id="1364">
+                <property name="width">0.01mm</property>
             </column>
             <column id="71">
                 <list-property name="visibility">
@@ -1513,7 +1519,7 @@ where VC.Test_id=?;]]></xml-property>
                     <property name="fontSize">12pt</property>
                     <property name="fontWeight">bold</property>
                     <cell id="177">
-                        <property name="colSpan">17</property>
+                        <property name="colSpan">19</property>
                         <property name="rowSpan">1</property>
                         <label id="194">
                             <text-property name="text">3dB Beam Width and Beam Squint</text-property>
@@ -1525,17 +1531,17 @@ where VC.Test_id=?;]]></xml-property>
                     <property name="fontWeight">bold</property>
                     <cell id="80">
                         <property name="colSpan">1</property>
-                        <property name="rowSpan">2</property>
+                        <property name="rowSpan">1</property>
                     </cell>
-                    <cell id="81">
-                        <property name="colSpan">8</property>
+                    <cell id="1348">
+                        <property name="colSpan">9</property>
                         <property name="rowSpan">1</property>
                         <label id="140">
                             <text-property name="text">HP</text-property>
                         </label>
                     </cell>
-                    <cell id="89">
-                        <property name="colSpan">8</property>
+                    <cell id="1360">
+                        <property name="colSpan">9</property>
                         <property name="rowSpan">1</property>
                         <label id="141">
                             <text-property name="text">VP</text-property>
@@ -1544,6 +1550,8 @@ where VC.Test_id=?;]]></xml-property>
                 </row>
                 <row id="113">
                     <property name="fontWeight">bold</property>
+                    <cell id="1285"/>
+                    <cell id="1349"/>
                     <cell id="115">
                         <property name="colSpan">2</property>
                         <property name="rowSpan">1</property>
@@ -1572,6 +1580,7 @@ where VC.Test_id=?;]]></xml-property>
                             <text-property name="text">270</text-property>
                         </label>
                     </cell>
+                    <cell id="1361"/>
                     <cell id="123">
                         <property name="colSpan">2</property>
                         <property name="rowSpan">1</property>
@@ -1608,6 +1617,7 @@ where VC.Test_id=?;]]></xml-property>
                             <text-property name="text">Spot Freq. (GHz)</text-property>
                         </label>
                     </cell>
+                    <cell id="1350"/>
                     <cell id="10">
                         <label id="97">
                             <text-property name="text">3dB BW (deg.)</text-property>
@@ -1648,6 +1658,7 @@ where VC.Test_id=?;]]></xml-property>
                             <text-property name="text">Beam squint (dB)</text-property>
                         </label>
                     </cell>
+                    <cell id="1362"/>
                     <cell id="18">
                         <label id="101">
                             <text-property name="text">3dB BW (deg.)</text-property>
@@ -1698,6 +1709,7 @@ where VC.Test_id=?;]]></xml-property>
                             <property name="resultSetColumn">Frequency</property>
                         </data>
                     </cell>
+                    <cell id="1351"/>
                     <cell id="28">
                         <data id="158">
                             <property name="resultSetColumn">3Db_BW_BMaxHP</property>
@@ -1738,6 +1750,7 @@ where VC.Test_id=?;]]></xml-property>
                             <property name="resultSetColumn">3Db_BS_270HP</property>
                         </data>
                     </cell>
+                    <cell id="1363"/>
                     <cell id="36">
                         <data id="166">
                             <property name="resultSetColumn">3Db_BW_BMaxVC</property>
