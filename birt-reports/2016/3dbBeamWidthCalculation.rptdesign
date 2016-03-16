@@ -2810,7 +2810,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="356">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -3931,7 +3931,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="1430">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -5052,7 +5052,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="1604">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -6173,7 +6173,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="1778">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -7294,7 +7294,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="1952">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -8415,7 +8415,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="7186">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -9536,7 +9536,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="7360">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -10657,7 +10657,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="7534">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -11778,7 +11778,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="7708">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -12899,7 +12899,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="7882">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -14020,7 +14020,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="8056">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -15141,7 +15141,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="8230">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -16262,7 +16262,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="8404">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -17383,7 +17383,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="8578">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -18504,7 +18504,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="8752">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -19625,7 +19625,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="8926">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -20746,7 +20746,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="9100">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -21867,7 +21867,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="9274">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -22988,7 +22988,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="9448">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -24109,7 +24109,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="9622">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -25230,7 +25230,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="9796">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -26351,7 +26351,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="9970">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -27472,7 +27472,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="10144">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -28593,7 +28593,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="10318">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -29714,7 +29714,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="10492">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -30835,7 +30835,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="10666">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -31956,7 +31956,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="10840">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -33077,7 +33077,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="11014">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -34198,7 +34198,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="11188">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -35319,7 +35319,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="11362">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -36440,7 +36440,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="11536">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -37561,7 +37561,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="11710">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -38682,7 +38682,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="11884">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -39803,7 +39803,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="12058">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -40924,7 +40924,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="12232">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -42045,7 +42045,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="12406">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -43166,7 +43166,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="12580">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -44287,7 +44287,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="12754">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -45408,7 +45408,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="12928">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -46529,7 +46529,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="13102">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -47650,7 +47650,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="13276">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -48771,7 +48771,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="13450">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -49892,7 +49892,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="13624">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -51013,7 +51013,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="13798">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -52134,7 +52134,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="13972">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -53255,7 +53255,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="14146">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -54376,7 +54376,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="14320">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -55497,7 +55497,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="14494">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -56618,7 +56618,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="14668">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -57739,7 +57739,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
         </table>
         <table id="14842">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>

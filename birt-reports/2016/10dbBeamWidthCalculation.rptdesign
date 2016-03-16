@@ -2874,7 +2874,7 @@ Antenna without Radome&#13;
         </table>
         <table id="356">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -4141,7 +4141,7 @@ Antenna without Radome&#13;
         </table>
         <table id="7202">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -5408,7 +5408,7 @@ Antenna without Radome&#13;
         </table>
         <table id="7408">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -6675,7 +6675,7 @@ Antenna without Radome&#13;
         </table>
         <table id="7614">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -7942,7 +7942,7 @@ Antenna without Radome&#13;
         </table>
         <table id="7820">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -9209,7 +9209,7 @@ Antenna without Radome&#13;
         </table>
         <table id="8026">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -10476,7 +10476,7 @@ Antenna without Radome&#13;
         </table>
         <table id="8232">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -11743,7 +11743,7 @@ Antenna without Radome&#13;
         </table>
         <table id="8438">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -13010,7 +13010,7 @@ Antenna without Radome&#13;
         </table>
         <table id="8644">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -14277,7 +14277,7 @@ Antenna without Radome&#13;
         </table>
         <table id="8850">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -15544,7 +15544,7 @@ Antenna without Radome&#13;
         </table>
         <table id="9056">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -16811,7 +16811,7 @@ Antenna without Radome&#13;
         </table>
         <table id="9262">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -18078,7 +18078,7 @@ Antenna without Radome&#13;
         </table>
         <table id="9468">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -19345,7 +19345,7 @@ Antenna without Radome&#13;
         </table>
         <table id="9674">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -20612,7 +20612,7 @@ Antenna without Radome&#13;
         </table>
         <table id="9880">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -21879,7 +21879,7 @@ Antenna without Radome&#13;
         </table>
         <table id="10086">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -23146,7 +23146,7 @@ Antenna without Radome&#13;
         </table>
         <table id="10292">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -24413,7 +24413,7 @@ Antenna without Radome&#13;
         </table>
         <table id="10498">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -25680,7 +25680,7 @@ Antenna without Radome&#13;
         </table>
         <table id="10704">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -26947,7 +26947,7 @@ Antenna without Radome&#13;
         </table>
         <table id="10910">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -28214,7 +28214,7 @@ Antenna without Radome&#13;
         </table>
         <table id="11116">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -29481,7 +29481,7 @@ Antenna without Radome&#13;
         </table>
         <table id="11322">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -30748,7 +30748,7 @@ Antenna without Radome&#13;
         </table>
         <table id="11528">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -32015,7 +32015,7 @@ Antenna without Radome&#13;
         </table>
         <table id="11734">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -33282,7 +33282,7 @@ Antenna without Radome&#13;
         </table>
         <table id="11940">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -34549,7 +34549,7 @@ Antenna without Radome&#13;
         </table>
         <table id="12146">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -35816,7 +35816,7 @@ Antenna without Radome&#13;
         </table>
         <table id="12352">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -37083,7 +37083,7 @@ Antenna without Radome&#13;
         </table>
         <table id="12558">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -38350,7 +38350,7 @@ Antenna without Radome&#13;
         </table>
         <table id="12764">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -39617,7 +39617,7 @@ Antenna without Radome&#13;
         </table>
         <table id="12970">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -40884,7 +40884,7 @@ Antenna without Radome&#13;
         </table>
         <table id="13176">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -42151,7 +42151,7 @@ Antenna without Radome&#13;
         </table>
         <table id="13382">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -43418,7 +43418,7 @@ Antenna without Radome&#13;
         </table>
         <table id="13588">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -44685,7 +44685,7 @@ Antenna without Radome&#13;
         </table>
         <table id="13794">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -45952,7 +45952,7 @@ Antenna without Radome&#13;
         </table>
         <table id="14000">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -47219,7 +47219,7 @@ Antenna without Radome&#13;
         </table>
         <table id="14206">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -48486,7 +48486,7 @@ Antenna without Radome&#13;
         </table>
         <table id="14412">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -49753,7 +49753,7 @@ Antenna without Radome&#13;
         </table>
         <table id="14618">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -51020,7 +51020,7 @@ Antenna without Radome&#13;
         </table>
         <table id="14824">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -52287,7 +52287,7 @@ Antenna without Radome&#13;
         </table>
         <table id="15030">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -53554,7 +53554,7 @@ Antenna without Radome&#13;
         </table>
         <table id="15236">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -54821,7 +54821,7 @@ Antenna without Radome&#13;
         </table>
         <table id="15442">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -56088,7 +56088,7 @@ Antenna without Radome&#13;
         </table>
         <table id="15648">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -57355,7 +57355,7 @@ Antenna without Radome&#13;
         </table>
         <table id="15854">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -58622,7 +58622,7 @@ Antenna without Radome&#13;
         </table>
         <table id="16060">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -59889,7 +59889,7 @@ Antenna without Radome&#13;
         </table>
         <table id="16266">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -61156,7 +61156,7 @@ Antenna without Radome&#13;
         </table>
         <table id="16472">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -62423,7 +62423,7 @@ Antenna without Radome&#13;
         </table>
         <table id="16678">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -63690,7 +63690,7 @@ Antenna without Radome&#13;
         </table>
         <table id="16884">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
@@ -64957,7 +64957,7 @@ Antenna without Radome&#13;
         </table>
         <table id="17090">
             <property name="style">Border</property>
-            <property name="pageBreakBefore">always</property>
+            <property name="pageBreakBefore">auto</property>
             <property name="dataSet">ElevationPattern</property>
             <list-property name="visibility">
                 <structure>
