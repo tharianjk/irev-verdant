@@ -23,6 +23,7 @@ drop procedure if exists spPV_GTHEAD;
 
 
 
+drop procedure if exists spPV_GTHEAD;
 -- --------------------------------------------------------------------------------
 -- Routine DDL
 -- Note: comments before and after the routine body will not be stored by the server
@@ -130,8 +131,8 @@ set v_valsql='';
 			 
 			CLOSE C1;
 
-                    set v_insertsql =concat('insert into temp_GTHead (',v_insertsql,')');
-					set v_valsql=concat('values(',v_valsql,')');
+                    set v_insertsql =concat('insert into temp_GTHead (testid,',v_insertsql,')');
+					set v_valsql=concat('values(',testid,',',v_valsql,')');
 
 					  -- select v_insertsql;
 					  -- select  v_valsql;
@@ -141,7 +142,7 @@ set v_valsql='';
 					EXECUTE stmt1; 
 					DEALLOCATE PREPARE stmt1;
 
-select * from temp_GTHead;
+-- select * from temp_GTHead;
 
 END$$
 
@@ -2324,16 +2325,18 @@ set v_prevfreq=-1;
 					DEALLOCATE PREPARE stmt1;
 
 
+call spPV_GTHEAD(testid);
+
 if deg='0' then
-	select a.*,round(MAX_CP_0,prec) MAXCP,round(MIN_CP_0,prec) MINCP,round(Window_0,prec) WINDOW from temp_GT a left join pv_gt_calculated b on a.Frequency=b.Frequency 
-	where Test_id=testid ;
+	select a.*,c.*,round(MAX_CP_0,prec) MAXCP,round(MIN_CP_0,prec) MINCP,round(Window_0,prec) WINDOW from temp_GT a left join pv_gt_calculated b on a.Frequency=b.Frequency 
+	 left join temp_GThead c on b.test_id=c.testid where Test_id=testid ;
 END if;
  if deg='P45' then
-	select a.*,round(MAX_CP_P45,prec) MAXCP,round(MIN_CP_P45,prec) MINCP,round(Window_P45,prec) WINDOW from temp_GT a left join pv_gt_calculated b on a.Frequency=b.Frequency 
-	where Test_id=testid ;
+	select a.*,c.*,round(MAX_CP_P45,prec) MAXCP,round(MIN_CP_P45,prec) MINCP,round(Window_P45,prec) WINDOW from temp_GT a left join pv_gt_calculated b on a.Frequency=b.Frequency 
+	left join temp_GThead c on b.test_id=c.testid where Test_id=testid ;
 else 
-	select a.*,round(MAX_CP_M45,prec) MAXCP,round(MIN_CP_M45,prec) MINCP,round(Window_M45,prec) WINDOW from temp_GT a left join pv_gt_calculated b on a.Frequency=b.Frequency 
-	where Test_id=testid ;
+	select a.*,c.*,round(MAX_CP_M45,prec) MAXCP,round(MIN_CP_M45,prec) MINCP,round(Window_M45,prec) WINDOW from temp_GT a left join pv_gt_calculated b on a.Frequency=b.Frequency 
+	left join temp_GThead c on b.test_id=c.testid where Test_id=testid ;
 end if;
 
 END$$

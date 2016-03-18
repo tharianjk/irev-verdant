@@ -2,7 +2,9 @@
 
 -- 18-03-2016
 
-create table temp_GTHead (id integer auto_increment primary key,
+drop table if exists temp_GTHead;
+
+create table temp_GTHead (testid integer ,
 VCOLHEAD1 Varchar(10),
 VCOLHEAD2 Varchar(10),
 VCOLHEAD3 Varchar(10),
@@ -54,6 +56,8 @@ VCOLHEAD48 Varchar(10),
 VCOLHEAD49 Varchar(10),
 VCOLHEAD50 Varchar(10)
 );
+
+
 
 
 
