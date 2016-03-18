@@ -116,6 +116,7 @@ public class PVTestController  extends SimpleFormController{
 	        	pvtest.setProductid(Integer.parseInt(PId));	        
 	        	pvtest.setStrtestdate(sdf.format(curTime)+"T"+sdftime.format(curTime));
 	        	pvtest.setTestcenter("VERDANT, COCHIN");
+	        	pvtest.setFrequnit("MHz");
 	        	return pvtest;
 	        }else{
 	        	request.getSession().setAttribute("testid", id);

@@ -1,4 +1,62 @@
 
+
+-- 18-03-2016
+
+create table temp_GTHead (id integer auto_increment primary key,
+VCOLHEAD1 Varchar(10),
+VCOLHEAD2 Varchar(10),
+VCOLHEAD3 Varchar(10),
+VCOLHEAD4 Varchar(10),
+VCOLHEAD5 Varchar(10),
+VCOLHEAD6 Varchar(10),
+VCOLHEAD7 Varchar(10),
+VCOLHEAD8 Varchar(10),
+VCOLHEAD9 Varchar(10),
+VCOLHEAD10 Varchar(10),
+VCOLHEAD11 Varchar(10),
+VCOLHEAD12 Varchar(10),
+VCOLHEAD13 Varchar(10),
+VCOLHEAD14 Varchar(10),
+VCOLHEAD15 Varchar(10),
+VCOLHEAD16 Varchar(10),
+VCOLHEAD17 Varchar(10),
+VCOLHEAD18 Varchar(10),
+VCOLHEAD19 Varchar(10),
+VCOLHEAD20 Varchar(10),
+VCOLHEAD21 Varchar(10),
+VCOLHEAD22 Varchar(10),
+VCOLHEAD23 Varchar(10),
+VCOLHEAD24 Varchar(10),
+VCOLHEAD25 Varchar(10),
+VCOLHEAD26 Varchar(10),
+VCOLHEAD27 Varchar(10),
+VCOLHEAD28 Varchar(10),
+VCOLHEAD29 Varchar(10),
+VCOLHEAD30 Varchar(10),
+VCOLHEAD31 Varchar(10),
+VCOLHEAD32 Varchar(10),
+VCOLHEAD33 Varchar(10),
+VCOLHEAD34 Varchar(10),
+VCOLHEAD35 Varchar(10),
+VCOLHEAD36 Varchar(10),
+VCOLHEAD37 Varchar(10),
+VCOLHEAD38 Varchar(10),
+VCOLHEAD39 Varchar(10),
+VCOLHEAD40 Varchar(10),
+VCOLHEAD41 Varchar(10),
+VCOLHEAD42 Varchar(10),
+VCOLHEAD43 Varchar(10),
+VCOLHEAD44 Varchar(10),
+VCOLHEAD45 Varchar(10),
+VCOLHEAD46 Varchar(10),
+VCOLHEAD47 Varchar(10),
+VCOLHEAD48 Varchar(10),
+VCOLHEAD49 Varchar(10),
+VCOLHEAD50 Varchar(10)
+);
+
+
+
 -- alter table pv_testdata add AntennaUsed varchar(200) 
 -- alter table product add prodmodel varchar(100);
 

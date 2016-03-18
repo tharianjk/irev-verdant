@@ -18,6 +18,134 @@ drop procedure if exists pv_calc_spec;
 drop procedure if exists pv_calc_gtcalculated;
 drop procedure if exists spPV_GT;
 drop procedure if exists spPVPolarPlot;
+drop procedure if exists spPV_GTHEAD;
+
+
+
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE  PROCEDURE `spPV_GTHEAD`(
+testid INT
+)
+BEGIN
+
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'spPV_GTHEAD';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+
+
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+DECLARE v_finished INTEGER DEFAULT 0;
+Declare v_id int default 0;
+Declare v_insertsql varchar(2000) default '';
+Declare v_valsql  varchar(2000) default '';
+declare v_serialno varchar(10) default '';
+
+DECLARE C1 CURSOR FOR select distinct SerialNo from pv_prodserial 
+where test_id=testid order by prodserial_id;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_finished = 1;
+DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ 
+
+begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(l_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Test id : ", testid);
+		call debug(l_proc_id, @details,'I','I');
+        
+         RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+	end if;
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(l_proc_id,'in spPV_GTHEAD','I','I');
+ end if;
+
+
+ truncate table temp_GTHead;
+ /* insert into temp_GTHead(frequency,V1,H1,C1,V2,H2,C2,V3,H3,C3,V4,H4,C4,V4,H5,C5,V6,H6,C6,V7,H7,C7,V8,H8,C8,V9,H9,C9,V10,H10,C10
+,V11,H11,C11,V12,H12,C12,V13,H13,C13,V14,H14,C14,V14,H15,C15,V16,H16,C16,V17,H17,C17,V18,H18,C18,V19,H19,C19,V20,H20,C20
+,V21,H21,C21,V22,H22,C22,V23,H23,C23,V24,H24,C24,V24,H25,C25,V26,H26,C26,V27,H27,C27,V28,H28,C28,V29,H29,C29,V30,H30,C30
+calc_Linear_Elevation,V31,H31,C31,V32,H32,C32,V33,H33,C33,V34,H34,C34,V34,H35,C35,V36,H36,C36,V37,H37,C37,V38,H38,C38,V39,H39,C39,V40,H40,C40
+,V41,H41,C41,V42,H42,C42,V43,H43,C43,V44,H44,C44,V44,H45,C45,V46,H46,C46,V47,H47,C47,V48,H48,C48,V49,H49,C49,V50,H50,C50)
+*/
+set v_id=0;
+set v_insertsql='';
+set v_valsql='';
+
+			OPEN C1;
+			 
+				getlist: LOOP
+				 
+				 FETCH C1 INTO v_serialno;
+				 
+				IF v_finished = 1 THEN
+				  LEAVE getlist;
+				END IF;
+            
+                               
+
+                    set v_id=v_id+1;
+					if v_id=1 then
+						set v_insertsql=concat('VCOLHEAD',v_id);
+						set v_valsql=concat('',v_serialno,'');
+                    else
+						set v_insertsql=concat(v_insertsql,',','VCOLHEAD',v_id);
+						set v_valsql=concat(v_valsql,',''',v_serialno,'');
+					end if;
+
+				END LOOP getlist;
+			 
+			CLOSE C1;
+
+                    set v_insertsql =concat('insert into temp_GTHead (',v_insertsql,')');
+					set v_valsql=concat('values(',v_valsql,')');
+
+					  -- select v_insertsql;
+					  -- select  v_valsql;
+
+                	set	@sql1= concat(v_insertsql,v_valsql);
+					PREPARE stmt1 FROM @sql1; 
+					EXECUTE stmt1; 
+					DEALLOCATE PREPARE stmt1;
+
+select * from temp_GTHead;
+
+END$$
+
+
 DELIMITER $$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spPVPolarPlot`(

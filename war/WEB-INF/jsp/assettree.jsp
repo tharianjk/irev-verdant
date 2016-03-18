@@ -796,16 +796,16 @@ function recreatewithparents()
          else if (treeType==3){        	 
         	 if(atype=="V"){
          		items = {
-               		  createItem: { // The "rename" menu item
+               		  /*createItem: { // The "rename" menu item
                              label: "New Serial",                      
                              action: function(response) {
                                  var url = '<%=request.getContextPath()%>/pvserialimport.htm?PId='+ node.attr('assetId') +'&PName='+node.attr('assetName')+'&Nlevel='+ node.attr('nlevel');
                                  //alert("url "+ url);
                                  parent.frames['AppBody'].location = url;
                                        }
-                         },
+                         },*/
                          editItem: { // The "rename" menu item
-                             label: "Edit Serial",                      
+                             label: "Serials",                      
                              action: function(response) {
                                  var url = '<%=request.getContextPath()%>/setup.htm?oper=pvserial&testid='+ node.attr('assetId') +'&PName='+node.attr('assetName')+'&Nlevel='+ node.attr('nlevel');
                                  //alert("url "+ url);
