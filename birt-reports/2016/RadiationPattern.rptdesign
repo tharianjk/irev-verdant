@@ -6734,7 +6734,7 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
 <td>
 <div class="outer">
 
-<img src="\img\Verdantlogo.png" height="50px" width="144px" align="baseline" name="myimage">
+<img src="\img\Verdantlogo.png" height="43px" width="124px" align="baseline" name="myimage">
 
 </div>
 </td>
