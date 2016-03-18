@@ -113,33 +113,28 @@ set v_valsql='';
 				 
 				IF v_finished = 1 THEN
 				  LEAVE getlist;
-				END IF;
-            
-                               
+				END IF;        
 
                     set v_id=v_id+1;
-					if v_id=1 then
-						set v_insertsql=concat('VCOLHEAD',v_id);
-						set v_valsql=concat('''',v_serialno,'''');
-                    else
+					
 						set v_insertsql=concat(v_insertsql,',','VCOLHEAD',v_id);
 						set v_valsql=concat(v_valsql,',''',v_serialno,'''');
-					end if;
+					
 
 				END LOOP getlist;
 			 
 			CLOSE C1;
 
-                    set v_insertsql =concat('insert into temp_GTHead (testid,',v_insertsql,')');
-					set v_valsql=concat('values(',testid,',',v_valsql,')');
+                    set v_insertsql =concat('insert into temp_GTHead (testid',v_insertsql,')');
+					set v_valsql=concat('values(',testid,v_valsql,')');
 
 					   -- select v_insertsql;
 					   -- select  v_valsql;
 
                 	set	@sql1= concat(v_insertsql,v_valsql);
-					 PREPARE stmt1 FROM @sql1; 
-					 EXECUTE stmt1; 
-					 DEALLOCATE PREPARE stmt1;
+					  PREPARE stmt1 FROM @sql1; 
+					  EXECUTE stmt1; 
+					  DEALLOCATE PREPARE stmt1;
 
 -- select * from temp_GTHead;
 
