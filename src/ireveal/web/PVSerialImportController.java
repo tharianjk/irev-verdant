@@ -328,6 +328,7 @@ public class PVSerialImportController extends SimpleFormController{
 				    	   if(strow.getCell(1) != null && strow.getCell(1).toString().toLowerCase().contains("freq") )
 					    	  {
 					    		  startrow=23; 
+					    		  colNum=sheet.getRow(22).getLastCellNum();
 					    	  }
 				    	  }
 				    	  logger.info("startrow " +startrow);
@@ -404,6 +405,7 @@ public class PVSerialImportController extends SimpleFormController{
 					    	   if(strow.getCell(1) != null && strow.getCell(1).toString().toLowerCase().contains("freq") )
 						    	  {
 						    		  startrow=23; 
+						    		  colNum=sheet.getRow(22).getLastCellNum();
 						    	  }
 					    	  }
 					      HSSFRow freqrow =(HSSFRow) sheet.getRow(startrow);	
