@@ -7528,7 +7528,7 @@ where TD.Test_id=?]]></xml-property>
             <property name="borderBottomStyle">solid</property>
             <property name="borderBottomWidth">thin</property>
             <property name="textAlign">center</property>
-            <text-property name="text">TEST RECORD SHEET-09: GAIN TRACKING MEASUREMENT: CP &#13;
+            <text-property name="text">TEST RECORD SHEET-08: GAIN TRACKING MEASUREMENT: CP &#13;
 </text-property>
         </label>
         <table id="202">

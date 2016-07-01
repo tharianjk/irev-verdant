@@ -1059,7 +1059,7 @@
             <property name="borderBottomStyle">solid</property>
             <property name="borderBottomWidth">thin</property>
             <property name="textAlign">center</property>
-            <text-property name="text">TEST RECORD SHEET-7: &#13;
+            <text-property name="text">TEST RECORD SHEET-6A: &#13;
 ELEVATION BEAMSQUINT AND BACKLOBE CALCULATION&#13;
 </text-property>
         </label>
