@@ -2208,7 +2208,7 @@ inner join pv_prodserial p on td.test_id=p.test_id
             <property name="borderBottomStyle">solid</property>
             <property name="borderBottomWidth">thin</property>
             <property name="textAlign">center</property>
-            <text-property name="text">TEST RECORD SHEET-8: AXIAL RATIO MEASUREMENT</text-property>
+            <text-property name="text">TEST RECORD SHEET-7: AXIAL RATIO MEASUREMENT</text-property>
         </label>
         <table id="202">
             <property name="dataSet">TestDescription</property>
