@@ -5,24 +5,15 @@ import ireveal.domain.ProductSerial;
 import ireveal.domain.TestData;
 import ireveal.domain.TestFrequency;
 import ireveal.service.MastersService;
-
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-
-
-
-
 import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.json.JSONException;
@@ -35,10 +26,8 @@ import org.springframework.web.servlet.view.RedirectView;
 public class TestFreqController implements Controller{
 	
 	public MastersService mastersservice ;
-	private HttpSession cursess;
 	private int testid=0;
-	private String frequnit;
-	 protected final Log logger = LogFactory.getLog(getClass());
+	protected final Log logger = LogFactory.getLog(getClass());
  
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)

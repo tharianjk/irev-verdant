@@ -5,20 +5,8 @@ import ireveal.domain.Company;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.ArrayList;  
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
- 
-  import java.util.ArrayList;  
-import java.util.List;  
-import javax.sql.DataSource;  
-import javax.swing.tree.RowMapper;
-
-import org.springframework.beans.factory.annotation.Autowired;  
-import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;  
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
  
@@ -41,7 +29,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
    }  
     
    public List<Company> getCompanyList() {  
-    List companyList = new ArrayList();  
+    List<Company> companyList = new ArrayList<Company>();  
     
     String sql = "select C.company_id,c.companyName,c.Address,nprecision,ndebugFlag from FWK_COMPANY C ";  
    

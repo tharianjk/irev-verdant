@@ -1,30 +1,14 @@
 package ireveal.web;
 
-
-import ireveal.domain.AmpPhaseTrack;
-import ireveal.domain.Company;
-import ireveal.domain.ImportData;
-import ireveal.domain.ProductSerial;
 import ireveal.domain.Scaling;
-import ireveal.domain.TestData;
-import ireveal.domain.TestFrequency;
 import ireveal.service.MastersService;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
-
-
-
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
@@ -33,7 +17,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONArray;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.web.servlet.view.RedirectView;
  
@@ -106,8 +89,8 @@ public class ScalingController extends SimpleFormController{
 	        	return scale;
 	    }
 	
-	 protected HashMap referenceData(HttpServletRequest request) throws Exception {
-			HashMap referenceData = new HashMap();	
+	 protected HashMap<String, Object> referenceData(HttpServletRequest request) throws Exception {
+			HashMap<String, Object> referenceData = new HashMap<String, Object>();
 			List<Scaling> scalelist=mastersservice.getScaling(testid );
 			referenceData.put("scalelist",scalelist);
 	 		return referenceData;

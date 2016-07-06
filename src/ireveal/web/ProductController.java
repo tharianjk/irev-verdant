@@ -1,23 +1,13 @@
 package ireveal.web;
 
-
-import java.awt.color.CMMException;
-import java.io.IOException;
-import java.util.ArrayList;  
 import java.util.HashMap;  
-import java.util.List;  
-import java.util.Map;  
+
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;  
-import org.springframework.stereotype.Controller;  
-import org.springframework.web.bind.annotation.ModelAttribute;  
-import org.springframework.web.bind.annotation.RequestMapping;  
-import org.springframework.web.bind.annotation.RequestParam;  
 import org.springframework.web.servlet.ModelAndView;  
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.web.servlet.view.RedirectView;
@@ -80,7 +70,6 @@ public class ProductController  extends SimpleFormController{
 	 	        }
 	        }
 
-	        logger.info("returning view to " + getSuccessView());
 	        return new ModelAndView(new RedirectView("product.htm?prodid="+prodid+"&refresh="+refresh+"&savestat="+stat));
 	       
 	    }
@@ -108,8 +97,8 @@ public class ProductController  extends SimpleFormController{
 	        	return mastersservice.getProduct(Integer.parseInt(id));
 	        }       
 	    }
-	    protected HashMap referenceData(HttpServletRequest request) throws Exception {
-			HashMap referenceData = new HashMap();	
+	    protected HashMap<String, Object> referenceData(HttpServletRequest request) throws Exception {
+			HashMap<String, Object> referenceData = new HashMap<String, Object>();
 	        referenceData.put("testcnt", mastersservice.getproductTestscnt(intprodid));
 	 		return referenceData;
 		}

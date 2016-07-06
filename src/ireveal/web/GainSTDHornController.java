@@ -3,9 +3,7 @@ package ireveal.web;
 
 import ireveal.domain.GainSTDHorn;
 import ireveal.domain.PVTest;
-import ireveal.domain.ProductSerial;
-import ireveal.domain.TestData;
-import ireveal.domain.TestFrequency;
+
 import ireveal.service.MastersService;
 
 import java.io.IOException;
@@ -23,7 +21,6 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -32,15 +29,12 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
-import org.springframework.web.servlet.view.RedirectView;
- 
+
 public class GainSTDHornController implements Controller{
 	
 	public MastersService mastersservice ;
-	private HttpSession cursess;
 	private int testid=0;
-	private String frequnit;
-	 protected final Log logger = LogFactory.getLog(getClass());
+	protected final Log logger = LogFactory.getLog(getClass());
  
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)

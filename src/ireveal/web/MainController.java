@@ -4,8 +4,6 @@ import org.springframework.web.servlet.mvc.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
 
-
-import ireveal.domain.EncryptDecrypt;
 import ireveal.domain.RoleDsp;
 import ireveal.domain.UserPref;
 import ireveal.service.MastersService;
@@ -14,23 +12,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.beans.factory.annotation.*;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
+
 import java.util.Map;
 
 public class MainController implements Controller {
@@ -52,16 +44,11 @@ public class MainController implements Controller {
     	String pathinfo = request.getContextPath();
     	String requri = request.getRequestURI();
     	String uname = request.getParameter("username");
-    	String pswd = request.getParameter("password");
     	String errstr = request.getParameter("error");
     	String logoutstr = request.getParameter("logout");
 		Boolean climob = false;
 		
-		 Calendar cal = Calendar.getInstance();
-	     Date curTime = cal.getTime();
-	     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
-    	//Check the type of client: Desktop or mobile
+		 //Check the type of client: Desktop or mobile
     	String clitype = request.getHeader("user-agent").toLowerCase();
     	if (clitype.contains("android") || clitype.contains("webos") || clitype.contains("iphone") || clitype.contains("ipad") || clitype.contains("blackberry") )
     		climob = true;
@@ -89,8 +76,6 @@ public class MainController implements Controller {
         }
        
         if (requri.contains("dropdown")){
-        	String prodid = request.getParameter("prodid");
-        	
         	return new ModelAndView("dropdown", "model", myModel);
         }
 		// User has been successfully authenticated. Log her last login date

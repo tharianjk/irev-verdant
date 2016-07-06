@@ -67,6 +67,13 @@
 		<tr>
           <td>Test Description :</td>  
         <td><form:textarea id="testdesc"  path="testdesc"  rows="2" cols="50" /></td>  
+      
+      <td width="20%"> Calc Option : </td>
+        <td><form:select path="otype" id="otype">
+        <form:option value="B" label="VP/HP+CF"></form:option>
+   		 <form:option value="V" label="VP+CF"></form:option>     		 
+		</form:select>
+        </td>
         </tr> 
           <tr>
 		<td>Test Specification  :</td> 

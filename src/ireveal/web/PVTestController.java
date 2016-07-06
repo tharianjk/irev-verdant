@@ -1,35 +1,22 @@
 package ireveal.web;
 
-
-import java.awt.color.CMMException;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;  
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;  
 import java.util.List;  
 import java.util.Locale;
-import java.util.Map;  
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;  
-import org.springframework.stereotype.Controller;  
-import org.springframework.web.bind.annotation.ModelAttribute;  
-import org.springframework.web.bind.annotation.RequestMapping;  
-import org.springframework.web.bind.annotation.RequestParam;  
 import org.springframework.web.servlet.ModelAndView;  
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.web.servlet.view.RedirectView;
 
 import ireveal.domain.PVTest;
 import ireveal.domain.Product;
-import ireveal.domain.ProductSerial;
-import ireveal.domain.RoleDsp;
 import ireveal.service.MastersService;
   
   
@@ -128,8 +115,8 @@ public class PVTestController  extends SimpleFormController{
 	        	return pvtest;
 	        }       
 	    }
-	    protected HashMap referenceData(HttpServletRequest request) throws Exception {
-			HashMap referenceData = new HashMap();	
+	    protected HashMap<String, Object> referenceData(HttpServletRequest request) throws Exception {
+			HashMap<String, Object> referenceData = new HashMap<String, Object>();
 	        List<Product> prodlist = mastersservice.getProductList();
 	        referenceData.put("prodlist", prodlist);	
 	        referenceData.put("prodtype","VT-JK S10 L ATP-2 REV 00");

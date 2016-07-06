@@ -84,7 +84,7 @@ $(document).ready(function(){
 	console.log('oper='+oper);
 	document.getElementById("precision").value='${model.nprecision}';
 	// document.getElementById("frequnit").value=frequnit;
-	if(oper=='threedb' || oper=='tendb'  || oper=='bsbl'){
+	if(oper=='threedb' || oper=='tendb'  || oper=='bsbl' || oper=='axial'){
 		document.getElementById("dbtab").style.display="block";
 		//document.getElementById("gttab").style.display="none";
 	}
@@ -207,6 +207,13 @@ function Redirect(){
 			}
 			if(oper=='axial' )
 			{	
+				 if(document.getElementById('0d').checked)
+						deg='0';
+					
+					else if(document.getElementById('bm').checked)
+						{
+						deg='bm';
+						}
 				
 					url="/birt-viewer/frameset?__report=verdant/AxialRatioMeasurement.rptdesign&deg="+deg+"&TestId="+testid+"&type="+typ+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision+"&frequnit="+frequnit+
 					 "&s1="+arrsel[0]+"&s2="+arrsel[1]+"&s3="+arrsel[2]+"&s4="+arrsel[3]+"&s5="+arrsel[4]+"&s6="+arrsel[5]+"&s7="+arrsel[6]+"&s8="+arrsel[7]+"&s9="+arrsel[8]+"&s10="+arrsel[9]+

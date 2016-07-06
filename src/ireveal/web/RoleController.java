@@ -9,7 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import java.util.List;
 import java.util.HashMap;
 
 import org.apache.commons.logging.Log;
@@ -90,11 +89,8 @@ RoleDsp rle=new RoleDsp();
     }
     
     
-    protected HashMap referenceData(HttpServletRequest request) throws Exception {
-		HashMap referenceData = new HashMap();	
-		String roleid_s = request.getParameter("id");
-        
-       
+	 protected HashMap<String, Object> referenceData(HttpServletRequest request) throws Exception {
+			HashMap<String, Object> referenceData = new HashMap<String, Object>();
 		return referenceData;
 	}
     

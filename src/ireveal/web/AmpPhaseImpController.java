@@ -6,16 +6,19 @@ import ireveal.domain.DataLog;
 import ireveal.domain.ProductSerial;
 import ireveal.domain.ImportData;
 import ireveal.service.MastersService;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 
 
 import org.springframework.validation.BindException;
@@ -25,7 +28,7 @@ import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.web.servlet.view.RedirectView;
- 
+
 public class AmpPhaseImpController extends SimpleFormController{
 	String err="File Uploaded Successfully";
 	public MastersService mastersservice ;
@@ -140,8 +143,10 @@ public class AmpPhaseImpController extends SimpleFormController{
 	        
 	              
 	    }
-	    protected HashMap referenceData(HttpServletRequest request) throws Exception {
-			HashMap referenceData = new HashMap();	
+
+
+	 protected HashMap<String, Object> referenceData(HttpServletRequest request) throws Exception {
+			HashMap<String, Object> referenceData = new HashMap<String, Object>();
 	        List<ProductSerial> prodserlist = mastersservice.getProdVerSer();        
 	        List<AmpPhaseTrack> tracklist= mastersservice.getProdSerTracking(prdserid);
 	        

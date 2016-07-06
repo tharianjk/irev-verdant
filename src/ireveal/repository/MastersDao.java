@@ -12,12 +12,10 @@ import ireveal.domain.RoleDsp;
 import ireveal.domain.Operator;
 import ireveal.domain.Scaling;
 import ireveal.domain.TestData;
-import ireveal.domain.TestFiles;
+
 import ireveal.domain.TestFrequency;
 import ireveal.domain.UserPref;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 

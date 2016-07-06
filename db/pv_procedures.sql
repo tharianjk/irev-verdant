@@ -1061,7 +1061,7 @@ END$$
 DELIMITER ;
 
 
--- drop procedure spPV_Axial
+ drop procedure if exists spPV_Axial;
 -- --------------------------------------------------------------------------------
 -- Routine DDL
 -- Note: comments before and after the routine body will not be stored by the server
@@ -1071,7 +1071,7 @@ DELIMITER $$
 CREATE  PROCEDURE spPV_Axial(
 testid INT,
 vdatatype varchar(5), -- Elevation
-deg varchar(10), -- 0,BM
+deg varchar(10), -- 0,P45,M45,BM
 serialid INT,
 prec int
 -- ,frequnit varchar(10)
@@ -1133,22 +1133,23 @@ if isDebug > 0 then
   select frequnit into @unt from pv_testdata where test_id=testid;
 -- set @unt=frequnit;
   select case @unt when 'GHz' then frequency/1000 else frequency end frequency, 
-   round( case deg when '0' then VP_0 when 'P45' then VP_P45 else VP_M45 end,prec) VP_A,
-   round( case deg when '0' then HP_0 when 'P45' then HP_P45 else HP_M45 end,prec) VP_B,
-   round( case deg when '0' then AR_0 when 'P45' then AR_P45 else AR_M45 end,prec) AR, '' remark
+   round( case deg when '0' then VP_0 when 'P45' then VP_P45 when 'BM' then VP_BM else VP_M45 end,prec) VP_A,
+   round( case deg when '0' then HP_0 when 'P45' then HP_P45 when 'BM' then HP_BM else HP_M45 end,prec) VP_B,
+   round( case deg when '0' then AR_0 when 'P45' then AR_P45 when 'BM' then AR_BM else AR_M45 end,prec) AR, '' remark
    from pv_arcalculated where prodserial_id=serialid and datatype=vdatatype ;
 
 
 
 END$$
 DELIMITER ;
+
+
+-- drop procedure if exists spPV_BSBL;
+
 -- --------------------------------------------------------------------------------
 -- Routine DDL
 -- Note: comments before and after the routine body will not be stored by the server
 -- --------------------------------------------------------------------------------
--- drop procedure if exists spPV_BSBL;
-
--- drop procedure if exists spPV_BSBL;
 
 DELIMITER $$
 
@@ -1217,10 +1218,12 @@ if isDebug > 0 then
   select frequnit into @unt from pv_testdata where test_id=testid;
  -- set @unt=frequnit;
   select distinct case @unt when 'GHz' then frequency/1000 else frequency end frequency,
-   round( case deg when '0' then 3Db_BW_0_left else 3Db_BW_BMax_left end,prec) ldbpoint,
+    round( case deg when '0' then 3Db_BW_0_left else 3Db_BW_BMax_left end,prec) ldbpoint,
     round(case deg when '0' then 3Db_BW_0_right else 3Db_BW_BMax_right end,prec) rdbpoint ,
     round(case deg when '0' then 3Db_BS_0 else 3Db_BS_BMax end,prec) BS ,
-    round(X1,prec) X1, round(Y1,prec) Y1, round(Backlobe,prec) Backlobe,s.serialno, '' remark
+    round(case deg when '0' then X1 else X1BM end ,prec) X1, 
+    round(case deg when '0' then Y1 else Y1BM end ,prec) Y1, 
+    round(case deg when '0' then Backlobe else BacklobeBM end,prec) Backlobe,s.serialno, '' remark
     from pv_cpcalculated c inner join pv_prodserial s on c.prodserial_id=s.prodserial_id where c.prodserial_id=serialid and datatype=vdatatype ;
 
 

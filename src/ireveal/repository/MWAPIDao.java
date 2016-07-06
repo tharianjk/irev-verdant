@@ -25,10 +25,7 @@ public class MWAPIDao extends JdbcDaoSupport {
     protected final Log logger = LogFactory.getLog(getClass());
  
   
-    private String site2smsuserid;   
-    private String site2smspswd;
-         
-	  /**
+    /**
        * 
        * Validate user 
        *
