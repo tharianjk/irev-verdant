@@ -566,10 +566,24 @@ and Angle = degree ;
 select Amplitude into @vp from pv_vdata_gm where Prodserial_id = cProdSerialId and Frequency = freq
 and Angle = degree ;
 
+elseif cdatatype = 'BM' then -- calculation from BMax for Gain measurement
+
+select MAX(amplitude) into @bmaxval from pv_cpdata_gm where Prodserial_id = cProdSerialId and Frequency = freq;  
+	   
+select MAX(angle) into @bmaxangle from pv_cpdata_gm where Prodserial_id = cProdSerialId and Frequency = freq and amplitude = @bmaxval;  
+		 
+
+-- HP
+select Amplitude into @hp from pv_hdata_gm where Prodserial_id = cProdSerialId and Frequency = freq
+and Angle = @bmaxangle ;
+-- VP
+select Amplitude into @vp from pv_vdata_gm where Prodserial_id = cProdSerialId and Frequency = freq
+and Angle = @bmaxangle ;
+
 end if;
 
 
-set AR = @hp - @vp;
+set AR = abs(@hp - @vp);
  
 RETURN AR;
 END$$
@@ -580,7 +594,8 @@ DELIMITER ;
 DELIMITER $$
 CREATE FUNCTION `pv_calc_cpdata`(
 cProdSerialId INT, freq decimal(40,20), cAngle decimal(40,20),
-cAmplitudeA decimal(40,20),cAmplitudeB decimal(40,20)
+cAmplitudeA decimal(40,20),cAmplitudeB decimal(40,20),
+cOType char(2)
 ) RETURNS decimal(40,20)
 BEGIN
 
@@ -599,10 +614,14 @@ set D = EXP(C/20);
 set E = 20 * LOG10((D+1)/(1.414*D));
 -- select E;
 
-if cAmplitudeA > cAmplitudeB then
-	set cpdata = cAmplitudeA+E;
-else 
+if cOType = 'V' then
 	set cpdata = cAmplitudeB+E;
+else
+	if cAmplitudeA > cAmplitudeB then
+		set cpdata = cAmplitudeA+E;
+	else 
+		set cpdata = cAmplitudeB+E;
+	end if;
 end if;
 
 -- select cpdata;    
@@ -632,7 +651,7 @@ BEGIN
 declare myfreq decimal(40,20);
 declare myTestDate datetime;
 DECLARE myTestType char(4);
-
+declare myOtype varchar(10);-- 'V' - VP, 'B' - HP and VP to be used for cp data conversion
  -- for the cursor
 DECLARE done INT DEFAULT 0;
 
@@ -645,7 +664,7 @@ DECLARE done INT DEFAULT 0;
   order by Frequency;
 
 
- #declare handle 
+  #declare handle 
   DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
   
 # 3. declare continue/exit handlers for logging SQL exceptions/errors :
@@ -685,6 +704,7 @@ DECLARE done INT DEFAULT 0;
     delete from pv_gt_calculated where Test_id = myTestId;
 	delete from pv_gmcalculated where test_id = myTestId and Prodserial_Id = myserial;
     -- delete from pv_cpdata_gt where Prodserial_Id = myserial; -- in (select prodserial_id from pv_prodserial where Test_id = myTestId);
+    delete from pv_cpdata_gm where Prodserial_Id = myserial;
     delete from pv_cpdata_azimuth where Prodserial_Id = myserial;
     delete from pv_cpdata_elevation where Prodserial_Id = myserial;
     delete from pv_cpcalculated where test_id = myTestId and Prodserial_Id = myserial;
@@ -705,7 +725,8 @@ if isDebug > 0 then
 
 # Declarations -end
 
-select TestDate,testType into myTestDate,myTestType 
+
+select TestDate,testType,OType into myTestDate,myTestType,myOtype 
 from pv_testdata where Test_id = myTestId;
 
 if isDebug > 0 then
@@ -746,21 +767,21 @@ END IF;
 		SET @infoText = CONCAT("invoking Gain-Measurement calculations for frequency : ",myfreq," , serial ",myserial);
 		call debug(l_proc_id,@infoText,'I','I');
 	end if;
-	 call pv_calc_Gain_Measurement(myTestId,myfreq,myTestDate,myserial);
+	 call pv_calc_Gain_Measurement(myTestId,myfreq,myTestDate,myserial,myOType);
 -- Gain TRacking
   elseif ( myPolType = 'PV' and myTestType = 'GT') THEN
 	if isDebug > 0 then
 		SET @infoText = CONCAT("invoking Gain Tracking calculations for frequency : ",myfreq," , serial ",myserial);
 		call debug(l_proc_id,@infoText,'I','I');
 	end if;
-	call pv_calc_Gain_Tracking(myTestId,myfreq,myTestDate,myserial);
+	call pv_calc_Gain_Tracking(myTestId,myfreq,myTestDate,myserial,myOType);
 -- Combination
   elseif ( myPolType = 'PV' and myTestType = 'CO') THEN
 	if isDebug > 0 then
 		SET @infoText = CONCAT("invoking Combination calculations for frequency : ",myfreq," , serial ",myserial);
 		call debug(l_proc_id,@infoText,'I','I');
 	end if;
-	call pv_calc_combination(myTestId,myfreq,myTestDate,myserial);
+	call pv_calc_combination(myTestId,myfreq,myTestDate,myserial,myOType);
     
     
  END IF;
@@ -811,11 +832,12 @@ CREATE PROCEDURE `pv_calc_Gain_Measurement`(
 gmTestId INT,
 gmFreq decimal(40,20),
 gmTestDate datetime,
-gmSerial INT
+gmSerial INT,
+gmOtype char(2)
 )
 BEGIN
 # Declarations -begin
-declare C,Gv,Y,GF,CPGAIN decimal(40,20) default 0;
+declare C,Gv,Y,GF,CPGAIN,YBM,GFBM,CPGAINBM decimal(40,20) default 0;
 
 
 DECLARE HPDataPresent INT default 0;
@@ -880,6 +902,14 @@ select count(*) into raDataPresent from pv_radata where Prodserial_id = gmSerial
 select count(*) into GainSTDHornPresent from pv_GainSTDHorn where test_id = gmTestId and Frequency = gmFreq;
 
 if HPDataPresent > 0 and VPDataPresent > 0 and raDataPresent > 0  and GainSTDHornPresent > 0 then
+	-- converting to cpdata for bmax calc
+    delete from pv_cpdata_gm where Prodserial_id = gmSerial and Frequency = gmFreq;
+
+  insert into pv_cpdata_gm ( Prodserial_id, Frequency, Angle, Amplitude)
+	select Prodserial_id, Frequency, Angle, pv_calc_cpdata_combi(Prodserial_id, Frequency, Angle,'GM',gmOtype)
+  from pv_hdata_gm  
+	where Prodserial_id = gmSerial and Frequency = gmFreq;
+    
 	-- Max Received Amplitude of AUT in VP -> A
 	select MAX(Amplitude) into @A from pv_vdata_gm where Prodserial_id = gmSerial and Frequency = gmFreq ;
 
@@ -897,15 +927,27 @@ if HPDataPresent > 0 and VPDataPresent > 0 and raDataPresent > 0  and GainSTDHor
 
 	-- AXIAL RATIO (dB) X
 	select pv_calc_AxialRatio(gmSerial,gmFreq,0,'M') into @X;
+    
+    -- AXIAL RATIO (dB) XBM at bmax
+	select pv_calc_AxialRatio(gmSerial,gmFreq,0,'BM') into @XBM;
 
 	-- AXIAL RATIO (UNITLESS) Y= Antilog (X / 20)
 	set Y = EXP(@X/20);
+    
+    -- AXIAL RATIO (UNITLESS) Y= Antilog (X / 20)
+	set YBM = EXP(@XBM/20);
 
 	-- Gain correction Factor ,GF = 20 log (Y+1/√2*Y)
 	set GF = 20 * LOG10((Y+1)/(1.414*Y));
+    
+    -- Gain correction Factor ,GF = 20 log (Y+1/√2*Y) at bmax
+	set GFBM = 20 * LOG10((YBM+1)/(1.414*YBM));
 
 	-- CP GAIN = GV + GF (dBiC) Measured GAIN
 	set CPGAIN = Gv + GF;
+    
+    -- CP GAIN = GV + GF (dBiC) Measured GAIN BMax
+	set CPGAINBM = Gv + GFBM;
 
 
 	# --------------CALCULATIONS END ------------------------
@@ -914,11 +956,13 @@ if HPDataPresent > 0 and VPDataPresent > 0 and raDataPresent > 0  and GainSTDHor
 	-- insert into calculated table
 	insert into pv_gmcalculated (Prodserial_id,Test_id ,Frequency,TestDate,
 								gm_A,gm_B,gm_C,gm_D,gm_Gv,
-								gm_X,gm_Y,gm_GF,gm_CPGAIN)
+								gm_X,gm_Y,gm_GF,gm_CPGAIN,
+                                gm_XBM,gm_YBM,gm_GFBM,gm_CPGAINBM)
 				values
 								(gmSerial, gmTestId, gmFreq, gmTestDate,
 								@A, @B, C, @D, Gv,
-								@X, Y, GF, CPGAIN);
+								@X, Y, GF, CPGAIN,
+                                @XBM, YBM, GFBM, CPGAINBM);
 else
 
 	call debug(gm_proc_id,'all required raw data not imported/input','E','I');
@@ -935,7 +979,8 @@ CREATE PROCEDURE `pv_calc_Gain_Tracking`(
 gmTestId INT,
 gmFreq decimal(40,20),
 gmTestDate datetime,
-gmSerial decimal(40,20)
+gmSerial decimal(40,20),
+gmOType char(2)
 )
 BEGIN
 
@@ -1009,7 +1054,7 @@ select Amplitude into @Vamp_0 from pv_vdata_gt where Prodserial_id = gmSerial an
 and Angle = 0 ;
 
 -- cp
-select pv_calc_cpdata(gmSerial, gmFreq, 0,@Hamp_0,@Vamp_0) into @CPamp_0; 
+select pv_calc_cpdata(gmSerial, gmFreq, 0,@Hamp_0,@Vamp_0,gmOType) into @CPamp_0; 
 
 # Gain tracking at +45 degree
 
@@ -1022,7 +1067,7 @@ select Amplitude into @Vamp_p45 from pv_vdata_gt where Prodserial_id = gmSerial 
 and Angle = 45 ;
 
 -- cp
-select pv_calc_cpdata(gmSerial, gmFreq, 45,@Hamp_p45,@Vamp_p45) into @CPamp_p45; 
+select pv_calc_cpdata(gmSerial, gmFreq, 45,@Hamp_p45,@Vamp_p45,gmOType) into @CPamp_p45; 
 
 # Gain tracking at -45 degree
 
@@ -1035,7 +1080,7 @@ select Amplitude into @Vamp_m45 from pv_vdata_gt where Prodserial_id = gmSerial 
 and Angle = 315;
 
 -- cp
-select pv_calc_cpdata(gmSerial, gmFreq, 315, @Hamp_m45, @Vamp_m45) into @CPamp_m45; 
+select pv_calc_cpdata(gmSerial, gmFreq, 315, @Hamp_m45, @Vamp_m45,gmOType) into @CPamp_m45; 
 
 -- store into intermediate table
 delete from pv_gt_intermediate where Prodserial_id= gmSerial and Test_id = gmTestId and Frequency =gmFreq;
@@ -1426,11 +1471,12 @@ DELIMITER;
 
 DELIMITER $$
 
-CREATE PROCEDURE `pv_calc_combination`(
+CREATE PROCEDURE PROCEDURE `pv_calc_combination`(
 coTestId INT,
 coFreq decimal(40,20),
 coTestDate datetime,
-coSerial INT
+coSerial INT,
+coOType char(2)
 )
 BEGIN
 
@@ -1450,10 +1496,14 @@ declare dummyBS decimal(40,20) default 0;
 
 declare X1_Azimuth, Y1_Azimuth, Backlobe_Azimuth decimal(40,20) ;
 declare X1_Elevation, Y1_Elevation, Backlobe_Elevation decimal(40,20) ;
+declare X1_AzimuthBM, Y1_AzimuthBM, Backlobe_AzimuthBM decimal(40,20) ;
+declare X1_ElevationBM, Y1_ElevationBM, Backlobe_ElevationBM decimal(40,20) ;
 
 declare hp_0,vp_0,AR_0 decimal(40,20);
 declare hp_p45,vp_p45,AR_P45 decimal(40,20);
 declare hp_m45,vp_m45,AR_M45 decimal(40,20) ;
+declare hp_BM,vp_BM,AR_BM,BMangle,BMValue decimal(40,20);
+
 
 DECLARE azimuthHPDataPresent INT default 0;
 DECLARE azimuthVPDataPresent INT default 0;
@@ -1523,7 +1573,7 @@ if azimuthHPDataPresent > 0 and azimuthVPDataPresent then
 	 delete from pv_cpdata_azimuth where Prodserial_id = coSerial and Frequency = coFreq;
 
 	 insert into pv_cpdata_azimuth ( Prodserial_id, Frequency, Angle, Amplitude)
-	 select Prodserial_id, Frequency, Angle, pv_calc_cpdata_combi(Prodserial_id, Frequency, Angle,'A')
+	 select Prodserial_id, Frequency, Angle, pv_calc_cpdata_combi(Prodserial_id, Frequency, Angle,'A',coOType)
 	 from pv_hdata_azimuth  
 	 where Prodserial_id = coSerial and Frequency = coFreq;
      
@@ -1536,8 +1586,10 @@ call pv_calc_XdB_BW_BS(coSerial,coFreq,3,'CP','0','A',_3dbBW_0_Azimuth_left,_3db
 call pv_calc_XdB_BW_BS(coSerial,coFreq,10,'CP','BM','A',_10dbBW_BM_Azimuth_left,_10dbBW_BM_Azimuth_right, _10dbBW_BM_Azimuth, dummyBS);
 -- 10 db BW and BS from 0 Azimuth
 call pv_calc_XdB_BW_BS(coSerial,coFreq,10,'CP','0','A',_10dbBW_0_Azimuth_left,_10dbBW_0_Azimuth_right, _10dbBW_0_Azimuth, dummyBS);
-# Backlobe
- call pv_calc_backlobelevel(coSerial, coFreq, 'CP','A', X1_Azimuth, Y1_Azimuth, Backlobe_Azimuth);
+# Backlobe 0
+ call pv_calc_backlobelevel(coSerial, coFreq, 'CP','A','0', X1_Azimuth, Y1_Azimuth, Backlobe_Azimuth);
+# Backlobe BM
+ call pv_calc_backlobelevel(coSerial, coFreq, 'CP','A','BM', X1_AzimuthBM, Y1_AzimuthBM, Backlobe_AzimuthBM);
 
 -- insert into calculated table
 -- azimuth
@@ -1547,14 +1599,15 @@ insert into pv_cpcalculated ( Prodserial_id,Test_id,datatype,Frequency,TestDate,
 						3Db_BW_0_left,3Db_BW_0_right,3Db_BW_0,3Db_BS_0,
 						10Db_BW_BMax_left,10Db_BW_BMax_right,10Db_BW_BMax,
 						10Db_BW_0_left,10Db_BW_0_right,10Db_BW_0,
-						X1,Y1,Backlobe)
+						X1,Y1,Backlobe,X1BM,Y1BM,BacklobeBM)
 			values
 							(coSerial, coTestId, 'A',coFreq, coTestDate,
                             _3dbBW_BM_Azimuth_left, _3dbBW_BM_Azimuth_right, _3dbBW_BM_Azimuth, _3dbBS_BM_Azimuth,
                             _3dbBW_0_Azimuth_left, _3dbBW_0_Azimuth_right, _3dbBW_0_Azimuth, _3dbBS_0_Azimuth,
                             _10dbBW_BM_Azimuth_left, _10dbBW_BM_Azimuth_right, _10dbBW_BM_Azimuth, 
                             _10dbBW_0_Azimuth_left, _10dbBW_0_Azimuth_right, _10dbBW_0_Azimuth, 
-                            X1_Azimuth,Y1_Azimuth,Backlobe_Azimuth
+                            X1_Azimuth,Y1_Azimuth,Backlobe_Azimuth,
+                            X1_AzimuthBM,Y1_AzimuthBM,Backlobe_AzimuthBM
                             );
 
 end if; 
@@ -1563,7 +1616,7 @@ if elevationHPDataPresent > 0 and elevationVPDataPresent > 0 then
   delete from pv_cpdata_elevation where Prodserial_id = coSerial and Frequency = coFreq;
 
   insert into pv_cpdata_elevation ( Prodserial_id, Frequency, Angle, Amplitude)
-	select Prodserial_id, Frequency, Angle, pv_calc_cpdata_combi(Prodserial_id, Frequency, Angle,'E')
+	select Prodserial_id, Frequency, Angle, pv_calc_cpdata_combi(Prodserial_id, Frequency, Angle,'E',coOType)
   from pv_hdata_elevation  
 	where Prodserial_id = coSerial and Frequency = coFreq;
     
@@ -1580,8 +1633,10 @@ call pv_calc_XdB_BW_BS(coSerial,coFreq,3,'CP','0','E',_3dbBW_0_Elevation_left,_3
 call pv_calc_XdB_BW_BS(coSerial,coFreq,10,'CP','BM','E',_10dbBW_BM_Elevation_left,_10dbBW_BM_Elevation_right, _10dbBW_BM_Elevation, dummyBS);
 -- 10 db BW and BS from 0 Elevation
 call pv_calc_XdB_BW_BS(coSerial,coFreq,10,'CP','0','E',_10dbBW_0_Elevation_left,_10dbBW_0_Elevation_right, _10dbBW_0_Elevation, dummyBS);
-
- call pv_calc_backlobelevel(coSerial, coFreq, 'CP','E', X1_Elevation, Y1_Elevation, Backlobe_Elevation);
+-- backlobe 0
+ call pv_calc_backlobelevel(coSerial, coFreq, 'CP','E','0', X1_Elevation, Y1_Elevation, Backlobe_Elevation);
+-- backlobe BM
+ call pv_calc_backlobelevel(coSerial, coFreq, 'CP','E','BM', X1_ElevationBM, Y1_ElevationBM, Backlobe_ElevationBM);
 
 # Axial Ratio
 -- on axis
@@ -1593,7 +1648,7 @@ select Amplitude into hp_0
 from pv_hdata_elevation 
 where Prodserial_id = coSerial and Frequency = coFreq and Angle = 0 ;
 
-set AR_0 = hp_0 - vp_0;
+set AR_0 = ABS(hp_0 - vp_0);
 
 -- at +45 degree
 select Amplitude into vp_P45 from pv_vdata_elevation 
@@ -1602,7 +1657,7 @@ where Prodserial_id = coSerial and Frequency = coFreq and Angle = 45 ;
 select Amplitude into hp_P45 from pv_hdata_elevation 
 where Prodserial_id = coSerial and Frequency = coFreq and Angle = 45 ;
 
-set AR_P45 = hp_P45 - vp_P45;
+set AR_P45 = abs(hp_P45 - vp_P45);
 
 -- at -45 degree
 select Amplitude into vp_M45 from pv_vdata_elevation 
@@ -1611,7 +1666,28 @@ where Prodserial_id = coSerial and Frequency = coFreq and Angle = 315 ;
 select Amplitude into hp_M45 from pv_hdata_elevation 
 where Prodserial_id = coSerial and Frequency = coFreq and Angle = 315 ;
 
-set AR_M45 = hp_M45 - vp_M45;
+set AR_M45 = abs(hp_M45 - vp_M45);
+
+-- at BMax degree
+
+select MAX(amplitude) into BMValue from pv_cpdata_elevation
+ where Prodserial_id = coSerial and Frequency = coFreq; 
+ 
+ -- select BMValue 'BMValue';
+	   
+select MAX(angle) into BMangle from pv_cpdata_elevation
+ where Prodserial_id = coSerial and Frequency = coFreq and amplitude = BMValue;  
+ 
+ -- select BMangle 'BMAngle';
+
+
+select Amplitude into vp_BM from pv_vdata_elevation 
+where Prodserial_id = coSerial and Frequency = coFreq and Angle = BMangle ;
+
+select Amplitude into hp_BM from pv_hdata_elevation 
+where Prodserial_id = coSerial and Frequency = coFreq and Angle = BMangle ;
+
+set AR_BM = abs(hp_BM - vp_BM);
 
 -- elevation
 delete from pv_cpcalculated where Prodserial_id = coSerial and Test_id = coTestId and  datatype ='E' and Frequency = coFreq;
@@ -1621,14 +1697,15 @@ insert into pv_cpcalculated ( Prodserial_id,Test_id,datatype,Frequency,TestDate,
 						3Db_BW_0_left,3Db_BW_0_right,3Db_BW_0,3Db_BS_0,
 						10Db_BW_BMax_left,10Db_BW_BMax_right,10Db_BW_BMax,
 						10Db_BW_0_left,10Db_BW_0_right,10Db_BW_0,
-						X1,Y1,Backlobe)
+						X1,Y1,Backlobe,X1BM,Y1BM,BacklobeBM)
 			values
 							(coSerial, coTestId, 'E',coFreq, coTestDate,
                             _3dbBW_BM_Elevation_left, _3dbBW_BM_Elevation_right, _3dbBW_BM_Elevation, _3dbBS_BM_Elevation,
                             _3dbBW_0_Elevation_left, _3dbBW_0_Elevation_right, _3dbBW_0_Elevation, _3dbBS_0_Elevation,
                             _10dbBW_BM_Elevation_left, _10dbBW_BM_Elevation_right, _10dbBW_BM_Elevation, 
                             _10dbBW_0_Elevation_left, _10dbBW_0_Elevation_right, _10dbBW_0_Elevation, 
-                            X1_Elevation,Y1_Elevation,Backlobe_Elevation
+                            X1_Elevation,Y1_Elevation,Backlobe_Elevation,
+                            X1_ElevationBM,Y1_ElevationBM,Backlobe_ElevationBM
                             );
 
 -- axial ratio
@@ -1638,12 +1715,14 @@ and Test_id = coTestId and  Frequency = coFreq;
 	insert into pv_arcalculated( Prodserial_id,Test_id,datatype,Frequency,TestDate,
     VP_0, HP_0, AR_0 ,
 	VP_P45, HP_P45 ,AR_P45,
-	VP_M45, HP_M45, AR_M45)
+	VP_M45, HP_M45, AR_M45,
+    VP_BM,HP_BM,AR_BM)
     values
     (coSerial,coTestId, 'E',  coFreq,coTestDate,
      vp_0,hp_0, AR_0,
      vp_P45, hp_P45, AR_P45,
-     vp_M45, hp_M45, AR_M45);
+     vp_M45, hp_M45, AR_M45,
+     vp_BM,hp_BM,AR_BM);
      
 end if;
 
@@ -1659,8 +1738,8 @@ DELIMITER;
 
 DELIMITER $$
 
-CREATE PROCEDURE `pv_calc_backlobelevel`(
-bProdserialId INT, bFreq decimal(40,20), bPolType char(2),bDatatype char(2),
+CREATE PROCEDURE PROCEDURE `pv_calc_backlobelevel`(
+bProdserialId INT, bFreq decimal(40,20), bPolType char(2),bDatatype char(2),bAngle char(2),
 out X1 decimal(40,20), out Y1 decimal(40,20), out backlobe decimal(40,20)
 )
 BEGIN
@@ -1668,22 +1747,75 @@ BEGIN
 # A = Amplitude at 0 degree 
 # B = Amplitude at 180 degree 
 # Back Lobe = B - A
+  -- declare bm180 decimal(40,20) default null;
 
-if bDatatype = 'A' then
-	set X1 = (select Amplitude 
-				from pv_cpdata_azimuth 
-				where Prodserial_id = bProdserialId and Frequency = bFreq and Angle = 0 );
-	set Y1 =(select Amplitude 
+if bDatatype = 'A' then -- azimuth
+	if bAngle = 'BM' then
+		select MAX(Amplitude) into @BMvalue
 					from pv_cpdata_azimuth 
-					where Prodserial_id = bProdserialId and Frequency = bFreq and Angle = 180 );
-else
+					where Prodserial_id = bProdserialId and Frequency = bFreq;
+		select MAX(angle) into @BMangle
+					from pv_cpdata_azimuth 
+					where Prodserial_id = bProdserialId and Frequency = bFreq and amplitude=@BMvalue;
+		set X1 = @BMvalue;
+		
+        -- select @BMangle;
 
-	set X1 = (select Amplitude 
-				from pv_cpdata_elevation 
-				where Prodserial_id = bProdserialId and Frequency = bFreq and Angle = 0 );
-	set Y1 =(select Amplitude 
+        
+		set @bm180 = @BMangle + 180;
+        
+        -- select @bm180;
+
+		
+		if @bm180 >= 360 then
+			set @bm180 = @bm180 -360;
+		end if;
+		
+       -- select @bm180;
+		
+		set Y1 =(select Amplitude 
+						from pv_cpdata_azimuth 
+						where Prodserial_id = bProdserialId and Frequency = bFreq and Angle = @bm180 );
+	else -- 0
+	
+		set X1 = (select Amplitude 
+					from pv_cpdata_azimuth 
+					where Prodserial_id = bProdserialId and Frequency = bFreq and Angle = 0 );
+		set Y1 =(select Amplitude 
+						from pv_cpdata_azimuth 
+						where Prodserial_id = bProdserialId and Frequency = bFreq and Angle = 180 );
+	
+    end if;
+else -- elevation
+
+	if bAngle = 'BM' then
+		select MAX(Amplitude) into @BMvalue
 					from pv_cpdata_elevation 
-					where Prodserial_id = bProdserialId and Frequency = bFreq and Angle = 180 );
+					where Prodserial_id = bProdserialId and Frequency = bFreq;
+		select MAX(angle) into @BMangle
+					from pv_cpdata_elevation 
+					where Prodserial_id = bProdserialId and Frequency = bFreq and amplitude=@BMvalue;
+		set X1 = @BMvalue;
+		
+		set @bm180 = @BMangle + 180;
+		
+		if @bm180 >= 360 then
+			set @bm180 = @bm180 - 360;
+		end if;
+		
+		
+		set Y1 =(select Amplitude 
+						from pv_cpdata_elevation 
+						where Prodserial_id = bProdserialId and Frequency = bFreq and Angle = @bm180 );
+	else -- 0
+	
+		set X1 = (select Amplitude 
+					from pv_cpdata_elevation 
+					where Prodserial_id = bProdserialId and Frequency = bFreq and Angle = 0 );
+		set Y1 =(select Amplitude 
+						from pv_cpdata_elevation 
+						where Prodserial_id = bProdserialId and Frequency = bFreq and Angle = 180 );
+	end if;
 end if;
 set backlobe = Y1 - X1;
 
@@ -1695,7 +1827,7 @@ DELIMITER;
 
 DELIMITER $$
 
-CREATE PROCEDURE `pv_calc_XdB_BW_BS`(
+CREATE PROCEDURE PROCEDURE `pv_calc_XdB_BW_BS`(
 xProdSerialId INT, freq decimal(40,20), X INT, polType char(2), fromAngle char(2), xdatatype char(2),
 out leftpoint decimal(40,20), out rightpoint decimal(40,20), out beam_width decimal(40,20), out beam_squint decimal(40,20)
 )
@@ -1838,7 +1970,7 @@ set beam_width = rightpoint-leftpoint;
 
 -- Beamsquint calculation
 
-set beam_squint = leftpoint + (rightpoint - leftpoint)/2;
+set beam_squint = abs(leftpoint + (rightpoint - leftpoint)/2);
 
  -- select beam_squint as 'BS';
 
@@ -2112,7 +2244,8 @@ DELIMITER;
 
 DELIMITER $$
 CREATE FUNCTION `pv_calc_cpdata_combi`(
-cProdSerialId INT, freq decimal(40,20), cAngle decimal(40,20), cDatatype char(2)
+cProdSerialId INT, freq decimal(40,20), cAngle decimal(40,20), cDatatype char(2),
+cOType char(2)
 ) RETURNS decimal(40,20)
 BEGIN
 
@@ -2123,7 +2256,15 @@ if cDatatype = 'A' then
 	-- select A;
 	 select Amplitude into B from pv_vdata_azimuth v
 			 where v.Prodserial_id = cProdSerialId and v.Frequency = freq and v.Angle = cAngle ;
-	-- select B;
+		-- select B;
+
+elseif cDatatype = 'GM' then
+	 select Amplitude into A from pv_hdata_gm h
+		 where h.Prodserial_id = cProdSerialId and h.Frequency = freq and h.Angle = cAngle ;
+	-- select A;
+	 select Amplitude into B from pv_vdata_gm v
+			 where v.Prodserial_id = cProdSerialId and v.Frequency = freq and v.Angle = cAngle ;
+		-- select B;
 else
 		select Amplitude into A from pv_hdata_elevation h
 			 where h.Prodserial_id = cProdSerialId and h.Frequency = freq and h.Angle = cAngle ;
@@ -2142,13 +2283,16 @@ set D = EXP(C/20);
 
 set E = 20 * LOG10((D+1)/(1.414*D));
 -- select E;
-
-if A > B then
-	set cpdata = A+E;
-else 
+if cOType = 'V' then
 	set cpdata = B+E;
-end if;
+else -- cOType = 'B' both HP and VP
 
+	if A > B then
+		set cpdata = A+E;
+	else 
+		set cpdata = B+E;
+	end if;
+end if;
 -- select cpdata;    
     
 RETURN cpdata;
