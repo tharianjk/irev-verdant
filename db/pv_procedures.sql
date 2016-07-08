@@ -1,4 +1,3 @@
-
 drop procedure if exists spPVPolarSummary;
 drop procedure if exists pv_calc_Gain_Tracking;
 drop procedure if exists pv_Calculate_params;
@@ -1471,7 +1470,7 @@ DELIMITER;
 
 DELIMITER $$
 
-CREATE PROCEDURE PROCEDURE `pv_calc_combination`(
+CREATE PROCEDURE `pv_calc_combination`(
 coTestId INT,
 coFreq decimal(40,20),
 coTestDate datetime,
@@ -1738,7 +1737,7 @@ DELIMITER;
 
 DELIMITER $$
 
-CREATE PROCEDURE PROCEDURE `pv_calc_backlobelevel`(
+CREATE PROCEDURE `pv_calc_backlobelevel`(
 bProdserialId INT, bFreq decimal(40,20), bPolType char(2),bDatatype char(2),bAngle char(2),
 out X1 decimal(40,20), out Y1 decimal(40,20), out backlobe decimal(40,20)
 )
@@ -1827,7 +1826,7 @@ DELIMITER;
 
 DELIMITER $$
 
-CREATE PROCEDURE PROCEDURE `pv_calc_XdB_BW_BS`(
+CREATE PROCEDURE `pv_calc_XdB_BW_BS`(
 xProdSerialId INT, freq decimal(40,20), X INT, polType char(2), fromAngle char(2), xdatatype char(2),
 out leftpoint decimal(40,20), out rightpoint decimal(40,20), out beam_width decimal(40,20), out beam_squint decimal(40,20)
 )
