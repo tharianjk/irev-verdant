@@ -675,6 +675,22 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
+        <scalar-parameter name="deg" id="10687">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">0</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="VerdantProfile" id="379">
@@ -733,6 +749,16 @@
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
                     <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">0BM</property>
+                    <property name="paramName">deg</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">4</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -799,7 +825,7 @@
                     <property name="dataType">string</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[call spPV_Axial(?,'E','0',?,?)]]></xml-property>
+            <xml-property name="queryText"><![CDATA[call spPV_Axial(?,'E',?,?,?)]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -841,6 +867,21 @@
           <design:identifier>
             <design:name></design:name>
             <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>4</design:position>
           </design:identifier>
           <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
           <design:precision>0</design:precision>
@@ -2641,6 +2682,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -3618,6 +3665,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -4599,6 +4652,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -5508,6 +5567,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -6489,6 +6554,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -7466,6 +7537,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -8447,6 +8524,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -9424,6 +9507,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -10405,6 +10494,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -11382,6 +11477,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -12363,6 +12464,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -13340,6 +13447,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -14321,6 +14434,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -15298,6 +15417,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -16279,6 +16404,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -17256,6 +17387,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -18237,6 +18374,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -19214,6 +19357,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -20195,6 +20344,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -21172,6 +21327,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -22153,6 +22314,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -23130,6 +23297,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -24111,6 +24284,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -25088,6 +25267,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -26069,6 +26254,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -27046,6 +27237,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -28027,6 +28224,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -29004,6 +29207,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -29985,6 +30194,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -30962,6 +31177,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -31943,6 +32164,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -32920,6 +33147,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -33901,6 +34134,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -34878,6 +35117,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -35859,6 +36104,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -36836,6 +37087,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -37817,6 +38074,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -38794,6 +39057,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -39775,6 +40044,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -40752,6 +41027,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -41733,6 +42014,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -42710,6 +42997,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -43691,6 +43984,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -44668,6 +44967,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -45649,6 +45954,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -46626,6 +46937,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -47607,6 +47924,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -48584,6 +48907,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
@@ -49565,6 +49894,12 @@ Antenna without Radome&#13;
                         <value type="javascript">params["pc"].value</value>
                     </simple-property-list>
                 </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
+                    </simple-property-list>
+                </structure>
             </list-property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -50542,6 +50877,12 @@ Antenna without Radome&#13;
                     <property name="paramName">precision</property>
                     <simple-property-list name="expression">
                         <value type="javascript">params["pc"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="paramName">0BM</property>
+                    <simple-property-list name="expression">
+                        <value type="javascript">params["deg"].value</value>
                     </simple-property-list>
                 </structure>
             </list-property>
