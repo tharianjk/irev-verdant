@@ -427,6 +427,7 @@ dialog.dialog( "open" );
 		<div id="username">
 			Welcome : ${pageContext.request.userPrincipal.name} | <a href="javascript:formSubmit()"> Logout</a>
 		</div>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <small><i style="color:SeaGreen">Version: V1.2, Year: 2016</i></small>
 	</c:if>
 
 </div>
