@@ -33,20 +33,21 @@ ADD COLUMN BacklobeBM DECIMAL(40,20) NULL DEFAULT NULL;
 -- 09-06-2016
 drop view if exists axialratio_view;
 
+     
 CREATE 
-VIEW axialratio_view AS
+    ALGORITHM = UNDEFINED 
+    SQL SECURITY DEFINER
+VIEW `axialratio_view` AS
     SELECT 
-        'h'.'Test_id' AS 'test_id',
-        'h'.'Frequency' AS 'Frequency',
-        'h'.'Angle' AS 'angle',
-        ABS(('h'.'Amplitude' - 'v'.'Amplitude')) AS 'axialRatio'
+        `h`.`Test_id` AS `test_id`,
+        `h`.`Frequency` AS `Frequency`,
+        `h`.`Angle` AS `angle`,
+       ABS((`h`.`Amplitude` - `v`.`Amplitude`)) AS `axialRatio`
     FROM
-        ('hdata' 'h'
-        JOIN 'vdata' 'v' ON ((('h'.'Test_id' = 'v'.'Test_id')
-            AND ('h'.'Frequency' = 'v'.'Frequency')
-            AND ('h'.'Angle' = 'v'.'Angle'))));
-            
-
+        (`hdata` `h`
+        JOIN `vdata` `v` ON (((`h`.`Test_id` = `v`.`Test_id`)
+            AND (`h`.`Frequency` = `v`.`Frequency`)
+            AND (`h`.`Angle` = `v`.`Angle`))));
 
 -- 18-03-2016
 
