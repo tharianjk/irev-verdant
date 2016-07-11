@@ -733,18 +733,18 @@
                     <property name="isOutput">false</property>
                 </structure>
                 <structure>
-                    <property name="name">serialid</property>
-                    <property name="paramName">s1</property>
+                    <property name="name">0BM</property>
+                    <property name="paramName">deg</property>
                     <property name="nativeName"></property>
-                    <property name="dataType">integer</property>
+                    <property name="dataType">string</property>
                     <property name="nativeDataType">-1</property>
                     <property name="position">2</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
                 <structure>
-                    <property name="name">precision</property>
-                    <property name="paramName">pc</property>
+                    <property name="name">serialid</property>
+                    <property name="paramName">s1</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
@@ -753,10 +753,10 @@
                     <property name="isOutput">false</property>
                 </structure>
                 <structure>
-                    <property name="name">0BM</property>
-                    <property name="paramName">deg</property>
+                    <property name="name">precision</property>
+                    <property name="paramName">pc</property>
                     <property name="nativeName"></property>
-                    <property name="dataType">string</property>
+                    <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
                     <property name="position">4</property>
                     <property name="isInput">true</property>
