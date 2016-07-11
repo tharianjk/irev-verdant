@@ -84,7 +84,7 @@ $(document).ready(function(){
 	console.log('oper='+oper);
 	document.getElementById("precision").value='${model.nprecision}';
 	// document.getElementById("frequnit").value=frequnit;
-	if(oper=='threedb' || oper=='tendb'  || oper=='bsbl' || oper=='axial'){
+	if(oper=='gm' || oper=='threedb' || oper=='tendb'  || oper=='bsbl' || oper=='axial'){
 		document.getElementById("dbtab").style.display="block";
 		//document.getElementById("gttab").style.display="none";
 	}
