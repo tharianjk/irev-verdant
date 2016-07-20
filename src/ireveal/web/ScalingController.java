@@ -1,13 +1,12 @@
 package ireveal.web;
 
-
 import ireveal.domain.Scaling;
 import ireveal.service.MastersService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -91,7 +90,9 @@ public class ScalingController extends SimpleFormController{
 	        	return scale;
 	    }
 	
-	 protected Map<String, Object> referenceData(HttpServletRequest request) throws Exception {
+
+	 protected HashMap<String, Object> referenceData(HttpServletRequest request) throws Exception {
+
 			HashMap<String, Object> referenceData = new HashMap<String, Object>();
 			List<Scaling> scalelist=mastersservice.getScaling(testid );
 			referenceData.put("scalelist",scalelist);

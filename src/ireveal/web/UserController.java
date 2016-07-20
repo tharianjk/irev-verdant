@@ -78,11 +78,11 @@ public class UserController extends SimpleFormController {
         }       
     }
     
-    
-    
-    protected Map<String, Object> referenceData(HttpServletRequest request) throws Exception {
-		HashMap<String, Object> referenceData = new HashMap<String, Object>();	
-        List<RoleDsp> rolelist = setupManager.getAssignableRoles();  
+
+    protected HashMap<String, Object> referenceData(HttpServletRequest request) throws Exception {
+		HashMap<String, Object> referenceData = new HashMap<String, Object>();
+        List<RoleDsp> rolelist = setupManager.getAssignableRoles();        
+
        
         referenceData.put("AllRoles", rolelist);
         referenceData.put("cur_role", cur_role);

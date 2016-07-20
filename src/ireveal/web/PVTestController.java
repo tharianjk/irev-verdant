@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.HashMap;  
 import java.util.List;  
 import java.util.Locale;
-import java.util.Map;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -118,7 +118,8 @@ public class PVTestController  extends SimpleFormController{
 	        }       
 	    }
 
-	    protected Map<String, Object> referenceData(HttpServletRequest request) throws Exception {
+	    protected HashMap<String, Object> referenceData(HttpServletRequest request) throws Exception {
+
 			HashMap<String, Object> referenceData = new HashMap<String, Object>();
 	        List<Product> prodlist = mastersservice.getProductList();
 	        referenceData.put("prodlist", prodlist);	

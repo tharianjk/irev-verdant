@@ -2,7 +2,7 @@ package ireveal.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,6 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import ireveal.domain.AssetTree;
+
 
 
 import org.apache.commons.logging.Log;
@@ -32,7 +33,7 @@ public class GetJSON extends HttpServlet {
   //  JSONObject jSONObject = new JSONObject();   
     
 	public AssetTree assetTree;
-	List<AssetTree> treeval=null;
+	List<AssetTree> treeval=new ArrayList<AssetTree>();
 	JSONArray jSONArray = new JSONArray();
 	String treemode="view"; 
 	protected final Log logger = LogFactory.getLog(getClass());

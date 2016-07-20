@@ -2,7 +2,7 @@ package ireveal.web;
 
 
 import java.util.HashMap;
-import java.util.Map;
+
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.mvc.SimpleFormController;
@@ -20,7 +20,7 @@ import org.apache.commons.logging.LogFactory;
 import ireveal.service.SetupManager;
 import ireveal.domain.UserPref;
 
-@SuppressWarnings("deprecation")
+
 public class UserPrefController extends SimpleFormController {
 
     /** Logger for this class and subclasses */
@@ -89,8 +89,9 @@ public class UserPrefController extends SimpleFormController {
     
     
 
-    protected Map<String, Object> referenceData(HttpServletRequest request) throws Exception {
+    protected HashMap<String, Object> referenceData(HttpServletRequest request) throws Exception {
 		HashMap<String, Object> referenceData = new HashMap<String, Object>();
+   
         referenceData.put("favmenutxt", favmenutxt);
        return referenceData;
 	}

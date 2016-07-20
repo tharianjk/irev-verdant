@@ -11,7 +11,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -570,8 +570,8 @@ public class PVSerialImportController extends SimpleFormController{
 	              
 	    }
 
+	 protected HashMap<String, Object> referenceData(HttpServletRequest request) throws Exception {
 
-	 protected Map<String, Object> referenceData(HttpServletRequest request) throws Exception {
 			HashMap<String, Object> referenceData = new HashMap<String, Object>();
 			  logger.info(" PVSerialImportController referenceData serialid="+serialid);
 			String hefreq="";

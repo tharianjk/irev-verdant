@@ -13,8 +13,6 @@ import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +27,7 @@ import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.web.servlet.view.RedirectView;
- 
+
 public class AmpPhaseImpController extends SimpleFormController{
 	String err="File Uploaded Successfully";
 	public MastersService mastersservice ;
@@ -142,9 +140,11 @@ public class AmpPhaseImpController extends SimpleFormController{
 	        
 	              
 	    }
-	 protected Map<String, Object> referenceData(HttpServletRequest request) throws Exception {
+
+
+	 protected HashMap<String, Object> referenceData(HttpServletRequest request) throws Exception {
 			HashMap<String, Object> referenceData = new HashMap<String, Object>();
-				
+
 	        List<ProductSerial> prodserlist = mastersservice.getProdVerSer();        
 	        List<AmpPhaseTrack> tracklist= mastersservice.getProdSerTracking(prdserid);
 	        

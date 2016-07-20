@@ -1,16 +1,12 @@
 package ireveal.web;
-  
+
 import java.util.HashMap;  
 import java.util.List;  
 
 
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-
 
 import org.springframework.web.servlet.ModelAndView;  
 import org.springframework.web.servlet.mvc.SimpleFormController;
@@ -74,7 +70,6 @@ public class ProductSerialController  extends SimpleFormController{
 	 	        }
 	        }
 
-	       
 	        return new ModelAndView(new RedirectView("productserial.htm?prodserid="+prodserid+"&refresh="+refresh+"&savestat="+stat));
 	       
 	    }
@@ -101,8 +96,9 @@ public class ProductSerialController  extends SimpleFormController{
 	        	return mastersservice.getProductSer(Integer.parseInt(id));
 	        }       
 	    }
-	    
-	    protected Map<String, Object> referenceData(HttpServletRequest request) throws Exception {
+
+	    protected HashMap<String, Object> referenceData(HttpServletRequest request) throws Exception {
+
 			HashMap<String, Object> referenceData = new HashMap<String, Object>();
 	        List<Product> prodlist = mastersservice.getProductList();        
 	       

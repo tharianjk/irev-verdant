@@ -1,7 +1,5 @@
 package ireveal.service;
 
-
-
 import java.util.List;
 import ireveal.domain.User;
 import ireveal.domain.UserPref;

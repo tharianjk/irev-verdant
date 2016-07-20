@@ -14,7 +14,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -105,8 +104,6 @@ public class TestImportController extends SimpleFormController{
 		Date dtfrom = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(file.getStrtestdate().replace("T", " "));
     	
 		file.setDttestdate(dtfrom);
-		int logid=100000;
-		
 		MultipartFile multipartFile = file.getFilename();
 		
 	    JSONObject obj1 = new JSONObject(file.getStrjsonfreq());
@@ -422,7 +419,9 @@ public class TestImportController extends SimpleFormController{
 	              
 	    }
 
-	 protected Map<String, Object> referenceData(HttpServletRequest request) throws Exception {
+	 
+	 protected HashMap<String, Object> referenceData(HttpServletRequest request) throws Exception {
+
 			HashMap<String, Object> referenceData = new HashMap<String, Object>();
 			  logger.info(" ImportTestController referenceData testis="+testid);
 			String pfreq="";

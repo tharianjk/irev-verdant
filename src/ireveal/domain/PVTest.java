@@ -21,7 +21,7 @@ private String frequnit;
 private String testtype;
 private String instslno;
 private String antennaused;
-
+private String otype;
 
 
 
@@ -45,6 +45,12 @@ public void setTesttype(String testtype) {
 }
 public String getFrequnit() {
 	return frequnit;
+}
+public String getOtype() {
+	return otype;
+}
+public void setOtype(String otype) {
+	this.otype = otype;
 }
 public void setFrequnit(String frequnit) {
 	this.frequnit = frequnit;

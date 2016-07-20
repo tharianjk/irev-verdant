@@ -3,7 +3,8 @@ package ireveal.domain;
 
 import java.util.Date;
 
-public class User  {
+
+public class User {
 
 	private int user_id;
     private String username;

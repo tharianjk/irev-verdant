@@ -25,15 +25,12 @@ import org.json.JSONArray;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
- 
 public class GainSTDHornController implements Controller{
 	
 	public MastersService mastersservice ;
-	
 	private int testid=0;
-	
-	 protected final Log logger = LogFactory.getLog(getClass());
- 
+	protected final Log logger = LogFactory.getLog(getClass());
+
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ParseException ,JSONException {
