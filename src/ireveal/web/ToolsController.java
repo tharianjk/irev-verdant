@@ -16,19 +16,13 @@ import org.springframework.beans.factory.annotation.*;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Date;
-import java.text.DateFormat;
 
 import ireveal.domain.PVSerialData;
 import ireveal.domain.PVTest;
-import ireveal.domain.Product;
 import ireveal.domain.ProductSerial;
 import ireveal.domain.TestData;
 import ireveal.domain.TestFrequency;
@@ -69,9 +63,6 @@ public class ToolsController implements Controller {
 	    //  boolean isadmin=mastersservice.IsAdminUser();
 	      
         logger.info("*** Inside Tools controller "+request.getParameter("oper")+ " unam "+uname);
-        Calendar cal = Calendar.getInstance();
-     	Date curTime = cal.getTime();
-     	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Map<String, Object> myModel = new HashMap<String, Object>();
         String operstr = request.getParameter("oper");
         String atype=request.getParameter("atype");
@@ -323,7 +314,7 @@ public class ToolsController implements Controller {
 			{				
         		logger.info("*** ampphase ** ");
         		String prodid = request.getParameter("prodid");
-        		 List dataList = new ArrayList();
+        		 List<ProductSerial> dataList = new ArrayList<ProductSerial>();
         		
         		if(!prodid.equals("") && prodid!=null)
         			dataList=mastersservice.getProdSerialWithAmpphase(Integer.parseInt(prodid));

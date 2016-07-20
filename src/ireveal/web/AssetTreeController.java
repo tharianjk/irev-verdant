@@ -7,8 +7,6 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.web.servlet.view.RedirectView;
@@ -19,8 +17,7 @@ import ireveal.domain.AssetTree;
 import ireveal.service.AssetTreeManager;
 import ireveal.service.MastersService;
 
- 
-@SuppressWarnings({ "serial", "deprecation" })
+
 
 public class AssetTreeController extends SimpleFormController {
 	private String viewName = null;

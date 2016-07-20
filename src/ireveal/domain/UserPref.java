@@ -1,8 +1,8 @@
 package ireveal.domain;
 
-import java.io.Serializable;
 
-public class UserPref implements Serializable {
+
+public class UserPref  {
 
 	private int user_id;
     private String username;

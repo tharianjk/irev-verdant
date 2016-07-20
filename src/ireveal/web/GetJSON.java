@@ -50,9 +50,7 @@ public class GetJSON extends HttpServlet {
         	
         	 //List<AssetTree> treeval = atreeControl.getTreeList();
         	  treeval=(List<AssetTree>)request.getSession().getAttribute("AssetListSec");
-              String treeMode=(String)request.getSession().getAttribute("treemode");
-        	
-        	 if(treeval==null)
+              if(treeval==null)
         	 {
         		 logger.info("*** GetJSON.getTreeList return null");
         	 }
@@ -178,7 +176,6 @@ public class GetJSON extends HttpServlet {
 	   private JSONArray fillTree(int parentId,int nlevel,String atype) throws JSONException
 	   {
 		   JSONArray jsonChildarray = new JSONArray();	
-		   int blnptype=1;
 		   for(int i=1; i< treeval.size();){			  
 			  
 			   if(parentId==treeval.get(i).getAssetparentid() && nlevel==treeval.get(i).getNlevel() )

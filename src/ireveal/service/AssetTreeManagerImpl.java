@@ -10,7 +10,6 @@ import ireveal.domain.AssetTree;
 import ireveal.repository.AssetTreeDao;
 
 
-@SuppressWarnings({ "deprecation", "serial" })
 public class AssetTreeManagerImpl implements AssetTreeManager {
 
 	

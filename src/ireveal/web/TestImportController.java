@@ -7,13 +7,11 @@ import ireveal.domain.TestFrequency;
 import ireveal.service.MastersService;
 
 import java.io.InputStream;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -23,8 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
@@ -32,11 +28,9 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONArray;
-import org.json.simple.parser.JSONParser;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.multipart.MultipartFile;
@@ -366,10 +360,8 @@ public class TestImportController extends SimpleFormController{
 	private static String GetFileExtension(String fname2)
 	  {
 	      String fileName = fname2;
-	      String fname="";
 	      String ext="";
 	      int mid= fileName.lastIndexOf(".");
-	      fname=fileName.substring(0,mid);
 	      ext=fileName.substring(mid+1,fileName.length());
 	      return ext;
 	  }
@@ -429,8 +421,9 @@ public class TestImportController extends SimpleFormController{
 	        }
 	              
 	    }
-	    protected HashMap referenceData(HttpServletRequest request) throws Exception {
-			HashMap referenceData = new HashMap();	
+
+	 protected Map<String, Object> referenceData(HttpServletRequest request) throws Exception {
+			HashMap<String, Object> referenceData = new HashMap<String, Object>();
 			  logger.info(" ImportTestController referenceData testis="+testid);
 			String pfreq="";
 			String rfreq="";

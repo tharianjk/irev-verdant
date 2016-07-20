@@ -10,12 +10,11 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.List;
-import java.util.Map;
-import java.util.ArrayList;
+
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.dao.DataAccessException;
+
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;	
 import org.springframework.jdbc.support.KeyHolder;
@@ -27,17 +26,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 
 
-
-@SuppressWarnings("deprecation")
 public class JdbcSetupDao extends JdbcDaoSupport implements SetupDao {
 
     /** Logger for this class and subclasses */
     protected final Log logger = LogFactory.getLog(getClass());
-    
-    // seed data expected in DB
-    private final int ROLE_ADMIN_ID = 2;
-   // private final int ROLE_USER_ID = 1;
-
     
     /**
     * 
@@ -62,7 +54,7 @@ public class JdbcSetupDao extends JdbcDaoSupport implements SetupDao {
     public int grtUserid(String uname)
     {
     	
-        return  getJdbcTemplate().queryForInt("Select user_id from fwk_user where username='"+uname+"'"); 
+        return  getJdbcTemplate().queryForObject("Select user_id from fwk_user where username=?",Integer.class,uname); 
     }
     /**
     * 
@@ -98,7 +90,7 @@ public class JdbcSetupDao extends JdbcDaoSupport implements SetupDao {
     	    keyHolder);
     	int userid = keyHolder.getKey().intValue();
     	logger.info(" User record inserted. Key = "+userid);
-    	int roleuserid=getJdbcTemplate().queryForInt("select role_id from fwk_role where company_id=? and rolename='ROLE_USER'",pcompid);
+    	int roleuserid=getJdbcTemplate().queryForObject("select role_id from fwk_role where company_id=? and rolename='ROLE_USER'",Integer.class,pcompid);
     	// Every user should have the ROLE_USER role. Insert record corresponding to that role
     	jdt.update(INSERT_ROLE, userid, roleuserid);
     	//Now insert the user-role selected for this user    	
@@ -117,7 +109,7 @@ public class JdbcSetupDao extends JdbcDaoSupport implements SetupDao {
     public boolean updateUser(User user){
     	List<RoleDsp> rle =getRoleDtls();
         int pcompid=rle.get(0).getCompanyid();
-    	int roleuserid=getJdbcTemplate().queryForInt("select role_id from fwk_role where company_id=? and rolename='ROLE_USER'",pcompid);
+    	int roleuserid=getJdbcTemplate().queryForObject("select role_id from fwk_role where company_id=? and rolename='ROLE_USER'",Integer.class,pcompid);
     	logger.info("Going to udpate user : "+user.getUsername()+",pswd="+user.getPassword()+",enabled="+user.isEnabled());
     	final String SQL_DEL_ROLE = "delete from fwk_user_role where user_id = ? and role_id <> ?";    	
     	final String SQL_INS_ROLE = "insert into fwk_user_role (USER_ID, ROLE_ID) values (?, ?)";
@@ -169,10 +161,7 @@ public class JdbcSetupDao extends JdbcDaoSupport implements SetupDao {
     */    
     public List<RoleDsp> getRoles(){
     	
-    	int compid =1;
-   	    List<RoleDsp> rle =getRoleDtls();
-        compid=rle.get(0).getCompanyid();
-        final String SQL_SEL_ROLE = "select r.role_id, r.rolename,r.b_reports,r.b_settings,b_tools from fwk_role r "+
+    	final String SQL_SEL_ROLE = "select r.role_id, r.rolename,r.b_reports,r.b_settings,b_tools from fwk_role r "+
         "  where  rolename not in ('ROLE_USER')";
      	logger.info("Getting roles!");
      	List<RoleDsp> roles = getJdbcTemplate().query(SQL_SEL_ROLE, new  RoleDtlsMapper());

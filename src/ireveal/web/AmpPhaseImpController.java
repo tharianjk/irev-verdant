@@ -6,16 +6,20 @@ import ireveal.domain.DataLog;
 import ireveal.domain.ProductSerial;
 import ireveal.domain.ImportData;
 import ireveal.service.MastersService;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 
 
 import org.springframework.validation.BindException;
@@ -41,8 +45,6 @@ public class AmpPhaseImpController extends SimpleFormController{
 	protected ModelAndView onSubmit(HttpServletRequest request,
 		HttpServletResponse response, Object command, BindException errors)
 		throws Exception {
-		String action="More";
-		String strmode="new";
 		int stat=0;  // 0 = success, 1 = error
 		logger.info("*** Inside testcontroller in onsubmit**: ");
         // check if user pressed Done
@@ -140,8 +142,9 @@ public class AmpPhaseImpController extends SimpleFormController{
 	        
 	              
 	    }
-	    protected HashMap referenceData(HttpServletRequest request) throws Exception {
-			HashMap referenceData = new HashMap();	
+	 protected Map<String, Object> referenceData(HttpServletRequest request) throws Exception {
+			HashMap<String, Object> referenceData = new HashMap<String, Object>();
+				
 	        List<ProductSerial> prodserlist = mastersservice.getProdVerSer();        
 	        List<AmpPhaseTrack> tracklist= mastersservice.getProdSerTracking(prdserid);
 	        

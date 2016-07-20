@@ -1,8 +1,8 @@
 package ireveal.domain;
 
-import java.io.Serializable;
 
-public class Company implements Serializable {
+
+public class Company {
 
     private String companyname;
    

@@ -15,14 +15,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 
-@SuppressWarnings("deprecation")
 public class JdbcAssetTreeDao extends JdbcDaoSupport implements AssetTreeDao {
 	
     /** Logger for this class and subclasses */
     protected final Log logger = LogFactory.getLog(getClass());
 
-    private int roleid=1;
-    private int compid=1;
     String role ="";
     public List<AssetTree> getAssetList() {
     	 /**
@@ -35,7 +32,7 @@ public class JdbcAssetTreeDao extends JdbcDaoSupport implements AssetTreeDao {
         logger.info("Getting AssetTree!");      
         
         List<RoleDsp> rle =getRoleDtls();
-        compid=rle.get(0).getCompanyid();
+        rle.get(0).getCompanyid();
         role=rle.get(0).getRolename();
         logger.info("role "+ role);
         List<AssetTree> AssetTree=null;

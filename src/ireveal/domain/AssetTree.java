@@ -1,8 +1,8 @@
 package ireveal.domain;
 
-import java.io.Serializable;
 
-public class AssetTree implements Serializable {
+
+public class AssetTree  {
 
     private String assetname;
     private int assetid;

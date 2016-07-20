@@ -1,13 +1,13 @@
 package ireveal.service;
 
 
-import java.io.Serializable;
+
 import java.util.List;
 import ireveal.domain.User;
 import ireveal.domain.UserPref;
 import ireveal.domain.RoleDsp;
 
-public interface SetupManager extends Serializable{
+public interface SetupManager {
     
    
     public List<User> getUsers();

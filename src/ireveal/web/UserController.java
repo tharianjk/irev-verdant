@@ -3,6 +3,7 @@ package ireveal.web;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,7 +17,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import ireveal.service.SetupManager;
-
 import ireveal.domain.User;
 import ireveal.domain.RoleDsp;
 
@@ -80,9 +80,9 @@ public class UserController extends SimpleFormController {
     
     
     
-    protected HashMap referenceData(HttpServletRequest request) throws Exception {
-		HashMap referenceData = new HashMap();	
-        List<RoleDsp> rolelist = setupManager.getAssignableRoles();        
+    protected Map<String, Object> referenceData(HttpServletRequest request) throws Exception {
+		HashMap<String, Object> referenceData = new HashMap<String, Object>();	
+        List<RoleDsp> rolelist = setupManager.getAssignableRoles();  
        
         referenceData.put("AllRoles", rolelist);
         referenceData.put("cur_role", cur_role);
