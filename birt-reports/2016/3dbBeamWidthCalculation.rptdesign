@@ -2173,6 +2173,18 @@ inner join pv_prodserial p on td.test_id=p.test_id
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="268">
                 <property name="style">Border</property>
@@ -2378,7 +2390,7 @@ inner join pv_prodserial p on td.test_id=p.test_id
                         <data id="499">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -2397,7 +2409,7 @@ inner join pv_prodserial p on td.test_id=p.test_id
                         <data id="500">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -3293,6 +3305,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="1371">
                 <property name="style">Border</property>
@@ -3498,7 +3522,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="1360">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -3517,7 +3541,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="1365">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -4414,6 +4438,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="1545">
                 <property name="style">Border</property>
@@ -4619,7 +4655,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="1534">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -4638,7 +4674,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="1539">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -5535,6 +5571,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="1719">
                 <property name="style">Border</property>
@@ -5740,7 +5788,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="1708">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -5759,7 +5807,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="1713">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -6656,6 +6704,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="1893">
                 <property name="style">Border</property>
@@ -6861,7 +6921,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="1882">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -6880,7 +6940,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="1887">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -7777,6 +7837,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="7127">
                 <property name="style">Border</property>
@@ -7982,7 +8054,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="7116">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -8001,7 +8073,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="7121">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -8898,6 +8970,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="7301">
                 <property name="style">Border</property>
@@ -9103,7 +9187,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="7290">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -9122,7 +9206,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="7295">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -10019,6 +10103,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="7475">
                 <property name="style">Border</property>
@@ -10224,7 +10320,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="7464">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -10243,7 +10339,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="7469">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -11140,6 +11236,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="7649">
                 <property name="style">Border</property>
@@ -11345,7 +11453,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="7638">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -11364,7 +11472,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="7643">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -12261,6 +12369,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="7823">
                 <property name="style">Border</property>
@@ -12466,7 +12586,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="7812">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -12485,7 +12605,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="7817">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -13382,6 +13502,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="7997">
                 <property name="style">Border</property>
@@ -13587,7 +13719,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="7986">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -13606,7 +13738,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="7991">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -14503,6 +14635,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="8171">
                 <property name="style">Border</property>
@@ -14708,7 +14852,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="8160">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -14727,7 +14871,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="8165">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -15624,6 +15768,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="8345">
                 <property name="style">Border</property>
@@ -15829,7 +15985,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="8334">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -15848,7 +16004,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="8339">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -16745,6 +16901,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="8519">
                 <property name="style">Border</property>
@@ -16950,7 +17118,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="8508">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -16969,7 +17137,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="8513">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -17866,6 +18034,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="8693">
                 <property name="style">Border</property>
@@ -18071,7 +18251,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="8682">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -18090,7 +18270,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="8687">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -18987,6 +19167,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="8867">
                 <property name="style">Border</property>
@@ -19192,7 +19384,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="8856">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -19211,7 +19403,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="8861">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -20108,6 +20300,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="9041">
                 <property name="style">Border</property>
@@ -20313,7 +20517,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="9030">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -20332,7 +20536,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="9035">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -21229,6 +21433,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="9215">
                 <property name="style">Border</property>
@@ -21434,7 +21650,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="9204">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -21453,7 +21669,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="9209">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -22350,6 +22566,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="9389">
                 <property name="style">Border</property>
@@ -22555,7 +22783,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="9378">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -22574,7 +22802,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="9383">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -23471,6 +23699,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="9563">
                 <property name="style">Border</property>
@@ -23676,7 +23916,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="9552">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -23695,7 +23935,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="9557">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -24592,6 +24832,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="9737">
                 <property name="style">Border</property>
@@ -24797,7 +25049,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="9726">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -24816,7 +25068,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="9731">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -25713,6 +25965,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="9911">
                 <property name="style">Border</property>
@@ -25918,7 +26182,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="9900">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -25937,7 +26201,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="9905">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -26834,6 +27098,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="10085">
                 <property name="style">Border</property>
@@ -27039,7 +27315,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="10074">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -27058,7 +27334,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="10079">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -27955,6 +28231,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="10259">
                 <property name="style">Border</property>
@@ -28160,7 +28448,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="10248">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -28179,7 +28467,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="10253">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -29076,6 +29364,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="10433">
                 <property name="style">Border</property>
@@ -29281,7 +29581,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="10422">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -29300,7 +29600,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="10427">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -30197,6 +30497,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="10607">
                 <property name="style">Border</property>
@@ -30402,7 +30714,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="10596">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -30421,7 +30733,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="10601">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -31318,6 +31630,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="10781">
                 <property name="style">Border</property>
@@ -31523,7 +31847,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="10770">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -31542,7 +31866,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="10775">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -32439,6 +32763,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="10955">
                 <property name="style">Border</property>
@@ -32644,7 +32980,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="10944">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -32663,7 +32999,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="10949">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -33560,6 +33896,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="11129">
                 <property name="style">Border</property>
@@ -33765,7 +34113,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="11118">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -33784,7 +34132,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="11123">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -34681,6 +35029,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="11303">
                 <property name="style">Border</property>
@@ -34886,7 +35246,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="11292">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -34905,7 +35265,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="11297">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -35802,6 +36162,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="11477">
                 <property name="style">Border</property>
@@ -36007,7 +36379,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="11466">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -36026,7 +36398,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="11471">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -36923,6 +37295,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="11651">
                 <property name="style">Border</property>
@@ -37128,7 +37512,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="11640">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -37147,7 +37531,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="11645">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -38044,6 +38428,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="11825">
                 <property name="style">Border</property>
@@ -38249,7 +38645,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="11814">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -38268,7 +38664,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="11819">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -39165,6 +39561,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="11999">
                 <property name="style">Border</property>
@@ -39370,7 +39778,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="11988">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -39389,7 +39797,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="11993">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -40286,6 +40694,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="12173">
                 <property name="style">Border</property>
@@ -40491,7 +40911,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="12162">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -40510,7 +40930,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="12167">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -41407,6 +41827,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="12347">
                 <property name="style">Border</property>
@@ -41612,7 +42044,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="12336">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -41631,7 +42063,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="12341">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -42528,6 +42960,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="12521">
                 <property name="style">Border</property>
@@ -42733,7 +43177,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="12510">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -42752,7 +43196,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="12515">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -43649,6 +44093,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="12695">
                 <property name="style">Border</property>
@@ -43854,7 +44310,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="12684">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -43873,7 +44329,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="12689">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -44770,6 +45226,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="12869">
                 <property name="style">Border</property>
@@ -44975,7 +45443,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="12858">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -44994,7 +45462,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="12863">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -45891,6 +46359,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="13043">
                 <property name="style">Border</property>
@@ -46096,7 +46576,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="13032">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -46115,7 +46595,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="13037">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -47012,6 +47492,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="13217">
                 <property name="style">Border</property>
@@ -47217,7 +47709,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="13206">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -47236,7 +47728,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="13211">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -48133,6 +48625,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="13391">
                 <property name="style">Border</property>
@@ -48338,7 +48842,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="13380">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -48357,7 +48861,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="13385">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -49254,6 +49758,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="13565">
                 <property name="style">Border</property>
@@ -49459,7 +49975,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="13554">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -49478,7 +49994,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="13559">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -50375,6 +50891,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="13739">
                 <property name="style">Border</property>
@@ -50580,7 +51108,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="13728">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -50599,7 +51127,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="13733">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -51496,6 +52024,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="13913">
                 <property name="style">Border</property>
@@ -51701,7 +52241,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="13902">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -51720,7 +52260,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="13907">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -52617,6 +53157,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="14087">
                 <property name="style">Border</property>
@@ -52822,7 +53374,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="14076">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -52841,7 +53393,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="14081">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -53738,6 +54290,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="14261">
                 <property name="style">Border</property>
@@ -53943,7 +54507,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="14250">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -53962,7 +54526,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="14255">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -54859,6 +55423,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="14435">
                 <property name="style">Border</property>
@@ -55064,7 +55640,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="14424">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -55083,7 +55659,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="14429">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -55980,6 +56556,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="14609">
                 <property name="style">Border</property>
@@ -56185,7 +56773,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="14598">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -56204,7 +56792,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="14603">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
@@ -57101,6 +57689,18 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <column id="14783">
                 <property name="style">Border</property>
@@ -57306,7 +57906,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="14772">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Product_id</property>
+                            <property name="resultSetColumn">Version</property>
                         </data>
                     </cell>
                 </row>
@@ -57325,7 +57925,7 @@ Spec: 55º to 110º over 100% of measurement points&#13;
                         <data id="14777">
                             <property name="fontFamily">serif</property>
                             <property name="fontSize">11pt</property>
-                            <property name="resultSetColumn">Version</property>
+                            <property name="resultSetColumn">prodmodel</property>
                         </data>
                     </cell>
                 </row>
