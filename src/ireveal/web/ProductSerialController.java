@@ -1,9 +1,7 @@
 package ireveal.web;
 
-
 import java.util.HashMap;  
 import java.util.List;  
-
 
 
 import javax.servlet.ServletException;
@@ -98,7 +96,9 @@ public class ProductSerialController  extends SimpleFormController{
 	        	return mastersservice.getProductSer(Integer.parseInt(id));
 	        }       
 	    }
+
 	    protected HashMap<String, Object> referenceData(HttpServletRequest request) throws Exception {
+
 			HashMap<String, Object> referenceData = new HashMap<String, Object>();
 	        List<Product> prodlist = mastersservice.getProductList();        
 	       

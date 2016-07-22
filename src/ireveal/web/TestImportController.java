@@ -357,10 +357,8 @@ public class TestImportController extends SimpleFormController{
 	private static String GetFileExtension(String fname2)
 	  {
 	      String fileName = fname2;
-	      String fname="";
 	      String ext="";
 	      int mid= fileName.lastIndexOf(".");
-	      fname=fileName.substring(0,mid);
 	      ext=fileName.substring(mid+1,fileName.length());
 	      return ext;
 	  }
@@ -420,8 +418,10 @@ public class TestImportController extends SimpleFormController{
 	        }
 	              
 	    }
+
 	 
 	 protected HashMap<String, Object> referenceData(HttpServletRequest request) throws Exception {
+
 			HashMap<String, Object> referenceData = new HashMap<String, Object>();
 			  logger.info(" ImportTestController referenceData testis="+testid);
 			String pfreq="";

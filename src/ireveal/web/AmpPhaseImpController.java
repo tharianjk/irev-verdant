@@ -13,7 +13,6 @@ import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,8 +43,6 @@ public class AmpPhaseImpController extends SimpleFormController{
 	protected ModelAndView onSubmit(HttpServletRequest request,
 		HttpServletResponse response, Object command, BindException errors)
 		throws Exception {
-		String action="More";
-		String strmode="new";
 		int stat=0;  // 0 = success, 1 = error
 		logger.info("*** Inside testcontroller in onsubmit**: ");
         // check if user pressed Done
@@ -147,6 +144,7 @@ public class AmpPhaseImpController extends SimpleFormController{
 
 	 protected HashMap<String, Object> referenceData(HttpServletRequest request) throws Exception {
 			HashMap<String, Object> referenceData = new HashMap<String, Object>();
+
 	        List<ProductSerial> prodserlist = mastersservice.getProdVerSer();        
 	        List<AmpPhaseTrack> tracklist= mastersservice.getProdSerTracking(prdserid);
 	        

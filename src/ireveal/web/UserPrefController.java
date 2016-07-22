@@ -3,6 +3,7 @@ package ireveal.web;
 
 import java.util.HashMap;
 
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.web.servlet.ModelAndView;
@@ -90,12 +91,9 @@ public class UserPrefController extends SimpleFormController {
 
     protected HashMap<String, Object> referenceData(HttpServletRequest request) throws Exception {
 		HashMap<String, Object> referenceData = new HashMap<String, Object>();
-      
-       // logger.info("*** UserPreferences in upref 1");
+   
         referenceData.put("favmenutxt", favmenutxt);
-       
-       // logger.info("*** UserPreferences in upref 2");
- 		return referenceData;
+       return referenceData;
 	}
    
     

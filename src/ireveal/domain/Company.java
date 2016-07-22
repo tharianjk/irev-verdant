@@ -1,7 +1,5 @@
 package ireveal.domain;
 
-
-
 public class Company  {
 
     private String companyname;

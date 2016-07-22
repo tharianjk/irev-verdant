@@ -7,9 +7,11 @@ import java.util.HashMap;
 import java.util.List;  
 import java.util.Locale;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+ 
 
 import org.springframework.web.servlet.ModelAndView;  
 import org.springframework.web.servlet.mvc.SimpleFormController;
@@ -115,7 +117,9 @@ public class PVTestController  extends SimpleFormController{
 	        	return pvtest;
 	        }       
 	    }
+
 	    protected HashMap<String, Object> referenceData(HttpServletRequest request) throws Exception {
+
 			HashMap<String, Object> referenceData = new HashMap<String, Object>();
 	        List<Product> prodlist = mastersservice.getProductList();
 	        referenceData.put("prodlist", prodlist);	

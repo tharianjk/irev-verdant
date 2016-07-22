@@ -17,18 +17,6 @@ import ireveal.domain.TestFrequency;
 import ireveal.domain.UserPref;
 
 import java.util.List;
-
-
-
-
-
-
-
-
-
-
-
-
 import java.util.Map;
 
 import ireveal.domain.User;

@@ -14,6 +14,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.json.JSONException;
@@ -26,8 +27,10 @@ import org.springframework.web.servlet.view.RedirectView;
 public class TestFreqController implements Controller{
 	
 	public MastersService mastersservice ;
+
 	private int testid=0;
 	protected final Log logger = LogFactory.getLog(getClass());
+
  
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)

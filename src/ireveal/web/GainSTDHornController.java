@@ -11,11 +11,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-
-
-
-
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -35,7 +30,7 @@ public class GainSTDHornController implements Controller{
 	public MastersService mastersservice ;
 	private int testid=0;
 	protected final Log logger = LogFactory.getLog(getClass());
- 
+
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ParseException ,JSONException {

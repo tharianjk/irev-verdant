@@ -10,8 +10,10 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;	
 import org.springframework.jdbc.support.KeyHolder;
@@ -27,10 +29,7 @@ public class JdbcSetupDao extends JdbcDaoSupport implements SetupDao {
 
     /** Logger for this class and subclasses */
     protected final Log logger = LogFactory.getLog(getClass());
-    
-    // private final int ROLE_USER_ID = 1;
 
-    
     /**
     * 
     * Get list of all users from database 

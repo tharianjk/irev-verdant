@@ -1,5 +1,6 @@
 package ireveal.service;
 
+
 import java.util.List;  
 
 import java.util.Map;
@@ -18,6 +19,7 @@ import ireveal.domain.RoleDsp;
 import ireveal.domain.Scaling;
 import ireveal.domain.TestData;
 import ireveal.domain.TestFrequency;
+
 import ireveal.domain.UserPref;
 
 public interface MastersService { 

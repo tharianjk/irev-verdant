@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -89,7 +90,9 @@ public class ScalingController extends SimpleFormController{
 	        	return scale;
 	    }
 	
+
 	 protected HashMap<String, Object> referenceData(HttpServletRequest request) throws Exception {
+
 			HashMap<String, Object> referenceData = new HashMap<String, Object>();
 			List<Scaling> scalelist=mastersservice.getScaling(testid );
 			referenceData.put("scalelist",scalelist);

@@ -1,8 +1,9 @@
 package ireveal.web;
 
+
+  
 import java.util.HashMap;  
-
-
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -70,6 +71,7 @@ public class ProductController  extends SimpleFormController{
 	 	        }
 	        }
 
+
 	        return new ModelAndView(new RedirectView("product.htm?prodid="+prodid+"&refresh="+refresh+"&savestat="+stat));
 	       
 	    }
@@ -97,7 +99,9 @@ public class ProductController  extends SimpleFormController{
 	        	return mastersservice.getProduct(Integer.parseInt(id));
 	        }       
 	    }
+
 	    protected HashMap<String, Object> referenceData(HttpServletRequest request) throws Exception {
+
 			HashMap<String, Object> referenceData = new HashMap<String, Object>();
 	        referenceData.put("testcnt", mastersservice.getproductTestscnt(intprodid));
 	 		return referenceData;

@@ -17,7 +17,7 @@ import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;	
 import org.springframework.jdbc.core.JdbcTemplate;
 
-@SuppressWarnings("deprecation")
+
 public class MWAPIDao extends JdbcDaoSupport {
 
 	
@@ -35,7 +35,7 @@ public class MWAPIDao extends JdbcDaoSupport {
        public String validateuser(String usrname){
        	logger.info("Going to validate user : "+usrname);
        	try{
-       	int cnt =getJdbcTemplate().queryForInt("select count(*) from FWK_USER where username='" +usrname+"'");
+       	int cnt =getJdbcTemplate().queryForObject("select count(*) from FWK_USER where username=?" ,Integer.class,usrname);
        	if(cnt==0){
        	return "0";}
        	else{
@@ -124,7 +124,7 @@ public class MWAPIDao extends JdbcDaoSupport {
                     public int getUserid(String uname)
               {
               	
-                  return  getJdbcTemplate().queryForInt("Select user_id from fwk_user where username='"+uname+"'"); 
+                  return  getJdbcTemplate().queryForObject("Select user_id from fwk_user where username=?",Integer.class,uname); 
               }
               
               public List<RoleDsp> getRoleDtls(String uname)

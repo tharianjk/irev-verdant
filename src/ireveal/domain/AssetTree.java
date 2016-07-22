@@ -1,6 +1,5 @@
 package ireveal.domain;
 
-
 public class AssetTree  {
 
     private String assetname;
