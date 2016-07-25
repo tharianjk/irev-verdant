@@ -447,6 +447,11 @@
                     <expression name="expression">params["min"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Freqwithunit</property>
+                    <expression name="expression">row["Frequency"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints"/>
             <list-property name="parameters">
@@ -585,6 +590,11 @@
                         <property name="name">MNU</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">Freqwithunit</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <method name="onFetch"><![CDATA[
@@ -595,7 +605,9 @@ reportContext.setPersistentGlobalVariable("MNU1", dataSetRow["MNU"]);
 
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
 reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
-//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
+reportContext.setPersistentGlobalVariable("Freqwithunit", dataSetRow["Freqwithunit"]);
+//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);
+]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -796,6 +808,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <expression name="expression">params["min"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Freqwithunit</property>
+                    <expression name="expression">row["Frequency"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints"/>
             <list-property name="parameters">
@@ -934,6 +951,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                         <property name="name">MNU2</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">Freqwithunit</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX2", dataSetRow["MX2"]);
@@ -942,7 +964,8 @@ reportContext.setPersistentGlobalVariable("MXU2", dataSetRow["MXU2"]);
 reportContext.setPersistentGlobalVariable("MNU2", dataSetRow["MNU2"]);
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
 reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
-//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
+//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);
+reportContext.setPersistentGlobalVariable("Freqwithunit2", dataSetRow["Freqwithunit"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -1143,6 +1166,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <expression name="expression">params["min"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Freqwithunit</property>
+                    <expression name="expression">row["Frequency"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints"/>
             <list-property name="parameters">
@@ -1281,6 +1309,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                         <property name="name">MNU3</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">Freqwithunit</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX3", dataSetRow["MX3"]);
@@ -1289,7 +1322,8 @@ reportContext.setPersistentGlobalVariable("MXU3", dataSetRow["MXU3"]);
 reportContext.setPersistentGlobalVariable("MNU3", dataSetRow["MNU3"]);
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
 reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
-//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
+//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);
+reportContext.setPersistentGlobalVariable("Freqwithunit3", dataSetRow["Freqwithunit"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -1490,6 +1524,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <expression name="expression">params["min"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Freqwithunit</property>
+                    <expression name="expression">row["Frequency"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints"/>
             <list-property name="parameters">
@@ -1628,6 +1667,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                         <property name="name">MNU</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">Freqwithunit</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX4", dataSetRow["MX"]);
@@ -1636,7 +1680,8 @@ reportContext.setPersistentGlobalVariable("MXU4", dataSetRow["MXU"]);
 reportContext.setPersistentGlobalVariable("MNU4", dataSetRow["MNU"]);
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
 reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
-//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
+//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);
+reportContext.setPersistentGlobalVariable("Freqwithunit4", dataSetRow["Freqwithunit"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -1837,6 +1882,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <expression name="expression">params["min"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Freqwithunit</property>
+                    <expression name="expression">row["Frequency"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints"/>
             <list-property name="parameters">
@@ -1975,6 +2025,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                         <property name="name">MNU</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">Freqwithunit</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX5", dataSetRow["MX"]);
@@ -1983,7 +2038,8 @@ reportContext.setPersistentGlobalVariable("MXU5", dataSetRow["MXU"]);
 reportContext.setPersistentGlobalVariable("MNU5", dataSetRow["MNU"]);
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
 reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
-//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
+//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);
+reportContext.setPersistentGlobalVariable("Freqwithunit5", dataSetRow["Freqwithunit"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -2184,6 +2240,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <expression name="expression">params["min"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Freqwithunit</property>
+                    <expression name="expression">row["Frequency"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints"/>
             <list-property name="parameters">
@@ -2322,6 +2383,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                         <property name="name">MNU</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">Freqwithunit</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX6", dataSetRow["MX"]);
@@ -2330,7 +2396,8 @@ reportContext.setPersistentGlobalVariable("MXU6", dataSetRow["MXU"]);
 reportContext.setPersistentGlobalVariable("MNU6", dataSetRow["MNU"]);
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
 reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
-//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
+//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);
+reportContext.setPersistentGlobalVariable("Freqwithunit6", dataSetRow["Freqwithunit"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -2531,6 +2598,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <expression name="expression">params["min"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Freqwithunit</property>
+                    <expression name="expression">row["Frequency"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints"/>
             <list-property name="parameters">
@@ -2669,6 +2741,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                         <property name="name">MNU</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">Freqwithunit</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX7", dataSetRow["MX"]);
@@ -2677,7 +2754,8 @@ reportContext.setPersistentGlobalVariable("MXU7", dataSetRow["MXU"]);
 reportContext.setPersistentGlobalVariable("MNU7", dataSetRow["MNU"]);
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
 reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
-//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
+//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);
+reportContext.setPersistentGlobalVariable("Freqwithunit7", dataSetRow["Freqwithunit"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -2878,6 +2956,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <expression name="expression">params["min"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Freqwithunit</property>
+                    <expression name="expression">row["Frequency"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints"/>
             <list-property name="parameters">
@@ -3016,6 +3099,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                         <property name="name">MNU</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">Freqwithunit</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX8", dataSetRow["MX"]);
@@ -3024,7 +3112,8 @@ reportContext.setPersistentGlobalVariable("MXU8", dataSetRow["MXU"]);
 reportContext.setPersistentGlobalVariable("MNU8", dataSetRow["MNU"]);
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
 reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
-//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
+//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);
+reportContext.setPersistentGlobalVariable("Freqwithunit8", dataSetRow["Freqwithunit"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -3225,6 +3314,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <expression name="expression">params["min"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Freqwithunit</property>
+                    <expression name="expression">row["Frequency"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints"/>
             <list-property name="parameters">
@@ -3363,6 +3457,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                         <property name="name">MNU</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">Freqwithunit</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX9", dataSetRow["MX"]);
@@ -3371,7 +3470,8 @@ reportContext.setPersistentGlobalVariable("MXU9", dataSetRow["MXU"]);
 reportContext.setPersistentGlobalVariable("MNU9", dataSetRow["MNU"]);
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
 reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
-//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
+//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);
+reportContext.setPersistentGlobalVariable("Freqwithunit9", dataSetRow["Freqwithunit"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -3572,6 +3672,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <expression name="expression">params["min"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Freqwithunit</property>
+                    <expression name="expression">row["Frequency"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints"/>
             <list-property name="parameters">
@@ -3710,6 +3815,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                         <property name="name">MNU</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">Freqwithunit</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX10", dataSetRow["MX"]);
@@ -3718,7 +3828,8 @@ reportContext.setPersistentGlobalVariable("MXU10", dataSetRow["MXU"]);
 reportContext.setPersistentGlobalVariable("MNU10", dataSetRow["MNU"]);
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
 reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
-//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
+//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);
+reportContext.setPersistentGlobalVariable("Freqwithunit10", dataSetRow["Freqwithunit"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -3919,6 +4030,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <expression name="expression">params["min"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Freqwithunit</property>
+                    <expression name="expression">row["Frequency"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints"/>
             <list-property name="parameters">
@@ -4057,6 +4173,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                         <property name="name">MNU</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">Freqwithunit</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX11", dataSetRow["MX"]);
@@ -4065,7 +4186,8 @@ reportContext.setPersistentGlobalVariable("MXU11", dataSetRow["MXU"]);
 reportContext.setPersistentGlobalVariable("MNU11", dataSetRow["MNU"]);
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
 reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
-//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
+//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);
+reportContext.setPersistentGlobalVariable("Freqwithunit11", dataSetRow["Freqwithunit"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -4266,6 +4388,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <expression name="expression">params["min"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Freqwithunit</property>
+                    <expression name="expression">row["Frequency"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints"/>
             <list-property name="parameters">
@@ -4404,6 +4531,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                         <property name="name">MNU</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">Freqwithunit</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX12", dataSetRow["MX"]);
@@ -4412,7 +4544,8 @@ reportContext.setPersistentGlobalVariable("MXU12", dataSetRow["MXU"]);
 reportContext.setPersistentGlobalVariable("MNU12", dataSetRow["MNU"]);
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
 reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
-//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
+//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);
+reportContext.setPersistentGlobalVariable("Freqwithunit12", dataSetRow["Freqwithunit"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -4613,6 +4746,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <expression name="expression">params["min"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Freqwithunit</property>
+                    <expression name="expression">row["Frequency"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints"/>
             <list-property name="parameters">
@@ -4751,6 +4889,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                         <property name="name">MNU</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">Freqwithunit</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX13", dataSetRow["MX"]);
@@ -4759,7 +4902,8 @@ reportContext.setPersistentGlobalVariable("MXU13", dataSetRow["MXU"]);
 reportContext.setPersistentGlobalVariable("MNU13", dataSetRow["MNU"]);
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
 reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
-//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
+//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);
+reportContext.setPersistentGlobalVariable("Freqwithunit13", dataSetRow["Freqwithunit"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -4960,6 +5104,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <expression name="expression">params["min"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Freqwithunit</property>
+                    <expression name="expression">row["Frequency"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints"/>
             <list-property name="parameters">
@@ -5098,6 +5247,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                         <property name="name">MNU</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">Freqwithunit</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX14", dataSetRow["MX"]);
@@ -5106,7 +5260,8 @@ reportContext.setPersistentGlobalVariable("MXU14", dataSetRow["MXU"]);
 reportContext.setPersistentGlobalVariable("MNU14", dataSetRow["MNU"]);
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
 reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
-//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
+//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);
+reportContext.setPersistentGlobalVariable("Freqwithunit14", dataSetRow["Freqwithunit"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -5307,6 +5462,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <expression name="expression">params["min"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Freqwithunit</property>
+                    <expression name="expression">row["Frequency"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints"/>
             <list-property name="parameters">
@@ -5445,6 +5605,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                         <property name="name">MNU</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">Freqwithunit</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX15", dataSetRow["MX"]);
@@ -5453,7 +5618,8 @@ reportContext.setPersistentGlobalVariable("MXU15", dataSetRow["MXU"]);
 reportContext.setPersistentGlobalVariable("MNU15", dataSetRow["MNU"]);
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
 reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
-//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
+//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);
+reportContext.setPersistentGlobalVariable("Freqwithunit15", dataSetRow["Freqwithunit"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -5654,6 +5820,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <expression name="expression">params["min"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Freqwithunit</property>
+                    <expression name="expression">row["Frequency"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints"/>
             <list-property name="parameters">
@@ -5792,6 +5963,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                         <property name="name">MNU</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">Freqwithunit</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX16", dataSetRow["MX"]);
@@ -5800,7 +5976,8 @@ reportContext.setPersistentGlobalVariable("MXU16", dataSetRow["MXU"]);
 reportContext.setPersistentGlobalVariable("MNU16", dataSetRow["MNU"]);
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
 reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
-//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
+//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);
+reportContext.setPersistentGlobalVariable("Freqwithunit16", dataSetRow["Freqwithunit"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -6001,6 +6178,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <expression name="expression">params["min"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Freqwithunit</property>
+                    <expression name="expression">row["Frequency"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints"/>
             <list-property name="parameters">
@@ -6139,6 +6321,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                         <property name="name">MNU</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">Freqwithunit</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX17", dataSetRow["MX"]);
@@ -6147,7 +6334,8 @@ reportContext.setPersistentGlobalVariable("MXU17", dataSetRow["MXU"]);
 reportContext.setPersistentGlobalVariable("MNU17", dataSetRow["MNU"]);
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
 reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
-//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
+//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);
+reportContext.setPersistentGlobalVariable("Freqwithunit17", dataSetRow["Freqwithunit"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -6348,6 +6536,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     <expression name="expression">params["min"].value</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Freqwithunit</property>
+                    <expression name="expression">row["Frequency"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints"/>
             <list-property name="parameters">
@@ -6486,6 +6679,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                         <property name="name">MNU</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">Freqwithunit</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("MX18", dataSetRow["MX"]);
@@ -6494,7 +6692,8 @@ reportContext.setPersistentGlobalVariable("MXU18", dataSetRow["MXU"]);
 reportContext.setPersistentGlobalVariable("MNU18", dataSetRow["MNU"]);
 reportContext.setPersistentGlobalVariable("showimage", dataSetRow["showimage"]);
 reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]);
-//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);]]></method>
+//reportContext.setPersistentGlobalVariable("ErrorHandler", dataSetRow["ErH"]);
+reportContext.setPersistentGlobalVariable("Freqwithunit18", dataSetRow["Freqwithunit"]);]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -6834,6 +7033,11 @@ reportContext.setPersistentGlobalVariable("scaleparam", dataSetRow["scaleparam"]
                     </structure>
                 </list-property>
             </structure>
+            <method name="onFetch"><![CDATA[reportContext.setPersistentGlobalVariable("AmodelNo", dataSetRow["prodmodel"]);
+reportContext.setPersistentGlobalVariable("AserialNo",dataSetRow["SerialNo"]);
+//reportContext.setPersistentGlobalVariable("PType",dataSetRow["PType"]);
+//reportContext.setPersistentGlobalVariable("PType",dataSetRow["horizontal"]);
+]]></method>
             <property name="dataSource">VerdantProfile</property>
             <list-property name="resultSet">
                 <structure>
@@ -7374,108 +7578,6 @@ else&#13;
 }</expression>
             <property name="contentType">html</property>
         </text-data>
-        <table id="1469">
-            <property name="dataSet">TestDescription</property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">prodmodel</property>
-                    <text-property name="displayName">prodmodel</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">SerialNo</property>
-                    <text-property name="displayName">SerialNo</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["SerialNo"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">frequnit</property>
-                    <text-property name="displayName">frequnit</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-            </list-property>
-            <column id="1488"/>
-            <column id="1489"/>
-            <header>
-                <row id="1470">
-                    <cell id="1471">
-                        <property name="colSpan">2</property>
-                        <property name="rowSpan">1</property>
-                        <label id="1500">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">14pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Test Details</text-property>
-                        </label>
-                    </cell>
-                </row>
-            </header>
-            <detail>
-                <row id="1473">
-                    <cell id="1474">
-                        <label id="1490">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Model No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1475">
-                        <data id="1492">
-                            <property name="resultSetColumn">prodmodel</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1476">
-                    <cell id="1477">
-                        <label id="1493">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Serial No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1478">
-                        <data id="1494">
-                            <property name="resultSetColumn">SerialNo</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1479">
-                    <cell id="1480">
-                        <label id="1495">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Pattern Type:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1481">
-                        <label id="1496">
-                            <text-property name="text">CP</text-property>
-                        </label>
-                    </cell>
-                </row>
-                <row id="1482">
-                    <cell id="1483">
-                        <label id="1497">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Frequency:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1484">
-                        <text-data id="1528">
-                            <expression name="valueExpr">params["freq1"] +"("+row["frequnit"]+")"</expression>
-                            <property name="contentType">html</property>
-                        </text-data>
-                    </cell>
-                </row>
-            </detail>
-        </table>
         <extended-item extensionName="Chart" id="1413">
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/RadarChartModelType">
   <Version>2.6.1</Version>
@@ -7510,16 +7612,15 @@ else&#13;
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>false</Visible>
+      <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Polar Chart</Value>
           <Font>
-            <Size>16.0</Size>
+            <Size>8.0</Size>
             <Bold>true</Bold>
             <Alignment>
-              <horizontalAlignment>Center</horizontalAlignment>
-              <verticalAlignment>Center</verticalAlignment>
+              <horizontalAlignment>Left</horizontalAlignment>
+              <verticalAlignment>Top</verticalAlignment>
             </Alignment>
           </Font>
         </Caption>
@@ -7776,8 +7877,27 @@ function beforeGeneration( chart, icsc )&#xD;
 		valSeriesDef = seriesDef.getSeriesDefinitions().get(0);&#xD;
 		var series = valSeriesDef.getSeries().get(0);&#xD;
 		&#xD;
+		&#xD;
+		//var Frequnit=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;Frequnit&quot;);&#xD;
+		&#xD;
+		&#xD;
 			//series.setPlotSteps(BigInteger.valueOf(5));&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
+			&#xD;
+			&#xD;
+			&#xD;
+			var Amodelno1=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AmodelNo&quot;);&#xD;
+		var SerialNo1=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AserialNo&quot;);&#xD;
+		var Freqwithunit1=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;Freqwithunit&quot;);&#xD;
+		chart.getTitle().getLabel().getCaption().setValue(Amodelno1+&quot; SL NO-&quot;+SerialNo1+&quot; CP AT &quot;+Freqwithunit1);&#xD;
+			&#xD;
+			//var CTitle=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;ChartTitle1&quot;);&#xD;
+			&#xD;
+			&#xD;
+			//var title = icsc.getExternalContext().getScriptable().getParameterValue(CTitle) &#xD;
+			//chart.getTitle().getLabel().getCaption().setValue(title) &#xD;
+			&#xD;
+			&#xD;
 			&#xD;
 			&#xD;
 			MaxAmp=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;MX1&quot;);&#xD;
@@ -7804,6 +7924,8 @@ function beforeGeneration( chart, icsc )&#xD;
 			//series.setWebLabelMin(-67);&#xD;
 			//series.setWebLabelMax(-47);&#xD;
 			}&#xD;
+			&#xD;
+			&#xD;
 &#xD;
 &#xD;
 			icsc.getChartInstance().getBlock().getBounds().setWidth(550);&#xD;
@@ -7829,7 +7951,9 @@ if(title==&quot;no&quot;)&#xD;
 }&#xD;
 else&#xD;
 {}&#xD;
-}</Script>
+}&#xD;
+&#xD;
+</Script>
   <Units>Points</Units>
   <SeriesThickness>10.0</SeriesThickness>
   <GridColumnCount>0</GridColumnCount>
@@ -8624,108 +8748,6 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
-        <table id="1501">
-            <property name="dataSet">TestDescription</property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">prodmodel</property>
-                    <text-property name="displayName">prodmodel</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">SerialNo</property>
-                    <text-property name="displayName">SerialNo</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["SerialNo"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">frequnit</property>
-                    <text-property name="displayName">frequnit</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-            </list-property>
-            <column id="1525"/>
-            <column id="1526"/>
-            <header>
-                <row id="1502">
-                    <cell id="1503">
-                        <property name="colSpan">2</property>
-                        <property name="rowSpan">1</property>
-                        <label id="1504">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">14pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Test Details</text-property>
-                        </label>
-                    </cell>
-                </row>
-            </header>
-            <detail>
-                <row id="1505">
-                    <cell id="1506">
-                        <label id="1507">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Model No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1508">
-                        <data id="1509">
-                            <property name="resultSetColumn">prodmodel</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1510">
-                    <cell id="1511">
-                        <label id="1512">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Serial No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1513">
-                        <data id="1514">
-                            <property name="resultSetColumn">SerialNo</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1515">
-                    <cell id="1516">
-                        <label id="1517">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Pattern Type:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1518">
-                        <label id="1519">
-                            <text-property name="text">CP</text-property>
-                        </label>
-                    </cell>
-                </row>
-                <row id="1520">
-                    <cell id="1521">
-                        <label id="1522">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Frequency:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1523">
-                        <text-data id="1527">
-                            <expression name="valueExpr">params["freq2"] +"("+row["frequnit"]+")"</expression>
-                            <property name="contentType">html</property>
-                        </text-data>
-                    </cell>
-                </row>
-            </detail>
-        </table>
         <extended-item extensionName="Chart" id="1418">
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/RadarChartModelType">
   <Version>2.6.1</Version>
@@ -8760,16 +8782,15 @@ else&#xD;
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>false</Visible>
+      <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Polar Chart</Value>
           <Font>
-            <Size>16.0</Size>
+            <Size>8.0</Size>
             <Bold>true</Bold>
             <Alignment>
-              <horizontalAlignment>Center</horizontalAlignment>
-              <verticalAlignment>Center</verticalAlignment>
+              <horizontalAlignment>Left</horizontalAlignment>
+              <verticalAlignment>Top</verticalAlignment>
             </Alignment>
           </Font>
         </Caption>
@@ -9026,6 +9047,11 @@ function beforeGeneration( chart, icsc )&#xD;
 		valSeriesDef = seriesDef.getSeriesDefinitions().get(0);&#xD;
 		var series = valSeriesDef.getSeries().get(0);&#xD;
 		&#xD;
+		var Amodelno=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AmodelNo&quot;);&#xD;
+		var SerialNo=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AserialNo&quot;);&#xD;
+		var Freqwithunit=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;Freqwithunit2&quot;);&#xD;
+		//chart.getTitle().getLabel().getCaption().setValue(&quot;Antenna Model No:&quot;+Amodelno+&quot;,Antenna Serial No:&quot;+SerialNo+&quot;,Pattern Type:CP,Frequency:&quot;+Freqwithunit);&#xD;
+		chart.getTitle().getLabel().getCaption().setValue(Amodelno+&quot; SL NO-&quot;+SerialNo+&quot; CP AT &quot;+Freqwithunit);&#xD;
 			//series.setPlotSteps(BigInteger.valueOf(5));&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
@@ -9863,108 +9889,6 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
-        <table id="1529">
-            <property name="dataSet">TestDescription</property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">prodmodel</property>
-                    <text-property name="displayName">prodmodel</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">SerialNo</property>
-                    <text-property name="displayName">SerialNo</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["SerialNo"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">frequnit</property>
-                    <text-property name="displayName">frequnit</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-            </list-property>
-            <column id="1553"/>
-            <column id="1554"/>
-            <header>
-                <row id="1530">
-                    <cell id="1531">
-                        <property name="colSpan">2</property>
-                        <property name="rowSpan">1</property>
-                        <label id="1532">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">14pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Test Details</text-property>
-                        </label>
-                    </cell>
-                </row>
-            </header>
-            <detail>
-                <row id="1533">
-                    <cell id="1534">
-                        <label id="1535">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Model No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1536">
-                        <data id="1537">
-                            <property name="resultSetColumn">prodmodel</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1538">
-                    <cell id="1539">
-                        <label id="1540">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Serial No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1541">
-                        <data id="1542">
-                            <property name="resultSetColumn">SerialNo</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1543">
-                    <cell id="1544">
-                        <label id="1545">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Pattern Type:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1546">
-                        <label id="1547">
-                            <text-property name="text">CP</text-property>
-                        </label>
-                    </cell>
-                </row>
-                <row id="1548">
-                    <cell id="1549">
-                        <label id="1550">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Frequency:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1551">
-                        <text-data id="1552">
-                            <expression name="valueExpr">params["freq3"] +"("+row["frequnit"]+")"</expression>
-                            <property name="contentType">html</property>
-                        </text-data>
-                    </cell>
-                </row>
-            </detail>
-        </table>
         <extended-item extensionName="Chart" id="1419">
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/RadarChartModelType">
   <Version>2.6.1</Version>
@@ -9999,16 +9923,15 @@ else&#xD;
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>false</Visible>
+      <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Polar Chart</Value>
           <Font>
-            <Size>16.0</Size>
+            <Size>8.0</Size>
             <Bold>true</Bold>
             <Alignment>
-              <horizontalAlignment>Center</horizontalAlignment>
-              <verticalAlignment>Center</verticalAlignment>
+              <horizontalAlignment>Left</horizontalAlignment>
+              <verticalAlignment>Top</verticalAlignment>
             </Alignment>
           </Font>
         </Caption>
@@ -10264,7 +10187,11 @@ function beforeGeneration( chart, icsc )&#xD;
 		catRunSeries = seriesDef.getRunTimeSeries();&#xD;
 		valSeriesDef = seriesDef.getSeriesDefinitions().get(0);&#xD;
 		var series = valSeriesDef.getSeries().get(0);&#xD;
-		&#xD;
+		var Amodelno=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AmodelNo&quot;);&#xD;
+		var SerialNo=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AserialNo&quot;);&#xD;
+		var Freqwithunit=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;Freqwithunit3&quot;);&#xD;
+		//chart.getTitle().getLabel().getCaption().setValue(&quot;Antenna Model No:&quot;+Amodelno+&quot;,Antenna Serial No:&quot;+SerialNo+&quot;,Pattern Type:CP,Frequency:&quot;+Freqwithunit);&#xD;
+		chart.getTitle().getLabel().getCaption().setValue(Amodelno+&quot; SL NO-&quot;+SerialNo+&quot; CP AT &quot;+Freqwithunit);&#xD;
 			//series.setPlotSteps(BigInteger.valueOf(5));&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
@@ -11102,108 +11029,6 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
-        <table id="1555">
-            <property name="dataSet">TestDescription</property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">prodmodel</property>
-                    <text-property name="displayName">prodmodel</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">SerialNo</property>
-                    <text-property name="displayName">SerialNo</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["SerialNo"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">frequnit</property>
-                    <text-property name="displayName">frequnit</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-            </list-property>
-            <column id="1579"/>
-            <column id="1580"/>
-            <header>
-                <row id="1556">
-                    <cell id="1557">
-                        <property name="colSpan">2</property>
-                        <property name="rowSpan">1</property>
-                        <label id="1558">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">14pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Test Details</text-property>
-                        </label>
-                    </cell>
-                </row>
-            </header>
-            <detail>
-                <row id="1559">
-                    <cell id="1560">
-                        <label id="1561">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Model No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1562">
-                        <data id="1563">
-                            <property name="resultSetColumn">prodmodel</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1564">
-                    <cell id="1565">
-                        <label id="1566">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Serial No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1567">
-                        <data id="1568">
-                            <property name="resultSetColumn">SerialNo</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1569">
-                    <cell id="1570">
-                        <label id="1571">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Pattern Type:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1572">
-                        <label id="1573">
-                            <text-property name="text">CP</text-property>
-                        </label>
-                    </cell>
-                </row>
-                <row id="1574">
-                    <cell id="1575">
-                        <label id="1576">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Frequency:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1577">
-                        <text-data id="1578">
-                            <expression name="valueExpr">params["freq4"] +"("+row["frequnit"]+")"</expression>
-                            <property name="contentType">html</property>
-                        </text-data>
-                    </cell>
-                </row>
-            </detail>
-        </table>
         <extended-item extensionName="Chart" id="1420">
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/RadarChartModelType">
   <Version>2.6.1</Version>
@@ -11238,16 +11063,15 @@ else&#xD;
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>false</Visible>
+      <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Polar Chart</Value>
           <Font>
-            <Size>16.0</Size>
+            <Size>8.0</Size>
             <Bold>true</Bold>
             <Alignment>
-              <horizontalAlignment>Center</horizontalAlignment>
-              <verticalAlignment>Center</verticalAlignment>
+              <horizontalAlignment>Left</horizontalAlignment>
+              <verticalAlignment>Top</verticalAlignment>
             </Alignment>
           </Font>
         </Caption>
@@ -11503,7 +11327,11 @@ function beforeGeneration( chart, icsc )&#xD;
 		catRunSeries = seriesDef.getRunTimeSeries();&#xD;
 		valSeriesDef = seriesDef.getSeriesDefinitions().get(0);&#xD;
 		var series = valSeriesDef.getSeries().get(0);&#xD;
-		&#xD;
+		var Amodelno=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AmodelNo&quot;);&#xD;
+		var SerialNo=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AserialNo&quot;);&#xD;
+		var Freqwithunit=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;Freqwithunit4&quot;);&#xD;
+		//chart.getTitle().getLabel().getCaption().setValue(&quot;Antenna Model No:&quot;+Amodelno+&quot;,Antenna Serial No:&quot;+SerialNo+&quot;,Pattern Type:CP,Frequency:&quot;+Freqwithunit);&#xD;
+		chart.getTitle().getLabel().getCaption().setValue(Amodelno+&quot; SL NO-&quot;+SerialNo+&quot; CP AT &quot;+Freqwithunit);&#xD;
 			//series.setPlotSteps(BigInteger.valueOf(5));&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
@@ -12341,108 +12169,6 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
-        <table id="1581">
-            <property name="dataSet">TestDescription</property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">prodmodel</property>
-                    <text-property name="displayName">prodmodel</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">SerialNo</property>
-                    <text-property name="displayName">SerialNo</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["SerialNo"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">frequnit</property>
-                    <text-property name="displayName">frequnit</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-            </list-property>
-            <column id="1605"/>
-            <column id="1606"/>
-            <header>
-                <row id="1582">
-                    <cell id="1583">
-                        <property name="colSpan">2</property>
-                        <property name="rowSpan">1</property>
-                        <label id="1584">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">14pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Test Details</text-property>
-                        </label>
-                    </cell>
-                </row>
-            </header>
-            <detail>
-                <row id="1585">
-                    <cell id="1586">
-                        <label id="1587">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Model No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1588">
-                        <data id="1589">
-                            <property name="resultSetColumn">prodmodel</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1590">
-                    <cell id="1591">
-                        <label id="1592">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Serial No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1593">
-                        <data id="1594">
-                            <property name="resultSetColumn">SerialNo</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1595">
-                    <cell id="1596">
-                        <label id="1597">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Pattern Type:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1598">
-                        <label id="1599">
-                            <text-property name="text">CP</text-property>
-                        </label>
-                    </cell>
-                </row>
-                <row id="1600">
-                    <cell id="1601">
-                        <label id="1602">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Frequency:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1603">
-                        <text-data id="1604">
-                            <expression name="valueExpr">params["freq5"] +"("+row["frequnit"]+")"</expression>
-                            <property name="contentType">html</property>
-                        </text-data>
-                    </cell>
-                </row>
-            </detail>
-        </table>
         <extended-item extensionName="Chart" id="1421">
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/RadarChartModelType">
   <Version>2.6.1</Version>
@@ -12477,16 +12203,15 @@ else&#xD;
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>false</Visible>
+      <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Polar Chart</Value>
           <Font>
-            <Size>16.0</Size>
+            <Size>8.0</Size>
             <Bold>true</Bold>
             <Alignment>
-              <horizontalAlignment>Center</horizontalAlignment>
-              <verticalAlignment>Center</verticalAlignment>
+              <horizontalAlignment>Left</horizontalAlignment>
+              <verticalAlignment>Top</verticalAlignment>
             </Alignment>
           </Font>
         </Caption>
@@ -12742,7 +12467,11 @@ function beforeGeneration( chart, icsc )&#xD;
 		catRunSeries = seriesDef.getRunTimeSeries();&#xD;
 		valSeriesDef = seriesDef.getSeriesDefinitions().get(0);&#xD;
 		var series = valSeriesDef.getSeries().get(0);&#xD;
-		&#xD;
+		var Amodelno=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AmodelNo&quot;);&#xD;
+		var SerialNo=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AserialNo&quot;);&#xD;
+		var Freqwithunit=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;Freqwithunit5&quot;);&#xD;
+		//chart.getTitle().getLabel().getCaption().setValue(&quot;Antenna Model No:&quot;+Amodelno+&quot;,Antenna Serial No:&quot;+SerialNo+&quot;,Pattern Type:CP,Frequency:&quot;+Freqwithunit);&#xD;
+		chart.getTitle().getLabel().getCaption().setValue(Amodelno+&quot; SL NO-&quot;+SerialNo+&quot; CP AT &quot;+Freqwithunit);&#xD;
 			//series.setPlotSteps(BigInteger.valueOf(5));&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
@@ -13580,108 +13309,6 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
-        <table id="1607">
-            <property name="dataSet">TestDescription</property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">prodmodel</property>
-                    <text-property name="displayName">prodmodel</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">SerialNo</property>
-                    <text-property name="displayName">SerialNo</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["SerialNo"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">frequnit</property>
-                    <text-property name="displayName">frequnit</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-            </list-property>
-            <column id="1631"/>
-            <column id="1632"/>
-            <header>
-                <row id="1608">
-                    <cell id="1609">
-                        <property name="colSpan">2</property>
-                        <property name="rowSpan">1</property>
-                        <label id="1610">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">14pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Test Details</text-property>
-                        </label>
-                    </cell>
-                </row>
-            </header>
-            <detail>
-                <row id="1611">
-                    <cell id="1612">
-                        <label id="1613">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Model No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1614">
-                        <data id="1615">
-                            <property name="resultSetColumn">prodmodel</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1616">
-                    <cell id="1617">
-                        <label id="1618">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Serial No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1619">
-                        <data id="1620">
-                            <property name="resultSetColumn">SerialNo</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1621">
-                    <cell id="1622">
-                        <label id="1623">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Pattern Type:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1624">
-                        <label id="1625">
-                            <text-property name="text">CP</text-property>
-                        </label>
-                    </cell>
-                </row>
-                <row id="1626">
-                    <cell id="1627">
-                        <label id="1628">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Frequency:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1629">
-                        <text-data id="1630">
-                            <expression name="valueExpr">params["freq6"] +"("+row["frequnit"]+")"</expression>
-                            <property name="contentType">html</property>
-                        </text-data>
-                    </cell>
-                </row>
-            </detail>
-        </table>
         <extended-item extensionName="Chart" id="1437">
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/RadarChartModelType">
   <Version>2.6.1</Version>
@@ -13716,16 +13343,15 @@ else&#xD;
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>false</Visible>
+      <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Polar Chart</Value>
           <Font>
-            <Size>16.0</Size>
+            <Size>8.0</Size>
             <Bold>true</Bold>
             <Alignment>
-              <horizontalAlignment>Center</horizontalAlignment>
-              <verticalAlignment>Center</verticalAlignment>
+              <horizontalAlignment>Left</horizontalAlignment>
+              <verticalAlignment>Top</verticalAlignment>
             </Alignment>
           </Font>
         </Caption>
@@ -13981,7 +13607,11 @@ function beforeGeneration( chart, icsc )&#xD;
 		catRunSeries = seriesDef.getRunTimeSeries();&#xD;
 		valSeriesDef = seriesDef.getSeriesDefinitions().get(0);&#xD;
 		var series = valSeriesDef.getSeries().get(0);&#xD;
-		&#xD;
+		var Amodelno=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AmodelNo&quot;);&#xD;
+		var SerialNo=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AserialNo&quot;);&#xD;
+		var Freqwithunit=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;Freqwithunit6&quot;);&#xD;
+		//chart.getTitle().getLabel().getCaption().setValue(&quot;Antenna Model No:&quot;+Amodelno+&quot;,Antenna Serial No:&quot;+SerialNo+&quot;,Pattern Type:CP,Frequency:&quot;+Freqwithunit);&#xD;
+		chart.getTitle().getLabel().getCaption().setValue(Amodelno+&quot; SL NO-&quot;+SerialNo+&quot; CP AT &quot;+Freqwithunit);&#xD;
 			//series.setPlotSteps(BigInteger.valueOf(5));&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
@@ -14818,108 +14448,6 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
-        <table id="1633">
-            <property name="dataSet">TestDescription</property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">prodmodel</property>
-                    <text-property name="displayName">prodmodel</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">SerialNo</property>
-                    <text-property name="displayName">SerialNo</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["SerialNo"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">frequnit</property>
-                    <text-property name="displayName">frequnit</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-            </list-property>
-            <column id="1657"/>
-            <column id="1658"/>
-            <header>
-                <row id="1634">
-                    <cell id="1635">
-                        <property name="colSpan">2</property>
-                        <property name="rowSpan">1</property>
-                        <label id="1636">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">14pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Test Details</text-property>
-                        </label>
-                    </cell>
-                </row>
-            </header>
-            <detail>
-                <row id="1637">
-                    <cell id="1638">
-                        <label id="1639">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Model No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1640">
-                        <data id="1641">
-                            <property name="resultSetColumn">prodmodel</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1642">
-                    <cell id="1643">
-                        <label id="1644">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Serial No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1645">
-                        <data id="1646">
-                            <property name="resultSetColumn">SerialNo</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1647">
-                    <cell id="1648">
-                        <label id="1649">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Pattern Type:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1650">
-                        <label id="1651">
-                            <text-property name="text">CP</text-property>
-                        </label>
-                    </cell>
-                </row>
-                <row id="1652">
-                    <cell id="1653">
-                        <label id="1654">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Frequency:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1655">
-                        <text-data id="1656">
-                            <expression name="valueExpr">params["freq7"] +"("+row["frequnit"]+")"</expression>
-                            <property name="contentType">html</property>
-                        </text-data>
-                    </cell>
-                </row>
-            </detail>
-        </table>
         <extended-item extensionName="Chart" id="1438">
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/RadarChartModelType">
   <Version>2.6.1</Version>
@@ -14954,16 +14482,15 @@ else&#xD;
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>false</Visible>
+      <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Polar Chart</Value>
           <Font>
-            <Size>16.0</Size>
+            <Size>8.0</Size>
             <Bold>true</Bold>
             <Alignment>
-              <horizontalAlignment>Center</horizontalAlignment>
-              <verticalAlignment>Center</verticalAlignment>
+              <horizontalAlignment>Left</horizontalAlignment>
+              <verticalAlignment>Top</verticalAlignment>
             </Alignment>
           </Font>
         </Caption>
@@ -15219,7 +14746,11 @@ function beforeGeneration( chart, icsc )&#xD;
 		catRunSeries = seriesDef.getRunTimeSeries();&#xD;
 		valSeriesDef = seriesDef.getSeriesDefinitions().get(0);&#xD;
 		var series = valSeriesDef.getSeries().get(0);&#xD;
-		&#xD;
+		var Amodelno=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AmodelNo&quot;);&#xD;
+		var SerialNo=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AserialNo&quot;);&#xD;
+		var Freqwithunit=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;Freqwithunit7&quot;);&#xD;
+		//chart.getTitle().getLabel().getCaption().setValue(&quot;Antenna Model No:&quot;+Amodelno+&quot;,Antenna Serial No:&quot;+SerialNo+&quot;,Pattern Type:CP,Frequency:&quot;+Freqwithunit);&#xD;
+		chart.getTitle().getLabel().getCaption().setValue(Amodelno+&quot; SL NO-&quot;+SerialNo+&quot; CP AT &quot;+Freqwithunit);&#xD;
 			//series.setPlotSteps(BigInteger.valueOf(5));&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
@@ -16057,108 +15588,6 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
-        <table id="1659">
-            <property name="dataSet">TestDescription</property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">prodmodel</property>
-                    <text-property name="displayName">prodmodel</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">SerialNo</property>
-                    <text-property name="displayName">SerialNo</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["SerialNo"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">frequnit</property>
-                    <text-property name="displayName">frequnit</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-            </list-property>
-            <column id="1683"/>
-            <column id="1684"/>
-            <header>
-                <row id="1660">
-                    <cell id="1661">
-                        <property name="colSpan">2</property>
-                        <property name="rowSpan">1</property>
-                        <label id="1662">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">14pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Test Details</text-property>
-                        </label>
-                    </cell>
-                </row>
-            </header>
-            <detail>
-                <row id="1663">
-                    <cell id="1664">
-                        <label id="1665">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Model No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1666">
-                        <data id="1667">
-                            <property name="resultSetColumn">prodmodel</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1668">
-                    <cell id="1669">
-                        <label id="1670">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Serial No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1671">
-                        <data id="1672">
-                            <property name="resultSetColumn">SerialNo</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1673">
-                    <cell id="1674">
-                        <label id="1675">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Pattern Type:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1676">
-                        <label id="1677">
-                            <text-property name="text">CP</text-property>
-                        </label>
-                    </cell>
-                </row>
-                <row id="1678">
-                    <cell id="1679">
-                        <label id="1680">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Frequency:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1681">
-                        <text-data id="1682">
-                            <expression name="valueExpr">params["freq8"] +"("+row["frequnit"]+")"</expression>
-                            <property name="contentType">html</property>
-                        </text-data>
-                    </cell>
-                </row>
-            </detail>
-        </table>
         <extended-item extensionName="Chart" id="1439">
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/RadarChartModelType">
   <Version>2.6.1</Version>
@@ -16193,16 +15622,15 @@ else&#xD;
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>false</Visible>
+      <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Polar Chart</Value>
           <Font>
-            <Size>16.0</Size>
+            <Size>8.0</Size>
             <Bold>true</Bold>
             <Alignment>
-              <horizontalAlignment>Center</horizontalAlignment>
-              <verticalAlignment>Center</verticalAlignment>
+              <horizontalAlignment>Left</horizontalAlignment>
+              <verticalAlignment>Top</verticalAlignment>
             </Alignment>
           </Font>
         </Caption>
@@ -16458,7 +15886,11 @@ function beforeGeneration( chart, icsc )&#xD;
 		catRunSeries = seriesDef.getRunTimeSeries();&#xD;
 		valSeriesDef = seriesDef.getSeriesDefinitions().get(0);&#xD;
 		var series = valSeriesDef.getSeries().get(0);&#xD;
-		&#xD;
+		var Amodelno=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AmodelNo&quot;);&#xD;
+		var SerialNo=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AserialNo&quot;);&#xD;
+		var Freqwithunit=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;Freqwithunit8&quot;);&#xD;
+		//chart.getTitle().getLabel().getCaption().setValue(&quot;Antenna Model No:&quot;+Amodelno+&quot;,Antenna Serial No:&quot;+SerialNo+&quot;,Pattern Type:CP,Frequency:&quot;+Freqwithunit);&#xD;
+		chart.getTitle().getLabel().getCaption().setValue(Amodelno+&quot; SL NO-&quot;+SerialNo+&quot; CP AT &quot;+Freqwithunit);&#xD;
 			//series.setPlotSteps(BigInteger.valueOf(5));&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
@@ -17296,108 +16728,6 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
-        <table id="1685">
-            <property name="dataSet">TestDescription</property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">prodmodel</property>
-                    <text-property name="displayName">prodmodel</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">SerialNo</property>
-                    <text-property name="displayName">SerialNo</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["SerialNo"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">frequnit</property>
-                    <text-property name="displayName">frequnit</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-            </list-property>
-            <column id="1709"/>
-            <column id="1710"/>
-            <header>
-                <row id="1686">
-                    <cell id="1687">
-                        <property name="colSpan">2</property>
-                        <property name="rowSpan">1</property>
-                        <label id="1688">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">14pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Test Details</text-property>
-                        </label>
-                    </cell>
-                </row>
-            </header>
-            <detail>
-                <row id="1689">
-                    <cell id="1690">
-                        <label id="1691">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Model No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1692">
-                        <data id="1693">
-                            <property name="resultSetColumn">prodmodel</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1694">
-                    <cell id="1695">
-                        <label id="1696">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Serial No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1697">
-                        <data id="1698">
-                            <property name="resultSetColumn">SerialNo</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1699">
-                    <cell id="1700">
-                        <label id="1701">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Pattern Type:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1702">
-                        <label id="1703">
-                            <text-property name="text">CP</text-property>
-                        </label>
-                    </cell>
-                </row>
-                <row id="1704">
-                    <cell id="1705">
-                        <label id="1706">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Frequency:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1707">
-                        <text-data id="1708">
-                            <expression name="valueExpr">params["freq9"] +"("+row["frequnit"]+")"</expression>
-                            <property name="contentType">html</property>
-                        </text-data>
-                    </cell>
-                </row>
-            </detail>
-        </table>
         <extended-item extensionName="Chart" id="1440">
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/RadarChartModelType">
   <Version>2.6.1</Version>
@@ -17432,16 +16762,15 @@ else&#xD;
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>false</Visible>
+      <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Polar Chart</Value>
           <Font>
-            <Size>16.0</Size>
+            <Size>8.0</Size>
             <Bold>true</Bold>
             <Alignment>
-              <horizontalAlignment>Center</horizontalAlignment>
-              <verticalAlignment>Center</verticalAlignment>
+              <horizontalAlignment>Left</horizontalAlignment>
+              <verticalAlignment>Top</verticalAlignment>
             </Alignment>
           </Font>
         </Caption>
@@ -17697,7 +17026,11 @@ function beforeGeneration( chart, icsc )&#xD;
 		catRunSeries = seriesDef.getRunTimeSeries();&#xD;
 		valSeriesDef = seriesDef.getSeriesDefinitions().get(0);&#xD;
 		var series = valSeriesDef.getSeries().get(0);&#xD;
-		&#xD;
+		var Amodelno=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AmodelNo&quot;);&#xD;
+		var SerialNo=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AserialNo&quot;);&#xD;
+		var Freqwithunit=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;Freqwithunit9&quot;);&#xD;
+		//chart.getTitle().getLabel().getCaption().setValue(&quot;Antenna Model No:&quot;+Amodelno+&quot;,Antenna Serial No:&quot;+SerialNo+&quot;,Pattern Type:CP,Frequency:&quot;+Freqwithunit);&#xD;
+		chart.getTitle().getLabel().getCaption().setValue(Amodelno+&quot; SL NO-&quot;+SerialNo+&quot; CP AT &quot;+Freqwithunit);&#xD;
 			//series.setPlotSteps(BigInteger.valueOf(5));&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
@@ -18535,108 +17868,6 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
-        <table id="1711">
-            <property name="dataSet">TestDescription</property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">prodmodel</property>
-                    <text-property name="displayName">prodmodel</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">SerialNo</property>
-                    <text-property name="displayName">SerialNo</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["SerialNo"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">frequnit</property>
-                    <text-property name="displayName">frequnit</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-            </list-property>
-            <column id="1735"/>
-            <column id="1736"/>
-            <header>
-                <row id="1712">
-                    <cell id="1713">
-                        <property name="colSpan">2</property>
-                        <property name="rowSpan">1</property>
-                        <label id="1714">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">14pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Test Details</text-property>
-                        </label>
-                    </cell>
-                </row>
-            </header>
-            <detail>
-                <row id="1715">
-                    <cell id="1716">
-                        <label id="1717">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Model No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1718">
-                        <data id="1719">
-                            <property name="resultSetColumn">prodmodel</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1720">
-                    <cell id="1721">
-                        <label id="1722">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Serial No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1723">
-                        <data id="1724">
-                            <property name="resultSetColumn">SerialNo</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1725">
-                    <cell id="1726">
-                        <label id="1727">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Pattern Type:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1728">
-                        <label id="1729">
-                            <text-property name="text">CP</text-property>
-                        </label>
-                    </cell>
-                </row>
-                <row id="1730">
-                    <cell id="1731">
-                        <label id="1732">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Frequency:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1733">
-                        <text-data id="1734">
-                            <expression name="valueExpr">params["freq10"] +"("+row["frequnit"]+")"</expression>
-                            <property name="contentType">html</property>
-                        </text-data>
-                    </cell>
-                </row>
-            </detail>
-        </table>
         <extended-item extensionName="Chart" id="1441">
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/RadarChartModelType">
   <Version>2.6.1</Version>
@@ -18671,16 +17902,15 @@ else&#xD;
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>false</Visible>
+      <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Polar Chart</Value>
           <Font>
-            <Size>16.0</Size>
+            <Size>8.0</Size>
             <Bold>true</Bold>
             <Alignment>
-              <horizontalAlignment>Center</horizontalAlignment>
-              <verticalAlignment>Center</verticalAlignment>
+              <horizontalAlignment>Left</horizontalAlignment>
+              <verticalAlignment>Top</verticalAlignment>
             </Alignment>
           </Font>
         </Caption>
@@ -18936,7 +18166,11 @@ function beforeGeneration( chart, icsc )&#xD;
 		catRunSeries = seriesDef.getRunTimeSeries();&#xD;
 		valSeriesDef = seriesDef.getSeriesDefinitions().get(0);&#xD;
 		var series = valSeriesDef.getSeries().get(0);&#xD;
-		&#xD;
+		var Amodelno=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AmodelNo&quot;);&#xD;
+		var SerialNo=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AserialNo&quot;);&#xD;
+		var Freqwithunit=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;Freqwithunit10&quot;);&#xD;
+		//chart.getTitle().getLabel().getCaption().setValue(&quot;Antenna Model No:&quot;+Amodelno+&quot;,Antenna Serial No:&quot;+SerialNo+&quot;,Pattern Type:CP,Frequency:&quot;+Freqwithunit);&#xD;
+		chart.getTitle().getLabel().getCaption().setValue(Amodelno+&quot; SL NO-&quot;+SerialNo+&quot; CP AT &quot;+Freqwithunit);&#xD;
 			//series.setPlotSteps(BigInteger.valueOf(5));&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
@@ -19774,108 +19008,6 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
-        <table id="1737">
-            <property name="dataSet">TestDescription</property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">prodmodel</property>
-                    <text-property name="displayName">prodmodel</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">SerialNo</property>
-                    <text-property name="displayName">SerialNo</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["SerialNo"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">frequnit</property>
-                    <text-property name="displayName">frequnit</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-            </list-property>
-            <column id="1761"/>
-            <column id="1762"/>
-            <header>
-                <row id="1738">
-                    <cell id="1739">
-                        <property name="colSpan">2</property>
-                        <property name="rowSpan">1</property>
-                        <label id="1740">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">14pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Test Details</text-property>
-                        </label>
-                    </cell>
-                </row>
-            </header>
-            <detail>
-                <row id="1741">
-                    <cell id="1742">
-                        <label id="1743">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Model No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1744">
-                        <data id="1745">
-                            <property name="resultSetColumn">prodmodel</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1746">
-                    <cell id="1747">
-                        <label id="1748">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Serial No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1749">
-                        <data id="1750">
-                            <property name="resultSetColumn">SerialNo</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1751">
-                    <cell id="1752">
-                        <label id="1753">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Pattern Type:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1754">
-                        <label id="1755">
-                            <text-property name="text">CP</text-property>
-                        </label>
-                    </cell>
-                </row>
-                <row id="1756">
-                    <cell id="1757">
-                        <label id="1758">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Frequency:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1759">
-                        <text-data id="1760">
-                            <expression name="valueExpr">params["freq11"] +"("+row["frequnit"]+")"</expression>
-                            <property name="contentType">html</property>
-                        </text-data>
-                    </cell>
-                </row>
-            </detail>
-        </table>
         <extended-item extensionName="Chart" id="1442">
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/RadarChartModelType">
   <Version>2.6.1</Version>
@@ -19910,16 +19042,15 @@ else&#xD;
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>false</Visible>
+      <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Polar Chart</Value>
           <Font>
-            <Size>16.0</Size>
+            <Size>8.0</Size>
             <Bold>true</Bold>
             <Alignment>
-              <horizontalAlignment>Center</horizontalAlignment>
-              <verticalAlignment>Center</verticalAlignment>
+              <horizontalAlignment>Left</horizontalAlignment>
+              <verticalAlignment>Top</verticalAlignment>
             </Alignment>
           </Font>
         </Caption>
@@ -20175,7 +19306,11 @@ function beforeGeneration( chart, icsc )&#xD;
 		catRunSeries = seriesDef.getRunTimeSeries();&#xD;
 		valSeriesDef = seriesDef.getSeriesDefinitions().get(0);&#xD;
 		var series = valSeriesDef.getSeries().get(0);&#xD;
-		&#xD;
+		var Amodelno=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AmodelNo&quot;);&#xD;
+		var SerialNo=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AserialNo&quot;);&#xD;
+		var Freqwithunit=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;Freqwithunit11&quot;);&#xD;
+		//chart.getTitle().getLabel().getCaption().setValue(&quot;Antenna Model No:&quot;+Amodelno+&quot;,Antenna Serial No:&quot;+SerialNo+&quot;,Pattern Type:CP,Frequency:&quot;+Freqwithunit);&#xD;
+		chart.getTitle().getLabel().getCaption().setValue(Amodelno+&quot; SL NO-&quot;+SerialNo+&quot; CP AT &quot;+Freqwithunit);&#xD;
 			//series.setPlotSteps(BigInteger.valueOf(5));&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
@@ -21013,108 +20148,6 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
-        <table id="1763">
-            <property name="dataSet">TestDescription</property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">prodmodel</property>
-                    <text-property name="displayName">prodmodel</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">SerialNo</property>
-                    <text-property name="displayName">SerialNo</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["SerialNo"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">frequnit</property>
-                    <text-property name="displayName">frequnit</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-            </list-property>
-            <column id="1787"/>
-            <column id="1788"/>
-            <header>
-                <row id="1764">
-                    <cell id="1765">
-                        <property name="colSpan">2</property>
-                        <property name="rowSpan">1</property>
-                        <label id="1766">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">14pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Test Details</text-property>
-                        </label>
-                    </cell>
-                </row>
-            </header>
-            <detail>
-                <row id="1767">
-                    <cell id="1768">
-                        <label id="1769">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Model No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1770">
-                        <data id="1771">
-                            <property name="resultSetColumn">prodmodel</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1772">
-                    <cell id="1773">
-                        <label id="1774">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Serial No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1775">
-                        <data id="1776">
-                            <property name="resultSetColumn">SerialNo</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1777">
-                    <cell id="1778">
-                        <label id="1779">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Pattern Type:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1780">
-                        <label id="1781">
-                            <text-property name="text">CP</text-property>
-                        </label>
-                    </cell>
-                </row>
-                <row id="1782">
-                    <cell id="1783">
-                        <label id="1784">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Frequency:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1785">
-                        <text-data id="1786">
-                            <expression name="valueExpr">params["freq12"] +"("+row["frequnit"]+")"</expression>
-                            <property name="contentType">html</property>
-                        </text-data>
-                    </cell>
-                </row>
-            </detail>
-        </table>
         <extended-item extensionName="Chart" id="1443">
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/RadarChartModelType">
   <Version>2.6.1</Version>
@@ -21149,16 +20182,15 @@ else&#xD;
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>false</Visible>
+      <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Polar Chart</Value>
           <Font>
-            <Size>16.0</Size>
+            <Size>8.0</Size>
             <Bold>true</Bold>
             <Alignment>
-              <horizontalAlignment>Center</horizontalAlignment>
-              <verticalAlignment>Center</verticalAlignment>
+              <horizontalAlignment>Left</horizontalAlignment>
+              <verticalAlignment>Top</verticalAlignment>
             </Alignment>
           </Font>
         </Caption>
@@ -21414,7 +20446,11 @@ function beforeGeneration( chart, icsc )&#xD;
 		catRunSeries = seriesDef.getRunTimeSeries();&#xD;
 		valSeriesDef = seriesDef.getSeriesDefinitions().get(0);&#xD;
 		var series = valSeriesDef.getSeries().get(0);&#xD;
-		&#xD;
+		var Amodelno=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AmodelNo&quot;);&#xD;
+		var SerialNo=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AserialNo&quot;);&#xD;
+		var Freqwithunit=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;Freqwithunit12&quot;);&#xD;
+		//chart.getTitle().getLabel().getCaption().setValue(&quot;Antenna Model No:&quot;+Amodelno+&quot;,Antenna Serial No:&quot;+SerialNo+&quot;,Pattern Type:CP,Frequency:&quot;+Freqwithunit);&#xD;
+		chart.getTitle().getLabel().getCaption().setValue(Amodelno+&quot; SL NO-&quot;+SerialNo+&quot; CP AT &quot;+Freqwithunit);&#xD;
 			//series.setPlotSteps(BigInteger.valueOf(5));&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
@@ -22252,108 +21288,6 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
-        <table id="1789">
-            <property name="dataSet">TestDescription</property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">prodmodel</property>
-                    <text-property name="displayName">prodmodel</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">SerialNo</property>
-                    <text-property name="displayName">SerialNo</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["SerialNo"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">frequnit</property>
-                    <text-property name="displayName">frequnit</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-            </list-property>
-            <column id="1813"/>
-            <column id="1814"/>
-            <header>
-                <row id="1790">
-                    <cell id="1791">
-                        <property name="colSpan">2</property>
-                        <property name="rowSpan">1</property>
-                        <label id="1792">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">14pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Test Details</text-property>
-                        </label>
-                    </cell>
-                </row>
-            </header>
-            <detail>
-                <row id="1793">
-                    <cell id="1794">
-                        <label id="1795">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Model No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1796">
-                        <data id="1797">
-                            <property name="resultSetColumn">prodmodel</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1798">
-                    <cell id="1799">
-                        <label id="1800">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Serial No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1801">
-                        <data id="1802">
-                            <property name="resultSetColumn">SerialNo</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1803">
-                    <cell id="1804">
-                        <label id="1805">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Pattern Type:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1806">
-                        <label id="1807">
-                            <text-property name="text">CP</text-property>
-                        </label>
-                    </cell>
-                </row>
-                <row id="1808">
-                    <cell id="1809">
-                        <label id="1810">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Frequency:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1811">
-                        <text-data id="1812">
-                            <expression name="valueExpr">params["freq13"] +"("+row["frequnit"]+")"</expression>
-                            <property name="contentType">html</property>
-                        </text-data>
-                    </cell>
-                </row>
-            </detail>
-        </table>
         <extended-item extensionName="Chart" id="1444">
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/RadarChartModelType">
   <Version>2.6.1</Version>
@@ -22388,16 +21322,15 @@ else&#xD;
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>false</Visible>
+      <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Polar Chart</Value>
           <Font>
-            <Size>16.0</Size>
+            <Size>8.0</Size>
             <Bold>true</Bold>
             <Alignment>
-              <horizontalAlignment>Center</horizontalAlignment>
-              <verticalAlignment>Center</verticalAlignment>
+              <horizontalAlignment>Left</horizontalAlignment>
+              <verticalAlignment>Top</verticalAlignment>
             </Alignment>
           </Font>
         </Caption>
@@ -22653,7 +21586,11 @@ function beforeGeneration( chart, icsc )&#xD;
 		catRunSeries = seriesDef.getRunTimeSeries();&#xD;
 		valSeriesDef = seriesDef.getSeriesDefinitions().get(0);&#xD;
 		var series = valSeriesDef.getSeries().get(0);&#xD;
-		&#xD;
+		var Amodelno=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AmodelNo&quot;);&#xD;
+		var SerialNo=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AserialNo&quot;);&#xD;
+		var Freqwithunit=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;Freqwithunit13&quot;);&#xD;
+		//chart.getTitle().getLabel().getCaption().setValue(&quot;Antenna Model No:&quot;+Amodelno+&quot;,Antenna Serial No:&quot;+SerialNo+&quot;,Pattern Type:CP,Frequency:&quot;+Freqwithunit);&#xD;
+		chart.getTitle().getLabel().getCaption().setValue(Amodelno+&quot; SL NO-&quot;+SerialNo+&quot; CP AT &quot;+Freqwithunit);&#xD;
 			//series.setPlotSteps(BigInteger.valueOf(5));&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
@@ -23491,108 +22428,6 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
-        <table id="1815">
-            <property name="dataSet">TestDescription</property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">prodmodel</property>
-                    <text-property name="displayName">prodmodel</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">SerialNo</property>
-                    <text-property name="displayName">SerialNo</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["SerialNo"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">frequnit</property>
-                    <text-property name="displayName">frequnit</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-            </list-property>
-            <column id="1839"/>
-            <column id="1840"/>
-            <header>
-                <row id="1816">
-                    <cell id="1817">
-                        <property name="colSpan">2</property>
-                        <property name="rowSpan">1</property>
-                        <label id="1818">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">14pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Test Details</text-property>
-                        </label>
-                    </cell>
-                </row>
-            </header>
-            <detail>
-                <row id="1819">
-                    <cell id="1820">
-                        <label id="1821">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Model No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1822">
-                        <data id="1823">
-                            <property name="resultSetColumn">prodmodel</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1824">
-                    <cell id="1825">
-                        <label id="1826">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Serial No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1827">
-                        <data id="1828">
-                            <property name="resultSetColumn">SerialNo</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1829">
-                    <cell id="1830">
-                        <label id="1831">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Pattern Type:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1832">
-                        <label id="1833">
-                            <text-property name="text">CP</text-property>
-                        </label>
-                    </cell>
-                </row>
-                <row id="1834">
-                    <cell id="1835">
-                        <label id="1836">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Frequency:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1837">
-                        <text-data id="1838">
-                            <expression name="valueExpr">params["freq14"] +"("+row["frequnit"]+")"</expression>
-                            <property name="contentType">html</property>
-                        </text-data>
-                    </cell>
-                </row>
-            </detail>
-        </table>
         <extended-item extensionName="Chart" id="1445">
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/RadarChartModelType">
   <Version>2.6.1</Version>
@@ -23627,16 +22462,15 @@ else&#xD;
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>false</Visible>
+      <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Polar Chart</Value>
           <Font>
-            <Size>16.0</Size>
+            <Size>8.0</Size>
             <Bold>true</Bold>
             <Alignment>
-              <horizontalAlignment>Center</horizontalAlignment>
-              <verticalAlignment>Center</verticalAlignment>
+              <horizontalAlignment>Left</horizontalAlignment>
+              <verticalAlignment>Top</verticalAlignment>
             </Alignment>
           </Font>
         </Caption>
@@ -23892,7 +22726,11 @@ function beforeGeneration( chart, icsc )&#xD;
 		catRunSeries = seriesDef.getRunTimeSeries();&#xD;
 		valSeriesDef = seriesDef.getSeriesDefinitions().get(0);&#xD;
 		var series = valSeriesDef.getSeries().get(0);&#xD;
-		&#xD;
+		var Amodelno=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AmodelNo&quot;);&#xD;
+		var SerialNo=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AserialNo&quot;);&#xD;
+		var Freqwithunit=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;Freqwithunit14&quot;);&#xD;
+		//chart.getTitle().getLabel().getCaption().setValue(&quot;Antenna Model No:&quot;+Amodelno+&quot;,Antenna Serial No:&quot;+SerialNo+&quot;,Pattern Type:CP,Frequency:&quot;+Freqwithunit);&#xD;
+		chart.getTitle().getLabel().getCaption().setValue(Amodelno+&quot; SL NO-&quot;+SerialNo+&quot; CP AT &quot;+Freqwithunit);&#xD;
 			//series.setPlotSteps(BigInteger.valueOf(5));&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
@@ -24729,108 +23567,6 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
-        <table id="1841">
-            <property name="dataSet">TestDescription</property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">prodmodel</property>
-                    <text-property name="displayName">prodmodel</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">SerialNo</property>
-                    <text-property name="displayName">SerialNo</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["SerialNo"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">frequnit</property>
-                    <text-property name="displayName">frequnit</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-            </list-property>
-            <column id="1865"/>
-            <column id="1866"/>
-            <header>
-                <row id="1842">
-                    <cell id="1843">
-                        <property name="colSpan">2</property>
-                        <property name="rowSpan">1</property>
-                        <label id="1844">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">14pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Test Details</text-property>
-                        </label>
-                    </cell>
-                </row>
-            </header>
-            <detail>
-                <row id="1845">
-                    <cell id="1846">
-                        <label id="1847">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Model No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1848">
-                        <data id="1849">
-                            <property name="resultSetColumn">prodmodel</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1850">
-                    <cell id="1851">
-                        <label id="1852">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Serial No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1853">
-                        <data id="1854">
-                            <property name="resultSetColumn">SerialNo</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1855">
-                    <cell id="1856">
-                        <label id="1857">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Pattern Type:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1858">
-                        <label id="1859">
-                            <text-property name="text">CP</text-property>
-                        </label>
-                    </cell>
-                </row>
-                <row id="1860">
-                    <cell id="1861">
-                        <label id="1862">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Frequency:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1863">
-                        <text-data id="1864">
-                            <expression name="valueExpr">params["freq15"] +"("+row["frequnit"]+")"</expression>
-                            <property name="contentType">html</property>
-                        </text-data>
-                    </cell>
-                </row>
-            </detail>
-        </table>
         <extended-item extensionName="Chart" id="1446">
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/RadarChartModelType">
   <Version>2.6.1</Version>
@@ -24865,16 +23601,15 @@ else&#xD;
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>false</Visible>
+      <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Polar Chart</Value>
           <Font>
-            <Size>16.0</Size>
+            <Size>8.0</Size>
             <Bold>true</Bold>
             <Alignment>
-              <horizontalAlignment>Center</horizontalAlignment>
-              <verticalAlignment>Center</verticalAlignment>
+              <horizontalAlignment>Left</horizontalAlignment>
+              <verticalAlignment>Top</verticalAlignment>
             </Alignment>
           </Font>
         </Caption>
@@ -25130,7 +23865,11 @@ function beforeGeneration( chart, icsc )&#xD;
 		catRunSeries = seriesDef.getRunTimeSeries();&#xD;
 		valSeriesDef = seriesDef.getSeriesDefinitions().get(0);&#xD;
 		var series = valSeriesDef.getSeries().get(0);&#xD;
-		&#xD;
+		var Amodelno=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AmodelNo&quot;);&#xD;
+		var SerialNo=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AserialNo&quot;);&#xD;
+		var Freqwithunit=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;Freqwithunit15&quot;);&#xD;
+		//chart.getTitle().getLabel().getCaption().setValue(&quot;Antenna Model No:&quot;+Amodelno+&quot;,Antenna Serial No:&quot;+SerialNo+&quot;,Pattern Type:CP,Frequency:&quot;+Freqwithunit);&#xD;
+		chart.getTitle().getLabel().getCaption().setValue(Amodelno+&quot; SL NO-&quot;+SerialNo+&quot; CP AT &quot;+Freqwithunit);&#xD;
 			//series.setPlotSteps(BigInteger.valueOf(5));&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
@@ -25968,108 +24707,6 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
-        <table id="1867">
-            <property name="dataSet">TestDescription</property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">prodmodel</property>
-                    <text-property name="displayName">prodmodel</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">SerialNo</property>
-                    <text-property name="displayName">SerialNo</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["SerialNo"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">frequnit</property>
-                    <text-property name="displayName">frequnit</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-            </list-property>
-            <column id="1891"/>
-            <column id="1892"/>
-            <header>
-                <row id="1868">
-                    <cell id="1869">
-                        <property name="colSpan">2</property>
-                        <property name="rowSpan">1</property>
-                        <label id="1870">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">14pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Test Details</text-property>
-                        </label>
-                    </cell>
-                </row>
-            </header>
-            <detail>
-                <row id="1871">
-                    <cell id="1872">
-                        <label id="1873">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Model No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1874">
-                        <data id="1875">
-                            <property name="resultSetColumn">prodmodel</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1876">
-                    <cell id="1877">
-                        <label id="1878">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Serial No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1879">
-                        <data id="1880">
-                            <property name="resultSetColumn">SerialNo</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1881">
-                    <cell id="1882">
-                        <label id="1883">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Pattern Type:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1884">
-                        <label id="1885">
-                            <text-property name="text">CP</text-property>
-                        </label>
-                    </cell>
-                </row>
-                <row id="1886">
-                    <cell id="1887">
-                        <label id="1888">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Frequency:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1889">
-                        <text-data id="1890">
-                            <expression name="valueExpr">params["freq16"] +"("+row["frequnit"]+")"</expression>
-                            <property name="contentType">html</property>
-                        </text-data>
-                    </cell>
-                </row>
-            </detail>
-        </table>
         <extended-item extensionName="Chart" id="1447">
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/RadarChartModelType">
   <Version>2.6.1</Version>
@@ -26104,16 +24741,15 @@ else&#xD;
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>false</Visible>
+      <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Polar Chart</Value>
           <Font>
-            <Size>16.0</Size>
+            <Size>8.0</Size>
             <Bold>true</Bold>
             <Alignment>
-              <horizontalAlignment>Center</horizontalAlignment>
-              <verticalAlignment>Center</verticalAlignment>
+              <horizontalAlignment>Left</horizontalAlignment>
+              <verticalAlignment>Top</verticalAlignment>
             </Alignment>
           </Font>
         </Caption>
@@ -26369,7 +25005,11 @@ function beforeGeneration( chart, icsc )&#xD;
 		catRunSeries = seriesDef.getRunTimeSeries();&#xD;
 		valSeriesDef = seriesDef.getSeriesDefinitions().get(0);&#xD;
 		var series = valSeriesDef.getSeries().get(0);&#xD;
-		&#xD;
+		var Amodelno=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AmodelNo&quot;);&#xD;
+		var SerialNo=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AserialNo&quot;);&#xD;
+		var Freqwithunit=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;Freqwithunit16&quot;);&#xD;
+		//chart.getTitle().getLabel().getCaption().setValue(&quot;Antenna Model No:&quot;+Amodelno+&quot;,Antenna Serial No:&quot;+SerialNo+&quot;,Pattern Type:CP,Frequency:&quot;+Freqwithunit);&#xD;
+		chart.getTitle().getLabel().getCaption().setValue(Amodelno+&quot; SL NO-&quot;+SerialNo+&quot; CP AT &quot;+Freqwithunit);&#xD;
 			//series.setPlotSteps(BigInteger.valueOf(5));&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
@@ -27207,108 +25847,6 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
-        <table id="1893">
-            <property name="dataSet">TestDescription</property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">prodmodel</property>
-                    <text-property name="displayName">prodmodel</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">SerialNo</property>
-                    <text-property name="displayName">SerialNo</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["SerialNo"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">frequnit</property>
-                    <text-property name="displayName">frequnit</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-            </list-property>
-            <column id="1917"/>
-            <column id="1918"/>
-            <header>
-                <row id="1894">
-                    <cell id="1895">
-                        <property name="colSpan">2</property>
-                        <property name="rowSpan">1</property>
-                        <label id="1896">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">14pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Test Details</text-property>
-                        </label>
-                    </cell>
-                </row>
-            </header>
-            <detail>
-                <row id="1897">
-                    <cell id="1898">
-                        <label id="1899">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Model No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1900">
-                        <data id="1901">
-                            <property name="resultSetColumn">prodmodel</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1902">
-                    <cell id="1903">
-                        <label id="1904">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Serial No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1905">
-                        <data id="1906">
-                            <property name="resultSetColumn">SerialNo</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1907">
-                    <cell id="1908">
-                        <label id="1909">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Pattern Type:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1910">
-                        <label id="1911">
-                            <text-property name="text">CP</text-property>
-                        </label>
-                    </cell>
-                </row>
-                <row id="1912">
-                    <cell id="1913">
-                        <label id="1914">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Frequency:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1915">
-                        <text-data id="1916">
-                            <expression name="valueExpr">params["freq17"] +"("+row["frequnit"]+")"</expression>
-                            <property name="contentType">html</property>
-                        </text-data>
-                    </cell>
-                </row>
-            </detail>
-        </table>
         <extended-item extensionName="Chart" id="1448">
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/RadarChartModelType">
   <Version>2.6.1</Version>
@@ -27343,16 +25881,15 @@ else&#xD;
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>false</Visible>
+      <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Polar Chart</Value>
           <Font>
-            <Size>16.0</Size>
+            <Size>8.0</Size>
             <Bold>true</Bold>
             <Alignment>
-              <horizontalAlignment>Center</horizontalAlignment>
-              <verticalAlignment>Center</verticalAlignment>
+              <horizontalAlignment>Left</horizontalAlignment>
+              <verticalAlignment>Top</verticalAlignment>
             </Alignment>
           </Font>
         </Caption>
@@ -27608,7 +26145,11 @@ function beforeGeneration( chart, icsc )&#xD;
 		catRunSeries = seriesDef.getRunTimeSeries();&#xD;
 		valSeriesDef = seriesDef.getSeriesDefinitions().get(0);&#xD;
 		var series = valSeriesDef.getSeries().get(0);&#xD;
-		&#xD;
+		var Amodelno=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AmodelNo&quot;);&#xD;
+		var SerialNo=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AserialNo&quot;);&#xD;
+		var Freqwithunit=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;Freqwithunit17&quot;);&#xD;
+		//chart.getTitle().getLabel().getCaption().setValue(&quot;Antenna Model No:&quot;+Amodelno+&quot;,Antenna Serial No:&quot;+SerialNo+&quot;,Pattern Type:CP,Frequency:&quot;+Freqwithunit);&#xD;
+		chart.getTitle().getLabel().getCaption().setValue(Amodelno+&quot; SL NO-&quot;+SerialNo+&quot; CP AT &quot;+Freqwithunit);&#xD;
 			//series.setPlotSteps(BigInteger.valueOf(5));&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
@@ -28446,108 +26987,6 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
-        <table id="1919">
-            <property name="dataSet">TestDescription</property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">prodmodel</property>
-                    <text-property name="displayName">prodmodel</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">SerialNo</property>
-                    <text-property name="displayName">SerialNo</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["SerialNo"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
-                    <property name="name">frequnit</property>
-                    <text-property name="displayName">frequnit</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-            </list-property>
-            <column id="1943"/>
-            <column id="1944"/>
-            <header>
-                <row id="1920">
-                    <cell id="1921">
-                        <property name="colSpan">2</property>
-                        <property name="rowSpan">1</property>
-                        <label id="1922">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">14pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Test Details</text-property>
-                        </label>
-                    </cell>
-                </row>
-            </header>
-            <detail>
-                <row id="1923">
-                    <cell id="1924">
-                        <label id="1925">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Model No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1926">
-                        <data id="1927">
-                            <property name="resultSetColumn">prodmodel</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1928">
-                    <cell id="1929">
-                        <label id="1930">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Antenna Serial No:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1931">
-                        <data id="1932">
-                            <property name="resultSetColumn">SerialNo</property>
-                        </data>
-                    </cell>
-                </row>
-                <row id="1933">
-                    <cell id="1934">
-                        <label id="1935">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Pattern Type:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1936">
-                        <label id="1937">
-                            <text-property name="text">CP</text-property>
-                        </label>
-                    </cell>
-                </row>
-                <row id="1938">
-                    <cell id="1939">
-                        <label id="1940">
-                            <property name="fontFamily">"Times New Roman"</property>
-                            <property name="fontSize">12pt</property>
-                            <property name="fontWeight">bold</property>
-                            <text-property name="text">Frequency:</text-property>
-                        </label>
-                    </cell>
-                    <cell id="1941">
-                        <text-data id="1942">
-                            <expression name="valueExpr">params["freq18"] +"("+row["frequnit"]+")"</expression>
-                            <property name="contentType">html</property>
-                        </text-data>
-                    </cell>
-                </row>
-            </detail>
-        </table>
         <extended-item extensionName="Chart" id="1449">
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/RadarChartModelType">
   <Version>2.6.1</Version>
@@ -28582,16 +27021,15 @@ else&#xD;
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>false</Visible>
+      <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Polar Chart</Value>
           <Font>
-            <Size>16.0</Size>
+            <Size>8.0</Size>
             <Bold>true</Bold>
             <Alignment>
-              <horizontalAlignment>Center</horizontalAlignment>
-              <verticalAlignment>Center</verticalAlignment>
+              <horizontalAlignment>Left</horizontalAlignment>
+              <verticalAlignment>Top</verticalAlignment>
             </Alignment>
           </Font>
         </Caption>
@@ -28847,7 +27285,11 @@ function beforeGeneration( chart, icsc )&#xD;
 		catRunSeries = seriesDef.getRunTimeSeries();&#xD;
 		valSeriesDef = seriesDef.getSeriesDefinitions().get(0);&#xD;
 		var series = valSeriesDef.getSeries().get(0);&#xD;
-		&#xD;
+		var Amodelno=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AmodelNo&quot;);&#xD;
+		var SerialNo=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;AserialNo&quot;);&#xD;
+		var Freqwithunit=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;Freqwithunit18&quot;);&#xD;
+		//chart.getTitle().getLabel().getCaption().setValue(&quot;Antenna Model No:&quot;+Amodelno+&quot;,Antenna Serial No:&quot;+SerialNo+&quot;,Pattern Type:CP,Frequency:&quot;+Freqwithunit);&#xD;
+		chart.getTitle().getLabel().getCaption().setValue(Amodelno+&quot; SL NO-&quot;+SerialNo+&quot; CP AT &quot;+Freqwithunit);&#xD;
 			//series.setPlotSteps(BigInteger.valueOf(5));&#xD;
 			scaleparam=icsc.getExternalContext().getScriptable().getPersistentGlobalVariable(&quot;scaleparam&quot;);&#xD;
 			&#xD;
@@ -29685,5 +28127,262 @@ else&#xD;
                 </structure>
             </list-property>
         </extended-item>
+        <table id="1968">
+            <property name="dataSet">TestDescription</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">true</expression>
+                </structure>
+            </list-property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">testproc</property>
+                    <text-property name="displayName">testproc</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["testproc"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TestDesc</property>
+                    <text-property name="displayName">TestDesc</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TestDesc"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TestDate</property>
+                    <text-property name="displayName">TestDate</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TestDate"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">frequnit</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">testcenter</property>
+                    <text-property name="displayName">testcenter</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["testcenter"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">instruments</property>
+                    <text-property name="displayName">instruments</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["instruments"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Calibration</property>
+                    <text-property name="displayName">calibration</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Calibration"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">SerialNo</property>
+                    <text-property name="displayName">SerialNo</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["SerialNo"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Productname</property>
+                    <text-property name="displayName">Productname</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Productname"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Version</property>
+                    <text-property name="displayName">version</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Version"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Product_id</property>
+                    <text-property name="displayName">Product_id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Product_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">inst_slno</property>
+                    <text-property name="displayName">inst_slno</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["inst_slno"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">prodmodel</property>
+                    <text-property name="displayName">prodmodel</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["prodmodel"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="2037"/>
+            <column id="2038"/>
+            <column id="2039"/>
+            <column id="2040"/>
+            <column id="2041"/>
+            <column id="2042"/>
+            <column id="2043"/>
+            <column id="2044"/>
+            <column id="2045"/>
+            <column id="2046"/>
+            <column id="2047"/>
+            <column id="2048"/>
+            <column id="2049"/>
+            <header>
+                <row id="1969">
+                    <cell id="1970">
+                        <label id="1971">
+                            <text-property name="text">testproc</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1972">
+                        <label id="1973">
+                            <text-property name="text">TestDesc</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1974">
+                        <label id="1975">
+                            <text-property name="text">TestDate</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1976">
+                        <label id="1977">
+                            <text-property name="text">frequnit</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1978">
+                        <label id="1979">
+                            <text-property name="text">testcenter</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1980">
+                        <label id="1981">
+                            <text-property name="text">instruments</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1982">
+                        <label id="1983">
+                            <text-property name="text">calibration</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1984">
+                        <label id="1985">
+                            <text-property name="text">SerialNo</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1986">
+                        <label id="1987">
+                            <text-property name="text">Productname</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1988">
+                        <label id="1989">
+                            <text-property name="text">version</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1990">
+                        <label id="1991">
+                            <text-property name="text">Product_id</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1992">
+                        <label id="1993">
+                            <text-property name="text">inst_slno</text-property>
+                        </label>
+                    </cell>
+                    <cell id="1994">
+                        <label id="1995">
+                            <text-property name="text">prodmodel</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="1996">
+                    <cell id="1997">
+                        <data id="1998">
+                            <property name="resultSetColumn">testproc</property>
+                        </data>
+                    </cell>
+                    <cell id="1999">
+                        <data id="2000">
+                            <property name="resultSetColumn">TestDesc</property>
+                        </data>
+                    </cell>
+                    <cell id="2001">
+                        <data id="2002">
+                            <property name="resultSetColumn">TestDate</property>
+                        </data>
+                    </cell>
+                    <cell id="2003">
+                        <data id="2004">
+                            <property name="resultSetColumn">frequnit</property>
+                        </data>
+                    </cell>
+                    <cell id="2005">
+                        <data id="2006">
+                            <property name="resultSetColumn">testcenter</property>
+                        </data>
+                    </cell>
+                    <cell id="2007">
+                        <data id="2008">
+                            <property name="resultSetColumn">instruments</property>
+                        </data>
+                    </cell>
+                    <cell id="2009">
+                        <data id="2010">
+                            <property name="resultSetColumn">Calibration</property>
+                        </data>
+                    </cell>
+                    <cell id="2011">
+                        <data id="2012">
+                            <property name="resultSetColumn">SerialNo</property>
+                        </data>
+                    </cell>
+                    <cell id="2013">
+                        <data id="2014">
+                            <property name="resultSetColumn">Productname</property>
+                        </data>
+                    </cell>
+                    <cell id="2015">
+                        <data id="2016">
+                            <property name="resultSetColumn">Version</property>
+                        </data>
+                    </cell>
+                    <cell id="2017">
+                        <data id="2018">
+                            <property name="resultSetColumn">Product_id</property>
+                        </data>
+                    </cell>
+                    <cell id="2019">
+                        <data id="2020">
+                            <property name="resultSetColumn">inst_slno</property>
+                        </data>
+                    </cell>
+                    <cell id="2021">
+                        <data id="2022">
+                            <property name="resultSetColumn">prodmodel</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="2023">
+                    <cell id="2024"/>
+                    <cell id="2025"/>
+                    <cell id="2026"/>
+                    <cell id="2027"/>
+                    <cell id="2028"/>
+                    <cell id="2029"/>
+                    <cell id="2030"/>
+                    <cell id="2031"/>
+                    <cell id="2032"/>
+                    <cell id="2033"/>
+                    <cell id="2034"/>
+                    <cell id="2035"/>
+                    <cell id="2036"/>
+                </row>
+            </footer>
+        </table>
     </body>
 </report>
