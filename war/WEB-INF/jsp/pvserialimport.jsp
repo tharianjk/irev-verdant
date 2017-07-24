@@ -681,13 +681,12 @@ function Delete(){
 };
 
 function Deletefreq(){
-var table =document.getElementById("tblData") ;	
-var rowCount=table.rows.length;
-for(var i=rowCount-1;i>0;i--)
-{
-table.deleteRow(i);
-
-}
+	var table =document.getElementById("tblData") ;	
+	var rowCount=table.rows.length;
+	for(var i=rowCount-1;i>0;i--)
+	{
+	   table.deleteRow(i);
+	}
 }
 
 
