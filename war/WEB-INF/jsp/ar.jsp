@@ -10,12 +10,15 @@
 <body>
 <table>
  <tr>
-		
+		<td><input type="checkbox" id="showtitle" value="true" checked >Show Header & Footer &nbsp; &nbsp;&nbsp;	   </td>
        <td>
        	  <label>Select Max Diff Option : </label>
-	   <input type="checkbox" id="p45" value="p45" checked >0 to +45 &#176; &nbsp; &nbsp;&nbsp;
-       <input type="checkbox" id="n45" value="n45" checked >0 to -45 &#176;  &nbsp; &nbsp;&nbsp;
-      
+			   <input type="checkbox" id="p45" value="p45" checked >0 to +45 &#176; &nbsp; &nbsp;&nbsp;	   
+		       <input type="checkbox" id="n45" value="n45" checked >0 to -45 &#176;  &nbsp; &nbsp;&nbsp;
+		       <input type="checkbox" id="p30" value="p30" checked >0 to +30 &#176; &nbsp; &nbsp;&nbsp;
+		       <input type="checkbox" id="n30" value="p30" checked >0 to +30 &#176; &nbsp; &nbsp;&nbsp;
+		       <input type="checkbox" id="p60" value="p60" checked >0 to +60 &#176; &nbsp; &nbsp;&nbsp;
+		       <input type="checkbox" id="n60" value="p60" checked >0 to +60 &#176; &nbsp; &nbsp;&nbsp;
           </td>
 		<td>&nbsp; &nbsp;&nbsp;<input type="button" value="Go" name="go" class="myButtonGo" onclick="Redirect()"/>
 		<!-- &nbsp; &nbsp;&nbsp;<input type="button" value="back" name="go" class="myButtonGo" onclick="back()"/> -->
