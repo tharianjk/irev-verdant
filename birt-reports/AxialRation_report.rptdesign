@@ -2169,5 +2169,259 @@
                 </cell>
             </row>
         </grid>
+        <grid id="68">
+            <property name="pageBreakBefore">always</property>
+            <column id="69"/>
+            <column id="70"/>
+            <row id="71">
+                <cell id="72">
+                    <property name="colSpan">2</property>
+                    <property name="rowSpan">1</property>
+                    <label id="73">
+                        <property name="fontSize">medium</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">center</property>
+                        <text-property name="text">Axial Ratio Table Over Maximum Difference</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="74">
+                <cell id="75">
+                    <property name="colSpan">2</property>
+                    <property name="rowSpan">1</property>
+                    <table id="76">
+                        <property name="style">TableStyleCustom</property>
+                        <column id="112"/>
+                        <column id="113"/>
+                        <column id="114"/>
+                        <column id="115"/>
+                        <column id="116"/>
+                        <column id="117"/>
+                        <column id="118"/>
+                        <header>
+                            <row id="77">
+                                <property name="fontStyle">normal</property>
+                                <cell id="78">
+                                    <text-data id="79">
+                                        <property name="fontWeight">bold</property>
+                                        <expression name="valueExpr">'Spot Freq. (GHz)'</expression>
+                                        <property name="contentType">html</property>
+                                    </text-data>
+                                </cell>
+                                <cell id="80">
+                                    <grid id="1383">
+                                        <column id="1384"/>
+                                        <column id="1385"/>
+                                        <row id="1386">
+                                            <cell id="1387">
+                                                <property name="colSpan">2</property>
+                                                <property name="rowSpan">1</property>
+                                                <label id="1388">
+                                                    <property name="fontWeight">bold</property>
+                                                    <property name="textAlign">center</property>
+                                                    <text-property name="text">Max Diff&#13;
+0 to +30&#13;
+</text-property>
+                                                </label>
+                                            </cell>
+                                        </row>
+                                        <row id="1389">
+                                            <cell id="1390">
+                                                <label id="1391">
+                                                    <property name="fontWeight">bold</property>
+                                                    <text-property name="text">Ratio</text-property>
+                                                </label>
+                                            </cell>
+                                            <cell id="1392">
+                                                <label id="1393">
+                                                    <property name="fontWeight">bold</property>
+                                                    <text-property name="text">Angle</text-property>
+                                                </label>
+                                            </cell>
+                                        </row>
+                                    </grid>
+                                </cell>
+                                <cell id="82">
+                                    <grid id="1405">
+                                        <column id="1406"/>
+                                        <column id="1407"/>
+                                        <row id="1408">
+                                            <cell id="1409">
+                                                <property name="colSpan">2</property>
+                                                <property name="rowSpan">1</property>
+                                                <label id="1410">
+                                                    <property name="fontWeight">bold</property>
+                                                    <property name="textAlign">center</property>
+                                                    <text-property name="text">Max Diff&#13;
+0 to -30&#13;
+</text-property>
+                                                </label>
+                                            </cell>
+                                        </row>
+                                        <row id="1411">
+                                            <cell id="1412">
+                                                <label id="1413">
+                                                    <property name="fontWeight">bold</property>
+                                                    <text-property name="text">Ratio</text-property>
+                                                </label>
+                                            </cell>
+                                            <cell id="1414">
+                                                <label id="1415">
+                                                    <property name="fontWeight">bold</property>
+                                                    <text-property name="text">Angle</text-property>
+                                                </label>
+                                            </cell>
+                                        </row>
+                                    </grid>
+                                </cell>
+                                <cell id="84">
+                                    <grid id="1427">
+                                        <column id="1428"/>
+                                        <column id="1429"/>
+                                        <row id="1430">
+                                            <cell id="1431">
+                                                <property name="colSpan">2</property>
+                                                <property name="rowSpan">1</property>
+                                                <label id="1432">
+                                                    <property name="fontWeight">bold</property>
+                                                    <property name="textAlign">center</property>
+                                                    <text-property name="text">Max Diff&#13;
+0 to +45&#13;
+</text-property>
+                                                </label>
+                                            </cell>
+                                        </row>
+                                        <row id="1433">
+                                            <cell id="1434">
+                                                <label id="1435">
+                                                    <property name="fontWeight">bold</property>
+                                                    <text-property name="text">Ratio</text-property>
+                                                </label>
+                                            </cell>
+                                            <cell id="1436">
+                                                <label id="1437">
+                                                    <property name="fontWeight">bold</property>
+                                                    <text-property name="text">Angle</text-property>
+                                                </label>
+                                            </cell>
+                                        </row>
+                                    </grid>
+                                </cell>
+                                <cell id="86">
+                                    <grid id="1438">
+                                        <column id="1439"/>
+                                        <column id="1440"/>
+                                        <row id="1441">
+                                            <cell id="1442">
+                                                <property name="colSpan">2</property>
+                                                <property name="rowSpan">1</property>
+                                                <label id="1443">
+                                                    <property name="fontWeight">bold</property>
+                                                    <property name="textAlign">center</property>
+                                                    <text-property name="text">Max Diff&#13;
+0 to -45&#13;
+</text-property>
+                                                </label>
+                                            </cell>
+                                        </row>
+                                        <row id="1444">
+                                            <cell id="1445">
+                                                <label id="1446">
+                                                    <property name="fontWeight">bold</property>
+                                                    <text-property name="text">Ratio</text-property>
+                                                </label>
+                                            </cell>
+                                            <cell id="1447">
+                                                <label id="1448">
+                                                    <property name="fontWeight">bold</property>
+                                                    <text-property name="text">Angle</text-property>
+                                                </label>
+                                            </cell>
+                                        </row>
+                                    </grid>
+                                </cell>
+                                <cell id="88">
+                                    <grid id="1449">
+                                        <column id="1450"/>
+                                        <column id="1451"/>
+                                        <row id="1452">
+                                            <cell id="1453">
+                                                <property name="colSpan">2</property>
+                                                <property name="rowSpan">1</property>
+                                                <label id="1454">
+                                                    <property name="fontWeight">bold</property>
+                                                    <property name="textAlign">center</property>
+                                                    <text-property name="text">Max Diff&#13;
+0 to +60&#13;
+</text-property>
+                                                </label>
+                                            </cell>
+                                        </row>
+                                        <row id="1455">
+                                            <cell id="1456">
+                                                <label id="1457">
+                                                    <property name="fontWeight">bold</property>
+                                                    <text-property name="text">Ratio</text-property>
+                                                </label>
+                                            </cell>
+                                            <cell id="1458">
+                                                <label id="1459">
+                                                    <property name="fontWeight">bold</property>
+                                                    <text-property name="text">Angle</text-property>
+                                                </label>
+                                            </cell>
+                                        </row>
+                                    </grid>
+                                </cell>
+                                <cell id="90">
+                                    <grid id="1460">
+                                        <column id="1461"/>
+                                        <column id="1462"/>
+                                        <row id="1463">
+                                            <cell id="1464">
+                                                <property name="colSpan">2</property>
+                                                <property name="rowSpan">1</property>
+                                                <label id="1465">
+                                                    <property name="fontWeight">bold</property>
+                                                    <property name="textAlign">center</property>
+                                                    <text-property name="text">Max Diff&#13;
+0 to -60&#13;
+</text-property>
+                                                </label>
+                                            </cell>
+                                        </row>
+                                        <row id="1466">
+                                            <cell id="1467">
+                                                <label id="1468">
+                                                    <property name="fontWeight">bold</property>
+                                                    <text-property name="text">Ratio</text-property>
+                                                </label>
+                                            </cell>
+                                            <cell id="1469">
+                                                <label id="1470">
+                                                    <property name="fontWeight">bold</property>
+                                                    <text-property name="text">Angle</text-property>
+                                                </label>
+                                            </cell>
+                                        </row>
+                                    </grid>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="94">
+                                <cell id="95"/>
+                                <cell id="96"/>
+                                <cell id="97"/>
+                                <cell id="98"/>
+                                <cell id="99"/>
+                                <cell id="100"/>
+                                <cell id="101"/>
+                            </row>
+                        </detail>
+                    </table>
+                </cell>
+            </row>
+        </grid>
     </body>
 </report>
