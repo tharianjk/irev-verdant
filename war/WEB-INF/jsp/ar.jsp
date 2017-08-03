@@ -47,9 +47,9 @@ marginwidth="0" marginheight="0" align="right" class="AppBody">
 		var testid=${model.testid};
 		var rptheader='${model.rptheader}';
 		var rptfooter='${model.rptfooter}';
-		if(document.getElementById("showtitle").checked){
-		 rptheader='';
-		 rptfooter='';
+		if(!document.getElementById("showtitle").checked){
+		 rptheader='header';
+		 rptfooter='footer';
 		}
 		var typ='${model.typ}';
 		nprecision='${model.nprecision}';
