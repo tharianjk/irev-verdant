@@ -1,5 +1,6 @@
 -- 03-08-2017
 drop table IF EXISTS fdata;
+drop table IF EXISTS fcalculated;
 
 CREATE TABLE IF NOT EXISTS fData (
   FData_id INT AUTO_INCREMENT NOT NULL,
@@ -13,6 +14,34 @@ ENGINE = InnoDB;
 
 alter table fdata add constraint FK_fdata_test foreign key (Test_id) references testdata(Test_id);
 create index testid_freq_angle_fp on fData(Test_id, Frequency, angle,Amplitude);
+
+CREATE TABLE fcalculated (
+  FCalculated_Id int(11) NOT NULL AUTO_INCREMENT,
+  Test_id int(11) DEFAULT NULL,
+  `Frequency` decimal(40,20) DEFAULT NULL,
+  `TestDate` datetime DEFAULT NULL,
+  `OmniDeviation` decimal(40,20) DEFAULT NULL,
+  `3Db_BW_BMax` decimal(40,20) DEFAULT NULL,
+  `3Db_BW_0` decimal(40,20) DEFAULT NULL,
+  `3Db_BW_90` decimal(40,20) DEFAULT NULL,
+  `3Db_BS_BMax` decimal(40,20) DEFAULT NULL,
+  `3Db_BS_0` decimal(40,20) DEFAULT NULL,
+  `3Db_BS_90` decimal(40,20) DEFAULT NULL,
+  `10Db_BW_BMax` decimal(40,20) DEFAULT NULL,
+  `10Db_BW_0` decimal(40,20) DEFAULT NULL,
+  `10Db_BW_90` decimal(40,20) DEFAULT NULL,
+  `10Db_BS_BMax` decimal(40,20) DEFAULT NULL,
+  `10Db_BS_0` decimal(40,20) DEFAULT NULL,
+  `10Db_BS_90` decimal(40,20) DEFAULT NULL,
+  `BackLobe` decimal(40,20) DEFAULT NULL,
+  `3Db_BW_270` decimal(40,20) DEFAULT NULL,
+  `3Db_BS_270` decimal(40,20) DEFAULT NULL,
+  `10Db_BW_270` decimal(40,20) DEFAULT NULL,
+  `10Db_BS_270` decimal(40,20) DEFAULT NULL,
+  PRIMARY KEY (`FCalculated_Id`),
+  KEY `FK_fcalculated_prd` (`Test_id`),
+  CONSTRAINT `FK_fcalculated_prd` FOREIGN KEY (`Test_id`) REFERENCES `testdata` (`Test_id`)
+) ENGINE=InnoDB;
 
 
 -- 24-07-2017
