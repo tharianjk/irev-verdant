@@ -461,7 +461,13 @@ $(document).ready( function () {
 	    el = document.createElement("option");
 	    el.textContent = 'Direct CP';
 	    el.value ='DCP';
-	    testtype.appendChild(el); }
+	    testtype.appendChild(el); 
+	    // Phase cp phase difference
+	    el = document.createElement("option");
+	    el.textContent = 'CP Phase Difference';
+	    el.value ='CPPD';
+	    testtype.appendChild(el); 
+	}
 	
 	//document.getElementById("strfreq").value='{"jsonfreq":[{"freq":100, "lg":1},{"freq":1000, "lg":2},{"freq":2000, "lg":2}]}';
 	/*if(document.getElementById("ptype").value=="C")
@@ -596,7 +602,7 @@ $('#testtype').on('change', function() {
 		    ftype.appendChild(el);    
 		}
 		if(sel=="CP" && ptype=="C") {
-			 var el = document.createElement("option");
+			var el = document.createElement("option");
 			el.textContent = "--Select--";
 			el.value = "-1";
 			ftype.appendChild(el);	  
@@ -608,6 +614,7 @@ $('#testtype').on('change', function() {
 		    el.textContent = 'HP Data';
 		    el.value ='Hdata';
 		    ftype.appendChild(el);
+		    
 		        
 		}
 		if(sel=="NCP" && ptype=="C") {
@@ -624,15 +631,33 @@ $('#testtype').on('change', function() {
 		    el.value ='Hdata';
 		    ftype.appendChild(el);
 		    ftype.appendChild(el);    
+		    el = document.createElement("option");
+		    el.textContent = '45 Deg. Pol.';
+		    el.value ='fdata';
+		    ftype.appendChild(el);
 		}
 		if(sel=="DCP" && ptype=="C") {
 			   
 		    var el = document.createElement("option");
 		    el.textContent = 'CP Data';
 		    el.value ='CPdata';
-		    ftype.appendChild(el);}
+		    ftype.appendChild(el);
+	    }
 		
-		
+		if(sel=="CPPD" && ptype=="C") {
+			var el = document.createElement("option");
+			el.textContent = "--Select--";
+			el.value = "-1";
+			ftype.appendChild(el);	  
+		    el = document.createElement("option");
+		    el.textContent = 'VP Data';
+		    el.value ='Vdata';
+		    ftype.appendChild(el);
+		    el = document.createElement("option");
+		    el.textContent = 'HP Data';
+		    el.value ='Hdata';
+		    ftype.appendChild(el);
+	    }
 		
 	});
 

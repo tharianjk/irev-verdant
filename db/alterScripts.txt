@@ -1,13 +1,3 @@
--- 03-08-2017
-
-CREATE TABLE IF NOT EXISTS fData (
- FData_id INT AUTO_INCREMENT NOT NULL,
- Test_id INT NULL,
-  Frequency decimal(40,20),
- Angle DECIMAL(12,2) NULL,
- Amplitude DECIMAL(12,8) NULL,  
- PRIMARY KEY (FData_id))
-
 -- 10-08-2017
 drop view if exists phasedifference_view;
 
@@ -79,7 +69,7 @@ CREATE TABLE IF NOT EXISTS fData (
   Amplitude DECIMAL(12,8) NULL,  
   PRIMARY KEY (FData_id));
 
-
+ 
 alter table fdata add constraint FK_fdata_test foreign key (Test_id) references testdata(Test_id);
 create index testid_freq_angle_fp on fData(Test_id, Frequency, angle,Amplitude);
 

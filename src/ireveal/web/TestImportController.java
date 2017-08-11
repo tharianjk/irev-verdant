@@ -86,15 +86,15 @@ public class TestImportController extends SimpleFormController{
 		 
 		if(action.equals("Done")){
 		 stat=	mastersservice.CalcProc(file.getPtype(),testid);
-		if(stat==0)
-		{
-			err="Failed to calculate";
-			
-		}
-		else
-		{
-			err="Calculation completed successfully";
-		}
+			if(stat==0)
+			{
+				err="Failed to calculate";
+				
+			}
+			else
+			{
+				err="Calculation completed successfully";
+			}
 		}
 		
 		else{
