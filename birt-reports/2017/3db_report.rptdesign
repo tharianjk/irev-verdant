@@ -29,10 +29,10 @@
             <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
-            <property name="dataType">integer</property>
+            <property name="dataType">string</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
-                <value type="constant">2</value>
+                <value type="constant">3</value>
             </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -46,10 +46,10 @@
             <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
-            <property name="dataType">integer</property>
+            <property name="dataType">string</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
-                <value type="constant">1</value>
+                <value type="constant">2</value>
             </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -137,6 +137,12 @@
                     <property name="analysis">measure</property>
                     <text-property name="displayName">Frequency</text-property>
                     <text-property name="heading">Frequency</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">frequnit</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">frequnit</text-property>
+                    <text-property name="heading">frequnit</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">3Db_BW_BMaxHP</property>
@@ -383,8 +389,8 @@
                     <property name="isOutput">false</property>
                 </structure>
                 <structure>
-                    <property name="name">R_12</property>
-                    <property name="paramName">pc</property>
+                    <property name="name">TestID_1</property>
+                    <property name="paramName">testid</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
@@ -393,7 +399,7 @@
                     <property name="isOutput">false</property>
                 </structure>
                 <structure>
-                    <property name="name">R_13</property>
+                    <property name="name">R_12</property>
                     <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
@@ -403,7 +409,7 @@
                     <property name="isOutput">false</property>
                 </structure>
                 <structure>
-                    <property name="name">R_14</property>
+                    <property name="name">R_13</property>
                     <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
@@ -413,7 +419,7 @@
                     <property name="isOutput">false</property>
                 </structure>
                 <structure>
-                    <property name="name">R_15</property>
+                    <property name="name">R_14</property>
                     <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
@@ -423,7 +429,7 @@
                     <property name="isOutput">false</property>
                 </structure>
                 <structure>
-                    <property name="name">R_16</property>
+                    <property name="name">R_15</property>
                     <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
@@ -433,7 +439,7 @@
                     <property name="isOutput">false</property>
                 </structure>
                 <structure>
-                    <property name="name">R_17</property>
+                    <property name="name">R_16</property>
                     <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
@@ -443,7 +449,7 @@
                     <property name="isOutput">false</property>
                 </structure>
                 <structure>
-                    <property name="name">R_18</property>
+                    <property name="name">R_17</property>
                     <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
@@ -453,7 +459,7 @@
                     <property name="isOutput">false</property>
                 </structure>
                 <structure>
-                    <property name="name">R_19</property>
+                    <property name="name">R_18</property>
                     <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
@@ -463,7 +469,7 @@
                     <property name="isOutput">false</property>
                 </structure>
                 <structure>
-                    <property name="name">R_20</property>
+                    <property name="name">R_19</property>
                     <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
@@ -473,7 +479,7 @@
                     <property name="isOutput">false</property>
                 </structure>
                 <structure>
-                    <property name="name">R_21</property>
+                    <property name="name">R_20</property>
                     <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
@@ -483,7 +489,7 @@
                     <property name="isOutput">false</property>
                 </structure>
                 <structure>
-                    <property name="name">R_22</property>
+                    <property name="name">R_21</property>
                     <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
@@ -493,8 +499,8 @@
                     <property name="isOutput">false</property>
                 </structure>
                 <structure>
-                    <property name="name">R_23</property>
-                    <property name="paramName">pc</property>
+                    <property name="name">Test_ID_2</property>
+                    <property name="paramName">testid</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
@@ -503,12 +509,92 @@
                     <property name="isOutput">false</property>
                 </structure>
                 <structure>
-                    <property name="name">TestID</property>
-                    <property name="paramName">testid</property>
+                    <property name="name">R_22</property>
+                    <property name="paramName">pc</property>
                     <property name="nativeName"></property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">-1</property>
                     <property name="position">24</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">R_23</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">25</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">26</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_3</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">27</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_4</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">28</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_5</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">29</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_6</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">30</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_7</property>
+                    <property name="paramName">pc</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">31</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">Test_Id_3</property>
+                    <property name="paramName">testid</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">32</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -522,116 +608,121 @@
                     </structure>
                     <structure>
                         <property name="position">2</property>
-                        <property name="name">3Db_BW_BMaxHP</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">frequnit</property>
+                        <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">3</property>
-                        <property name="name">3Db_BS_BMaxHP</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">3Db_BW_BMaxHP</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">4</property>
-                        <property name="name">3Db_BW_0HP</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">3Db_BS_BMaxHP</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">5</property>
-                        <property name="name">3Db_BS_0HP</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">3Db_BW_0HP</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">6</property>
-                        <property name="name">3Db_BW_90HP</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">3Db_BS_0HP</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">7</property>
-                        <property name="name">3Db_BS_90HP</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">3Db_BW_90HP</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">8</property>
-                        <property name="name">3Db_BW_270HP</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">3Db_BS_90HP</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">9</property>
-                        <property name="name">3Db_BS_270HP</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">3Db_BW_270HP</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">10</property>
-                        <property name="name">3Db_BW_BMaxVC</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">3Db_BS_270HP</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">11</property>
-                        <property name="name">3Db_BS_BMaxVC</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">3Db_BW_BMaxVC</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">12</property>
-                        <property name="name">3Db_BW_0VC</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">3Db_BS_BMaxVC</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">13</property>
-                        <property name="name">3Db_BS_0VC</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">3Db_BW_0VC</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">14</property>
-                        <property name="name">3Db_BW_90VC</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">3Db_BS_0VC</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">15</property>
-                        <property name="name">3Db_BS_90VC</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">3Db_BW_90VC</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">16</property>
-                        <property name="name">3Db_BW_270VC</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">3Db_BS_90VC</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">17</property>
-                        <property name="name">3Db_BS_270VC</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">3Db_BW_270VC</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">18</property>
-                        <property name="name">3Db_BW_BMaxFC</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">3Db_BS_270VC</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">19</property>
-                        <property name="name">3Db_BS_BMaxFC</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">3Db_BW_BMaxFC</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">20</property>
-                        <property name="name">3Db_BW_0FC</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">3Db_BS_BMaxFC</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">21</property>
-                        <property name="name">3Db_BS_0FC</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">3Db_BW_0FC</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">22</property>
-                        <property name="name">3Db_BW_90FC</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">3Db_BS_0FC</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">23</property>
-                        <property name="name">3Db_BS_90FC</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">3Db_BW_90FC</property>
+                        <property name="dataType">float</property>
                     </structure>
                     <structure>
                         <property name="position">24</property>
+                        <property name="name">3Db_BS_90FC</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">25</property>
                         <property name="name">displaycount</property>
                         <property name="dataType">integer</property>
                     </structure>
@@ -648,160 +739,195 @@
                 </structure>
                 <structure>
                     <property name="position">2</property>
-                    <property name="name">3Db_BW_BMaxHP</property>
-                    <property name="nativeName">3Db_BW_BMaxHP</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">frequnit</property>
+                    <property name="nativeName">frequnit</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
-                    <property name="name">3Db_BS_BMaxHP</property>
-                    <property name="nativeName">3Db_BS_BMaxHP</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">3Db_BW_BMaxHP</property>
+                    <property name="nativeName">3Db_BW_BMaxHP</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
-                    <property name="name">3Db_BW_0HP</property>
-                    <property name="nativeName">3Db_BW_0HP</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">3Db_BS_BMaxHP</property>
+                    <property name="nativeName">3Db_BS_BMaxHP</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
-                    <property name="name">3Db_BS_0HP</property>
-                    <property name="nativeName">3Db_BS_0HP</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">3Db_BW_0HP</property>
+                    <property name="nativeName">3Db_BW_0HP</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">6</property>
-                    <property name="name">3Db_BW_90HP</property>
-                    <property name="nativeName">3Db_BW_90HP</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">3Db_BS_0HP</property>
+                    <property name="nativeName">3Db_BS_0HP</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">7</property>
-                    <property name="name">3Db_BS_90HP</property>
-                    <property name="nativeName">3Db_BS_90HP</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">3Db_BW_90HP</property>
+                    <property name="nativeName">3Db_BW_90HP</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">8</property>
-                    <property name="name">3Db_BW_270HP</property>
-                    <property name="nativeName">3Db_BW_270HP</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">3Db_BS_90HP</property>
+                    <property name="nativeName">3Db_BS_90HP</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">9</property>
-                    <property name="name">3Db_BS_270HP</property>
-                    <property name="nativeName">3Db_BS_270HP</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">3Db_BW_270HP</property>
+                    <property name="nativeName">3Db_BW_270HP</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">10</property>
-                    <property name="name">3Db_BW_BMaxVC</property>
-                    <property name="nativeName">3Db_BW_BMaxVC</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">3Db_BS_270HP</property>
+                    <property name="nativeName">3Db_BS_270HP</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">11</property>
-                    <property name="name">3Db_BS_BMaxVC</property>
-                    <property name="nativeName">3Db_BS_BMaxVC</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">3Db_BW_BMaxVC</property>
+                    <property name="nativeName">3Db_BW_BMaxVC</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">12</property>
-                    <property name="name">3Db_BW_0VC</property>
-                    <property name="nativeName">3Db_BW_0VC</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">3Db_BS_BMaxVC</property>
+                    <property name="nativeName">3Db_BS_BMaxVC</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">13</property>
-                    <property name="name">3Db_BS_0VC</property>
-                    <property name="nativeName">3Db_BS_0VC</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">3Db_BW_0VC</property>
+                    <property name="nativeName">3Db_BW_0VC</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">14</property>
-                    <property name="name">3Db_BW_90VC</property>
-                    <property name="nativeName">3Db_BW_90VC</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">3Db_BS_0VC</property>
+                    <property name="nativeName">3Db_BS_0VC</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">15</property>
-                    <property name="name">3Db_BS_90VC</property>
-                    <property name="nativeName">3Db_BS_90VC</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">3Db_BW_90VC</property>
+                    <property name="nativeName">3Db_BW_90VC</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">16</property>
-                    <property name="name">3Db_BW_270VC</property>
-                    <property name="nativeName">3Db_BW_270VC</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">3Db_BS_90VC</property>
+                    <property name="nativeName">3Db_BS_90VC</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">17</property>
-                    <property name="name">3Db_BS_270VC</property>
-                    <property name="nativeName">3Db_BS_270VC</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">3Db_BW_270VC</property>
+                    <property name="nativeName">3Db_BW_270VC</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">18</property>
-                    <property name="name">3Db_BW_BMaxFC</property>
-                    <property name="nativeName">3Db_BW_BMaxFC</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">3Db_BS_270VC</property>
+                    <property name="nativeName">3Db_BS_270VC</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">19</property>
-                    <property name="name">3Db_BS_BMaxFC</property>
-                    <property name="nativeName">3Db_BS_BMaxFC</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">3Db_BW_BMaxFC</property>
+                    <property name="nativeName">3Db_BW_BMaxFC</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">20</property>
-                    <property name="name">3Db_BW_0FC</property>
-                    <property name="nativeName">3Db_BW_0FC</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">3Db_BS_BMaxFC</property>
+                    <property name="nativeName">3Db_BS_BMaxFC</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">21</property>
-                    <property name="name">3Db_BS_0FC</property>
-                    <property name="nativeName">3Db_BS_0FC</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">3Db_BW_0FC</property>
+                    <property name="nativeName">3Db_BW_0FC</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">22</property>
-                    <property name="name">3Db_BW_90FC</property>
-                    <property name="nativeName">3Db_BW_90FC</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">3Db_BS_0FC</property>
+                    <property name="nativeName">3Db_BS_0FC</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
                 <structure>
                     <property name="position">23</property>
+                    <property name="name">3Db_BW_90FC</property>
+                    <property name="nativeName">3Db_BW_90FC</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
+                </structure>
+                <structure>
+                    <property name="position">24</property>
                     <property name="name">3Db_BS_90FC</property>
                     <property name="nativeName">3Db_BS_90FC</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[SELECT round(HC.Frequency,?) as Frequency,
+            <xml-property name="queryText"><![CDATA[select round(Frequency,?) Frequency,frequnit,
+sum(3Db_BW_BMaxHP) 3Db_BW_BMaxHP,
+sum(3Db_BS_BMaxHP) 3Db_BS_BMaxHP,
+sum(3Db_BW_0HP) 3Db_BW_0HP, 
+sum(3Db_BW_BMaxHP) 3Db_BS_0HP,
+sum(3Db_BS_BMaxHP) 3Db_BW_90HP,
+sum(3Db_BW_0HP) 3Db_BS_90HP ,
+sum(3Db_BW_BMaxHP) 3Db_BW_270HP,
+sum(3Db_BS_BMaxHP) 3Db_BS_270HP,
+
+sum(3Db_BW_BMaxVC) 3Db_BW_BMaxVC,
+sum(3Db_BS_BMaxVC) 3Db_BS_BMaxVC,
+sum(3Db_BW_0VC) 3Db_BW_0VC ,
+sum(3Db_BS_0VC) 3Db_BS_0VC,
+sum(3Db_BW_90VC) 3Db_BW_90VC,
+sum(3Db_BS_90VC) 3Db_BS_90VC ,
+sum(3Db_BW_270VC) 3Db_BW_270VC,
+sum(3Db_BS_270VC) 3Db_BS_270VC,
+
+sum(3Db_BW_BMaxFC) 3Db_BW_BMaxFC,
+sum(3Db_BS_BMaxFC) 3Db_BS_BMaxFC,
+sum(3Db_BW_0FC) 3Db_BW_0FC, 
+sum(3Db_BS_0FC) 3Db_BS_0FC,
+sum(3Db_BW_90FC) 3Db_BW_90FC,
+sum(3Db_BS_90FC) 3Db_BS_90FC 
+
+
+
+from (SELECT  case t.frequnit when 'GHz' then round(HC.frequency/1000,?) else round(HC.frequency,?) end Frequency,t.frequnit,
 round(HC.3Db_BW_BMax,?) as 3Db_BW_BMaxHP,
 round(HC.3Db_BS_BMax,?) as 3Db_BS_BMaxHP,
 round(HC.3Db_BW_0,?) as 3Db_BW_0HP,
@@ -812,25 +938,88 @@ round(HC.3Db_BW_270,?) as 3Db_BW_270HP,
 round(HC.3Db_BS_270,?) as 3Db_BS_270HP ,
 
 
-round(VC.3Db_BW_BMax,?) as 3Db_BW_BMaxVC,
-round(VC.3Db_BS_BMax,?) as 3Db_BS_BMaxVC,
-round(VC.3Db_BW_0,?) as 3Db_BW_0VC,
-round(VC.3Db_BS_0,?) as 3Db_BS_0VC,
-round(VC.3Db_BW_90,?) as 3Db_BW_90VC,
-round(VC.3Db_BS_90,?) as 3Db_BS_90VC,
-round(VC.3Db_BW_270,?) as 3Db_BW_270VC,
-round(VC.3Db_BS_270,?) as 3Db_BS_270VC,
+'' as 3Db_BW_BMaxVC,
+'' as 3Db_BS_BMaxVC,
+'' as 3Db_BW_0VC,
+'' as 3Db_BS_0VC,
+'' as 3Db_BW_90VC,
+'' as 3Db_BS_90VC,
+'' as 3Db_BW_270VC,
+'' as 3Db_BS_270VC,
 
-round(FC.3Db_BW_BMax,?) as 3Db_BW_BMaxFC,
-round(FC.3Db_BS_BMax,?) as 3Db_BS_BMaxFC,
-round(FC.3Db_BW_0,?) as 3Db_BW_0FC,
-round(FC.3Db_BS_0,?) as 3Db_BS_0FC,
-round(FC.3Db_BW_90,?) as 3Db_BW_90FC,
-round(FC.3Db_BS_90,?) as 3Db_BS_90FC
+'' as 3Db_BW_BMaxFC,
+'' as 3Db_BS_BMaxFC,
+'' as 3Db_BW_0FC,
+'' as 3Db_BS_0FC,
+'' as 3Db_BW_90FC,
+'' as 3Db_BS_90FC
 
 
-FROM hcalculated HC join vcalculated VC on VC.Test_id=HC.Test_id and VC.Frequency = HC.Frequency
-join fcalculated FC on FC.Test_id=HC.Test_id and FC.Frequency=HC.Frequency where VC.Test_id=?;
+FROM hcalculated HC  join testdata t on t.Test_id=HC.Test_id where HC.Test_id=? 
+
+union
+
+SELECT  case t.frequnit when 'GHz' then round(HC.frequency/1000,?) else round(HC.frequency,?) end Frequency,t.frequnit,
+'' as 3Db_BW_BMaxHP,
+'' as 3Db_BS_BMaxHP,
+'' as 3Db_BW_0HP,
+'' as 3Db_BS_0HP,
+'' as 3Db_BW_90HP,
+'' as 3Db_BS_90HP,
+'' as 3Db_BW_270HP,
+'' as 3Db_BS_270HP ,
+
+
+round(HC.3Db_BW_BMax,?) as 3Db_BW_BMaxVC,
+round(HC.3Db_BS_BMax,?) as 3Db_BS_BMaxVC,
+round(HC.3Db_BW_0,?) as 3Db_BW_0VC,
+round(HC.3Db_BS_0,?) as 3Db_BS_0VC,
+round(HC.3Db_BW_90,?) as 3Db_BW_90VC,
+round(HC.3Db_BS_90,?) as 3Db_BS_90VC,
+round(HC.3Db_BW_270,?) as 3Db_BW_270VC,
+round(HC.3Db_BS_270,?) as 3Db_BS_270VC,
+
+'' as 3Db_BW_BMaxFC,
+'' as 3Db_BS_BMaxFC,
+'' as 3Db_BW_0FC,
+'' as 3Db_BS_0FC,
+'' as 3Db_BW_90FC,
+'' as 3Db_BS_90FC
+
+
+FROM vcalculated HC   join testdata t on t.Test_id=HC.Test_id where HC.Test_id=? 
+
+union 
+
+SELECT  case t.frequnit when 'GHz' then round(HC.frequency/1000,?) else round(HC.frequency,?) end Frequency,t.frequnit,
+'' as 3Db_BW_BMaxHP,
+'' as 3Db_BS_BMaxHP,
+'' as 3Db_BW_0HP,
+'' as 3Db_BS_0HP,
+'' as 3Db_BW_90HP,
+'' as 3Db_BS_90HP,
+'' as 3Db_BW_270HP,
+'' as 3Db_BS_270HP ,
+
+
+'' as 3Db_BW_BMaxVC,
+'' as 3Db_BS_BMaxVC,
+'' as 3Db_BW_0VC,
+'' as 3Db_BS_0VC,
+'' as 3Db_BW_90VC,
+'' as 3Db_BS_90VC,
+'' as 3Db_BW_270VC,
+'' as 3Db_BS_270VC,
+
+round(HC.3Db_BW_BMax,?) as 3Db_BW_BMaxFC,
+round(HC.3Db_BS_BMax,?) as 3Db_BS_BMaxFC,
+round(HC.3Db_BW_0,?) as 3Db_BW_0FC,
+round(HC.3Db_BS_0,?) as 3Db_BS_0FC,
+round(HC.3Db_BW_90,?) as 3Db_BW_90FC,
+round(HC.3Db_BS_90,?) as 3Db_BS_90FC
+
+
+FROM fcalculated HC   join testdata t on t.Test_id=HC.Test_id where HC.Test_id=? ) as tab group by Frequency,frequnit
 
 ]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
@@ -1189,6 +1378,126 @@ join fcalculated FC on FC.Test_id=HC.Test_id and FC.Frequency=HC.Frequency where
           <design:identifier>
             <design:name></design:name>
             <design:position>24</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>25</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>26</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>27</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>28</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>29</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>30</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>31</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>32</design:position>
           </design:identifier>
           <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
           <design:precision>0</design:precision>
