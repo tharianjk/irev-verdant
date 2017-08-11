@@ -1,3 +1,65 @@
+-- 10-08-2017
+drop view if exists phasedifference_view;
+
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `phasedifference_view` AS
+    SELECT 
+        `h`.`Test_id` AS `test_id`,
+        `h`.`Frequency` AS `Frequency`,
+        `h`.`Angle` AS `angle`,
+        ABS((`v`.`phaseval` - `h`.`phaseval`)) AS `phasedifference`
+    FROM
+        (`hdata_phase` `h`
+        JOIN `vdata_phase` `v` ON (((`h`.`Test_id` = `v`.`Test_id`)
+            AND (`h`.`Frequency` = `v`.`Frequency`)
+            AND (`h`.`Angle` = `v`.`Angle`))))
+
+-- 08-08-2017
+drop table IF EXISTS hdata_phase;
+CREATE TABLE IF NOT EXISTS hdata_phase (
+  hData_id_p INT AUTO_INCREMENT NOT NULL,
+  Test_id INT NULL,
+   Frequency decimal(40,20),
+  Angle DECIMAL(12,2) NULL,
+  Phaseval DECIMAL(12,8) NULL,  
+  PRIMARY KEY (hData_id_p))
+ENGINE = InnoDB;
+alter table hdata_phase add constraint FK_hdata_phase_test foreign key (Test_id) references testdata(Test_id);
+create index testid_freq_angle_php on hdata_phase(Test_id, Frequency, angle,Phaseval);
+
+drop table IF EXISTS vdata_phase;
+CREATE TABLE IF NOT EXISTS vdata_phase (
+  vData_id_p INT AUTO_INCREMENT NOT NULL,
+  Test_id INT NULL,
+   Frequency decimal(40,20),
+  Angle DECIMAL(12,2) NULL,
+  Phaseval DECIMAL(12,8) NULL,  
+  PRIMARY KEY (vData_id_p))
+ENGINE = InnoDB;
+alter table vdata_phase add constraint FK_vdata_phase_test foreign key (Test_id) references testdata(Test_id);
+create index testid_freq_angle_pvp on vdata_phase(Test_id, Frequency, angle,Phaseval);
+
+drop table IF EXISTS phasecalculated;
+CREATE TABLE `phasecalculated` (
+  phCalculated_Id INT AUTO_INCREMENT NOT NULL,
+  `Test_id` INT NULL,
+  `Frequency` decimal(40,20),
+  `TestDate` datetime DEFAULT NULL,
+  `PD_0` decimal(40,20) DEFAULT NULL,
+  `PD_P60` decimal(40,20) DEFAULT NULL,
+  `PD_M60` decimal(40,20) DEFAULT NULL,
+  `MaxPD_P60_Ratio` decimal(40,20) DEFAULT NULL,
+  `MaxPD_P60_Angle` decimal(40,20) DEFAULT NULL,
+  `MaxPD_M60_Ratio` decimal(40,20) DEFAULT NULL,
+  `MaxPD_M60_Angle` decimal(40,20) DEFAULT NULL,
+   PRIMARY KEY (`phCalculated_Id`),
+  KEY `FK_phCalculated_prd` (`Test_id`),
+  CONSTRAINT `FK_phCalculated_prd` FOREIGN KEY (`Test_id`) REFERENCES `testdata` (`Test_id`)
+) ENGINE=InnoDB;
+
 -- 03-08-2017
 drop table IF EXISTS fdata;
 drop table IF EXISTS fcalculated;
