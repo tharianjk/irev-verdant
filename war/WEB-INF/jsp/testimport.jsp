@@ -465,7 +465,7 @@ $(document).ready( function () {
 	    // Phase cp phase difference
 	    el = document.createElement("option");
 	    el.textContent = 'CP Phase Difference';
-	    el.value ='CPPD';
+	    el.value ='PD';
 	    testtype.appendChild(el); 
 	}
 	
@@ -644,7 +644,7 @@ $('#testtype').on('change', function() {
 		    ftype.appendChild(el);
 	    }
 		
-		if(sel=="CPPD" && ptype=="C") {
+		if(sel=="PD" && ptype=="C") {
 			var el = document.createElement("option");
 			el.textContent = "--Select--";
 			el.value = "-1";
