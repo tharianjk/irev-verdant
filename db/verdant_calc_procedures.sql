@@ -22,6 +22,10 @@ drop procedure if exists spGetPolarSummary;
 DROP procedure IF EXISTS `debug`;
 drop procedure if exists spPolarMultiple;
 drop procedure if exists sanity_check;
+DROP procedure IF EXISTS `calc_Circular_NCP`;
+DROP procedure IF EXISTS `calc_Circular_PD`;
+DROP function IF EXISTS `calc_PhaseDifference`;
+drop procedure if exists calc_MaxDiffPhaseDifference;
 
 
 DELIMITER $$
@@ -1258,9 +1262,17 @@ AR_Maxdiff_M30,AR_Maxdiff_P60, AR_Maxdiff_M60 decimal(40,20);
 DECLARE angle_Maxdiff_P30, angle_Maxdiff_M30,
 angle_Maxdiff_P60, angle_Maxdiff_M60 decimal(40,20);
 
+-- 08-AUg-2017 - for 45 deg pol
+DECLARE _3dB_BW_FP_BM,_3dB_BW_FP_0,_3dB_BW_FP_90 decimal(40,20);
+DECLARE _10dB_BW_FP_BM,_10dB_BW_FP_0,_10dB_BW_FP_90 decimal(40,20);
+DECLARE _3dB_BS_FP_BM,_3dB_BS_FP_0,_3dB_BS_FP_90 decimal(40,20);
+DECLARE _10dB_BS_FP_BM,_10dB_BS_FP_0,_10dB_BS_FP_90 decimal(40,20);
+DECLARE backlobe_FP decimal(40,20);
+
 DECLARE hDataPresent INT default 0;
 DECLARE vDataPresent INT default 0;
 
+DECLARE fDataPresent INT default 0;
 
 # 3. declare continue/exit handlers for logging SQL exceptions/errors :
 -- write handlers for specific known error codes which are likely to occur here    
@@ -1309,6 +1321,7 @@ if isDebug > 0 then
 
 select count(*) into hDataPresent from hdata where test_id = cncpTestId and Frequency = cncpFreq;
 select count(*) into vDataPresent from vdata where test_id = cncpTestId and Frequency = cncpFreq;
+select count(*) into fDataPresent from fdata where test_id = cncpTestId and Frequency = cncpFreq;
 
 -- h data calculations	
 if hDataPresent > 0 then
@@ -1450,6 +1463,72 @@ if vDataPresent > 0 then
                 
 		  if isDebug > 0 then
 				SET @infoText = "Calculated data saved successfully into vcalculated";
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
+end if;
+
+-- for 45 deg pol
+-- f data calculations	
+if fDataPresent > 0 then
+		 if isDebug > 0 then
+				SET @infoText = "FP data present"; 
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
+		-- calculate 3 db and 10 db BW & BS
+        
+        if isDebug > 0 then
+				SET @infoText = "invoking 3dB BW and BS calculations ..."; 
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
+			 -- Calculate 3dB Beam Width, Beam Squint for hp data for Beam Max and store
+		    call calc_XdB_BW_BS(cncpTestId,cncpFreq,3,'FP','BM',_3dB_BW_FP_BM,_3dB_BS_FP_BM );
+           
+		   -- Calculate 3dB Beam Width, Beam Squint for hp data for 0 degree and store
+		   call calc_XdB_BW_BS(cncpTestId,cncpFreq,3,'FP','0',_3dB_BW_FP_0,_3dB_BS_FP_0 );
+           
+		   -- Calculate 3dB Beam Width, Beam Squint for pitch data for 90 degree
+		    call calc_XdB_BW_BS(cncpTestId,cncpFreq,3,'FP','90', _3dB_BW_FP_90, _3dB_BS_FP_90);
+            
+            if isDebug > 0 then
+				SET @infoText = "invoking 10dB BW and BS calculations ..."; 
+				call debug(l_proc_id,@infoText,'I','I');
+			end if; 
+		   -- Calculate 10dB Beam Width, Beam Squint for pitch data for Beam Max
+		    call calc_XdB_BW_BS(cncpTestId,cncpFreq,10,'FP','BM', _10dB_BW_FP_BM, _10dB_BS_FP_BM);
+            
+		   -- Calculate 10dB Beam Width, Beam Squint for pitch data for 0 degree
+		    call calc_XdB_BW_BS(cncpTestId,cncpFreq,10,'FP','0', _10dB_BW_FP_0, _10dB_BS_FP_0);
+            
+		   -- Calculate 10dB Beam Width, Beam Squint for Pitch data for 90 degree
+		     call calc_XdB_BW_BS(cncpTestId,cncpFreq,10,'FP','90', _10dB_BW_FP_90, _10dB_BS_FP_90);
+             
+          
+		  if isDebug > 0 then
+				SET @infoText = "invoking backlobe calculations ..."; 
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
+          -- Calculate Back Lobe for HP data
+			  select calc_Backlobe(cncpTestId,cncpFreq,'FP') into backlobe_FP;
+		   
+         
+            
+		-- insert into fcalculated table
+             delete from fcalculated where Test_id =cncpTestId and Frequency = cncpFreq;
+			 insert into fcalculated(Test_id,Frequency,TestDate
+								,3Db_BW_BMax,3Db_BW_0,3Db_BW_90
+                                ,10Db_BW_BMax,10Db_BW_0,10Db_BW_90
+                                ,3Db_BS_BMax,3Db_BS_0,3Db_BS_90
+                                ,10Db_BS_BMax,10Db_BS_0,10Db_BS_90
+                                ,BackLobe)
+		   select cncpTestId,cncpFreq,cncpTestDate,
+				_3dB_BW_FP_BM,_3dB_BW_FP_0,_3dB_BW_FP_90,
+				_10dB_BW_FP_BM,_10dB_BW_FP_0,_10dB_BW_FP_90,
+                _3dB_BS_FP_BM,_3dB_BS_FP_0,_3dB_BS_FP_90,
+				_10dB_BS_FP_BM,_10dB_BS_FP_0,_10dB_BS_FP_90,
+                backlobe_FP;
+                
+		  if isDebug > 0 then
+				SET @infoText = "Calculated data saved successfully into fcalculated";
 				call debug(l_proc_id,@infoText,'I','I');
 			end if;
 end if;
@@ -1605,7 +1684,7 @@ end if;
 END$$
 DELIMITER ;
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `calc_XdB_BW_BS`(
+CREATE PROCEDURE PROCEDURE `calc_XdB_BW_BS`(
 xtest_id INT, freq decimal(40,20), X INT, polType char(2), fromAngle char(3),
 out beam_width decimal(40,20), out beam_squint decimal(40,20)
 )
@@ -1672,7 +1751,9 @@ elseif polType = 'P' then
 set @tab = 'pitchData';
 elseif polType = 'R' then
 set @tab = 'rollData';
-else 
+elseif polType = 'FP' then
+set @tab = 'fdata';
+else  
 set @tab = 'cpdata';
 end if;
 
@@ -1905,7 +1986,12 @@ DECLARE done INT DEFAULT 0;
     delete from pitchcalculated where test_id = myTestId;
     delete from rollcalculated where test_id = myTestId;
     delete from yawcalculated where test_id = myTestId;
-    
+    -- for 45 deg pol
+    delete from fcalculated where test_id = myTestId;
+    -- for phase diff
+	delete from phasecalculated where test_id = myTestId;
+
+
     -- raise exception
 	RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
  end;
@@ -1987,6 +2073,13 @@ END IF;
 	end if;
 	-- reports of NCP and Slant-Elevation are the same
 	call calc_Circular_NCP(myTestId,myfreq,myTestDate);
+-- Circular - phase difference
+  elseif ( myPolType = 'C' and myTestType = 'PD') THEN
+	if isDebug > 0 then
+		SET @infoText = CONCAT("invoking Circular-PD calculations for frequency : ",myfreq);
+		call debug(l_proc_id,@infoText,'I','I');
+	end if;
+	call calc_Circular_PD(myTestId,myfreq,myTestDate);
   -- Circular - CP with conversion / Direct-CP
   else -- Polarization_type = 'C' and testType = 'DCP'/'CP'
 	if isDebug > 0 then
@@ -2008,7 +2101,7 @@ if isDebug > 0 then
 END$$
 DELIMITER ;
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sanity_check`(
+CREATE PROCEDURE `sanity_check`(
 sanId INT,
 sanFreq decimal(40,20),
 sanPoltype char(2),
@@ -2126,7 +2219,7 @@ if isDebug > 0 then
 			and (angle > 360 or angle < 0) ; 
 			if(@anglerr < 0) then-- not all angles imported
 				 SIGNAL SQLSTATE '88888'
-				 set MESSAGE_TEXT = 'Invalid angle values. Calculation cannot proceed';
+				 set MESSAGE_TEXT = 'HP has Invalid angle values. Calculation cannot proceed';
 			end if;
             
 		end if;
@@ -2144,7 +2237,7 @@ if isDebug > 0 then
 			and (angle > 360 or angle < 0) ; 
 			if(@anglerr < 0) then-- not all angles imported
 				 SIGNAL SQLSTATE '88888'
-				 set MESSAGE_TEXT = 'Invalid angle values. Calculation cannot proceed';
+				 set MESSAGE_TEXT = 'VP has Invalid angle values. Calculation cannot proceed';
 			end if;
             
 		end if;
@@ -2162,7 +2255,64 @@ if isDebug > 0 then
 			and (angle > 360 or angle < 0) ; 
 			if(@anglerr < 0) then-- not all angles imported
 				 SIGNAL SQLSTATE '88888'
-				 set MESSAGE_TEXT = 'Invalid angle values. Calculation cannot proceed';
+				 set MESSAGE_TEXT = 'CP has Invalid angle values. Calculation cannot proceed';
+			end if;
+            
+		end if;
+        
+        -- 45 deg pol
+        select count(*) into @countfdata from fdata where test_id = sanId and Frequency = sanFreq;
+		if @countfdata > 0  then
+			-- roll data is present
+			select count(angle) into @anglecnt from fdata where test_id = sanId and Frequency = sanFreq;
+			if(@anglecnt < 3600) then-- not all angles imported
+				 SIGNAL SQLSTATE '88888'
+				 set MESSAGE_TEXT = 'FP data does not have all angular values';
+			end if;
+            
+            select count(angle) into @anglerr from fdata where test_id = sanId and Frequency = sanFreq 
+			and (angle > 360 or angle < 0) ; 
+			if(@anglerr < 0) then-- not all angles imported
+				 SIGNAL SQLSTATE '88888'
+				 set MESSAGE_TEXT = 'FP has Invalid angle values. Calculation cannot proceed';
+			end if;
+            
+		end if;
+        
+        -- fpr phase difference
+        select count(*) into @counthdata from hdata_phase where test_id = sanId and Frequency = sanFreq;
+		if @counthdata > 0  then
+			-- roll data is present
+			select count(angle) into @anglecnt from hdata_phase where test_id = sanId and Frequency = sanFreq;
+			if(@anglecnt < 3600) then-- not all angles imported
+				 SIGNAL SQLSTATE '88888'
+				 set MESSAGE_TEXT = 'HP phase data does not have all angular values';
+			end if;
+            
+            
+            select count(angle) into @anglerr from hdata_phase where test_id = sanId and Frequency = sanFreq 
+			and (angle > 360 or angle < 0) ; 
+			if(@anglerr < 0) then-- not all angles imported
+				 SIGNAL SQLSTATE '88888'
+				 set MESSAGE_TEXT = 'HP phase data has Invalid angle values. Calculation cannot proceed';
+			end if;
+            
+		end if;
+        
+        select count(*) into @countvdata from vdata_phase where test_id = sanId and Frequency = sanFreq;
+		if @countvdata > 0  then
+			-- roll data is present
+			select count(angle) into @anglecnt from vdata_phase where test_id = sanId and Frequency = sanFreq;
+			if(@anglecnt < 3600) then-- not all angles imported
+				 SIGNAL SQLSTATE '88888'
+				 set MESSAGE_TEXT = 'VP phase data does not have all angular values';
+			end if;
+            
+            select count(angle) into @anglerr from vdata_phase where test_id = sanId and Frequency = sanFreq 
+			and (angle > 360 or angle < 0) ; 
+			if(@anglerr < 0) then-- not all angles imported
+				 SIGNAL SQLSTATE '88888'
+				 set MESSAGE_TEXT = 'VP phase data has Invalid angle values. Calculation cannot proceed';
 			end if;
             
 		end if;
@@ -2861,6 +3011,14 @@ elseif bPolType = 'VP' then
 	set Amp_180 =(select amplitude 
 					from vdata 
 					where test_id = bTestId and Frequency = bFreq and angle = 180);
+elseif bPolType = 'FP' then
+	set Amp_0 = (select amplitude 
+				from fdata 
+				where test_id = bTestId and Frequency = bFreq and angle = 0);
+	set Amp_180 =(select amplitude 
+					from fdata 
+					where test_id = bTestId and Frequency = bFreq and angle = 180);
+
 else -- polType = 'CP' then
 	set Amp_0 = (select amplitude 
 				from cpdata 
@@ -3145,3 +3303,237 @@ sum(amp18) Amplitude18,sum(amp19) Amplitude19,sum(amp20) Amplitude20,strmaxvalue
  from temppolar where user=usr group by test_id,angle,frequency  ,strmaxvalue,strminvalue, frequnit
 order by test_id,frequency,angle;  
 END$$
+
+DELIMITER $$
+
+CREATE PROCEDURE `calc_Circular_PD`(
+cncpTestId INT,
+cncpFreq decimal(40,20),
+cncpTestDate datetime
+)
+BEGIN
+
+# Declarations -begin
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'calc_Circular_PD for C-PD';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+    
+
+DECLARE pd_0,pd_P60,pd_M60,pd_Maxdiff_P60, pd_Maxdiff_M60 decimal(40,20);
+DECLARE angle_Maxdiff_P60, angle_Maxdiff_M60 decimal(40,20);
+
+DECLARE hDataPresent INT default 0;
+DECLARE vDataPresent INT default 0;
+
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+ 
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(l_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Test id : ",cncpTestId,",Frequency : ",cncpFreq);
+		call debug(l_proc_id, @details,'I','I');
+           
+         
+	end if;
+    RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(l_proc_id,'in calc_Circular_NCP','I','I');
+ end if;
+
+
+# Declarations -end
+
+select count(*) into hDataPresent from hdata_phase where test_id = cncpTestId and Frequency = cncpFreq;
+select count(*) into vDataPresent from vdata_phase where test_id = cncpTestId and Frequency = cncpFreq;
+
+-- axial ratio calculations
+if hDataPresent > 0 and vDataPresent > 0 then
+	  -- Calculate Axial ratio at 0 degree
+			  select calc_PhaseDifference(cncpTestId,cncpFreq,0) into pd_0;
+              
+		   -- Calculate Axial ratio at +45 degree
+			  select calc_PhaseDifference(cncpTestId,cncpFreq,60) into pd_P60;
+            
+              
+		   -- Calculate Axial ratio at  -45 degree
+		      select calc_PhaseDifference(cncpTestId,cncpFreq,-60) into pd_M60;
+           
+		   -- Calculate Max-diff Axial ratio from 0 to +45 : Maximum Axial ratio from 0 to +45 degree
+			  call calc_MaxDiffPhaseDifference(cncpTestId, cncpFreq, 'P60', pd_Maxdiff_P60, angle_Maxdiff_P60);
+              
+		   -- Calculate Max-diff Axial ratio from 0 to -45 : Maximum Axial ratio from 0 to -45 degree
+		      call calc_MaxDiffPhaseDifference(cncpTestId, cncpFreq, 'M60', pd_Maxdiff_M60, angle_Maxdiff_M60);
+              
+            
+              
+              -- insert into arcalculated
+               delete from phasecalculated where Test_id = cncpTestId and Frequency = cncpFreq;
+				insert into phasecalculated(Test_id,Frequency,TestDate,
+						PD_0,
+                        PD_P60,PD_M60,MaxPD_P60_Ratio,MaxPD_P60_Angle,MaxPD_M60_Ratio,MaxPD_M60_Angle)
+				select cncpTestId,cncpFreq,cncpTestDate,
+				 		pd_0,
+                        pd_P60,pd_M60,pd_Maxdiff_P60,angle_Maxdiff_P60, pd_Maxdiff_M60, angle_Maxdiff_M60; 
+        
+        
+        if isDebug > 0 then
+				SET @infoText = "Calculated data saved successfully into phasecalculated";
+				call debug(l_proc_id,@infoText,'I','I');
+			end if;
+end if;
+END$$
+
+DELIMITER ;
+
+DELIMITER $$
+CREATE FUNCTION `calc_PhaseDifference`(
+atest_id INT, freq decimal(40,20), degree INT
+) RETURNS decimal(40,20)
+BEGIN
+
+# Axial Ratio =( HP – VP) at degree for freq
+
+DECLARE PD decimal(40,20) default 0;
+
+-- if degree = 0 then 
+-- 	set degree = 360;
+--  else
+if degree < 0 then
+	set degree = 360 + degree;
+end if;
+
+select phasedifference 
+into PD
+from phasedifference_view
+ where test_id = atest_id and Frequency = freq and angle = degree;
+ 
+RETURN PD;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `calc_MaxDiffPhaseDifference`(
+mdtest_id INT, freq decimal(40,20), P_or_M char(3),
+OUT MaxdiffPD decimal(40,20), 
+OUT MaxdiffAngle decimal(40,20)
+)
+BEGIN
+
+# 1. Set procedure id. This is given to identify the procedure in log. Give the procedure name here
+	declare l_proc_id varchar(100) default 'calc_MaxDiffPhaseDifference';
+
+# 2. declare variable to store debug flag
+    declare isDebug INT default 0;
+
+Declare i, currAngle, currPD decimal(40,20);
+
+# 3. declare continue/exit handlers for logging SQL exceptions/errors :
+-- write handlers for specific known error codes which are likely to occur here    
+-- eg : DECLARE CONTINUE HANDLER FOR 1062
+-- begin 
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'Duplicate keys error encountered','E','I');
+-- 	end if;
+-- end;
+
+-- write handlers for sql states which occur due to one or more sql errors here
+-- eg : DECLARE EXIT HANDLER FOR SQLSTATE '23000' 
+ -- begin
+-- 	if isDebug > 0 then
+-- 		call debug(l_proc_id, 'SQLSTATE 23000','F','I');
+-- 	end if;
+-- end;
+ 
+ -- write handlers for generic SQL exception which occurs due to one or more SQL states
+
+ DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+ begin
+	if isDebug > 0 then
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+		SET @full_error = CONCAT("SQLException ", @errno, " (", @sqlstate, "): ", @text);
+		call debug(l_proc_id, @full_error,'F','I');
+        SET @details = CONCAT("Test id : ",mdtest_id,",Frequency : ",freq,",P_or_M : ",P_or_M);
+		call debug(l_proc_id, @details,'I','I');
+        
+         
+	end if;
+    RESIGNAL set MESSAGE_TEXT = 'Exception encountered in the inner procedure';
+ end;
+
+# 4. store the debug flag 
+select ndebugFlag into isDebug from fwk_company;
+  
+if isDebug > 0 then
+	call debug(l_proc_id,'in calc_MaxDiffPhaseDifference','I','I');
+ end if;
+
+
+if P_or_M = 'P60' then
+select MAX(phasedifference) 
+    into MaxdiffPD
+    from phasedifference_view 
+    where test_id = mdtest_id and Frequency = freq 
+    and (angle >= 0 and angle <=60);
+    
+    
+    select MAX(angle)
+    into MaxdiffAngle
+    from phasedifference_view 
+    where test_id = mdtest_id and Frequency = freq and phasedifference = MaxdiffPD;
+end if;    
+    -- if MaxdiffAngle = 360 then
+-- set MaxdiffAngle = 0;
+-- end if;
+    
+if P_or_M = 'M60' then-- P_or_M ='M'
+
+select MAX(phasedifference) 
+    into MaxdiffPD
+    from phasedifference_view 
+    where test_id = mdtest_id and Frequency = freq 
+    and ((angle >= 300 and angle < 360) or (angle = 0));
+    
+    
+    select MAX(angle)
+    into MaxdiffAngle
+    from phasedifference_view 
+    where test_id = mdtest_id and Frequency = freq and phasedifference = MaxdiffPD;
+    
+    if MaxdiffAngle <> 0 then
+set MaxdiffAngle = MaxdiffAngle-360;
+    end if;
+end if;
+
+END$$
+DELIMITER ;

@@ -7,23 +7,111 @@ CREATE TABLE IF NOT EXISTS fData (
  Angle DECIMAL(12,2) NULL,
  Amplitude DECIMAL(12,8) NULL,  
  PRIMARY KEY (FData_id))
+
+-- 10-08-2017
+drop view if exists phasedifference_view;
+
+CREATE    
+VIEW phasedifference_view AS
+    SELECT 
+        h.Test_id AS test_id,
+        h.Frequency AS Frequency,
+        h.Angle AS angle,
+        ABS((v.phaseval - h.phaseval)) AS phasedifference
+    FROM
+        (hdata_phase h
+        JOIN vdata_phase v ON (((h.Test_id = v.Test_id)
+            AND (h.Frequency = v.Frequency)
+            AND (h.Angle = v.Angle))))
+
+-- 08-08-2017
+drop table IF EXISTS hdata_phase;
+CREATE TABLE IF NOT EXISTS hdata_phase (
+  hData_id_p INT AUTO_INCREMENT NOT NULL,
+  Test_id INT NULL,
+   Frequency decimal(40,20),
+  Angle DECIMAL(12,2) NULL,
+  Phaseval DECIMAL(12,8) NULL,  
+  PRIMARY KEY (hData_id_p))
 ENGINE = InnoDB;
+alter table hdata_phase add constraint FK_hdata_phase_test foreign key (Test_id) references testdata(Test_id);
+create index testid_freq_angle_php on hdata_phase(Test_id, Frequency, angle,Phaseval);
+
+drop table IF EXISTS vdata_phase;
+CREATE TABLE IF NOT EXISTS vdata_phase (
+  vData_id_p INT AUTO_INCREMENT NOT NULL,
+  Test_id INT NULL,
+   Frequency decimal(40,20),
+  Angle DECIMAL(12,2) NULL,
+  Phaseval DECIMAL(12,8) NULL,  
+  PRIMARY KEY (vData_id_p))
+ENGINE = InnoDB;
+alter table vdata_phase add constraint FK_vdata_phase_test foreign key (Test_id) references testdata(Test_id);
+create index testid_freq_angle_pvp on vdata_phase(Test_id, Frequency, angle,Phaseval);
+
+drop table IF EXISTS phasecalculated;
+CREATE TABLE phasecalculated (
+  phCalculated_Id INT AUTO_INCREMENT NOT NULL,
+  Test_id INT NULL,
+  Frequency decimal(40,20),
+  TestDate datetime DEFAULT NULL,
+  PD_0 decimal(40,20) DEFAULT NULL,
+  PD_P60 decimal(40,20) DEFAULT NULL,
+  PD_M60 decimal(40,20) DEFAULT NULL,
+  MaxPD_P60_Ratio decimal(40,20) DEFAULT NULL,
+  MaxPD_P60_Angle decimal(40,20) DEFAULT NULL,
+  MaxPD_M60_Ratio decimal(40,20) DEFAULT NULL,
+  MaxPD_M60_Angle decimal(40,20) DEFAULT NULL,
+   PRIMARY KEY (phCalculated_Id),
+  KEY FK_phCalculated_prd (Test_id),
+  CONSTRAINT FK_phCalculated_prd FOREIGN KEY (Test_id) REFERENCES testdata (Test_id)
+) ENGINE=InnoDB;
+
+-- 03-08-2017
+drop table IF EXISTS fdata;
+drop table IF EXISTS fcalculated;
+
+CREATE TABLE IF NOT EXISTS fData (
+  FData_id INT AUTO_INCREMENT NOT NULL,
+  Test_id INT NULL,
+   Frequency decimal(40,20),
+  Angle DECIMAL(12,2) NULL,
+  Amplitude DECIMAL(12,8) NULL,  
+  PRIMARY KEY (FData_id));
 
 
 alter table fdata add constraint FK_fdata_test foreign key (Test_id) references testdata(Test_id);
 create index testid_freq_angle_fp on fData(Test_id, Frequency, angle,Amplitude);
 
--- ----------------------------------------------
+CREATE TABLE fcalculated (
+  FCalculated_Id int(11) NOT NULL AUTO_INCREMENT,
+  Test_id int(11) DEFAULT NULL,
+  Frequency decimal(40,20) DEFAULT NULL,
+  TestDate datetime DEFAULT NULL,
+  OmniDeviation decimal(40,20) DEFAULT NULL,
+  3Db_BW_BMax decimal(40,20) DEFAULT NULL,
+  3Db_BW_0 decimal(40,20) DEFAULT NULL,
+  3Db_BW_90 decimal(40,20) DEFAULT NULL,
+  3Db_BS_BMax decimal(40,20) DEFAULT NULL,
+  3Db_BS_0 decimal(40,20) DEFAULT NULL,
+  3Db_BS_90 decimal(40,20) DEFAULT NULL,
+  10Db_BW_BMax decimal(40,20) DEFAULT NULL,
+  10Db_BW_0 decimal(40,20) DEFAULT NULL,
+  10Db_BW_90 decimal(40,20) DEFAULT NULL,
+  10Db_BS_BMax decimal(40,20) DEFAULT NULL,
+  10Db_BS_0 decimal(40,20) DEFAULT NULL,
+  10Db_BS_90 decimal(40,20) DEFAULT NULL,
+  BackLobe decimal(40,20) DEFAULT NULL,
+  3Db_BW_270 decimal(40,20) DEFAULT NULL,
+  3Db_BS_270 decimal(40,20) DEFAULT NULL,
+  10Db_BW_270 decimal(40,20) DEFAULT NULL,
+  10Db_BS_270 decimal(40,20) DEFAULT NULL,
+  PRIMARY KEY (FCalculated_Id),
+  KEY FK_fcalculated_prd (Test_id),
+  CONSTRAINT FK_fcalculated_prd FOREIGN KEY (Test_id) REFERENCES testdata (Test_id)
+) ENGINE=InnoDB;
 
 
-alter table fwk_audit add company_id int;
-
-drop table if exists fwk_audit_dtl;
-create table fwk_audit_dtl (log_id integer AUTO_INCREMENT primary key,
- audit_id int,
-currentval varchar(100),
-previousval varchar(100),
-columnname varchar(50));
 
 -- 24-07-2017
 ALTER TABLE arcalculated 
@@ -78,19 +166,17 @@ drop view if exists axialratio_view;
 
      
 CREATE 
-    ALGORITHM = UNDEFINED 
-    SQL SECURITY DEFINER
-VIEW `axialratio_view` AS
+VIEW axialratio_view AS
     SELECT 
-        `h`.`Test_id` AS `test_id`,
-        `h`.`Frequency` AS `Frequency`,
-        `h`.`Angle` AS `angle`,
-       ABS((`h`.`Amplitude` - `v`.`Amplitude`)) AS `axialRatio`
+        h.Test_id AS test_id,
+        h.Frequency AS Frequency,
+        h.Angle AS angle,
+       ABS((h.Amplitude - v.Amplitude)) AS axialRatio
     FROM
-        (`hdata` `h`
-        JOIN `vdata` `v` ON (((`h`.`Test_id` = `v`.`Test_id`)
-            AND (`h`.`Frequency` = `v`.`Frequency`)
-            AND (`h`.`Angle` = `v`.`Angle`))));
+        (hdata h
+        JOIN vdata v ON (((h.Test_id = v.Test_id)
+            AND (h.Frequency = v.Frequency)
+            AND (h.Angle = v.Angle))));
 
 -- 18-03-2016
 
