@@ -349,6 +349,7 @@ public class JdbcMastersDao extends JdbcDaoSupport implements MastersDao {
 				else{
 
 					// changed for new type CP Phase difference
+					logger.info("testdata.getTesttype()="+testdata.getTesttype());
 					if(testdata.getTesttype().equals("CPPD")){
 						if(testdata.getFiletype().equals("Vdata"))
 						{
@@ -413,12 +414,15 @@ public class JdbcMastersDao extends JdbcDaoSupport implements MastersDao {
 			
 			
 			if(testdata.getTesttype().equals("CPPD")){
+				logger.info("inside CPPD");
 				if(testdata.getFiletype().equals("Vdata"))
 				{
+					logger.info("inside CPPD Vdata");
 					sqltest="insert into vdata_phase (test_id,Frequency,Angle,Phaseval) values (?,?,?,?)"; 
 				}
 				else if(testdata.getFiletype().equals("Hdata"))
 				{
+					logger.info("inside CPPD Hdata");
 					sqltest="insert into hdata_phase (test_id,Frequency,Angle,Phaseval) values (?,?,?,?)"; 
 				}
 			}
