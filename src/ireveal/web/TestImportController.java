@@ -7,6 +7,7 @@ import ireveal.domain.TestFrequency;
 import ireveal.service.MastersService;
 
 import java.io.InputStream;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -86,15 +87,15 @@ public class TestImportController extends SimpleFormController{
 		 
 		if(action.equals("Done")){
 		 stat=	mastersservice.CalcProc(file.getPtype(),testid);
-		if(stat==0)
-		{
-			err="Failed to calculate";
-			
-		}
-		else
-		{
-			err="Calculation completed successfully";
-		}
+			if(stat==0)
+			{
+				err="Failed to calculate";
+				
+			}
+			else
+			{
+				err="Calculation completed successfully";
+			}
 		}
 		
 		else{
@@ -341,10 +342,15 @@ public class TestImportController extends SimpleFormController{
      	cursess.setAttribute("id",null);
      	request.setAttribute("mode", null);
      	cursess.setAttribute("mode",null);
+     	err=URLEncoder.encode(err, "UTF-8");
 		if(action.equals("More")){
-		return new ModelAndView(new RedirectView("testimport.htm?id="+testid+"&atype="+atype+"&savestat="+stat+"&msg="+err+"&refresh=refresh"));}
+			String url= "testimport.htm?id="+testid+"&atype="+atype+"&savestat="+stat+"&msg="+err+"&refresh=refresh";
+		return new ModelAndView(new RedirectView(url));}
 		//else if (action.equals("Done")) return new ModelAndView("fileuploadresult","fileName"," " +" " +err);
-		else return new ModelAndView(new RedirectView("testimport.htm?id="+testid+"&mode=edit&savestat="+stat+"&msg="+err));
+		else{
+			String url= "testimport.htm?id="+testid+"&mode=edit&savestat="+stat+"&msg="+err;			
+			return new ModelAndView(new RedirectView(url));
+		}
 	}
 	@Override
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder)
