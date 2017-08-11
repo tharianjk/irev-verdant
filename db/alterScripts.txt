@@ -1,3 +1,30 @@
+-- 03-08-2017
+
+CREATE TABLE IF NOT EXISTS fData (
+ FData_id INT AUTO_INCREMENT NOT NULL,
+ Test_id INT NULL,
+  Frequency decimal(40,20),
+ Angle DECIMAL(12,2) NULL,
+ Amplitude DECIMAL(12,8) NULL,  
+ PRIMARY KEY (FData_id))
+ENGINE = InnoDB;
+
+
+alter table fdata add constraint FK_fdata_test foreign key (Test_id) references testdata(Test_id);
+create index testid_freq_angle_fp on fData(Test_id, Frequency, angle,Amplitude);
+
+-- ----------------------------------------------
+
+
+alter table fwk_audit add company_id int;
+
+drop table if exists fwk_audit_dtl;
+create table fwk_audit_dtl (log_id integer AUTO_INCREMENT primary key,
+ audit_id int,
+currentval varchar(100),
+previousval varchar(100),
+columnname varchar(50));
+
 -- 24-07-2017
 ALTER TABLE arcalculated 
 ADD COLUMN AR_P30 DECIMAL(40,20) NULL DEFAULT NULL,
