@@ -86,6 +86,7 @@
           <div id="cp">          
        <input type="checkbox" id="hdata" value="hdata" onclick="fnenable('h');">HP Data &nbsp; &nbsp;&nbsp;
        <input type="checkbox" id="vdata" value="vdata" onclick="fnenable('v');" >VP Data  &nbsp; &nbsp;&nbsp;
+       <input type="checkbox" id="fdata" value="fdata" onclick="fnenable('f');">45 Deg Pol &nbsp; &nbsp;&nbsp;
        <input type="checkbox" id="cpdata" value="cpdata" onclick="fnenable('c');"><label id="lblcp">CP Data </label> &nbsp; &nbsp;&nbsp;       
         </div> </td>
        </tr>
@@ -116,37 +117,52 @@ var atype=parent.AssetTree.atype;
 function fnenable(ctyp){
 	console.log("checked");
 	if(document.getElementById("freqtype").value=="S"){
-	if(ctyp=='c'){
-	if(document.getElementById("cpdata").checked){
-		document.getElementById("hdata").checked=false;
-		document.getElementById("vdata").checked=false;
-	}
-    }
-	else{
-	if(document.getElementById("hdata").checked){
-		document.getElementById("cpdata").checked=false;
-	}
-	if(document.getElementById("vdata").checked){
-		document.getElementById("cpdata").checked=false;
-	}
-	}
-	}
-	else{
 		if(ctyp=='c'){
 			if(document.getElementById("cpdata").checked){
 				document.getElementById("hdata").checked=false;
 				document.getElementById("vdata").checked=false;
 			}
-		    }
-			else{
+	    }
+		else{
 			if(document.getElementById("hdata").checked){
 				document.getElementById("cpdata").checked=false;
-				document.getElementById("vdata").checked=false;
+				document.getElementById("fdata").checked=false;
 			}
 			if(document.getElementById("vdata").checked){
 				document.getElementById("cpdata").checked=false;
-				document.getElementById("hdata").checked=false;
+				document.getElementById("fdata").checked=false;
 			}
+			if(document.getElementById("fdata").checked){
+				document.getElementById("cpdata").checked=false;
+				document.getElementById("hdata").checked=false;
+				document.getElementById("vdata").checked=false;
+			}
+		}
+	}
+	else{
+		if(ctyp=='c'){
+				if(document.getElementById("cpdata").checked){
+					document.getElementById("hdata").checked=false;
+					document.getElementById("vdata").checked=false;
+					document.getElementById("fdata").checked=false;
+				}
+		    }
+			else{
+				if(document.getElementById("hdata").checked){
+					document.getElementById("cpdata").checked=false;
+					document.getElementById("vdata").checked=false;
+					document.getElementById("fdata").checked=false;
+				}
+				if(document.getElementById("vdata").checked){
+					document.getElementById("cpdata").checked=false;
+					document.getElementById("hdata").checked=false;
+					document.getElementById("fdata").checked=false;
+				}
+				if(document.getElementById("fdata").checked){
+					document.getElementById("cpdata").checked=false;
+					document.getElementById("hdata").checked=false;
+					document.getElementById("vdata").checked=false;
+				}
 			}
 	}
 }
@@ -299,6 +315,8 @@ function fnonchange(){
 			{typ="V";}
 		else if (document.getElementById("cpdata").checked)
 		{typ="C";}
+		else if (document.getElementById("fdata").checked)
+		{typ="F";}
 if(document.getElementById("img").checked)
 	img="yes";
 

@@ -234,6 +234,7 @@ var treemode='<%=request.getParameter("treemode")%>';
 			        	}
     			        else if(atype=="NCP")
 			        	{	
+    			        	alert("NCP");
     			          parent.document.getElementById("rset").style.display="block";
   			        	  parent.document.getElementById("vreports").style.display="none";
   			        	  parent.document.getElementById("reports").style.display="block";
@@ -252,17 +253,17 @@ var treemode='<%=request.getParameter("treemode")%>';
     			        	{
     			        	console.log("atype ="+atype);
     			        	if(atype!='V'){
-    			        	parent.document.getElementById("od").style.display="none";
-  			        	    parent.document.getElementById("ar").style.display="none";
-  			        	    parent.document.getElementById("pp").style.display="none";
-  			        	    parent.document.getElementById("3db").style.display="none";
-  			        	    parent.document.getElementById("10db").style.display="none";
-  			        	    parent.document.getElementById("cpg").style.display="none";
-  			        	    parent.document.getElementById("blobe").style.display="none";
-  			        	    parent.document.getElementById("apt").style.display="none";
-  			        	    parent.document.getElementById("rset").style.display="block";
-			        	    parent.document.getElementById("vreports").style.display="none";
-			        	    parent.document.getElementById("reports").style.display="block";
+	    			        	parent.document.getElementById("od").style.display="none";
+	  			        	    parent.document.getElementById("ar").style.display="none";
+	  			        	    parent.document.getElementById("pp").style.display="none";
+	  			        	    parent.document.getElementById("3db").style.display="none";
+	  			        	    parent.document.getElementById("10db").style.display="none";
+	  			        	    parent.document.getElementById("cpg").style.display="none";
+	  			        	    parent.document.getElementById("blobe").style.display="none";
+	  			        	    parent.document.getElementById("apt").style.display="none";
+	  			        	    parent.document.getElementById("rset").style.display="block";
+				        	    parent.document.getElementById("vreports").style.display="none";
+				        	    parent.document.getElementById("reports").style.display="block";
     			        	}
     			        	else{
     			        		if(pvtype=="GM"){
