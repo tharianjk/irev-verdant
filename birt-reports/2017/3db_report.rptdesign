@@ -1967,6 +1967,13 @@ FROM fcalculated HC   join testdata t on t.Test_id=HC.Test_id where HC.Test_id=?
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">Column Binding</property>
+                    <text-property name="displayName">funit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="62"/>
             <column id="1352">
@@ -2202,9 +2209,10 @@ FROM fcalculated HC   join testdata t on t.Test_id=HC.Test_id where HC.Test_id=?
                 <row id="8">
                     <property name="fontWeight">bold</property>
                     <cell id="9">
-                        <label id="139">
-                            <text-property name="text">Spot Freq. (GHz)</text-property>
-                        </label>
+                        <text-data id="1433">
+                            <expression name="valueExpr">"Spot Freq. ("+row["Column Binding"]+")";</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="1350"/>
                     <cell id="10">
@@ -2447,6 +2455,13 @@ FROM fcalculated HC   join testdata t on t.Test_id=HC.Test_id where HC.Test_id=?
                     <expression name="expression" type="javascript">dataSetRow["Frequency"]</expression>
                     <property name="dataType">decimal</property>
                 </structure>
+                <structure>
+                    <property name="name">Column Binding</property>
+                    <text-property name="displayName">funit2</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["frequnit"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="1390"/>
             <column id="1391">
@@ -2545,11 +2560,13 @@ FROM fcalculated HC   join testdata t on t.Test_id=HC.Test_id where HC.Test_id=?
                 </row>
                 <row id="1366">
                     <cell id="1367">
-                        <label id="1429">
+                        <text-data id="1432">
                             <property name="fontFamily">serif</property>
+                            <property name="fontSize">10pt</property>
                             <property name="fontWeight">bold</property>
-                            <text-property name="text">Spot Freq. (GHz)</text-property>
-                        </label>
+                            <expression name="valueExpr">"Spot Freq. ("+row["Column Binding"]+")"</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="1368">
                         <label id="1417">
