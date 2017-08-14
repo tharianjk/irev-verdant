@@ -234,7 +234,7 @@ var treemode='<%=request.getParameter("treemode")%>';
 			        	}
     			        else if(atype=="NCP")
 			        	{	
-    			        	alert("NCP");
+    			        	//alert("NCP");
     			          parent.document.getElementById("rset").style.display="block";
   			        	  parent.document.getElementById("vreports").style.display="none";
   			        	  parent.document.getElementById("reports").style.display="block";
