@@ -339,8 +339,11 @@ public class ToolsController implements Controller {
 							rptheader=lstp.getRptheader();
 							rptfooter=lstp.getRptfooter();
 						}	
-					rptheader=lstp.getRptheader();
-					rptfooter=lstp.getRptfooter();
+						if(rptheader==null || rptheader.equals("") || rptheader=="null")
+							rptheader="No Header";
+						if(rptfooter==null || rptfooter.equals("") || rptfooter=="null")
+							rptfooter="No Footer";
+					
 					logger.info("*** phasediff ** testid="+testid);
 					
 					if(!testid1.equals("") && testid1!=null){	
