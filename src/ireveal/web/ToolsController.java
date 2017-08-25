@@ -341,7 +341,7 @@ public class ToolsController implements Controller {
 						}	
 					rptheader=lstp.getRptheader();
 					rptfooter=lstp.getRptfooter();
-					logger.info("*** phasediff ** ");
+					logger.info("*** phasediff ** testid="+testid);
 					
 					if(!testid1.equals("") && testid1!=null){	
 						if(mastersservice.getCheckPhaseDiff(Integer.parseInt(testid1))>0){							
