@@ -8,7 +8,7 @@ drop procedure if exists spGetPolarPlot ;
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetPolarPlot`(
+CREATE  PROCEDURE `spGetPolarPlot`(
 testid INT,
 freqparm decimal(40,20),
 typ varchar(5), 
@@ -317,7 +317,7 @@ end if;
 
 
 
-END
+END$$
 
 
 
