@@ -331,35 +331,7 @@ public class ToolsController implements Controller {
 					}
 
 				}
-				if (operstr.equals("phasediff"))
-				{	
-					String testid1 = request.getParameter("testid");		
-					ProductSerial lstp=mastersservice.getheaderfooter(Integer.parseInt(testid1));
-						if(lstp!=null){
-							rptheader=lstp.getRptheader();
-							rptfooter=lstp.getRptfooter();
-						}	
-						if(rptheader==null || rptheader.equals("") || rptheader=="null")
-							rptheader="No Header";
-						if(rptfooter==null || rptfooter.equals("") || rptfooter=="null")
-							rptfooter="No Footer";
-					
-					logger.info("*** phasediff ** testid="+testid);
-					
-					if(!testid1.equals("") && testid1!=null){	
-						if(mastersservice.getCheckPhaseDiff(Integer.parseInt(testid1))>0){							
-							return new ModelAndView(new RedirectView("/birt-viewer/frameset?__report=verdant/PhaseDifference.rptdesign&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
-						}
-						else{
-							myModel.put("text","Please Select Test from asset tree with Phase Difference Data uploaded!! ");
-							return new ModelAndView("blank", "model", myModel);
-						}
-					}
-					else{
-						myModel.put("text","Please Select Test from asset tree with Phase Difference Data uploaded!! ");
-						return new ModelAndView("blank", "model", myModel);
-					}
-				}
+				
 				else if (operstr.contains("viewaptracking")){
 					String maxDiff="0";
 					String maxFreq="0";
@@ -408,7 +380,35 @@ public class ToolsController implements Controller {
 				}
 
 			}
-
+			if (operstr.equals("phasediff"))
+			{	
+				String testid1 = request.getParameter("testid");		
+				ProductSerial lstp=mastersservice.getheaderfooter(Integer.parseInt(testid1));
+					if(lstp!=null){
+						rptheader=lstp.getRptheader();
+						rptfooter=lstp.getRptfooter();
+					}	
+					if(rptheader==null || rptheader.equals("") || rptheader=="null")
+						rptheader="No Header";
+					if(rptfooter==null || rptfooter.equals("") || rptfooter=="null")
+						rptfooter="No Footer";
+				
+				logger.info("*** phasediff ** testid="+testid);
+				
+				if(!testid1.equals("") && testid1!=null){	
+					if(mastersservice.getCheckPhaseDiff(Integer.parseInt(testid1))>0){							
+						return new ModelAndView(new RedirectView("/birt-viewer/frameset?__report=verdant/PhaseDifference.rptdesign&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
+					}
+					else{
+						myModel.put("text","Please Select Test from asset tree with Phase Difference Data uploaded!! ");
+						return new ModelAndView("blank", "model", myModel);
+					}
+				}
+				else{
+					myModel.put("text","Please Select Test from asset tree with Phase Difference Data uploaded!! ");
+					return new ModelAndView("blank", "model", myModel);
+				}
+			}
 			if(operstr.contains("blank")){
 				String msg="Please make a Selection from the Asset Tree on the left side";
 				myModel.put("text",msg);
