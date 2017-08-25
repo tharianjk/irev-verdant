@@ -355,7 +355,10 @@ public class ToolsController implements Controller {
 							return new ModelAndView("blank", "model", myModel);
 						}
 					}
-
+					else{
+						myModel.put("text","Please Select Test from asset tree with Phase Difference Data uploaded!! ");
+						return new ModelAndView("blank", "model", myModel);
+					}
 				}
 				else if (operstr.contains("viewaptracking")){
 					String maxDiff="0";
