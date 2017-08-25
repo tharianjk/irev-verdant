@@ -15,6 +15,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.*;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -391,8 +392,9 @@ public class ToolsController implements Controller {
 					if(rptheader==null || rptheader.equals("") || rptheader=="null")
 						rptheader="No Header";
 					if(rptfooter==null || rptfooter.equals("") || rptfooter=="null")
-						rptfooter="No Footer";
-				
+						rptfooter= "No Footer";
+					rptheader=URLEncoder.encode(rptheader, "UTF-8") ;
+					rptfooter=URLEncoder.encode(rptfooter, "UTF-8") ;
 				logger.info("*** phasediff ** testid="+testid);
 				
 				if(!testid1.equals("") && testid1!=null){	
