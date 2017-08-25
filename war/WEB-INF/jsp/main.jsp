@@ -124,8 +124,9 @@ function fnsetstat(typ,msg)
     }
 	if(typ=="pd" ) 
 	{
-		console.log("pd");
-		window.frames['AppBody'].location="tools.htm?oper=phasediff&testid="+testid;
+		console.log("pd tools.htm?oper=phasediff&testid="+testid);
+		window.frames['AppBody'].location="tools.htm?oper=phasediff&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype+"&treetype="+treetype;
+		
 		AssetTree.monitorstat="Reports";
     }
 	if(treetype==3){
