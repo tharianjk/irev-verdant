@@ -122,10 +122,10 @@ function fnsetstat(typ,msg)
 		window.frames['AppBody'].location="ampphaserpt.htm?oper=ampphase&typ="+typ+"&prodid="+testid+"&atype="+atype+"&treetype="+treetype;
 		AssetTree.monitorstat="Reports";
     }
-	if(typ=="pd" && treetype==2) 
+	if(typ=="pd" ) 
 	{
 		console.log("pd");
-		window.frames['AppBody'].location="phasediffrpt.htm?oper=phasediff&typ="+typ+"&testid="+testid+"&atype="+atype+"&treetype="+treetype;
+		window.frames['AppBody'].location="tools.htm?oper=pd&atype="+AssetTree.atype+"&testid="+testid+"&ptype="+AssetTree.selectedparenttype+"&treetype="+treetype;
 		AssetTree.monitorstat="Reports";
     }
 	if(treetype==3){
