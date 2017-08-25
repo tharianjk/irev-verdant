@@ -351,7 +351,7 @@ public class ToolsController implements Controller {
 							return new ModelAndView(new RedirectView("/birt-viewer/frameset?__report=verdant/PhaseDifference.rptdesign&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
 						}
 						else{
-							myModel.put("text","Please Select Product from asset tree with Tracking Data uploaded!! ");
+							myModel.put("text","Please Select Test from asset tree with Phase Difference Data uploaded!! ");
 							return new ModelAndView("blank", "model", myModel);
 						}
 					}
