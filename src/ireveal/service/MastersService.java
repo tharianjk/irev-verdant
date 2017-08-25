@@ -75,7 +75,7 @@ public interface MastersService {
 		 public int getproductTestscnt(int prodid);
 		 public boolean deletescaling(double freq,int prodid);
 		 public boolean deletescaleProduct(int prodid);
-
+		 public int getCheckPhaseDiff(int testid);
 		 public boolean IsAdminUser();
 
 		 // PVTest

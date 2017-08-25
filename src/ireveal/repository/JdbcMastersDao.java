@@ -1015,6 +1015,21 @@ public class JdbcMastersDao extends JdbcDaoSupport implements MastersDao {
 		return dataList;  
 	} 
 
+	public int getCheckPhaseDiff(int testid) {  
+		int cnt=0;
+		String sql = " select count(*) from phasecalculated S where test_id=? ";  
+		try
+		{
+			cnt = getJdbcTemplate().queryForObject(sql, Integer.class,testid);
+
+		}
+		catch(Exception e)
+		{
+			logger.error("***Exception** "+ e.getMessage() );
+		}
+		return cnt;  
+	} 
+
 
 	public String getFreqdatafile(String typ,int testid ){
 		String sql="";

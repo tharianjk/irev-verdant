@@ -122,6 +122,12 @@ function fnsetstat(typ,msg)
 		window.frames['AppBody'].location="ampphaserpt.htm?oper=ampphase&typ="+typ+"&prodid="+testid+"&atype="+atype+"&treetype="+treetype;
 		AssetTree.monitorstat="Reports";
     }
+	if(typ=="pd" && treetype==2) 
+	{
+		console.log("pd");
+		window.frames['AppBody'].location="phasediffrpt.htm?oper=phasediff&typ="+typ+"&testid="+testid+"&atype="+atype+"&treetype="+treetype;
+		AssetTree.monitorstat="Reports";
+    }
 	if(treetype==3){
 		console.log(typ);
 		if(typ=="pv_polar_a" ) 
@@ -335,6 +341,7 @@ dialog.dialog( "open" );
 				<li id="ar" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('ar');">Axial Ratio</a> </li>
 				<li id="cpg" style="display:none;"><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('cpg');">CP Gain</a> </li>
 				<li id="apt" ><a rel="Polar Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('apt');">Amplitude & Phase Tracking</a> </li>
+				<li id="pd" ><a rel="Phase Diff Report" class="menuarray" TARGET="AppBody" onclick="fnsetstat('pd');">Phase Difference</a> </li>
 			</ul>
 			</li>
 		<li id="vreports" title="VT-JK S10 L ATP-2 REV 00" style="display:none"><a href="#"><b> Reports</b></a>

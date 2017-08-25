@@ -302,6 +302,10 @@ public int PV_CalcProcSum(int testid) {
 public int checkGainSTD(int testid) {
 	return mastersdao.checkGainSTD(testid);
 }
+@Override
+public int getCheckPhaseDiff(int testid) {
+	return mastersdao.getCheckPhaseDiff(testid);
+}
 
 
 
