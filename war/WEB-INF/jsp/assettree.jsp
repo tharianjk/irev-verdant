@@ -1,27 +1,27 @@
 
-    <%@ include file="/WEB-INF/jsp/include.jsp" %> 
+<%@ include file="/WEB-INF/jsp/include.jsp"%>
 <html>
-    <head>
-        
-        <title>iReveal EMS</title>       
-		<link rel="stylesheet" type="text/css" href="irev-style.css" />
-    <script type="text/javascript" src="js/jquery.js"></script>
-    
-    <script type="text/javascript" src="js/jquery.jstree.js"></script>
-    <script type="text/javascript" src="js/jquery.cookie.js"></script>
-    <script type="text/javascript" src="js/jquery.hotkeys.js"></script> 
-    <link rel="stylesheet" href="css/jquery-ui.css">		
-	<script src="js/jquery-ui.js"></script>
-	 <script type='text/javascript' src="js/popupmessage.js" ></script>
-    <link rel="stylesheet" href="css/popupmessage.css">
-    
-    </head>
-    <body>
-	
-     <div id="jsTreeComponent" class="demo" style="max-width:100%;"></div>   
-     
-        
- <script>
+<head>
+
+<title>iReveal EMS</title>
+<link rel="stylesheet" type="text/css" href="irev-style.css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+
+<script type="text/javascript" src="js/jquery.jstree.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/jquery.hotkeys.js"></script>
+<link rel="stylesheet" href="css/jquery-ui.css">
+<script src="js/jquery-ui.js"></script>
+<script type='text/javascript' src="js/popupmessage.js"></script>
+<link rel="stylesheet" href="css/popupmessage.css">
+
+</head>
+<body>
+
+	<div id="jsTreeComponent" class="demo" style="max-width: 100%;"></div>
+
+
+	<script>
  $(document).ready(function () {
 	   //alert("selectedname "+selectedname);
 		var parmdelete='<%=request.getParameter("deletemsg")%>';
@@ -50,8 +50,8 @@ var treemode='<%=request.getParameter("treemode")%>';
 // alert('<%=request.getParameter("treemode")%>');
  //alert("parm " + ${param.treemode});
  </script>
- 
-    <script>
+
+	<script>
     var selectedreport;
     var atype;
     var parents = [];
@@ -172,7 +172,8 @@ var treemode='<%=request.getParameter("treemode")%>';
 	  			        	  parent.document.getElementById("10db").style.display="none";
 	  			        	  parent.document.getElementById("cpg").style.display="none";
 	  			        	  parent.document.getElementById("blobe").style.display="none";
-	  			        	parent.document.getElementById("apt").style.display="none";
+	  			        	  parent.document.getElementById("apt").style.display="none";
+	  			        	  parent.document.getElementById("pd").style.display="none";
     			        	}
     			        else if ((atype=="E") && (selectedparenttype == 'L'))
 			        	{
@@ -189,6 +190,7 @@ var treemode='<%=request.getParameter("treemode")%>';
   			        	  parent.document.getElementById("cpg").style.display="none";
   			        	 parent.document.getElementById("blobe").style.display="none";
   			        	parent.document.getElementById("apt").style.display="none";
+  			        	parent.document.getElementById("pd").style.display="none";
 			        	}
 						else if ((atype=="E") && (selectedparenttype == 'S'))
 			        	{
@@ -203,6 +205,7 @@ var treemode='<%=request.getParameter("treemode")%>';
   			        	  parent.document.getElementById("cpg").style.display="none";
   			        	 parent.document.getElementById("blobe").style.display="block";
   			        	parent.document.getElementById("apt").style.display="none";
+  			        	parent.document.getElementById("pd").style.display="none";
 			        	}
     			        else if(atype=="CP")
 			        	{
@@ -246,7 +249,25 @@ var treemode='<%=request.getParameter("treemode")%>';
 			        	  parent.document.getElementById("cpg").style.display="none";
 			        	  parent.document.getElementById("blobe").style.display="block";
 			        	  parent.document.getElementById("apt").style.display="none";
+			        	  parent.document.getElementById("pd").style.display="none";
 			        	}
+    			        else if(atype=="PD")
+			        	{	
+    			        	//alert("NCP");
+    			          parent.document.getElementById("rset").style.display="block";
+  			        	  parent.document.getElementById("vreports").style.display="none";
+  			        	  parent.document.getElementById("reports").style.display="block";
+			        	  parent.document.getElementById("od").style.display="none";
+			        	  parent.document.getElementById("ar").style.display="block";
+			        	  parent.document.getElementById("pp").style.display="block";
+			        	  parent.document.getElementById("3db").style.display="block";
+			        	  parent.document.getElementById("10db").style.display="block";
+			        	  parent.document.getElementById("cpg").style.display="none";
+			        	  parent.document.getElementById("blobe").style.display="block";
+			        	  parent.document.getElementById("apt").style.display="none";
+			        	  parent.document.getElementById("pd").style.display="block";
+			        	}
+    			        
     			        }
     			        
     			        else
@@ -324,6 +345,9 @@ var treemode='<%=request.getParameter("treemode")%>';
     			        	{
     			        	parent.document.getElementById("apt").style.display="block";
     			        	}
+    			        else{
+    			        	parent.document.getElementById("apt").style.display="none";
+    			        }
                 	
                 	//alert(" monitorstat "+monitorstat);
                 	 if(monitorstat=="monitor" || monitorstat=="Reports" || monitorstat=="Events"){
@@ -414,7 +438,7 @@ var treemode='<%=request.getParameter("treemode")%>';
     });
     
     </script>
-    <script>
+	<script>
     
     function opennode(data)
     {
@@ -458,7 +482,7 @@ var treemode='<%=request.getParameter("treemode")%>';
     }
     
     </script>
-    <script>
+	<script>
     function closeNodes(aid)
     {
     	var mydiv =parent.document.getElementById("treecrumbs");
@@ -612,7 +636,7 @@ function recreatewithparents()
            doStuff(checked_ids); 
     }    
     </script>
-    <script>
+	<script>
     function customMenu(node) {
         // The default set of all items
         treeType=$(node).attr('treeType')
@@ -945,6 +969,6 @@ function recreatewithparents()
     
   
     </script>
-  
-    </body>
+
+</body>
 </html>

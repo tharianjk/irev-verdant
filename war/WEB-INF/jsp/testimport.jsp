@@ -186,7 +186,7 @@ progress_clear();
 		</tr>
         </table> 
         </td>
-  <c:if test="${cfreq!='' || vfreq !=''  || hfreq !=''  || cfreq !=''  || pfreq !=''  || rfreq !=''  || yfreq !='' }">
+  <c:if test="${cfreq!='' || vfreq !=''  || hfreq !=''  || cfreq !=''  || pfreq !=''  || rfreq !=''  || yfreq !='' || ffreq !=''}">
  <td align="center"> <b> <u>Imported Data </u></b> 
 		<table id="listtab"  border="1" cellpadding="1" cellspacing="2" style="width: 500px;vertical-align:top;">
 		
@@ -233,7 +233,12 @@ progress_clear();
 	<td> ${yfreq}</td>				
 	</tr>
 	</c:if>
-	
+	<c:if test="${ffreq!='' && ffreq !=null}">
+	<tr>
+	<td> Phase Data </td>
+	<td> ${ffreq}</td>				
+	</tr>
+	</c:if>
 	 
 	</tbody>
 	</table> 

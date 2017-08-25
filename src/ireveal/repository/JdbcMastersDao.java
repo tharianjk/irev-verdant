@@ -1048,6 +1048,11 @@ public class JdbcMastersDao extends JdbcDaoSupport implements MastersDao {
 			sql="select distinct frequency from vdata where test_id=?";
 		else if(typ.equals("F"))
 			sql="select distinct frequency from fdata where test_id=?";
+		else if(typ.equals("PDV"))
+			sql="select distinct frequency from vdata_phase where test_id=?";
+		else if(typ.equals("PDH"))
+			sql="select distinct frequency from hdata_phase where test_id=?";
+		
 
 		List<TestFrequency> freqlist=getJdbcTemplate().query(sql, new FreqdatafileMapper(),testid);  
 		for (int i=0;i<freqlist.size();i++){
