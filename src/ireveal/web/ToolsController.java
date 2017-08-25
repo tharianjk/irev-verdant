@@ -397,7 +397,7 @@ public class ToolsController implements Controller {
 				
 				if(!testid1.equals("") && testid1!=null){	
 					if(mastersservice.getCheckPhaseDiff(Integer.parseInt(testid1))>0){							
-						return new ModelAndView(new RedirectView("/birt-viewer/frameset?__report=verdant/PhaseDifference.rptdesign&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
+						return new ModelAndView(new RedirectView("/birt-viewer/frameset?__report=verdant/PhaseDifference.rptdesign&testid="+testid1+"&rpth="+rptheader+"&rptf="+rptfooter+"&pc="+nprecision));
 					}
 					else{
 						myModel.put("text","Please Select Test from asset tree with Phase Difference Data uploaded!! ");
