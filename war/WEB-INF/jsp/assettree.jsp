@@ -254,9 +254,9 @@ var treemode='<%=request.getParameter("treemode")%>';
     			        else if(atype=="PD")
 			        	{	
     			        	//alert("NCP");
-    			          parent.document.getElementById("rset").style.display="none";
+    			          parent.document.getElementById("rset").style.display="block";
   			        	  parent.document.getElementById("vreports").style.display="none";
-  			        	  parent.document.getElementById("reports").style.display="none";
+  			        	  parent.document.getElementById("reports").style.display="block";
 			        	  parent.document.getElementById("od").style.display="none";
 			        	  parent.document.getElementById("ar").style.display="none";
 			        	  parent.document.getElementById("pp").style.display="none";
