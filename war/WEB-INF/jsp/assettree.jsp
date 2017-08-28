@@ -254,16 +254,16 @@ var treemode='<%=request.getParameter("treemode")%>';
     			        else if(atype=="PD")
 			        	{	
     			        	//alert("NCP");
-    			          parent.document.getElementById("rset").style.display="block";
+    			          parent.document.getElementById("rset").style.display="none";
   			        	  parent.document.getElementById("vreports").style.display="none";
-  			        	  parent.document.getElementById("reports").style.display="block";
+  			        	  parent.document.getElementById("reports").style.display="none";
 			        	  parent.document.getElementById("od").style.display="none";
-			        	  parent.document.getElementById("ar").style.display="block";
-			        	  parent.document.getElementById("pp").style.display="block";
-			        	  parent.document.getElementById("3db").style.display="block";
-			        	  parent.document.getElementById("10db").style.display="block";
+			        	  parent.document.getElementById("ar").style.display="none";
+			        	  parent.document.getElementById("pp").style.display="none";
+			        	  parent.document.getElementById("3db").style.display="none";
+			        	  parent.document.getElementById("10db").style.display="none";
 			        	  parent.document.getElementById("cpg").style.display="none";
-			        	  parent.document.getElementById("blobe").style.display="block";
+			        	  parent.document.getElementById("blobe").style.display="none";
 			        	  parent.document.getElementById("apt").style.display="none";
 			        	  parent.document.getElementById("pd").style.display="block";
 			        	}
