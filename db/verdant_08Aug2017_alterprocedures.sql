@@ -1,5 +1,281 @@
 -- 16-08-2017
 use verdant;
+-- 08-08-2017
+drop table IF EXISTS hdata_phase;
+CREATE TABLE IF NOT EXISTS hdata_phase (
+  hData_id_p INT AUTO_INCREMENT NOT NULL,
+  Test_id INT NULL,
+   Frequency decimal(40,20),
+  Angle DECIMAL(12,2) NULL,
+  Phaseval DECIMAL(12,8) NULL,  
+  PRIMARY KEY (hData_id_p))
+ENGINE = InnoDB;
+alter table hdata_phase add constraint FK_hdata_phase_test foreign key (Test_id) references testdata(Test_id);
+create index testid_freq_angle_php on hdata_phase(Test_id, Frequency, angle,Phaseval);
+
+drop table IF EXISTS vdata_phase;
+CREATE TABLE IF NOT EXISTS vdata_phase (
+  vData_id_p INT AUTO_INCREMENT NOT NULL,
+  Test_id INT NULL,
+   Frequency decimal(40,20),
+  Angle DECIMAL(12,2) NULL,
+  Phaseval DECIMAL(12,8) NULL,  
+  PRIMARY KEY (vData_id_p))
+ENGINE = InnoDB;
+alter table vdata_phase add constraint FK_vdata_phase_test foreign key (Test_id) references testdata(Test_id);
+create index testid_freq_angle_pvp on vdata_phase(Test_id, Frequency, angle,Phaseval);
+
+drop table IF EXISTS phasecalculated;
+CREATE TABLE phasecalculated (
+  phCalculated_Id INT AUTO_INCREMENT NOT NULL,
+  Test_id INT NULL,
+  Frequency decimal(40,20),
+  TestDate datetime DEFAULT NULL,
+  PD_0 decimal(40,20) DEFAULT NULL,
+  PD_P60 decimal(40,20) DEFAULT NULL,
+  PD_M60 decimal(40,20) DEFAULT NULL,
+  MaxPD_P60_Ratio decimal(40,20) DEFAULT NULL,
+  MaxPD_P60_Angle decimal(40,20) DEFAULT NULL,
+  MaxPD_M60_Ratio decimal(40,20) DEFAULT NULL,
+  MaxPD_M60_Angle decimal(40,20) DEFAULT NULL,
+   PRIMARY KEY (phCalculated_Id),
+  KEY FK_phCalculated_prd (Test_id),
+  CONSTRAINT FK_phCalculated_prd FOREIGN KEY (Test_id) REFERENCES testdata (Test_id)
+) ENGINE=InnoDB;
+
+-- 03-08-2017
+drop table IF EXISTS fdata;
+drop table IF EXISTS fcalculated;
+
+CREATE TABLE IF NOT EXISTS fData (
+  FData_id INT AUTO_INCREMENT NOT NULL,
+  Test_id INT NULL,
+   Frequency decimal(40,20),
+  Angle DECIMAL(12,2) NULL,
+  Amplitude DECIMAL(12,8) NULL,  
+  PRIMARY KEY (FData_id));
+
+ 
+alter table fdata add constraint FK_fdata_test foreign key (Test_id) references testdata(Test_id);
+create index testid_freq_angle_fp on fData(Test_id, Frequency, angle,Amplitude);
+
+CREATE TABLE fcalculated (
+  FCalculated_Id int(11) NOT NULL AUTO_INCREMENT,
+  Test_id int(11) DEFAULT NULL,
+  Frequency decimal(40,20) DEFAULT NULL,
+  TestDate datetime DEFAULT NULL,
+  OmniDeviation decimal(40,20) DEFAULT NULL,
+  3Db_BW_BMax decimal(40,20) DEFAULT NULL,
+  3Db_BW_0 decimal(40,20) DEFAULT NULL,
+  3Db_BW_90 decimal(40,20) DEFAULT NULL,
+  3Db_BS_BMax decimal(40,20) DEFAULT NULL,
+  3Db_BS_0 decimal(40,20) DEFAULT NULL,
+  3Db_BS_90 decimal(40,20) DEFAULT NULL,
+  10Db_BW_BMax decimal(40,20) DEFAULT NULL,
+  10Db_BW_0 decimal(40,20) DEFAULT NULL,
+  10Db_BW_90 decimal(40,20) DEFAULT NULL,
+  10Db_BS_BMax decimal(40,20) DEFAULT NULL,
+  10Db_BS_0 decimal(40,20) DEFAULT NULL,
+  10Db_BS_90 decimal(40,20) DEFAULT NULL,
+  BackLobe decimal(40,20) DEFAULT NULL,
+  3Db_BW_270 decimal(40,20) DEFAULT NULL,
+  3Db_BS_270 decimal(40,20) DEFAULT NULL,
+  10Db_BW_270 decimal(40,20) DEFAULT NULL,
+  10Db_BS_270 decimal(40,20) DEFAULT NULL,
+  PRIMARY KEY (FCalculated_Id),
+  KEY FK_fcalculated_prd (Test_id),
+  CONSTRAINT FK_fcalculated_prd FOREIGN KEY (Test_id) REFERENCES testdata (Test_id)
+) ;
+
+
+drop view if exists phasedifference_view;
+
+CREATE    
+VIEW phasedifference_view AS
+    SELECT 
+        h.Test_id AS test_id,
+        h.Frequency AS Frequency,
+        h.Angle AS angle,
+        ABS((v.phaseval - h.phaseval)) AS phasedifference
+    FROM
+        (hdata_phase h
+        JOIN vdata_phase v ON (((h.Test_id = v.Test_id)
+            AND (h.Frequency = v.Frequency)
+            AND (h.Angle = v.Angle))));
+
+
+
+drop procedure  if exists spPolarMultiple;
+-- call spPolarMultiple('1000.0,2000','0.0001,0.0001',8,'admin','F')
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spPolarMultiple`(strfreq varchar(100),strlg varchar(100),testid int,usr Varchar(20),typ varchar(2))
+BEGIN 
+declare cnt int; 
+declare rint int; 
+
+declare strmaxvalue varchar(50);
+declare strminvalue varchar(50);
+declare prec int ;
+set cnt=0; 
+delete from temppolar where user=usr; 
+create table if not exists t1 (id integer ,freq decimal(20,10),lg decimal (20,10)); 
+
+truncate table t1; 
+select frequnit into @unt from testdata where test_id=testid;
+       
+SET @String = strfreq; 
+SET @Occurrences = LENGTH(@String) - LENGTH(REPLACE(@String, ',', '')); 
+
+        myloop: WHILE (@Occurrences > 0)        
+ DO              SET @myValue = SUBSTRING_INDEX(@String, ',', 1); 
+            IF (@myValue != '') THEN  
+           insert into t1(id,freq) values(cnt,case @unt when 'GHz' then convert(@myValue,decimal)*1000 else convert(@myValue,decimal) end );   
+          set cnt=cnt+1;        
+     ELSE              
+   LEAVE myloop;      
+        END IF;    
+         SET @Occurrences = LENGTH(@String) - LENGTH(REPLACE(@String, ',', '')); 
+
+       IF (@occurrences = 0) THEN      
+            LEAVE myloop;           
+   END IF;            
+ SET @String = SUBSTRING(@String,LENGTH(SUBSTRING_INDEX(@String, ',', 1))+2);      
+   END WHILE;  
+
+
+
+ set cnt=0; 
+SET @String      = strlg;   
+      SET @Occurrences = LENGTH(@String) - LENGTH(REPLACE(@String, ',', ''));   
+      myloop: WHILE (@Occurrences > 0)     
+    DO        
+      SET @myValue = SUBSTRING_INDEX(@String, ',', 1);        
+     IF (@myValue != '') THEN       
+      update  t1 set lg=convert(@myValue,decimal) where id=cnt ;        
+     set cnt=cnt+1;          
+   ELSE              
+   LEAVE myloop;     
+         END IF;     
+        SET @Occurrences = LENGTH(@String) - LENGTH(REPLACE(@String, ',', ''));       
+      IF (@occurrences = 0) THEN             
+     LEAVE myloop;       
+       END IF;           
+  SET @String = SUBSTRING(@String,LENGTH(SUBSTRING_INDEX(@String, ',', 1))+2);   
+      END WHILE; 
+ select count(*) into @cnt from t1; 
+
+if @cnt=0 then
+insert into t1(id,freq,lg) values(1,case @unt when 'GHz' then convert(strfreq,decimal)*1000 else convert(strfreq,decimal) end,convert(strlg,decimal));
+set @cnt=1;
+ end if;
+set rint=0; 
+set @acnt=0;
+
+select count(*) into @acnt from scaling s inner join product_serial ps on s.product_id=ps.product_id inner join testdata t on ps.prodserial_id=t.prodserial_id
+where t.test_id=testid and s.frequency in (select  freq from t1);
+if @acnt > 0 then
+select distinct convert(floor(max(maxscale)),char(30)) ,convert(round(min(minscale),0),char(30))  into strmaxvalue,strminvalue from scaling s inner join product_serial ps on s.product_id=ps.product_id inner join testdata t on ps.prodserial_id=t.prodserial_id
+where t.test_id=testid and s.frequency in (select  freq from t1);
+end if;
+
+if typ='H' then 
+set @tab= 'hdata';
+if @acnt = 0 then
+       select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM hdata HD 
+		where HD.Frequency in (select  freq from t1) and HD.Test_id=testid;
+		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM hdata HD 
+		where HD.Frequency in (select  freq from t1) and HD.Test_id=testid;
+end if;
+
+end if;
+  if typ='V' then 
+set @tab= 'vdata';
+if @acnt = 0 then
+       select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM vdata HD 
+		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
+		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM vdata HD 
+		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
+end if;
+end if;
+  if typ='C' then 
+set @tab= 'cpdata';
+if @acnt = 0 then
+       select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM cpdata HD 
+		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
+		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM cpdata HD 
+		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
+end if;
+end if;
+  if typ='P' then 
+set @tab= 'pitchdata';
+if @acnt = 0 then
+       select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM pitchdata HD 
+		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
+		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM pitchdata HD 
+		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
+end if;
+end if; 
+ if typ='R' then 
+set @tab= 'rolldata'; 
+if @acnt = 0 then
+       select convert(floor(max(distinct Amplitude))+1,char(30)) into strmaxvalue FROM rolldata HD 
+		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
+		select convert(round(min(distinct Amplitude),0),char(30)) into strminvalue FROM rolldata HD 
+		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
+end if;
+end if;
+ if typ='Y' then 
+set @tab= 'yawdata'; 
+if @acnt = 0 then
+       select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM yawdata HD 
+		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
+		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM yawdata HD 
+		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
+end if;
+end if;
+if typ='F' then 
+set @tab= 'fdata'; 
+if @acnt = 0 then
+       select convert(floor(max(Amplitude))+1,char(30)) into strmaxvalue FROM fdata HD 
+		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
+		select convert(round(min(Amplitude),0),char(30)) into strminvalue FROM fdata HD 
+		where HD.Frequency in (select distinct freq from t1) and HD.Test_id=testid;
+end if;
+end if;
+
+myloop: WHILE (rint<@cnt)      
+   DO  
+
+select freq into @freq from t1 where id=rint; 
+ 
+SET @sql1 = CONCAT('insert into temppolar(user,test_id,angle,amp',rint+1,',frequency)'); 
+set @sql2= CONCAT('SELECT ''',usr,''', HD.Test_id,HD.Angle,HD.Amplitude,HD.Frequency FROM ',@tab,' HD where HD.Frequency=',@freq,' and HD.Test_id=',testid);  
+set @s=CONCAT(@sql1,@sql2);  
+        
+PREPARE stmt1 FROM @s;  
+EXECUTE stmt1;  
+DEALLOCATE PREPARE stmt1;  
+  set rint=rint+1;    
+END WHILE;        
+    drop table t1; 
+ 
+ 
+
+  select test_id TestId,Angle,sum(amp1) Amplitude1, frequency,sum(amp2) Amplitude2,
+sum(amp3) Amplitude3,sum(amp4) Amplitude4,sum(amp5) Amplitude5 ,sum(amp6) Amplitude6,sum(amp7) Amplitude7,
+sum(amp8) Amplitude8,sum(amp9) Amplitude9,sum(amp10) Amplitude10 ,sum(amp11) Amplitude11,sum(amp12) Amplitude12,
+sum(amp13) Amplitude13,sum(amp14) Amplitude14,sum(amp15) Amplitude15, sum(amp16) Amplitude16,sum(amp17) Amplitude17,
+sum(amp18) Amplitude18,sum(amp19) Amplitude19,sum(amp20) Amplitude20,strmaxvalue,strminvalue,@unt frequnit
+ from temppolar where user=usr group by test_id,angle,frequency  ,strmaxvalue,strminvalue, frequnit
+order by test_id,frequency,angle;  
+END$$
+
+
 drop procedure if exists spGetPolarPlot ;
 
 -- --------------------------------------------------------------------------------

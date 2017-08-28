@@ -355,9 +355,13 @@ if(document.getElementById("freqtype").value=="M"){
 			console.log("J "+j);
 				if(selfreq==0)
 					{
-					alert("Frequencies not selected");
+					alert("Frequencies not selected !!");
 					return;
 					}
+				if(j>10){
+					alert("Frequencies cannot be greater than 10!!");
+					return;
+				}
 				if(j==1)
 				{
 					var url="/birt-viewer/frameset?__report=verdant/PolarGeneric.rptdesign&type="+typ+"&testid="+testid+"&scale="+scale+"&max="+max+"&min="+min+"&lgain="+lg+"&img="+img+"&rpth="+rptheader+"&rptf="+rptfooter+"&freq1="+selfreq+
