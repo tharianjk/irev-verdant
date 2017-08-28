@@ -235,7 +235,7 @@ progress_clear();
 	</c:if>
 	<c:if test="${ffreq!='' && ffreq !=null}">
 	<tr>
-	<td> Phase Data </td>
+	<td> 45P </td>
 	<td> ${ffreq}</td>				
 	</tr>
 	</c:if>
